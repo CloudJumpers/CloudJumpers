@@ -14,3 +14,4 @@ jobs:
         with:
           scheme: CloudJumpers
           action: build
+          working-directory: ..
