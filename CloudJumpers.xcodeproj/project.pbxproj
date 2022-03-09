@@ -16,7 +16,6 @@
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
-		9389E5FE27D8C5EB0049ADDD /* CloudJumpersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5FD27D8C5EB0049ADDD /* CloudJumpersTests.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		A1DBB83827D884200077AB96 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82A27D884200077AB96 /* RenderComponent.swift */; };
 		A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82B27D884200077AB96 /* PhysicsComponent.swift */; };
@@ -60,7 +59,6 @@
 		9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9389E5FD27D8C5EB0049ADDD /* CloudJumpersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudJumpersTests.swift; sourceTree = "<group>"; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A1DBB82A27D884200077AB96 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				9389E60527D8C5FD0049ADDD /* AuthenticationTests */,
-				9389E5FD27D8C5EB0049ADDD /* CloudJumpersTests.swift */,
 			);
 			path = CloudJumpersTests;
 			sourceTree = "<group>";
@@ -471,7 +468,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */,
-				9389E5FE27D8C5EB0049ADDD /* CloudJumpersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
