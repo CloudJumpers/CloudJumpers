@@ -13,8 +13,8 @@ class FirebaseAuthManager {
 
     func loginUser(email: String, password: String) async -> User? {
         do {
-            let authOutcome = try await authenticator.signIn(withEmail: email, password: password)
-            return authOutcome.user
+            let loginAttempt = try await authenticator.signIn(withEmail: email, password: password)
+            return loginAttempt.user
         } catch {
             return nil
         }
@@ -22,8 +22,8 @@ class FirebaseAuthManager {
 
     func createUser(email: String, password: String) async -> User? {
         do {
-            let createOutcome = try await authenticator.createUser(withEmail: email, password: password)
-            return createOutcome.user
+            let createUserAttempt = try await authenticator.createUser(withEmail: email, password: password)
+            return createUserAttempt.user
         } catch {
             return nil
         }
