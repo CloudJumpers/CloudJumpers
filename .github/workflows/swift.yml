@@ -10,9 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-      - uses: sersoft-gmbh/xcodebuild-action@v1
-      - with:
-          project: CloudJumpers.xcodeproj
+      - uses: mxcl/xcodebuild@v1
+        with:
           scheme: CloudJumpers
-          destination: platform=iOS
           action: build
