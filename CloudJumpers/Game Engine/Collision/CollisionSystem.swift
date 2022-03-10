@@ -10,11 +10,11 @@ import Foundation
 class CollisionSystem: System {
     let componentDict: [GameEntity: CollisionComponent] = [:]
     func addComponent(entity: GameEntity, component: Component) {
-        <#code#>
+        // Collision with new skNode?
     }
     
     func removeComponent(entity: GameEntity) {
-        <#code#>
+        // Remove based on rendering ?
     }
     
     func update(_ deltaTime: Double) {
