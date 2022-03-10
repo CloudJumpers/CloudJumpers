@@ -16,7 +16,15 @@
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
-		93D4E16427DA04EF0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */; };
+		93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */; };
+		93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */; };
+		93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */; };
+		93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17827DA125C0054F45B /* NetworkedEntity.swift */; };
+		93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */; };
+		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
+		93D4E18027DA21CB0054F45B /* TestFirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */; };
+		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
+		93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */; };
 		A1DBB83827D884200077AB96 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82A27D884200077AB96 /* RenderComponent.swift */; };
 		A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82B27D884200077AB96 /* PhysicsComponent.swift */; };
 		A1DBB83A27D884200077AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82C27D884200077AB96 /* Component.swift */; };
@@ -59,7 +67,15 @@
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
-		93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRTDBManager.swift; sourceTree = "<group>"; };
+		93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataProcessor.swift; sourceTree = "<group>"; };
+		93D4E17827DA125C0054F45B /* NetworkedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedEntity.swift; sourceTree = "<group>"; };
+		93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByUUID.swift; sourceTree = "<group>"; };
+		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
+		93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseRTDBManager.swift; sourceTree = "<group>"; };
+		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A1DBB82A27D884200077AB96 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
 		A1DBB82B27D884200077AB96 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
@@ -120,6 +136,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				93D4E16527DA0C920054F45B /* Networking */,
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				A1DBB84327D884290077AB96 /* MathUtils */,
 				A1DBB82827D884200077AB96 /* Game Engine */,
@@ -130,7 +147,7 @@
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
 				1A4E3D7D27D85BCA0033A29D /* Info.plist */,
-				93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */,
+				93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */,
 			);
 			path = CloudJumpers;
 			sourceTree = "<group>";
@@ -157,6 +174,8 @@
 		9389E5FC27D8C5EB0049ADDD /* CloudJumpersTests */ = {
 			isa = PBXGroup;
 			children = (
+				93D4E18127DA23E70054F45B /* TestUtils */,
+				93D4E17E27DA21A60054F45B /* NetworkingTests */,
 				9389E60527D8C5FD0049ADDD /* AuthenticationTests */,
 			);
 			path = CloudJumpersTests;
@@ -168,6 +187,43 @@
 				9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */,
 			);
 			path = AuthenticationTests;
+			sourceTree = "<group>";
+		};
+		93D4E16527DA0C920054F45B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E17727DA12330054F45B /* Definitions */,
+				93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */,
+				93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */,
+				93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		93D4E17727DA12330054F45B /* Definitions */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E17827DA125C0054F45B /* NetworkedEntity.swift */,
+				93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */,
+				93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */,
+			);
+			path = Definitions;
+			sourceTree = "<group>";
+		};
+		93D4E17E27DA21A60054F45B /* NetworkingTests */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */,
+			);
+			path = NetworkingTests;
+			sourceTree = "<group>";
+		};
+		93D4E18127DA23E70054F45B /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E18227DA23FF0054F45B /* TestUtils.swift */,
+			);
+			path = TestUtils;
 			sourceTree = "<group>";
 		};
 		A1DBB82827D884200077AB96 /* Game Engine */ = {
@@ -325,7 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */,
-				93D4E16427DA04EF0054F45B /* GoogleService-Info.plist in Resources */,
+				93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
 				1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */,
 			);
@@ -443,15 +499,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */,
 				A1DBB84227D884200077AB96 /* GameEntity.swift in Sources */,
 				1A4E3D7427D85BC80033A29D /* ViewController.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* PhysicsSystem.swift in Sources */,
+				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				A1DBB83F27D884200077AB96 /* EventSystem.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
 				A1DBB83C27D884200077AB96 /* Game Engine.swift in Sources */,
+				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
+				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
+				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
+				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */,
@@ -467,7 +529,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93D4E18027DA21CB0054F45B /* TestFirebaseRTDBManager.swift in Sources */,
 				9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */,
+				93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
