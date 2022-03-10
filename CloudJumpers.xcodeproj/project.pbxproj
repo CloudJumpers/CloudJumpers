@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11BCE701FED842995CC620D0 /* Pods_CloudJumpersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */; };
 		1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */; };
 		1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */; };
 		1A4E3D7427D85BC80033A29D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7327D85BC80033A29D /* ViewController.swift */; };
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
+		9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */; };
+		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
+		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		A1D4686927D9050400C9FB0E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686827D9050400C9FB0E /* GameViewController.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1DBB83827D884200077AB96 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82A27D884200077AB96 /* RenderComponent.swift */; };
@@ -28,7 +32,18 @@
 		A1DBB84227D884200077AB96 /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83727D884200077AB96 /* GameEntity.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
+		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9389E5FF27D8C5EB0049ADDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A4E3D6427D85BC80033A29D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A4E3D6B27D85BC80033A29D;
+			remoteInfo = CloudJumpers;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudJumpers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +54,15 @@
 		1A4E3D7827D85BCA0033A29D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
+		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
+		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A1D4686827D9050400C9FB0E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1DBB82A27D884200077AB96 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
@@ -54,6 +78,7 @@
 		A1DBB83727D884200077AB96 /* GameEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEntity.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
+		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +86,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9389E5F827D8C5EB0049ADDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11BCE701FED842995CC620D0 /* Pods_CloudJumpersTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,7 +105,10 @@
 			isa = PBXGroup;
 			children = (
 				1A4E3D6E27D85BC80033A29D /* CloudJumpers */,
+				9389E5FC27D8C5EB0049ADDD /* CloudJumpersTests */,
 				1A4E3D6D27D85BC80033A29D /* Products */,
+				90C586EF6BCC2E7EFA91485D /* Pods */,
+				EA08B77308ED456EC74F5D13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */,
+				9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -86,6 +124,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
 				A1D4686727D904F300C9FB0E /* ViewController */,
 				A1DBB84327D884290077AB96 /* MathUtils */,
@@ -97,8 +136,44 @@
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
 				1A4E3D7D27D85BCA0033A29D /* Info.plist */,
+				9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */,
 			);
 			path = CloudJumpers;
+			sourceTree = "<group>";
+		};
+		90C586EF6BCC2E7EFA91485D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */,
+				3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */,
+				BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */,
+				6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9389E5F427D8BF7D0049ADDD /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		9389E5FC27D8C5EB0049ADDD /* CloudJumpersTests */ = {
+			isa = PBXGroup;
+			children = (
+				9389E60527D8C5FD0049ADDD /* AuthenticationTests */,
+			);
+			path = CloudJumpersTests;
+			sourceTree = "<group>";
+		};
+		9389E60527D8C5FD0049ADDD /* AuthenticationTests */ = {
+			isa = PBXGroup;
+			children = (
+				9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */,
+			);
+			path = AuthenticationTests;
 			sourceTree = "<group>";
 		};
 		A1D4686727D904F300C9FB0E /* ViewController */ = {
@@ -168,6 +243,15 @@
 			path = MathUtils;
 			sourceTree = "<group>";
 		};
+		EA08B77308ED456EC74F5D13 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */,
+				4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -175,10 +259,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A4E3D8027D85BCA0033A29D /* Build configuration list for PBXNativeTarget "CloudJumpers" */;
 			buildPhases = (
+				6D24A65F2D25B9416918C35B /* [CP] Check Pods Manifest.lock */,
 				1AB5AB9027D85C3100BECD43 /* ShellScript */,
 				1A4E3D6827D85BC80033A29D /* Sources */,
 				1A4E3D6927D85BC80033A29D /* Frameworks */,
 				1A4E3D6A27D85BC80033A29D /* Resources */,
+				C46666828BC96C3147A5C79C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +274,26 @@
 			productName = CloudJumpers;
 			productReference = 1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */;
 			productType = "com.apple.product-type.application";
+		};
+		9389E5FA27D8C5EB0049ADDD /* CloudJumpersTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9389E60127D8C5EB0049ADDD /* Build configuration list for PBXNativeTarget "CloudJumpersTests" */;
+			buildPhases = (
+				E542B24B6B144A606E67020E /* [CP] Check Pods Manifest.lock */,
+				9389E5F727D8C5EB0049ADDD /* Sources */,
+				9389E5F827D8C5EB0049ADDD /* Frameworks */,
+				9389E5F927D8C5EB0049ADDD /* Resources */,
+				F72BE0C03C6D1D749E76209A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9389E60027D8C5EB0049ADDD /* PBXTargetDependency */,
+			);
+			name = CloudJumpersTests;
+			productName = CloudJumpersTests;
+			productReference = 9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -201,6 +307,10 @@
 				TargetAttributes = {
 					1A4E3D6B27D85BC80033A29D = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					9389E5FA27D8C5EB0049ADDD = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 1A4E3D6B27D85BC80033A29D;
 					};
 				};
 			};
@@ -218,6 +328,7 @@
 			projectRoot = "";
 			targets = (
 				1A4E3D6B27D85BC80033A29D /* CloudJumpers */,
+				9389E5FA27D8C5EB0049ADDD /* CloudJumpersTests */,
 			);
 		};
 /* End PBXProject section */
@@ -228,8 +339,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */,
+				9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
 				1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9389E5F927D8C5EB0049ADDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +372,84 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		6D24A65F2D25B9416918C35B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CloudJumpers-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C46666828BC96C3147A5C79C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E542B24B6B144A606E67020E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CloudJumpersTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F72BE0C03C6D1D749E76209A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -269,6 +466,7 @@
 				A1D4686927D9050400C9FB0E /* GameViewController.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
 				A1DBB83C27D884200077AB96 /* Game Engine.swift in Sources */,
+				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */,
@@ -281,7 +479,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9389E5F727D8C5EB0049ADDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9389E60027D8C5EB0049ADDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A4E3D6B27D85BC80033A29D /* CloudJumpers */;
+			targetProxy = 9389E5FF27D8C5EB0049ADDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1A4E3D7527D85BC80033A29D /* Main.storyboard */ = {
@@ -421,6 +635,7 @@
 		};
 		1A4E3D8127D85BCA0033A29D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -450,6 +665,7 @@
 		};
 		1A4E3D8227D85BCA0033A29D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -477,6 +693,44 @@
 			};
 			name = Release;
 		};
+		9389E60227D8C5EB0049ADDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CloudJumpers.app/CloudJumpers";
+			};
+			name = Debug;
+		};
+		9389E60327D8C5EB0049ADDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpersTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CloudJumpers.app/CloudJumpers";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -494,6 +748,15 @@
 			buildConfigurations = (
 				1A4E3D8127D85BCA0033A29D /* Debug */,
 				1A4E3D8227D85BCA0033A29D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9389E60127D8C5EB0049ADDD /* Build configuration list for PBXNativeTarget "CloudJumpersTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9389E60227D8C5EB0049ADDD /* Debug */,
+				9389E60327D8C5EB0049ADDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
