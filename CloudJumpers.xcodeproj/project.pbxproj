@@ -14,9 +14,9 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
-		9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
+		93D4E16427DA04EF0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */; };
 		A1DBB83827D884200077AB96 /* RenderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82A27D884200077AB96 /* RenderComponent.swift */; };
 		A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82B27D884200077AB96 /* PhysicsComponent.swift */; };
 		A1DBB83A27D884200077AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82C27D884200077AB96 /* Component.swift */; };
@@ -56,10 +56,10 @@
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
-		9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
+		93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A1DBB82A27D884200077AB96 /* RenderComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderComponent.swift; sourceTree = "<group>"; };
 		A1DBB82B27D884200077AB96 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
 				1A4E3D7D27D85BCA0033A29D /* Info.plist */,
-				9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */,
+				93D4E16327DA04EF0054F45B /* GoogleService-Info.plist */,
 			);
 			path = CloudJumpers;
 			sourceTree = "<group>";
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */,
-				9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */,
+				93D4E16427DA04EF0054F45B /* GoogleService-Info.plist in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
 				1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */,
 			);

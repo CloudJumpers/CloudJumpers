@@ -30,5 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:1005870935944:ios:e49aa54df059d8cd6cd43d</string>
+	<key>DATABASE_URL</key>
+	<string>https://cloudjumpers-ee9cd-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </dict>
 </plist>
