@@ -1,0 +1,15 @@
+//
+//  Event.swift
+//  CloudJumpers
+//
+//  Created by Trong Tan on 3/11/22.
+//
+
+import Foundation
+
+// Some asynchronous event that require a general handler
+class Event {
+    enum EventType {
+        case animation, otherPlayer
+    }
+}

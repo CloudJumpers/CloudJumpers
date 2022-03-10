@@ -8,9 +8,25 @@
 import Foundation
 
 class SinglePlayerGameEngine: GameEngine {
+    weak var gameScene: GameScene?
+    
     var entities: Set<GameEntity> = []
 
-    var renderEntities: Set<RenderEntity> = []
+    var stateEntities: Set<StateEntity> = []
+    
+    // System
+    let renderingSystem: RenderingSystem
+    let collisionSystem: CollisionSystem
+    
+    
+    init(gameScene: GameScene) {
+        self.gameScene = gameScene
+        renderingSystem = RenderingSystem(gameScene: gameScene)
+        collisionSystem = CollisionSystem()
+        
+    }
+    
+    
 
     func update(_ deltaTime: Double) {
         // Update individual systems

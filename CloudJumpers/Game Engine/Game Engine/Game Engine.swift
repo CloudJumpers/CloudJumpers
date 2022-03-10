@@ -10,7 +10,7 @@ import Foundation
 protocol GameEngine {
     var entities: Set<GameEntity> { get set }
 
-    var renderEntities: Set<RenderEntity> { get set }
+    var stateEntities: Set<StateEntity> { get set }
 
     func update(_ deltaTime: Double)
 

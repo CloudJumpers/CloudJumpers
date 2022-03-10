@@ -6,12 +6,14 @@
 //
 
 import Foundation
-class RenderEntity: Entity {
+
+// State that persist throughout the game
+class StateEntity: Entity {
     var id = UUID()
 }
 
-extension RenderEntity: Hashable {
-    static func == (lhs: RenderEntity, rhs: RenderEntity) -> Bool {
+extension StateEntity: Hashable {
+    static func == (lhs: StateEntity, rhs: StateEntity) -> Bool {
         lhs.id == rhs.id
     }
 
