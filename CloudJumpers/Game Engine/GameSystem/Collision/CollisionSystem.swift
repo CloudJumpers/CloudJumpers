@@ -9,7 +9,8 @@ import Foundation
 
 class CollisionSystem: System {
 
-    
+    private var entitiesComponentMapping: [Entity: CollisionComponent] = [:]
+
     weak var entitiesManager: EntitiesManager?
     
     init (entitiesManager: EntitiesManager) {
@@ -24,6 +25,7 @@ class CollisionSystem: System {
         guard let collisionComponent = component as? CollisionComponent else {
             return
         }
-        entitiesManager?.addComponent(collisionComponent, to: entity)
+        entitiesComponentMapping[entity] = collisionComponent
+        
     }
 }

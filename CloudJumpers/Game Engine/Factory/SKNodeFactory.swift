@@ -7,11 +7,10 @@
 
 import Foundation
 import SpriteKit
-import CoreGraphics
 
 class SKNodeFactory {
     
-    static func createSKSpriteNode(type: SpriteType) -> SKSpriteNode {
+    static func createSKSpriteNode(type: RenderingComponent.SpriteType) -> SKSpriteNode {
         switch type {
         case .sprite(let position, let name):
             return SKSpriteNode(imageNamed: name)
@@ -20,8 +19,5 @@ class SKNodeFactory {
         }
     }
     
-    enum SpriteType {
-        case sprite(position: CGPoint, name: String)
-        case background
-    }
+
 }

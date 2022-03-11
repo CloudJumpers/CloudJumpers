@@ -23,6 +23,7 @@ class SinglePlayerGameEngine: GameEngine {
     // System
     let renderingSystem: RenderingSystem
     let collisionSystem: CollisionSystem
+    let movingSystem: MovingSystem
     
     
     init(gameScene: GameScene, level: Level) {
@@ -33,6 +34,7 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
+        self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
         
         createSubscribers()
         setupGame(level: level)
@@ -62,14 +64,18 @@ class SinglePlayerGameEngine: GameEngine {
 
     func update(_ deltaTime: Double) {
         for event in eventManager.eventsQueue {
-            // process events synchronously for each system
+            handleEvent(event: event)
         }
         
+        movingSystem.update(deltaTime)
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
         
         
         // Update individual systems
+    }
+    
+    func handleEvent(event: Event) {
         
     }
 

@@ -10,8 +10,7 @@ import SpriteKit
 import Combine
 
 class EntitiesManager {
-    private var entitiesComponentMapping: [Entity: [Component]] = [:]
-    
+    private var entities = Set<Entity>()
     private var nodeEntityMapping: [Entity: SKNode] = [:]
     
     private let addSubject = PassthroughSubject<SKNode, Never>()
@@ -25,18 +24,18 @@ class EntitiesManager {
         removeSubject.eraseToAnyPublisher()
     }
     
-    func addComponent<T: Component>(_ component: T, to entity: Entity) {
-        
-        guard entitiesComponentMapping[entity] != nil else {
-            entitiesComponentMapping[entity] = [component]
-            return
-        }
-        entitiesComponentMapping[entity]?.append(component)
+    
+    func getEntities() -> [Entity] {
+        Array(entities)
     }
 
     
+    func addEntity(_ entity: Entity) {
+        entities.insert(entity)
+    }
+    
     func removeEntity(_ entity: Entity) {
-        entitiesComponentMapping.removeValue(forKey: entity)
+        entities.remove(entity)
         guard let node = nodeEntityMapping[entity] else {
             return
         }
@@ -63,25 +62,4 @@ class EntitiesManager {
     func getNode(of entity: Entity) -> SKNode? {
         nodeEntityMapping[entity]
     }
-
-    func getComponent<T: Component>(_ type: T.Type, for entity: Entity) -> T? {
-        getComponents(type, for: entity).first
-    }
-
-    func getComponents<T: Component>(_ type: T.Type, for entity: Entity) -> [T] {
-        guard let components = entitiesComponentMapping[entity] else {
-            return []
-        }
-        var result: [T] = []
-        for component in components {
-            if let typeCastedComponent = component as? T {
-                result.append(typeCastedComponent)
-            }
-        }
-        return result
-    }
-    
-    
-    
-    
 }

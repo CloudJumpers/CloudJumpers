@@ -9,15 +9,28 @@ import Foundation
 import SpriteKit
 
 class SKPhysicsBodyFactory {
-    static func createPhysicsBody(shape: CollisionComponent.Shape) -> SKPhysicsBody{
+    
+    enum Shape {
+        case player
+        case cloud
+        case platform
+    }
+    static func createPhysicsBody(shape: Shape) -> SKPhysicsBody{
+        var physicsBody: SKPhysicsBody
+
         switch shape {
         case .player:
-            return SKPhysicsBody(rectangleOf: CGSize(width: 0.1, height: 0.3))
+            physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 0.1, height: 0.3))
         case .cloud:
-            return SKPhysicsBody(rectangleOf: CGSize(width: 0.4, height: 0.1))
+            physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 0.4, height: 0.1))
         case .platform:
-            return SKPhysicsBody(rectangleOf: CGSize(width: 0.7, height: 0.1))
-
+            physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 0.7, height: 0.1))
         }
+        
+        physicsBody.affectedByGravity = (shape == .player)
+        physicsBody.collisionBitMask = 0b00001
+        
+        return physicsBody
+        
     }
 }

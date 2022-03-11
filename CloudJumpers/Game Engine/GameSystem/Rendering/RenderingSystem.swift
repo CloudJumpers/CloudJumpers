@@ -11,6 +11,10 @@ import SpriteKit
 class RenderingSystem: System {
 
     weak var entitiesManager: EntitiesManager?
+    
+    private var entitiesComponentMapping: [Entity: RenderingComponent] = [:]
+
+    
     init (entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
     }
@@ -19,11 +23,20 @@ class RenderingSystem: System {
         guard let renderingComponent = component as? RenderingComponent else {
             return
         }
-        entitiesManager?.addComponent(renderingComponent, to: entity)
+        entitiesComponentMapping[entity] = renderingComponent
     }
     
     
     func update(_ deltaTime: Double) {
+        for entity in entitiesComponentMapping.keys {
+            guard let component = entitiesComponentMapping[entity],
+                  component.isUpdating
+            else {
+                return
+            }
+            let newNode = SKNodeFactory.createSKSpriteNode(type: component.type)
+            entitiesManager?.addNode(newNode, entity: entity)
+        }
         // Update game physics
     }
 }
