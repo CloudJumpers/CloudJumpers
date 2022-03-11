@@ -9,7 +9,7 @@ import XCTest
 @testable import CloudJumpers
 
 class TestFirebaseAuthManager: XCTestCase {
-    private let firebaseAuthManager: FirebaseAuthManager = FirebaseAuthManager()
+    private let firebaseAuthManager = FirebaseAuthManager()
 
     override func tearDown() async throws {
         let currentUser = firebaseAuthManager.getActiveUser()
@@ -34,7 +34,8 @@ class TestFirebaseAuthManager: XCTestCase {
 
         XCTAssertNil(firebaseAuthManager.getActiveUser())
 
-        guard let createdUser = await firebaseAuthManager.createUser(email: systemUserEmail, password: systemUserPassword) else {
+        guard let createdUser = await firebaseAuthManager.createUser(email: systemUserEmail,
+                                                                     password: systemUserPassword) else {
             XCTFail("Expected successful user creation")
             return
         }
