@@ -10,12 +10,7 @@ import SpriteKit
 
 class SKPhysicsBodyFactory {
     
-    enum Shape {
-        case player
-        case cloud
-        case platform
-    }
-    static func createPhysicsBody(shape: Shape) -> SKPhysicsBody{
+    static func createPhysicsBody(shape: PhysicsComponent.Shape) -> SKPhysicsBody{
         var physicsBody: SKPhysicsBody
 
         switch shape {

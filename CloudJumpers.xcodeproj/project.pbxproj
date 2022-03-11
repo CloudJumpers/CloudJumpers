@@ -31,6 +31,8 @@
 		A11470A627DB4193005FA3EC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A527DB4193005FA3EC /* Level.swift */; };
 		A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */; };
 		A1179EE727DBBB4700E60E59 /* MovingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EE627DBBB4700E60E59 /* MovingSystem.swift */; };
+		A1179EEB27DBC3F300E60E59 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EEA27DBC3F300E60E59 /* PhysicsSystem.swift */; };
+		A1179EED27DBC3FF00E60E59 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EEC27DBC3FF00E60E59 /* PhysicsComponent.swift */; };
 		A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */; };
 		A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AA727DA359D0011CF40 /* RenderingSystem.swift */; };
 		A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AAA27DA66BA0011CF40 /* CollisionComponent.swift */; };
@@ -93,6 +95,8 @@
 		A11470A527DB4193005FA3EC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingComponent.swift; sourceTree = "<group>"; };
 		A1179EE627DBBB4700E60E59 /* MovingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingSystem.swift; sourceTree = "<group>"; };
+		A1179EEA27DBC3F300E60E59 /* PhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
+		A1179EEC27DBC3FF00E60E59 /* PhysicsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingComponent.swift; sourceTree = "<group>"; };
 		A1347AA727DA359D0011CF40 /* RenderingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingSystem.swift; sourceTree = "<group>"; };
 		A1347AAA27DA66BA0011CF40 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
@@ -257,15 +261,6 @@
 			path = Input;
 			sourceTree = "<group>";
 		};
-		A11470A727DB426A005FA3EC /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */,
-				A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
 		A1179EE527DBBB3800E60E59 /* Moving */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,11 +273,22 @@
 		A1179EE827DBBE6000E60E59 /* GameSystem */ = {
 			isa = PBXGroup;
 			children = (
+				A1179EE927DBC3B700E60E59 /* Physics */,
 				A1347AA127DA29E60011CF40 /* Collision */,
 				A1347AA327DA2B0E0011CF40 /* Rendering */,
 				A1179EE527DBBB3800E60E59 /* Moving */,
 			);
 			path = GameSystem;
+			sourceTree = "<group>";
+		};
+		A1179EE927DBC3B700E60E59 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */,
+				A1179EEA27DBC3F300E60E59 /* PhysicsSystem.swift */,
+				A1179EEC27DBC3FF00E60E59 /* PhysicsComponent.swift */,
+			);
+			path = Physics;
 			sourceTree = "<group>";
 		};
 		A1347AA127DA29E60011CF40 /* Collision */ = {
@@ -297,6 +303,7 @@
 		A1347AA327DA2B0E0011CF40 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */,
 				A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */,
 				A1347AA727DA359D0011CF40 /* RenderingSystem.swift */,
 			);
@@ -324,7 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				A1179EE827DBBE6000E60E59 /* GameSystem */,
-				A11470A727DB426A005FA3EC /* Factory */,
 				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,
 				A1DBB82D27D884200077AB96 /* Game Engine */,
@@ -593,11 +599,13 @@
 				A1DBB83C27D884200077AB96 /* Game Engine.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
+				A1179EEB27DBC3F300E60E59 /* PhysicsSystem.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
+				A1179EED27DBC3FF00E60E59 /* PhysicsComponent.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */,
