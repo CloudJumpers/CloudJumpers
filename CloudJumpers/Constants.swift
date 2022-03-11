@@ -14,7 +14,7 @@ struct Constants {
     static let innerstickImage = "innerStick"
     static let outerstickImage = "outerStick"
     
-    static let joystickPosition = CGPoint(x: 150.0, y: 150.0)
+    static let joystickPosition = CGPoint(x: 100.0, y: 120.0)
     
     static let playerInitialPosition = CGPoint(x: screenWidth / 2, y: screenHeight / 2)
     
@@ -24,4 +24,9 @@ struct Constants {
                                       height: screenHeight)
     
     static let speedMultiplier = 0.15
+    
+    static let opcaityOne = 0.3
+    static let opcaityTwo = 0.6
+    
+    static let stickReleaseMovementDuration = 0.2
 }

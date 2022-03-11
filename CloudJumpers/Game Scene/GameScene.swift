@@ -29,6 +29,7 @@ class GameScene: SKScene {
         var sprite = SKSpriteNode(imageNamed: Constants.innerstickImage)
         sprite.position = Constants.joystickPosition
         sprite.zPosition = NodeZPosition.innerStick.rawValue
+        sprite.alpha = Constants.opcaityTwo
         return sprite
     }()
     
@@ -36,6 +37,7 @@ class GameScene: SKScene {
         var sprite = SKSpriteNode(imageNamed: Constants.outerstickImage)
         sprite.position = Constants.joystickPosition
         sprite.zPosition = NodeZPosition.outerStick.rawValue
+        sprite.alpha = Constants.opcaityOne
         return sprite
     }()
     
@@ -68,7 +70,8 @@ class GameScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if stickActive {
-            let move: SKAction = SKAction.move(to: outerStick.position, duration: 0.2)
+            let move: SKAction = SKAction.move(to: outerStick.position,
+                                               duration: Constants.stickReleaseMovementDuration)
             move.timingMode = .easeOut
             
             innerStick.run(move)
