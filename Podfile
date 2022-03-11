@@ -3,6 +3,7 @@
 
 def shared_pods
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 end
   
 target 'CloudJumpers' do
