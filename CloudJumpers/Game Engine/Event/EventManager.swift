@@ -8,9 +8,7 @@
 import Foundation
 
 
-class EventPublisher {
-    func publish(event: Event) {
-        
-    }
+class EventManager {
+    var eventsQueue: [Event] = []
 }
 

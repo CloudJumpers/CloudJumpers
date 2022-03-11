@@ -9,26 +9,19 @@ import Foundation
 import SpriteKit
 
 class RenderingSystem: System {
-    let componentDict: [GameEntity:RenderingComponent] = [:]
-    let nodeEntityMapping: [GameEntity:SKNode] = [:]
-    
-    weak var gameScene: GameScene?
-    
-    init (gameScene: GameScene) {
-        self.gameScene = gameScene
+
+    weak var entitiesManager: EntitiesManager?
+    init (entitiesManager: EntitiesManager) {
+        self.entitiesManager = entitiesManager
     }
     
-    func addComponent(entity: GameEntity, component: Component) {
+    func addComponent(entity: Entity, component: Component) {
         guard let renderingComponent = component as? RenderingComponent else {
             return
         }
-        let newNode = NodeFactory.createSpriteNode(from: renderingComponent)
-        gameScene?.addChild(newNode)
+        entitiesManager?.addComponent(renderingComponent, to: entity)
     }
     
-    func removeComponent(entity: GameEntity) {
-        // remove here
-    }
     
     func update(_ deltaTime: Double) {
         // Update game physics

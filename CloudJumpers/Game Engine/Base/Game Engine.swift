@@ -8,9 +8,7 @@
 import Foundation
 
 protocol GameEngine {
-    var entities: Set<GameEntity> { get set }
-
-    var stateEntities: Set<StateEntity> { get set }
+    var entitiesManager: EntitiesManager { get }
 
     func update(_ deltaTime: Double)
 

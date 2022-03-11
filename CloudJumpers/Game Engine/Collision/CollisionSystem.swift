@@ -8,16 +8,22 @@
 import Foundation
 
 class CollisionSystem: System {
-    let componentDict: [GameEntity: CollisionComponent] = [:]
-    func addComponent(entity: GameEntity, component: Component) {
-        // Collision with new skNode?
-    }
+
     
-    func removeComponent(entity: GameEntity) {
-        // Remove based on rendering ?
+    weak var entitiesManager: EntitiesManager?
+    
+    init (entitiesManager: EntitiesManager) {
+        self.entitiesManager = entitiesManager
     }
     
     func update(_ deltaTime: Double) {
         // Update game physics
+    }
+    
+    func addComponent(entity: Entity, component: Component) {
+        guard let collisionComponent = component as? CollisionComponent else {
+            return
+        }
+        entitiesManager?.addComponent(collisionComponent, to: entity)
     }
 }

@@ -9,6 +9,5 @@ import Foundation
 
 protocol System {
     func update(_ deltaTime: Double)
-    func addComponent(entity: GameEntity, component: Component)
-    func removeComponent(entity: GameEntity)
+    func addComponent(entity: Entity, component: Component)
 }

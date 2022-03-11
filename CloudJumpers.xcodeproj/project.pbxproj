@@ -17,16 +17,17 @@
 		9389E5F327D8BBA60049ADDD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9389E5F227D8BBA60049ADDD /* GoogleService-Info.plist */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
+		A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */; };
+		A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A127DB3D8F005FA3EC /* InputManager.swift */; };
+		A11470A427DB3D9B005FA3EC /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A327DB3D9B005FA3EC /* Input.swift */; };
+		A11470A627DB4193005FA3EC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A527DB4193005FA3EC /* Level.swift */; };
 		A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */; };
 		A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AA727DA359D0011CF40 /* RenderingSystem.swift */; };
 		A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AAA27DA66BA0011CF40 /* CollisionComponent.swift */; };
-		A1347AAD27DA69D60011CF40 /* MoveableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AAC27DA69D60011CF40 /* MoveableComponent.swift */; };
-		A1347AAF27DA69E60011CF40 /* MoveableSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AAE27DA69E60011CF40 /* MoveableSystem.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
-		A1347AB327DA6BF80011CF40 /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB227DA6BF80011CF40 /* EventPublisher.swift */; };
-		A1347AB527DA6CCC0011CF40 /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* NodeFactory.swift */; };
-		A1347AB827DA70520011CF40 /* ControlComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB727DA70520011CF40 /* ControlComponent.swift */; };
-		A1347ABA27DA70720011CF40 /* ControlSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB927DA70720011CF40 /* ControlSystem.swift */; };
+		A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB227DA6BF80011CF40 /* EventManager.swift */; };
+		A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */; };
+		A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */; };
 		A1D4686927D9050400C9FB0E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686827D9050400C9FB0E /* GameViewController.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1DBB83A27D884200077AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82C27D884200077AB96 /* Component.swift */; };
@@ -35,8 +36,6 @@
 		A1DBB83D27D884200077AB96 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83127D884200077AB96 /* System.swift */; };
 		A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83227D884200077AB96 /* CollisionSystem.swift */; };
 		A1DBB84027D884200077AB96 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83527D884200077AB96 /* Entity.swift */; };
-		A1DBB84127D884200077AB96 /* StateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83627D884200077AB96 /* StateEntity.swift */; };
-		A1DBB84227D884200077AB96 /* GameEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83727D884200077AB96 /* GameEntity.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -70,16 +69,17 @@
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
+		A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesManager.swift; sourceTree = "<group>"; };
+		A11470A127DB3D8F005FA3EC /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
+		A11470A327DB3D9B005FA3EC /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		A11470A527DB4193005FA3EC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingComponent.swift; sourceTree = "<group>"; };
 		A1347AA727DA359D0011CF40 /* RenderingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingSystem.swift; sourceTree = "<group>"; };
 		A1347AAA27DA66BA0011CF40 /* CollisionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionComponent.swift; sourceTree = "<group>"; };
-		A1347AAC27DA69D60011CF40 /* MoveableComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableComponent.swift; sourceTree = "<group>"; };
-		A1347AAE27DA69E60011CF40 /* MoveableSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveableSystem.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		A1347AB227DA6BF80011CF40 /* EventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
-		A1347AB427DA6CCC0011CF40 /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
-		A1347AB727DA70520011CF40 /* ControlComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlComponent.swift; sourceTree = "<group>"; };
-		A1347AB927DA70720011CF40 /* ControlSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlSystem.swift; sourceTree = "<group>"; };
+		A1347AB227DA6BF80011CF40 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeFactory.swift; sourceTree = "<group>"; };
+		A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPhysicsBodyFactory.swift; sourceTree = "<group>"; };
 		A1D4686827D9050400C9FB0E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1DBB82C27D884200077AB96 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
@@ -88,8 +88,6 @@
 		A1DBB83127D884200077AB96 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		A1DBB83227D884200077AB96 /* CollisionSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollisionSystem.swift; sourceTree = "<group>"; };
 		A1DBB83527D884200077AB96 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
-		A1DBB83627D884200077AB96 /* StateEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateEntity.swift; sourceTree = "<group>"; };
-		A1DBB83727D884200077AB96 /* GameEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEntity.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +188,24 @@
 			path = AuthenticationTests;
 			sourceTree = "<group>";
 		};
+		A11470A027DB3D74005FA3EC /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				A11470A127DB3D8F005FA3EC /* InputManager.swift */,
+				A11470A327DB3D9B005FA3EC /* Input.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
+		A11470A727DB426A005FA3EC /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */,
+				A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		A1347AA127DA29E60011CF40 /* Collision */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,36 +220,17 @@
 			children = (
 				A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */,
 				A1347AA727DA359D0011CF40 /* RenderingSystem.swift */,
-				A1347AB427DA6CCC0011CF40 /* NodeFactory.swift */,
 			);
 			path = Rendering;
-			sourceTree = "<group>";
-		};
-		A1347AA427DA2B1D0011CF40 /* Moveable */ = {
-			isa = PBXGroup;
-			children = (
-				A1347AAC27DA69D60011CF40 /* MoveableComponent.swift */,
-				A1347AAE27DA69E60011CF40 /* MoveableSystem.swift */,
-			);
-			path = Moveable;
 			sourceTree = "<group>";
 		};
 		A1347AA927DA66A10011CF40 /* Event */ = {
 			isa = PBXGroup;
 			children = (
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
-				A1347AB227DA6BF80011CF40 /* EventPublisher.swift */,
+				A1347AB227DA6BF80011CF40 /* EventManager.swift */,
 			);
 			path = Event;
-			sourceTree = "<group>";
-		};
-		A1347AB627DA703B0011CF40 /* Control */ = {
-			isa = PBXGroup;
-			children = (
-				A1347AB727DA70520011CF40 /* ControlComponent.swift */,
-				A1347AB927DA70720011CF40 /* ControlSystem.swift */,
-			);
-			path = Control;
 			sourceTree = "<group>";
 		};
 		A1D4686727D904F300C9FB0E /* ViewController */ = {
@@ -247,15 +244,14 @@
 		A1DBB82827D884200077AB96 /* Game Engine */ = {
 			isa = PBXGroup;
 			children = (
-				A1DBB82C27D884200077AB96 /* Component.swift */,
-				A1DBB83127D884200077AB96 /* System.swift */,
-				A1347AB627DA703B0011CF40 /* Control */,
+				A11470A727DB426A005FA3EC /* Factory */,
+				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,
-				A1347AA427DA2B1D0011CF40 /* Moveable */,
 				A1347AA327DA2B0E0011CF40 /* Rendering */,
 				A1347AA127DA29E60011CF40 /* Collision */,
 				A1DBB82D27D884200077AB96 /* Game Engine */,
-				A1DBB83427D884200077AB96 /* Entities */,
+				A1DBB83427D884200077AB96 /* Base */,
+				A11470A527DB4193005FA3EC /* Level.swift */,
 			);
 			path = "Game Engine";
 			sourceTree = "<group>";
@@ -264,19 +260,20 @@
 			isa = PBXGroup;
 			children = (
 				A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */,
-				A1DBB82F27D884200077AB96 /* Game Engine.swift */,
 			);
 			path = "Game Engine";
 			sourceTree = "<group>";
 		};
-		A1DBB83427D884200077AB96 /* Entities */ = {
+		A1DBB83427D884200077AB96 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */,
+				A1DBB82F27D884200077AB96 /* Game Engine.swift */,
+				A1DBB83127D884200077AB96 /* System.swift */,
+				A1DBB82C27D884200077AB96 /* Component.swift */,
 				A1DBB83527D884200077AB96 /* Entity.swift */,
-				A1DBB83627D884200077AB96 /* StateEntity.swift */,
-				A1DBB83727D884200077AB96 /* GameEntity.swift */,
 			);
-			path = Entities;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		A1DBB84327D884290077AB96 /* MathUtils */ = {
@@ -502,13 +499,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */,
 				A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */,
-				A1DBB84227D884200077AB96 /* GameEntity.swift in Sources */,
-				A1347ABA27DA70720011CF40 /* ControlSystem.swift in Sources */,
 				1A4E3D7427D85BC80033A29D /* ViewController.swift in Sources */,
+				A11470A627DB4193005FA3EC /* Level.swift in Sources */,
+				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
-				A1347AB827DA70520011CF40 /* ControlComponent.swift in Sources */,
-				A1347AAD27DA69D60011CF40 /* MoveableComponent.swift in Sources */,
 				A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
@@ -519,14 +515,14 @@
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
-				A1347AAF27DA69E60011CF40 /* MoveableSystem.swift in Sources */,
 				A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
-				A1347AB527DA6CCC0011CF40 /* NodeFactory.swift in Sources */,
-				A1DBB84127D884200077AB96 /* StateEntity.swift in Sources */,
+				A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
-				A1347AB327DA6BF80011CF40 /* EventPublisher.swift in Sources */,
+				A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */,
+				A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
+				A11470A427DB3D9B005FA3EC /* Input.swift in Sources */,
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,11 @@ import Foundation
 
 // Some asynchronous event that require a general handler
 class Event {
+    let type: EventType
+    init (type: EventType) {
+        self.type  = type
+    }
     enum EventType {
-        case animation, otherPlayer
+        case animation, otherPlayer, input(info: Input)
     }
 }

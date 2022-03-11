@@ -8,6 +8,11 @@
 import Foundation
 
 class CollisionComponent: Component {
+    var shape: Shape
+    
+    init (shape: Shape) {
+        self.shape = shape
+    }
     enum Shape {
         case player
         case cloud
