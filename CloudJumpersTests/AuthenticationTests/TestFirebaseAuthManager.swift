@@ -29,8 +29,8 @@ class TestFirebaseAuthManager: XCTestCase {
     }
 
     func testUserWorkflow_randomReservedUserPassword_userLifecycleIsCorrect() async {
-        let systemUserEmail = "reserved\(randomLowercasedAlphanumString(length: 5))@cloudjumpers3217.com"
-        let systemUserPassword = randomLowercasedAlphanumString(length: 12)
+        let systemUserEmail = "reserved\(TestUtils.randomLowerAlnumString(length: 5))@cloudjumpers3217.com"
+        let systemUserPassword = TestUtils.randomLowerAlnumString(length: 12)
 
         XCTAssertNil(firebaseAuthManager.getActiveUser())
 
@@ -56,10 +56,4 @@ class TestFirebaseAuthManager: XCTestCase {
         XCTAssertFalse(createdUser.isAnonymous)
         XCTAssertFalse(createdUser.isEmailVerified)
     }
-}
-
-
-private func randomLowercasedAlphanumString(length: Int) -> String {
-  let letters = "abcdefghijklmnopqrstuvwxyz0123456789"
-    return String((0 ..< length).map{ _ in letters.randomElement()! }).lowercased()
 }
