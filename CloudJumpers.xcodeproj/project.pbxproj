@@ -14,6 +14,8 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
+		3E58412727DB85E3005B2EB9 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412627DB85E3005B2EB9 /* GameScene.swift */; };
+		3E58412B27DBABF4005B2EB9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */; };
@@ -62,6 +64,8 @@
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
+		3E58412627DB85E3005B2EB9 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -140,9 +144,11 @@
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				A1DBB84327D884290077AB96 /* MathUtils */,
 				A1DBB82827D884200077AB96 /* Game Engine */,
+				3E58412C27DBAEA1005B2EB9 /* Game Scene */,
+				3E58412D27DBB0DB005B2EB9 /* Controller */,
 				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
 				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
-				1A4E3D7327D85BC80033A29D /* ViewController.swift */,
+				3E58412A27DBABF4005B2EB9 /* Constants.swift */,
 				1A4E3D7527D85BC80033A29D /* Main.storyboard */,
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
@@ -150,6 +156,22 @@
 				93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */,
 			);
 			path = CloudJumpers;
+			sourceTree = "<group>";
+		};
+		3E58412C27DBAEA1005B2EB9 /* Game Scene */ = {
+			isa = PBXGroup;
+			children = (
+				3E58412627DB85E3005B2EB9 /* GameScene.swift */,
+			);
+			path = "Game Scene";
+			sourceTree = "<group>";
+		};
+		3E58412D27DBB0DB005B2EB9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1A4E3D7327D85BC80033A29D /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -499,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E58412B27DBABF4005B2EB9 /* Constants.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */,
 				A1DBB84227D884200077AB96 /* GameEntity.swift in Sources */,
 				1A4E3D7427D85BC80033A29D /* ViewController.swift in Sources */,
@@ -517,6 +540,7 @@
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A1DBB83927D884200077AB96 /* PhysicsComponent.swift in Sources */,
+				3E58412727DB85E3005B2EB9 /* GameScene.swift in Sources */,
 				A1DBB84127D884200077AB96 /* RenderEntity.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
