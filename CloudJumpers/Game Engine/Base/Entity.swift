@@ -9,6 +9,11 @@ import Foundation
 
 class Entity: Hashable {
     var id = UUID()
+    var type: EntityType
+    
+    init(type: EntityType) {
+        self.type = type
+    }
     
     enum EntityType {
         case player,guest,cloud,platform,ui

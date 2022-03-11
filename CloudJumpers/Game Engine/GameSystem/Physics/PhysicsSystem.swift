@@ -39,6 +39,5 @@ class PhysicsSystem: System {
             node.physicsBody = physicsBody
             component.isUpdating = false
         }
-        // Update game physics
     }
 }
