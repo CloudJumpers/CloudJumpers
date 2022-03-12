@@ -9,7 +9,7 @@ import Foundation
 
 class CollisionSystem: System {
 
-    private var entitiesComponentMapping: [Entity: CollisionComponent] = [:]
+    private var entityComponentMapping: [Entity: CollisionComponent] = [:]
 
     weak var entitiesManager: EntitiesManager?
     
@@ -25,7 +25,7 @@ class CollisionSystem: System {
         guard let collisionComponent = component as? CollisionComponent else {
             return
         }
-        entitiesComponentMapping[entity] = collisionComponent
+        entityComponentMapping[entity] = collisionComponent
         
     }
 }

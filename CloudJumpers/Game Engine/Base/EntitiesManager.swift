@@ -11,7 +11,7 @@ import Combine
 
 class EntitiesManager {
     private var entities = Set<Entity>()
-    private var nodeEntityMapping: [Entity: SKNode] = [:]
+    private var entityNodeMapping: [Entity: SKNode] = [:]
     
     private let addSubject = PassthroughSubject<SKNode, Never>()
     private let removeSubject = PassthroughSubject<SKNode, Never>()
@@ -36,10 +36,10 @@ class EntitiesManager {
     
     func removeEntity(_ entity: Entity) {
         entities.remove(entity)
-        guard let node = nodeEntityMapping[entity] else {
+        guard let node = entityNodeMapping[entity] else {
             return
         }
-        nodeEntityMapping.removeValue(forKey: entity)
+        entityNodeMapping.removeValue(forKey: entity)
         removeSubject.send(node)
 
     }
@@ -47,19 +47,19 @@ class EntitiesManager {
     func addNode(_ node: SKNode, entity: Entity) {
         // Remove previous node first
         removeNode(entity: entity)
-        nodeEntityMapping[entity] = node
+        entityNodeMapping[entity] = node
         addSubject.send(node)
     }
     
     func removeNode(entity: Entity) {
-        guard let node = nodeEntityMapping[entity] else {
+        guard let node = entityNodeMapping[entity] else {
             return
         }
-        nodeEntityMapping.removeValue(forKey: entity)
+        entityNodeMapping.removeValue(forKey: entity)
         removeSubject.send(node)
     }
     
     func getNode(of entity: Entity) -> SKNode? {
-        nodeEntityMapping[entity]
+        entityNodeMapping[entity]
     }
 }

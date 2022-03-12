@@ -11,7 +11,7 @@ class PlayerSystem: System {
     
     weak var entitiesManager: EntitiesManager?
     
-    private var entitiesComponentMapping: [Entity: PlayerComponent] = [:]
+    private var entityComponentMapping: [Entity: PlayerComponent] = [:]
 
     
     init (entitiesManager: EntitiesManager) {
@@ -22,12 +22,12 @@ class PlayerSystem: System {
         guard let playerComponent = component as? PlayerComponent else {
             return
         }
-        entitiesComponentMapping[entity] = playerComponent
+        entityComponentMapping[entity] = playerComponent
     }
     
     
     func update(_ deltaTime: Double) {
-        for entity in entitiesComponentMapping.keys {
+        for entity in entityComponentMapping.keys {
             // find contact here?
         }
     }

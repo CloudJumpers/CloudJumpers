@@ -11,7 +11,7 @@ class MovingSystem: System {
     
     weak var entitiesManager: EntitiesManager?
     
-    private var entitiesComponentMapping: [Entity: MovingComponent] = [:]
+    private var entityComponentMapping: [Entity: MovingComponent] = [:]
 
     
     init (entitiesManager: EntitiesManager) {
@@ -19,9 +19,9 @@ class MovingSystem: System {
     }
     
     func update(_ deltaTime: Double) {
-        for entity in entitiesComponentMapping.keys {
+        for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
-                  let component = entitiesComponentMapping[entity]
+                  let component = entityComponentMapping[entity]
             else {
                 return
             }
@@ -34,7 +34,7 @@ class MovingSystem: System {
         guard let movingComponent = component as? MovingComponent else {
             return
         }
-        entitiesComponentMapping[entity] = movingComponent
+        entityComponentMapping[entity] = movingComponent
     }
     
     

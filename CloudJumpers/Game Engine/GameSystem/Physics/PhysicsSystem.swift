@@ -12,7 +12,7 @@ class PhysicsSystem: System {
 
     weak var entitiesManager: EntitiesManager?
     
-    private var entitiesComponentMapping: [Entity: PhysicsComponent] = [:]
+    private var entityComponentMapping: [Entity: PhysicsComponent] = [:]
 
     
     init (entitiesManager: EntitiesManager) {
@@ -23,13 +23,13 @@ class PhysicsSystem: System {
         guard let physicsComponent = component as? PhysicsComponent else {
             return
         }
-        entitiesComponentMapping[entity] = physicsComponent
+        entityComponentMapping[entity] = physicsComponent
     }
     
     
     func update(_ deltaTime: Double) {
-        for entity in entitiesComponentMapping.keys {
-            guard let component = entitiesComponentMapping[entity],
+        for entity in entityComponentMapping.keys {
+            guard let component = entityComponentMapping[entity],
                   let node = entitiesManager?.getNode(of: entity),
                   component.isUpdating
             else {

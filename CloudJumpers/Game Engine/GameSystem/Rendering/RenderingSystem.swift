@@ -12,7 +12,7 @@ class RenderingSystem: System {
 
     weak var entitiesManager: EntitiesManager?
     
-    private var entitiesComponentMapping: [Entity: RenderingComponent] = [:]
+    private var entityComponentMapping: [Entity: RenderingComponent] = [:]
 
     
     init (entitiesManager: EntitiesManager) {
@@ -23,13 +23,13 @@ class RenderingSystem: System {
         guard let renderingComponent = component as? RenderingComponent else {
             return
         }
-        entitiesComponentMapping[entity] = renderingComponent
+        entityComponentMapping[entity] = renderingComponent
     }
     
     
     func update(_ deltaTime: Double) {
-        for entity in entitiesComponentMapping.keys {
-            guard let component = entitiesComponentMapping[entity],
+        for entity in entityComponentMapping.keys {
+            guard let component = entityComponentMapping[entity],
                   component.isUpdating
             else {
                 return
