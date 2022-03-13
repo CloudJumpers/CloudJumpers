@@ -1,5 +1,5 @@
 //
-//  Game Engine.swift
+//  System.swift
 //  Cloud Jumpers
 //
 //  Created by Trong Tan on 3/8/22.
@@ -7,9 +7,7 @@
 
 import Foundation
 
-protocol GameEngine {
-    var entitiesManager: EntitiesManager { get }
-
+protocol System {
     func update(_ deltaTime: Double)
-
+    func addComponent(entity: Entity, component: Component)
 }
