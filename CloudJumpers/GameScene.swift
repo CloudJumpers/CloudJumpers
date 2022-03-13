@@ -17,8 +17,6 @@ class GameScene: SKScene {
 
         addChild(joystick.innerStick)
         addChild(joystick.outerStick)
-        
-        physicsWorld.gravity = .zero
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
