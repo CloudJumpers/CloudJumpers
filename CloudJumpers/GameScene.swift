@@ -24,7 +24,7 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            joystick.handleTouchBegan(location: location)
+            joystick.handleTouchBegan(touchLocation: location)
             
         }
     }
@@ -32,12 +32,12 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            joystick.handleTouchMoved(location: location)
+            joystick.handleTouchMoved(touchLocation: location)
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        joystick.handleTouchEnd()
+        joystick.handleTouchEnded()
     }
 
     override func update(_ currentTime: TimeInterval) {

@@ -47,19 +47,21 @@ class Joystick {
         }
     }
     
-    func handleTouchBegan(location: CGPoint) {
-        if innerStick.frame.contains(location) {
-            stickActive = true
+    func handleTouchBegan(touchLocation: CGPoint) {
+        guard innerStick.frame.contains(touchLocation) else {
+            return
         }
+        
+        stickActive = true
     }
     
-    func handleTouchMoved(location: CGPoint) {
+    func handleTouchMoved(touchLocation: CGPoint) {
         if stickActive {
-            moveInnerStick(to: location)
+            moveInnerStick(to: touchLocation)
         }
     }
     
-    func handleTouchEnd() {
+    func handleTouchEnded() {
         if stickActive {
             let move = SKAction.move(to: outerStick.position,
                                      duration: Constants.stickReleaseMovementDuration)
