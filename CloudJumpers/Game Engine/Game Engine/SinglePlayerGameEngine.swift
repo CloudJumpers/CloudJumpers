@@ -19,6 +19,8 @@ class SinglePlayerGameEngine: GameEngine {
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
     
+    private let playerEntity = Entity(type: .player)
+    
     
     // System
     let renderingSystem: RenderingSystem
@@ -58,6 +60,12 @@ class SinglePlayerGameEngine: GameEngine {
     
     func setupGame(level: Level) {
         // Usinge factory to create all object here
+        
+        // Init player
+        let newRenderingComponent = RenderingComponent(type: .sprite(position: Constants.playerInitialPosition,
+                                                                     name: Constants.playerImage))
+        
+        renderingSystem.addComponent(entity: playerEntity, component: newRenderingComponent)
     }
     
     
@@ -65,6 +73,7 @@ class SinglePlayerGameEngine: GameEngine {
     func update(_ deltaTime: Double) {
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
+            eventManager.eventsQueue.remove(at: 0)
         }
         
         movingSystem.update(deltaTime)
@@ -75,7 +84,22 @@ class SinglePlayerGameEngine: GameEngine {
         // Update individual systems
     }
     
+
     func handleEvent(event: Event) {
+        
+        switch(event.type) {
+        case .input(let info):
+            switch (info.inputType) {
+            case .move(let by):
+                let movingComponent = MovingComponent(distance: by)
+                movingSystem.addComponent(entity: playerEntity, component: movingComponent)
+            default:
+                return
+            }
+            
+        default:
+            return
+        }
         
     }
 

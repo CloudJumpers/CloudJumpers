@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct Input {
     
@@ -17,7 +18,8 @@ struct Input {
     }
     
     enum InputType {
-        case move(direction: MoveDirection), powerup, jump
+//        case move(direction: MoveDirection), powerup, jump
+        case move(by: CGVector), powerUp, jump
     }
     
     enum MoveDirection {

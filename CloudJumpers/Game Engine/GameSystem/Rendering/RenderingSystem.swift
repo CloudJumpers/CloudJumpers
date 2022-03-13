@@ -35,9 +35,9 @@ class RenderingSystem: System {
                 return
             }
             let newNode = SKNodeFactory.createSKSpriteNode(type: component.type)
+
             entitiesManager?.addNode(newNode, entity: entity)
             component.isUpdating = false
         }
-        // Update game physics
     }
 }

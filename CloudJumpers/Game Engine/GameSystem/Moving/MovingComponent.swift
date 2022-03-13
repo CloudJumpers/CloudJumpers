@@ -9,11 +9,16 @@ import Foundation
 import CoreGraphics
 
 class MovingComponent: Component {
-    var direction: CGVector
-    var magnitude: CGFloat
+    var distance: CGVector
     
-    init(direction: CGVector, magnitude: CGFloat) {
-        self.direction = direction
-        self.magnitude = magnitude
+    init(distance: CGVector) {
+        self.distance = distance
     }
+//    var direction: CGVector
+//    var magnitude: CGFloat
+//
+//    init(direction: CGVector, magnitude: CGFloat) {
+//        self.direction = direction
+//        self.magnitude = magnitude
+//    }
 }

@@ -13,7 +13,12 @@ class SKNodeFactory {
     static func createSKSpriteNode(type: RenderingComponent.SpriteType) -> SKSpriteNode {
         switch type {
         case .sprite(let position, let name):
-            return SKSpriteNode(imageNamed: name)
+            let sprite = SKSpriteNode(imageNamed: name)
+            sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
+            sprite.position = position
+            sprite.zPosition = SpriteZPosition.player.rawValue
+            return sprite
+            
         case .background:
             return SKSpriteNode(imageNamed: "background")
         }
