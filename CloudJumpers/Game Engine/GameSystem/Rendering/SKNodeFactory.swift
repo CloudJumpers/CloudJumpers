@@ -15,6 +15,7 @@ class SKNodeFactory {
         case .sprite(let position, let name):
             let sprite = SKSpriteNode(imageNamed: name)
             sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
+            sprite.physicsBody?.allowsRotation = false
             sprite.position = position
             sprite.zPosition = SpriteZPosition.player.rawValue
             return sprite
