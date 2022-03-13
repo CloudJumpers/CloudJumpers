@@ -19,6 +19,7 @@
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A327DE2A0F00A1892C /* AuthInfo.swift */; };
+		938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A627DE4A6500A1892C /* LoginViewController.swift */; };
 		93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */; };
 		93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */; };
 		93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */; };
@@ -28,6 +29,7 @@
 		93D4E18027DA21CB0054F45B /* TestFirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
 		93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */; };
+		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */; };
 		A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A127DB3D8F005FA3EC /* InputManager.swift */; };
 		A11470A427DB3D9B005FA3EC /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A327DB3D9B005FA3EC /* Input.swift */; };
@@ -89,6 +91,7 @@
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
 		938C15A327DE2A0F00A1892C /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
+		938C15A627DE4A6500A1892C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRTDBManager.swift; sourceTree = "<group>"; };
 		93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataProcessor.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseRTDBManager.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesManager.swift; sourceTree = "<group>"; };
 		A11470A127DB3D8F005FA3EC /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
@@ -238,6 +243,15 @@
 				9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */,
 			);
 			path = AuthenticationTests;
+			sourceTree = "<group>";
+		};
+		938C15A527DE4A4B00A1892C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				938C15A627DE4A6500A1892C /* LoginViewController.swift */,
+				93F28EEC27DE8120008CE30C /* SignUpViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		93D4E16527DA0C920054F45B /* Networking */ = {
@@ -650,6 +664,7 @@
 				A1179EEB27DBC3F300E60E59 /* PhysicsSystem.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
+				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
@@ -662,6 +677,7 @@
 				A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
+				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
 				A1179EE727DBBB4700E60E59 /* MovingSystem.swift in Sources */,
 				A1179EF227DBC69800E60E59 /* StateSystem.swift in Sources */,
 				A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */,

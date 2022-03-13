@@ -20,6 +20,10 @@ class AuthService {
         authManager.getCurrentUser() != nil
     }
 
+    func logIn(email: String, password: String) async -> Bool {
+        await authManager.loginUser(email: email, password: password)
+    }
+
     func getUserId() -> UUID? {
         guard
             let user = authManager.getCurrentUser(),
