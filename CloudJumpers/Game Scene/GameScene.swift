@@ -28,7 +28,7 @@ class GameScene: SKScene {
         var sprite = SKSpriteNode(imageNamed: Constants.innerstickImage)
         sprite.position = Constants.joystickPosition
         sprite.zPosition = NodeZPosition.innerStick.rawValue
-        sprite.alpha = Constants.opcaityTwo
+        sprite.alpha = Constants.opacityTwo
         return sprite
     }()
 
@@ -36,7 +36,7 @@ class GameScene: SKScene {
         var sprite = SKSpriteNode(imageNamed: Constants.outerstickImage)
         sprite.position = Constants.joystickPosition
         sprite.zPosition = NodeZPosition.outerStick.rawValue
-        sprite.alpha = Constants.opcaityOne
+        sprite.alpha = Constants.opacityOne
         return sprite
     }()
 
