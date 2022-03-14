@@ -41,12 +41,12 @@ class GameScene: SKScene {
             lastUpdateTime = currentTime
             return
         }
-        
+
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         gameEngine.update(deltaTime)
-    }
-    
+   }
+
     /* All Scene logic (which you could extend to multiple files) */
 
 }

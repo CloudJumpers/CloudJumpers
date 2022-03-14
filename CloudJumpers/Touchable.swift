@@ -10,10 +10,10 @@ import CoreGraphics
 
 protocol Touchable {
     func handleTouchBegan(touchLocation: CGPoint)
-    
+
     func handleTouchMoved(touchLocation: CGPoint)
-    
+
     func handleTouchEnded(touchLocation: CGPoint)
-    
+
     func update()
 }

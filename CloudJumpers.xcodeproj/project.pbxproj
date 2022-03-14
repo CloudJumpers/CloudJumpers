@@ -13,16 +13,22 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
-		3E246B4427DDA9C800D51300 /* Game Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* Game Engine.swift */; };
-		3E246B4827DDAB1300D51300 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* ViewController.swift */; };
+		3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* GameEngine.swift */; };
+		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
 		3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5027DDFF0200D51300 /* Joystick.swift */; };
 		3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5227DE05E500D51300 /* SpriteZPosition.swift */; };
 		3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3E246B5627DE0EED00D51300 /* GameScene.sks */; };
 		3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6027DEBE3D00D51300 /* Renderable.swift */; };
 		3E246B6727DECCD300D51300 /* Touchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6627DECCD300D51300 /* Touchable.swift */; };
+		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
+		934789B027DEF70100324DAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AF27DEF70100324DAF /* ViewController.swift */; };
+		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
+		9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E627DE213E007F4D89 /* AuthService.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
+		938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A327DE2A0F00A1892C /* AuthInfo.swift */; };
+		938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A627DE4A6500A1892C /* LoginViewController.swift */; };
 		93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */; };
 		93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */; };
 		93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */; };
@@ -32,6 +38,7 @@
 		93D4E18027DA21CB0054F45B /* TestFirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
 		93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */; };
+		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */; };
 		A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A127DB3D8F005FA3EC /* InputManager.swift */; };
 		A11470A427DB3D9B005FA3EC /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A327DB3D9B005FA3EC /* Input.swift */; };
@@ -82,8 +89,8 @@
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
-		3E246B4327DDA9C800D51300 /* Game Engine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game Engine.swift"; sourceTree = "<group>"; };
-		3E246B4727DDAB1300D51300 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E246B4327DDA9C800D51300 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
+		3E246B4727DDAB1300D51300 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		3E246B5027DDFF0200D51300 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		3E246B5227DE05E500D51300 /* SpriteZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteZPosition.swift; sourceTree = "<group>"; };
 		3E246B5627DE0EED00D51300 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -92,9 +99,15 @@
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
+		934789AF27DEF70100324DAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		9356F4E627DE213E007F4D89 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
+		938C15A327DE2A0F00A1892C /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
+		938C15A627DE4A6500A1892C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRTDBManager.swift; sourceTree = "<group>"; };
 		93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataProcessor.swift; sourceTree = "<group>"; };
@@ -104,6 +117,7 @@
 		93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseRTDBManager.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesManager.swift; sourceTree = "<group>"; };
 		A11470A127DB3D8F005FA3EC /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -178,6 +192,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				3E58412A27DBABF4005B2EB9 /* Constants.swift */,
@@ -186,8 +201,7 @@
 				3E246B5027DDFF0200D51300 /* Joystick.swift */,
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				A1DBB84327D884290077AB96 /* MathUtils */,
-				A1DBB82827D884200077AB96 /* Game Engine */,
-				3E58412D27DBB0DB005B2EB9 /* ViewController */,
+				A1DBB82827D884200077AB96 /* GameEngine */,
 				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
 				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
 				1A4E3D7527D85BC80033A29D /* Main.storyboard */,
@@ -197,14 +211,6 @@
 				93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */,
 			);
 			path = CloudJumpers;
-			sourceTree = "<group>";
-		};
-		3E58412D27DBB0DB005B2EB9 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				3E246B4727DDAB1300D51300 /* ViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -218,10 +224,39 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		934789AA27DEEA4D00324DAF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				938C15A627DE4A6500A1892C /* LoginViewController.swift */,
+				93F28EEC27DE8120008CE30C /* SignUpViewController.swift */,
+				934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		934789AE27DEF6F400324DAF /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				3E246B4727DDAB1300D51300 /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		9356F4E527DE2129007F4D89 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				938C15A327DE2A0F00A1892C /* AuthInfo.swift */,
+				9356F4E327DE20B2007F4D89 /* AuthManager.swift */,
+				9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		9389E5F427D8BF7D0049ADDD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */,
+				9356F4E527DE2129007F4D89 /* Managers */,
+				9356F4E627DE213E007F4D89 /* AuthService.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -242,6 +277,16 @@
 				9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */,
 			);
 			path = AuthenticationTests;
+			sourceTree = "<group>";
+		};
+		938C15A527DE4A4B00A1892C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				934789AF27DEF70100324DAF /* ViewController.swift */,
+				934789AE27DEF6F400324DAF /* Game */,
+				934789AA27DEEA4D00324DAF /* Authentication */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		93D4E16527DA0C920054F45B /* Networking */ = {
@@ -369,32 +414,32 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
-		A1DBB82827D884200077AB96 /* Game Engine */ = {
+		A1DBB82827D884200077AB96 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
 				A1179EE827DBBE6000E60E59 /* GameSystem */,
 				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,
-				A1DBB82D27D884200077AB96 /* Game Engine */,
+				A1DBB82D27D884200077AB96 /* GameEngine */,
 				A1DBB83427D884200077AB96 /* Base */,
 				A11470A527DB4193005FA3EC /* Level.swift */,
 			);
-			path = "Game Engine";
+			path = GameEngine;
 			sourceTree = "<group>";
 		};
-		A1DBB82D27D884200077AB96 /* Game Engine */ = {
+		A1DBB82D27D884200077AB96 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
 				A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */,
 			);
-			path = "Game Engine";
+			path = GameEngine;
 			sourceTree = "<group>";
 		};
 		A1DBB83427D884200077AB96 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */,
-				3E246B4327DDA9C800D51300 /* Game Engine.swift */,
+				3E246B4327DDA9C800D51300 /* GameEngine.swift */,
 				A1DBB83127D884200077AB96 /* System.swift */,
 				A1DBB82C27D884200077AB96 /* Component.swift */,
 				A1DBB83527D884200077AB96 /* Entity.swift */,
@@ -449,6 +494,7 @@
 			buildConfigurationList = 9389E60127D8C5EB0049ADDD /* Build configuration list for PBXNativeTarget "CloudJumpersTests" */;
 			buildPhases = (
 				E542B24B6B144A606E67020E /* [CP] Check Pods Manifest.lock */,
+				934789AD27DEEF8800324DAF /* ShellScript */,
 				9389E5F727D8C5EB0049ADDD /* Sources */,
 				9389E5F827D8C5EB0049ADDD /* Frameworks */,
 				9389E5F927D8C5EB0049ADDD /* Resources */,
@@ -540,7 +586,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint; then\n    swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		6D24A65F2D25B9416918C35B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -563,6 +609,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		934789AD27DEEF8800324DAF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Adds support for Apple Silicon brew directory\nexport PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint; then\n    swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		C46666828BC96C3147A5C79C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -627,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				934789B027DEF70100324DAF /* ViewController.swift in Sources */,
 				A1179EFC27DBC74F00E60E59 /* PlayerSystem.swift in Sources */,
 				A1179EFA27DBC74300E60E59 /* PlayerComponent.swift in Sources */,
 				A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */,
@@ -636,6 +700,7 @@
 				A11470A627DB4193005FA3EC /* Level.swift in Sources */,
 				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
+				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */,
 				3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */,
@@ -649,9 +714,11 @@
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
+				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
+				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
-				3E246B4827DDAB1300D51300 /* ViewController.swift in Sources */,
+				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1179EED27DBC3FF00E60E59 /* PhysicsComponent.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
@@ -662,12 +729,15 @@
 				A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */,
 				3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
+				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
+				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
 				A1179EE727DBBB4700E60E59 /* MovingSystem.swift in Sources */,
 				A1179EF227DBC69800E60E59 /* StateSystem.swift in Sources */,
 				A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */,
+				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
-				3E246B4427DDA9C800D51300 /* Game Engine.swift in Sources */,
+				3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */,
 				A11470A427DB3D9B005FA3EC /* Input.swift in Sources */,
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
 			);
