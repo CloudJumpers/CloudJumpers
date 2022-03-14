@@ -8,11 +8,11 @@ extension SKNode {
           let sceneData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
           let archiver = NSKeyedUnarchiver(forReadingWith: sceneData as Data)
 
-      archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-          // swiftlint:disable:next force_cast
+          archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
+              // swiftlint:disable:next force_cast
           let scene = archiver.decodeObject(forKey: NSKeyedArchiveRootObjectKey) as! GameScene
-      archiver.finishDecoding()
-      return scene
+          archiver.finishDecoding()
+          return scene
     } else {
       return nil
     }
