@@ -24,7 +24,6 @@ class ViewController: UIViewController {
         if let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene {
             let gameEngine = SinglePlayerGameEngine(gameScene: scene, level: Level())
             scene.gameEngine = gameEngine
-            scene.joystick = Joystick(gameScene: scene)
             
             let skView = view as? SKView
             skView?.ignoresSiblingOrder = true

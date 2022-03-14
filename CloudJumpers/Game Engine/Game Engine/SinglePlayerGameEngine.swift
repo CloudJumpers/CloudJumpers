@@ -19,8 +19,8 @@ class SinglePlayerGameEngine: GameEngine {
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
     
-    private let playerEntity = Entity(type: .player)
-    
+    private var playerEntity: Entity!
+    private var touchables: [Touchable] = []
     
     // System
     let renderingSystem: RenderingSystem
@@ -60,12 +60,19 @@ class SinglePlayerGameEngine: GameEngine {
     
     func setupGame(level: Level) {
         // Usinge factory to create all object here
-        
-        // Init player
-        let newRenderingComponent = RenderingComponent(type: .sprite(position: Constants.playerInitialPosition,
-                                                                     name: Constants.playerImage))
-        
-        renderingSystem.addComponent(entity: playerEntity, component: newRenderingComponent)
+        setupPlayer()
+        setupUI()
+    }
+    
+    func setupPlayer() {
+        let player = PlayerComponent(position: Constants.playerInitialPosition)
+        playerEntity = player.activate(renderingSystem: renderingSystem)
+    }
+    
+    func setupUI() {
+        let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
+        _ = joystick.activate(renderingSystem: renderingSystem)
+        touchables.append(joystick)
     }
     
     
@@ -80,27 +87,40 @@ class SinglePlayerGameEngine: GameEngine {
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
         
-        
-        // Update individual systems
+        updateTouchables()
     }
     
 
     func handleEvent(event: Event) {
-        
         switch(event.type) {
         case .input(let info):
             switch (info.inputType) {
-            case .move(let by):
+            case .move(let entity, let by):
                 let movingComponent = MovingComponent(distance: by)
-                movingSystem.addComponent(entity: playerEntity, component: movingComponent)
+                movingSystem.addComponent(entity: entity, component: movingComponent)
+            case .touchBegan(let location):
+                for touchable in touchables {
+                    touchable.handleTouchBegan(touchLocation: location)
+                }
+            case .touchMoved(let location):
+                for touchable in touchables {
+                    touchable.handleTouchMoved(touchLocation: location)
+                }
+            case .touchEnded(let location):
+                for touchable in touchables {
+                    touchable.handleTouchEnded(touchLocation: location)
+                }
             default:
                 return
             }
-            
         default:
             return
         }
-        
     }
-
+    
+    func updateTouchables() {
+        for touchable in touchables {
+            touchable.update()
+        }
+    }
 }

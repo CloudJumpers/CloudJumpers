@@ -19,6 +19,8 @@
 		3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5027DDFF0200D51300 /* Joystick.swift */; };
 		3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5227DE05E500D51300 /* SpriteZPosition.swift */; };
 		3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3E246B5627DE0EED00D51300 /* GameScene.sks */; };
+		3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6027DEBE3D00D51300 /* Renderable.swift */; };
+		3E246B6727DECCD300D51300 /* Touchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6627DECCD300D51300 /* Touchable.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */; };
@@ -85,6 +87,8 @@
 		3E246B5027DDFF0200D51300 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		3E246B5227DE05E500D51300 /* SpriteZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteZPosition.swift; sourceTree = "<group>"; };
 		3E246B5627DE0EED00D51300 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		3E246B6027DEBE3D00D51300 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
+		3E246B6627DECCD300D51300 /* Touchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchable.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
 				3E246B5627DE0EED00D51300 /* GameScene.sks */,
 				3E246B5027DDFF0200D51300 /* Joystick.swift */,
+				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				A1DBB84327D884290077AB96 /* MathUtils */,
 				A1DBB82827D884200077AB96 /* Game Engine */,
 				3E58412D27DBB0DB005B2EB9 /* ViewController */,
@@ -347,6 +352,7 @@
 		A1347AA327DA2B0E0011CF40 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
+				3E246B6027DEBE3D00D51300 /* Renderable.swift */,
 				A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */,
 				A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */,
 				A1347AA727DA359D0011CF40 /* RenderingSystem.swift */,
@@ -626,10 +632,12 @@
 				A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */,
 				A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */,
+				3E246B6727DECCD300D51300 /* Touchable.swift in Sources */,
 				A11470A627DB4193005FA3EC /* Level.swift in Sources */,
 				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
 				A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */,
+				3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
