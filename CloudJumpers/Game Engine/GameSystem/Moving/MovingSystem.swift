@@ -25,8 +25,9 @@ class MovingSystem: System {
             else {
                 return
             }
-            let movement = component.magnitude * component.direction
-            node.physicsBody?.applyImpulse(movement)
+            
+            node.position += component.distance
+            entityComponentMapping.removeValue(forKey: entity)
         }
     }
     
