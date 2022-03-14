@@ -39,6 +39,13 @@ class SKNodeFactory {
             sprite.zPosition = SpriteZPosition.innerStick.rawValue
             sprite.alpha = Constants.opacityTwo
             return sprite
+
+        case .button:
+            let sprite = SKSpriteNode(imageNamed: renderingComponent.name)
+            sprite.position = renderingComponent.position
+            sprite.size = renderingComponent.size
+            sprite.zPosition = SpriteZPosition.button.rawValue
+            return sprite
         }
     }
 

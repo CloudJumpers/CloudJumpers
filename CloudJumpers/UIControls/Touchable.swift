@@ -17,3 +17,22 @@ protocol Touchable {
 
     func update()
 }
+
+// all functions are empty by default
+extension Touchable {
+    func handleTouchBegan(touchLocation: CGPoint) {
+
+    }
+
+    func handleTouchMoved(touchLocation: CGPoint) {
+
+    }
+
+    func handleTouchEnded(touchLocation: CGPoint) {
+
+    }
+
+    func update() {
+
+    }
+}

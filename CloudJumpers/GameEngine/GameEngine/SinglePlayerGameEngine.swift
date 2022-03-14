@@ -27,6 +27,7 @@ class SinglePlayerGameEngine: GameEngine {
     let renderingSystem: RenderingSystem
     let collisionSystem: CollisionSystem
     let movingSystem: MovingSystem
+    let jumpingSystem: JumpingSystem
 
     init(gameScene: GameScene, level: Level) {
         self.gameScene = gameScene
@@ -37,6 +38,7 @@ class SinglePlayerGameEngine: GameEngine {
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
+        self.jumpingSystem = JumpingSystem(entitiesManager: entitiesManager)
 
         createSubscribers()
         setupGame(level: level)
@@ -72,6 +74,10 @@ class SinglePlayerGameEngine: GameEngine {
         let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
         _ = joystick.activate(renderingSystem: renderingSystem)
         touchables.append(joystick)
+
+        let jumpButton = JumpButton(gameEngine: self, associatedEntity: playerEntity)
+        _ = jumpButton.activate(renderingSystem: renderingSystem)
+        touchables.append(jumpButton)
     }
 
     func update(_ deltaTime: Double) {
@@ -83,6 +89,7 @@ class SinglePlayerGameEngine: GameEngine {
         movingSystem.update(deltaTime)
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
+        jumpingSystem.update(deltaTime)
 
         updateTouchables()
     }
@@ -99,6 +106,8 @@ class SinglePlayerGameEngine: GameEngine {
                 handleTouchMovedEvent(location: location)
             case .touchEnded(let location):
                 handleTouchEndedEvent(location: location)
+            case let .jump(entity):
+                handleJumpEvent(entity: entity)
             default:
                 return
             }
@@ -110,6 +119,11 @@ class SinglePlayerGameEngine: GameEngine {
     private func handleMoveEvent(entity: Entity, by: CGVector) {
         let movingComponent = MovingComponent(distance: by)
         movingSystem.addComponent(entity: entity, component: movingComponent)
+    }
+
+    private func handleJumpEvent(entity: Entity) {
+        let jumpingComponent = JumpingComponent()
+        jumpingSystem.addComponent(entity: entity, component: jumpingComponent)
     }
 
     private func handleTouchBeganEvent(location: CGPoint) {

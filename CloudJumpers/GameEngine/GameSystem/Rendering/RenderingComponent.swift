@@ -27,6 +27,7 @@ class RenderingComponent: Component {
         case background
         case outerstick
         case innerstick
+        case button
     }
 }
 

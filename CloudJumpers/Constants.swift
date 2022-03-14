@@ -33,4 +33,10 @@ struct Constants {
     static let opacityTwo = 0.6
 
     static let stickReleaseMovementDuration = 0.2
+
+    static let jumpButtonPosition = CGPoint(x: 280.0, y: -420.0)
+    static let jumpButtonImage = "outerStick"
+    static let jumpButtonSize = CGSize(width: 100.0, height: 100.0)
+    static let jumpImpulse = CGVector(dx: 0, dy: 180)
+    static let jumpYTolerance = 0.1
 }
