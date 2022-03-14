@@ -16,11 +16,7 @@ class Entity: Hashable {
     }
 
     enum EntityType {
-<<<<<<< HEAD
-        case player, guest, cloud, platform, ui
-=======
-        case player,guest,cloud,platform,ui,outerstick,innerstick
->>>>>>> main
+        case player, guest, cloud, platform, ui, outerstick, innerstick
     }
 
     static func == (lhs: Entity, rhs: Entity) -> Bool {

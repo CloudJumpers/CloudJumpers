@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nk-7b-n4t">
-                                <rect key="frame" x="132" y="432.5" width="150" height="31"/>
+                                <rect key="frame" x="94.5" y="432.5" width="225" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-fp-cdZ">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="31"/>
@@ -33,6 +33,14 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                         <connections>
                                             <segue destination="nYZ-Qb-RqU" kind="show" id="q7t-c1-yNg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8v-G1-hE0">
+                                        <rect key="frame" x="150" y="0.0" width="75" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Game"/>
+                                        <connections>
+                                            <segue destination="g9F-CB-D37" kind="show" id="5BG-nN-Q0N"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -194,19 +202,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4W-lU-7sE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-228.98550724637684" y="-792.1875"/>
+        </scene>
+        <!--Game View Controller-->
         <scene sceneID="yaf-ic-wta">
             <objects>
-                <viewController id="g9F-CB-D37" customClass="ViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="g9F-CB-D37" customClass="GameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="O7a-cQ-9Jl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="R75-1h-J9X"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1R-oS-Uhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-397" y="-295"/>
+            <point key="canvasLocation" x="-407" y="-91"/>
         </scene>
     </scenes>
     <resources>

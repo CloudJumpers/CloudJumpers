@@ -14,7 +14,7 @@ class Event {
     init (type: EventType) {
         self.type = type
     }
-    
+
     enum EventType {
         case animation, otherPlayer, input(info: Input)
     }

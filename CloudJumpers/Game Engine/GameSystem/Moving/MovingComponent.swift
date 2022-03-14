@@ -10,7 +10,7 @@ import CoreGraphics
 
 class MovingComponent: Component {
     var distance: CGVector
-    
+
     init(distance: CGVector) {
         self.distance = distance
     }

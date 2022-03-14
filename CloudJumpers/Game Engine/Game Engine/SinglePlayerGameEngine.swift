@@ -62,18 +62,18 @@ class SinglePlayerGameEngine: GameEngine {
         setupPlayer()
         setupUI()
     }
-    
+
     private func setupPlayer() {
         let player = PlayerComponent(position: Constants.playerInitialPosition)
         playerEntity = player.activate(renderingSystem: renderingSystem)
     }
-    
+
     private func setupUI() {
         let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
         _ = joystick.activate(renderingSystem: renderingSystem)
         touchables.append(joystick)
     }
-    
+
     func update(_ deltaTime: Double) {
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
@@ -83,14 +83,14 @@ class SinglePlayerGameEngine: GameEngine {
         movingSystem.update(deltaTime)
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
-        
+
         updateTouchables()
     }
 
     private func handleEvent(event: Event) {
-        switch(event.type) {
+        switch event.type {
         case .input(let info):
-            switch (info.inputType) {
+            switch info.inputType {
             case .move(let entity, let by):
                 handleMoveEvent(entity: entity, by: by)
             case .touchBegan(let location):
@@ -105,30 +105,30 @@ class SinglePlayerGameEngine: GameEngine {
             return
         }
     }
-    
+
     private func handleMoveEvent(entity: Entity, by: CGVector) {
         let movingComponent = MovingComponent(distance: by)
         movingSystem.addComponent(entity: entity, component: movingComponent)
     }
-    
+
     private func handleTouchBeganEvent(location: CGPoint) {
         for touchable in touchables {
             touchable.handleTouchBegan(touchLocation: location)
         }
     }
-    
+
     private func handleTouchMovedEvent(location: CGPoint) {
         for touchable in touchables {
             touchable.handleTouchMoved(touchLocation: location)
         }
     }
-    
+
     private func handleTouchEndedEvent(location: CGPoint) {
         for touchable in touchables {
             touchable.handleTouchEnded(touchLocation: location)
         }
     }
-    
+
     private func updateTouchables() {
         for touchable in touchables {
             touchable.update()

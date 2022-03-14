@@ -20,10 +20,10 @@ class SKNodeFactory {
             sprite.size = renderingComponent.size
             sprite.zPosition = SpriteZPosition.player.rawValue
             return sprite
-            
+
         case .background:
             return SKSpriteNode(imageNamed: "background")
-            
+
         case .outerstick:
             let sprite = SKSpriteNode(imageNamed: renderingComponent.name)
             sprite.position = renderingComponent.position
@@ -31,7 +31,7 @@ class SKNodeFactory {
             sprite.zPosition = SpriteZPosition.outerStick.rawValue
             sprite.alpha = Constants.opacityOne
             return sprite
-            
+
         case .innerstick:
             let sprite = SKSpriteNode(imageNamed: renderingComponent.name)
             sprite.position = renderingComponent.position

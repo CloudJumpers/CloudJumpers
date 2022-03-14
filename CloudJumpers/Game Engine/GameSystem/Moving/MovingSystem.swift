@@ -24,7 +24,7 @@ class MovingSystem: System {
             else {
                 return
             }
-            
+
             node.position += component.distance
             entityComponentMapping.removeValue(forKey: entity)
         }

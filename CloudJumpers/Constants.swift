@@ -15,7 +15,7 @@ struct Constants {
     static let outerstickImage = "outerStick"
     static let outerstickSize = CGSize(width: 100.0, height: 100.0)
     static let innerstickSize = CGSize(width: 50.0, height: 50.0)
-    
+
     static let playerSize = CGSize(width: 50.0, height: 100.0)
 
     static let joystickPosition = CGPoint(x: -280.0, y: -420.0)
