@@ -43,15 +43,15 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func createSubscribers() {
-        eventSubscription = inputManager.inputPublisher.sink {[weak self] input in
+        eventSubscription = inputManager.inputPublisher.sink { [weak self] input in
             self?.eventManager.eventsQueue.append(Event(type: .input(info: input)))
         }
 
-        addNodeSubscription = entitiesManager.addPublisher.sink {[weak self] node in
+        addNodeSubscription = entitiesManager.addPublisher.sink { [weak self] node in
             self?.gameScene?.addChild(node)
         }
 
-        removeNodeSubscription = entitiesManager.removePublisher.sink {[weak self] node in
+        removeNodeSubscription = entitiesManager.removePublisher.sink { node in
             node.removeAllChildren()
             node.removeFromParent()
         }
@@ -91,7 +91,7 @@ class SinglePlayerGameEngine: GameEngine {
         switch event.type {
         case .input(let info):
             switch info.inputType {
-            case .move(let entity, let by):
+            case let .move(entity, by):
                 handleMoveEvent(entity: entity, by: by)
             case .touchBegan(let location):
                 handleTouchBeganEvent(location: location)
