@@ -20,7 +20,8 @@ class GameViewController: UIViewController {
         // swiftlint:disable:next force_cast
         if let view = self.view as! SKView? {
             // Initialise the scene
-            let scene = GameScene(size: view.bounds.size) // <-- IMPORTANT: Initialise your first scene (as you have no .sks)
+            // <-- IMPORTANT: Initialise your first scene (as you have no .sks)
+            let scene = GameScene(size: view.bounds.size)
 
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill

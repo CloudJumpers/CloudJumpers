@@ -98,7 +98,8 @@ class SinglePlayerGameEngine: GameEngine {
             case .touchMoved(let location):
                 handleTouchMovedEvent(location: location)
             case .touchEnded(let location):
-                handleTouchEndedEvent(location: location)            default:
+                handleTouchEndedEvent(location: location)
+            default:
                 return
             }
         default:

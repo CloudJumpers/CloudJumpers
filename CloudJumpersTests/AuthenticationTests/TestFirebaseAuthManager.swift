@@ -45,17 +45,9 @@ class TestFirebaseAuthManager: XCTestCase {
         let createSuccessThree = await firebaseAuthManager.createUser(email: testEmailTwo, password: testPassword)
         let userIdThree = firebaseAuthManager.getCurrentUser()?.userId
 
-<<<<<<< HEAD
         XCTAssertTrue(createSuccessOne)
         XCTAssertFalse(createSuccessTwo)
         XCTAssertTrue(createSuccessThree)
-=======
-        guard let createdUser = await firebaseAuthManager.createUser(email: systemUserEmail,
-                                                                     password: systemUserPassword) else {
-            XCTFail("Expected successful user creation")
-            return
-        }
->>>>>>> main
 
         XCTAssertNotNil(userIdOne)
         XCTAssertNotNil(userIdTwo)
