@@ -60,7 +60,7 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func setupGame(level: Level) {
-        // Usinge factory to create all object here
+        // Using factory to create all object here
         setupPlayer()
         setupUI()
     }

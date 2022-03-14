@@ -21,7 +21,7 @@ class JumpingSystem: System {
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
-                  entityComponentMapping[entity] != nil else {
+                  let component = entityComponentMapping[entity] else {
                 return
             }
 

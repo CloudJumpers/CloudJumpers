@@ -25,6 +25,9 @@ class MovingSystem: System {
                 return
             }
 
+            if entity.type == .player {
+                component.distance.dy = 0
+            }
             node.position += component.distance
             entityComponentMapping.removeValue(forKey: entity)
         }
