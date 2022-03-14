@@ -20,6 +20,10 @@ class AuthService {
         authManager.getCurrentUser() != nil
     }
 
+    func signUp(email: String, password: String, name: String) async -> Bool {
+        await authManager.createUser(email: email, password: password, name: name)
+    }
+
     func logIn(email: String, password: String) async -> Bool {
         await authManager.loginUser(email: email, password: password)
     }

@@ -14,6 +14,7 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
+		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
 		9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E627DE213E007F4D89 /* AuthService.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
@@ -85,6 +86,7 @@
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
 		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		9356F4E627DE213E007F4D89 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -208,6 +210,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		934789AA27DEEA4D00324DAF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				938C15A627DE4A6500A1892C /* LoginViewController.swift */,
+				93F28EEC27DE8120008CE30C /* SignUpViewController.swift */,
+				934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
 		9356F4E527DE2129007F4D89 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,8 +260,7 @@
 		938C15A527DE4A4B00A1892C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				938C15A627DE4A6500A1892C /* LoginViewController.swift */,
-				93F28EEC27DE8120008CE30C /* SignUpViewController.swift */,
+				934789AA27DEEA4D00324DAF /* Authentication */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -666,6 +677,7 @@
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
+				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1179EED27DBC3FF00E60E59 /* PhysicsComponent.swift in Sources */,

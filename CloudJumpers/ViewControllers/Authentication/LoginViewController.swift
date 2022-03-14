@@ -7,13 +7,9 @@
 
 import UIKit
 
-private enum ToastConstants {
-    static let success = "Successfully logged in."
-    static let failure = "Log in failed, please verify entered credentials and try again."
-    static let initialAlpha = 0.0
-    static let finalAlpha = 1.0
-    static let appearSeconds = 0.7
-    static let padding = 10.0
+private enum LoginConstants {
+    static let success = "Welcome, "
+    static let failure = "Log in failed, please verify credentials and try again."
 }
 
 class LoginViewController: UIViewController {
@@ -26,7 +22,7 @@ class LoginViewController: UIViewController {
         setUpOutcomeLabel()
     }
 
-    @IBAction func onLogin(_ sender: UIButton) {
+    @IBAction func onLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }
@@ -37,12 +33,14 @@ class LoginViewController: UIViewController {
         Task {
             let authService = AuthService()
             let loginOutcome = await authService.logIn(email: email, password: password)
-            self.updateOutcomeLabel(outcome: loginOutcome)
+            let displayName = authService.getUserDisplayName()
+
+            self.updateOutcomeLabel(outcome: loginOutcome, name: displayName)
         }
     }
 
     private func setUpOutcomeLabel() {
-        feedbackToast.alpha = ToastConstants.initialAlpha
+        feedbackToast.alpha = AuthToastConstants.initialAlpha
         feedbackToast.textColor = UIColor.white
         feedbackToast.textAlignment = .center
         feedbackToast.layer.cornerRadius = 2
@@ -50,12 +48,18 @@ class LoginViewController: UIViewController {
         feedbackToast.clipsToBounds = true
     }
 
-    private func updateOutcomeLabel(outcome: Bool) {
-        feedbackToast.text = outcome ? ToastConstants.success : ToastConstants.failure
-        feedbackToast.backgroundColor = outcome ? .green : .red
+    private func updateOutcomeLabel(outcome: Bool, name: String?) {
+        if outcome, let displayName = name {
+            feedbackToast.text = LoginConstants.success + displayName
+            feedbackToast.backgroundColor = .green
+        } else {
+            feedbackToast.text = LoginConstants.failure
+            feedbackToast.backgroundColor = .red
+        }
+
         UIView.animate(
-            withDuration: ToastConstants.appearSeconds,
-            animations: { self.feedbackToast.alpha = ToastConstants.finalAlpha }
+            withDuration: AuthToastConstants.appearSeconds,
+            animations: { self.feedbackToast.alpha = AuthToastConstants.finalAlpha }
         )
     }
 }
