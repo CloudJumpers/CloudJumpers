@@ -18,7 +18,6 @@ class MovingSystem: System {
         self.entitiesManager = entitiesManager
     }
     
-    private var t = 0
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
