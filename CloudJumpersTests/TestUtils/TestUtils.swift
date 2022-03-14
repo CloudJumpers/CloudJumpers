@@ -12,8 +12,11 @@ class TestUtils {
       let letters = "abcdefghijklmnopqrstuvwxyz0123456789"
         return String((0 ..< length).map { _ in letters.randomElement()! }).lowercased()
     }
+<<<<<<< HEAD
 
     static func generateUniqueRandomEmail() -> String {
         UUID().uuidString.lowercased() + "@" + randomLowerAlnumString(length: 10) + ".com"
     }
+=======
+>>>>>>> main
 }

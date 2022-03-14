@@ -194,6 +194,19 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4W-lU-7sE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-228.98550724637684" y="-792.1875"/>
+        <scene sceneID="yaf-ic-wta">
+            <objects>
+                <viewController id="g9F-CB-D37" customClass="ViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="O7a-cQ-9Jl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1R-oS-Uhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-397" y="-295"/>
         </scene>
     </scenes>
     <resources>

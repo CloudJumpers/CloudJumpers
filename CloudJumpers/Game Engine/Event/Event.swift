@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 // Some asynchronous event that require a general handler
 class Event {
@@ -13,6 +14,7 @@ class Event {
     init (type: EventType) {
         self.type = type
     }
+    
     enum EventType {
         case animation, otherPlayer, input(info: Input)
     }
