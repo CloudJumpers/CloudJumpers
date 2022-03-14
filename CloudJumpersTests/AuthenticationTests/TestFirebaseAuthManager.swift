@@ -9,10 +9,11 @@ import XCTest
 @testable import CloudJumpers
 
 class TestFirebaseAuthManager: XCTestCase {
-    private let firebaseAuthManager: FirebaseAuthManager = FirebaseAuthManager()
+    private let firebaseAuthManager = FirebaseAuthManager()
 
     override func tearDown() async throws {
-        let _ = await firebaseAuthManager.deleteCurrentUser()
+        try await super.tearDown()
+        _ = await firebaseAuthManager.deleteCurrentUser()
     }
 
     func testLoginUser_invalidUserPassword_userNotReturned() async {

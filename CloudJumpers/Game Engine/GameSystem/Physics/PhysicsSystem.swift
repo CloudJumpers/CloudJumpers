@@ -7,26 +7,23 @@
 
 import Foundation
 
-
 class PhysicsSystem: System {
 
     weak var entitiesManager: EntitiesManager?
-    
+
     private var entityComponentMapping: [Entity: PhysicsComponent] = [:]
 
-    
     init (entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
     }
-    
+
     func addComponent(entity: Entity, component: Component) {
         guard let physicsComponent = component as? PhysicsComponent else {
             return
         }
         entityComponentMapping[entity] = physicsComponent
     }
-    
-    
+
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let component = entityComponentMapping[entity],

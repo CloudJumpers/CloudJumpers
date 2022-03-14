@@ -9,7 +9,7 @@ import XCTest
 @testable import CloudJumpers
 
 private struct StubNetworkEntity: NetworkedEntity {
-    private(set) var id: UUID = UUID()
+    private(set) var id = UUID()
 }
 
 class TestFirebaseRTDBManager: XCTestCase {

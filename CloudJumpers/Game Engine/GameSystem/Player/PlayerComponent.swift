@@ -8,12 +8,12 @@
 import Foundation
 class PlayerComponent: Component {
     var position: Position
-    
+
     init(position: Position = .start) {
         self.position = position
     }
-    
+
     enum Position {
-        case start, air,cloud(entity:Entity),platform(entity:Entity)
+        case start, air, cloud(entity: Entity), platform(entity: Entity)
     }
 }

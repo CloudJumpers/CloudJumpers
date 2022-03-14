@@ -9,5 +9,5 @@ import Foundation
 
 // The seed to create a new level
 struct Level {
-    
+
 }

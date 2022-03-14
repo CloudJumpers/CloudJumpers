@@ -11,7 +11,7 @@ import Foundation
 class Event {
     let type: EventType
     init (type: EventType) {
-        self.type  = type
+        self.type = type
     }
     enum EventType {
         case animation, otherPlayer, input(info: Input)

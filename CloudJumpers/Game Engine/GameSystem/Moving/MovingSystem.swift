@@ -8,16 +8,15 @@
 import Foundation
 
 class MovingSystem: System {
-    
+
     weak var entitiesManager: EntitiesManager?
-    
+
     private var entityComponentMapping: [Entity: MovingComponent] = [:]
 
-    
     init (entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
     }
-    
+
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
@@ -29,13 +28,12 @@ class MovingSystem: System {
             node.physicsBody?.applyImpulse(movement)
         }
     }
-    
+
     func addComponent(entity: Entity, component: Component) {
         guard let movingComponent = component as? MovingComponent else {
             return
         }
         entityComponentMapping[entity] = movingComponent
     }
-    
-    
+
 }

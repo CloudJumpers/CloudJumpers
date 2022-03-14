@@ -7,8 +7,6 @@
 
 import Foundation
 
-
 class EventManager {
     var eventsQueue: [Event] = []
 }
-

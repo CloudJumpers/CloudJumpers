@@ -8,19 +8,19 @@
 import Foundation
 
 struct Input {
-    
+
     // This will need to be using Vector to be exact, but this is the idea
     let inputType: InputType
-    
+
     init (inputType: InputType) {
         self.inputType = inputType
     }
-    
+
     enum InputType {
         case move(direction: MoveDirection), powerup, jump
     }
-    
+
     enum MoveDirection {
-        case left,right,up,down
+        case left, right, up, down
     }
 }

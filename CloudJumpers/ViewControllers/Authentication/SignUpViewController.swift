@@ -13,17 +13,17 @@ private enum SignUpConstants {
 }
 
 class SignUpViewController: UIViewController {
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var feedbackToast: UILabel!
+    @IBOutlet private var nameTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var feedbackToast: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpOutcomeLabel()
     }
 
-    @IBAction func signUp() {
+    @IBAction private func signUp() {
         guard
             let name = nameTextField.text,
             let email = emailTextField.text,

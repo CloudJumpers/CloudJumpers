@@ -11,7 +11,7 @@ import CoreGraphics
 class MovingComponent: Component {
     var direction: CGVector
     var magnitude: CGFloat
-    
+
     init(direction: CGVector, magnitude: CGFloat) {
         self.direction = direction
         self.magnitude = magnitude

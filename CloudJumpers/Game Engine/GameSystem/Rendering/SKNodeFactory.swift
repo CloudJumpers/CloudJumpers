@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class SKNodeFactory {
-    
+
     static func createSKSpriteNode(type: RenderingComponent.SpriteType) -> SKSpriteNode {
         switch type {
         case .sprite(let position, let name):
@@ -18,6 +18,5 @@ class SKNodeFactory {
             return SKSpriteNode(imageNamed: "background")
         }
     }
-    
 
 }

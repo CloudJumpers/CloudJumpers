@@ -13,16 +13,16 @@ private enum LoginConstants {
 }
 
 class LoginViewController: UIViewController {
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var feedbackToast: UILabel!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var feedbackToast: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpOutcomeLabel()
     }
 
-    @IBAction func onLogin() {
+    @IBAction private func onLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             return
         }

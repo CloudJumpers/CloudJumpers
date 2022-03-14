@@ -10,11 +10,11 @@ import Foundation
 class PhysicsComponent: Component {
     var shape: Shape
     var isUpdating = true
-    
+
     init (shape: Shape) {
         self.shape = shape
     }
-    
+
     enum Shape {
         case player
         case cloud

@@ -11,12 +11,11 @@ import CoreGraphics
 class RenderingComponent: Component {
     var type: SpriteType
     var isUpdating = true
-    
+
     init (type: SpriteType) {
         self.type = type
     }
-    
-    
+
     enum SpriteType {
         case sprite(position: CGPoint, name: String)
         case background

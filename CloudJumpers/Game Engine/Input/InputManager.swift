@@ -13,10 +13,9 @@ class InputManager {
     var inputPublisher: AnyPublisher<Input, Never> {
         inputSubject.eraseToAnyPublisher()
     }
-    
+
     func parseInput() {
         // Process input here
     }
 
 }
-

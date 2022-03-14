@@ -10,11 +10,10 @@ import Foundation
 class TestUtils {
     static func randomLowerAlnumString(length: Int) -> String {
       let letters = "abcdefghijklmnopqrstuvwxyz0123456789"
-        return String((0 ..< length).map{ _ in letters.randomElement()! }).lowercased()
+        return String((0 ..< length).map { _ in letters.randomElement()! }).lowercased()
     }
 
     static func generateUniqueRandomEmail() -> String {
         UUID().uuidString.lowercased() + "@" + randomLowerAlnumString(length: 10) + ".com"
     }
 }
-

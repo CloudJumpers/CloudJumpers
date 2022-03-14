@@ -11,22 +11,20 @@ import SpriteKit
 class RenderingSystem: System {
 
     weak var entitiesManager: EntitiesManager?
-    
+
     private var entityComponentMapping: [Entity: RenderingComponent] = [:]
 
-    
     init (entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
     }
-    
+
     func addComponent(entity: Entity, component: Component) {
         guard let renderingComponent = component as? RenderingComponent else {
             return
         }
         entityComponentMapping[entity] = renderingComponent
     }
-    
-    
+
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let component = entityComponentMapping[entity],

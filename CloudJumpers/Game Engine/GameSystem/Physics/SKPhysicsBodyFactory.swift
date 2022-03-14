@@ -9,8 +9,8 @@ import Foundation
 import SpriteKit
 
 class SKPhysicsBodyFactory {
-    
-    static func createPhysicsBody(shape: PhysicsComponent.Shape) -> SKPhysicsBody{
+
+    static func createPhysicsBody(shape: PhysicsComponent.Shape) -> SKPhysicsBody {
         var physicsBody: SKPhysicsBody
 
         switch shape {
@@ -21,11 +21,11 @@ class SKPhysicsBodyFactory {
         case .platform:
             physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 0.7, height: 0.1))
         }
-        
+
         physicsBody.affectedByGravity = (shape == .player)
         physicsBody.collisionBitMask = 0b00001
-        
+
         return physicsBody
-        
+
     }
 }
