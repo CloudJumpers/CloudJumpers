@@ -23,6 +23,16 @@
 		3E246B6727DECCD300D51300 /* Touchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6627DECCD300D51300 /* Touchable.swift */; };
 		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		934789B027DEF70100324DAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AF27DEF70100324DAF /* ViewController.swift */; };
+		934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B227DF04ED00324DAF /* LobbiesViewController.swift */; };
+		934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B427DF04FD00324DAF /* LobbyViewController.swift */; };
+		934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B727DF06BC00324DAF /* LobbyListing.swift */; };
+		934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B927DF06E300324DAF /* LobbyUser.swift */; };
+		934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789BB27DF07E800324DAF /* LobbyUtils.swift */; };
+		934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789BD27DF090900324DAF /* LobbyConstants.swift */; };
+		934789C227DF0F7F00324DAF /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C127DF0F7F00324DAF /* NetworkedLobby.swift */; };
+		934789C627DF1AAB00324DAF /* LobbyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C527DF1AAB00324DAF /* LobbyManager.swift */; };
+		934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C727DF576E00324DAF /* LobbyKeys.swift */; };
+		934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C927DF6B5700324DAF /* LobbyCell.swift */; };
 		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
 		9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E627DE213E007F4D89 /* AuthService.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
@@ -33,7 +43,7 @@
 		93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */; };
 		93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */; };
 		93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17827DA125C0054F45B /* NetworkedEntity.swift */; };
-		93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */; };
+		93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
 		93D4E18027DA21CB0054F45B /* TestFirebaseRTDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
@@ -101,6 +111,16 @@
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
 		934789AF27DEF70100324DAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		934789B227DF04ED00324DAF /* LobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbiesViewController.swift; sourceTree = "<group>"; };
+		934789B427DF04FD00324DAF /* LobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
+		934789B727DF06BC00324DAF /* LobbyListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyListing.swift; sourceTree = "<group>"; };
+		934789B927DF06E300324DAF /* LobbyUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUser.swift; sourceTree = "<group>"; };
+		934789BB27DF07E800324DAF /* LobbyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUtils.swift; sourceTree = "<group>"; };
+		934789BD27DF090900324DAF /* LobbyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyConstants.swift; sourceTree = "<group>"; };
+		934789C127DF0F7F00324DAF /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
+		934789C527DF1AAB00324DAF /* LobbyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyManager.swift; sourceTree = "<group>"; };
+		934789C727DF576E00324DAF /* LobbyKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyKeys.swift; sourceTree = "<group>"; };
+		934789C927DF6B5700324DAF /* LobbyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCell.swift; sourceTree = "<group>"; };
 		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		9356F4E627DE213E007F4D89 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -112,7 +132,7 @@
 		93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataProcessor.swift; sourceTree = "<group>"; };
 		93D4E17827DA125C0054F45B /* NetworkedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedEntity.swift; sourceTree = "<group>"; };
-		93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByUUID.swift; sourceTree = "<group>"; };
+		93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByEntityID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
 		93D4E17F27DA21CB0054F45B /* TestFirebaseRTDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseRTDBManager.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
@@ -192,6 +212,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				934789B627DF06A300324DAF /* Lobbies */,
 				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
@@ -242,6 +263,47 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		934789B127DF04D900324DAF /* Lobby */ = {
+			isa = PBXGroup;
+			children = (
+				934789B227DF04ED00324DAF /* LobbiesViewController.swift */,
+				934789B427DF04FD00324DAF /* LobbyViewController.swift */,
+				934789C927DF6B5700324DAF /* LobbyCell.swift */,
+			);
+			path = Lobby;
+			sourceTree = "<group>";
+		};
+		934789B627DF06A300324DAF /* Lobbies */ = {
+			isa = PBXGroup;
+			children = (
+				934789B927DF06E300324DAF /* LobbyUser.swift */,
+				934789B727DF06BC00324DAF /* LobbyListing.swift */,
+				934789BD27DF090900324DAF /* LobbyConstants.swift */,
+				934789C127DF0F7F00324DAF /* NetworkedLobby.swift */,
+				934789C527DF1AAB00324DAF /* LobbyManager.swift */,
+				934789BB27DF07E800324DAF /* LobbyUtils.swift */,
+				934789C727DF576E00324DAF /* LobbyKeys.swift */,
+			);
+			path = Lobbies;
+			sourceTree = "<group>";
+		};
+		934789BF27DF0F4D00324DAF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		934789C027DF0F5700324DAF /* BaseManagers */ = {
+			isa = PBXGroup;
+			children = (
+				93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */,
+				93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */,
+			);
+			path = BaseManagers;
+			sourceTree = "<group>";
+		};
 		9356F4E527DE2129007F4D89 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				934789AF27DEF70100324DAF /* ViewController.swift */,
+				934789B127DF04D900324DAF /* Lobby */,
 				934789AE27DEF6F400324DAF /* Game */,
 				934789AA27DEEA4D00324DAF /* Authentication */,
 			);
@@ -292,10 +355,9 @@
 		93D4E16527DA0C920054F45B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				934789BF27DF0F4D00324DAF /* Utils */,
 				93D4E17727DA12330054F45B /* Definitions */,
-				93D4E16627DA0CAE0054F45B /* FirebaseRTDBManager.swift */,
-				93D4E16C27DA0E0F0054F45B /* NetworkingManager.swift */,
-				93D4E17527DA10740054F45B /* NetworkDataProcessor.swift */,
+				934789C027DF0F5700324DAF /* BaseManagers */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -304,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				93D4E17827DA125C0054F45B /* NetworkedEntity.swift */,
-				93D4E17A27DA15550054F45B /* IdentifiableByUUID.swift */,
+				93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */,
 				93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */,
 			);
 			path = Definitions;
@@ -691,11 +753,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				934789B027DEF70100324DAF /* ViewController.swift in Sources */,
+				934789C227DF0F7F00324DAF /* NetworkedLobby.swift in Sources */,
 				A1179EFC27DBC74F00E60E59 /* PlayerSystem.swift in Sources */,
 				A1179EFA27DBC74300E60E59 /* PlayerComponent.swift in Sources */,
 				A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */,
 				A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */,
-				93D4E17B27DA15550054F45B /* IdentifiableByUUID.swift in Sources */,
+				93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */,
 				3E246B6727DECCD300D51300 /* Touchable.swift in Sources */,
 				A11470A627DB4193005FA3EC /* Level.swift in Sources */,
 				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
@@ -707,8 +770,11 @@
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
+				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
+				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
+				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				A1179EEB27DBC3F300E60E59 /* PhysicsSystem.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
@@ -717,17 +783,22 @@
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
+				934789C627DF1AAB00324DAF /* LobbyManager.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
+				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
+				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1179EED27DBC3FF00E60E59 /* PhysicsComponent.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
+				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
 				A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				A1179EF027DBC67800E60E59 /* StateComponent.swift in Sources */,
 				A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */,
 				3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */,
+				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
@@ -740,6 +811,7 @@
 				3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */,
 				A11470A427DB3D9B005FA3EC /* Input.swift in Sources */,
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
+				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

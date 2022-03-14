@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol IdentifiableByUUID {
-    var id: UUID { get }
+protocol IdentifiableByEntityID {
+    var id: EntityID { get }
 }
