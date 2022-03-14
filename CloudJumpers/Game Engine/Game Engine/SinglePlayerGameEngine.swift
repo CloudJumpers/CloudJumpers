@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import CoreGraphics
 
 class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
@@ -40,7 +41,6 @@ class SinglePlayerGameEngine: GameEngine {
         
         createSubscribers()
         setupGame(level: level)
-        
     }
     
     func createSubscribers() {
@@ -64,19 +64,17 @@ class SinglePlayerGameEngine: GameEngine {
         setupUI()
     }
     
-    func setupPlayer() {
+    private func setupPlayer() {
         let player = PlayerComponent(position: Constants.playerInitialPosition)
         playerEntity = player.activate(renderingSystem: renderingSystem)
     }
     
-    func setupUI() {
+    private func setupUI() {
         let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
         _ = joystick.activate(renderingSystem: renderingSystem)
         touchables.append(joystick)
     }
     
-    
-
     func update(_ deltaTime: Double) {
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
@@ -91,26 +89,18 @@ class SinglePlayerGameEngine: GameEngine {
     }
     
 
-    func handleEvent(event: Event) {
+    private func handleEvent(event: Event) {
         switch(event.type) {
         case .input(let info):
             switch (info.inputType) {
             case .move(let entity, let by):
-                let movingComponent = MovingComponent(distance: by)
-                movingSystem.addComponent(entity: entity, component: movingComponent)
+                handleMoveEvent(entity: entity, by: by)
             case .touchBegan(let location):
-                for touchable in touchables {
-                    touchable.handleTouchBegan(touchLocation: location)
-                }
+                handleTouchBeganEvent(location: location)
             case .touchMoved(let location):
-                for touchable in touchables {
-                    touchable.handleTouchMoved(touchLocation: location)
-                }
+                handleTouchMovedEvent(location: location)
             case .touchEnded(let location):
-                for touchable in touchables {
-                    touchable.handleTouchEnded(touchLocation: location)
-                }
-            default:
+                handleTouchEndedEvent(location: location)            default:
                 return
             }
         default:
@@ -118,7 +108,30 @@ class SinglePlayerGameEngine: GameEngine {
         }
     }
     
-    func updateTouchables() {
+    private func handleMoveEvent(entity: Entity, by: CGVector) {
+        let movingComponent = MovingComponent(distance: by)
+        movingSystem.addComponent(entity: entity, component: movingComponent)
+    }
+    
+    private func handleTouchBeganEvent(location: CGPoint) {
+        for touchable in touchables {
+            touchable.handleTouchBegan(touchLocation: location)
+        }
+    }
+    
+    private func handleTouchMovedEvent(location: CGPoint) {
+        for touchable in touchables {
+            touchable.handleTouchMoved(touchLocation: location)
+        }
+    }
+    
+    private func handleTouchEndedEvent(location: CGPoint) {
+        for touchable in touchables {
+            touchable.handleTouchEnded(touchLocation: location)
+        }
+    }
+    
+    private func updateTouchables() {
         for touchable in touchables {
             touchable.update()
         }
