@@ -13,7 +13,7 @@ class PlayerEntity: Entity, Renderable {
     init(position: CGPoint) {
         self.renderingComponent = RenderingComponent(type: .sprite,
                                                      position: position,
-                                                     name: Constants.playerImage,
+                                                     name: Images.player.name,
                                                      size: Constants.playerSize)
         super.init(type: .player)
     }

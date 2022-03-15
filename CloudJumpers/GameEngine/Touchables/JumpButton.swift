@@ -15,7 +15,7 @@ class JumpButton: Touchable, Renderable {
     init(inputManager: InputManager, associatedEntity: Entity) {
         self.renderingComponent = RenderingComponent(type: .button,
                                                      position: Constants.jumpButtonPosition,
-                                                     name: Constants.jumpButtonImage,
+                                                     name: Images.outerStick.name,
                                                      size: Constants.jumpButtonSize)
         self.inputManager = inputManager
         self.associatedEntity = associatedEntity

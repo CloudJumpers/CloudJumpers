@@ -14,6 +14,7 @@
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */; };
+		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* GameEngine.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
@@ -99,6 +100,7 @@
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Unarchive.swift"; sourceTree = "<group>"; };
+		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4327DDA9C800D51300 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -226,8 +228,8 @@
 				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
 				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
 				1A91C90F27E08D2B00D755BE /* Extensions */,
+				1A91C91227E0962F00D755BE /* Resources */,
 				1A4E3D7527D85BC80033A29D /* Main.storyboard */,
-				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
 				1A4E3D7D27D85BCA0033A29D /* Info.plist */,
 				93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */,
@@ -243,6 +245,15 @@
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1A91C91227E0962F00D755BE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
+				1A91C91727E0969500D755BE /* Images.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		3E246B6827DF32C600D51300 /* Touchables */ = {
@@ -790,6 +801,7 @@
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
+				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
