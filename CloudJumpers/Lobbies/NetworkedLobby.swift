@@ -42,8 +42,15 @@ class NetworkedLobby {
         }
     }
 
-    func addOtherUser(user: LobbyUser) {
-        others.append(user)
+    func addUser(newUser: LobbyUser) {
+        guard newUser.id != user.id else {
+            return
+        }
+        others.append(newUser)
+    }
+
+    func removeAllOtherUsers() {
+        others.removeAll()
     }
 
     func removeOtherUser(userId: EntityID) {

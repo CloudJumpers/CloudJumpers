@@ -32,22 +32,19 @@ class LobbyViewController: UIViewController {
 
     private func setupLobbyListeners() {
         lobbyRef?.observe(.childAdded) { snapshot in
-            print("Added: \(snapshot)")
             self.handleUpdate(snapshot: snapshot)
         }
 
         lobbyRef?.observe(.childChanged) { snapshot in
-            print("Changed: \(snapshot)")
             self.handleUpdate(snapshot: snapshot)
         }
     }
 
     private func handleUpdate(snapshot: DataSnapshot) {
         if
-            let value = snapshot.value as? [String: firebaseStructure],
-            let userDict = value[LobbyKeys.participants]
+            let value = snapshot.value as? firebaseStructure
         {
-            updateLobbyUsers(userDict: userDict)
+            updateLobbyUsers(userDict: value)
             lobbyUsersView.reloadData()
         } else if let value = snapshot.value as? String {
             switch snapshot.key {
@@ -70,6 +67,8 @@ class LobbyViewController: UIViewController {
     }
 
     private func updateLobbyUsers(userDict: firebaseStructure) {
+        self.activeLobby?.removeAllOtherUsers()
+
         userDict.forEach { userId, attributeKeyVal in
             guard
                 let displayName = attributeKeyVal[LobbyKeys.participantName] as? String,
@@ -79,7 +78,7 @@ class LobbyViewController: UIViewController {
             }
 
             let user = LobbyUser(id: userId, displayName: displayName, isReady: isReady)
-            self.activeLobby?.addOtherUser(user: user)
+            self.activeLobby?.addUser(newUser: user)
         }
     }
 
