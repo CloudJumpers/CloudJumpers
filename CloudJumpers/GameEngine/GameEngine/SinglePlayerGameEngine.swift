@@ -69,11 +69,11 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setupUI() {
-        let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
+        let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
         _ = joystick.activate(renderingSystem: renderingSystem)
         touchables.append(joystick)
 
-        let jumpButton = JumpButton(gameEngine: self, associatedEntity: playerEntity)
+        let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
         _ = jumpButton.activate(renderingSystem: renderingSystem)
         touchables.append(jumpButton)
     }

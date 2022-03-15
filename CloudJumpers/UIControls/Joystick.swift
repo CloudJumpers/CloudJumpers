@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class Joystick: Renderable, Touchable {
-    var gameEngine: GameEngine
+    var inputManager: InputManager
     private var stickActive = false
 
     var renderingComponent = RenderingComponent(type: .outerstick,
@@ -27,8 +27,8 @@ class Joystick: Renderable, Touchable {
 
     private var associatedEntity: Entity
 
-    init(gameEngine: GameEngine, associatedEntity: Entity) {
-        self.gameEngine = gameEngine
+    init(inputManager: InputManager, associatedEntity: Entity) {
+        self.inputManager = inputManager
         self.associatedEntity = associatedEntity
     }
 
@@ -119,7 +119,7 @@ class Joystick: Renderable, Touchable {
     private func notifyLocationChange(entity: Entity, by distance: CGVector) {
         let newInput = Input(inputType: .move(entity: entity,
                                               by: distance))
-        gameEngine.inputManager.parseInput(input: newInput)
+        inputManager.parseInput(input: newInput)
     }
 
 }
