@@ -14,14 +14,18 @@ class LobbiesViewController: UIViewController {
     private(set) var lobbies: [LobbyListing] = [LobbyListing]()
     private var lobbiesRef: DatabaseReference?
 
+    private var activeLobby: NetworkedLobby?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         lobbiesCollectionView.dataSource = self
+        lobbiesCollectionView.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpLobbiesListener()
+        activeLobby = nil
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -35,7 +39,7 @@ class LobbiesViewController: UIViewController {
             fatalError("User is expected to be logged in.")
         }
 
-        let lobbyManager = LobbyManager()
+        let lobbyManager = FirebaseLobbyConnectorDelegate()
         lobbyManager.createLobby(userId: userId)
     }
 
@@ -106,6 +110,18 @@ class LobbiesViewController: UIViewController {
 
     private func refreshDataSource() {
         lobbies.removeAll()
+    }
+}
+
+extension LobbiesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedLobby = lobbies[indexPath.item]
+        activeLobby = NetworkedLobby(lobbyId: selectedLobby.lobbyId)
+
+        performSegue(
+            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
+            sender: collectionView.cellForItem(at: indexPath)
+        )
     }
 }
 

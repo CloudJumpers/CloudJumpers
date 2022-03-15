@@ -305,7 +305,6 @@
                                                     <outlet property="gameMode" destination="lVi-Yq-15y" id="P2t-ha-50A"/>
                                                     <outlet property="occupancy" destination="1CC-as-WSK" id="FmA-kw-Ob2"/>
                                                     <outlet property="roomName" destination="rLc-VK-bF1" id="SjP-bn-WaX"/>
-                                                    <segue destination="N2h-Lp-5b5" kind="show" id="OBR-GO-g0Q"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -325,11 +324,12 @@
                     <navigationItem key="navigationItem" id="ysX-Ud-B4D"/>
                     <connections>
                         <outlet property="lobbiesCollectionView" destination="ahd-4e-VmL" id="C7V-lE-P4o"/>
+                        <segue destination="N2h-Lp-5b5" kind="show" identifier="com.cs3217.cloudjumpers.enterlobby" id="zMc-Fy-vOj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEu-Wu-PPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="-59.598214285714285"/>
+            <point key="canvasLocation" x="1529" y="-60"/>
         </scene>
         <!--Lobby View Controller-->
         <scene sceneID="ypd-hK-m8T">

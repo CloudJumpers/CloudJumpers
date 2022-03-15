@@ -11,24 +11,38 @@ class NetworkedLobby {
     private let user: LobbyUser
     private(set) var others: [LobbyUser]
 
+    private var lobbyId: EntityID!
     private let userIsHost: Bool
 
-    private let networkManager: NetworkingManager
+    private let lobbyManager = FirebaseLobbyConnectorDelegate()
 
-    init() {
-        self.networkManager = FirebaseRTDBManager()
+    init(lobbyId: EntityID? = nil) {
+        self.lobbyId = lobbyId
+        self.userIsHost = lobbyId == nil
+        self.others = [LobbyUser]()
 
-        let authService = AuthService()
-        guard let userId = authService.getUserId() else {
+        let auth = AuthService()
+        guard let userId = auth.getUserId() else {
             fatalError("User is expected to be logged in.")
         }
 
         self.user = LobbyUser(
             id: userId,
-            displayName: authService.getUserDisplayName()
+            displayName: auth.getUserDisplayName()
         )
 
-        self.others = [LobbyUser]()
-        self.userIsHost = true
+        if userIsHost {
+            createLobby()
+        } else {
+            joinLobby()
+        }
+    }
+
+    private func createLobby() {
+        lobbyId = lobbyManager.createLobby(userId: user.id)
+    }
+
+    private func joinLobby() {
+        lobbyManager.joinLobby(userId: user.id, lobbyId: lobbyId)
     }
 }
