@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/11/22.
 //
 
-import Foundation
 import CoreGraphics
 
 struct Input {
@@ -17,10 +16,9 @@ struct Input {
     }
 
     enum InputType {
-//        case move(direction: MoveDirection), powerup, jump
-        case move(entity: Entity, by: CGVector), powerUp, jump, touchBegan(at: CGPoint),
-             touchMoved(at: CGPoint),
-             touchEnded(at: CGPoint)
+        case move(entity: Entity, by: CGVector)
+        case jump(entity: Entity)
+        case powerUp
     }
 
     enum MoveDirection {

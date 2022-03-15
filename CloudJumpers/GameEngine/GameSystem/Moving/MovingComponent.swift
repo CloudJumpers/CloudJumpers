@@ -5,20 +5,16 @@
 //  Created by Trong Tan on 3/12/22.
 //
 
-import Foundation
 import CoreGraphics
 
 class MovingComponent: Component {
-    var distance: CGVector
+    var movement: movementType
 
-    init(distance: CGVector) {
-        self.distance = distance
+    init(movement: movementType) {
+        self.movement = movement
     }
-//    var direction: CGVector
-//    var magnitude: CGFloat
-//
-//    init(direction: CGVector, magnitude: CGFloat) {
-//        self.direction = direction
-//        self.magnitude = magnitude
-//    }
+
+    enum movementType {
+        case move(distance: CGVector), jump(impulse: CGVector)
+    }
 }

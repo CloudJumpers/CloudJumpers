@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/8/22.
 //
 
-import Foundation
 import Combine
 import CoreGraphics
 
@@ -13,6 +12,7 @@ class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
     var inputManager: InputManager
+    var touchableManager: TouchableManager
 
     weak var gameScene: GameScene?
 
@@ -20,8 +20,7 @@ class SinglePlayerGameEngine: GameEngine {
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
 
-    private var playerEntity: Entity!
-    private var touchables: [Touchable] = []
+    private var playerEntity: PlayerEntity
 
     // System
     let renderingSystem: RenderingSystem
@@ -31,12 +30,15 @@ class SinglePlayerGameEngine: GameEngine {
     init(gameScene: GameScene, level: Level) {
         self.gameScene = gameScene
         self.entitiesManager = EntitiesManager()
+
         self.eventManager = EventManager()
         self.inputManager = InputManager()
+        self.touchableManager = TouchableManager()
 
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
+        self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
         createSubscribers()
         setupGame(level: level)
@@ -58,20 +60,24 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func setupGame(level: Level) {
-        // Usinge factory to create all object here
+        // Using factory to create all object here
         setupPlayer()
-        setupUI()
+        setupTouchables()
     }
 
     private func setupPlayer() {
-        let player = PlayerComponent(position: Constants.playerInitialPosition)
-        playerEntity = player.activate(renderingSystem: renderingSystem)
+        self.playerEntity.activate(renderingSystem: renderingSystem)
     }
 
-    private func setupUI() {
-        let joystick = Joystick(gameEngine: self, associatedEntity: playerEntity)
-        _ = joystick.activate(renderingSystem: renderingSystem)
-        touchables.append(joystick)
+    private func setupTouchables() {
+        let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
+        let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
+
+        touchableManager.addTouchable(touchable: joystick)
+        touchableManager.addTouchable(touchable: jumpButton)
+
+        joystick.activate(renderingSystem: renderingSystem)
+        jumpButton.activate(renderingSystem: renderingSystem)
     }
 
     func update(_ deltaTime: Double) {
@@ -84,7 +90,7 @@ class SinglePlayerGameEngine: GameEngine {
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
 
-        updateTouchables()
+        touchableManager.updateTouchables()
     }
 
     private func handleEvent(event: Event) {
@@ -93,12 +99,8 @@ class SinglePlayerGameEngine: GameEngine {
             switch info.inputType {
             case let .move(entity, by):
                 handleMoveEvent(entity: entity, by: by)
-            case .touchBegan(let location):
-                handleTouchBeganEvent(location: location)
-            case .touchMoved(let location):
-                handleTouchMovedEvent(location: location)
-            case .touchEnded(let location):
-                handleTouchEndedEvent(location: location)
+            case let .jump(entity):
+                handleJumpEvent(entity: entity)
             default:
                 return
             }
@@ -107,32 +109,14 @@ class SinglePlayerGameEngine: GameEngine {
         }
     }
 
-    private func handleMoveEvent(entity: Entity, by: CGVector) {
-        let movingComponent = MovingComponent(distance: by)
+    private func handleMoveEvent(entity: Entity, by distance: CGVector) {
+        let movingComponent = MovingComponent(movement: .move(distance: distance))
         movingSystem.addComponent(entity: entity, component: movingComponent)
     }
 
-    private func handleTouchBeganEvent(location: CGPoint) {
-        for touchable in touchables {
-            touchable.handleTouchBegan(touchLocation: location)
-        }
+    private func handleJumpEvent(entity: Entity) {
+        let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
+        movingSystem.addComponent(entity: playerEntity, component: movingComponent)
     }
 
-    private func handleTouchMovedEvent(location: CGPoint) {
-        for touchable in touchables {
-            touchable.handleTouchMoved(touchLocation: location)
-        }
-    }
-
-    private func handleTouchEndedEvent(location: CGPoint) {
-        for touchable in touchables {
-            touchable.handleTouchEnded(touchLocation: location)
-        }
-    }
-
-    private func updateTouchables() {
-        for touchable in touchables {
-            touchable.update()
-        }
-    }
 }
