@@ -14,8 +14,6 @@ class LobbiesViewController: UIViewController {
     private(set) var lobbies: [LobbyListing] = [LobbyListing]()
     private var lobbiesRef: DatabaseReference?
 
-    private var activeLobby: NetworkedLobby?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         lobbiesCollectionView.dataSource = self
@@ -25,7 +23,6 @@ class LobbiesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpLobbiesListener()
-        activeLobby = nil
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -35,12 +32,7 @@ class LobbiesViewController: UIViewController {
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
-        guard let userId = AuthService().getUserId() else {
-            fatalError("User is expected to be logged in.")
-        }
-
-        let lobbyManager = FirebaseLobbyConnectorDelegate()
-        lobbyManager.createLobby(userId: userId)
+        moveToLobby(lobbyId: nil)
     }
 
     private func setUpLobbiesListener() {
@@ -111,17 +103,21 @@ class LobbiesViewController: UIViewController {
     private func refreshDataSource() {
         lobbies.removeAll()
     }
+
+    private func moveToLobby(lobbyId: EntityID?) {
+        let lobby = NetworkedLobby(lobbyId: lobbyId)
+
+        performSegue(
+            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
+            sender: lobby
+        )
+    }
 }
 
 extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedLobby = lobbies[indexPath.item]
-        activeLobby = NetworkedLobby(lobbyId: selectedLobby.lobbyId)
-
-        performSegue(
-            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
-            sender: collectionView.cellForItem(at: indexPath)
-        )
+        moveToLobby(lobbyId: selectedLobby.lobbyId)
     }
 }
 
