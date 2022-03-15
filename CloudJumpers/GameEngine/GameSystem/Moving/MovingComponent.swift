@@ -9,10 +9,14 @@ import Foundation
 import CoreGraphics
 
 class MovingComponent: Component {
-    var distance: CGVector
+    var movement: movementType
 
-    init(distance: CGVector) {
-        self.distance = distance
+    init(movement: movementType) {
+        self.movement = movement
+    }
+
+    enum movementType {
+        case move(distance: CGVector), jump(impulse: CGVector)
     }
 //    var direction: CGVector
 //    var magnitude: CGFloat

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class MovingSystem: System {
 
@@ -20,15 +21,17 @@ class MovingSystem: System {
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
-                  let component = entityComponentMapping[entity]
-            else {
+                  let component = entityComponentMapping[entity] else {
                 return
             }
 
-            if entity.type == .player {
-                component.distance.dy = 0
+            switch component.movement {
+            case let .move(distance):
+                handleMove(node: node, entity: entity, distance: distance)
+            case let .jump(impulse):
+                handleJump(node: node, impulse: impulse)
             }
-            node.position += component.distance
+
             entityComponentMapping.removeValue(forKey: entity)
         }
     }
@@ -40,4 +43,21 @@ class MovingSystem: System {
         entityComponentMapping[entity] = movingComponent
     }
 
+    private func handleMove(node: SKNode, entity: Entity, distance: CGVector) {
+        var distance = distance
+        if entity.type == .player {
+            distance.dy = 0
+        }
+        node.position += distance
+    }
+
+    private func isJumping(node: SKNode) -> Bool {
+        abs(node.physicsBody?.velocity.dy ?? 0.0) > Constants.jumpYTolerance
+    }
+
+    private func handleJump(node: SKNode, impulse: CGVector) {
+        if !isJumping(node: node) {
+            node.physicsBody?.applyImpulse(impulse)
+        }
+    }
 }

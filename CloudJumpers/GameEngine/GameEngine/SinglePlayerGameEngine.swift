@@ -27,7 +27,6 @@ class SinglePlayerGameEngine: GameEngine {
     let renderingSystem: RenderingSystem
     let collisionSystem: CollisionSystem
     let movingSystem: MovingSystem
-    let jumpingSystem: JumpingSystem
 
     init(gameScene: GameScene, level: Level) {
         self.gameScene = gameScene
@@ -38,7 +37,6 @@ class SinglePlayerGameEngine: GameEngine {
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
-        self.jumpingSystem = JumpingSystem(entitiesManager: entitiesManager)
 
         createSubscribers()
         setupGame(level: level)
@@ -89,7 +87,6 @@ class SinglePlayerGameEngine: GameEngine {
         movingSystem.update(deltaTime)
         collisionSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
-        jumpingSystem.update(deltaTime)
 
         updateTouchables()
     }
@@ -116,14 +113,14 @@ class SinglePlayerGameEngine: GameEngine {
         }
     }
 
-    private func handleMoveEvent(entity: Entity, by: CGVector) {
-        let movingComponent = MovingComponent(distance: by)
+    private func handleMoveEvent(entity: Entity, by distance: CGVector) {
+        let movingComponent = MovingComponent(movement: .move(distance: distance))
         movingSystem.addComponent(entity: entity, component: movingComponent)
     }
 
     private func handleJumpEvent(entity: Entity) {
-        let jumpingComponent = JumpingComponent()
-        jumpingSystem.addComponent(entity: entity, component: jumpingComponent)
+        let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
+        movingSystem.addComponent(entity: playerEntity, component: movingComponent)
     }
 
     private func handleTouchBeganEvent(location: CGPoint) {
