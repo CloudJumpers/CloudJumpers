@@ -33,13 +33,6 @@ class RenderingComponent: Component {
 
 extension RenderingComponent {
     func contains(_ point: CGPoint) -> Bool {
-        let startX = position.x - size.width / 2
-        let endX = position.x + size.width / 2
-        let startY = position.y - size.height / 2
-        let endY = position.y + size.height / 2
-
-        let isPointXinside = startX <= point.x && point.x <= endX
-        let isPointYinside = startY <= point.y && point.y <= endY
-        return isPointXinside && isPointYinside
+        point.isInside(position: position, size: size)
     }
 }
