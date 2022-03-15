@@ -38,6 +38,7 @@ class SinglePlayerGameEngine: GameEngine {
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
+
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
         createSubscribers()

@@ -77,6 +77,8 @@
 		A1DBB84027D884200077AB96 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB83527D884200077AB96 /* Entity.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
+		A1F190BC27E08DF60003D7ED /* ContactComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F190BB27E08DF60003D7ED /* ContactComponent.swift */; };
+		A1F190BE27E090C00003D7ED /* ContactSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F190BD27E090C00003D7ED /* ContactSystem.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		A1DBB83527D884200077AB96 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
+		A1F190BB27E08DF60003D7ED /* ContactComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponent.swift; sourceTree = "<group>"; };
+		A1F190BD27E090C00003D7ED /* ContactSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSystem.swift; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -428,6 +432,7 @@
 		A1179EE827DBBE6000E60E59 /* GameSystem */ = {
 			isa = PBXGroup;
 			children = (
+				A1F190BA27E08DDC0003D7ED /* Contact */,
 				A1179EF827DBC73000E60E59 /* Player */,
 				A1179EEE27DBC61000E60E59 /* State */,
 				A1347AA127DA29E60011CF40 /* Collision */,
@@ -528,6 +533,15 @@
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
 			);
 			path = MathUtils;
+			sourceTree = "<group>";
+		};
+		A1F190BA27E08DDC0003D7ED /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				A1F190BB27E08DF60003D7ED /* ContactComponent.swift */,
+				A1F190BD27E090C00003D7ED /* ContactSystem.swift */,
+			);
+			path = Contact;
 			sourceTree = "<group>";
 		};
 		EA08B77308ED456EC74F5D13 /* Frameworks */ = {
@@ -789,11 +803,13 @@
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
+				A1F190BC27E08DF60003D7ED /* ContactComponent.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */,
+				A1F190BE27E090C00003D7ED /* ContactSystem.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* LobbyManager.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
