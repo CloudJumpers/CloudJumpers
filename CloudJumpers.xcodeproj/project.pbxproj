@@ -35,6 +35,7 @@
 		934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C927DF6B5700324DAF /* LobbyCell.swift */; };
 		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
 		9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E627DE213E007F4D89 /* AuthService.swift */; };
+		9359ABB327E0465A00D85899 /* GameModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9359ABB227E0465A00D85899 /* GameModes.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A327DE2A0F00A1892C /* AuthInfo.swift */; };
@@ -123,6 +124,7 @@
 		934789C927DF6B5700324DAF /* LobbyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCell.swift; sourceTree = "<group>"; };
 		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		9356F4E627DE213E007F4D89 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		9359ABB227E0465A00D85899 /* GameModes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModes.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -314,6 +316,14 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		9359ABB127E0464200D85899 /* Modes */ = {
+			isa = PBXGroup;
+			children = (
+				9359ABB227E0465A00D85899 /* GameModes.swift */,
+			);
+			path = Modes;
+			sourceTree = "<group>";
+		};
 		9389E5F427D8BF7D0049ADDD /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +489,7 @@
 		A1DBB82827D884200077AB96 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
+				9359ABB127E0464200D85899 /* Modes */,
 				A1179EE827DBBE6000E60E59 /* GameSystem */,
 				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,
@@ -764,6 +775,7 @@
 				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
+				9359ABB327E0465A00D85899 /* GameModes.swift in Sources */,
 				A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */,
 				3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */,

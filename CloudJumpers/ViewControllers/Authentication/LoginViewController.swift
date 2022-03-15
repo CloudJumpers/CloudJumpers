@@ -36,9 +36,6 @@ class LoginViewController: UIViewController {
             let loginOutcome = await authService.logIn(email: email, password: password)
             let displayName = authService.getUserDisplayName()
 
-            let lm = LobbyManager()
-            lm.createNewLobby(userId: authService.getUserId()!)
-
             self.updateOutcomeLabel(outcome: loginOutcome, name: displayName)
         }
     }

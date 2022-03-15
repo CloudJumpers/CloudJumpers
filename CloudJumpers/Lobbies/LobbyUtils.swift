@@ -15,4 +15,8 @@ class LobbyUtils {
     static func generateLobbyId() -> EntityID {
         UUID().uuidString
     }
+
+    static func generateLobbyName() -> String {
+        "Cloud Jumpers"
+    }
 }

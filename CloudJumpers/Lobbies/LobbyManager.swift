@@ -11,16 +11,24 @@ import FirebaseDatabase
 class LobbyManager {
     func createNewLobby(userId: EntityID) {
         let lobbyId = LobbyUtils.generateLobbyId()
+        let lobbyName = LobbyUtils.generateLobbyName()
 
         let ref = Database.database().reference(withPath: "/lobbies/\(lobbyId)")
         ref.onDisconnectRemoveValue()
 
         ref.observeSingleEvent(of: .value) { _ in
-            ref.child("host").setValue(userId)
+            let store: NSDictionary = [
+                "host": userId,
+                "name": lobbyName
+            ]
+
+            ref.setValue(store)
 
             let participationRef = ref.child("participants").childByAutoId()
-            participationRef.child("id").setValue(userId)
-            participationRef.child("ready").setValue(false)
+            participationRef.setValue([
+                "id": userId,
+                "ready": false
+            ])
         }
     }
 
@@ -28,7 +36,6 @@ class LobbyManager {
         let ref = Database.database().reference(withPath: "/lobbies/\(lobbyId)")
 
         ref.observeSingleEvent(of: .value) { _ in
-
             let participationRef = ref.child("participants").childByAutoId()
             participationRef.child("id").setValue(userId)
             participationRef.child("ready").setValue(false)

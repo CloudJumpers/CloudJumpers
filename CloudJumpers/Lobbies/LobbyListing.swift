@@ -9,5 +9,6 @@ import Foundation
 
 struct LobbyListing {
     let lobbyId: EntityID
+    let lobbyName: String
     let numPlayers: Int
 }

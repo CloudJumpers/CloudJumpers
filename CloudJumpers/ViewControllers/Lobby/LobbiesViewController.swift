@@ -25,13 +25,30 @@ class LobbiesViewController: UIViewController {
         tearDownLobbiesListener()
     }
 
+    @IBAction private func createNewLobby(_ sender: Any) {
+        guard let userId = AuthService().getUserId() else {
+            fatalError("User is expected to be logged in.")
+        }
+
+        let lobbyManager = LobbyManager()
+        lobbyManager.createNewLobby(userId: userId)
+    }
+
     private func setUpLobbiesListener() {
         lobbiesRef = Database.database().reference(withPath: LobbyKeys.root)
 
         lobbiesRef?.observe(.childAdded) { snapshot in
+            guard
+                let value = snapshot.value as? NSDictionary,
+                let lobbyName = value["name"] as? String
+            else {
+                return
+            }
+
             self.addLobbyListing(
                 lobbyId: snapshot.key,
-                occupancy: Int(snapshot.childrenCount)
+                lobbyName: lobbyName,
+                occupancy: Int.zero
             )
 
             self.lobbiesCollectionView.reloadData()
@@ -43,16 +60,21 @@ class LobbiesViewController: UIViewController {
         }
 
         lobbiesRef?.observe(.childChanged) { snapshot in
+            guard let value = snapshot.value as? NSDictionary else {
+                return
+            }
+
             self.updateLobbyListing(
                 lobbyId: snapshot.key,
-                newOccupancy: Int(snapshot.childrenCount)
+                newOccupancy: (value["participants"] as? NSDictionary)?.count,
+                newName: value["name"] as? String
             )
             self.lobbiesCollectionView.reloadData()
         }
     }
 
-    private func addLobbyListing(lobbyId: EntityID, occupancy: Int) {
-        let newLobbyListing = LobbyListing(lobbyId: lobbyId, numPlayers: occupancy)
+    private func addLobbyListing(lobbyId: EntityID, lobbyName: String, occupancy: Int) {
+        let newLobbyListing = LobbyListing(lobbyId: lobbyId, lobbyName: lobbyName, numPlayers: occupancy)
         lobbies.append(newLobbyListing)
     }
 
@@ -60,12 +82,16 @@ class LobbiesViewController: UIViewController {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(lobbyId: EntityID, newOccupancy: Int) {
+    private func updateLobbyListing(lobbyId: EntityID, newOccupancy: Int?, newName: String?) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
             return
         }
 
-        lobbies[index] = LobbyListing(lobbyId: lobbyId, numPlayers: newOccupancy)
+        lobbies[index] = LobbyListing(
+            lobbyId: lobbyId,
+            lobbyName: newName ?? lobbies[index].lobbyName,
+            numPlayers: newOccupancy ?? lobbies[index].numPlayers
+        )
     }
 
     private func tearDownLobbiesListener() {
@@ -93,9 +119,10 @@ extension LobbiesViewController: UICollectionViewDataSource {
         }
 
         let occupancy = lobbies[indexPath.item].numPlayers
+        let name = lobbies[indexPath.item].lobbyName
 
-        lobbyCell.setRoomName(name: "Let's go")
-        lobbyCell.setGameMode(mode: "Time Trial")
+        lobbyCell.setRoomName(name: name)
+        lobbyCell.setGameMode(mode: GameModes.TimeTrials)
         lobbyCell.setOccupancy(num: occupancy)
 
         if occupancy < LobbyConstants.MaxSupportedPlayers {
