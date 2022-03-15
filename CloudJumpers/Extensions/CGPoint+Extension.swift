@@ -42,13 +42,12 @@ extension CGPoint {
     }
 }
 
-// MARK: Vector- related
+// MARK: Vector-related
 extension CGPoint {
     static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
         CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
 
-    // Maybe the other way around
     static func - (lhs: CGPoint, rhs: CGPoint) -> CGVector {
         CGVector(dx: lhs.x - rhs.x, dy: lhs.y - rhs.y)
     }
