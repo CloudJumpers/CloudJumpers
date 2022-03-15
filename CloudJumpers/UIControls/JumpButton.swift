@@ -10,15 +10,15 @@ import CoreGraphics
 
 class JumpButton: Touchable, Renderable {
     var renderingComponent: RenderingComponent
-    var gameEngine: GameEngine
+    var inputManager: InputManager
     var associatedEntity: Entity
 
-    init(gameEngine: GameEngine, associatedEntity: Entity) {
+    init(inputManager: InputManager, associatedEntity: Entity) {
         self.renderingComponent = RenderingComponent(type: .button,
                                                      position: Constants.jumpButtonPosition,
                                                      name: Constants.jumpButtonImage,
                                                      size: Constants.jumpButtonSize)
-        self.gameEngine = gameEngine
+        self.inputManager = inputManager
         self.associatedEntity = associatedEntity
     }
 
@@ -40,6 +40,6 @@ class JumpButton: Touchable, Renderable {
 
     private func notifyJump(entity: Entity) {
         let newInput = Input(inputType: .jump(entity: entity))
-        gameEngine.inputManager.parseInput(input: newInput)
+        inputManager.parseInput(input: newInput)
     }
 }
