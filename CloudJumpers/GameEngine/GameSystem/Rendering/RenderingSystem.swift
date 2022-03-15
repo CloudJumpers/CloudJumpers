@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/10/22.
 //
 
-import Foundation
 import SpriteKit
 
 class RenderingSystem: System {

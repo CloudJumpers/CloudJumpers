@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/15/22.
 //
 
-import Foundation
 import CoreGraphics
 
 class TouchableManager {

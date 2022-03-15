@@ -5,11 +5,9 @@
 //  Created by Trong Tan on 3/11/22.
 //
 
-import Foundation
 import SpriteKit
 
 class SKNodeFactory {
-
     static func createSKSpriteNode(renderingComponent: RenderingComponent) -> SKSpriteNode {
         switch renderingComponent.type {
         case .sprite:
@@ -48,5 +46,4 @@ class SKNodeFactory {
             return sprite
         }
     }
-
 }

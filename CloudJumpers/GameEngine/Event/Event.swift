@@ -5,8 +5,6 @@
 //  Created by Trong Tan on 3/11/22.
 //
 
-import Foundation
-import CoreGraphics
 import SpriteKit
 
 // Some asynchronous event that require a general handler
