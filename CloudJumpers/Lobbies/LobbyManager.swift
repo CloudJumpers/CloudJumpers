@@ -9,7 +9,7 @@ import Foundation
 import FirebaseDatabase
 
 class LobbyManager {
-    func createNewLobby(userId: EntityID) {
+    func createLobby(userId: EntityID) {
         let lobbyId = LobbyUtils.generateLobbyId()
         let lobbyName = LobbyUtils.generateLobbyName()
 

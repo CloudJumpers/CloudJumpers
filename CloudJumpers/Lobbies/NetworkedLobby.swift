@@ -31,12 +31,4 @@ class NetworkedLobby {
         self.others = [LobbyUser]()
         self.userIsHost = true
     }
-
-    func leaveLobby() {
-        guard let userId = AuthService().getUserId() else {
-            fatalError("User is expected to be logged in.")
-        }
-
-    }
-
 }

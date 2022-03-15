@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum GameModes {
-    static let TimeTrials = "Time Trials"
+enum GameModes: String {
+    case TimeTrial = "Time Trial"
 }

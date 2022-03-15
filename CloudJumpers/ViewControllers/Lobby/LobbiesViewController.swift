@@ -16,13 +16,18 @@ class LobbiesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpLobbiesListener()
         lobbiesCollectionView.dataSource = self
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setUpLobbiesListener()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         tearDownLobbiesListener()
+        refreshDataSource()
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
@@ -31,7 +36,7 @@ class LobbiesViewController: UIViewController {
         }
 
         let lobbyManager = LobbyManager()
-        lobbyManager.createNewLobby(userId: userId)
+        lobbyManager.createLobby(userId: userId)
     }
 
     private func setUpLobbiesListener() {
@@ -98,6 +103,10 @@ class LobbiesViewController: UIViewController {
     private func tearDownLobbiesListener() {
         lobbiesRef?.removeAllObservers()
     }
+
+    private func refreshDataSource() {
+        lobbies.removeAll()
+    }
 }
 
 extension LobbiesViewController: UICollectionViewDataSource {
@@ -122,7 +131,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let name = lobbies[indexPath.item].lobbyName
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameModes.TimeTrials)
+        lobbyCell.setGameMode(mode: GameModes.TimeTrial.rawValue)
         lobbyCell.setOccupancy(num: occupancy)
 
         if occupancy < LobbyConstants.MaxSupportedPlayers {

@@ -305,6 +305,7 @@
                                                     <outlet property="gameMode" destination="lVi-Yq-15y" id="P2t-ha-50A"/>
                                                     <outlet property="occupancy" destination="1CC-as-WSK" id="FmA-kw-Ob2"/>
                                                     <outlet property="roomName" destination="rLc-VK-bF1" id="SjP-bn-WaX"/>
+                                                    <segue destination="N2h-Lp-5b5" kind="show" id="OBR-GO-g0Q"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -329,6 +330,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEu-Wu-PPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1528.985507246377" y="-59.598214285714285"/>
+        </scene>
+        <!--Lobby View Controller-->
+        <scene sceneID="ypd-hK-m8T">
+            <objects>
+                <viewController id="N2h-Lp-5b5" customClass="LobbyViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Uy-my-ygc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xKO-qk-hgx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-az-ZI5">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Lobby Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-eb-lhJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfb-OW-zE9">
+                                                <rect key="frame" x="0.0" y="50" width="414" height="50"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="J8N-wi-GNm"/>
+                                        </constraints>
+                                    </stackView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-jv-S6e">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="674"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JPc-Qu-TDr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xKO-qk-hgx" firstAttribute="leading" secondItem="JPc-Qu-TDr" secondAttribute="leading" id="2hk-Tc-AsV"/>
+                            <constraint firstItem="JPc-Qu-TDr" firstAttribute="bottom" secondItem="xKO-qk-hgx" secondAttribute="bottom" id="CFZ-nb-JY8"/>
+                            <constraint firstItem="JPc-Qu-TDr" firstAttribute="trailing" secondItem="xKO-qk-hgx" secondAttribute="trailing" id="Gri-lu-xaJ"/>
+                            <constraint firstItem="xKO-qk-hgx" firstAttribute="top" secondItem="JPc-Qu-TDr" secondAttribute="top" id="Y2a-jb-56x"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2Tv-t8-7GD"/>
+                    <connections>
+                        <outlet property="gameMode" destination="wfb-OW-zE9" id="6bz-Ne-0nT"/>
+                        <outlet property="lobbyName" destination="Xse-eb-lhJ" id="3SV-dx-BTe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tHI-Jg-Vc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2343" y="-60"/>
         </scene>
     </scenes>
     <resources>
