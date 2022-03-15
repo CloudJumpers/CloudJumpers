@@ -5,11 +5,9 @@
 //  Created by Trong Tan on 3/11/22.
 //
 
-import Foundation
 import SpriteKit
 
 class SKNodeFactory {
-
     static func createSKSpriteNode(renderingComponent: RenderingComponent) -> SKSpriteNode {
         switch renderingComponent.type {
         case .sprite:
@@ -39,7 +37,13 @@ class SKNodeFactory {
             sprite.zPosition = SpriteZPosition.innerStick.rawValue
             sprite.alpha = Constants.opacityTwo
             return sprite
+
+        case .button:
+            let sprite = SKSpriteNode(imageNamed: renderingComponent.name)
+            sprite.position = renderingComponent.position
+            sprite.size = renderingComponent.size
+            sprite.zPosition = SpriteZPosition.button.rawValue
+            return sprite
         }
     }
-
 }

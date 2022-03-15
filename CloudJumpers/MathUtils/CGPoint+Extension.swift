@@ -8,7 +8,6 @@
 import CoreGraphics
 
 extension CGPoint {
-
     static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
@@ -41,12 +40,10 @@ extension CGPoint {
     func reversedVerticalDirection() -> CGPoint {
         CGPoint(x: self.x, y: -self.y)
     }
-
 }
 
 // MARK: Vector- related
 extension CGPoint {
-
     static func + (lhs: CGPoint, rhs: CGVector) -> CGPoint {
         CGPoint(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
@@ -60,5 +57,4 @@ extension CGPoint {
         let sumPoint = lhs + rhs
         lhs = sumPoint
     }
-
 }

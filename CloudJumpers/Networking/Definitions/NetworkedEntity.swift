@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NetworkedEntity: Codable, IdentifiableByUUID {
+protocol NetworkedEntity: Codable, IdentifiableByEntityID {
     var lastUpdatedAt: Double { get }
 }
 
