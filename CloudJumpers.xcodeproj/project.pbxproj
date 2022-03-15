@@ -209,14 +209,14 @@
 			path = CloudJumpers;
 			sourceTree = "<group>";
 		};
-		3E246B6827DF32C600D51300 /* UIControls */ = {
+		3E246B6827DF32C600D51300 /* Touchables */ = {
 			isa = PBXGroup;
 			children = (
 				3E246B5027DDFF0200D51300 /* Joystick.swift */,
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				3E246B6B27DF366100D51300 /* JumpButton.swift */,
 			);
-			path = UIControls;
+			path = Touchables;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -413,7 +413,7 @@
 		A1DBB82827D884200077AB96 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
-				3E246B6827DF32C600D51300 /* UIControls */,
+				3E246B6827DF32C600D51300 /* Touchables */,
 				A1179EE827DBBE6000E60E59 /* GameSystem */,
 				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,

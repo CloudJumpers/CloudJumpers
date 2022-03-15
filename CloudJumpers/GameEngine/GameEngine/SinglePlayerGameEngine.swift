@@ -20,7 +20,7 @@ class SinglePlayerGameEngine: GameEngine {
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
 
-    private var playerEntity: Entity!
+    private var playerEntity: PlayerEntity
     private var touchables: [Touchable] = []
 
     // System
@@ -37,6 +37,7 @@ class SinglePlayerGameEngine: GameEngine {
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
+        self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
         createSubscribers()
         setupGame(level: level)
@@ -64,8 +65,7 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setupPlayer() {
-        let player = PlayerEntity(position: Constants.playerInitialPosition)
-        playerEntity = player.activate(renderingSystem: renderingSystem)
+        self.playerEntity.activate(renderingSystem: renderingSystem)
     }
 
     private func setupUI() {

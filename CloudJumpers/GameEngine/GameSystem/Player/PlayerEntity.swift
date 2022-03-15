@@ -19,9 +19,8 @@ class PlayerEntity: Entity, Renderable {
         super.init(type: .player)
     }
 
-    func activate(renderingSystem: RenderingSystem) -> Entity {
+    func activate(renderingSystem: RenderingSystem) {
         renderingSystem.addComponent(entity: self, component: renderingComponent)
-        return self
     }
 
 }
