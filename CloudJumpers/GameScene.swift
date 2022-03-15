@@ -19,9 +19,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            let input = Input(inputType: .touchBegan(at: location))
-            let newEvent = Event(type: .input(info: input))
-            gameEngine.eventManager.eventsQueue.append(newEvent)
+            gameEngine.touchableManager.handleTouchBeganEvent(location: location)
 
         }
     }
@@ -29,18 +27,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            let input = Input(inputType: .touchMoved(at: location))
-            let newEvent = Event(type: .input(info: input))
-            gameEngine.eventManager.eventsQueue.append(newEvent)
+            gameEngine.touchableManager.handleTouchMovedEvent(location: location)
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            let input = Input(inputType: .touchEnded(at: location))
-            let newEvent = Event(type: .input(info: input))
-            gameEngine.eventManager.eventsQueue.append(newEvent)        }
+            gameEngine.touchableManager.handleTouchEndedEvent(location: location)
+        }
     }
 
     override func update(_ currentTime: TimeInterval) {
@@ -53,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         lastUpdateTime = currentTime
         gameEngine.update(deltaTime)
    }
-    
+
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node
@@ -62,10 +57,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         let newEvent = Event(type: .contact(nodeA: nodeA, nodeB: nodeB))
         gameEngine.eventManager.eventsQueue.append(newEvent)
-        
+
     }
-    
-    func didEnd(_ contact: SKPhysicsContact){
+
+    func didEnd(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node
         else {

@@ -10,11 +10,11 @@ import CoreGraphics
 
 class TouchableManager {
     private var touchables: [Touchable] = []
-    
+
     func addTouchable(touchable: Touchable) {
         touchables.append(touchable)
     }
-    
+
     func handleTouchBeganEvent(location: CGPoint) {
         for touchable in touchables {
             touchable.handleTouchBegan(touchLocation: location)

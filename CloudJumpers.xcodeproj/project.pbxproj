@@ -339,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				A11470A127DB3D8F005FA3EC /* InputManager.swift */,
+				A11470A327DB3D9B005FA3EC /* Input.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -406,7 +407,6 @@
 		A1347AA927DA66A10011CF40 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				A11470A327DB3D9B005FA3EC /* Input.swift */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				A1347AB227DA6BF80011CF40 /* EventManager.swift */,
 			);

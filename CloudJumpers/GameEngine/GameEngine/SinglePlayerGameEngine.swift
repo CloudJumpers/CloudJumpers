@@ -31,7 +31,7 @@ class SinglePlayerGameEngine: GameEngine {
     init(gameScene: GameScene, level: Level) {
         self.gameScene = gameScene
         self.entitiesManager = EntitiesManager()
-        
+
         self.eventManager = EventManager()
         self.inputManager = InputManager()
         self.touchableManager = TouchableManager()
@@ -73,7 +73,7 @@ class SinglePlayerGameEngine: GameEngine {
     private func setupTouchables() {
         let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
         let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
-        
+
         touchableManager.addTouchable(touchable: joystick)
         touchableManager.addTouchable(touchable: jumpButton)
 
@@ -102,12 +102,6 @@ class SinglePlayerGameEngine: GameEngine {
                 handleMoveEvent(entity: entity, by: by)
             case let .jump(entity):
                 handleJumpEvent(entity: entity)
-            case .touchBegan(let location):
-                touchableManager.handleTouchBeganEvent(location: location)
-            case .touchMoved(let location):
-                touchableManager.handleTouchMovedEvent(location: location)
-            case .touchEnded(let location):
-                touchableManager.handleTouchEndedEvent(location: location)
             default:
                 return
             }
@@ -125,6 +119,5 @@ class SinglePlayerGameEngine: GameEngine {
         let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
     }
-
 
 }
