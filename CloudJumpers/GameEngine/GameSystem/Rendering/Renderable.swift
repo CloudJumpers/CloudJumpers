@@ -10,5 +10,5 @@ import Foundation
 protocol Renderable {
     var renderingComponent: RenderingComponent { get }
 
-    func activate(renderingSystem: RenderingSystem) -> Entity
+    func activate(renderingSystem: RenderingSystem)
 }

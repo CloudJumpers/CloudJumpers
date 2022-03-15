@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class EventManager {
     var eventsQueue: [Event] = []

@@ -29,12 +29,10 @@ class JumpButton: Touchable, Renderable {
         notifyJump(entity: associatedEntity)
     }
 
-    func activate(renderingSystem: RenderingSystem) -> Entity {
+    func activate(renderingSystem: RenderingSystem) {
         let entity = Entity(type: .button)
         renderingSystem.addComponent(entity: entity,
                                      component: renderingComponent)
-
-        return entity
     }
 
     private func notifyJump(entity: Entity) {

@@ -18,11 +18,4 @@ class MovingComponent: Component {
     enum movementType {
         case move(distance: CGVector), jump(impulse: CGVector)
     }
-//    var direction: CGVector
-//    var magnitude: CGFloat
-//
-//    init(direction: CGVector, magnitude: CGFloat) {
-//        self.direction = direction
-//        self.magnitude = magnitude
-//    }
 }

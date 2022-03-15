@@ -17,12 +17,9 @@ struct Input {
     }
 
     enum InputType {
-//        case move(direction: MoveDirection), powerup, jump
-        case move(entity: Entity, by: CGVector), powerUp,
-             jump(entity: Entity),
-             touchBegan(at: CGPoint),
-             touchMoved(at: CGPoint),
-             touchEnded(at: CGPoint)
+        case move(entity: Entity, by: CGVector)
+        case jump(entity: Entity)
+        case powerUp
     }
 
     enum MoveDirection {
