@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import CoreGraphics
 
 class Joystick: Renderable, Touchable {
     var inputManager: InputManager
@@ -20,6 +21,8 @@ class Joystick: Renderable, Touchable {
                                                           position: Constants.joystickPosition,
                                                           name: Images.innerStick.name,
                                                           size: Constants.innerstickSize)
+
+    private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
 
     private var innerstickEntity = Entity(type: .innerstick)
     private var outerstickEntity = Entity(type: .outerstick)
@@ -53,10 +56,16 @@ class Joystick: Renderable, Touchable {
     }
 
     func handleTouchEnded(touchLocation: CGPoint) {
+        guard touchArea.contains(touchLocation) else {
+            return
+        }
+
         if stickActive {
             let initialLocation = innerStickRenderingComponent.position
 
             innerStickRenderingComponent.position = renderingComponent.position
+            touchArea.position = renderingComponent.position
+
             notifyLocationChange(entity: innerstickEntity,
                                  by: innerStickRenderingComponent.position - initialLocation)
 
@@ -100,8 +109,10 @@ class Joystick: Renderable, Touchable {
             innerStickRenderingComponent.position = finalLocation
         }
 
+        touchArea.position = location
         notifyLocationChange(entity: innerstickEntity,
                              by: innerStickRenderingComponent.position - initialLocation)
+
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {

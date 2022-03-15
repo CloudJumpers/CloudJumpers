@@ -40,6 +40,18 @@ extension CGPoint {
     func reversedVerticalDirection() -> CGPoint {
         CGPoint(x: self.x, y: -self.y)
     }
+
+    func isInside(position: CGPoint, size: CGSize) -> Bool {
+        let startX = position.x - size.width / 2
+        let endX = position.x + size.width / 2
+        let startY = position.y - size.height / 2
+        let endY = position.y + size.height / 2
+
+        let isPointXinside = startX <= self.x && self.x <= endX
+        let isPointYinside = startY <= self.y && self.y <= endY
+        return isPointXinside && isPointYinside
+    }
+
 }
 
 // MARK: Vector-related
