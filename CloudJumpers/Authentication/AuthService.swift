@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias PlayerUUID = String
+typealias EntityID = String
 
 class AuthService {
     private let authManager: AuthManager
@@ -28,15 +28,8 @@ class AuthService {
         await authManager.loginUser(email: email, password: password)
     }
 
-    func getUserId() -> UUID? {
-        guard
-            let user = authManager.getCurrentUser(),
-            let uuid = UUID(uuidString: user.userId)
-        else {
-            return nil
-        }
-
-        return uuid
+    func getUserId() -> EntityID? {
+        authManager.getCurrentUser()?.userId
     }
 
     func getUserDisplayName() -> String {
