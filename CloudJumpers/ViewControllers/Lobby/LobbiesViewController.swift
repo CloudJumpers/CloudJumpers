@@ -40,7 +40,8 @@ class LobbiesViewController: UIViewController {
         lobbiesRef?.observe(.childAdded) { snapshot in
             guard
                 let value = snapshot.value as? NSDictionary,
-                let lobbyName = value[LobbyKeys.lobbyName] as? String
+                let lobbyName = value[LobbyKeys.lobbyName] as? String,
+                let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
                 return
             }
@@ -48,7 +49,7 @@ class LobbiesViewController: UIViewController {
             self.addLobbyListing(
                 lobbyId: snapshot.key,
                 lobbyName: lobbyName,
-                occupancy: Int.zero
+                occupancy: participants.count
             )
 
             self.lobbiesCollectionView.reloadData()

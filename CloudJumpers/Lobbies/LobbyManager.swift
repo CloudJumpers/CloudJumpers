@@ -16,16 +16,20 @@ class LobbyManager {
         let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
         ref.onDisconnectRemoveValue()
 
+        guard let newParticipantKey = ref.childByAutoId().key else {
+            fatalError("Expected new key to be generated")
+        }
+
         ref.observeSingleEvent(of: .value) { _ in
             ref.setValue([
                 LobbyKeys.hostName: userId,
-                LobbyKeys.lobbyName: lobbyName
-            ])
-
-            let participantSubRef = ref.child(LobbyKeys.participants).childByAutoId()
-            participantSubRef.setValue([
-                LobbyKeys.participantId: userId,
-                LobbyKeys.participantReady: false
+                LobbyKeys.lobbyName: lobbyName,
+                LobbyKeys.participants: [
+                    newParticipantKey: [
+                        LobbyKeys.participantId: userId,
+                        LobbyKeys.participantReady: false
+                    ]
+                ]
             ])
         }
     }
