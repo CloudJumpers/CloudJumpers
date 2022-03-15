@@ -59,6 +59,7 @@
 		A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB227DA6BF80011CF40 /* EventManager.swift */; };
 		A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */; };
 		A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */; };
+		A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEB27E033DB00527358 /* PlayerEntity.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1DBB83A27D884200077AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82C27D884200077AB96 /* Component.swift */; };
 		A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */; };
@@ -140,6 +141,7 @@
 		A1347AB227DA6BF80011CF40 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeFactory.swift; sourceTree = "<group>"; };
 		A1347ABB27DA77D90011CF40 /* SKPhysicsBodyFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKPhysicsBodyFactory.swift; sourceTree = "<group>"; };
+		A14DDAEB27E033DB00527358 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1DBB82C27D884200077AB96 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerGameEngine.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				A1179EF927DBC74300E60E59 /* PlayerComponent.swift */,
+				A14DDAEB27E033DB00527358 /* PlayerEntity.swift */,
 				A1179EFB27DBC74F00E60E59 /* PlayerSystem.swift */,
 			);
 			path = Player;
@@ -744,6 +747,7 @@
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
 				A1179EE727DBBB4700E60E59 /* MovingSystem.swift in Sources */,
 				A1179EF227DBC69800E60E59 /* StateSystem.swift in Sources */,
+				A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */,
 				A1347ABC27DA77D90011CF40 /* SKPhysicsBodyFactory.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */,

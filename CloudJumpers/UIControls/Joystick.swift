@@ -32,6 +32,7 @@ class Joystick: Renderable, Touchable {
         self.associatedEntity = associatedEntity
     }
 
+    @discardableResult
     func activate(renderingSystem: RenderingSystem) -> Entity {
         renderingSystem.addComponent(entity: outerstickEntity, component: renderingComponent)
         renderingSystem.addComponent(entity: innerstickEntity, component: innerStick)

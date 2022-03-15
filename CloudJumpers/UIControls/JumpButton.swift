@@ -30,6 +30,7 @@ class JumpButton: Touchable, Renderable {
         notifyJump(entity: associatedEntity)
     }
 
+    @discardableResult
     func activate(renderingSystem: RenderingSystem) -> Entity {
         let entity = Entity(type: .button)
         renderingSystem.addComponent(entity: entity,

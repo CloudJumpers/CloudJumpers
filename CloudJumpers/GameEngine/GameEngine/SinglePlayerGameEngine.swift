@@ -64,17 +64,17 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setupPlayer() {
-        let player = PlayerComponent(position: Constants.playerInitialPosition)
+        let player = PlayerEntity(position: Constants.playerInitialPosition)
         playerEntity = player.activate(renderingSystem: renderingSystem)
     }
 
     private func setupUI() {
         let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
-        _ = joystick.activate(renderingSystem: renderingSystem)
+        joystick.activate(renderingSystem: renderingSystem)
         touchables.append(joystick)
 
         let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
-        _ = jumpButton.activate(renderingSystem: renderingSystem)
+        jumpButton.activate(renderingSystem: renderingSystem)
         touchables.append(jumpButton)
     }
 
