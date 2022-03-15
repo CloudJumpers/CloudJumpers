@@ -14,10 +14,10 @@ struct LobbyUser: NetworkedEntity {
     private(set) var isReady: Bool
     private(set) var lastUpdatedAt: Int
 
-    init(id: EntityID, displayName: String) {
+    init(id: EntityID, displayName: String, isReady: Bool = false) {
         self.id = id
         self.displayName = displayName
-        self.isReady = false
+        self.isReady = isReady
         self.lastUpdatedAt = LobbyUtils.getUnixTimestampSeconds()
     }
 

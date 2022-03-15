@@ -8,9 +8,9 @@
 import Foundation
 
 protocol LobbyConnectorDelegate: AnyObject {
-    func createLobby(userId: EntityID) -> EntityID
+    func createLobby() -> EntityID
 
-    func joinLobby(userId: EntityID, lobbyId: EntityID)
+    func joinLobby(lobbyId: EntityID)
 
-    func exitLobby(userId: EntityID, lobbyId: EntityID)
+    func exitLobby(lobbyId: EntityID)
 }

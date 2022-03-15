@@ -107,10 +107,24 @@ class LobbiesViewController: UIViewController {
     private func moveToLobby(lobbyId: EntityID?) {
         let lobby = NetworkedLobby(lobbyId: lobbyId)
 
-        performSegue(
+        self.performSegue(
             withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
             sender: lobby
         )
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard
+            let dest = segue.destination as? LobbyViewController,
+            let lobby = sender as? NetworkedLobby
+        else {
+            return
+        }
+
+        dest.activeLobby = lobby
+        dest.lobbyRef = Database.database().reference(withPath: LobbyKeys.root).child(lobby.id)
     }
 }
 

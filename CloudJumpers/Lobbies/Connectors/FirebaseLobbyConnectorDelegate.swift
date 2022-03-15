@@ -9,7 +9,10 @@ import Foundation
 import FirebaseDatabase
 
 class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
-    func createLobby(userId: EntityID) -> EntityID {
+    func createLobby() -> EntityID {
+        let userId = getActiveUserId()
+        let userDisplayName = getActiveUserDisplayName()
+
         let lobbyId = LobbyUtils.generateLobbyId()
         let lobbyName = LobbyUtils.generateLobbyName()
 
@@ -17,11 +20,12 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         ref.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
 
         ref.setValue([
-            LobbyKeys.hostName: userId,
+            LobbyKeys.hostId: userId,
             LobbyKeys.lobbyName: lobbyName,
             LobbyKeys.participants: [
                 userId: [
-                    LobbyKeys.participantReady: false
+                    LobbyKeys.participantReady: false,
+                    LobbyKeys.participantName: userDisplayName
                 ]
             ]
         ])
@@ -29,7 +33,10 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         return lobbyId
     }
 
-    func joinLobby(userId: EntityID, lobbyId: EntityID) {
+    func joinLobby(lobbyId: EntityID) {
+        let userId = getActiveUserId()
+        let userDisplayName = getActiveUserDisplayName()
+
         let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
         let participantsRef = ref.child(LobbyKeys.participants)
 
@@ -43,7 +50,10 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
                 var nextData = currentData.value as? [String: AnyObject],
                 nextData[userId] == nil
             {
-                nextData[userId] = ([ LobbyKeys.participantReady: false ]) as AnyObject?
+                nextData[userId] = ([
+                    LobbyKeys.participantReady: false,
+                    LobbyKeys.participantName: userDisplayName
+                ]) as AnyObject?
                 currentData.value = nextData
 
                 return TransactionResult.success(withValue: currentData)
@@ -61,7 +71,9 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         }
     }
 
-    func exitLobby(userId: EntityID, lobbyId: EntityID) {
+    func exitLobby(lobbyId: EntityID) {
+        let userId = getActiveUserId()
+
         let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
         let participantsRef = ref.child(LobbyKeys.participants).child(userId)
 
@@ -72,5 +84,17 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
 
     private func constructLobbyPath(lobbyId: EntityID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"
+    }
+
+    private func getActiveUserId() -> EntityID {
+        guard let userId = AuthService().getUserId() else {
+            fatalError("Expected user to be logged in.")
+        }
+
+        return userId
+    }
+
+    private func getActiveUserDisplayName() -> String {
+        AuthService().getUserDisplayName()
     }
 }
