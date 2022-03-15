@@ -57,6 +57,7 @@
 		A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB227DA6BF80011CF40 /* EventManager.swift */; };
 		A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */; };
 		A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEB27E033DB00527358 /* PlayerEntity.swift */; };
+		A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEF27E051A500527358 /* TouchableManager.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1DBB83A27D884200077AB96 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82C27D884200077AB96 /* Component.swift */; };
 		A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */; };
@@ -136,6 +137,7 @@
 		A1347AB227DA6BF80011CF40 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeFactory.swift; sourceTree = "<group>"; };
 		A14DDAEB27E033DB00527358 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
+		A14DDAEF27E051A500527358 /* TouchableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableManager.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1DBB82C27D884200077AB96 /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePlayerGameEngine.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				3E246B5027DDFF0200D51300 /* Joystick.swift */,
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				3E246B6B27DF366100D51300 /* JumpButton.swift */,
+				A14DDAEF27E051A500527358 /* TouchableManager.swift */,
 			);
 			path = Touchables;
 			sourceTree = "<group>";
@@ -336,7 +339,6 @@
 			isa = PBXGroup;
 			children = (
 				A11470A127DB3D8F005FA3EC /* InputManager.swift */,
-				A11470A327DB3D9B005FA3EC /* Input.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -404,6 +406,7 @@
 		A1347AA927DA66A10011CF40 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				A11470A327DB3D9B005FA3EC /* Input.swift */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				A1347AB227DA6BF80011CF40 /* EventManager.swift */,
 			);
@@ -712,6 +715,7 @@
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
+				A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,

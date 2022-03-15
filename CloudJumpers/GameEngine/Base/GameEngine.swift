@@ -10,6 +10,7 @@ import Foundation
 protocol GameEngine {
     var entitiesManager: EntitiesManager { get }
     var inputManager: InputManager { get }
+    var eventManager: EventManager {get }
 
     func update(_ deltaTime: Double)
 

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import SpriteKit
 
 // Some asynchronous event that require a general handler
 class Event {
@@ -16,6 +17,9 @@ class Event {
     }
 
     enum EventType {
-        case animation, otherPlayer, input(info: Input)
+        case animation
+        case contact(nodeA: SKNode, nodeB: SKNode)
+        case endContact(nodeA: SKNode, nodeB: SKNode)
+        case input(info: Input)
     }
 }
