@@ -12,7 +12,7 @@ class MovingSystem: System {
 
     weak var entitiesManager: EntitiesManager?
 
-    private var entityComponentMapping: [Entity: MovingComponent] = [:]
+    private var entityComponentMapping: [Entity: [MovingComponent]] = [:]
 
     init (entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
@@ -21,15 +21,16 @@ class MovingSystem: System {
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let node = entitiesManager?.getNode(of: entity),
-                  let component = entityComponentMapping[entity] else {
+                  let components = entityComponentMapping[entity] else {
                 return
             }
-
-            switch component.movement {
-            case let .move(distance):
-                handleMove(node: node, entity: entity, distance: distance)
-            case let .jump(impulse):
-                handleJump(node: node, impulse: impulse)
+            for component in components {
+                switch component.movement {
+                case let .move(distance):
+                    handleMove(node: node, entity: entity, distance: distance)
+                case let .jump(impulse):
+                    handleJump(node: node, impulse: impulse)
+                }
             }
 
             entityComponentMapping.removeValue(forKey: entity)
@@ -40,7 +41,12 @@ class MovingSystem: System {
         guard let movingComponent = component as? MovingComponent else {
             return
         }
-        entityComponentMapping[entity] = movingComponent
+        guard var components = entityComponentMapping[entity] else {
+            entityComponentMapping[entity] = [movingComponent]
+            return
+        }
+
+        components.append(movingComponent)
     }
 
     private func handleMove(node: SKNode, entity: Entity, distance: CGVector) {
