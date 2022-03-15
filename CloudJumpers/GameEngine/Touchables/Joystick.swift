@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import CoreGraphics
 
 class Joystick: Renderable, Touchable {
     var inputManager: InputManager
@@ -20,6 +21,8 @@ class Joystick: Renderable, Touchable {
                                                           position: Constants.joystickPosition,
                                                           name: Constants.innerstickImage,
                                                           size: Constants.innerstickSize)
+
+    private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
 
     private var innerstickEntity = Entity(type: .innerstick)
     private var outerstickEntity = Entity(type: .outerstick)
@@ -53,10 +56,16 @@ class Joystick: Renderable, Touchable {
     }
 
     func handleTouchEnded(touchLocation: CGPoint) {
+        guard touchArea.contains(touchLocation) else {
+            return
+        }
+
         if stickActive {
             let initialLocation = innerStickRenderingComponent.position
 
             innerStickRenderingComponent.position = renderingComponent.position
+            touchArea.position = renderingComponent.position
+
             notifyLocationChange(entity: innerstickEntity,
                                  by: innerStickRenderingComponent.position - initialLocation)
 
@@ -100,8 +109,10 @@ class Joystick: Renderable, Touchable {
             innerStickRenderingComponent.position = finalLocation
         }
 
+        touchArea.position = location
         notifyLocationChange(entity: innerstickEntity,
                              by: innerStickRenderingComponent.position - initialLocation)
+
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {
@@ -122,4 +133,25 @@ class Joystick: Renderable, Touchable {
         inputManager.parseInput(input: newInput)
     }
 
+}
+
+class TouchArea {
+    var position: CGPoint
+    var size: CGSize
+
+    init(position: CGPoint, size: CGSize) {
+        self.position = position
+        self.size = size
+    }
+
+    func contains(_ point: CGPoint) -> Bool {
+        let startX = position.x - size.width / 2
+        let endX = position.x + size.width / 2
+        let startY = position.y - size.height / 2
+        let endY = position.y + size.height / 2
+
+        let isPointXinside = startX <= point.x && point.x <= endX
+        let isPointYinside = startY <= point.y && point.y <= endY
+        return isPointXinside && isPointYinside
+    }
 }

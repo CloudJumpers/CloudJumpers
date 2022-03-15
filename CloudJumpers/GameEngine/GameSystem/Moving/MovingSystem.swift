@@ -41,12 +41,12 @@ class MovingSystem: System {
         guard let movingComponent = component as? MovingComponent else {
             return
         }
-        guard var components = entityComponentMapping[entity] else {
+        guard entityComponentMapping[entity] != nil else {
             entityComponentMapping[entity] = [movingComponent]
             return
         }
 
-        components.append(movingComponent)
+        entityComponentMapping[entity]!.append(movingComponent)
     }
 
     private func handleMove(node: SKNode, entity: Entity, distance: CGVector) {
