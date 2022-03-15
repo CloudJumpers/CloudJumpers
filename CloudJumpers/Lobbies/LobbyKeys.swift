@@ -10,12 +10,11 @@ import Foundation
 enum LobbyKeys {
     static let root = "lobbies"
 
-    // root/{key}/*
+    // root/{lobbyid}/*
     static let hostName = "host"
     static let lobbyName = "name"
     static let participants = "participants"
 
-    // root/{key}/participants/*
-    static let participantId = "id"
+    // root/{lobbyid}/participants/{userid}/*
     static let participantReady = "ready"
 }

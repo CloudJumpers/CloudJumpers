@@ -14,48 +14,38 @@ class LobbyManager {
         let lobbyName = LobbyUtils.generateLobbyName()
 
         let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-        ref.onDisconnectRemoveValue()
+        ref.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
 
-        guard let newParticipantKey = ref.childByAutoId().key else {
-            fatalError("Expected new key to be generated")
-        }
-
-        ref.observeSingleEvent(of: .value) { _ in
-            ref.setValue([
-                LobbyKeys.hostName: userId,
-                LobbyKeys.lobbyName: lobbyName,
-                LobbyKeys.participants: [
-                    newParticipantKey: [
-                        LobbyKeys.participantId: userId,
-                        LobbyKeys.participantReady: false
-                    ]
+        ref.setValue([
+            LobbyKeys.hostName: userId,
+            LobbyKeys.lobbyName: lobbyName,
+            LobbyKeys.participants: [
+                userId: [
+                    LobbyKeys.participantReady: false
                 ]
-            ])
-        }
+            ]
+        ])
     }
 
-//    func joinLobby(userId: EntityID, lobbyId: EntityID) {
-//        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-//
-//        ref.observeSingleEvent(of: .value) { _ in
-//            let participationRef = ref.child("participants").childByAutoId()
-//            participationRef.child("id").setValue(userId)
-//            participationRef.child("ready").setValue(false)
-//        }
-//    }
-//
-//    func leaveLobby(userId: UUID, lobbyId: EntityID) {
-//        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-//
-//        ref.observeSingleEvent(of: .value) { snapshot in
-//            guard snapshot.exists() else {
-//                return
-//            }
-//
-//            ref.removeAllObservers()
-//            ref.removeValue()
-//        }
-//    }
+    func joinLobby(userId: EntityID, lobbyId: EntityID) {
+        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
+        let participantsRef = ref.child(LobbyKeys.participants).childByAutoId()
+
+        participantsRef.setValue([
+            userId: [
+                LobbyKeys.participantReady: false
+            ]
+        ])
+    }
+
+    func leaveLobby(userId: EntityID, lobbyId: EntityID) {
+        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
+        let participantsRef = ref.child(LobbyKeys.participants).child(userId)
+
+        participantsRef.removeValue()
+        participantsRef.removeAllObservers()
+        ref.removeAllObservers()
+    }
 
     private func constructLobbyPath(lobbyId: EntityID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"
