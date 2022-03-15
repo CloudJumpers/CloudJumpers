@@ -7,8 +7,15 @@
 
 import Foundation
 
-class LobbyKeys {
+enum LobbyKeys {
     static let root = "lobbies"
-    static let hostName = "host"
 
+    // root/{key}/*
+    static let hostName = "host"
+    static let lobbyName = "name"
+    static let participants = "participants"
+
+    // root/{key}/participants/*
+    static let participantId = "id"
+    static let participantReady = "ready"
 }

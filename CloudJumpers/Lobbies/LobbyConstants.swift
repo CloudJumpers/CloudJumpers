@@ -8,7 +8,9 @@
 import Foundation
 
 enum LobbyConstants {
-    static let minUpdateInterval: Int = 1
+    static let cellReuseIdentifier = "com.cs3217.cloudjumpers.lobbycell"
+
+    static let minUpdateInterval = 1
 
     static let MinSupportedPlayers = 1
     static let MaxSupportedPlayers = 4

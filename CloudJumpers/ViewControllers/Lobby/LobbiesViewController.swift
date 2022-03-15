@@ -40,7 +40,7 @@ class LobbiesViewController: UIViewController {
         lobbiesRef?.observe(.childAdded) { snapshot in
             guard
                 let value = snapshot.value as? NSDictionary,
-                let lobbyName = value["name"] as? String
+                let lobbyName = value[LobbyKeys.lobbyName] as? String
             else {
                 return
             }
@@ -66,8 +66,8 @@ class LobbiesViewController: UIViewController {
 
             self.updateLobbyListing(
                 lobbyId: snapshot.key,
-                newOccupancy: (value["participants"] as? NSDictionary)?.count,
-                newName: value["name"] as? String
+                newOccupancy: (value[LobbyKeys.participants] as? NSDictionary)?.count,
+                newName: value[LobbyKeys.lobbyName] as? String
             )
             self.lobbiesCollectionView.reloadData()
         }
@@ -101,8 +101,7 @@ class LobbiesViewController: UIViewController {
 
 extension LobbiesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("count: \(self.lobbies.count)")
-        return self.lobbies.count
+        lobbies.count
     }
 
     func collectionView(
@@ -110,7 +109,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "com.cs3217.cloudjumpers.lobbycell",
+            withReuseIdentifier: LobbyConstants.cellReuseIdentifier,
             for: indexPath
         )
 
