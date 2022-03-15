@@ -17,10 +17,10 @@ class Joystick: Renderable, Touchable {
                                                 name: Constants.outerstickImage,
                                                 size: Constants.outerstickSize)
 
-    var innerStick = RenderingComponent(type: .innerstick,
-                                        position: Constants.joystickPosition,
-                                        name: Constants.innerstickImage,
-                                        size: Constants.innerstickSize)
+    var innerStickRenderingComponent = RenderingComponent(type: .innerstick,
+                                                          position: Constants.joystickPosition,
+                                                          name: Constants.innerstickImage,
+                                                          size: Constants.innerstickSize)
 
     private var innerstickEntity = Entity(type: .innerstick)
     private var outerstickEntity = Entity(type: .outerstick)
@@ -34,14 +34,16 @@ class Joystick: Renderable, Touchable {
 
     @discardableResult
     func activate(renderingSystem: RenderingSystem) -> Entity {
-        renderingSystem.addComponent(entity: outerstickEntity, component: renderingComponent)
-        renderingSystem.addComponent(entity: innerstickEntity, component: innerStick)
+        renderingSystem.addComponent(entity: outerstickEntity,
+                                     component: renderingComponent)
+        renderingSystem.addComponent(entity: innerstickEntity,
+                                     component: innerStickRenderingComponent)
 
         return outerstickEntity
     }
 
     func handleTouchBegan(touchLocation: CGPoint) {
-        guard innerStick.contains(touchLocation) else {
+        guard innerStickRenderingComponent.contains(touchLocation) else {
             return
         }
 
@@ -56,11 +58,11 @@ class Joystick: Renderable, Touchable {
 
     func handleTouchEnded(touchLocation: CGPoint) {
         if stickActive {
-            let initialLocation = innerStick.position
+            let initialLocation = innerStickRenderingComponent.position
 
-            innerStick.position = renderingComponent.position
+            innerStickRenderingComponent.position = renderingComponent.position
             notifyLocationChange(entity: innerstickEntity,
-                                 by: innerStick.position - initialLocation)
+                                 by: innerStickRenderingComponent.position - initialLocation)
 
             stickActive = false
         }
@@ -68,7 +70,7 @@ class Joystick: Renderable, Touchable {
 
     func update() {
         if stickActive {
-            let location = innerStick.position
+            let location = innerStickRenderingComponent.position
             handleTouchInput(location: location)
         }
     }
@@ -92,17 +94,18 @@ class Joystick: Renderable, Touchable {
         let xDist = xAngle * length
         let yDist = yAngle * length
 
-        let initialLocation = innerStick.position
+        let initialLocation = innerStickRenderingComponent.position
 
         if renderingComponent.contains(location) {
-            innerStick.position = location
+            innerStickRenderingComponent.position = location
         } else {
             let finalLocation = CGPoint(x: renderingComponent.position.x - xDist,
                                         y: renderingComponent.position.y + yDist)
-            innerStick.position = finalLocation
+            innerStickRenderingComponent.position = finalLocation
         }
 
-        notifyLocationChange(entity: innerstickEntity, by: innerStick.position - initialLocation)
+        notifyLocationChange(entity: innerstickEntity,
+                             by: innerStickRenderingComponent.position - initialLocation)
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {
