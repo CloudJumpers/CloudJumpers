@@ -5,8 +5,6 @@
 //  Created by Eric Bryan on 12/3/22.
 //
 
-import Foundation
-import CoreGraphics
 import UIKit
 
 struct Constants {
