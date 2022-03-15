@@ -15,6 +15,13 @@
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
+		1A91C91A27E099E000D755BE /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91927E099E000D755BE /* Textures.swift */; };
+		1A91C92427E099F400D755BE /* Characters.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91D27E099F400D755BE /* Characters.atlas */; };
+		1A91C92527E099F400D755BE /* CharaWalkRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91E27E099F400D755BE /* CharaWalkRight.atlas */; };
+		1A91C92627E099F400D755BE /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91F27E099F400D755BE /* Clouds.atlas */; };
+		1A91C92727E099F400D755BE /* CharaJumpRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92027E099F400D755BE /* CharaJumpRight.atlas */; };
+		1A91C92827E099F400D755BE /* CharaPreRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92127E099F400D755BE /* CharaPreRight.atlas */; };
+		1A91C92927E099F400D755BE /* Buttons.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92227E099F400D755BE /* Buttons.atlas */; };
 		3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* GameEngine.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
@@ -102,6 +109,14 @@
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Unarchive.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		1A91C91927E099E000D755BE /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		1A91C91D27E099F400D755BE /* Characters.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Characters.atlas; sourceTree = "<group>"; };
+		1A91C91E27E099F400D755BE /* CharaWalkRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharaWalkRight.atlas; sourceTree = "<group>"; };
+		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
+		1A91C92027E099F400D755BE /* CharaJumpRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharaJumpRight.atlas; sourceTree = "<group>"; };
+		1A91C92127E099F400D755BE /* CharaPreRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharaPreRight.atlas; sourceTree = "<group>"; };
+		1A91C92227E099F400D755BE /* Buttons.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Buttons.atlas; sourceTree = "<group>"; };
+		1A91C92A27E09C5600D755BE /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4327DDA9C800D51300 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -252,10 +267,26 @@
 		1A91C91227E0962F00D755BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1A91C91B27E099E700D755BE /* Textures */,
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A91C91727E0969500D755BE /* Images.swift */,
+				1A91C91927E099E000D755BE /* Textures.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1A91C91B27E099E700D755BE /* Textures */ = {
+			isa = PBXGroup;
+			children = (
+				1A91C92227E099F400D755BE /* Buttons.atlas */,
+				1A91C91D27E099F400D755BE /* Characters.atlas */,
+				1A91C92027E099F400D755BE /* CharaJumpRight.atlas */,
+				1A91C92127E099F400D755BE /* CharaPreRight.atlas */,
+				1A91C91E27E099F400D755BE /* CharaWalkRight.atlas */,
+				1A91C91F27E099F400D755BE /* Clouds.atlas */,
+				1A91C92A27E09C5600D755BE /* HUD.atlas */,
+			);
+			path = Textures;
 			sourceTree = "<group>";
 		};
 		3E246B6827DF32C600D51300 /* Touchables */ = {
@@ -648,11 +679,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A91C92827E099F400D755BE /* CharaPreRight.atlas in Resources */,
 				1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */,
 				3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */,
+				1A91C92927E099F400D755BE /* Buttons.atlas in Resources */,
+				1A91C92627E099F400D755BE /* Clouds.atlas in Resources */,
 				93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */,
+				1A91C92527E099F400D755BE /* CharaWalkRight.atlas in Resources */,
+				1A91C92727E099F400D755BE /* CharaJumpRight.atlas in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
 				1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */,
+				1A91C92427E099F400D755BE /* Characters.atlas in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,6 +837,7 @@
 				9359ABB327E0465A00D85899 /* GameModes.swift in Sources */,
 				A1347AAB27DA66BA0011CF40 /* CollisionComponent.swift in Sources */,
 				3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */,
+				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				A1DBB83E27D884200077AB96 /* CollisionSystem.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
@@ -1015,7 +1053,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K4J52P5D5E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1034,6 +1072,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
+				TEXTURE_ATLAS_MAXIMUM_SIZE = 4096x4096;
 			};
 			name = Debug;
 		};
@@ -1045,7 +1084,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K4J52P5D5E;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1064,6 +1103,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
+				TEXTURE_ATLAS_MAXIMUM_SIZE = 4096x4096;
 			};
 			name = Release;
 		};
