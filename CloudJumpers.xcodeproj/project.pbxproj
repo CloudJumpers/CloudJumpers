@@ -63,7 +63,7 @@
 		A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AA727DA359D0011CF40 /* RenderingSystem.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
 		A1347AB327DA6BF80011CF40 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB227DA6BF80011CF40 /* EventManager.swift */; };
-		A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */; };
+		A1347AB527DA6CCC0011CF40 /* RenderingFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB427DA6CCC0011CF40 /* RenderingFactory.swift */; };
 		A141F3B027E09A240027F180 /* TouchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141F3AF27E09A240027F180 /* TouchArea.swift */; };
 		A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEB27E033DB00527358 /* PlayerEntity.swift */; };
 		A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEF27E051A500527358 /* TouchableManager.swift */; };
@@ -155,7 +155,7 @@
 		A1347AA727DA359D0011CF40 /* RenderingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingSystem.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A1347AB227DA6BF80011CF40 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
-		A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKNodeFactory.swift; sourceTree = "<group>"; };
+		A1347AB427DA6CCC0011CF40 /* RenderingFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingFactory.swift; sourceTree = "<group>"; };
 		A141F3AF27E09A240027F180 /* TouchArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchArea.swift; sourceTree = "<group>"; };
 		A14DDAEB27E033DB00527358 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		A14DDAEF27E051A500527358 /* TouchableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableManager.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				3E246B6027DEBE3D00D51300 /* Renderable.swift */,
-				A1347AB427DA6CCC0011CF40 /* SKNodeFactory.swift */,
+				A1347AB427DA6CCC0011CF40 /* RenderingFactory.swift */,
 				A1347AA527DA2FD60011CF40 /* RenderingComponent.swift */,
 				A1347AA727DA359D0011CF40 /* RenderingSystem.swift */,
 			);
@@ -819,7 +819,7 @@
 				A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				A1179EF027DBC67800E60E59 /* StateComponent.swift in Sources */,
-				A1347AB527DA6CCC0011CF40 /* SKNodeFactory.swift in Sources */,
+				A1347AB527DA6CCC0011CF40 /* RenderingFactory.swift in Sources */,
 				3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,

@@ -31,8 +31,7 @@ class RenderingSystem: System {
             else {
                 return
             }
-//            let newNode = SKNodeFactory.createSKSpriteNode(type: component.type)
-            let newNode = SKNodeFactory.createSKSpriteNode(renderingComponent: component)
+            let newNode = RenderingFactory.createSKSpriteNode(renderingComponent: component)
 
             entitiesManager?.addNode(newNode, entity: entity)
             component.isUpdating = false
