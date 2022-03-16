@@ -8,13 +8,11 @@
 import SpriteKit
 
 class ContactComponent: Component {
-    let nodeA: SKNode
-    let nodeB: SKNode
+    let entity: Entity
     let contactType: ContactType
-    
-    init (nodeA: SKNode, nodeB: SKNode, type: ContactType) {
-        self.nodeA = nodeA
-        self.nodeB = nodeB
+
+    init (entity: Entity, type: ContactType) {
+        self.entity = entity
         self.contactType = type
     }
 
