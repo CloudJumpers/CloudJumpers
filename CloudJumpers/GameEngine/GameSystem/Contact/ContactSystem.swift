@@ -36,6 +36,7 @@ class ContactSystem: System {
                 }
             }
         }
+        entityComponentMapping.removeAll()
     }
 
     func addComponent(entity: Entity, component: Component) {
