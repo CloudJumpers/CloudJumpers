@@ -22,11 +22,15 @@ class RenderingComponent: Component {
     }
 
     enum SpriteType {
-        case sprite
-        case background
+        case physicalSprite(shape: PhysicsShape)
         case outerstick
         case innerstick
         case button
+    }
+
+    enum PhysicsShape {
+        case circle(radius: CGFloat)
+        case rectangle(size: CGSize)
     }
 }
 

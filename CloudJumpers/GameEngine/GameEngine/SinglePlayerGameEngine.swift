@@ -7,6 +7,7 @@
 
 import Combine
 import CoreGraphics
+import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
@@ -24,8 +25,9 @@ class SinglePlayerGameEngine: GameEngine {
 
     // System
     let renderingSystem: RenderingSystem
-    let collisionSystem: CollisionSystem
     let movingSystem: MovingSystem
+    let contactSystem: ContactSystem
+    let locationSystem: LocationSystem
 
     init(gameScene: GameScene, level: Level) {
         self.gameScene = gameScene
@@ -36,8 +38,12 @@ class SinglePlayerGameEngine: GameEngine {
         self.touchableManager = TouchableManager()
 
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
-        self.collisionSystem = CollisionSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
+        self.contactSystem = ContactSystem(entitiesManager: entitiesManager,
+                                           eventManager: eventManager)
+        self.locationSystem = LocationSystem(entitiesManager: entitiesManager,
+                                             eventManager: eventManager)
+
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
         createSubscribers()
@@ -87,13 +93,16 @@ class SinglePlayerGameEngine: GameEngine {
         }
 
         movingSystem.update(deltaTime)
-        collisionSystem.update(deltaTime)
+        contactSystem.update(deltaTime)
+        locationSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
     }
 
     private func handleEvent(event: Event) {
+        // Your handler should not add anything to the event queue, only
+        // add to the different systems, which add to the event queue later on update
         switch event.type {
         case .input(let info):
             switch info.inputType {
@@ -104,6 +113,12 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
+        case let .contact( nodeA, nodeB):
+            handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
+        case let .endContact(nodeA, nodeB):
+            handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)
+        case let .changeLocation(entity, location):
+            handleChangeLocation(entity: entity, location: location)
         default:
             return
         }
@@ -117,6 +132,44 @@ class SinglePlayerGameEngine: GameEngine {
     private func handleJumpEvent(entity: Entity) {
         let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
+    }
+
+    private func handleBeginContactEvent(nodeA: SKNode, nodeB: SKNode) {
+        guard let entityA = entitiesManager.getEntity(of: nodeA),
+              let entityB = entitiesManager.getEntity(of: nodeB),
+              entityA.type == .player || entityB.type == .player
+        else {
+            return
+        }
+        let contactComponent: ContactComponent
+        if entityA.type == .player {
+            contactComponent = ContactComponent(entity: entityB, type: .begin)
+        } else {
+            contactComponent = ContactComponent(entity: entityA, type: .begin)
+        }
+        contactSystem.addComponent(entity: entityA, component: contactComponent)
+
+    }
+
+    private func handleEndContactEvent(nodeA: SKNode, nodeB: SKNode) {
+        guard let entityA = entitiesManager.getEntity(of: nodeA),
+              let entityB = entitiesManager.getEntity(of: nodeB),
+              entityA.type == .player || entityB.type == .player
+        else {
+            return
+        }
+        let contactComponent: ContactComponent
+        if entityA.type == .player {
+            contactComponent = ContactComponent(entity: entityB, type: .end)
+        } else {
+            contactComponent = ContactComponent(entity: entityA, type: .end)
+        }
+        contactSystem.addComponent(entity: entityA, component: contactComponent)
+    }
+
+    private func handleChangeLocation(entity: Entity, location: LocationComponent.Location) {
+        let locationComponent = LocationComponent(location: location)
+        locationSystem.addComponent(entity: entity, component: locationComponent)
     }
 
 }
