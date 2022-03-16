@@ -11,7 +11,8 @@ class PlayerEntity: Entity, Renderable {
     var renderingComponent: RenderingComponent
 
     init(position: CGPoint) {
-        self.renderingComponent = RenderingComponent(type: .sprite,
+        self.renderingComponent = RenderingComponent(type: .physicalSprite(shape:
+                .rectangle(size: Constants.playerSize)),
                                                      position: position,
                                                      name: Constants.playerImage,
                                                      size: Constants.playerSize)
