@@ -11,8 +11,8 @@ class NetworkedLobby {
     private let user: LobbyUser
     private(set) var others: [LobbyUser]
 
+    let hostId: EntityID
     private(set) var id: EntityID!
-    private let userIsHost: Bool
 
     private let lobbyManager = FirebaseLobbyConnectorDelegate()
 
@@ -20,9 +20,13 @@ class NetworkedLobby {
         [user] + others
     }
 
-    init(lobbyId: EntityID? = nil) {
+    var userIsHost: Bool {
+        hostId == AuthService().getUserId()
+    }
+
+    init(lobbyId: EntityID?, hostId: EntityID) {
         self.id = lobbyId
-        self.userIsHost = lobbyId == nil
+        self.hostId = hostId
         self.others = [LobbyUser]()
 
         let auth = AuthService()

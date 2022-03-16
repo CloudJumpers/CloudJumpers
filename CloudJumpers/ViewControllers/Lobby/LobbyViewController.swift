@@ -18,7 +18,7 @@ class LobbyViewController: UIViewController {
     var activeLobby: NetworkedLobby?
     var lobbyRef: DatabaseReference?
 
-    @IBAction func onExit(_ sender: Any) {
+    @IBAction private func onExit() {
         self.activeLobby?.exitLobby()
         self.navigationController?.popViewController(animated: true)
     }
@@ -43,6 +43,10 @@ class LobbyViewController: UIViewController {
         lobbyRef?.observe(.childChanged) { snapshot in
             self.handleUpdate(snapshot: snapshot)
         }
+
+        lobbyRef?.observe(.childRemoved) { snapshot in
+            self.handleLeave(snapshot: snapshot)
+        }
     }
 
     private func handleUpdate(snapshot: DataSnapshot) {
@@ -60,6 +64,16 @@ class LobbyViewController: UIViewController {
             default:
                 return
             }
+        }
+    }
+
+    private func handleLeave(snapshot: DataSnapshot) {
+        if
+            snapshot.key == LobbyKeys.hostId,
+            let hostId = snapshot.value as? String,
+            hostId == self.activeLobby?.hostId
+        {
+            self.onExit()
         }
     }
 
