@@ -18,6 +18,11 @@ class LobbyViewController: UIViewController {
     var activeLobby: NetworkedLobby?
     var lobbyRef: DatabaseReference?
 
+    @IBAction func onExit(_ sender: Any) {
+        self.activeLobby?.exitLobby()
+        self.navigationController?.popViewController(animated: true)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         lobbyUsersView.dataSource = self

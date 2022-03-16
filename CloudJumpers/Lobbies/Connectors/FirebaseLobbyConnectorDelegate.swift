@@ -71,7 +71,7 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         }
     }
 
-    func exitLobby(lobbyId: EntityID) {
+    func exitLobby(lobbyId: EntityID, deleteLobby: Bool = false) {
         let userId = getActiveUserId()
 
         let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
@@ -80,6 +80,10 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         participantsRef.removeValue()
         participantsRef.removeAllObservers()
         ref.removeAllObservers()
+
+        if deleteLobby {
+            ref.removeValue()
+        }
     }
 
     private func constructLobbyPath(lobbyId: EntityID) -> String {

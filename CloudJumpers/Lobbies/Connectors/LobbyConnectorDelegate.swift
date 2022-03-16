@@ -12,5 +12,5 @@ protocol LobbyConnectorDelegate: AnyObject {
 
     func joinLobby(lobbyId: EntityID)
 
-    func exitLobby(lobbyId: EntityID)
+    func exitLobby(lobbyId: EntityID, deleteLobby: Bool)
 }

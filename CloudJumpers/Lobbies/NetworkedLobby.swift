@@ -64,4 +64,11 @@ class NetworkedLobby {
     private func joinLobby() {
         lobbyManager.joinLobby(lobbyId: id)
     }
+
+    func exitLobby() {
+        lobbyManager.exitLobby(
+            lobbyId: id,
+            deleteLobby: userIsHost
+        )
+    }
 }

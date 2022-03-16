@@ -22,6 +22,7 @@ class LobbiesViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        refreshDataSource()
         setUpLobbiesListener()
     }
 
@@ -102,6 +103,7 @@ class LobbiesViewController: UIViewController {
 
     private func refreshDataSource() {
         lobbies.removeAll()
+        lobbiesCollectionView.reloadData()
     }
 
     private func moveToLobby(lobbyId: EntityID?) {
