@@ -14,11 +14,13 @@ class SinglePlayerGameEngine: GameEngine {
     var eventManager: EventManager
     var touchableManager: TouchableManager
 
-    weak var gameScene: GameScene?
+    var addNodePublisher: AnyPublisher<SKNode, Never> {
+        entitiesManager.addPublisher
+    }
 
-    private var eventSubscription: AnyCancellable?
-    private var addNodeSubscription: AnyCancellable?
-    private var removeNodeSubscription: AnyCancellable?
+    var removeNodePublisher: AnyPublisher<SKNode, Never> {
+        entitiesManager.removePublisher
+    }
 
     private var playerEntity: PlayerEntity
 
@@ -28,8 +30,7 @@ class SinglePlayerGameEngine: GameEngine {
     let contactSystem: ContactSystem
     let locationSystem: LocationSystem
 
-    init(gameScene: GameScene, level: Level) {
-        self.gameScene = gameScene
+    init() {
         self.entitiesManager = EntitiesManager()
 
         self.eventManager = EventManager()
@@ -44,20 +45,6 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
-        createSubscribers()
-        setupGame(level: level)
-    }
-
-    func createSubscribers() {
-
-        addNodeSubscription = entitiesManager.addPublisher.sink { [weak self] node in
-            self?.gameScene?.addChild(node)
-        }
-
-        removeNodeSubscription = entitiesManager.removePublisher.sink { node in
-            node.removeAllChildren()
-            node.removeFromParent()
-        }
     }
 
     func setupGame(level: Level) {
