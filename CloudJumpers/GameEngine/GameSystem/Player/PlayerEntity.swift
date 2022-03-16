@@ -14,7 +14,7 @@ class PlayerEntity: Entity, Renderable {
         self.renderingComponent = RenderingComponent(type: .physicalSprite(shape:
                 .rectangle(size: Constants.playerSize)),
                                                      position: position,
-                                                     name: Constants.playerImage,
+                                                     name: Images.player.name,
                                                      size: Constants.playerSize)
         super.init(type: .player)
     }

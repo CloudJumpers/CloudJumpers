@@ -8,9 +8,6 @@
 import UIKit
 
 struct Constants {
-    static let playerImage = "player"
-    static let innerstickImage = "innerStick"
-    static let outerstickImage = "outerStick"
     static let outerstickSize = CGSize(width: 100.0, height: 100.0)
     static let innerstickSize = CGSize(width: 50.0, height: 50.0)
 
@@ -33,7 +30,6 @@ struct Constants {
     static let stickReleaseMovementDuration = 0.2
 
     static let jumpButtonPosition = CGPoint(x: 280.0, y: -420.0)
-    static let jumpButtonImage = "outerStick"
     static let jumpButtonSize = CGSize(width: 100.0, height: 100.0)
     static let jumpImpulse = CGVector(dx: 0.0, dy: 100.0)
     static let jumpYTolerance = 0.1

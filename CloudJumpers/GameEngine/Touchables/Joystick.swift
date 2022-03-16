@@ -13,12 +13,12 @@ class Joystick: Renderable, Touchable {
 
     var renderingComponent = RenderingComponent(type: .outerstick,
                                                 position: Constants.joystickPosition,
-                                                name: Constants.outerstickImage,
+                                                name: Images.outerStick.name,
                                                 size: Constants.outerstickSize)
 
     var innerStickRenderingComponent = RenderingComponent(type: .innerstick,
                                                           position: Constants.joystickPosition,
-                                                          name: Constants.innerstickImage,
+                                                          name: Images.innerStick.name,
                                                           size: Constants.innerstickSize)
 
     private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
