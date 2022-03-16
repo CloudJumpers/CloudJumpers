@@ -113,11 +113,11 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case .contact(let nodeA, let nodeB):
+        case let .contact( nodeA, nodeB):
             handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case .endContact(let nodeA, let nodeB):
+        case let .endContact(nodeA, nodeB):
             handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case .changeLocation(let entity, let location):
+        case let .changeLocation(entity, location):
             handleChangeLocation(entity: entity, location: location)
         default:
             return

@@ -42,12 +42,12 @@ class ContactSystem: System {
         guard let contactComponent = component as? ContactComponent else {
             return
         }
-        guard var components = entityComponentMapping[entity] else {
+        guard entityComponentMapping[entity] != nil else {
             entityComponentMapping[entity] = [contactComponent]
             return
         }
 
-        components.append(contactComponent)
+        entityComponentMapping[entity]?.append(contactComponent)
     }
 
     private func handleEndContact(main entityA: Entity, other entityB: Entity) -> Event? {
