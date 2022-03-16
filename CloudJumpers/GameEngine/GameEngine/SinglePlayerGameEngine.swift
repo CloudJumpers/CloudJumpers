@@ -12,7 +12,6 @@ import SpriteKit
 class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
-    var inputManager: InputManager
     var touchableManager: TouchableManager
 
     weak var gameScene: GameScene?
@@ -34,8 +33,7 @@ class SinglePlayerGameEngine: GameEngine {
         self.entitiesManager = EntitiesManager()
 
         self.eventManager = EventManager()
-        self.inputManager = InputManager()
-        self.touchableManager = TouchableManager()
+        self.touchableManager = TouchableManager(eventManager: eventManager)
 
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
@@ -51,9 +49,6 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func createSubscribers() {
-        eventSubscription = inputManager.inputPublisher.sink { [weak self] input in
-            self?.eventManager.eventsQueue.append(Event(type: .input(info: input)))
-        }
 
         addNodeSubscription = entitiesManager.addPublisher.sink { [weak self] node in
             self?.gameScene?.addChild(node)
@@ -76,8 +71,8 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setupTouchables() {
-        let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
-        let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
+        let joystick = Joystick(associatedEntity: playerEntity)
+        let jumpButton = JumpButton(associatedEntity: playerEntity)
 
         touchableManager.addTouchable(touchable: joystick)
         touchableManager.addTouchable(touchable: jumpButton)

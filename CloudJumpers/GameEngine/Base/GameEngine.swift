@@ -9,7 +9,6 @@ import Foundation
 
 protocol GameEngine {
     var entitiesManager: EntitiesManager { get }
-    var inputManager: InputManager { get }
     var eventManager: EventManager { get }
     var touchableManager: TouchableManager { get }
 

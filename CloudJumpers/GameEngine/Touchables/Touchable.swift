@@ -8,30 +8,30 @@
 import CoreGraphics
 
 protocol Touchable {
-    func handleTouchBegan(touchLocation: CGPoint)
+    func handleTouchBegan(touchLocation: CGPoint) -> Input?
 
-    func handleTouchMoved(touchLocation: CGPoint)
+    func handleTouchMoved(touchLocation: CGPoint) -> Input?
 
-    func handleTouchEnded(touchLocation: CGPoint)
+    func handleTouchEnded(touchLocation: CGPoint) -> Input?
 
-    func update()
+    func update() -> Input?
 }
 
 // all functions are empty by default
 extension Touchable {
-    func handleTouchBegan(touchLocation: CGPoint) {
-
+    func handleTouchBegan(touchLocation: CGPoint) -> Input? {
+        nil
     }
 
-    func handleTouchMoved(touchLocation: CGPoint) {
-
+    func handleTouchMoved(touchLocation: CGPoint) -> Input? {
+        nil
     }
 
-    func handleTouchEnded(touchLocation: CGPoint) {
-
+    func handleTouchEnded(touchLocation: CGPoint) -> Input? {
+        nil
     }
 
-    func update() {
-
+    func update() -> Input? {
+        nil
     }
 }
