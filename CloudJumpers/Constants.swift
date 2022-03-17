@@ -33,4 +33,9 @@ struct Constants {
     static let jumpButtonSize = CGSize(width: 100.0, height: 100.0)
     static let jumpImpulse = CGVector(dx: 0.0, dy: 100.0)
     static let jumpYTolerance = 0.1
+
+    static let timerPosition = CGPoint(x: 250, y: 410)
+    static let timerName = ""
+    static let timerSize = CGSize(width: 36, height: 36)
+    static let timerInitial: Double = 0.0
 }

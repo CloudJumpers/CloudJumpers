@@ -29,6 +29,7 @@ class SinglePlayerGameEngine: GameEngine {
     let movingSystem: MovingSystem
     let contactSystem: ContactSystem
     let locationSystem: LocationSystem
+    let timerSystem: TimerSystem
 
     init() {
         self.entitiesManager = EntitiesManager()
@@ -42,6 +43,7 @@ class SinglePlayerGameEngine: GameEngine {
                                            eventManager: eventManager)
         self.locationSystem = LocationSystem(entitiesManager: entitiesManager,
                                              eventManager: eventManager)
+        self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
@@ -51,6 +53,7 @@ class SinglePlayerGameEngine: GameEngine {
         // Using factory to create all object here
         setupPlayer()
         setupTouchables()
+        setupTimer()
     }
 
     private func setupPlayer() {
@@ -68,6 +71,15 @@ class SinglePlayerGameEngine: GameEngine {
         jumpButton.activate(renderingSystem: renderingSystem)
     }
 
+    private func setupTimer() {
+        let timer = TimerEntity()
+
+        let timerComponent = TimerComponent(time: Constants.timerInitial)
+        timerSystem.addComponent(entity: timer, component: timerComponent)
+
+        timer.activate(renderingSystem: renderingSystem)
+    }
+
     func update(_ deltaTime: Double) {
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
@@ -78,6 +90,7 @@ class SinglePlayerGameEngine: GameEngine {
         contactSystem.update(deltaTime)
         locationSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
+        timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
     }
@@ -95,7 +108,7 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case let .contact( nodeA, nodeB):
+        case let .contact(nodeA, nodeB):
             handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
         case let .endContact(nodeA, nodeB):
             handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)
