@@ -12,14 +12,15 @@ import SpriteKit
 class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
-    var inputManager: InputManager
     var touchableManager: TouchableManager
 
-    weak var gameScene: GameScene?
+    var addNodePublisher: AnyPublisher<SKNode, Never> {
+        entitiesManager.addPublisher
+    }
 
-    private var eventSubscription: AnyCancellable?
-    private var addNodeSubscription: AnyCancellable?
-    private var removeNodeSubscription: AnyCancellable?
+    var removeNodePublisher: AnyPublisher<SKNode, Never> {
+        entitiesManager.removePublisher
+    }
 
     private var playerEntity: PlayerEntity
 
@@ -28,14 +29,13 @@ class SinglePlayerGameEngine: GameEngine {
     let movingSystem: MovingSystem
     let contactSystem: ContactSystem
     let locationSystem: LocationSystem
+    let timerSystem: TimerSystem
 
-    init(gameScene: GameScene, level: Level) {
-        self.gameScene = gameScene
+    init() {
         self.entitiesManager = EntitiesManager()
 
         self.eventManager = EventManager()
-        self.inputManager = InputManager()
-        self.touchableManager = TouchableManager()
+        self.touchableManager = TouchableManager(eventManager: eventManager)
 
         self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
@@ -43,32 +43,17 @@ class SinglePlayerGameEngine: GameEngine {
                                            eventManager: eventManager)
         self.locationSystem = LocationSystem(entitiesManager: entitiesManager,
                                              eventManager: eventManager)
+        self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
 
-        createSubscribers()
-        setupGame(level: level)
     }
 
-    func createSubscribers() {
-        eventSubscription = inputManager.inputPublisher.sink { [weak self] input in
-            self?.eventManager.eventsQueue.append(Event(type: .input(info: input)))
-        }
-
-        addNodeSubscription = entitiesManager.addPublisher.sink { [weak self] node in
-            self?.gameScene?.addChild(node)
-        }
-
-        removeNodeSubscription = entitiesManager.removePublisher.sink { node in
-            node.removeAllChildren()
-            node.removeFromParent()
-        }
-    }
-
-    func setupGame(level: Level) {
+    func setupGame(with level: Level) {
         // Using factory to create all object here
         setupPlayer()
         setupTouchables()
+        setupTimer()
     }
 
     private func setupPlayer() {
@@ -76,14 +61,23 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setupTouchables() {
-        let joystick = Joystick(inputManager: inputManager, associatedEntity: playerEntity)
-        let jumpButton = JumpButton(inputManager: inputManager, associatedEntity: playerEntity)
+        let joystick = Joystick(associatedEntity: playerEntity)
+        let jumpButton = JumpButton(associatedEntity: playerEntity)
 
         touchableManager.addTouchable(touchable: joystick)
         touchableManager.addTouchable(touchable: jumpButton)
 
         joystick.activate(renderingSystem: renderingSystem)
         jumpButton.activate(renderingSystem: renderingSystem)
+    }
+
+    private func setupTimer() {
+        let timer = TimerEntity()
+
+        let timerComponent = TimerComponent(time: Constants.timerInitial)
+        timerSystem.addComponent(entity: timer, component: timerComponent)
+
+        timer.activate(renderingSystem: renderingSystem)
     }
 
     func update(_ deltaTime: Double) {
@@ -96,6 +90,7 @@ class SinglePlayerGameEngine: GameEngine {
         contactSystem.update(deltaTime)
         locationSystem.update(deltaTime)
         renderingSystem.update(deltaTime)
+        timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
     }
@@ -113,7 +108,7 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case let .contact( nodeA, nodeB):
+        case let .contact(nodeA, nodeB):
             handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
         case let .endContact(nodeA, nodeB):
             handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)

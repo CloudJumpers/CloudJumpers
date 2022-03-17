@@ -27,11 +27,10 @@ class RenderingSystem: System {
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
             guard let component = entityComponentMapping[entity],
-                  component.isUpdating
-            else {
+                  component.isUpdating,
+                  let newNode = RenderingFactory.createSKNode(renderingComponent: component) else {
                 return
             }
-            let newNode = RenderingFactory.createSKSpriteNode(renderingComponent: component)
 
             entitiesManager?.addNode(newNode, entity: entity)
             component.isUpdating = false

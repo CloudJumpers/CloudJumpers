@@ -8,7 +8,16 @@
 import SpriteKit
 
 class RenderingFactory {
-    static func createSKSpriteNode(renderingComponent: RenderingComponent) -> SKSpriteNode {
+    static func createSKNode(renderingComponent: RenderingComponent) -> SKNode? {
+        switch renderingComponent.type {
+        case .timer:
+            return createSKLabelNode(renderingComponent: renderingComponent)
+        default:
+            return createSKSpriteNode(renderingComponent: renderingComponent)
+        }
+    }
+
+    static func createSKSpriteNode(renderingComponent: RenderingComponent) -> SKSpriteNode? {
         let sprite = SKSpriteNode(imageNamed: renderingComponent.name)
         sprite.position = renderingComponent.position
         sprite.size = renderingComponent.size
@@ -26,9 +35,26 @@ class RenderingFactory {
             sprite.alpha = Constants.opacityTwo
         case .button:
             sprite.zPosition = SpriteZPosition.button.rawValue
+        default:
+            return nil
         }
         return sprite
+    }
 
+    static func createSKLabelNode(renderingComponent: RenderingComponent) -> SKNode? {
+        let sprite = SKLabelNode()
+        sprite.position = renderingComponent.position
+        sprite.fontSize = renderingComponent.size.width
+
+        switch renderingComponent.type {
+        case let .timer(time):
+            sprite.text = "\(time)"
+            sprite.fontColor = .black
+            sprite.zPosition = SpriteZPosition.timer.rawValue
+        default:
+            return nil
+        }
+        return sprite
     }
 
     static func createPhysicsBody(shape: RenderingComponent.PhysicsShape) -> SKPhysicsBody {

@@ -22,6 +22,7 @@
 		1A91C92727E099F400D755BE /* CharaJumpRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92027E099F400D755BE /* CharaJumpRight.atlas */; };
 		1A91C92827E099F400D755BE /* CharaPreRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92127E099F400D755BE /* CharaPreRight.atlas */; };
 		1A91C92927E099F400D755BE /* Buttons.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92227E099F400D755BE /* Buttons.atlas */; };
+		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* GameEngine.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
@@ -31,6 +32,9 @@
 		3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6027DEBE3D00D51300 /* Renderable.swift */; };
 		3E246B6727DECCD300D51300 /* Touchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6627DECCD300D51300 /* Touchable.swift */; };
 		3E246B6C27DF366100D51300 /* JumpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B6B27DF366100D51300 /* JumpButton.swift */; };
+		3E246B7627E2F88900D51300 /* TimerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7527E2F88900D51300 /* TimerSystem.swift */; };
+		3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7727E2FBB400D51300 /* TimerEntity.swift */; };
+		3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7927E30CAF00D51300 /* TimerComponent.swift */; };
 		3E246B8127E3414400D51300 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B8027E3414400D51300 /* EndGameViewController.swift */; };
 		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B227DF04ED00324DAF /* LobbiesViewController.swift */; };
@@ -61,7 +65,6 @@
 		93D4E18527DA33DB0054F45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93D4E18427DA33DB0054F45B /* GoogleService-Info.plist */; };
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */; };
-		A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A127DB3D8F005FA3EC /* InputManager.swift */; };
 		A11470A427DB3D9B005FA3EC /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A327DB3D9B005FA3EC /* Input.swift */; };
 		A11470A627DB4193005FA3EC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A527DB4193005FA3EC /* Level.swift */; };
 		A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */; };
@@ -118,6 +121,7 @@
 		1A91C92127E099F400D755BE /* CharaPreRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharaPreRight.atlas; sourceTree = "<group>"; };
 		1A91C92227E099F400D755BE /* Buttons.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Buttons.atlas; sourceTree = "<group>"; };
 		1A91C92A27E09C5600D755BE /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
+		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4327DDA9C800D51300 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
@@ -128,6 +132,9 @@
 		3E246B6027DEBE3D00D51300 /* Renderable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderable.swift; sourceTree = "<group>"; };
 		3E246B6627DECCD300D51300 /* Touchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Touchable.swift; sourceTree = "<group>"; };
 		3E246B6B27DF366100D51300 /* JumpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButton.swift; sourceTree = "<group>"; };
+		3E246B7527E2F88900D51300 /* TimerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSystem.swift; sourceTree = "<group>"; };
+		3E246B7727E2FBB400D51300 /* TimerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerEntity.swift; sourceTree = "<group>"; };
+		3E246B7927E30CAF00D51300 /* TimerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerComponent.swift; sourceTree = "<group>"; };
 		3E246B8027E3414400D51300 /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,7 +170,6 @@
 		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesManager.swift; sourceTree = "<group>"; };
-		A11470A127DB3D8F005FA3EC /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		A11470A327DB3D9B005FA3EC /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		A11470A527DB4193005FA3EC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingComponent.swift; sourceTree = "<group>"; };
@@ -241,6 +247,7 @@
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
 				3E58412A27DBABF4005B2EB9 /* Constants.swift */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
+				1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */,
 				3E246B5627DE0EED00D51300 /* GameScene.sks */,
 				A1DBB84327D884290077AB96 /* Utilities */,
 				A1DBB82827D884200077AB96 /* GameEngine */,
@@ -298,9 +305,20 @@
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				3E246B6B27DF366100D51300 /* JumpButton.swift */,
 				A14DDAEF27E051A500527358 /* TouchableManager.swift */,
+				A11470A327DB3D9B005FA3EC /* Input.swift */,
 				A141F3AF27E09A240027F180 /* TouchArea.swift */,
 			);
 			path = Touchables;
+			sourceTree = "<group>";
+		};
+		3E246B7227E2F82C00D51300 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				3E246B7527E2F88900D51300 /* TimerSystem.swift */,
+				3E246B7927E30CAF00D51300 /* TimerComponent.swift */,
+				3E246B7727E2FBB400D51300 /* TimerEntity.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -465,15 +483,6 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
-		A11470A027DB3D74005FA3EC /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				A11470A127DB3D8F005FA3EC /* InputManager.swift */,
-				A11470A327DB3D9B005FA3EC /* Input.swift */,
-			);
-			path = Input;
-			sourceTree = "<group>";
-		};
 		A1179EE527DBBB3800E60E59 /* Moving */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +495,7 @@
 		A1179EE827DBBE6000E60E59 /* GameSystem */ = {
 			isa = PBXGroup;
 			children = (
+				3E246B7227E2F82C00D51300 /* Timer */,
 				A1A036ED27E1908F0058B123 /* Location */,
 				A1F190BA27E08DDC0003D7ED /* Contact */,
 				A1179EF827DBC73000E60E59 /* Player */,
@@ -548,7 +558,6 @@
 				3E246B6827DF32C600D51300 /* Touchables */,
 				9359ABB127E0464200D85899 /* Modes */,
 				A1179EE827DBBE6000E60E59 /* GameSystem */,
-				A11470A027DB3D74005FA3EC /* Input */,
 				A1347AA927DA66A10011CF40 /* Event */,
 				A1DBB82D27D884200077AB96 /* GameEngine */,
 				A1DBB83427D884200077AB96 /* Base */,
@@ -834,7 +843,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				934789C227DF0F7F00324DAF /* NetworkedLobby.swift in Sources */,
-				A11470A227DB3D8F005FA3EC /* InputManager.swift in Sources */,
 				A1347AA827DA359D0011CF40 /* RenderingSystem.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */,
 				3E246B6727DECCD300D51300 /* Touchable.swift in Sources */,
@@ -843,6 +851,8 @@
 				A141F3B027E09A240027F180 /* TouchArea.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
+				3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */,
+				3E246B7627E2F88900D51300 /* TimerSystem.swift in Sources */,
 				9359ABB327E0465A00D85899 /* GameModes.swift in Sources */,
 				3E246B6127DEBE3D00D51300 /* Renderable.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
@@ -850,6 +860,7 @@
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
+				3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
@@ -865,6 +876,7 @@
 				A1A036EC27E1908A0058B123 /* LocationComponent.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */,
+				1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */,
 				A1F190BE27E090C00003D7ED /* ContactSystem.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* LobbyManager.swift in Sources */,

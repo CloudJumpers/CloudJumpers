@@ -26,6 +26,7 @@ class RenderingComponent: Component {
         case outerstick
         case innerstick
         case button
+        case timer(time: Double)
     }
 
     enum PhysicsShape {
