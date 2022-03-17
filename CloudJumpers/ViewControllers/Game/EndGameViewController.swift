@@ -9,13 +9,16 @@ import Foundation
 import UIKit
 
 class EndGameViewController: UIViewController {
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var nameTableView: UITableView!
+    @IBOutlet private var scoreTableView: UITableView!
 
     private var names = ["Hello", "my", "name", "is", "John"]
+    private var scores = ["10", "200", "500", "1000", "20000"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.dataSource = self
+        nameTableView.dataSource = self
+        scoreTableView.dataSource = self
     }
 }
 
@@ -25,9 +28,19 @@ extension EndGameViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "highScore", for: indexPath)
+        var cell = UITableViewCell()
 
-        cell.textLabel?.text = names[indexPath.row]
+        switch tableView {
+        case nameTableView:
+            cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
+            cell.textLabel?.text = names[indexPath.row]
+        case scoreTableView:
+            tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
+            cell.textLabel?.text = scores[indexPath.row]
+        default:
+            break
+        }
+
         cell.layer.borderWidth = 2
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = UIColor.black.cgColor
