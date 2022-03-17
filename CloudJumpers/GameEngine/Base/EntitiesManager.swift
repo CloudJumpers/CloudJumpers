@@ -10,7 +10,7 @@ import Combine
 
 class EntitiesManager {
     private var entities = Set<Entity>()
-    private var entityNodeMapping: [Entity: SKNode] = [:]
+    var entityNodeMapping: [Entity: SKNode] = [:]
     private var nodeEntityMapping: [SKNode: Entity] = [:]
 
     private let addSubject = PassthroughSubject<SKNode, Never>()
