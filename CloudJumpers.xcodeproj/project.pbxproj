@@ -13,7 +13,6 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
-		1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C91A27E099E000D755BE /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91927E099E000D755BE /* Textures.swift */; };
 		1A91C92427E099F400D755BE /* Characters.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91D27E099F400D755BE /* Characters.atlas */; };
@@ -107,7 +106,6 @@
 		1A4E3D7827D85BCA0033A29D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Unarchive.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91927E099E000D755BE /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		1A91C91D27E099F400D755BE /* Characters.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Characters.atlas; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 		1A91C90F27E08D2B00D755BE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */,
 				A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */,
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
 			);
@@ -864,7 +861,6 @@
 				A1A036EF27E190A60058B123 /* LocationSystem.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
-				1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */,
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
 				A1347AA627DA2FD60011CF40 /* RenderingComponent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,

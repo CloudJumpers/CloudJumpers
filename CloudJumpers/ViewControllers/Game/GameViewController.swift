@@ -35,7 +35,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameScene() {
-        guard let scene = GameScene.unarchiveFromFile(file: "GameScene") as? GameScene else {
+        guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
         }
 
@@ -46,7 +46,7 @@ class GameViewController: UIViewController {
         presentGameScene(scene)
     }
 
-    private func presentGameScene(_ scene: GameScene) {
+    private func presentGameScene(_ scene: SKScene) {
         let skView = view as? SKView
         skView?.ignoresSiblingOrder = true
         skView?.showsNodeCount = true
