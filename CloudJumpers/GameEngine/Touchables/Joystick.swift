@@ -8,23 +8,20 @@
 import SpriteKit
 import CoreGraphics
 
-class Joystick: Renderable, Touchable {
+class Joystick: Touchable {
     private var stickActive = false
-
-    var renderingComponent = RenderingComponent(type: .outerstick,
-                                                position: Constants.joystickPosition,
-                                                name: Images.outerStick.name,
-                                                size: Constants.outerstickSize)
-
-    var innerStickRenderingComponent = RenderingComponent(type: .innerstick,
-                                                          position: Constants.joystickPosition,
-                                                          name: Images.innerStick.name,
-                                                          size: Constants.innerstickSize)
-
     private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
 
-    private var innerstickEntity = Entity(type: .innerstick)
-    private var outerstickEntity = Entity(type: .outerstick)
+    private var innerstickEntity = InnerStick()
+    private var outerstickEntity = OuterStick()
+
+    private var innerStick: RenderingComponent {
+        innerstickEntity.renderingComponent
+    }
+
+    private var outerStick: RenderingComponent {
+        outerstickEntity.renderingComponent
+    }
 
     private var associatedEntity: Entity
 
@@ -33,14 +30,12 @@ class Joystick: Renderable, Touchable {
     }
 
     func activate(renderingSystem: RenderingSystem) {
-        renderingSystem.addComponent(entity: outerstickEntity,
-                                     component: renderingComponent)
-        renderingSystem.addComponent(entity: innerstickEntity,
-                                     component: innerStickRenderingComponent)
+        innerstickEntity.activate(renderingSystem: renderingSystem)
+        outerstickEntity.activate(renderingSystem: renderingSystem)
     }
 
     func handleTouchBegan(touchLocation: CGPoint) -> Input? {
-        guard innerStickRenderingComponent.contains(touchLocation) else {
+        guard innerStick.contains(touchLocation) else {
             return nil
         }
         stickActive = true
@@ -61,19 +56,19 @@ class Joystick: Renderable, Touchable {
             return nil
         }
 
-        let initialLocation = innerStickRenderingComponent.position
+        let initialLocation = innerStick.position
 
-        innerStickRenderingComponent.position = renderingComponent.position
-        touchArea.position = renderingComponent.position
+        innerStick.position = outerStick.position
+        touchArea.position = outerStick.position
 
         stickActive = false
         return Input(inputType: .move(entity: innerstickEntity,
-                                      by: innerStickRenderingComponent.position - initialLocation))
+                                      by: innerStick.position - initialLocation))
     }
 
     func update() -> Input? {
         if stickActive {
-            let location = innerStickRenderingComponent.position
+            let location = innerStick.position
             return handleTouchInput(location: location)
         }
         return nil
@@ -82,7 +77,7 @@ class Joystick: Renderable, Touchable {
     private func handleTouchInput(location: CGPoint) -> Input {
         let (xAngle, yAngle) = getJoystickAngle(location: location)
 
-        let dist = location.distance(to: renderingComponent.position)
+        let dist = location.distance(to: outerStick.position)
         let xDist = xAngle * dist
         let yDist = yAngle * dist
 
@@ -93,30 +88,30 @@ class Joystick: Renderable, Touchable {
 
     private func moveInnerStick(to location: CGPoint) -> Input {
         let (xAngle, yAngle) = getJoystickAngle(location: location)
-        let length = renderingComponent.size.width / 2
+        let length = outerStick.size.width / 2
 
         let xDist = xAngle * length
         let yDist = yAngle * length
 
-        let initialLocation = innerStickRenderingComponent.position
+        let initialLocation = innerStick.position
 
-        if renderingComponent.contains(location) {
-            innerStickRenderingComponent.position = location
+        if outerStick.contains(location) {
+            innerStick.position = location
         } else {
-            let finalLocation = CGPoint(x: renderingComponent.position.x - xDist,
-                                        y: renderingComponent.position.y + yDist)
-            innerStickRenderingComponent.position = finalLocation
+            let finalLocation = CGPoint(x: outerStick.position.x - xDist,
+                                        y: outerStick.position.y + yDist)
+            innerStick.position = finalLocation
         }
 
         touchArea.position = location
         return Input(inputType: .move(entity: innerstickEntity,
-                                      by: innerStickRenderingComponent.position - initialLocation))
+                                      by: innerStick.position - initialLocation))
 
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {
-        let diff = CGVector(dx: location.x - renderingComponent.position.x,
-                            dy: location.y - renderingComponent.position.y)
+        let diff = CGVector(dx: location.x - outerStick.position.x,
+                            dy: location.y - outerStick.position.y)
 
         let angle = atan2(diff.dy, diff.dx)
 
@@ -125,4 +120,34 @@ class Joystick: Renderable, Touchable {
 
         return (xAngle, yAngle)
     }
+
+    class InnerStick: Entity, Renderable {
+        var renderingComponent = RenderingComponent(type: .innerstick,
+                                                    position: Constants.joystickPosition,
+                                                    name: Images.innerStick.name,
+                                                    size: Constants.innerstickSize)
+        init() {
+            super.init(type: .innerstick)
+        }
+        func activate(renderingSystem: RenderingSystem) {
+            renderingSystem.addComponent(entity: self,
+                                         component: renderingComponent)
+        }
+    }
+
+    class OuterStick: Entity, Renderable {
+        var renderingComponent = RenderingComponent(type: .outerstick,
+                                                    position: Constants.joystickPosition,
+                                                    name: Images.outerStick.name,
+                                                    size: Constants.outerstickSize)
+        init() {
+            super.init(type: .outerstick)
+        }
+
+        func activate(renderingSystem: RenderingSystem) {
+            renderingSystem.addComponent(entity: self,
+                                         component: renderingComponent)
+        }
+    }
+
 }

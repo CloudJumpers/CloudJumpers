@@ -7,16 +7,16 @@
 
 import CoreGraphics
 
-class JumpButton: Touchable, Renderable {
-    var renderingComponent: RenderingComponent
+class JumpButton: Entity, Touchable, Renderable {
+    var renderingComponent = RenderingComponent(type: .button,
+                                                position: Constants.jumpButtonPosition,
+                                                name: Images.outerStick.name,
+                                                size: Constants.jumpButtonSize)
     var associatedEntity: Entity
 
     init(associatedEntity: Entity) {
-        self.renderingComponent = RenderingComponent(type: .button,
-                                                     position: Constants.jumpButtonPosition,
-                                                     name: Images.outerStick.name,
-                                                     size: Constants.jumpButtonSize)
         self.associatedEntity = associatedEntity
+        super.init(type: .button)
     }
 
     func handleTouchBegan(touchLocation: CGPoint) -> Input? {
@@ -28,8 +28,6 @@ class JumpButton: Touchable, Renderable {
     }
 
     func activate(renderingSystem: RenderingSystem) {
-        let entity = Entity(type: .button)
-        renderingSystem.addComponent(entity: entity,
-                                     component: renderingComponent)
+        renderingSystem.addComponent(entity: self, component: renderingComponent)
     }
 }
