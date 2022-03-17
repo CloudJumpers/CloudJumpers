@@ -47,7 +47,7 @@ class SinglePlayerGameEngine: GameEngine {
 
     }
 
-    func setupGame(level: Level) {
+    func setupGame(with level: Level) {
         // Using factory to create all object here
         setupPlayer()
         setupTouchables()
