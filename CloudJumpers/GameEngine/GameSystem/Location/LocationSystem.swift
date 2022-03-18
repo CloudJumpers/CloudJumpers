@@ -28,9 +28,19 @@ class LocationSystem: System {
 
     func update(_ deltaTime: Double) {
         for entity in entityComponentMapping.keys {
-            // check location based logic
-            // If reached top platform -> Win
-            // Check if two player on same cloud
+            guard entity.type == .player,
+                  let component = entityComponentMapping[entity]
+            else {
+                continue
+            }
+            switch component.location {
+            case .on(entity: let entity):
+                if entity.type == .platform {
+                    eventManager?.eventsQueue.append(Event(type: .gameEnd))
+                }
+            default:
+                continue
+            }
         }
     }
 }

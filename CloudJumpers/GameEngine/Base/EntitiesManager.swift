@@ -10,7 +10,6 @@ import Combine
 
 class EntitiesManager {
     private var entities = Set<Entity>()
-    private var entityNodeMapping: [Entity: SKNode] = [:]
     private var nodeEntityMapping: [SKNode: Entity] = [:]
 
     private let addSubject = PassthroughSubject<SKNode, Never>()
@@ -30,37 +29,28 @@ class EntitiesManager {
 
     func addEntity(_ entity: Entity) {
         entities.insert(entity)
+        guard let skEntity = entity as? SKEntity,
+              let node = skEntity.node else {
+            return
+        }
+        addSubject.send(node)
     }
 
     func removeEntity(_ entity: Entity) {
         entities.remove(entity)
-        guard let node = entityNodeMapping[entity] else {
+        guard let skEntity = entity as? SKEntity,
+              let node = skEntity.node else {
             return
         }
-        entityNodeMapping.removeValue(forKey: entity)
-        removeSubject.send(node)
-
-    }
-
-    func addNode(_ node: SKNode, entity: Entity) {
-        // Remove previous node first
-        removeNode(entity: entity)
-        entityNodeMapping[entity] = node
-        nodeEntityMapping[node] = entity
-        addSubject.send(node)
-    }
-
-    func removeNode(entity: Entity) {
-        guard let node = entityNodeMapping[entity] else {
-            return
-        }
-        entityNodeMapping.removeValue(forKey: entity)
-        nodeEntityMapping.removeValue(forKey: node)
         removeSubject.send(node)
     }
 
     func getNode(of entity: Entity) -> SKNode? {
-        entityNodeMapping[entity]
+        guard let skEntity = entity as? SKEntity,
+              let node = skEntity.node else {
+            return nil
+        }
+        return node
     }
     func getEntity(of node: SKNode) -> Entity? {
         nodeEntityMapping[node]
