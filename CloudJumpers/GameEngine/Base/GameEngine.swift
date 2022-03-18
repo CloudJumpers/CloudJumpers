@@ -12,6 +12,8 @@ protocol GameEngine: AnyObject {
     var entitiesManager: EntitiesManager { get }
     var eventManager: EventManager { get }
     var touchableManager: TouchableManager { get }
+    var contactResolver: ContactResolver { get }
+
     var addNodePublisher: AnyPublisher<SKNode, Never> { get }
     var removeNodePublisher: AnyPublisher<SKNode, Never> { get }
 

@@ -13,6 +13,7 @@ class SinglePlayerGameEngine: GameEngine {
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
     var touchableManager: TouchableManager
+    var contactResolver: ContactResolver
 
     var addNodePublisher: AnyPublisher<SKNode, Never> {
         entitiesManager.addPublisher
@@ -28,21 +29,18 @@ class SinglePlayerGameEngine: GameEngine {
 
     // System
     let movingSystem: MovingSystem
-    let contactSystem: ContactSystem
-    let locationSystem: LocationSystem
     let timerSystem: TimerSystem
 
     init() {
+        self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
 
-        self.eventManager = EventManager()
         self.touchableManager = TouchableManager(eventManager: eventManager)
+        self.contactResolver = ContactResolver(entitiesManager: entitiesManager,
+                                               eventManager: eventManager)
 
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
-        self.contactSystem = ContactSystem(entitiesManager: entitiesManager,
-                                           eventManager: eventManager)
-        self.locationSystem = LocationSystem(entitiesManager: entitiesManager,
-                                             eventManager: eventManager)
+
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
@@ -96,8 +94,6 @@ class SinglePlayerGameEngine: GameEngine {
         }
 
         movingSystem.update(deltaTime)
-        contactSystem.update(deltaTime)
-        locationSystem.update(deltaTime)
         timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
@@ -116,12 +112,6 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case let .contact(nodeA, nodeB):
-            handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case let .endContact(nodeA, nodeB):
-            handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case let .changeLocation(entity, location):
-            handleChangeLocation(entity: entity, location: location)
         case .gameEnd:
             handleGameEnd()
         }
@@ -135,32 +125,6 @@ class SinglePlayerGameEngine: GameEngine {
     private func handleJumpEvent(entity: Entity) {
         let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
-    }
-
-    private func handleBeginContactEvent(nodeA: SKNode, nodeB: SKNode) {
-        guard let entityA = entitiesManager.getEntity(of: nodeA),
-              let entityB = entitiesManager.getEntity(of: nodeB)
-        else {
-            return
-        }
-        let component = ContactComponent(entityA: entityA, entityB: entityB, type: .begin)
-        contactSystem.addComponent(entity: entityA, component: component)
-
-    }
-
-    private func handleEndContactEvent(nodeA: SKNode, nodeB: SKNode) {
-        guard let entityA = entitiesManager.getEntity(of: nodeA),
-              let entityB = entitiesManager.getEntity(of: nodeB)
-        else {
-            return
-        }
-        let component = ContactComponent(entityA: entityA, entityB: entityB, type: .begin)
-        contactSystem.addComponent(entity: entityA, component: component)
-    }
-
-    private func handleChangeLocation(entity: Entity, location: LocationComponent.Location) {
-        let locationComponent = LocationComponent(location: location)
-        locationSystem.addComponent(entity: entity, component: locationComponent)
     }
 
     private func handleGameEnd() {
