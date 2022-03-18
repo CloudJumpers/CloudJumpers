@@ -45,7 +45,7 @@ class MovingSystem: System {
             return
         }
 
-        entityComponentMapping[entity]!.append(movingComponent)
+        entityComponentMapping[entity]?.append(movingComponent)
     }
 
     private func handleMove(node: SKNode, entity: Entity, distance: CGVector) {

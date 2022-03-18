@@ -5,15 +5,17 @@ def shared_pods
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
 end
+
+workspace 'CloudJumpers'
   
 target 'CloudJumpers' do
-  # Comment the next line if you don't want to use dynamic frameworks
+  platform :ios, '12.0'
   use_frameworks!
-
   shared_pods
 end
 
 target 'CloudJumpersTests' do
+  platform :ios, '12.0'
   use_frameworks!
   shared_pods
 end

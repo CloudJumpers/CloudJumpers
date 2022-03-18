@@ -7,35 +7,33 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
-    var gameEngine: GameEngine!
+class GameScene: SKScene {
+    unowned var sceneDelegate: GameSceneDelegate?
     var lastUpdateTime: TimeInterval = -1
 
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.white
-        self.physicsWorld.contactDelegate = self
-        self.view?.isMultipleTouchEnabled = true
+        setUpScene()
+        setUpPhysicsWorld()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            gameEngine.touchableManager.handleTouchBeganEvent(location: location)
-
+            sceneDelegate?.scene(self, didBeginTouchAt: location)
         }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            gameEngine.touchableManager.handleTouchMovedEvent(location: location)
+            sceneDelegate?.scene(self, didMoveTouchAt: location)
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            gameEngine.touchableManager.handleTouchEndedEvent(location: location)
+            sceneDelegate?.scene(self, didEndTouchAt: location)
         }
     }
 
@@ -47,30 +45,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        gameEngine.update(deltaTime)
-   }
 
+        sceneDelegate?.scene(self, updateWithin: deltaTime)
+    }
+
+    private func setUpScene() {
+        backgroundColor = SKColor.white
+        self.view?.isMultipleTouchEnabled = true
+    }
+
+    private func setUpPhysicsWorld() {
+        physicsWorld.contactDelegate = self
+    }
+}
+
+// MARK: - SKPhysicsContactDelegate
+extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node
-        else {
-            return
-        }
-        let newEvent = Event(type: .contact(nodeA: nodeA, nodeB: nodeB))
-        gameEngine.eventManager.eventsQueue.append(newEvent)
+        else { return }
 
+        sceneDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
     }
 
     func didEnd(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node
-        else {
-            return
-        }
-        let newEvent = Event(type: .endContact(nodeA: nodeA, nodeB: nodeB))
-        gameEngine.eventManager.eventsQueue.append(newEvent)
+        else { return }
+
+        sceneDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
     }
-
-    /* All Scene logic (which you could extend to multiple files) */
-
 }

@@ -9,17 +9,16 @@ import SpriteKit
 import CoreGraphics
 
 class Joystick: Renderable, Touchable {
-    var inputManager: InputManager
     private var stickActive = false
 
     var renderingComponent = RenderingComponent(type: .outerstick,
                                                 position: Constants.joystickPosition,
-                                                name: Constants.outerstickImage,
+                                                name: Images.outerStick.name,
                                                 size: Constants.outerstickSize)
 
     var innerStickRenderingComponent = RenderingComponent(type: .innerstick,
                                                           position: Constants.joystickPosition,
-                                                          name: Constants.innerstickImage,
+                                                          name: Images.innerStick.name,
                                                           size: Constants.innerstickSize)
 
     private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
@@ -29,8 +28,7 @@ class Joystick: Renderable, Touchable {
 
     private var associatedEntity: Entity
 
-    init(inputManager: InputManager, associatedEntity: Entity) {
-        self.inputManager = inputManager
+    init(associatedEntity: Entity) {
         self.associatedEntity = associatedEntity
     }
 
@@ -41,46 +39,47 @@ class Joystick: Renderable, Touchable {
                                      component: innerStickRenderingComponent)
     }
 
-    func handleTouchBegan(touchLocation: CGPoint) {
+    func handleTouchBegan(touchLocation: CGPoint) -> Input? {
         guard innerStickRenderingComponent.contains(touchLocation) else {
-            return
+            return nil
         }
-
         stickActive = true
+        return nil
     }
 
-    func handleTouchMoved(touchLocation: CGPoint) {
+    func handleTouchMoved(touchLocation: CGPoint) -> Input? {
         if stickActive {
-            moveInnerStick(to: touchLocation)
+            return moveInnerStick(to: touchLocation)
         }
+        return nil
     }
 
-    func handleTouchEnded(touchLocation: CGPoint) {
-        guard touchArea.contains(touchLocation) else {
-            return
+    func handleTouchEnded(touchLocation: CGPoint) -> Input? {
+        guard touchArea.contains(touchLocation),
+              stickActive
+        else {
+            return nil
         }
 
-        if stickActive {
-            let initialLocation = innerStickRenderingComponent.position
+        let initialLocation = innerStickRenderingComponent.position
 
-            innerStickRenderingComponent.position = renderingComponent.position
-            touchArea.position = renderingComponent.position
+        innerStickRenderingComponent.position = renderingComponent.position
+        touchArea.position = renderingComponent.position
 
-            notifyLocationChange(entity: innerstickEntity,
-                                 by: innerStickRenderingComponent.position - initialLocation)
-
-            stickActive = false
-        }
+        stickActive = false
+        return Input(inputType: .move(entity: innerstickEntity,
+                                      by: innerStickRenderingComponent.position - initialLocation))
     }
 
-    func update() {
+    func update() -> Input? {
         if stickActive {
             let location = innerStickRenderingComponent.position
-            handleTouchInput(location: location)
+            return handleTouchInput(location: location)
         }
+        return nil
     }
 
-    private func handleTouchInput(location: CGPoint) {
+    private func handleTouchInput(location: CGPoint) -> Input {
         let (xAngle, yAngle) = getJoystickAngle(location: location)
 
         let dist = location.distance(to: renderingComponent.position)
@@ -89,10 +88,10 @@ class Joystick: Renderable, Touchable {
 
         let locationChange = CGVector(dx: -xDist * Constants.speedMultiplier,
                                       dy: yDist * Constants.speedMultiplier)
-        notifyLocationChange(entity: associatedEntity, by: locationChange)
+        return Input(inputType: .move(entity: associatedEntity, by: locationChange))
     }
 
-    private func moveInnerStick(to location: CGPoint) {
+    private func moveInnerStick(to location: CGPoint) -> Input {
         let (xAngle, yAngle) = getJoystickAngle(location: location)
         let length = renderingComponent.size.width / 2
 
@@ -110,8 +109,8 @@ class Joystick: Renderable, Touchable {
         }
 
         touchArea.position = location
-        notifyLocationChange(entity: innerstickEntity,
-                             by: innerStickRenderingComponent.position - initialLocation)
+        return Input(inputType: .move(entity: innerstickEntity,
+                                      by: innerStickRenderingComponent.position - initialLocation))
 
     }
 
@@ -126,11 +125,4 @@ class Joystick: Renderable, Touchable {
 
         return (xAngle, yAngle)
     }
-
-    private func notifyLocationChange(entity: Entity, by distance: CGVector) {
-        let newInput = Input(inputType: .move(entity: entity,
-                                              by: distance))
-        inputManager.parseInput(input: newInput)
-    }
-
 }
