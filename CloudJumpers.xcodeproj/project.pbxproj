@@ -36,6 +36,7 @@
 		3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7727E2FBB400D51300 /* TimerEntity.swift */; };
 		3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7927E30CAF00D51300 /* TimerComponent.swift */; };
 		3E246B8127E3414400D51300 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B8027E3414400D51300 /* EndGameViewController.swift */; };
+		9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624D27E502DE00063BE9 /* NetworkCallback.swift */; };
 		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B227DF04ED00324DAF /* LobbiesViewController.swift */; };
 		934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B427DF04FD00324DAF /* LobbyViewController.swift */; };
@@ -140,6 +141,7 @@
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		9344624D27E502DE00063BE9 /* NetworkCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallback.swift; sourceTree = "<group>"; };
 		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
 		934789B227DF04ED00324DAF /* LobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbiesViewController.swift; sourceTree = "<group>"; };
 		934789B427DF04FD00324DAF /* LobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
@@ -474,6 +476,7 @@
 				93D4E17827DA125C0054F45B /* NetworkedEntity.swift */,
 				93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */,
 				93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */,
+				9344624D27E502DE00063BE9 /* NetworkCallback.swift */,
 			);
 			path = Definitions;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
+				9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				A1F190BC27E08DF60003D7ED /* ContactComponent.swift in Sources */,

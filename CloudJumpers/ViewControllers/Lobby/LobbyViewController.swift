@@ -77,6 +77,10 @@ class LobbyViewController: UIViewController {
         }
     }
 
+    private func handleReady(snapshot: DataSnapshot) {
+        print(snapshot)
+    }
+
     private func setLobbyName(name: String) {
         lobbyName.text = name
     }

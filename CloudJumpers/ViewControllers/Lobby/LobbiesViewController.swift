@@ -82,7 +82,13 @@ class LobbiesViewController: UIViewController {
     }
 
     private func addLobbyListing(lobbyId: EntityID, hostId: EntityID, lobbyName: String, occupancy: Int) {
-        let newLobbyListing = LobbyListing(lobbyId: lobbyId, hostId: hostId, lobbyName: lobbyName, numPlayers: occupancy)
+        let newLobbyListing = LobbyListing(
+            lobbyId: lobbyId,
+            hostId: hostId,
+            lobbyName: lobbyName,
+            numPlayers: occupancy
+        )
+
         lobbies.append(newLobbyListing)
     }
 

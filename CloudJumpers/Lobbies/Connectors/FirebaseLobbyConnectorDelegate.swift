@@ -16,10 +16,10 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         let lobbyId = LobbyUtils.generateLobbyId()
         let lobbyName = LobbyUtils.generateLobbyName()
 
-        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-        ref.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
+        let lobbyReference = getLobbyReference(lobbyId: lobbyId)
+        lobbyReference.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
 
-        ref.setValue([
+        lobbyReference.setValue([
             LobbyKeys.hostId: userId,
             LobbyKeys.lobbyName: lobbyName,
             LobbyKeys.participants: [
@@ -37,14 +37,13 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         let userId = getActiveUserId()
         let userDisplayName = getActiveUserDisplayName()
 
-        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-        let participantsRef = ref.child(LobbyKeys.participants)
+        let participantsReference = getLobbyParticipantsReference(lobbyId: lobbyId)
 
-        // JoinLobby needs to be wrapped in a transaction, as the join requires the following conditions
+        // joinLobby needs to be wrapped in a transaction, as the join requires the following conditions
         // - the lobby exists when the user joins
         // - user is not (somehow) in the lobby already
         // - the maximum occupancy is not reached
-        participantsRef.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+        participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if
                 currentData.childrenCount < LobbyConstants.MaxSupportedPlayers,
                 var nextData = currentData.value as? [String: AnyObject],
@@ -72,22 +71,73 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
     }
 
     func exitLobby(lobbyId: EntityID, deleteLobby: Bool = false) {
-        let userId = getActiveUserId()
+        let userReference = getLobbyUserReference(lobbyId: lobbyId)
+        let lobbyReference = getLobbyReference(lobbyId: lobbyId)
 
-        let ref = Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
-        let participantsRef = ref.child(LobbyKeys.participants).child(userId)
+        userReference.removeValue()
+        userReference.removeAllObservers()
 
-        participantsRef.removeValue()
-        participantsRef.removeAllObservers()
-        ref.removeAllObservers()
-
+        lobbyReference.removeAllObservers()
         if deleteLobby {
-            ref.removeValue()
+            lobbyReference.removeValue()
         }
     }
 
+    func setReady(lobbyId: EntityID) {
+        let userId = getActiveUserId()
+        let participantsReference = getLobbyParticipantsReference(lobbyId: lobbyId)
+
+        // setReady requires the following:
+        // - the lobby exists
+        // - the user exists in the lobby
+        // - the user was previously not ready
+        participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if
+                var data = currentData.value as? [String: AnyObject],
+                var userState = data[userId] as? [String: AnyObject],
+                let userWasReady = userState[LobbyKeys.participantReady] as? Bool,
+                !userWasReady
+            {
+
+                userState[LobbyKeys.participantReady] = true as AnyObject?
+                data[userId] = userState as AnyObject?
+                currentData.value = data
+
+                return TransactionResult.success(withValue: currentData)
+            }
+            return TransactionResult.success(withValue: currentData)
+        }) { error, committed, snapshot in
+            print("committed ready \(committed)")
+            if let err = error {
+                print("readyLobby error: \(err.localizedDescription)")
+            }
+
+            if let snap = snapshot {
+                print("readyLobby snap: \(snap)")
+            }
+        }
+    }
+//
+//    func setNotReady(lobbyId: EntityID) {
+//        <#code#>
+//    }
+
     private func constructLobbyPath(lobbyId: EntityID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"
+    }
+
+    private func getLobbyReference(lobbyId: EntityID) -> DatabaseReference {
+        Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
+    }
+
+    private func getLobbyParticipantsReference(lobbyId: EntityID) -> DatabaseReference {
+        let lobbyReference = getLobbyReference(lobbyId: lobbyId)
+        return lobbyReference.child(LobbyKeys.participants)
+    }
+
+    private func getLobbyUserReference(lobbyId: EntityID) -> DatabaseReference {
+        let userId = getActiveUserId()
+        return getLobbyParticipantsReference(lobbyId: lobbyId).child(userId)
     }
 
     private func getActiveUserId() -> EntityID {
