@@ -5,23 +5,21 @@
 //  Created by Eric Bryan on 17/3/22.
 //
 
- import Foundation
+ import SpriteKit
 
- class TimerEntity: Entity, Renderable {
-    private var initialTime = Constants.timerInitial
-    var renderingComponent: RenderingComponent
+ class TimerEntity: SKEntity {
 
     init() {
-        self.renderingComponent = RenderingComponent(type: .timer(time: initialTime),
-                                                     position: Constants.timerPosition,
-                                                     name: Constants.timerName,
-                                                     size: Constants.timerSize)
         super.init(type: .timer)
+        self.node = createSKNode()
     }
-
-    func activate(renderingSystem: RenderingSystem) {
-        renderingSystem.addComponent(entity: self,
-                                     component: renderingComponent)
-    }
-
+     override func createSKNode() -> SKNode? {
+         let sprite = SKLabelNode()
+         sprite.position = Constants.timerPosition
+         sprite.fontSize = Constants.timerSize.width
+         sprite.text = "\(Constants.timerInitial)"
+         sprite.fontColor = .black
+         sprite.zPosition = SpriteZPosition.timer.rawValue
+         return sprite
+     }
  }

@@ -31,7 +31,6 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         gameEngine = SinglePlayerGameEngine()
-        gameEngine?.setupGame(with: Level())
     }
 
     private func setUpGameScene() {
@@ -41,6 +40,8 @@ class GameViewController: UIViewController {
 
         scene.sceneDelegate = self
         createGameEngineSubscribers(for: scene)
+        // Setup Game only after creating the subscribers
+        gameEngine?.setupGame(with: Level())
 
         scene.scaleMode = .aspectFill
         presentGameScene(scene)
