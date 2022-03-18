@@ -5,29 +5,33 @@
 //  Created by Eric Bryan on 14/3/22.
 //
 
-import CoreGraphics
+import SpriteKit
 
-class JumpButton: Entity, Touchable, Renderable {
-    var renderingComponent = RenderingComponent(type: .button,
-                                                position: Constants.jumpButtonPosition,
-                                                name: Images.outerStick.name,
-                                                size: Constants.jumpButtonSize)
+class JumpButton: SKEntity, Touchable {
     var associatedEntity: Entity
 
     init(associatedEntity: Entity) {
         self.associatedEntity = associatedEntity
         super.init(type: .button)
+        self.node = createSKNode()
+
+    }
+
+    override func createSKNode() -> SKNode? {
+        let sprite = SKSpriteNode(imageNamed: Images.outerStick.name)
+        sprite.position = Constants.jumpButtonPosition
+        sprite.size = Constants.jumpButtonSize
+        sprite.zPosition = SpriteZPosition.button.rawValue
+        return sprite
     }
 
     func handleTouchBegan(touchLocation: CGPoint) -> Input? {
-        guard renderingComponent.contains(touchLocation) else {
+        guard let node = self.node as? SKSpriteNode,
+              touchLocation.isInside(position: node.position, size: node.size)
+        else {
             return nil
         }
         return Input(inputType: .jump(entity: associatedEntity))
 
-    }
-
-    func activate(renderingSystem: RenderingSystem) {
-        renderingSystem.addComponent(entity: self, component: renderingComponent)
     }
 }
