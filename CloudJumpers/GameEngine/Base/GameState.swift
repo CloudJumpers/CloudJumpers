@@ -1,5 +1,5 @@
 //
-//  State.swift
+//  GameState.swift
 //  CloudJumpers
 //
 //  Created by Trong Tan on 3/18/22.
