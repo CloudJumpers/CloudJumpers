@@ -20,8 +20,6 @@ class ContactResolver {
     func resolveBeginContact(contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node
-//              let entityA = entitiesManager?.getEntity(of: nodeA),
-//              let entityB = entitiesManager?.getEntity(of: nodeB)
         else {
             return
         }
