@@ -19,16 +19,19 @@ class PlatformEntity: SKPhysicalEntity {
     override func createSKNode() -> SKNode? {
         let atlas = Textures.clouds.texture
         let sprite = SKSpriteNode(texture: atlas.textureNamed("cloud-1") )
-        sprite.size = Constants.cloudNodeSize
-        sprite.zPosition = SpriteZPosition.player.rawValue
+        sprite.size = Constants.platformNodeSize
+        sprite.zPosition = SpriteZPosition.platform.rawValue
         return sprite
 
     }
 
     override func createSKPhysicsBody() -> SKPhysicsBody? {
-        let physicsbody = SKPhysicsBody(rectangleOf: Constants.cloudPhysicsSize)
+        let physicsbody = SKPhysicsBody(rectangleOf: Constants.platformPhysicsSize)
         physicsbody.affectedByGravity = false
         physicsbody.allowsRotation = false
+        physicsbody.isDynamic = false
+        physicsbody.categoryBitMask = Constants.bitmaskPlatform
+        physicsbody.contactTestBitMask = Constants.bitmaskPlayer
         return physicsbody
     }
 }

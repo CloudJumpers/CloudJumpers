@@ -33,6 +33,8 @@ class PlayerEntity: SKPhysicalEntity {
                                            size: Constants.playerSize)
         newPhysicsBody.affectedByGravity = true
         newPhysicsBody.allowsRotation = false
+        newPhysicsBody.categoryBitMask = Constants.bitmaskPlayer
+
         return newPhysicsBody
     }
 }
