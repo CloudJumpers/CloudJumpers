@@ -32,6 +32,7 @@ class LobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lobbyUsersView.dataSource = self
+        navigationItem.hidesBackButton = true
         overrideUserInterfaceStyle = .light
     }
 
@@ -145,11 +146,10 @@ extension LobbyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
-        guard let lobby = self.activeLobby, let lobbyUserCell = cell as? LobbyUserCell else {
+        guard let lobbyUser = activeLobby?.allUsers[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
             return cell
         }
 
-        let lobbyUser = lobby.allUsers[indexPath.row]
         lobbyUserCell.setDisplayName(newDisplayName: lobbyUser.displayName)
         lobbyUserCell.setIsReady(isReady: lobbyUser.isReady)
 

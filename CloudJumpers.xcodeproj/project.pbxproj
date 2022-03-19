@@ -335,6 +335,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9344625327E5B1F700063BE9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		934789AA27DEEA4D00324DAF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +460,7 @@
 		938C15A527DE4A4B00A1892C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9344625327E5B1F700063BE9 /* Utils */,
 				934789B127DF04D900324DAF /* Lobby */,
 				934789AE27DEF6F400324DAF /* Game */,
 				934789AA27DEEA4D00324DAF /* Authentication */,

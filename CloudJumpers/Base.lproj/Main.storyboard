@@ -623,7 +623,7 @@
                             <constraint firstItem="xKO-qk-hgx" firstAttribute="centerX" secondItem="3Uy-my-ygc" secondAttribute="centerX" id="ZPP-5I-RbW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="2Tv-t8-7GD"/>
+                    <navigationItem key="navigationItem" id="2Tv-t8-7GD"/>
                     <connections>
                         <outlet property="gameMode" destination="wfb-OW-zE9" id="6bz-Ne-0nT"/>
                         <outlet property="leaveButton" destination="NEb-ek-1jl" id="FhR-ia-fQn"/>
