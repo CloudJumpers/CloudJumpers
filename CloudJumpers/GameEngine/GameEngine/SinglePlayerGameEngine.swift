@@ -50,19 +50,13 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func setupEnvironment() {
-        // should read from a file?
         for entity in SinglePlayerLevels.levelOne {
             addEntity(entity)
         }
     }
 
     private func setupPlayer() {
-        entitiesManager.addEntity(playerEntity)
-
-        guard let node = playerEntity.node else {
-            return
-        }
-        delegate?.engine(self, addPlayerWith: node)
+        addPlayer(playerEntity)
     }
 
     private func setupTouchables() {
@@ -71,22 +65,14 @@ class SinglePlayerGameEngine: GameEngine {
 
         touchableManager.addTouchable(touchable: joystick)
         touchableManager.addTouchable(touchable: jumpButton)
-        entitiesManager.addEntity(joystick.innerstickEntity)
-        entitiesManager.addEntity(joystick.outerstickEntity)
-        entitiesManager.addEntity(jumpButton)
-
-        guard let innerStickNode = joystick.innerstickEntity.node,
-              let outerStickNode = joystick.outerstickEntity.node,
-              let jumpButtonNode = jumpButton.node
-        else { return }
-        delegate?.engine(self, addControlWith: innerStickNode)
-        delegate?.engine(self, addControlWith: outerStickNode)
-        delegate?.engine(self, addControlWith: jumpButtonNode)
+        addControl(joystick.innerstickEntity)
+        addControl(joystick.outerstickEntity)
+        addControl(jumpButton)
     }
 
     private func setupTimer() {
         let timer = TimerEntity()
-        addEntity(timer)
+        addControl(timer)
 
         let timerComponent = TimerComponent(time: Constants.timerInitial)
         timerSystem.addComponent(entity: timer, component: timerComponent)
@@ -110,6 +96,22 @@ class SinglePlayerGameEngine: GameEngine {
             return
         }
         delegate?.engine(self, addEntityWith: node)
+    }
+
+    private func addPlayer(_ player: PlayerEntity) {
+        entitiesManager.addEntity(player)
+        guard let node = player.node else {
+            return
+        }
+        delegate?.engine(self, addPlayerWith: node)
+    }
+
+    private func addControl(_ control: SKEntity) {
+        entitiesManager.addEntity(control)
+        guard let node = control.node else {
+            return
+        }
+        delegate?.engine(self, addControlWith: node)
     }
 
     private func handleEvent(event: Event) {
