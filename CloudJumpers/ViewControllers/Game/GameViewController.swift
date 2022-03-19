@@ -12,21 +12,6 @@ class GameViewController: UIViewController {
         setUpGameScene()
     }
 
-//    private func setUpSubscribers(for scene: GameScene) {
-//        addNodeSubscription = gameEngine?.addNodePublisher.sink { node in
-//            scene.addChild(node)
-//        }
-//
-//        removeNodeSubscription = gameEngine?.removeNodePublisher.sink { node in
-//            node.removeAllChildren()
-//            node.removeFromParent()
-//        }
-//
-//        endStateSubscription = stateMachine?.endPublisher.sink { _ in
-//            // Navigate to end view
-//        }
-//    }
-
     private func setUpGameEngine() {
         stateMachine = StateMachine()
         if let stateMachine = stateMachine {
