@@ -30,6 +30,7 @@ class EntitiesManager {
         }
         return node
     }
+
     func getEntity(of node: SKNode) -> Entity? {
         nodeEntityMapping[node]
     }

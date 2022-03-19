@@ -1,8 +1,13 @@
+import Combine
 import SpriteKit
 
 class GameViewController: UIViewController {
+    static let MainStoryboard = "Main"
+    static let EndGameViewControllerId = "EndGameViewController"
+
     private var gameEngine: GameEngine?
     private var stateMachine: StateMachine?
+    private var endStateSubscription: AnyCancellable?
     private var scene: GameScene?
 
     override func viewDidLoad() {
@@ -10,6 +15,13 @@ class GameViewController: UIViewController {
 
         setUpGameEngine()
         setUpGameScene()
+    }
+
+    private func setUpStateMachineSubscriber(for scene: GameScene) {
+        endStateSubscription = stateMachine?.endPublisher.sink { state in
+            self.transitionToEndGame(state: state)
+            self.endStateSubscription = nil
+        }
     }
 
     private func setUpGameEngine() {
@@ -29,6 +41,7 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         self.scene = scene
         gameEngine?.setupGame(with: Level())
+        setUpStateMachineSubscriber(for: scene)
         setUpSKViewAndPresent(scene: scene)
     }
 
@@ -40,6 +53,29 @@ class GameViewController: UIViewController {
         skView.showsFPS = true
         skView.presentScene(scene)
         view = skView
+    }
+
+    private func transitionToEndGame(state: TimeTrialGameEndState) {
+        let storyboard = UIStoryboard(name: GameViewController.MainStoryboard, bundle: nil)
+
+        guard let endGameViewController = storyboard
+                .instantiateViewController(identifier: GameViewController.EndGameViewControllerId)
+                as? EndGameViewController
+        else {
+            fatalError("Cannot find controller with identifier \(GameViewController.EndGameViewControllerId)")
+        }
+
+        let scores = state.scores
+        let names = scores[1...].map { score in score.name }
+        let highScores = scores[1...].map { score in "\(score.score)" }
+        let playerScore = String(format: "%.1f", scores[0].score)
+
+        endGameViewController.configure(names: names, scores: highScores, playerScore: playerScore)
+
+        if var viewControllers = self.navigationController?.viewControllers {
+            viewControllers[viewControllers.count - 1] = endGameViewController
+            self.navigationController?.setViewControllers(viewControllers, animated: true)
+        }
     }
 }
 

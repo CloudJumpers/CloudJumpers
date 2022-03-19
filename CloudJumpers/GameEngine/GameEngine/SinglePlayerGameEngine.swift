@@ -50,13 +50,14 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func setupEnvironment() {
-        let testCloud = CloudEntity(position: CGPoint(x: -10, y: 70))
-        entitiesManager.addEntity(testCloud)
+        // should read from a file?
+        let cloud1 = CloudEntity(position: CGPoint(x: 173, y: -300))
+        let cloud2 = CloudEntity(position: CGPoint(x: -50, y: -220))
+        let platform = PlatformEntity(position: CGPoint(x: 0, y: -150))
 
-        guard let node = testCloud.node else {
-            return
-        }
-        delegate?.engine(self, addEntityWith: node)
+        addEntity(cloud1)
+        addEntity(cloud2)
+        addEntity(platform)
     }
 
     private func setupPlayer() {
@@ -89,16 +90,10 @@ class SinglePlayerGameEngine: GameEngine {
 
     private func setupTimer() {
         let timer = TimerEntity()
-
-        entitiesManager.addEntity(timer)
+        addEntity(timer)
 
         let timerComponent = TimerComponent(time: Constants.timerInitial)
         timerSystem.addComponent(entity: timer, component: timerComponent)
-
-        guard let node = timer.node else {
-            return
-        }
-        delegate?.engine(self, addControlWith: node)
     }
 
     func update(_ deltaTime: Double) {
@@ -111,6 +106,14 @@ class SinglePlayerGameEngine: GameEngine {
         timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
+    }
+
+    private func addEntity(_ entity: SKEntity) {
+        entitiesManager.addEntity(entity)
+        guard let node = entity.node else {
+            return
+        }
+        delegate?.engine(self, addEntityWith: node)
     }
 
     private func handleEvent(event: Event) {

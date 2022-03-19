@@ -11,14 +11,23 @@ import UIKit
 class EndGameViewController: UIViewController {
     @IBOutlet private var nameTableView: UITableView!
     @IBOutlet private var scoreTableView: UITableView!
+    @IBOutlet private var score: UILabel!
 
-    private var names = ["Hello", "my", "name", "is", "John"]
-    private var scores = ["10", "200", "500", "1000", "20000"]
+    private var names: [String] = []
+    private var scores: [String] = []
+    private var playerScore: String = "0"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         nameTableView.dataSource = self
         scoreTableView.dataSource = self
+        score.text = playerScore
+    }
+
+    func configure(names: [String], scores: [String], playerScore: String) {
+        self.names = names
+        self.scores = scores
+        self.playerScore = playerScore
     }
 }
 
