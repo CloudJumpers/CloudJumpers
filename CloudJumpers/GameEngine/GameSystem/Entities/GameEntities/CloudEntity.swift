@@ -33,6 +33,8 @@ class CloudEntity: SKPhysicalEntity {
         newPhysicsBody.affectedByGravity = false
         newPhysicsBody.allowsRotation = false
         newPhysicsBody.isDynamic = false
+        newPhysicsBody.categoryBitMask = Constants.bitmaskCloud
+        newPhysicsBody.contactTestBitMask = Constants.bitmaskPlayer
         return newPhysicsBody
     }
 }

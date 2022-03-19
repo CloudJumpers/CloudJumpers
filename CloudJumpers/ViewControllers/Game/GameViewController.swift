@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
 
         endStateSubscription = stateMachine?.endPublisher.sink { state in
             self.transitionToEndGame(state: state)
+            self.endStateSubscription = nil
         }
     }
 
@@ -80,7 +81,7 @@ class GameViewController: UIViewController {
         let scores = state.scores
         let names = scores[1...].map { score in score.name }
         let highScores = scores[1...].map { score in "\(score.score)" }
-        let playerScore = "\(scores[0].score)"
+        let playerScore = String(format: "%.1f", scores[0].score)
 
         endGameViewController.configure(names: names, scores: highScores, playerScore: playerScore)
 

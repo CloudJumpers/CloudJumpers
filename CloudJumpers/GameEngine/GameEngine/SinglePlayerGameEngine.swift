@@ -60,8 +60,15 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func setupEnvironment() {
-        let testCloud = CloudEntity(position: CGPoint(x: -10, y: 70))
-        entitiesManager.addEntity(testCloud)
+        // should read from a file?
+        let cloud1 = CloudEntity(position: CGPoint(x: 173, y: -300))
+        entitiesManager.addEntity(cloud1)
+
+        let cloud2 = CloudEntity(position: CGPoint(x: -50, y: -220))
+        entitiesManager.addEntity(cloud2)
+
+        let platform = PlatformEntity(position: CGPoint(x: 0, y: -150))
+        entitiesManager.addEntity(platform)
 
     }
 

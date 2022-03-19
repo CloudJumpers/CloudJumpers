@@ -29,6 +29,9 @@ class PlatformEntity: SKPhysicalEntity {
         let physicsbody = SKPhysicsBody(rectangleOf: Constants.cloudPhysicsSize)
         physicsbody.affectedByGravity = false
         physicsbody.allowsRotation = false
+        physicsbody.isDynamic = false
+        physicsbody.categoryBitMask = Constants.bitmaskPlatform
+        physicsbody.contactTestBitMask = Constants.bitmaskPlayer
         return physicsbody
     }
 }
