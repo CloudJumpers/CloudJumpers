@@ -14,30 +14,27 @@ struct LobbyUser: NetworkedEntity {
     private(set) var isReady: Bool
     private(set) var lastUpdatedAt: Int
 
-    init(id: EntityID, displayName: String) {
+    init(id: EntityID, displayName: String, isReady: Bool = false) {
         self.id = id
         self.displayName = displayName
-        self.isReady = false
+        self.isReady = isReady
         self.lastUpdatedAt = LobbyUtils.getUnixTimestampSeconds()
     }
 
+    @available(*, unavailable)
     func isUpdatable() -> Bool {
         let currentTime = LobbyUtils.getUnixTimestampSeconds()
         return (currentTime - lastUpdatedAt) > LobbyConstants.minUpdateInterval
     }
 
-    /// toggleReady checks whether an update can be performed,
-    /// and toggles the ready state of the lobby user
-    ///
-    /// Returns the new readiness of the lobby user.
-    mutating func toggleReady() -> Bool {
-        guard isUpdatable() else {
-            return isReady
-        }
-
-        isReady.toggle()
+    mutating func setAsReady() {
+        isReady = true
         refreshLastUpdatedAt()
-        return isReady
+    }
+
+    mutating func setAsNotReady() {
+        isReady = false
+        refreshLastUpdatedAt()
     }
 
     private mutating func refreshLastUpdatedAt() {

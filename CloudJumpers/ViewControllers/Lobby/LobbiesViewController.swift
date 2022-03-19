@@ -17,10 +17,12 @@ class LobbiesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lobbiesCollectionView.dataSource = self
+        lobbiesCollectionView.delegate = self
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        refreshDataSource()
         setUpLobbiesListener()
     }
 
@@ -32,11 +34,9 @@ class LobbiesViewController: UIViewController {
 
     @IBAction private func createNewLobby(_ sender: Any) {
         guard let userId = AuthService().getUserId() else {
-            fatalError("User is expected to be logged in.")
+            return
         }
-
-        let lobbyManager = LobbyManager()
-        lobbyManager.createLobby(userId: userId)
+        moveToLobby(lobbyId: nil, hostId: userId)
     }
 
     private func setUpLobbiesListener() {
@@ -45,6 +45,7 @@ class LobbiesViewController: UIViewController {
         lobbiesRef?.observe(.childAdded) { snapshot in
             guard
                 let value = snapshot.value as? NSDictionary,
+                let hostId = value[LobbyKeys.hostId] as? EntityID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
@@ -53,6 +54,7 @@ class LobbiesViewController: UIViewController {
 
             self.addLobbyListing(
                 lobbyId: snapshot.key,
+                hostId: hostId,
                 lobbyName: lobbyName,
                 occupancy: participants.count
             )
@@ -79,8 +81,14 @@ class LobbiesViewController: UIViewController {
         }
     }
 
-    private func addLobbyListing(lobbyId: EntityID, lobbyName: String, occupancy: Int) {
-        let newLobbyListing = LobbyListing(lobbyId: lobbyId, lobbyName: lobbyName, numPlayers: occupancy)
+    private func addLobbyListing(lobbyId: EntityID, hostId: EntityID, lobbyName: String, occupancy: Int) {
+        let newLobbyListing = LobbyListing(
+            lobbyId: lobbyId,
+            hostId: hostId,
+            lobbyName: lobbyName,
+            numPlayers: occupancy
+        )
+
         lobbies.append(newLobbyListing)
     }
 
@@ -95,6 +103,7 @@ class LobbiesViewController: UIViewController {
 
         lobbies[index] = LobbyListing(
             lobbyId: lobbyId,
+            hostId: lobbies[index].hostId,
             lobbyName: newName ?? lobbies[index].lobbyName,
             numPlayers: newOccupancy ?? lobbies[index].numPlayers
         )
@@ -106,6 +115,37 @@ class LobbiesViewController: UIViewController {
 
     private func refreshDataSource() {
         lobbies.removeAll()
+        lobbiesCollectionView.reloadData()
+    }
+
+    private func moveToLobby(lobbyId: EntityID?, hostId: EntityID) {
+        let lobby = NetworkedLobby(lobbyId: lobbyId, hostId: hostId)
+
+        self.performSegue(
+            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
+            sender: lobby
+        )
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard
+            let dest = segue.destination as? LobbyViewController,
+            let lobby = sender as? NetworkedLobby
+        else {
+            return
+        }
+
+        lobby.setOnFinalizedCallback(callback: dest.moveToGame)
+        dest.activeLobby = lobby
+    }
+}
+
+extension LobbiesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedLobby = lobbies[indexPath.item]
+        moveToLobby(lobbyId: selectedLobby.lobbyId, hostId: selectedLobby.hostId)
     }
 }
 
