@@ -464,7 +464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEu-Wu-PPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1529" y="-60"/>
+            <point key="canvasLocation" x="2736" y="-60"/>
         </scene>
         <!--Lobby View Controller-->
         <scene sceneID="ypd-hK-m8T">
@@ -630,13 +630,17 @@
                         <outlet property="lobbyName" destination="Xse-eb-lhJ" id="3SV-dx-BTe"/>
                         <outlet property="lobbyUsersView" destination="ECZ-jv-S6e" id="2eU-Qt-hUn"/>
                         <outlet property="readyButton" destination="VzR-Ye-Sn6" id="Heh-hg-jX3"/>
+                        <segue destination="g9F-CB-D37" kind="show" identifier="com.cs3217.cloudjumpers.entergame" id="3v8-fv-LOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHI-Jg-Vc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2342.0289855072465" y="-60.267857142857139"/>
+            <point key="canvasLocation" x="1797" y="-60"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="3v8-fv-LOc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="player" width="27" height="40"/>
         <systemColor name="systemBackgroundColor">

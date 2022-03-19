@@ -124,6 +124,13 @@ class LobbyViewController: UIViewController {
     private func tearDownLobbiesListener() {
         lobbyRef?.removeAllObservers()
     }
+
+    func moveToGame() {
+        performSegue(
+            withIdentifier: LobbyConstants.lobbyToGameSegueIdentifier,
+            sender: nil
+        )
+    }
 }
 
 extension LobbyViewController: UITableViewDataSource {

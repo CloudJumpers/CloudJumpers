@@ -137,6 +137,7 @@ class LobbiesViewController: UIViewController {
             return
         }
 
+        lobby.setOnFinalizedCallback(callback: dest.moveToGame)
         dest.activeLobby = lobby
         dest.lobbyRef = Database.database().reference(withPath: LobbyKeys.root).child(lobby.id)
     }

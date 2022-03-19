@@ -15,6 +15,7 @@ class NetworkedLobby {
     private(set) var id: EntityID!
 
     private let lobbyManager = FirebaseLobbyConnectorDelegate()
+    private var onLobbyFinalized: NetworkCallback?
 
     var allUsers: [LobbyUser] {
         [user] + others
@@ -51,6 +52,7 @@ class NetworkedLobby {
             return
         }
         others.append(newUser)
+        processLobbyUpdate()
     }
 
     func removeAllOtherUsers() {
@@ -63,6 +65,7 @@ class NetworkedLobby {
         }
 
         user.setAsReady()
+        processLobbyUpdate()
     }
 
     func setUserNotReady() {
@@ -77,6 +80,14 @@ class NetworkedLobby {
         others = others.filter { $0.id != userId }
     }
 
+    func toggleReady() {
+        lobbyManager.toggleReady(lobbyId: id)
+    }
+
+    func setOnFinalizedCallback(callback: NetworkCallback?) {
+        onLobbyFinalized = callback
+    }
+
     private func createLobby() {
         id = lobbyManager.createLobby()
     }
@@ -85,8 +96,14 @@ class NetworkedLobby {
         lobbyManager.joinLobby(lobbyId: id)
     }
 
-    func toggleReady() {
-        lobbyManager.toggleReady(lobbyId: id)
+    private var isLobbyFinalized: Bool {
+        allUsers.count == LobbyConstants.MaxSupportedPlayers && allUsers.allSatisfy({ $0.isReady })
+    }
+
+    private func processLobbyUpdate() {
+        if isLobbyFinalized {
+            onLobbyFinalized?()
+        }
     }
 
     func exitLobby() {
