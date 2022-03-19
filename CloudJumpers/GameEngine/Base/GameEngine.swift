@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/8/22.
 //
 
-import Combine
 import SpriteKit
 
 protocol GameEngine: AnyObject {
@@ -13,9 +12,7 @@ protocol GameEngine: AnyObject {
     var eventManager: EventManager { get }
     var touchableManager: TouchableManager { get }
     var contactResolver: ContactResolver { get }
-
-    var addNodePublisher: AnyPublisher<SKNode, Never> { get }
-    var removeNodePublisher: AnyPublisher<SKNode, Never> { get }
+    var delegate: GameEngineDelegate? { get set }
 
     func setupGame(with level: Level)
     func update(_ deltaTime: Double)
