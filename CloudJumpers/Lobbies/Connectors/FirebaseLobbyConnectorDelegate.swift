@@ -15,6 +15,7 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
 
         let lobbyId = LobbyUtils.generateLobbyId()
         let lobbyName = LobbyUtils.generateLobbyName()
+        let lobbyGameMode = GameModes.TimeTrial.rawValue
 
         let lobbyReference = getLobbyReference(lobbyId: lobbyId)
         lobbyReference.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
@@ -22,6 +23,7 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         lobbyReference.setValue([
             LobbyKeys.hostId: userId,
             LobbyKeys.lobbyName: lobbyName,
+            LobbyKeys.gameMode: lobbyGameMode,
             LobbyKeys.participants: [
                 userId: [
                     LobbyKeys.participantReady: false,
