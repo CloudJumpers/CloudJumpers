@@ -151,7 +151,7 @@
         <!--End Game View Controller-->
         <scene sceneID="AYa-Sf-TZE">
             <objects>
-                <viewController id="2az-mN-gnU" customClass="EndGameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndGameViewController" id="2az-mN-gnU" customClass="EndGameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5k3-TH-HSc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,6 +254,7 @@
                     <navigationItem key="navigationItem" id="aew-3Z-EDk"/>
                     <connections>
                         <outlet property="nameTableView" destination="2CN-h5-6NJ" id="6lo-Ue-YM4"/>
+                        <outlet property="score" destination="Wr9-lE-moD" id="hFL-RF-YdE"/>
                         <outlet property="scoreTableView" destination="m9T-bq-sV0" id="hd5-ce-xJW"/>
                     </connections>
                 </viewController>
