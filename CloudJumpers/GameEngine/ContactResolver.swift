@@ -27,6 +27,8 @@ class ContactResolver {
         }
         // Need to handle this properly
 
+        print(nodeA.position)
+        print(nodeB.position)
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
@@ -55,7 +57,7 @@ class ContactResolver {
 
         let platformTopLeftX = platformPosition.x - platform.frame.size.width / 2
         let platformTopRightX = platformPosition.x + platform.frame.size.width / 2
-        let platformY = platformPosition.y + platform.frame.size.height / 2
+        let platformY = platformPosition.y
 
         return playerPosition.x > platformTopLeftX &&
         playerPosition.x < platformTopRightX &&

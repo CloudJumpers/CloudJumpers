@@ -15,7 +15,7 @@ struct Constants {
 
     static let joystickPosition = CGPoint(x: -280.0, y: -420.0)
 
-    static let playerInitialPosition = CGPoint(x: 0, y: 0)
+    static let playerInitialPosition = CGPoint(x: 0, y: -300)
 
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
@@ -42,6 +42,8 @@ struct Constants {
     // Temporary Constant
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 20.0)
+    static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
+    static let platformPhysicsSize = CGSize(width: 200.0, height: 20.0)
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)
