@@ -27,8 +27,6 @@ class ContactResolver {
         }
         // Need to handle this properly
 
-        print(nodeA.position)
-        print(nodeB.position)
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
