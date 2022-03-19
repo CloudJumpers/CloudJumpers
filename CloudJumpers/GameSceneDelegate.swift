@@ -14,6 +14,6 @@ protocol GameSceneDelegate: AnyObject {
     func scene(_ scene: GameScene, didMoveTouchAt location: CGPoint)
     func scene(_ scene: GameScene, didEndTouchAt location: CGPoint)
 
-    func scene(_ scene: GameScene, didBeginContactBetween nodeA: SKNode, and nodeB: SKNode)
-    func scene(_ scene: GameScene, didEndContactBetween nodeA: SKNode, and nodeB: SKNode)
+    func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact)
+    func scene(_ scene: GameScene, didEndContact contact: SKPhysicsContact)
 }

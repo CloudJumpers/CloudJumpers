@@ -1,12 +1,12 @@
 //
-//  EventPublisher.swift
+//  EventManager.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 3/11/22.
+//  Created by Trong Tan on 3/19/22.
 //
 
-import CoreGraphics
+import Foundation
 
 class EventManager {
-    var eventsQueue: [Event] = []
+    var eventsQueue = [Event]()
 }

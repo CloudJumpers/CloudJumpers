@@ -27,7 +27,13 @@ class TimerSystem: System {
             node.text = String(format: "%.1f", component.time)
 
         }
+    }
 
+    func getTime() -> Double {
+        guard let time = entityComponentMapping.first?.value.time else {
+            return Double.zero
+        }
+        return time
     }
 
     func addComponent(entity: Entity, component: Component) {

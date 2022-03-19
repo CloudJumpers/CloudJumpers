@@ -10,9 +10,11 @@ import CoreGraphics
 import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
+    weak var stateMachine: StateMachine?
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
     var touchableManager: TouchableManager
+    var contactResolver: ContactResolver
 
     var addNodePublisher: AnyPublisher<SKNode, Never> {
         entitiesManager.addPublisher
@@ -22,30 +24,29 @@ class SinglePlayerGameEngine: GameEngine {
         entitiesManager.removePublisher
     }
 
+    var gameState: GameState
+
     private var playerEntity: PlayerEntity
 
     // System
-    let renderingSystem: RenderingSystem
     let movingSystem: MovingSystem
-    let contactSystem: ContactSystem
-    let locationSystem: LocationSystem
     let timerSystem: TimerSystem
 
-    init() {
+    init(stateMachine: StateMachine) {
+        self.stateMachine = stateMachine
+        self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
 
-        self.eventManager = EventManager()
         self.touchableManager = TouchableManager(eventManager: eventManager)
+        self.contactResolver = ContactResolver(entitiesManager: entitiesManager,
+                                               eventManager: eventManager)
 
-        self.renderingSystem = RenderingSystem(entitiesManager: entitiesManager)
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
-        self.contactSystem = ContactSystem(entitiesManager: entitiesManager,
-                                           eventManager: eventManager)
-        self.locationSystem = LocationSystem(entitiesManager: entitiesManager,
-                                             eventManager: eventManager)
+
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
+        self.gameState = .playing
 
     }
 
@@ -54,10 +55,18 @@ class SinglePlayerGameEngine: GameEngine {
         setupPlayer()
         setupTouchables()
         setupTimer()
+        setupEnvironment()
+
+    }
+
+    func setupEnvironment() {
+        let testCloud = CloudEntity(position: CGPoint(x: -10, y: 70))
+        entitiesManager.addEntity(testCloud)
+
     }
 
     private func setupPlayer() {
-        self.playerEntity.activate(renderingSystem: renderingSystem)
+        entitiesManager.addEntity(self.playerEntity)
     }
 
     private func setupTouchables() {
@@ -66,30 +75,27 @@ class SinglePlayerGameEngine: GameEngine {
 
         touchableManager.addTouchable(touchable: joystick)
         touchableManager.addTouchable(touchable: jumpButton)
-
-        joystick.activate(renderingSystem: renderingSystem)
-        jumpButton.activate(renderingSystem: renderingSystem)
+        entitiesManager.addEntity(joystick.innerstickEntity)
+        entitiesManager.addEntity(joystick.outerstickEntity)
+        entitiesManager.addEntity(jumpButton)
     }
 
     private func setupTimer() {
         let timer = TimerEntity()
-
+        entitiesManager.addEntity(timer)
         let timerComponent = TimerComponent(time: Constants.timerInitial)
         timerSystem.addComponent(entity: timer, component: timerComponent)
 
-        timer.activate(renderingSystem: renderingSystem)
     }
 
     func update(_ deltaTime: Double) {
+
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
             eventManager.eventsQueue.remove(at: 0)
         }
 
         movingSystem.update(deltaTime)
-        contactSystem.update(deltaTime)
-        locationSystem.update(deltaTime)
-        renderingSystem.update(deltaTime)
         timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
@@ -108,14 +114,8 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case let .contact(nodeA, nodeB):
-            handleBeginContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case let .endContact(nodeA, nodeB):
-            handleEndContactEvent(nodeA: nodeA, nodeB: nodeB)
-        case let .changeLocation(entity, location):
-            handleChangeLocation(entity: entity, location: location)
-        default:
-            return
+        case .gameEnd:
+            handleGameEnd()
         }
     }
 
@@ -129,42 +129,9 @@ class SinglePlayerGameEngine: GameEngine {
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
     }
 
-    private func handleBeginContactEvent(nodeA: SKNode, nodeB: SKNode) {
-        guard let entityA = entitiesManager.getEntity(of: nodeA),
-              let entityB = entitiesManager.getEntity(of: nodeB),
-              entityA.type == .player || entityB.type == .player
-        else {
-            return
-        }
-        let contactComponent: ContactComponent
-        if entityA.type == .player {
-            contactComponent = ContactComponent(entity: entityB, type: .begin)
-        } else {
-            contactComponent = ContactComponent(entity: entityA, type: .begin)
-        }
-        contactSystem.addComponent(entity: entityA, component: contactComponent)
-
-    }
-
-    private func handleEndContactEvent(nodeA: SKNode, nodeB: SKNode) {
-        guard let entityA = entitiesManager.getEntity(of: nodeA),
-              let entityB = entitiesManager.getEntity(of: nodeB),
-              entityA.type == .player || entityB.type == .player
-        else {
-            return
-        }
-        let contactComponent: ContactComponent
-        if entityA.type == .player {
-            contactComponent = ContactComponent(entity: entityB, type: .end)
-        } else {
-            contactComponent = ContactComponent(entity: entityA, type: .end)
-        }
-        contactSystem.addComponent(entity: entityA, component: contactComponent)
-    }
-
-    private func handleChangeLocation(entity: Entity, location: LocationComponent.Location) {
-        let locationComponent = LocationComponent(location: location)
-        locationSystem.addComponent(entity: entity, component: locationComponent)
+    private func handleGameEnd() {
+        let time = timerSystem.getTime()
+        stateMachine?.transition(to: .timeTrialEnd(time: time))
     }
 
 }
