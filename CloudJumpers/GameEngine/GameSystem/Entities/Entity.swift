@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SpriteKit
 
 class Entity: Hashable {
     var id = UUID()
@@ -13,10 +14,6 @@ class Entity: Hashable {
 
     init(type: EntityType) {
         self.type = type
-    }
-
-    enum EntityType {
-        case player, guest, cloud, platform, ui, outerstick, innerstick, button, timer
     }
 
     static func == (lhs: Entity, rhs: Entity) -> Bool {

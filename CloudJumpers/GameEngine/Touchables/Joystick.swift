@@ -8,23 +8,12 @@
 import SpriteKit
 import CoreGraphics
 
-class Joystick: Renderable, Touchable {
+class Joystick: Touchable {
     private var stickActive = false
-
-    var renderingComponent = RenderingComponent(type: .outerstick,
-                                                position: Constants.joystickPosition,
-                                                name: Images.outerStick.name,
-                                                size: Constants.outerstickSize)
-
-    var innerStickRenderingComponent = RenderingComponent(type: .innerstick,
-                                                          position: Constants.joystickPosition,
-                                                          name: Images.innerStick.name,
-                                                          size: Constants.innerstickSize)
-
     private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
 
-    private var innerstickEntity = Entity(type: .innerstick)
-    private var outerstickEntity = Entity(type: .outerstick)
+    var innerstickEntity = InnerStick()
+    var outerstickEntity = OuterStick()
 
     private var associatedEntity: Entity
 
@@ -32,15 +21,10 @@ class Joystick: Renderable, Touchable {
         self.associatedEntity = associatedEntity
     }
 
-    func activate(renderingSystem: RenderingSystem) {
-        renderingSystem.addComponent(entity: outerstickEntity,
-                                     component: renderingComponent)
-        renderingSystem.addComponent(entity: innerstickEntity,
-                                     component: innerStickRenderingComponent)
-    }
-
     func handleTouchBegan(touchLocation: CGPoint) -> Input? {
-        guard innerStickRenderingComponent.contains(touchLocation) else {
+        guard let node = self.innerstickEntity.node as? SKSpriteNode,
+              touchLocation.isInside(position: node.position, size: node.size)
+        else {
             return nil
         }
         stickActive = true
@@ -61,28 +45,39 @@ class Joystick: Renderable, Touchable {
             return nil
         }
 
-        let initialLocation = innerStickRenderingComponent.position
+        guard let innerStick = self.innerstickEntity.node as? SKSpriteNode,
+              let outerStick = self.outerstickEntity.node as? SKSpriteNode
+        else {
+            return nil
+        }
 
-        innerStickRenderingComponent.position = renderingComponent.position
-        touchArea.position = renderingComponent.position
+        let initialPosition = innerStick.position
+        let newPosition = outerStick.position
+        touchArea.position = outerStick.position
 
         stickActive = false
         return Input(inputType: .move(entity: innerstickEntity,
-                                      by: innerStickRenderingComponent.position - initialLocation))
+                                      by: newPosition - initialPosition))
     }
 
     func update() -> Input? {
         if stickActive {
-            let location = innerStickRenderingComponent.position
+            guard let innerStick = self.innerstickEntity.node as? SKSpriteNode else {
+                return nil
+            }
+            let location = innerStick.position
             return handleTouchInput(location: location)
         }
         return nil
     }
 
-    private func handleTouchInput(location: CGPoint) -> Input {
+    private func handleTouchInput(location: CGPoint) -> Input? {
+        guard let outerStick = self.outerstickEntity.node as? SKSpriteNode else {
+            return nil
+        }
         let (xAngle, yAngle) = getJoystickAngle(location: location)
 
-        let dist = location.distance(to: renderingComponent.position)
+        let dist = location.distance(to: outerStick.position)
         let xDist = xAngle * dist
         let yDist = yAngle * dist
 
@@ -91,32 +86,40 @@ class Joystick: Renderable, Touchable {
         return Input(inputType: .move(entity: associatedEntity, by: locationChange))
     }
 
-    private func moveInnerStick(to location: CGPoint) -> Input {
+    private func moveInnerStick(to location: CGPoint) -> Input? {
+        guard let innerStick = self.innerstickEntity.node as? SKSpriteNode,
+              let outerStick = self.outerstickEntity.node as? SKSpriteNode
+        else {
+            return nil
+        }
         let (xAngle, yAngle) = getJoystickAngle(location: location)
-        let length = renderingComponent.size.width / 2
+        let length = outerStick.size.width / 2
 
         let xDist = xAngle * length
         let yDist = yAngle * length
 
-        let initialLocation = innerStickRenderingComponent.position
+        let initialPosition = innerStick.position
+        let finalPosition: CGPoint
 
-        if renderingComponent.contains(location) {
-            innerStickRenderingComponent.position = location
+        if location.isInside(position: outerStick.position, size: outerStick.size) {
+            finalPosition = location
         } else {
-            let finalLocation = CGPoint(x: renderingComponent.position.x - xDist,
-                                        y: renderingComponent.position.y + yDist)
-            innerStickRenderingComponent.position = finalLocation
+            finalPosition = CGPoint(x: outerStick.position.x - xDist,
+                                    y: outerStick.position.y + yDist)
         }
 
         touchArea.position = location
         return Input(inputType: .move(entity: innerstickEntity,
-                                      by: innerStickRenderingComponent.position - initialLocation))
+                                      by: finalPosition - initialPosition))
 
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {
-        let diff = CGVector(dx: location.x - renderingComponent.position.x,
-                            dy: location.y - renderingComponent.position.y)
+        guard let outerStick = self.outerstickEntity.node as? SKSpriteNode else {
+            return (0, 0)
+        }
+        let diff = CGVector(dx: location.x - outerStick.position.x,
+                            dy: location.y - outerStick.position.y)
 
         let angle = atan2(diff.dy, diff.dx)
 
@@ -125,4 +128,40 @@ class Joystick: Renderable, Touchable {
 
         return (xAngle, yAngle)
     }
+
+    class InnerStick: SKEntity {
+
+        init() {
+            super.init(type: .innerstick)
+            self.node = createSKNode()
+        }
+        override func createSKNode() -> SKNode? {
+            let sprite = SKSpriteNode(imageNamed: Images.innerStick.name)
+            sprite.position = Constants.joystickPosition
+            sprite.size = Constants.innerstickSize
+            sprite.zPosition = SpriteZPosition.innerStick.rawValue
+            sprite.alpha = Constants.opacityTwo
+            return sprite
+        }
+    }
+
+    class OuterStick: SKEntity {
+        init() {
+            super.init(type: .outerstick)
+            self.node = createSKNode()
+
+        }
+
+        override func createSKNode() -> SKNode? {
+            let sprite = SKSpriteNode(imageNamed: Images.outerStick.name)
+            sprite.position = Constants.joystickPosition
+            sprite.size = Constants.outerstickSize
+
+            sprite.zPosition = SpriteZPosition.outerStick.rawValue
+            sprite.alpha = Constants.opacityOne
+            return sprite
+        }
+
+    }
+
 }
