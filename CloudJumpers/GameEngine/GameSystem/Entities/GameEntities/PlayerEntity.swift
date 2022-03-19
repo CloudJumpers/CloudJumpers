@@ -29,8 +29,7 @@ class PlayerEntity: SKPhysicalEntity {
     }
 
     override func createSKPhysicsBody() -> SKPhysicsBody? {
-        let newPhysicsBody = SKPhysicsBody(texture: PlayerEntity.atlas.textureNamed("chara-1"),
-                                           size: Constants.playerSize)
+        let newPhysicsBody = SKPhysicsBody(rectangleOf: Constants.playerSize)
         newPhysicsBody.affectedByGravity = true
         newPhysicsBody.allowsRotation = false
         newPhysicsBody.categoryBitMask = Constants.bitmaskPlayer

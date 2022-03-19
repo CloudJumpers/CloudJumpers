@@ -28,8 +28,7 @@ class CloudEntity: SKPhysicalEntity {
     }
 
     override func createSKPhysicsBody() -> SKPhysicsBody? {
-        let newPhysicsBody = SKPhysicsBody(texture: CloudEntity.atlas.textureNamed("cloud-1"),
-                                           size: Constants.cloudPhysicsSize)
+        let newPhysicsBody = SKPhysicsBody(rectangleOf: Constants.cloudPhysicsSize)
         newPhysicsBody.affectedByGravity = false
         newPhysicsBody.allowsRotation = false
         newPhysicsBody.isDynamic = false
