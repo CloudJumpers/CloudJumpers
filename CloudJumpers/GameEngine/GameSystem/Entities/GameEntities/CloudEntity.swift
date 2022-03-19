@@ -22,7 +22,7 @@ class CloudEntity: SKPhysicalEntity {
     override func createSKNode() -> SKNode? {
         let sprite = SKSpriteNode(texture: CloudEntity.atlas.textureNamed("cloud-1") )
         sprite.size = Constants.cloudNodeSize
-        sprite.zPosition = SpriteZPosition.player.rawValue
+        sprite.zPosition = SpriteZPosition.platform.rawValue
         return sprite
 
     }
