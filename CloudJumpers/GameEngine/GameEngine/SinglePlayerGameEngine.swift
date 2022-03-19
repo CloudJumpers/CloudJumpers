@@ -127,8 +127,6 @@ class SinglePlayerGameEngine: GameEngine {
     private func handleJumpEvent(entity: Entity) {
         let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
-
-        stateMachine?.transition(to: .timeTrialEnd(time: 10.0))
     }
 
     private func handleGameEnd() {

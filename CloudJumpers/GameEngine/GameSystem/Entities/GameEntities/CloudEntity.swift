@@ -32,6 +32,7 @@ class CloudEntity: SKPhysicalEntity {
                                            size: Constants.cloudPhysicsSize)
         newPhysicsBody.affectedByGravity = false
         newPhysicsBody.allowsRotation = false
+        newPhysicsBody.isDynamic = false
         return newPhysicsBody
     }
 }
