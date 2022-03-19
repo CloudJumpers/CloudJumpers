@@ -9,5 +9,5 @@ import Foundation
 
 enum GameState {
     case playing
-    case end
+    case timeTrialEnd(time: Double)
 }
