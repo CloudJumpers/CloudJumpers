@@ -169,7 +169,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHJ-b6-1Ht">
-                                                <rect key="frame" x="143" y="20.5" width="128" height="20.5"/>
+                                                <rect key="frame" x="132.5" y="20.5" width="149.5" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Timing: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Por-je-lbX">
                                                         <rect key="frame" x="0.0" y="0.0" width="99.5" height="20.5"/>
@@ -177,8 +177,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr9-lE-moD">
-                                                        <rect key="frame" x="99.5" y="0.0" width="28.5" height="20.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr9-lE-moD">
+                                                        <rect key="frame" x="99.5" y="0.0" width="50" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -251,6 +251,7 @@
                     <navigationItem key="navigationItem" id="aew-3Z-EDk"/>
                     <connections>
                         <outlet property="nameTableView" destination="2CN-h5-6NJ" id="6lo-Ue-YM4"/>
+                        <outlet property="score" destination="Wr9-lE-moD" id="cs0-7z-u0A"/>
                         <outlet property="scoreTableView" destination="m9T-bq-sV0" id="hd5-ce-xJW"/>
                     </connections>
                 </viewController>

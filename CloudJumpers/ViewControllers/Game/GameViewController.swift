@@ -2,6 +2,9 @@ import SpriteKit
 import Combine
 
 class GameViewController: UIViewController {
+    static let MainStoryboard = "Main"
+    static let EndGameViewControllerId = "EndGameViewController"
+
     private var gameEngine: GameEngine?
     private var stateMachine: StateMachine?
     private var addNodeSubscription: AnyCancellable?
@@ -31,22 +34,7 @@ class GameViewController: UIViewController {
         }
 
         endStateSubscription = stateMachine?.endPublisher.sink { state in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let endGameViewController = storyboard
-                    .instantiateViewController(identifier: "EndGameViewController")
-                    as? EndGameViewController
-            else { fatalError("Cannot find controller with identifier EndGameViewController") }
-
-            let scores = state.scores
-
-            endGameViewController.names = scores.map { score in score.name }
-            endGameViewController.scores = scores.map { score in "\(score.score)" }
-//            endGameViewController.playerScore = "50"
-
-            if var viewControllers = self.navigationController?.viewControllers {
-                viewControllers[viewControllers.count - 1] = endGameViewController
-                self.navigationController?.setViewControllers(viewControllers, animated: true)
-            }
+            self.transitionToEndGame(state: state)
         }
     }
 
@@ -77,6 +65,29 @@ class GameViewController: UIViewController {
         skView?.showsNodeCount = true
         skView?.showsFPS = true
         skView?.presentScene(scene)
+    }
+
+    private func transitionToEndGame(state: TimeTrialGameEndState) {
+        let storyboard = UIStoryboard(name: GameViewController.MainStoryboard, bundle: nil)
+
+        guard let endGameViewController = storyboard
+                .instantiateViewController(identifier: GameViewController.EndGameViewControllerId)
+                as? EndGameViewController
+        else {
+            fatalError("Cannot find controller with identifier \(GameViewController.EndGameViewControllerId)")
+        }
+
+        let scores = state.scores
+        let names = scores[1...].map { score in score.name }
+        let highScores = scores[1...].map { score in "\(score.score)" }
+        let playerScore = "\(scores[0].score)"
+
+        endGameViewController.configure(names: names, scores: highScores, playerScore: playerScore)
+
+        if var viewControllers = self.navigationController?.viewControllers {
+            viewControllers[viewControllers.count - 1] = endGameViewController
+            self.navigationController?.setViewControllers(viewControllers, animated: true)
+        }
     }
 }
 
