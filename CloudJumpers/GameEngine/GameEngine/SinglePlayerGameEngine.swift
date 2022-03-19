@@ -5,7 +5,6 @@
 //  Created by Trong Tan on 3/8/22.
 //
 
-import Combine
 import CoreGraphics
 import SpriteKit
 
@@ -16,15 +15,8 @@ class SinglePlayerGameEngine: GameEngine {
     var touchableManager: TouchableManager
     var contactResolver: ContactResolver
 
-    var addNodePublisher: AnyPublisher<SKNode, Never> {
-        entitiesManager.addPublisher
-    }
-
-    var removeNodePublisher: AnyPublisher<SKNode, Never> {
-        entitiesManager.removePublisher
-    }
-
     var gameState: GameState
+    weak var delegate: GameEngineDelegate?
 
     private var playerEntity: PlayerEntity
 
@@ -47,7 +39,6 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
         self.gameState = .playing
-
     }
 
     func setupGame(with level: Level) {
@@ -56,17 +47,25 @@ class SinglePlayerGameEngine: GameEngine {
         setupTouchables()
         setupTimer()
         setupEnvironment()
-
     }
 
     func setupEnvironment() {
         let testCloud = CloudEntity(position: CGPoint(x: -10, y: 70))
         entitiesManager.addEntity(testCloud)
 
+        guard let node = testCloud.node else {
+            return
+        }
+        delegate?.engine(self, addEntityWith: node)
     }
 
     private func setupPlayer() {
-        entitiesManager.addEntity(self.playerEntity)
+        entitiesManager.addEntity(playerEntity)
+
+        guard let node = playerEntity.node else {
+            return
+        }
+        delegate?.engine(self, addPlayerWith: node)
     }
 
     private func setupTouchables() {
@@ -78,18 +77,31 @@ class SinglePlayerGameEngine: GameEngine {
         entitiesManager.addEntity(joystick.innerstickEntity)
         entitiesManager.addEntity(joystick.outerstickEntity)
         entitiesManager.addEntity(jumpButton)
+
+        guard let innerStickNode = joystick.innerstickEntity.node,
+              let outerStickNode = joystick.outerstickEntity.node,
+              let jumpButtonNode = jumpButton.node
+        else { return }
+        delegate?.engine(self, addControlWith: innerStickNode)
+        delegate?.engine(self, addControlWith: outerStickNode)
+        delegate?.engine(self, addControlWith: jumpButtonNode)
     }
 
     private func setupTimer() {
         let timer = TimerEntity()
+
         entitiesManager.addEntity(timer)
+
         let timerComponent = TimerComponent(time: Constants.timerInitial)
         timerSystem.addComponent(entity: timer, component: timerComponent)
 
+        guard let node = timer.node else {
+            return
+        }
+        delegate?.engine(self, addControlWith: node)
     }
 
     func update(_ deltaTime: Double) {
-
         for event in eventManager.eventsQueue {
             handleEvent(event: event)
             eventManager.eventsQueue.remove(at: 0)
@@ -133,5 +145,4 @@ class SinglePlayerGameEngine: GameEngine {
         let time = timerSystem.getTime()
         stateMachine?.transition(to: .timeTrialEnd(time: time))
     }
-
 }

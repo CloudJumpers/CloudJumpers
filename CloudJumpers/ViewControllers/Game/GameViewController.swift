@@ -1,12 +1,9 @@
 import SpriteKit
-import Combine
 
 class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
     private var stateMachine: StateMachine?
-    private var addNodeSubscription: AnyCancellable?
-    private var removeNodeSubscription: AnyCancellable?
-    private var endStateSubscription: AnyCancellable?
+    private var scene: GameScene?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,25 +12,26 @@ class GameViewController: UIViewController {
         setUpGameScene()
     }
 
-    private func setUpSubscribers(for scene: GameScene) {
-        addNodeSubscription = gameEngine?.addNodePublisher.sink { node in
-            scene.addChild(node)
-        }
-
-        removeNodeSubscription = gameEngine?.removeNodePublisher.sink { node in
-            node.removeAllChildren()
-            node.removeFromParent()
-        }
-
-        endStateSubscription = stateMachine?.endPublisher.sink { _ in
-            // Navigate to end view
-        }
-    }
+//    private func setUpSubscribers(for scene: GameScene) {
+//        addNodeSubscription = gameEngine?.addNodePublisher.sink { node in
+//            scene.addChild(node)
+//        }
+//
+//        removeNodeSubscription = gameEngine?.removeNodePublisher.sink { node in
+//            node.removeAllChildren()
+//            node.removeFromParent()
+//        }
+//
+//        endStateSubscription = stateMachine?.endPublisher.sink { _ in
+//            // Navigate to end view
+//        }
+//    }
 
     private func setUpGameEngine() {
         stateMachine = StateMachine()
         if let stateMachine = stateMachine {
             gameEngine = SinglePlayerGameEngine(stateMachine: stateMachine)
+            gameEngine?.delegate = self
         }
     }
 
@@ -44,7 +42,7 @@ class GameViewController: UIViewController {
 
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
-        setUpSubscribers(for: scene)
+        self.scene = scene
         gameEngine?.setupGame(with: Level())
         setUpSKViewAndPresent(scene: scene)
     }
@@ -84,5 +82,25 @@ extension GameViewController: GameSceneDelegate {
 
     func scene(_ scene: GameScene, didEndContact contact: SKPhysicsContact) {
         gameEngine?.contactResolver.resolveEndContact(contact: contact)
+    }
+}
+
+// MARK: - GameEngineDelegate
+extension GameViewController: GameEngineDelegate {
+    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
+        // TODO: Navigate to EndViewController
+    }
+
+    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
+        scene?.addChild(node)
+    }
+
+    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
+        self.engine(engine, addEntityWith: node)
+        scene?.cameraAnchorNode = node
+    }
+
+    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
+        scene?.addStaticChild(node)
     }
 }
