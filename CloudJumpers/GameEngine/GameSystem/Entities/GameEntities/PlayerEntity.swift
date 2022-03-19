@@ -34,7 +34,7 @@ class PlayerEntity: SKPhysicalEntity {
         newPhysicsBody.affectedByGravity = true
         newPhysicsBody.allowsRotation = false
         newPhysicsBody.categoryBitMask = Constants.bitmaskPlayer
-        newPhysicsBody.collisionBitMask = Constants.bitmaskPlatform + Constants.bitmaskCloud
+
         return newPhysicsBody
     }
 }
