@@ -12,8 +12,8 @@ class EndGameViewController: UIViewController {
     @IBOutlet private var nameTableView: UITableView!
     @IBOutlet private var scoreTableView: UITableView!
 
-    private var names = ["Hello", "my", "name", "is", "John"]
-    private var scores = ["10", "200", "500", "1000", "20000"]
+    var names = ["Hello", "my", "name", "is", "John"]
+    var scores = ["10", "200", "500", "1000", "20000"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
