@@ -21,6 +21,7 @@ struct LobbyUser: NetworkedEntity {
         self.lastUpdatedAt = LobbyUtils.getUnixTimestampSeconds()
     }
 
+    @available(*, unavailable)
     func isUpdatable() -> Bool {
         let currentTime = LobbyUtils.getUnixTimestampSeconds()
         return (currentTime - lastUpdatedAt) > LobbyConstants.minUpdateInterval

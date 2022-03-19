@@ -1,5 +1,5 @@
 //
-//  LobbyNetwork.swift
+//  NetworkedLobby.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 14/3/22.
@@ -14,7 +14,7 @@ class NetworkedLobby {
     let hostId: EntityID
     private(set) var id: EntityID!
 
-    private let lobbyManager = FirebaseLobbyConnectorDelegate()
+    private let lobbyManager = FirebasePublisherDelegate()
     private var onLobbyFinalized: NetworkCallback?
 
     var allUsers: [LobbyUser] {

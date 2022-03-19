@@ -1,5 +1,5 @@
 //
-//  LobbyManager.swift
+//  FirebasePublisherDelegate.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 14/3/22.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
+class FirebasePublisherDelegate: PublisherDelegate {
     func createLobby() -> EntityID {
         let userId = getActiveUserId()
         let userDisplayName = getActiveUserDisplayName()
