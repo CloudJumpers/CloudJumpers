@@ -13,7 +13,6 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
-		1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C91A27E099E000D755BE /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91927E099E000D755BE /* Textures.swift */; };
 		1A91C92427E099F400D755BE /* Characters.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91D27E099F400D755BE /* Characters.atlas */; };
@@ -22,6 +21,7 @@
 		1A91C92727E099F400D755BE /* CharaJumpRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92027E099F400D755BE /* CharaJumpRight.atlas */; };
 		1A91C92827E099F400D755BE /* CharaPreRight.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92127E099F400D755BE /* CharaPreRight.atlas */; };
 		1A91C92927E099F400D755BE /* Buttons.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C92227E099F400D755BE /* Buttons.atlas */; };
+		1ACE976E27E60D50005AA18B /* GameEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4327DDA9C800D51300 /* GameEngine.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
@@ -116,7 +116,6 @@
 		1A4E3D7827D85BCA0033A29D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+Unarchive.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91927E099E000D755BE /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		1A91C91D27E099F400D755BE /* Characters.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Characters.atlas; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		1A91C92127E099F400D755BE /* CharaPreRight.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharaPreRight.atlas; sourceTree = "<group>"; };
 		1A91C92227E099F400D755BE /* Buttons.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Buttons.atlas; sourceTree = "<group>"; };
 		1A91C92A27E09C5600D755BE /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
+		1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngineDelegate.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
@@ -276,7 +276,6 @@
 		1A91C90F27E08D2B00D755BE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1A91C91027E08D4400D755BE /* SKNode+Unarchive.swift */,
 				A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */,
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
 			);
@@ -595,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				A1DBB82E27D884200077AB96 /* SinglePlayerGameEngine.swift */,
+				1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -909,11 +909,11 @@
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
-				1A91C91127E08D4400D755BE /* SKNode+Unarchive.swift in Sources */,
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				3E246B5127DDFF0200D51300 /* Joystick.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
+				1ACE976E27E60D50005AA18B /* GameEngineDelegate.swift in Sources */,
 				A1DBB84027D884200077AB96 /* Entity.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
