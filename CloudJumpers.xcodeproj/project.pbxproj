@@ -35,7 +35,6 @@
 		3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7727E2FBB400D51300 /* TimerEntity.swift */; };
 		3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7927E30CAF00D51300 /* TimerComponent.swift */; };
 		3E246B8127E3414400D51300 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B8027E3414400D51300 /* EndGameViewController.swift */; };
-		3E335FBB27E61C1400817B5B /* SinglePlayerLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E335FBA27E61C1400817B5B /* SinglePlayerLevels.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
