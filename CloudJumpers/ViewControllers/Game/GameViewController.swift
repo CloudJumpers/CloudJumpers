@@ -3,8 +3,10 @@ import Combine
 
 class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
+    private var stateMachine: StateMachine?
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
+    private var endStateSubscription: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +29,17 @@ class GameViewController: UIViewController {
             node.removeAllChildren()
             node.removeFromParent()
         }
+
+        endStateSubscription = stateMachine?.endPublisher.sink { _ in
+            // Navigate to end view
+        }
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine()
+        stateMachine = StateMachine()
+        if let stateMachine = stateMachine {
+            gameEngine = SinglePlayerGameEngine(stateMachine: stateMachine)
+        }
     }
 
     private func setUpGameScene() {

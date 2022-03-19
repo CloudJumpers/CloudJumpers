@@ -10,6 +10,7 @@ import CoreGraphics
 import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
+    weak var stateMachine: StateMachine?
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
     var touchableManager: TouchableManager
@@ -31,7 +32,8 @@ class SinglePlayerGameEngine: GameEngine {
     let movingSystem: MovingSystem
     let timerSystem: TimerSystem
 
-    init() {
+    init(stateMachine: StateMachine) {
+        self.stateMachine = stateMachine
         self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
 
@@ -128,8 +130,8 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func handleGameEnd() {
-        gameState = .end
-        let endTime = timerSystem.getTime()
+        let time = timerSystem.getTime()
+        stateMachine?.transition(to: .timeTrialEnd(time: time))
     }
 
 }
