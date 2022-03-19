@@ -8,7 +8,7 @@
 import Foundation
 
 class NetworkedLobby {
-    private let user: LobbyUser
+    private var user: LobbyUser
     private(set) var others: [LobbyUser]
 
     let hostId: EntityID
@@ -57,6 +57,22 @@ class NetworkedLobby {
         others.removeAll()
     }
 
+    func setUserReady() {
+        guard !user.isReady else {
+            return
+        }
+
+        user.setAsReady()
+    }
+
+    func setUserNotReady() {
+        guard user.isReady else {
+            return
+        }
+
+        user.setAsNotReady()
+    }
+
     func removeOtherUser(userId: EntityID) {
         others = others.filter { $0.id != userId }
     }
@@ -69,8 +85,8 @@ class NetworkedLobby {
         lobbyManager.joinLobby(lobbyId: id)
     }
 
-    func setAsReady() {
-        lobbyManager.setReady(lobbyId: id)
+    func toggleReady() {
+        lobbyManager.toggleReady(lobbyId: id)
     }
 
     func exitLobby() {

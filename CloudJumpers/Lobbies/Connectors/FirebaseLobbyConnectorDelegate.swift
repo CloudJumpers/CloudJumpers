@@ -83,7 +83,7 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
         }
     }
 
-    func setReady(lobbyId: EntityID) {
+    func toggleReady(lobbyId: EntityID) {
         let userId = getActiveUserId()
         let participantsReference = getLobbyParticipantsReference(lobbyId: lobbyId)
 
@@ -95,32 +95,21 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
             if
                 var data = currentData.value as? [String: AnyObject],
                 var userState = data[userId] as? [String: AnyObject],
-                let userWasReady = userState[LobbyKeys.participantReady] as? Bool,
-                !userWasReady
+                let userWasReady = userState[LobbyKeys.participantReady] as? Bool
             {
-
-                userState[LobbyKeys.participantReady] = true as AnyObject?
+                userState[LobbyKeys.participantReady] = !userWasReady as AnyObject?
                 data[userId] = userState as AnyObject?
                 currentData.value = data
 
                 return TransactionResult.success(withValue: currentData)
             }
             return TransactionResult.success(withValue: currentData)
-        }) { error, committed, snapshot in
-            print("committed ready \(committed)")
+        }) { error, _, _ in
             if let err = error {
                 print("readyLobby error: \(err.localizedDescription)")
             }
-
-            if let snap = snapshot {
-                print("readyLobby snap: \(snap)")
-            }
         }
     }
-//
-//    func setNotReady(lobbyId: EntityID) {
-//        <#code#>
-//    }
 
     private func constructLobbyPath(lobbyId: EntityID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"

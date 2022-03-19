@@ -14,6 +14,8 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var lobbyUsersView: UITableView!
     @IBOutlet private var lobbyName: UILabel!
     @IBOutlet private var gameMode: UILabel!
+    @IBOutlet private var readyButton: UIButton!
+    @IBOutlet private var leaveButton: UIButton!
 
     var activeLobby: NetworkedLobby?
     var lobbyRef: DatabaseReference?
@@ -23,9 +25,18 @@ class LobbyViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    @IBAction private func onReadyButtonTap() {
+        self.activeLobby?.toggleReady()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        lobbyUsersView.dataSource = self
+        overrideUserInterfaceStyle = .light
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        lobbyUsersView.dataSource = self
         setupLobbyListeners()
     }
 
@@ -77,8 +88,9 @@ class LobbyViewController: UIViewController {
         }
     }
 
-    private func handleReady(snapshot: DataSnapshot) {
-        print(snapshot)
+    private func handleSelfReadyUpdate(isReady: Bool) {
+        leaveButton.isEnabled = !isReady
+        isReady ? activeLobby?.setUserReady() : activeLobby?.setUserNotReady()
     }
 
     private func setLobbyName(name: String) {
@@ -102,6 +114,10 @@ class LobbyViewController: UIViewController {
 
             let user = LobbyUser(id: userId, displayName: displayName, isReady: isReady)
             self.activeLobby?.addUser(newUser: user)
+
+            if userId == AuthService().getUserId() {
+                handleSelfReadyUpdate(isReady: isReady)
+            }
         }
     }
 
@@ -120,12 +136,16 @@ extension LobbyViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let lobby = self.activeLobby else {
-            return UITableViewCell(style: .default, reuseIdentifier: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
+
+        guard let lobby = self.activeLobby, let lobbyUserCell = cell as? LobbyUserCell else {
+            return cell
         }
 
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = lobby.allUsers[indexPath.row].displayName
+        let lobbyUser = lobby.allUsers[indexPath.row]
+        lobbyUserCell.setDisplayName(newDisplayName: lobbyUser.displayName)
+        lobbyUserCell.setIsReady(isReady: lobbyUser.isReady)
+
         return cell
     }
 }

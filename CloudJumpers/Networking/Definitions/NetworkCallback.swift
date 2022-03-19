@@ -6,5 +6,6 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
-typealias NetworkCallback = () -> Void
+typealias NetworkCallback = (DataSnapshot) -> Void
