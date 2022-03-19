@@ -46,7 +46,7 @@ class Joystick: Touchable {
         }
 
         guard let innerStick = self.innerstickEntity.node as? SKSpriteNode,
-              let outerStick = self.innerstickEntity.node as? SKSpriteNode
+              let outerStick = self.outerstickEntity.node as? SKSpriteNode
         else {
             return nil
         }
@@ -88,7 +88,7 @@ class Joystick: Touchable {
 
     private func moveInnerStick(to location: CGPoint) -> Input? {
         guard let innerStick = self.innerstickEntity.node as? SKSpriteNode,
-              let outerStick = self.innerstickEntity.node as? SKSpriteNode
+              let outerStick = self.outerstickEntity.node as? SKSpriteNode
         else {
             return nil
         }
@@ -115,7 +115,7 @@ class Joystick: Touchable {
     }
 
     private func getJoystickAngle(location: CGPoint) -> (CGFloat, CGFloat) {
-        guard let outerStick = self.innerstickEntity.node as? SKSpriteNode else {
+        guard let outerStick = self.outerstickEntity.node as? SKSpriteNode else {
             return (0, 0)
         }
         let diff = CGVector(dx: location.x - outerStick.position.x,
