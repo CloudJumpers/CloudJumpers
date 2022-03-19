@@ -13,12 +13,7 @@ class GameViewController: UIViewController {
         setUpGameScene()
     }
 
-    override func loadView() {
-        let sceneView = SKView()
-        self.view = sceneView
-    }
-
-    private func createGameEngineSubscribers(for scene: GameScene) {
+    private func setUpSubscribers(for scene: GameScene) {
         addNodeSubscription = gameEngine?.addNodePublisher.sink { node in
             scene.addChild(node)
         }
@@ -39,20 +34,20 @@ class GameViewController: UIViewController {
         }
 
         scene.sceneDelegate = self
-        createGameEngineSubscribers(for: scene)
-        // Setup Game only after creating the subscribers
-        gameEngine?.setupGame(with: Level())
-
         scene.scaleMode = .aspectFill
-        presentGameScene(scene)
+        setUpSubscribers(for: scene)
+        gameEngine?.setupGame(with: Level())
+        setUpSKViewAndPresent(scene: scene)
     }
 
-    private func presentGameScene(_ scene: SKScene) {
-        let skView = view as? SKView
-        skView?.ignoresSiblingOrder = true
-        skView?.showsNodeCount = true
-        skView?.showsFPS = true
-        skView?.presentScene(scene)
+    private func setUpSKViewAndPresent(scene: SKScene) {
+        let skView = SKView(frame: view.frame)
+        skView.isMultipleTouchEnabled = true
+        skView.ignoresSiblingOrder = true
+        skView.showsNodeCount = true
+        skView.showsFPS = true
+        skView.presentScene(scene)
+        view = skView
     }
 }
 
