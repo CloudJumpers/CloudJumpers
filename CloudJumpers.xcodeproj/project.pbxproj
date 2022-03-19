@@ -35,12 +35,15 @@
 		3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7727E2FBB400D51300 /* TimerEntity.swift */; };
 		3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B7927E30CAF00D51300 /* TimerComponent.swift */; };
 		3E246B8127E3414400D51300 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B8027E3414400D51300 /* EndGameViewController.swift */; };
+		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
+		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
+		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
+		9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0627E62E9700FC8077 /* HighscoreResponse.swift */; };
 		9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624D27E502DE00063BE9 /* NetworkCallback.swift */; };
 		9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624F27E5935000063BE9 /* LobbyUserCell.swift */; };
 		9344625227E5975300063BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9344625127E5975300063BE9 /* GoogleService-Info.plist */; };
 		9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625527E5B90700063BE9 /* ListenerDelegate.swift */; };
 		9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625727E5B9A200063BE9 /* FirebaseListenerDelegate.swift */; };
-		9344625A27E5C19900063BE9 /* LobbyCallbackTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */; };
 		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B227DF04ED00324DAF /* LobbiesViewController.swift */; };
 		934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B427DF04FD00324DAF /* LobbyViewController.swift */; };
@@ -143,12 +146,15 @@
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
+		9339BF0227E626AE00FC8077 /* Highscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
+		9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreConstants.swift; sourceTree = "<group>"; };
+		9339BF0627E62E9700FC8077 /* HighscoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreResponse.swift; sourceTree = "<group>"; };
 		9344624D27E502DE00063BE9 /* NetworkCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallback.swift; sourceTree = "<group>"; };
 		9344624F27E5935000063BE9 /* LobbyUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUserCell.swift; sourceTree = "<group>"; };
 		9344625127E5975300063BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9344625527E5B90700063BE9 /* ListenerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerDelegate.swift; sourceTree = "<group>"; };
 		9344625727E5B9A200063BE9 /* FirebaseListenerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListenerDelegate.swift; sourceTree = "<group>"; };
-		9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCallbackTypes.swift; sourceTree = "<group>"; };
 		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
 		934789B227DF04ED00324DAF /* LobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbiesViewController.swift; sourceTree = "<group>"; };
 		934789B427DF04FD00324DAF /* LobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +346,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		9339BEFF27E6253600FC8077 /* HighscoreAPI */ = {
+			isa = PBXGroup;
+			children = (
+				9339BF0027E6264800FC8077 /* HighscoreManager.swift */,
+				9339BF0227E626AE00FC8077 /* Highscore.swift */,
+				9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */,
+				9339BF0627E62E9700FC8077 /* HighscoreResponse.swift */,
+			);
+			path = HighscoreAPI;
+			sourceTree = "<group>";
+		};
 		9344625427E5B8B700063BE9 /* Listeners */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +392,6 @@
 				934789B427DF04FD00324DAF /* LobbyViewController.swift */,
 				934789C927DF6B5700324DAF /* LobbyCell.swift */,
 				9344624F27E5935000063BE9 /* LobbyUserCell.swift */,
-				9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -479,6 +495,7 @@
 		93D4E16527DA0C920054F45B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9339BEFF27E6253600FC8077 /* HighscoreAPI */,
 				934789BF27DF0F4D00324DAF /* Utils */,
 				93D4E17727DA12330054F45B /* Definitions */,
 				934789C027DF0F5700324DAF /* BaseManagers */,
@@ -873,6 +890,7 @@
 				938B022327E0954D003D84CF /* UpdaterDelegate.swift in Sources */,
 				A121006027E4760100C35151 /* EntityType.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
+				9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				A1CFED4827E581280062BCB2 /* StateMachine.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
@@ -883,6 +901,7 @@
 				3E246B7A27E30CAF00D51300 /* TimerComponent.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
+				9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
@@ -900,6 +919,7 @@
 				1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
+				9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */,
 				A1CFED4D27E5890F0062BCB2 /* TimeTrialGameEndState.swift in Sources */,
 				A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */,
 				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
@@ -929,7 +949,7 @@
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				A135932B27E399CA0034A9F0 /* PlatformEntity.swift in Sources */,
-				9344625A27E5C19900063BE9 /* LobbyCallbackTypes.swift in Sources */,
+				9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

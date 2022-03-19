@@ -8,3 +8,5 @@
 import Foundation
 
 typealias NetworkCallback = () -> Void
+typealias StringKeyValCallback = ((String, String) -> Void)?
+typealias UserCallback = ((LobbyUser) -> Void)?

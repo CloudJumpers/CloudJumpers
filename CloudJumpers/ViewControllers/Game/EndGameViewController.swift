@@ -28,6 +28,48 @@ class EndGameViewController: UIViewController {
         self.names = names
         self.scores = scores
         self.playerScore = playerScore
+        performGameScoreUpdates(score: playerScore)
+    }
+
+    private func performGameScoreUpdates(score: String) {
+        let highscoreManager = HighscoreManager()
+
+        let auth = AuthService()
+        let displayName = auth.getUserDisplayName()
+
+        if let playerId = auth.getUserId() {
+            highscoreManager.submitToHighscores(
+                userId: playerId,
+                userDisplayName: displayName,
+                gameScore: score,
+                gameMode: .TimeTrial,
+                gameSeed: Constants.testLevelName, // TODO: change to prod level name
+                callback: fetchNewHighscoresData
+            )
+        } else {
+            fetchNewHighscoresData()
+        }
+    }
+
+    private func fetchNewHighscoresData() {
+        let highscoreManager = HighscoreManager()
+
+        highscoreManager.fetchTopFiveRecords(
+            gameMode: .TimeTrial,
+            gameSeed: Constants.testLevelName, // TODO: change to prod level name
+            callback: onNewHighscoresData
+        )
+    }
+
+    private func onNewHighscoresData(_ data: [Highscore]) {
+        // reloadData should be called from the main thread
+        DispatchQueue.main.async {
+            self.names = data.map { $0.userDisplayName }
+            self.scores = data.map { $0.completionTime }
+
+            self.nameTableView.reloadData()
+            self.scoreTableView.reloadData()
+        }
     }
 }
 

@@ -48,4 +48,7 @@ struct Constants {
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)
     static let bitmaskPlatform = UInt32(0x1 << 2)
+
+    static let testLevelName = "TestLevelOne"
+    static let prodLevelName = "LevelOne"
 }
