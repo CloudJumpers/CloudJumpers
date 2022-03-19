@@ -51,21 +51,9 @@ class SinglePlayerGameEngine: GameEngine {
 
     func setupEnvironment() {
         // should read from a file?
-        let cloud1 = CloudEntity(position: CGPoint(x: 200, y: -200))
-        let cloud2 = CloudEntity(position: CGPoint(x: -100, y: -50))
-        let cloud3 = CloudEntity(position: CGPoint(x: 200, y: 100))
-        let cloud4 = CloudEntity(position: CGPoint(x: -100, y: 250))
-        let cloud5 = CloudEntity(position: CGPoint(x: 200, y: 400))
-        let cloud6 = CloudEntity(position: CGPoint(x: -100, y: 550))
-        let platform = PlatformEntity(position: CGPoint(x: 0, y: 700))
-
-        addEntity(cloud1)
-        addEntity(cloud2)
-        addEntity(cloud3)
-        addEntity(cloud4)
-        addEntity(cloud5)
-        addEntity(cloud6)
-        addEntity(platform)
+        for entity in SinglePlayerLevels.levelOne {
+            addEntity(entity)
+        }
     }
 
     private func setupPlayer() {
