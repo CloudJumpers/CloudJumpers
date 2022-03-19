@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nk-7b-n4t">
-                                <rect key="frame" x="19.5" y="432.5" width="375" height="31"/>
+                                <rect key="frame" x="57" y="432.5" width="300" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-fp-cdZ">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="31"/>
@@ -68,14 +68,6 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Lobbies"/>
                                         <connections>
                                             <segue destination="2IY-Rh-Zla" kind="show" id="XLE-Se-grG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60F-JG-vJa">
-                                        <rect key="frame" x="300" y="0.0" width="75" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="End"/>
-                                        <connections>
-                                            <segue destination="2az-mN-gnU" kind="show" id="Ll1-Zh-4YX"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -159,13 +151,13 @@
         <!--End Game View Controller-->
         <scene sceneID="AYa-Sf-TZE">
             <objects>
-                <viewController id="2az-mN-gnU" customClass="EndGameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EndGameViewController" id="2az-mN-gnU" customClass="EndGameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5k3-TH-HSc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6va-SC-h6l">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WZy-gj-bIH">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
@@ -196,7 +188,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-G1-zZO">
-                                        <rect key="frame" x="0.0" y="71" width="414" height="703"/>
+                                        <rect key="frame" x="0.0" y="71" width="414" height="747"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fastest timings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16c-Lr-Ucv">
                                                 <rect key="frame" x="30" y="30" width="354" height="20.5"/>
@@ -205,13 +197,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e1-P6-4cW">
-                                                <rect key="frame" x="30" y="65.5" width="354" height="607.5"/>
+                                                <rect key="frame" x="30" y="65.5" width="354" height="651.5"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2CN-h5-6NJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="607.5"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="500" id="gXC-jY-FVW"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="200" height="651.5"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameCell" id="zZ4-fC-d76">
                                                                 <rect key="frame" x="0.0" y="44.5" width="200" height="43.5"/>
@@ -226,10 +215,10 @@
                                                         <sections/>
                                                     </tableView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="m9T-bq-sV0">
-                                                        <rect key="frame" x="200" y="0.0" width="154" height="607.5"/>
+                                                        <rect key="frame" x="200" y="0.0" width="154" height="651.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="154" id="lZc-Wm-P4G"/>
+                                                            <constraint firstAttribute="width" constant="154" id="Xoh-YE-sHt"/>
                                                         </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scoreCell" id="aYe-XF-b8S">
@@ -253,9 +242,9 @@
                         <viewLayoutGuide key="safeArea" id="CEa-Hr-Tfu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CEa-Hr-Tfu" firstAttribute="trailing" secondItem="6va-SC-h6l" secondAttribute="trailing" id="Jyz-qC-Ojo"/>
+                            <constraint firstItem="6va-SC-h6l" firstAttribute="leading" secondItem="CEa-Hr-Tfu" secondAttribute="leading" id="CxZ-QF-B6a"/>
+                            <constraint firstItem="6va-SC-h6l" firstAttribute="centerX" secondItem="5k3-TH-HSc" secondAttribute="centerX" id="FC8-Mf-Xpw"/>
                             <constraint firstItem="CEa-Hr-Tfu" firstAttribute="bottom" secondItem="6va-SC-h6l" secondAttribute="bottom" id="PfV-3y-l7Q"/>
-                            <constraint firstItem="6va-SC-h6l" firstAttribute="leading" secondItem="CEa-Hr-Tfu" secondAttribute="leading" id="sOg-Bg-gQw"/>
                             <constraint firstItem="6va-SC-h6l" firstAttribute="top" secondItem="CEa-Hr-Tfu" secondAttribute="top" id="zpL-dB-4pN"/>
                         </constraints>
                     </view>

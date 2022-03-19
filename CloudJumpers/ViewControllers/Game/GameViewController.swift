@@ -30,8 +30,23 @@ class GameViewController: UIViewController {
             node.removeFromParent()
         }
 
-        endStateSubscription = stateMachine?.endPublisher.sink { _ in
-            // Navigate to end view
+        endStateSubscription = stateMachine?.endPublisher.sink { state in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let endGameViewController = storyboard
+                    .instantiateViewController(identifier: "EndGameViewController")
+                    as? EndGameViewController
+            else { fatalError("Cannot find controller with identifier EndGameViewController") }
+
+            let scores = state.scores
+
+            endGameViewController.names = scores.map { score in score.name }
+            endGameViewController.scores = scores.map { score in "\(score.score)" }
+//            endGameViewController.playerScore = "50"
+
+            if var viewControllers = self.navigationController?.viewControllers {
+                viewControllers[viewControllers.count - 1] = endGameViewController
+                self.navigationController?.setViewControllers(viewControllers, animated: true)
+            }
         }
     }
 
