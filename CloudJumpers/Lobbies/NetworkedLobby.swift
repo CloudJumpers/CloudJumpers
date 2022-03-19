@@ -14,7 +14,7 @@ class NetworkedLobby {
     let hostId: EntityID
     private(set) var id: EntityID!
 
-    private let lobbyManager = FirebasePublisherDelegate()
+    private let lobbyManager = FirebaseUpdaterDelegate()
     private var onLobbyFinalized: NetworkCallback?
 
     var allUsers: [LobbyUser] {
