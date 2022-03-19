@@ -31,7 +31,7 @@ class TimerSystem: System {
 
     func getTime() -> Double {
         guard let time = entityComponentMapping.first?.value.time else {
-            return 0
+            return Double.zero
         }
         return time
     }

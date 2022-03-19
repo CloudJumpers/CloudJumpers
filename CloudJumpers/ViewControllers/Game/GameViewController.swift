@@ -3,8 +3,10 @@ import Combine
 
 class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
+    private var stateMachine: StateMachine?
     private var addNodeSubscription: AnyCancellable?
     private var removeNodeSubscription: AnyCancellable?
+    private var endStateSubscription: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +24,17 @@ class GameViewController: UIViewController {
             node.removeAllChildren()
             node.removeFromParent()
         }
+
+        endStateSubscription = stateMachine?.endPublisher.sink { _ in
+            // Navigate to end view
+        }
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine()
+        stateMachine = StateMachine()
+        if let stateMachine = stateMachine {
+            gameEngine = SinglePlayerGameEngine(stateMachine: stateMachine)
+        }
     }
 
     private func setUpGameScene() {
@@ -69,13 +78,11 @@ extension GameViewController: GameSceneDelegate {
         gameEngine?.touchableManager.handleTouchEndedEvent(location: location)
     }
 
-    func scene(_ scene: GameScene, didBeginContactBetween nodeA: SKNode, and nodeB: SKNode) {
-        let newEvent = Event(type: .contact(nodeA: nodeA, nodeB: nodeB))
-        gameEngine?.eventManager.eventsQueue.append(newEvent)
+    func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact) {
+        gameEngine?.contactResolver.resolveBeginContact(contact: contact)
     }
 
-    func scene(_ scene: GameScene, didEndContactBetween nodeA: SKNode, and nodeB: SKNode) {
-        let newEvent = Event(type: .endContact(nodeA: nodeA, nodeB: nodeB))
-        gameEngine?.eventManager.eventsQueue.append(newEvent)
+    func scene(_ scene: GameScene, didEndContact contact: SKPhysicsContact) {
+        gameEngine?.contactResolver.resolveEndContact(contact: contact)
     }
 }

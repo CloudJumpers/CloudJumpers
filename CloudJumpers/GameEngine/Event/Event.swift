@@ -15,10 +15,7 @@ class Event {
     }
 
     enum EventType {
-        case contact(nodeA: SKNode, nodeB: SKNode)
-        case endContact(nodeA: SKNode, nodeB: SKNode)
         case input(info: Input)
-        case changeLocation(entity: Entity, location: LocationComponent.Location)
         case gameEnd
     }
 }

@@ -11,7 +11,7 @@ struct Constants {
     static let outerstickSize = CGSize(width: 100.0, height: 100.0)
     static let innerstickSize = CGSize(width: 50.0, height: 50.0)
 
-    static let playerSize = CGSize(width: 50.0, height: 60.0)
+    static let playerSize = CGSize(width: 60.0, height: 60.0)
 
     static let joystickPosition = CGPoint(x: -280.0, y: -420.0)
 
@@ -38,4 +38,8 @@ struct Constants {
     static let timerName = ""
     static let timerSize = CGSize(width: 36, height: 36)
     static let timerInitial: Double = 0.0
+
+    // Temporary Constant
+    static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
+    static let cloudPhysicsSize = CGSize(width: 200.0, height: 20.0)
 }

@@ -62,18 +62,10 @@ class GameScene: SKScene {
 // MARK: - SKPhysicsContactDelegate
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        guard let nodeA = contact.bodyA.node,
-              let nodeB = contact.bodyB.node
-        else { return }
-
-        sceneDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
+        sceneDelegate?.scene(self, didBeginContact: contact)
     }
 
     func didEnd(_ contact: SKPhysicsContact) {
-        guard let nodeA = contact.bodyA.node,
-              let nodeB = contact.bodyB.node
-        else { return }
-
-        sceneDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
+        sceneDelegate?.scene(self, didEndContact: contact)
     }
 }

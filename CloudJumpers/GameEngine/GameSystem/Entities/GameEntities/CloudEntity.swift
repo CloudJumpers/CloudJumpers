@@ -21,7 +21,7 @@ class CloudEntity: SKPhysicalEntity {
 
     override func createSKNode() -> SKNode? {
         let sprite = SKSpriteNode(texture: CloudEntity.atlas.textureNamed("cloud-1") )
-        sprite.size = CGSize(width: 100.0, height: 100.0)
+        sprite.size = Constants.cloudNodeSize
         sprite.zPosition = SpriteZPosition.player.rawValue
         return sprite
 
@@ -29,7 +29,7 @@ class CloudEntity: SKPhysicalEntity {
 
     override func createSKPhysicsBody() -> SKPhysicsBody? {
         let newPhysicsBody = SKPhysicsBody(texture: CloudEntity.atlas.textureNamed("cloud-1"),
-                                           size: CGSize(width: 100.0, height: 20.0))
+                                           size: Constants.cloudPhysicsSize)
         newPhysicsBody.affectedByGravity = false
         newPhysicsBody.allowsRotation = false
         return newPhysicsBody
