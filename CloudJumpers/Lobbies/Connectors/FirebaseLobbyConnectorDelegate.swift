@@ -60,14 +60,9 @@ class FirebaseLobbyConnectorDelegate: LobbyConnectorDelegate {
                 return TransactionResult.success(withValue: currentData)
             }
             return TransactionResult.success(withValue: currentData)
-        }) { error, committed, snapshot in
-            print("committed \(committed)")
+        }) { error, _, _ in
             if let err = error {
                 print("joinLobby error: \(err.localizedDescription)")
-            }
-
-            if let snap = snapshot {
-                print("joinLobby snap: \(snap)")
             }
         }
     }

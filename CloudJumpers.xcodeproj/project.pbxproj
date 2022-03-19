@@ -38,6 +38,9 @@
 		9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624D27E502DE00063BE9 /* NetworkCallback.swift */; };
 		9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624F27E5935000063BE9 /* LobbyUserCell.swift */; };
 		9344625227E5975300063BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9344625127E5975300063BE9 /* GoogleService-Info.plist */; };
+		9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625527E5B90700063BE9 /* ListenerDelegate.swift */; };
+		9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625727E5B9A200063BE9 /* FirebaseListenerDelegate.swift */; };
+		9344625A27E5C19900063BE9 /* LobbyCallbackTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */; };
 		934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */; };
 		934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B227DF04ED00324DAF /* LobbiesViewController.swift */; };
 		934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789B427DF04FD00324DAF /* LobbyViewController.swift */; };
@@ -143,6 +146,9 @@
 		9344624D27E502DE00063BE9 /* NetworkCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallback.swift; sourceTree = "<group>"; };
 		9344624F27E5935000063BE9 /* LobbyUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUserCell.swift; sourceTree = "<group>"; };
 		9344625127E5975300063BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9344625527E5B90700063BE9 /* ListenerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListenerDelegate.swift; sourceTree = "<group>"; };
+		9344625727E5B9A200063BE9 /* FirebaseListenerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListenerDelegate.swift; sourceTree = "<group>"; };
+		9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCallbackTypes.swift; sourceTree = "<group>"; };
 		934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToastConstants.swift; sourceTree = "<group>"; };
 		934789B227DF04ED00324DAF /* LobbiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbiesViewController.swift; sourceTree = "<group>"; };
 		934789B427DF04FD00324DAF /* LobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +348,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		9344625427E5B8B700063BE9 /* UpdateProviders */ = {
+			isa = PBXGroup;
+			children = (
+				9344625527E5B90700063BE9 /* ListenerDelegate.swift */,
+				9344625727E5B9A200063BE9 /* FirebaseListenerDelegate.swift */,
+			);
+			path = UpdateProviders;
+			sourceTree = "<group>";
+		};
 		934789AA27DEEA4D00324DAF /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,10 +379,12 @@
 		934789B127DF04D900324DAF /* Lobby */ = {
 			isa = PBXGroup;
 			children = (
+				9344625427E5B8B700063BE9 /* UpdateProviders */,
 				934789B227DF04ED00324DAF /* LobbiesViewController.swift */,
 				934789B427DF04FD00324DAF /* LobbyViewController.swift */,
 				934789C927DF6B5700324DAF /* LobbyCell.swift */,
 				9344624F27E5935000063BE9 /* LobbyUserCell.swift */,
+				9344625927E5C19900063BE9 /* LobbyCallbackTypes.swift */,
 			);
 			path = Lobby;
 			sourceTree = "<group>";
@@ -859,12 +876,14 @@
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */,
 				3E246B7627E2F88900D51300 /* TimerSystem.swift in Sources */,
+				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				9359ABB327E0465A00D85899 /* GameModes.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyConnectorDelegate.swift in Sources */,
 				A121006027E4760100C35151 /* EntityType.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				A1CFED4827E581280062BCB2 /* StateMachine.swift in Sources */,
+				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				A135932927E398140034A9F0 /* CloudEntity.swift in Sources */,
 				A1DBB83B27D884200077AB96 /* SinglePlayerGameEngine.swift in Sources */,
@@ -918,6 +937,7 @@
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				A135932B27E399CA0034A9F0 /* PlatformEntity.swift in Sources */,
+				9344625A27E5C19900063BE9 /* LobbyCallbackTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

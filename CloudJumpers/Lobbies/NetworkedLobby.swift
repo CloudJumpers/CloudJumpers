@@ -55,6 +55,15 @@ class NetworkedLobby {
         processLobbyUpdate()
     }
 
+    func updateOtherUser(_ updatedUser: LobbyUser) {
+        guard let index = others.firstIndex(where: { $0.id == updatedUser.id }) else {
+            return
+        }
+
+        others[index] = updatedUser
+        processLobbyUpdate()
+    }
+
     func removeAllOtherUsers() {
         others.removeAll()
     }
