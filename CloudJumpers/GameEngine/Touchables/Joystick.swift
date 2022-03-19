@@ -72,7 +72,7 @@ class Joystick: Touchable {
     }
 
     private func handleTouchInput(location: CGPoint) -> Input? {
-        guard let outerStick = self.innerstickEntity.node as? SKSpriteNode else {
+        guard let outerStick = self.outerstickEntity.node as? SKSpriteNode else {
             return nil
         }
         let (xAngle, yAngle) = getJoystickAngle(location: location)
