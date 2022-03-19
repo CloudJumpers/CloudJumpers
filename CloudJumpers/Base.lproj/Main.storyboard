@@ -81,7 +81,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QdG-y8-NLw">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="XNs-tG-OM1"/>
+                        <barButtonItem key="backBarButtonItem" title="Main Menu" id="XNs-tG-OM1"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oF1-o1-vPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
