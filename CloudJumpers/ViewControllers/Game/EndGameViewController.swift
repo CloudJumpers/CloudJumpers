@@ -22,13 +22,13 @@ class EndGameViewController: UIViewController {
         nameTableView.dataSource = self
         scoreTableView.dataSource = self
         score.text = playerScore
+        performGameScoreUpdates(score: playerScore)
     }
 
     func configure(names: [String], scores: [String], playerScore: String) {
         self.names = names
         self.scores = scores
         self.playerScore = playerScore
-        performGameScoreUpdates(score: playerScore)
     }
 
     private func performGameScoreUpdates(score: String) {
