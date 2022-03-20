@@ -83,8 +83,12 @@ extension EndGameViewController: UITableViewDataSource {
         let textDisplay = getCellTextDisplay(tableView: tableView, index: indexPath.row)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.setupEndGameCell()
-        cell.displayText(text: textDisplay)
+        guard let endGameCell = cell as? EndGameCell else {
+            return cell
+        }
+
+        endGameCell.setupEndGameCell()
+        endGameCell.displayText(text: textDisplay)
 
         return cell
     }
