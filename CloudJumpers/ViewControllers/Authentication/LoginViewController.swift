@@ -37,12 +37,16 @@ class LoginViewController: UIViewController {
             let loginOutcome = await authService.logIn(email: email, password: password)
             let displayName = authService.getUserDisplayName()
 
-            self.updateOutcomeLabel(outcome: loginOutcome, name: displayName)
+            updateOutcomeLabel(outcome: loginOutcome, name: displayName)
 
             if authService.isLoggedIn() {
-                performSegue(withIdentifier: SegueIdentifier.loginToLobbies, sender: nil)
+                moveToLobbies()
             }
         }
+    }
+
+    private func moveToLobbies() {
+        performSegue(withIdentifier: SegueIdentifier.loginToLobbies, sender: nil)
     }
 
     private func setUpOutcomeLabel() {

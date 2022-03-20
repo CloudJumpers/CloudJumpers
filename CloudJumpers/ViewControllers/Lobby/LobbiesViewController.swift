@@ -36,7 +36,7 @@ class LobbiesViewController: UIViewController {
     @IBAction private func signUserOut() {
         let auth = AuthService()
         auth.logOut()
-        onLogOut()
+        moveToLogin()
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
@@ -134,7 +134,7 @@ class LobbiesViewController: UIViewController {
         )
     }
 
-    private func onLogOut() {
+    private func moveToLogin() {
         guard !AuthService().isLoggedIn() else {
             return
         }
