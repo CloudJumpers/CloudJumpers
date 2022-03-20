@@ -128,12 +128,22 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uOd-Ra-ljJ">
+                                <rect key="frame" x="169.5" y="689" width="75" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
+                                <connections>
+                                    <segue destination="nYZ-Qb-RqU" kind="show" identifier="com.cs3217.cloudjumpers.entersignupfromlogin" id="yWl-y9-n8P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vpD-N7-xHi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="vpD-N7-xHi" firstAttribute="trailing" secondItem="b4y-Zg-C0I" secondAttribute="trailing" constant="40" id="8FY-IK-LVm"/>
                             <constraint firstItem="b4y-Zg-C0I" firstAttribute="leading" secondItem="vpD-N7-xHi" secondAttribute="leading" constant="40" id="Ij7-5D-gnF"/>
+                            <constraint firstItem="uOd-Ra-ljJ" firstAttribute="top" secondItem="b4y-Zg-C0I" secondAttribute="bottom" constant="75" id="drl-vw-ytf"/>
+                            <constraint firstItem="uOd-Ra-ljJ" firstAttribute="centerX" secondItem="zXT-jA-dT7" secondAttribute="centerX" id="iH3-C0-kFa"/>
                             <constraint firstItem="b4y-Zg-C0I" firstAttribute="centerY" secondItem="zXT-jA-dT7" secondAttribute="centerY" id="u7p-DK-vSD"/>
                         </constraints>
                     </view>
@@ -161,8 +171,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zm2-yB-jkI"/>
                     <connections>
-                        <segue destination="4ZM-xx-Rji" kind="show" identifier="com.cs3217.cloudjumpers.landingtologin" id="myH-u7-Fbo"/>
-                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.landingtolobbies" id="WLb-Fh-vqD"/>
+                        <segue destination="4ZM-xx-Rji" kind="show" identifier="com.cs3217.cloudjumpers.landingtologin" animates="NO" id="myH-u7-Fbo"/>
+                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.landingtolobbies" animates="NO" id="WLb-Fh-vqD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ele-bD-rX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -309,7 +319,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g51-L3-EBq">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up outcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g51-L3-EBq">
                                         <rect key="frame" x="0.0" y="306" width="334" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -345,14 +355,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1f-Dn-BKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2493" y="-1522"/>
+            <point key="canvasLocation" x="2583" y="-1522"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="yaf-ic-wta">
             <objects>
                 <viewController id="g9F-CB-D37" customClass="GameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="O7a-cQ-9Jl"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -470,7 +480,19 @@
                             <constraint firstItem="00k-Rw-Xbq" firstAttribute="trailing" secondItem="gd1-Au-OeV" secondAttribute="trailing" constant="20" id="rkf-pO-yqj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ysX-Ud-B4D"/>
+                    <navigationItem key="navigationItem" id="ysX-Ud-B4D">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Rok-e8-c2E">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5Vl-D7-MOL">
+                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign out"/>
+                                <connections>
+                                    <action selector="signUserOut" destination="2IY-Rh-Zla" eventType="touchUpInside" id="eK6-NP-W7V"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="lobbiesCollectionView" destination="ahd-4e-VmL" id="C7V-lE-P4o"/>
                         <segue destination="N2h-Lp-5b5" kind="show" identifier="com.cs3217.cloudjumpers.lobbiestolobby" id="zMc-Fy-vOj"/>
@@ -654,7 +676,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="iWe-RT-ICK"/>
-        <segue reference="3v8-fv-LOc"/>
+        <segue reference="5BG-nN-Q0N"/>
+        <segue reference="yWl-y9-n8P"/>
         <segue reference="myH-u7-Fbo"/>
     </inferredMetricsTieBreakers>
     <resources>

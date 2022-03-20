@@ -28,6 +28,10 @@ class AuthService {
         await authManager.loginUser(email: email, password: password)
     }
 
+    func logOut() {
+        authManager.logoutUser()
+    }
+
     func getUserId() -> EntityID? {
         authManager.getCurrentUser()?.userId
     }

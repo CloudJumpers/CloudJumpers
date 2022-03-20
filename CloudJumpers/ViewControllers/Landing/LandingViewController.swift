@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 class LandingViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         let auth = AuthService()
         auth.isLoggedIn() ? moveToLobbies() : moveToLoginOptions()
     }
