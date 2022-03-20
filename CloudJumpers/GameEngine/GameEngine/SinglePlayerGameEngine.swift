@@ -9,6 +9,7 @@ import CoreGraphics
 import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
+
     weak var stateMachine: StateMachine?
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
@@ -28,17 +29,20 @@ class SinglePlayerGameEngine: GameEngine {
         self.stateMachine = stateMachine
         self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
-
-        self.touchableManager = TouchableManager(eventManager: eventManager)
-        self.contactResolver = ContactResolver(entitiesManager: entitiesManager,
-                                               eventManager: eventManager)
+        self.touchableManager = TouchableManager()
+        self.contactResolver = ContactResolver(entitiesManager: entitiesManager)
 
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
-
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
-
+        
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
         self.gameState = .playing
+        setupEventDelegate()
+    }
+
+    func setupEventDelegate() {
+        self.contactResolver.eventDelegate = eventManager
+        self.touchableManager.eventDelegate = eventManager
     }
 
     func setupGame(with level: Level) {
@@ -90,10 +94,10 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     func update(_ deltaTime: Double) {
-        for event in eventManager.eventsQueue {
+        for event in eventManager.getEvents() {
             handleEvent(event: event)
-            eventManager.eventsQueue.remove(at: 0)
         }
+        eventManager.resetEventQueue()
 
         movingSystem.update(deltaTime)
         timerSystem.update(deltaTime)

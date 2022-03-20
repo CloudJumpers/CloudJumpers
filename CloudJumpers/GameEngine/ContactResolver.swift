@@ -9,12 +9,10 @@ import SpriteKit
 
 class ContactResolver {
     weak var entitiesManager: EntitiesManager?
+    weak var eventDelegate: EventDelegate?
 
-    var eventManager: EventManager
-
-    init(entitiesManager: EntitiesManager, eventManager: EventManager) {
+    init(entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
-        self.eventManager = eventManager
     }
 
     func resolveBeginContact(contact: SKPhysicsContact) {
@@ -31,19 +29,12 @@ class ContactResolver {
         if nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPlatform &&
             isPlayerOnPlatform(player: nodeA, platform: nodeB) {
 
-            eventManager.eventsQueue.append(Event(type: .gameEnd))
+            eventDelegate?.event(add: Event(type: .gameEnd))
         }
 
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {
-        guard let nodeA = contact.bodyA.node,
-              let nodeB = contact.bodyB.node,
-              let entityA = entitiesManager?.getEntity(of: nodeA),
-              let entityB = entitiesManager?.getEntity(of: nodeB)
-        else {
-            return
-        }
         // Do nothing for now
     }
 

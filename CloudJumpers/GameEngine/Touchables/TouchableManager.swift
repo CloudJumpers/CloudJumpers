@@ -9,11 +9,7 @@ import CoreGraphics
 
 class TouchableManager {
     private var touchables: [Touchable] = []
-    weak var eventManager: EventManager?
-
-    init(eventManager: EventManager) {
-        self.eventManager = eventManager
-    }
+    weak var eventDelegate: EventDelegate?
 
     func addTouchable(touchable: Touchable) {
         touchables.append(touchable)
@@ -22,7 +18,7 @@ class TouchableManager {
     func handleTouchBeganEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchBegan(touchLocation: location) {
-                self.eventManager?.eventsQueue.append(Event(type: .input(info: input)))
+                eventDelegate?.event(add: Event(type: .input(info: input)))
             }
         }
     }
@@ -30,7 +26,7 @@ class TouchableManager {
     func handleTouchMovedEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchMoved(touchLocation: location) {
-                self.eventManager?.eventsQueue.append(Event(type: .input(info: input)))
+                eventDelegate?.event(add: Event(type: .input(info: input)))
             }
         }
     }
@@ -38,7 +34,7 @@ class TouchableManager {
     func handleTouchEndedEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchEnded(touchLocation: location) {
-                self.eventManager?.eventsQueue.append(Event(type: .input(info: input)))
+                eventDelegate?.event(add: Event(type: .input(info: input)))
             }
         }
     }
@@ -47,7 +43,7 @@ class TouchableManager {
         for touchable in touchables {
 
             if let input = touchable.update() {
-                self.eventManager?.eventsQueue.append(Event(type: .input(info: input)))
+                eventDelegate?.event(add: Event(type: .input(info: input)))
             }
         }
     }
