@@ -20,6 +20,14 @@ class FirebaseAuthManager: AuthManager {
         }
     }
 
+    func logoutUser() {
+        do {
+            try authenticator.signOut()
+        } catch {
+            print("Unable to log user out: \(error.localizedDescription)")
+        }
+    }
+
     func createUser(email: String, password: String, name: String? = nil) async -> Bool {
         do {
             try await authenticator.createUser(withEmail: email, password: password)

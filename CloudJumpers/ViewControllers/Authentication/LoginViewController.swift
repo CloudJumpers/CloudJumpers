@@ -19,6 +19,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         overrideUserInterfaceStyle = .light
         setUpOutcomeLabel()
     }
@@ -36,8 +37,16 @@ class LoginViewController: UIViewController {
             let loginOutcome = await authService.logIn(email: email, password: password)
             let displayName = authService.getUserDisplayName()
 
-            self.updateOutcomeLabel(outcome: loginOutcome, name: displayName)
+            updateOutcomeLabel(outcome: loginOutcome, name: displayName)
+
+            if authService.isLoggedIn() {
+                moveToLobbies()
+            }
         }
+    }
+
+    private func moveToLobbies() {
+        performSegue(withIdentifier: SegueIdentifier.loginToLobbies, sender: nil)
     }
 
     private func setUpOutcomeLabel() {

@@ -16,6 +16,7 @@ class LobbiesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.hidesBackButton = true
         lobbiesCollectionView.dataSource = self
         lobbiesCollectionView.delegate = self
     }
@@ -30,6 +31,12 @@ class LobbiesViewController: UIViewController {
         super.viewDidDisappear(animated)
         tearDownLobbiesListener()
         refreshDataSource()
+    }
+
+    @IBAction private func signUserOut() {
+        let auth = AuthService()
+        auth.logOut()
+        moveToLogin()
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
@@ -122,9 +129,16 @@ class LobbiesViewController: UIViewController {
         let lobby = NetworkedLobby(lobbyId: lobbyId, hostId: hostId)
 
         self.performSegue(
-            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
+            withIdentifier: SegueIdentifier.lobbiesToLobby,
             sender: lobby
         )
+    }
+
+    private func moveToLogin() {
+        guard !AuthService().isLoggedIn() else {
+            return
+        }
+        navigationController?.popToRootViewController(animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
