@@ -25,7 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4W-lU-7sE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-90" y="-1268"/>
+            <point key="canvasLocation" x="-168" y="-1522"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="csI-R4-PA3">
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oF1-o1-vPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="-795"/>
+            <point key="canvasLocation" x="4770" y="-1522"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="JSF-Ik-AtH">
@@ -142,11 +142,12 @@
                         <outlet property="emailTextField" destination="dyC-Um-7bg" id="Jyh-Mt-zDL"/>
                         <outlet property="feedbackToast" destination="Io6-nz-52v" id="eOh-oF-mNj"/>
                         <outlet property="passwordTextField" destination="Zp2-bo-pvd" id="qDe-5g-ElF"/>
+                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.logintolobbies" id="iWe-RT-ICK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0E-az-88o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-470" y="-60"/>
+            <point key="canvasLocation" x="2583" y="-785"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="UG8-he-GCx">
@@ -160,8 +161,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zm2-yB-jkI"/>
                     <connections>
-                        <segue destination="4ZM-xx-Rji" kind="show" identifier="com.cs3217.cloudjumpers.enterlogin" id="myH-u7-Fbo"/>
-                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.enterlobbies" id="WLb-Fh-vqD"/>
+                        <segue destination="4ZM-xx-Rji" kind="show" identifier="com.cs3217.cloudjumpers.landingtologin" id="myH-u7-Fbo"/>
+                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.landingtolobbies" id="WLb-Fh-vqD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ele-bD-rX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -280,7 +281,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JL8-SI-JhS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1537.68115942029" y="-1521.4285714285713"/>
+            <point key="canvasLocation" x="1622" y="-1522"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="mL1-1B-P4X">
@@ -344,14 +345,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1f-Dn-BKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="265" y="79"/>
+            <point key="canvasLocation" x="2493" y="-1522"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="yaf-ic-wta">
             <objects>
                 <viewController id="g9F-CB-D37" customClass="GameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="O7a-cQ-9Jl"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -360,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1R-oS-Uhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1081" y="668"/>
+            <point key="canvasLocation" x="4803" y="56"/>
         </scene>
         <!--Lobbies View Controller-->
         <scene sceneID="XVF-xh-Sy2">
@@ -472,12 +473,12 @@
                     <navigationItem key="navigationItem" id="ysX-Ud-B4D"/>
                     <connections>
                         <outlet property="lobbiesCollectionView" destination="ahd-4e-VmL" id="C7V-lE-P4o"/>
-                        <segue destination="N2h-Lp-5b5" kind="show" identifier="com.cs3217.cloudjumpers.enterlobby" id="zMc-Fy-vOj"/>
+                        <segue destination="N2h-Lp-5b5" kind="show" identifier="com.cs3217.cloudjumpers.lobbiestolobby" id="zMc-Fy-vOj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEu-Wu-PPC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2736" y="-60"/>
+            <point key="canvasLocation" x="2583" y="56"/>
         </scene>
         <!--Lobby View Controller-->
         <scene sceneID="ypd-hK-m8T">
@@ -643,17 +644,17 @@
                         <outlet property="lobbyName" destination="Xse-eb-lhJ" id="3SV-dx-BTe"/>
                         <outlet property="lobbyUsersView" destination="ECZ-jv-S6e" id="2eU-Qt-hUn"/>
                         <outlet property="readyButton" destination="VzR-Ye-Sn6" id="Heh-hg-jX3"/>
-                        <segue destination="g9F-CB-D37" kind="show" identifier="com.cs3217.cloudjumpers.entergame" id="3v8-fv-LOc"/>
+                        <segue destination="g9F-CB-D37" kind="show" identifier="com.cs3217.cloudjumpers.lobbytogame" id="3v8-fv-LOc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHI-Jg-Vc4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1797" y="-60"/>
+            <point key="canvasLocation" x="3703" y="56"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="WLb-Fh-vqD"/>
-        <segue reference="5BG-nN-Q0N"/>
+        <segue reference="iWe-RT-ICK"/>
+        <segue reference="3v8-fv-LOc"/>
         <segue reference="myH-u7-Fbo"/>
     </inferredMetricsTieBreakers>
     <resources>

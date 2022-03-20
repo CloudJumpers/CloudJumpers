@@ -37,6 +37,10 @@ class LoginViewController: UIViewController {
             let displayName = authService.getUserDisplayName()
 
             self.updateOutcomeLabel(outcome: loginOutcome, name: displayName)
+
+            if authService.isLoggedIn() {
+                performSegue(withIdentifier: SegueIdentifier.loginToLobbies, sender: nil)
+            }
         }
     }
 
