@@ -17,8 +17,15 @@ class LobbyViewController: UIViewController {
     var activeLobby: NetworkedLobby?
     var lobbyUpdateListener: ListenerDelegate?
 
-    @IBAction private func onExit() {
+    @IBAction private func terminateLobbyConnection() {
+        guard lobbyUpdateListener != nil else {
+            return
+        }
+
+        lobbyUpdateListener = nil
         self.activeLobby?.exitLobby()
+        self.activeLobby = nil
+
         self.navigationController?.popViewController(animated: true)
     }
 
@@ -36,7 +43,10 @@ class LobbyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        guard let lobbyId = activeLobby?.id else {
+        guard isMovingToParent, let lobbyId = activeLobby?.id else {
+            // If we are returning from a child VC (game session) or do not have a lobby initialized,
+            // exit back to all lobbies menu
+            terminateLobbyConnection()
             return
         }
 
@@ -47,12 +57,6 @@ class LobbyViewController: UIViewController {
             onUserRemove: onUserRemove,
             onLobbyChange: onLobbyChange
         )
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        activeLobby = nil
-        lobbyUpdateListener = nil
     }
 
     func moveToGame() {
@@ -80,7 +84,7 @@ class LobbyViewController: UIViewController {
 
     private func onUserRemove(_ user: LobbyUser) {
         if user.id == activeLobby?.hostId {
-            onExit()
+            terminateLobbyConnection()
         }
 
         activeLobby?.removeOtherUser(userId: user.id)

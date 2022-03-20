@@ -588,7 +588,7 @@
                                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                                 </buttonConfiguration>
                                                 <connections>
-                                                    <action selector="onExit" destination="N2h-Lp-5b5" eventType="touchUpInside" id="Ki8-0W-WAY"/>
+                                                    <action selector="terminateLobbyConnection" destination="N2h-Lp-5b5" eventType="touchUpInside" id="Ki8-0W-WAY"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-NK-l0f">

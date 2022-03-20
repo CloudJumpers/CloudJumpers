@@ -34,7 +34,7 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
-        
+
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
         self.gameState = .playing
         setupEventDelegate()
