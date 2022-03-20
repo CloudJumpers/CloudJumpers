@@ -7,7 +7,9 @@
 
 import Foundation
 
-class TimeTrialGameEndState {
+class TimeTrialGameEndState: GameState {
+    var type: GameStateType
+
     struct Score {
         let name: String
         let score: Double
@@ -16,6 +18,7 @@ class TimeTrialGameEndState {
     var scores = [Score]()
 
     init(playerEndTime: Double) {
+        self.type = .end
         scores.append(Score(name: "You", score: playerEndTime))
         fetchHighScorer()
     }

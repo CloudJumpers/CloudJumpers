@@ -6,8 +6,6 @@ class GameViewController: UIViewController {
     static let EndGameViewControllerId = "EndGameViewController"
 
     private var gameEngine: GameEngine?
-    private var stateMachine: StateMachine?
-    private var endStateSubscription: AnyCancellable?
     private var scene: GameScene?
 
     override func viewDidLoad() {
@@ -17,19 +15,9 @@ class GameViewController: UIViewController {
         setUpGameScene()
     }
 
-    private func setUpStateMachineSubscriber(for scene: GameScene) {
-        endStateSubscription = stateMachine?.endPublisher.sink { state in
-            self.transitionToEndGame(state: state)
-            self.endStateSubscription = nil
-        }
-    }
-
     private func setUpGameEngine() {
-        stateMachine = StateMachine()
-        if let stateMachine = stateMachine {
-            gameEngine = SinglePlayerGameEngine(stateMachine: stateMachine)
-            gameEngine?.delegate = self
-        }
+        gameEngine = SinglePlayerGameEngine()
+        gameEngine?.delegate = self
     }
 
     private func setUpGameScene() {
@@ -41,7 +29,6 @@ class GameViewController: UIViewController {
         scene.scaleMode = .aspectFill
         self.scene = scene
         gameEngine?.setupGame(with: Level())
-        setUpStateMachineSubscriber(for: scene)
         setUpSKViewAndPresent(scene: scene)
     }
 
@@ -110,6 +97,9 @@ extension GameViewController: GameSceneDelegate {
 extension GameViewController: GameEngineDelegate {
     func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
         // TODO: Navigate to EndViewController
+        if let endState = state as? TimeTrialGameEndState {
+            self.transitionToEndGame(state: endState)
+        }
     }
 
     func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
