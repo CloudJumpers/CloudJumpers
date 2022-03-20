@@ -122,7 +122,7 @@ class LobbiesViewController: UIViewController {
         let lobby = NetworkedLobby(lobbyId: lobbyId, hostId: hostId)
 
         self.performSegue(
-            withIdentifier: LobbyConstants.lobbiesToLobbySegueIdentifier,
+            withIdentifier: SegueIdentifier.lobbiesToLobby,
             sender: lobby
         )
     }

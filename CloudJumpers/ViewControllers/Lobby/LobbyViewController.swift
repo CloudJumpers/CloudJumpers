@@ -61,7 +61,7 @@ class LobbyViewController: UIViewController {
 
     func moveToGame() {
         performSegue(
-            withIdentifier: LobbyConstants.lobbyToGameSegueIdentifier,
+            withIdentifier: SegueIdentifier.lobbyToGame,
             sender: nil
         )
     }

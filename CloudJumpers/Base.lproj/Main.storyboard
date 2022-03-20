@@ -20,7 +20,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Arl-Tq-KlU" kind="relationship" relationship="rootViewController" id="4yy-O9-6lg"/>
+                        <segue destination="Dft-YM-hSO" kind="relationship" relationship="rootViewController" id="7Ki-J4-wDZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4W-lU-7sE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oF1-o1-vPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="681.15942028985512" y="-792.1875"/>
+            <point key="canvasLocation" x="1233" y="-795"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="JSF-Ik-AtH">
@@ -146,7 +146,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0E-az-88o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-91" y="-60"/>
+            <point key="canvasLocation" x="-470" y="-60"/>
+        </scene>
+        <!--Landing View Controller-->
+        <scene sceneID="UG8-he-GCx">
+            <objects>
+                <viewController modalPresentationStyle="fullScreen" id="Dft-YM-hSO" customClass="LandingViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Klu-H3-SPd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3g9-FC-adj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zm2-yB-jkI"/>
+                    <connections>
+                        <segue destination="4ZM-xx-Rji" kind="show" identifier="com.cs3217.cloudjumpers.enterlogin" id="myH-u7-Fbo"/>
+                        <segue destination="2IY-Rh-Zla" kind="show" identifier="com.cs3217.cloudjumpers.enterlobbies" id="WLb-Fh-vqD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ele-bD-rX3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="-1522"/>
         </scene>
         <!--End Game View Controller-->
         <scene sceneID="AYa-Sf-TZE">
@@ -324,14 +344,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1f-Dn-BKR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="-792.1875"/>
+            <point key="canvasLocation" x="265" y="79"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="yaf-ic-wta">
             <objects>
                 <viewController id="g9F-CB-D37" customClass="GameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="O7a-cQ-9Jl"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -340,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1R-oS-Uhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="681" y="-60"/>
+            <point key="canvasLocation" x="1081" y="668"/>
         </scene>
         <!--Lobbies View Controller-->
         <scene sceneID="XVF-xh-Sy2">
@@ -632,7 +652,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3v8-fv-LOc"/>
+        <segue reference="WLb-Fh-vqD"/>
+        <segue reference="5BG-nN-Q0N"/>
+        <segue reference="myH-u7-Fbo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="player" width="27" height="40"/>

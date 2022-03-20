@@ -9,8 +9,6 @@ import Foundation
 
 enum LobbyConstants {
     static let cellReuseIdentifier = "com.cs3217.cloudjumpers.lobbycell"
-    static let lobbiesToLobbySegueIdentifier = "com.cs3217.cloudjumpers.enterlobby"
-    static let lobbyToGameSegueIdentifier = "com.cs3217.cloudjumpers.entergame"
     static let LobbyUserCellIdentifier = "com.cs3217.cloudjumpers.lobbyusercell"
 
     static let minUpdateInterval = 1
