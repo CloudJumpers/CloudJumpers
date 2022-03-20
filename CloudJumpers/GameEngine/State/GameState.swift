@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum GameState {
+protocol GameState {
+    var type: GameStateType { get set }
+}
+
+enum GameStateType {
     case playing
-    case timeTrialEnd(time: Double)
+    case end
 }

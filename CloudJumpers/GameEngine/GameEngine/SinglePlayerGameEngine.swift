@@ -10,13 +10,11 @@ import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
 
-    weak var stateMachine: StateMachine?
     var entitiesManager: EntitiesManager
     var eventManager: EventManager
     var touchableManager: TouchableManager
     var contactResolver: ContactResolver
 
-    var gameState: GameState
     weak var delegate: GameEngineDelegate?
 
     private var playerEntity: PlayerEntity
@@ -25,8 +23,7 @@ class SinglePlayerGameEngine: GameEngine {
     let movingSystem: MovingSystem
     let timerSystem: TimerSystem
 
-    init(stateMachine: StateMachine) {
-        self.stateMachine = stateMachine
+    init() {
         self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
         self.touchableManager = TouchableManager()
@@ -34,9 +31,8 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.movingSystem = MovingSystem(entitiesManager: entitiesManager)
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
-        
+
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
-        self.gameState = .playing
         setupEventDelegate()
     }
 
@@ -159,6 +155,8 @@ class SinglePlayerGameEngine: GameEngine {
 
     private func handleGameEnd() {
         let time = timerSystem.getTime()
-        stateMachine?.transition(to: .timeTrialEnd(time: time))
+        let endGameState = TimeTrialGameEndState(playerEndTime: time)
+        delegate?.engine(self, didEndGameWith: endGameState)
+
     }
 }
