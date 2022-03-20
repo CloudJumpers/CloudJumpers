@@ -79,23 +79,35 @@ extension EndGameViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
+        let cellIdentifier = getCellIdentifier(tableView: tableView)
+        let textDisplay = getCellTextDisplay(tableView: tableView, index: indexPath.row)
 
-        switch tableView {
-        case nameTableView:
-            cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
-            cell.textLabel?.text = names[indexPath.row]
-        case scoreTableView:
-            tableView.dequeueReusableCell(withIdentifier: "scoreCell", for: indexPath)
-            cell.textLabel?.text = scores[indexPath.row]
-        default:
-            break
-        }
-
-        cell.layer.borderWidth = 2
-        cell.layer.cornerRadius = 8
-        cell.layer.borderColor = UIColor.black.cgColor
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        cell.setupEndGameCell()
+        cell.displayText(text: textDisplay)
 
         return cell
+    }
+
+    private func getCellIdentifier(tableView: UITableView) -> String {
+        switch tableView {
+        case nameTableView:
+            return EndGameConstants.nameCellIdentifier
+        case scoreTableView:
+            return EndGameConstants.scoreCellIdentifier
+        default:
+            return EndGameConstants.emptyString
+        }
+    }
+
+    private func getCellTextDisplay(tableView: UITableView, index: Int) -> String {
+        switch tableView {
+        case nameTableView:
+            return names[index]
+        case scoreTableView:
+            return scores[index]
+        default:
+            return EndGameConstants.emptyString
+        }
     }
 }
