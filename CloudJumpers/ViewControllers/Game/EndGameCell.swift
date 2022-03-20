@@ -1,5 +1,5 @@
 //
-//  UITableViewCell+Extension.swift
+//  EndGameCell.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 20/3/22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UITableViewCell {
+class EndGameCell: UITableViewCell {
     func setupEndGameCell() {
         layer.borderWidth = EndGameConstants.cellBorderWidth
         layer.cornerRadius = EndGameConstants.cellCornerRadius
