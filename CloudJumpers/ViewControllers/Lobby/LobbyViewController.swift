@@ -14,7 +14,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
-    var activeLobby: NetworkedLobby?
+    var activeLobby: GameLobby?
     var lobbyUpdateListener: ListenerDelegate?
 
     @IBAction private func terminateLobbyConnection() {
@@ -23,7 +23,7 @@ class LobbyViewController: UIViewController {
         }
 
         lobbyUpdateListener = nil
-        self.activeLobby?.exitLobby()
+        self.activeLobby?.removeDeviceUser()
         self.activeLobby = nil
 
         self.navigationController?.popViewController(animated: true)
@@ -57,6 +57,14 @@ class LobbyViewController: UIViewController {
             onUserRemove: onUserRemove,
             onLobbyChange: onLobbyChange
         )
+    }
+
+    func onLobbyUpdate(_ lobby: GameLobby, _ state: LobbyState) {
+        if state == .gameInProgress {
+            moveToGame()
+        } else if state == .disconnected {
+            terminateLobbyConnection()
+        }
     }
 
     func moveToGame() {
@@ -123,13 +131,13 @@ extension LobbyViewController: UITableViewDataSource {
             return Int.zero
         }
 
-        return lobby.allUsers.count
+        return lobby.numUsers
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
-        guard let lobbyUser = activeLobby?.allUsers[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
+        guard let lobbyUser = activeLobby?.users[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
             return cell
         }
 

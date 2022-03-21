@@ -41,3 +41,6 @@ struct LobbyUser: NetworkedEntity {
         lastUpdatedAt = LobbyUtils.getUnixTimestampSeconds()
     }
 }
+
+extension LobbyUser: Equatable {
+}

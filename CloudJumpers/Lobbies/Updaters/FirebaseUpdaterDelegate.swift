@@ -8,38 +8,38 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseUpdaterDelegate: UpdaterDelegate {
-    func createLobby() -> EntityID {
-        let userId = getActiveUserId()
-        let userDisplayName = getActiveUserDisplayName()
+class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
+    weak var managedLobby: NetworkedLobby?
 
-        let lobbyId = LobbyUtils.generateLobbyId()
-        let lobbyName = LobbyUtils.generateLobbyName()
-        let lobbyGameMode = GameModes.TimeTrial.rawValue
+    func createLobby(hostId: EntityID, hostDisplayName: String) {
+        guard let lobby = managedLobby else {
+            return
+        }
 
-        let lobbyReference = getLobbyReference(lobbyId: lobbyId)
+        let lobbyReference = getLobbyReference(lobbyId: lobby.id)
         lobbyReference.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
 
         lobbyReference.setValue([
-            LobbyKeys.hostId: userId,
-            LobbyKeys.lobbyName: lobbyName,
-            LobbyKeys.gameMode: lobbyGameMode,
+            LobbyKeys.hostId: hostId,
+            LobbyKeys.lobbyName: lobby.name,
+            LobbyKeys.gameMode: lobby.gameMode.rawValue,
             LobbyKeys.participants: [
-                userId: [
+                lobby.hostId: [
                     LobbyKeys.participantReady: false,
-                    LobbyKeys.participantName: userDisplayName
+                    LobbyKeys.participantName: hostDisplayName
                 ]
             ]
-        ])
-
-        return lobbyId
+        ]) { error, _ in
+            error == nil ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
+        }
     }
 
-    func joinLobby(lobbyId: EntityID) {
-        let userId = getActiveUserId()
-        let userDisplayName = getActiveUserDisplayName()
+    func joinLobby(userId: EntityID, userDisplayName: String) {
+        guard let lobby = managedLobby else {
+            return
+        }
 
-        let participantsReference = getLobbyParticipantsReference(lobbyId: lobbyId)
+        let participantsReference = getLobbyParticipantsReference(lobbyId: lobby.id)
 
         // joinLobby needs to be wrapped in a transaction, as the join requires the following conditions
         // - the lobby exists when the user joins
@@ -61,28 +61,36 @@ class FirebaseUpdaterDelegate: UpdaterDelegate {
             }
             return TransactionResult.success(withValue: currentData)
         }) { error, _, _ in
+            error == nil ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
+        }
+    }
+
+    func exitLobby(userId: EntityID, deleteLobby: Bool = false) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
+        let lobbyReference = getLobbyReference(lobbyId: lobby.id)
+
+        let refToDelete = deleteLobby ? lobbyReference : userReference
+
+        refToDelete.removeValue { error, _ in
             if let err = error {
-                print("joinLobby error: \(err.localizedDescription)")
+                print("error occurred during exitLobby: \(err.localizedDescription)")
             }
         }
-    }
 
-    func exitLobby(lobbyId: EntityID, deleteLobby: Bool = false) {
-        let userReference = getLobbyUserReference(lobbyId: lobbyId)
-        let lobbyReference = getLobbyReference(lobbyId: lobbyId)
-
-        userReference.removeValue()
         userReference.removeAllObservers()
-
         lobbyReference.removeAllObservers()
-        if deleteLobby {
-            lobbyReference.removeValue()
-        }
     }
 
-    func toggleReady(lobbyId: EntityID) {
-        let userId = getActiveUserId()
-        let participantsReference = getLobbyParticipantsReference(lobbyId: lobbyId)
+    func toggleReady(userId: EntityID) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let participantsReference = getLobbyParticipantsReference(lobbyId: lobby.id)
 
         // setReady requires the following:
         // - the lobby exists
@@ -103,7 +111,7 @@ class FirebaseUpdaterDelegate: UpdaterDelegate {
             return TransactionResult.success(withValue: currentData)
         }) { error, _, _ in
             if let err = error {
-                print("readyLobby error: \(err.localizedDescription)")
+                print("error occurred during toggleReady: \(err.localizedDescription)")
             }
         }
     }
@@ -121,20 +129,7 @@ class FirebaseUpdaterDelegate: UpdaterDelegate {
         return lobbyReference.child(LobbyKeys.participants)
     }
 
-    private func getLobbyUserReference(lobbyId: EntityID) -> DatabaseReference {
-        let userId = getActiveUserId()
-        return getLobbyParticipantsReference(lobbyId: lobbyId).child(userId)
-    }
-
-    private func getActiveUserId() -> EntityID {
-        guard let userId = AuthService().getUserId() else {
-            fatalError("Expected user to be logged in.")
-        }
-
-        return userId
-    }
-
-    private func getActiveUserDisplayName() -> String {
-        AuthService().getUserDisplayName()
+    private func getLobbyUserReference(lobbyId: EntityID, userId: EntityID) -> DatabaseReference {
+        getLobbyParticipantsReference(lobbyId: lobbyId).child(userId)
     }
 }

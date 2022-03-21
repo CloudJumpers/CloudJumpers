@@ -1,124 +1,34 @@
 //
-//  NetworkedLobby.swift
+//  Lobby.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 14/3/22.
+//  Created by Sujay R Subramanian on 21/3/22.
 //
 
 import Foundation
 
-class NetworkedLobby {
-    private var user: LobbyUser
-    private(set) var others: [LobbyUser]
+protocol NetworkedLobby: AnyObject {
+    var id: EntityID { get }
+    var name: String { get }
+    var gameMode: GameMode { get }
 
-    let hostId: EntityID
-    private(set) var id: EntityID!
+    var hostId: EntityID { get }
+    var userIsHost: Bool { get }
 
-    private let lobbyManager = FirebaseUpdaterDelegate()
-    private var onLobbyFinalized: NetworkCallback?
+    var users: [LobbyUser] { get }
+    var numUsers: Int { get }
 
-    var allUsers: [LobbyUser] {
-        [user] + others
-    }
+    var onLobbyStateChange: LobbyCallback? { get set }
+    var updaterDelegate: LobbyUpdaterDelegate? { get set }
+    var listenerDelegate: ListenerDelegate? { get set }
 
-    var userIsHost: Bool {
-        hostId == AuthService().getUserId()
-    }
+    func onAddUser(_ user: LobbyUser)
+    func onUpdateUser(_ user: LobbyUser)
+    func onRemoveUser(_ userId: EntityID)
 
-    init(lobbyId: EntityID?, hostId: EntityID) {
-        self.id = lobbyId
-        self.hostId = hostId
-        self.others = [LobbyUser]()
+    func toggleDeviceUserReadyStatus()
 
-        let auth = AuthService()
-        guard let userId = auth.getUserId() else {
-            fatalError("User is expected to be logged in.")
-        }
-
-        self.user = LobbyUser(
-            id: userId,
-            displayName: auth.getUserDisplayName()
-        )
-
-        if userIsHost {
-            createLobby()
-        } else {
-            joinLobby()
-        }
-    }
-
-    func addUser(newUser: LobbyUser) {
-        guard newUser.id != user.id else {
-            return
-        }
-        others.append(newUser)
-        processLobbyUpdate()
-    }
-
-    func updateOtherUser(_ updatedUser: LobbyUser) {
-        guard let index = others.firstIndex(where: { $0.id == updatedUser.id }) else {
-            return
-        }
-
-        others[index] = updatedUser
-        processLobbyUpdate()
-    }
-
-    func removeAllOtherUsers() {
-        others.removeAll()
-    }
-
-    func setUserReady() {
-        guard !user.isReady else {
-            return
-        }
-
-        user.setAsReady()
-        processLobbyUpdate()
-    }
-
-    func setUserNotReady() {
-        guard user.isReady else {
-            return
-        }
-
-        user.setAsNotReady()
-    }
-
-    func removeOtherUser(userId: EntityID) {
-        others = others.filter { $0.id != userId }
-    }
-
-    func toggleReady() {
-        lobbyManager.toggleReady(lobbyId: id)
-    }
-
-    func setOnFinalizedCallback(callback: NetworkCallback?) {
-        onLobbyFinalized = callback
-    }
-
-    private func createLobby() {
-        id = lobbyManager.createLobby()
-    }
-
-    private func joinLobby() {
-        lobbyManager.joinLobby(lobbyId: id)
-    }
-
-    private var isLobbyFinalized: Bool {
-        allUsers.count == LobbyConstants.MaxSupportedPlayers && allUsers.allSatisfy({ $0.isReady })
-    }
-
-    private func processLobbyUpdate() {
-        if isLobbyFinalized {
-            onLobbyFinalized?()
-        }
-    }
-
-    func exitLobby() {
-        lobbyManager.exitLobby(
-            lobbyId: id,
-            deleteLobby: userIsHost
-        )
-    }
+    // events
+    func onLobbyConnectionOpen()
+    func onLobbyConnectionClosed()
 }

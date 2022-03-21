@@ -40,10 +40,9 @@ class LobbiesViewController: UIViewController {
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
-        guard let userId = AuthService().getUserId() else {
-            return
-        }
-        moveToLobby(lobbyId: nil, hostId: userId)
+        // Attempt to create a lobby.
+        // If successful, the callback will fire with a reference to the created lobby object.
+        _ = GameLobby(onLobbyStateChange: onLobbyCreate)
     }
 
     private func setUpLobbiesListener() {
@@ -125,9 +124,13 @@ class LobbiesViewController: UIViewController {
         lobbiesCollectionView.reloadData()
     }
 
-    private func moveToLobby(lobbyId: EntityID?, hostId: EntityID) {
-        let lobby = NetworkedLobby(lobbyId: lobbyId, hostId: hostId)
+    private func onLobbyCreate(_ lobby: GameLobby, _ state: LobbyState) {
+        if state == .matchmaking {
+            moveToLobby(lobby: lobby)
+        }
+    }
 
+    private func moveToLobby(lobby: GameLobby) {
         self.performSegue(
             withIdentifier: SegueIdentifier.lobbiesToLobby,
             sender: lobby
@@ -146,20 +149,28 @@ class LobbiesViewController: UIViewController {
 
         guard
             let dest = segue.destination as? LobbyViewController,
-            let lobby = sender as? NetworkedLobby
+            let lobby = sender as? GameLobby
         else {
             return
         }
 
-        lobby.setOnFinalizedCallback(callback: dest.moveToGame)
+        lobby.onLobbyStateChange = dest.onLobbyUpdate
         dest.activeLobby = lobby
     }
 }
 
 extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedLobby = lobbies[indexPath.item]
-        moveToLobby(lobbyId: selectedLobby.lobbyId, hostId: selectedLobby.hostId)
+        let listing = lobbies[indexPath.item]
+
+        // Attempt to create a lobby.
+        // If successful, the callback will fire with a reference to the created lobby object.
+        _ = GameLobby(
+            id: listing.lobbyId,
+            name: listing.lobbyName,
+            hostId: listing.hostId,
+            onLobbyStateChange: onLobbyCreate
+        )
     }
 }
 
@@ -185,7 +196,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let name = lobbies[indexPath.item].lobbyName
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameModes.TimeTrial.rawValue)
+        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)
         lobbyCell.setOccupancy(num: occupancy)
 
         if occupancy < LobbyConstants.MaxSupportedPlayers {
