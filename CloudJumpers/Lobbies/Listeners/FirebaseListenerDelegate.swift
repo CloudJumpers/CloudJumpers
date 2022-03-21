@@ -10,28 +10,14 @@ import FirebaseDatabase
 private typealias firebaseStructure = [String: Any]
 
 class FirebaseListenerDelegate: ListenerDelegate {
-    var onUserAdd: UserCallback
-    var onUserChange: UserCallback
-    var onUserRemove: UserCallback
-    var onLobbyChange: StringKeyValCallback
+    weak var managedLobby: NetworkedLobby?
 
     private var lobbyRef: DatabaseReference
     private var lobbyUsersRef: DatabaseReference
 
-    init(
-        lobbyId: EntityID,
-        onUserAdd: UserCallback,
-        onUserChange: UserCallback,
-        onUserRemove: UserCallback,
-        onLobbyChange: StringKeyValCallback
-    ) {
+    init(lobbyId: EntityID) {
         self.lobbyRef = Database.database().reference(withPath: LobbyKeys.root).child(lobbyId)
         self.lobbyUsersRef = lobbyRef.child(LobbyKeys.participants)
-
-        self.onUserAdd = onUserAdd
-        self.onUserChange = onUserChange
-        self.onUserRemove = onUserRemove
-        self.onLobbyChange = onLobbyChange
 
         setUpListeners()
     }
@@ -57,27 +43,32 @@ class FirebaseListenerDelegate: ListenerDelegate {
             guard let newName = snapshot.value as? String else {
                 return
             }
-            self.onLobbyChange?(snapshot.key, newName)
+
+            self.managedLobby?.onNameChange(newName)
         }
 
         lobbyRef.child(LobbyKeys.gameMode).observe(.value) { snapshot in
-            guard let newGameMode = snapshot.value as? String else {
+            guard
+                let newGameModeString = snapshot.value as? String,
+                let newGameMode = GameMode(rawValue: newGameModeString)
+            else {
                 return
             }
-            self.onLobbyChange?(snapshot.key, newGameMode)
+
+            self.managedLobby?.onGameModeChange(newGameMode)
         }
     }
 
     private func handleAddUpdate(snapshot: DataSnapshot) {
-        onUserAdd?(unpackUser(snapshot))
+        managedLobby?.onUserAdd(unpackUser(snapshot))
     }
 
     private func handleChangeUpdate(snapshot: DataSnapshot) {
-        onUserChange?(unpackUser(snapshot))
+        managedLobby?.onUserUpdate(unpackUser(snapshot))
     }
 
     private func handleRemoveUpdate(snapshot: DataSnapshot) {
-        onUserRemove?(unpackUser(snapshot))
+        managedLobby?.onUserRemove(unpackUser(snapshot).id)
     }
 
     private func unpackUser(_ snapshot: DataSnapshot) -> LobbyUser {

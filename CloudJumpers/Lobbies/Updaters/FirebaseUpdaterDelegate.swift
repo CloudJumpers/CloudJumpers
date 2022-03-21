@@ -80,9 +80,6 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 print("error occurred during exitLobby: \(err.localizedDescription)")
             }
         }
-
-        userReference.removeAllObservers()
-        lobbyReference.removeAllObservers()
     }
 
     func toggleReady(userId: EntityID) {

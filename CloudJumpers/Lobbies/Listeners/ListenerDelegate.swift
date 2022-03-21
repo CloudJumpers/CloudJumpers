@@ -6,8 +6,5 @@
 //
 
 protocol ListenerDelegate: AnyObject {
-    var onUserAdd: UserCallback { get }
-    var onUserChange: UserCallback { get }
-    var onUserRemove: UserCallback { get }
-    var onLobbyChange: StringKeyValCallback { get }
+    var managedLobby: NetworkedLobby? { get set }
 }

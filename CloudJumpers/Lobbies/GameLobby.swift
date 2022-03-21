@@ -15,15 +15,18 @@ enum LobbyState {
 
 class GameLobby: NetworkedLobby {
     let id: EntityID
-    let name: String
-    let gameMode = GameMode.TimeTrial
+    private(set) var name: String
+    private(set) var gameMode = GameMode.TimeTrial
 
     let hostId: EntityID
     private(set) var users: [LobbyUser] = [LobbyUser]()
 
-    weak var updaterDelegate: LobbyUpdaterDelegate?
-    weak var listenerDelegate: ListenerDelegate?
-    var onLobbyStateChange: LobbyCallback?
+    var updater: LobbyUpdaterDelegate?
+    var listener: ListenerDelegate?
+
+    var onLobbyStateChange: LobbyLifecycleCallback?
+    var onLobbyNameChange: LobbyMetadataCallback?
+    var onLobbyGameModeChange: LobbyMetadataCallback?
 
     var numUsers: Int {
         users.count
@@ -38,9 +41,16 @@ class GameLobby: NetworkedLobby {
     }
 
     /// Constructor for creating a lobby hosted by the device user
-    init?(onLobbyStateChange: LobbyCallback? = nil) {
+    init?(
+        onLobbyStateChange: LobbyLifecycleCallback? = nil,
+        onLobbyNameChange: LobbyMetadataCallback? = nil,
+        onLobbyGameModeChange: LobbyMetadataCallback? = nil
+    ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
+        self.onLobbyStateChange = onLobbyStateChange
+        self.onLobbyNameChange = onLobbyNameChange
+        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -50,18 +60,31 @@ class GameLobby: NetworkedLobby {
 
         self.hostId = deviceUserId
         self.users.append(LobbyUser(id: deviceUserId, displayName: deviceUserDisplayName, isReady: false))
-        createLobby(hostId: deviceUserId, hostDisplayName: deviceUserDisplayName)
 
-        updaterDelegate?.managedLobby = self
+        self.updater = FirebaseUpdaterDelegate()
+        self.listener = FirebaseListenerDelegate(lobbyId: self.id)
+
+        updater?.managedLobby = self
+        listener?.managedLobby = self
+
+        createLobby(hostId: deviceUserId, hostDisplayName: deviceUserDisplayName)
         assert(checkRepresentation())
     }
 
     /// Constructor for joining an externally created lobby
-    init?(id: EntityID, name: String, hostId: EntityID, onLobbyStateChange: LobbyCallback? = nil) {
+    init?(id: EntityID,
+          name: String,
+          hostId: EntityID,
+          onLobbyStateChange: LobbyLifecycleCallback? = nil,
+          onLobbyNameChange: LobbyMetadataCallback? = nil,
+          onLobbyGameModeChange: LobbyMetadataCallback? = nil
+    ) {
         self.id = id
         self.name = name
         self.hostId = hostId
         self.onLobbyStateChange = onLobbyStateChange
+        self.onLobbyNameChange = onLobbyNameChange
+        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -70,17 +93,23 @@ class GameLobby: NetworkedLobby {
         }
 
         self.users.append(LobbyUser(id: deviceUserId, displayName: deviceUserDisplayName, isReady: false))
-        joinLobby(userId: deviceUserId, userDisplayName: deviceUserDisplayName)
 
+        self.updater = FirebaseUpdaterDelegate()
+        self.listener = FirebaseListenerDelegate(lobbyId: self.id)
+
+        updater?.managedLobby = self
+        listener?.managedLobby = self
+
+        joinLobby(userId: deviceUserId, userDisplayName: deviceUserDisplayName)
         assert(checkRepresentation())
     }
 
     private func createLobby(hostId: EntityID, hostDisplayName: String) {
-        updaterDelegate?.createLobby(hostId: hostId, hostDisplayName: hostDisplayName)
+        updater?.createLobby(hostId: hostId, hostDisplayName: hostDisplayName)
     }
 
     private func joinLobby(userId: EntityID, userDisplayName: String) {
-        updaterDelegate?.joinLobby(userId: userId, userDisplayName: userDisplayName)
+        updater?.joinLobby(userId: userId, userDisplayName: userDisplayName)
     }
 
     private func checkRepresentation() -> Bool {
@@ -104,8 +133,18 @@ class GameLobby: NetworkedLobby {
         onLobbyStateChange?(self, .disconnected)
     }
 
+    func onGameModeChange(_ newGameMode: GameMode) {
+        gameMode = newGameMode
+        onLobbyGameModeChange?(newGameMode.rawValue)
+    }
+
+    func onNameChange(_ newName: String) {
+        name = newName
+        onLobbyNameChange?(newName)
+    }
+
     // MARK: - External actions
-    func onAddUser(_ user: LobbyUser) {
+    func onUserAdd(_ user: LobbyUser) {
         guard !users.contains(user) else {
             return
         }
@@ -114,7 +153,7 @@ class GameLobby: NetworkedLobby {
         assert(checkRepresentation())
     }
 
-    func onUpdateUser(_ user: LobbyUser) {
+    func onUserUpdate(_ user: LobbyUser) {
         guard let index = users.firstIndex(where: { $0.id == user.id }) else {
             return
         }
@@ -123,7 +162,7 @@ class GameLobby: NetworkedLobby {
         assert(checkRepresentation())
     }
 
-    func onRemoveUser(_ userId: EntityID) {
+    func onUserRemove(_ userId: EntityID) {
         users = users.filter { $0.id != userId }
 
         guard userId != AuthService().getUserId() else {
@@ -142,7 +181,7 @@ class GameLobby: NetworkedLobby {
             return
         }
 
-        updaterDelegate?.exitLobby(userId: userId, deleteLobby: userIsHost)
+        updater?.exitLobby(userId: userId, deleteLobby: userIsHost)
     }
 
     func toggleDeviceUserReadyStatus() {
@@ -153,7 +192,7 @@ class GameLobby: NetworkedLobby {
         // It would be possible for us to optimistically set the user to ready here first
         // However, this may lead to fairness issues - the last user to become ready
         // will get to the finalized state before all other lobby users
-        updaterDelegate?.toggleReady(userId: deviceUser.id)
+        updater?.toggleReady(userId: deviceUser.id)
     }
 
     private func processLobbyUpdate() {

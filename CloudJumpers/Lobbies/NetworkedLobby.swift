@@ -18,13 +18,11 @@ protocol NetworkedLobby: AnyObject {
     var users: [LobbyUser] { get }
     var numUsers: Int { get }
 
-    var onLobbyStateChange: LobbyCallback? { get set }
-    var updaterDelegate: LobbyUpdaterDelegate? { get set }
-    var listenerDelegate: ListenerDelegate? { get set }
-
-    func onAddUser(_ user: LobbyUser)
-    func onUpdateUser(_ user: LobbyUser)
-    func onRemoveUser(_ userId: EntityID)
+    func onUserAdd(_ user: LobbyUser)
+    func onUserUpdate(_ user: LobbyUser)
+    func onUserRemove(_ userId: EntityID)
+    func onGameModeChange(_ newGameMode: GameMode)
+    func onNameChange(_ newName: String)
 
     func toggleDeviceUserReadyStatus()
 

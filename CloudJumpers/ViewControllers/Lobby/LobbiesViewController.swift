@@ -40,9 +40,7 @@ class LobbiesViewController: UIViewController {
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
-        // Attempt to create a lobby.
-        // If successful, the callback will fire with a reference to the created lobby object.
-        _ = GameLobby(onLobbyStateChange: onLobbyCreate)
+        moveToLobby(listing: nil)
     }
 
     private func setUpLobbiesListener() {
@@ -124,16 +122,10 @@ class LobbiesViewController: UIViewController {
         lobbiesCollectionView.reloadData()
     }
 
-    private func onLobbyCreate(_ lobby: GameLobby, _ state: LobbyState) {
-        if state == .matchmaking {
-            moveToLobby(lobby: lobby)
-        }
-    }
-
-    private func moveToLobby(lobby: GameLobby) {
+    private func moveToLobby(listing: LobbyListing?) {
         self.performSegue(
             withIdentifier: SegueIdentifier.lobbiesToLobby,
-            sender: lobby
+            sender: listing
         )
     }
 
@@ -147,30 +139,22 @@ class LobbiesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        guard
-            let dest = segue.destination as? LobbyViewController,
-            let lobby = sender as? GameLobby
-        else {
+        guard let dest = segue.destination as? LobbyViewController else {
             return
         }
 
-        lobby.onLobbyStateChange = dest.onLobbyUpdate
-        dest.activeLobby = lobby
+        if let listing = sender as? LobbyListing {
+            dest.setActiveLobby(id: listing.lobbyId, name: listing.lobbyName, hostId: listing.hostId)
+        } else {
+            dest.setActiveLobby()
+        }
     }
 }
 
 extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listing = lobbies[indexPath.item]
-
-        // Attempt to create a lobby.
-        // If successful, the callback will fire with a reference to the created lobby object.
-        _ = GameLobby(
-            id: listing.lobbyId,
-            name: listing.lobbyName,
-            hostId: listing.hostId,
-            onLobbyStateChange: onLobbyCreate
-        )
+        moveToLobby(listing: listing)
     }
 }
 
