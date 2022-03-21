@@ -8,6 +8,6 @@
 import Foundation
 
 typealias NetworkCallback = () -> Void
-typealias LobbyLifecycleCallback = (GameLobby, LobbyState) -> Void
+typealias LobbyDataAvailableCallback = () -> Void
+typealias LobbyLifecycleCallback = (LobbyState) -> Void
 typealias LobbyMetadataCallback = (String) -> Void
-typealias UserCallback = ((LobbyUser) -> Void)?

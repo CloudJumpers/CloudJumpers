@@ -139,15 +139,14 @@ class LobbiesViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
-        guard let dest = segue.destination as? LobbyViewController else {
+        guard
+            let dest = segue.destination as? LobbyViewController,
+            let listing = sender as? LobbyListing
+        else {
             return
         }
 
-        if let listing = sender as? LobbyListing {
-            dest.setActiveLobby(id: listing.lobbyId, name: listing.lobbyName, hostId: listing.hostId)
-        } else {
-            dest.setActiveLobby()
-        }
+        dest.activeListing = listing
     }
 }
 
@@ -180,7 +179,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let name = lobbies[indexPath.item].lobbyName
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)
+        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)    // TODO: refactor when new gamemodes exist
         lobbyCell.setOccupancy(num: occupancy)
 
         if occupancy < LobbyConstants.MaxSupportedPlayers {

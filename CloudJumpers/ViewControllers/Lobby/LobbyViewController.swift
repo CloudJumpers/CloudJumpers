@@ -14,6 +14,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
+    var activeListing: LobbyListing?
     var activeLobby: GameLobby?
 
     override func viewDidLoad() {
@@ -31,6 +32,12 @@ class LobbyViewController: UIViewController {
             moveToLobbies()
             return
         }
+
+        if let listing = activeListing {
+            setActiveLobby(id: listing.lobbyId, name: listing.lobbyName, hostId: listing.hostId)
+        } else {
+            setActiveLobby()
+        }
     }
 
     func setActiveLobby(id: EntityID, name: String, hostId: EntityID) {
@@ -39,6 +46,7 @@ class LobbyViewController: UIViewController {
             name: name,
             hostId: hostId,
             onLobbyStateChange: handleLobbyUpdate,
+            onLobbyDataChange: handleLobbyDataChange,
             onLobbyNameChange: setLobbyName,
             onLobbyGameModeChange: setLobbyGameMode
         )
@@ -47,6 +55,7 @@ class LobbyViewController: UIViewController {
     func setActiveLobby() {
         activeLobby = GameLobby(
             onLobbyStateChange: handleLobbyUpdate,
+            onLobbyDataChange: handleLobbyDataChange,
             onLobbyNameChange: setLobbyName,
             onLobbyGameModeChange: setLobbyGameMode
         )
@@ -59,6 +68,7 @@ class LobbyViewController: UIViewController {
 
         self.activeLobby?.removeDeviceUser()
         self.activeLobby = nil
+        self.activeListing = nil
 
         self.navigationController?.popViewController(animated: true)
     }
@@ -76,7 +86,7 @@ class LobbyViewController: UIViewController {
     }
 
     // MARK: - Lobby management
-    private func handleLobbyUpdate(_ lobby: GameLobby, _ state: LobbyState) {
+    private func handleLobbyUpdate(_ state: LobbyState) {
         if state == .gameInProgress {
             moveToGame()
         } else if state == .disconnected {
@@ -84,7 +94,7 @@ class LobbyViewController: UIViewController {
         }
     }
 
-    private func onLobbyDataChange() {
+    private func handleLobbyDataChange() {
         lobbyUsersView.reloadData()
 
         guard let deviceUser = activeLobby?.users.first(where: { $0.id == AuthService().getUserId() }) else {

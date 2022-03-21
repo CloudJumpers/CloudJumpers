@@ -41,6 +41,7 @@ class FirebaseListenerDelegate: ListenerDelegate {
 
         lobbyRef.child(LobbyKeys.lobbyName).observe(.value) { snapshot in
             guard let newName = snapshot.value as? String else {
+                self.managedLobby?.onLobbyConnectionClosed()
                 return
             }
 
@@ -52,6 +53,7 @@ class FirebaseListenerDelegate: ListenerDelegate {
                 let newGameModeString = snapshot.value as? String,
                 let newGameMode = GameMode(rawValue: newGameModeString)
             else {
+                self.managedLobby?.onLobbyConnectionClosed()
                 return
             }
 

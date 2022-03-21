@@ -16,7 +16,7 @@ enum LobbyState {
 class GameLobby: NetworkedLobby {
     let id: EntityID
     private(set) var name: String
-    private(set) var gameMode = GameMode.TimeTrial
+    private(set) var gameMode = GameMode.TimeTrial  // TODO: refactor when new gamemodes exist
 
     let hostId: EntityID
     private(set) var users: [LobbyUser] = [LobbyUser]()
@@ -25,6 +25,7 @@ class GameLobby: NetworkedLobby {
     var listener: ListenerDelegate?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
+    var onLobbyDataChange: LobbyDataAvailableCallback?
     var onLobbyNameChange: LobbyMetadataCallback?
     var onLobbyGameModeChange: LobbyMetadataCallback?
 
@@ -43,12 +44,14 @@ class GameLobby: NetworkedLobby {
     /// Constructor for creating a lobby hosted by the device user
     init?(
         onLobbyStateChange: LobbyLifecycleCallback? = nil,
+        onLobbyDataChange: LobbyDataAvailableCallback? = nil,
         onLobbyNameChange: LobbyMetadataCallback? = nil,
         onLobbyGameModeChange: LobbyMetadataCallback? = nil
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
         self.onLobbyStateChange = onLobbyStateChange
+        self.onLobbyDataChange = onLobbyDataChange
         self.onLobbyNameChange = onLobbyNameChange
         self.onLobbyGameModeChange = onLobbyGameModeChange
 
@@ -68,7 +71,6 @@ class GameLobby: NetworkedLobby {
         listener?.managedLobby = self
 
         createLobby(hostId: deviceUserId, hostDisplayName: deviceUserDisplayName)
-        assert(checkRepresentation())
     }
 
     /// Constructor for joining an externally created lobby
@@ -76,6 +78,7 @@ class GameLobby: NetworkedLobby {
           name: String,
           hostId: EntityID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
+          onLobbyDataChange: LobbyDataAvailableCallback? = nil,
           onLobbyNameChange: LobbyMetadataCallback? = nil,
           onLobbyGameModeChange: LobbyMetadataCallback? = nil
     ) {
@@ -83,6 +86,7 @@ class GameLobby: NetworkedLobby {
         self.name = name
         self.hostId = hostId
         self.onLobbyStateChange = onLobbyStateChange
+        self.onLobbyDataChange = onLobbyDataChange
         self.onLobbyNameChange = onLobbyNameChange
         self.onLobbyGameModeChange = onLobbyGameModeChange
 
@@ -101,7 +105,6 @@ class GameLobby: NetworkedLobby {
         listener?.managedLobby = self
 
         joinLobby(userId: deviceUserId, userDisplayName: deviceUserDisplayName)
-        assert(checkRepresentation())
     }
 
     private func createLobby(hostId: EntityID, hostDisplayName: String) {
@@ -112,13 +115,9 @@ class GameLobby: NetworkedLobby {
         updater?.joinLobby(userId: userId, userDisplayName: userDisplayName)
     }
 
-    private func checkRepresentation() -> Bool {
-        users.contains { $0.id == hostId }
-    }
-
     // MARK: - Callbacks
     func onLobbyConnectionOpen() {
-        onLobbyStateChange?(self, .matchmaking)
+        onLobbyStateChange?(.matchmaking)
     }
 
     func onLobbyUsersFinalized() {
@@ -126,11 +125,11 @@ class GameLobby: NetworkedLobby {
             return
         }
 
-        onLobbyStateChange?(self, .gameInProgress)
+        onLobbyStateChange?(.gameInProgress)
     }
 
     func onLobbyConnectionClosed() {
-        onLobbyStateChange?(self, .disconnected)
+        onLobbyStateChange?(.disconnected)
     }
 
     func onGameModeChange(_ newGameMode: GameMode) {
@@ -146,11 +145,12 @@ class GameLobby: NetworkedLobby {
     // MARK: - External actions
     func onUserAdd(_ user: LobbyUser) {
         guard !users.contains(user) else {
+            onLobbyDataChange?()
             return
         }
 
         users.append(user)
-        assert(checkRepresentation())
+        onLobbyDataChange?()
     }
 
     func onUserUpdate(_ user: LobbyUser) {
@@ -159,18 +159,21 @@ class GameLobby: NetworkedLobby {
         }
 
         users[index] = user
-        assert(checkRepresentation())
+        onLobbyDataChange?()
+        processLobbyUpdate()
     }
 
     func onUserRemove(_ userId: EntityID) {
-        users = users.filter { $0.id != userId }
-
-        guard userId != AuthService().getUserId() else {
-            removeDeviceUser()
+        guard users.contains(where: { $0.id == userId }) else {
             return
         }
 
-        assert(checkRepresentation())
+        users = users.filter { $0.id != userId }
+        onLobbyDataChange?()
+
+        if userId == hostId {
+            onLobbyConnectionClosed()
+        }
     }
 
     // MARK: - Device actions
