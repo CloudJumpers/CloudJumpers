@@ -40,10 +40,7 @@ class LobbiesViewController: UIViewController {
     }
 
     @IBAction private func createNewLobby(_ sender: Any) {
-        guard let userId = AuthService().getUserId() else {
-            return
-        }
-        moveToLobby(lobbyId: nil, hostId: userId)
+        moveToLobby(listing: nil)
     }
 
     private func setUpLobbiesListener() {
@@ -125,12 +122,10 @@ class LobbiesViewController: UIViewController {
         lobbiesCollectionView.reloadData()
     }
 
-    private func moveToLobby(lobbyId: EntityID?, hostId: EntityID) {
-        let lobby = NetworkedLobby(lobbyId: lobbyId, hostId: hostId)
-
+    private func moveToLobby(listing: LobbyListing?) {
         self.performSegue(
             withIdentifier: SegueIdentifier.lobbiesToLobby,
-            sender: lobby
+            sender: listing
         )
     }
 
@@ -146,20 +141,19 @@ class LobbiesViewController: UIViewController {
 
         guard
             let dest = segue.destination as? LobbyViewController,
-            let lobby = sender as? NetworkedLobby
+            let listing = sender as? LobbyListing
         else {
             return
         }
 
-        lobby.setOnFinalizedCallback(callback: dest.moveToGame)
-        dest.activeLobby = lobby
+        dest.activeListing = listing
     }
 }
 
 extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedLobby = lobbies[indexPath.item]
-        moveToLobby(lobbyId: selectedLobby.lobbyId, hostId: selectedLobby.hostId)
+        let listing = lobbies[indexPath.item]
+        moveToLobby(listing: listing)
     }
 }
 
@@ -185,7 +179,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let name = lobbies[indexPath.item].lobbyName
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameModes.TimeTrial.rawValue)
+        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)    // TODO: refactor when new gamemodes exist
         lobbyCell.setOccupancy(num: occupancy)
 
         if occupancy < LobbyConstants.MaxSupportedPlayers {

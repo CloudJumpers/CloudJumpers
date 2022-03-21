@@ -14,24 +14,8 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
-    var activeLobby: NetworkedLobby?
-    var lobbyUpdateListener: ListenerDelegate?
-
-    @IBAction private func terminateLobbyConnection() {
-        guard lobbyUpdateListener != nil else {
-            return
-        }
-
-        lobbyUpdateListener = nil
-        self.activeLobby?.exitLobby()
-        self.activeLobby = nil
-
-        self.navigationController?.popViewController(animated: true)
-    }
-
-    @IBAction private func onReadyButtonTap() {
-        self.activeLobby?.toggleReady()
-    }
+    var activeListing: LobbyListing?
+    var activeLobby: GameLobby?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +27,50 @@ class LobbyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        guard isMovingToParent, let lobbyId = activeLobby?.id else {
-            // If we are returning from a child VC (game session) or do not have a lobby initialized,
-            // exit back to all lobbies menu
-            terminateLobbyConnection()
+        guard isMovingToParent else {
+            // If we are returning from a child VC (game session), exit back to all lobbies menu
+            moveToLobbies()
             return
         }
 
-        lobbyUpdateListener = FirebaseListenerDelegate(
-            lobbyId: lobbyId,
-            onUserAdd: onUserAdd,
-            onUserChange: onUserChange,
-            onUserRemove: onUserRemove,
-            onLobbyChange: onLobbyChange
+        if let listing = activeListing {
+            setActiveLobby(id: listing.lobbyId, name: listing.lobbyName, hostId: listing.hostId)
+        } else {
+            setActiveLobby()
+        }
+    }
+
+    func setActiveLobby(id: EntityID, name: String, hostId: EntityID) {
+        activeLobby = GameLobby(
+            id: id,
+            name: name,
+            hostId: hostId,
+            onLobbyStateChange: handleLobbyUpdate,
+            onLobbyDataChange: handleLobbyDataChange,
+            onLobbyNameChange: setLobbyName,
+            onLobbyGameModeChange: setLobbyGameMode
         )
+    }
+
+    func setActiveLobby() {
+        activeLobby = GameLobby(
+            onLobbyStateChange: handleLobbyUpdate,
+            onLobbyDataChange: handleLobbyDataChange,
+            onLobbyNameChange: setLobbyName,
+            onLobbyGameModeChange: setLobbyGameMode
+        )
+    }
+
+    @IBAction private func moveToLobbies() {
+        guard activeLobby != nil else {
+            return
+        }
+
+        self.activeLobby?.removeDeviceUser()
+        self.activeLobby = nil
+        self.activeListing = nil
+
+        self.navigationController?.popViewController(animated: true)
     }
 
     func moveToGame() {
@@ -66,53 +80,35 @@ class LobbyViewController: UIViewController {
         )
     }
 
-    // MARK: User management
-    private func onUserAdd(_ user: LobbyUser) {
-        activeLobby?.addUser(newUser: user)
-        lobbyUsersView.reloadData()
+    @IBAction private func onReadyButtonTap() {
+        self.activeLobby?.toggleDeviceUserReadyStatus()
+        leaveButton.isEnabled = false
     }
 
-    private func onUserChange(_ user: LobbyUser) {
-        if user.id == AuthService().getUserId() {
-            handleSelfReadyUpdate(isReady: user.isReady)
-        } else {
-            activeLobby?.updateOtherUser(user)
+    // MARK: - Lobby management
+    private func handleLobbyUpdate(_ state: LobbyState) {
+        if state == .gameInProgress {
+            moveToGame()
+        } else if state == .disconnected {
+            moveToLobbies()
         }
+    }
 
+    private func handleLobbyDataChange() {
         lobbyUsersView.reloadData()
-    }
 
-    private func onUserRemove(_ user: LobbyUser) {
-        if user.id == activeLobby?.hostId {
-            terminateLobbyConnection()
-        }
-
-        activeLobby?.removeOtherUser(userId: user.id)
-        lobbyUsersView.reloadData()
-    }
-
-    private func handleSelfReadyUpdate(isReady: Bool) {
-        leaveButton.isEnabled = !isReady
-        isReady ? activeLobby?.setUserReady() : activeLobby?.setUserNotReady()
-    }
-
-    // MARK: Lobby management
-    private func onLobbyChange(_ key: String, _ value: String) {
-        switch key {
-        case LobbyKeys.lobbyName:
-            setLobbyName(name: value)
-        case LobbyKeys.gameMode:
-            setLobbyGameMode(mode: value)
-        default:
+        guard let deviceUser = activeLobby?.users.first(where: { $0.id == AuthService().getUserId() }) else {
             return
         }
+
+        leaveButton.isEnabled = !deviceUser.isReady
     }
 
-    private func setLobbyName(name: String) {
+    private func setLobbyName(_ name: String) {
         lobbyName.text = name
     }
 
-    private func setLobbyGameMode(mode: String) {
+    private func setLobbyGameMode(_ mode: String) {
         gameMode.text = mode
     }
 }
@@ -123,13 +119,13 @@ extension LobbyViewController: UITableViewDataSource {
             return Int.zero
         }
 
-        return lobby.allUsers.count
+        return lobby.numUsers
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
-        guard let lobbyUser = activeLobby?.allUsers[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
+        guard let lobbyUser = activeLobby?.users[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
             return cell
         }
 
