@@ -38,11 +38,10 @@ class EndGameViewController: UIViewController {
         let displayName = auth.getUserDisplayName()
 
         if let playerId = auth.getUserId() {
-            highscoreManager.submitToHighscores(
+            highscoreManager.submitToTimeTrialHighscores(
                 userId: playerId,
                 userDisplayName: displayName,
                 gameScore: score,
-                gameMode: .TimeTrial,
                 gameSeed: Constants.testLevelName, // TODO: change to prod level name
                 callback: fetchNewHighscoresData
             )

@@ -35,15 +35,14 @@ class HighscoreManager {
         call.resume()
     }
 
-    func submitToHighscores(
+    func submitToTimeTrialHighscores(
         userId: EntityID,
         userDisplayName: String,
         gameScore: String,
-        gameMode: GameMode,
         gameSeed: String,
         callback: @escaping NetworkCallback
     ) {
-        let url = constructEndpointUrl(gameMode: gameMode, gameSeed: gameSeed)
+        let url = constructEndpointUrl(gameMode: GameMode.TimeTrial, gameSeed: gameSeed)
 
         var jsonToSend = [String: Any]()
         jsonToSend["userId"] = userId
