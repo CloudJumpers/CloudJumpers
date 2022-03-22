@@ -1,17 +1,8 @@
-name: CI
+name: CI (Push)
 
 on: push
 
 jobs:
-  build:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        run: swift build
-        # Takes too long, we can use this if no longer constrained by minutes
-        # run: xcodebuild clean build -workspace CloudJumpers.xcworkspace -scheme CloudJumpers -destination "platform=iOS Simulator,name=iPad (9th generation),OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-
   lint:
     runs-on: ubuntu-latest
     steps:
