@@ -8,6 +8,8 @@ class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
     private var scene: GameScene?
 
+    var lobby: GameLobby?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,7 +18,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine()
+        gameEngine = SinglePlayerGameEngine(lobby: lobby)
         gameEngine?.delegate = self
     }
 

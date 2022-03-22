@@ -12,6 +12,10 @@ class LobbyUtils {
         Int(Date().timeIntervalSince1970)
     }
 
+    static func getTS() -> Double {
+        Date().timeIntervalSince1970 * 1_000
+    }
+
     static func generateLobbyId() -> EntityID {
         UUID().uuidString
     }

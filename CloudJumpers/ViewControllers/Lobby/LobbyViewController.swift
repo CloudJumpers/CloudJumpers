@@ -76,8 +76,18 @@ class LobbyViewController: UIViewController {
     func moveToGame() {
         performSegue(
             withIdentifier: SegueIdentifier.lobbyToGame,
-            sender: nil
+            sender: activeLobby
         )
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard let dest = segue.destination as? GameViewController else {
+            return
+        }
+
+        dest.lobby = activeLobby
     }
 
     @IBAction private func onReadyButtonTap() {

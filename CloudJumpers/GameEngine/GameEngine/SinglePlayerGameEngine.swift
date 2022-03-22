@@ -16,6 +16,10 @@ class SinglePlayerGameEngine: GameEngine {
     var contactResolver: ContactResolver
 
     weak var delegate: GameEngineDelegate?
+    weak var lobby: GameLobby?
+
+    private var gameTicks = Int.zero
+    private var networkUpdater = FirebaseGameEventManager()
 
     private var playerEntity: PlayerEntity
 
@@ -23,7 +27,7 @@ class SinglePlayerGameEngine: GameEngine {
     let movingSystem: MovingSystem
     let timerSystem: TimerSystem
 
-    init() {
+    init(lobby: GameLobby?) {
         self.eventManager = EventManager()
         self.entitiesManager = EntitiesManager()
         self.touchableManager = TouchableManager()
@@ -34,6 +38,8 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
         setupEventDelegate()
+
+        self.lobby = lobby
     }
 
     func setupEventDelegate() {
@@ -99,6 +105,12 @@ class SinglePlayerGameEngine: GameEngine {
         timerSystem.update(deltaTime)
 
         touchableManager.updateTouchables()
+
+        gameTicks += 1
+
+        if gameTicks % 6 == 0, let activeLobby = lobby, let userId = AuthService().getUserId() {
+            networkUpdater.sendMessage(message: "\(activeLobby.id)-\(userId)")
+        }
     }
 
     private func addEntity(_ entity: SKEntity) {
