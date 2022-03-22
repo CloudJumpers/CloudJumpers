@@ -8,8 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: swift build -v
-        # run: xcodebuild test -workspace CloudJumpers.xcworkspace -scheme CloudJumpers
+        # run: swift build -v
+        run: xcodebuild clean build -workspace CloudJumpers.xcworkspace -scheme CloudJumpers -destination "platform=iOS Simulator,name=iPad (9th generation),OS=latest" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
 
   lint:
     runs-on: ubuntu-latest
