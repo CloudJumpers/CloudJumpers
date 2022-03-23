@@ -12,7 +12,16 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpSynchronizedStart()
 
+    }
+
+    private func setUpSynchronizedStart() {
+        lobby?.synchronizer?.setNewCallback(newCallback: setUpGame)
+    }
+
+    private func setUpGame() {
+        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())")
         setUpGameEngine()
         setUpGameScene()
     }

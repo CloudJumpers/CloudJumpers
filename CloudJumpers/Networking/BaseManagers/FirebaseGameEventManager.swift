@@ -21,7 +21,7 @@ class FirebaseGameEventManager {
     }
 
     func sendMessage(message: String) {
-        let currTime = LobbyUtils.getTS()
+        let currTime = LobbyUtils.getUnixTimestampMillis()
         locationRef.childByAutoId().setValue([
             "message": message,
             "localTime": currTime,
@@ -39,7 +39,7 @@ class FirebaseGameEventManager {
                 return
             }
 
-            print("received: \(sendTime) -> \(serverTime) -> \(LobbyUtils.getTS())")
+            print("received: \(sendTime) -> \(serverTime) -> \(LobbyUtils.getUnixTimestampMillis())")
         }
     }
 

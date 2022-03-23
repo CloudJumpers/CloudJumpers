@@ -26,7 +26,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             LobbyKeys.participants: [
                 lobby.hostId: [
                     LobbyKeys.participantReady: false,
-                    LobbyKeys.participantName: hostDisplayName
+                    LobbyKeys.participantName: hostDisplayName,
+                    LobbyKeys.participantLastUpdatedAt: ServerValue.timestamp()
                 ]
             ]
         ]) { error, _ in
@@ -53,7 +54,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             {
                 nextData[userId] = ([
                     LobbyKeys.participantReady: false,
-                    LobbyKeys.participantName: userDisplayName
+                    LobbyKeys.participantName: userDisplayName,
+                    LobbyKeys.participantLastUpdatedAt: ServerValue.timestamp()
                 ]) as AnyObject?
                 currentData.value = nextData
 
@@ -99,7 +101,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 var userState = data[userId] as? [String: AnyObject],
                 let userWasReady = userState[LobbyKeys.participantReady] as? Bool
             {
-                userState[LobbyKeys.participantReady] = !userWasReady as AnyObject?
+                userState[LobbyKeys.participantReady] = !userWasReady as AnyObject
+                userState[LobbyKeys.participantLastUpdatedAt] = ServerValue.timestamp() as AnyObject
                 data[userId] = userState as AnyObject?
                 currentData.value = data
 

@@ -77,13 +77,14 @@ class FirebaseListenerDelegate: ListenerDelegate {
         guard
             let userData = snapshot.value as? firebaseStructure,
             let displayName = userData[LobbyKeys.participantName] as? String,
-            let isReady = userData[LobbyKeys.participantReady] as? Bool
+            let isReady = userData[LobbyKeys.participantReady] as? Bool,
+            let lastUpdatedAt = userData[LobbyKeys.participantLastUpdatedAt] as? Int
         else {
             fatalError("Unexpected data structure encountered during unpack \(snapshot)")
         }
 
         let userId = snapshot.key
-        return LobbyUser(id: userId, displayName: displayName, isReady: isReady)
+        return LobbyUser(id: userId, displayName: displayName, lastUpdatedAt: lastUpdatedAt, isReady: isReady)
     }
 
     private func tearDownListeners() {
