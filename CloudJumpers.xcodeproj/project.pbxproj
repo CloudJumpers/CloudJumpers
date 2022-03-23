@@ -80,7 +80,6 @@
 		A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4B27E5033B003157E8 /* ContactResolver.swift */; };
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
 		A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */; };
-		A11470A427DB3D9B005FA3EC /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A327DB3D9B005FA3EC /* Input.swift */; };
 		A11470A627DB4193005FA3EC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11470A527DB4193005FA3EC /* Level.swift */; };
 		A1179EE427DBBB2A00E60E59 /* MovingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */; };
 		A1179EE727DBBB4700E60E59 /* MovingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1179EE627DBBB4700E60E59 /* MovingSystem.swift */; };
@@ -198,7 +197,6 @@
 		A108AB4B27E5033B003157E8 /* ContactResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResolver.swift; sourceTree = "<group>"; };
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A114709D27DB2F7E005FA3EC /* EntitiesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntitiesManager.swift; sourceTree = "<group>"; };
-		A11470A327DB3D9B005FA3EC /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		A11470A527DB4193005FA3EC /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A1179EE327DBBB2A00E60E59 /* MovingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingComponent.swift; sourceTree = "<group>"; };
 		A1179EE627DBBB4700E60E59 /* MovingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovingSystem.swift; sourceTree = "<group>"; };
@@ -330,7 +328,6 @@
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				3E246B6B27DF366100D51300 /* JumpButton.swift */,
 				A14DDAEF27E051A500527358 /* TouchableManager.swift */,
-				A11470A327DB3D9B005FA3EC /* Input.swift */,
 				A141F3AF27E09A240027F180 /* TouchArea.swift */,
 			);
 			path = Touchables;
@@ -971,7 +968,6 @@
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */,
 				3E246B6C27DF366100D51300 /* JumpButton.swift in Sources */,
-				A11470A427DB3D9B005FA3EC /* Input.swift in Sources */,
 				A121005E27E475F500C35151 /* SKEntity.swift in Sources */,
 				A1DBB83D27D884200077AB96 /* System.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,

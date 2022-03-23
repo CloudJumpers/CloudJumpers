@@ -25,13 +25,12 @@ class JumpButton: SKEntity, Touchable {
         return sprite
     }
 
-    func handleTouchBegan(touchLocation: CGPoint) -> Input? {
+    func handleTouchBegan(touchLocation: CGPoint) -> Event? {
         guard let node = self.node as? SKSpriteNode,
               touchLocation.isInside(position: node.position, size: node.size)
         else {
             return nil
         }
-        return Input(inputType: .jump(entity: associatedEntity))
-
+        return Event(type: .inputJump(entity: associatedEntity))
     }
 }

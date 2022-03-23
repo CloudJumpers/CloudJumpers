@@ -18,7 +18,7 @@ class TouchableManager {
     func handleTouchBeganEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchBegan(touchLocation: location) {
-                eventDelegate?.event(add: Event(type: .input(info: input)))
+                eventDelegate?.event(add: input)
             }
         }
     }
@@ -26,7 +26,7 @@ class TouchableManager {
     func handleTouchMovedEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchMoved(touchLocation: location) {
-                eventDelegate?.event(add: Event(type: .input(info: input)))
+                eventDelegate?.event(add: input)
             }
         }
     }
@@ -34,7 +34,7 @@ class TouchableManager {
     func handleTouchEndedEvent(location: CGPoint) {
         for touchable in touchables {
             if let input = touchable.handleTouchEnded(touchLocation: location) {
-                eventDelegate?.event(add: Event(type: .input(info: input)))
+                eventDelegate?.event(add: input)
             }
         }
     }
@@ -43,7 +43,7 @@ class TouchableManager {
         for touchable in touchables {
 
             if let input = touchable.update() {
-                eventDelegate?.event(add: Event(type: .input(info: input)))
+                eventDelegate?.event(add: input)
             }
         }
     }

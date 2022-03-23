@@ -21,7 +21,7 @@ class Joystick: Touchable {
         self.associatedEntity = associatedEntity
     }
 
-    func handleTouchBegan(touchLocation: CGPoint) -> Input? {
+    func handleTouchBegan(touchLocation: CGPoint) -> Event? {
         guard let node = self.innerstickEntity.node as? SKSpriteNode,
               touchLocation.isInside(position: node.position, size: node.size)
         else {
@@ -31,14 +31,14 @@ class Joystick: Touchable {
         return nil
     }
 
-    func handleTouchMoved(touchLocation: CGPoint) -> Input? {
+    func handleTouchMoved(touchLocation: CGPoint) -> Event? {
         if stickActive {
             return moveInnerStick(to: touchLocation)
         }
         return nil
     }
 
-    func handleTouchEnded(touchLocation: CGPoint) -> Input? {
+    func handleTouchEnded(touchLocation: CGPoint) -> Event? {
         guard touchArea.contains(touchLocation),
               stickActive
         else {
@@ -56,11 +56,10 @@ class Joystick: Touchable {
         touchArea.position = outerStick.position
 
         stickActive = false
-        return Input(inputType: .move(entity: innerstickEntity,
-                                      by: newPosition - initialPosition))
+        return Event(type: .inputMove(entity: innerstickEntity, by: newPosition - initialPosition))
     }
 
-    func update() -> Input? {
+    func update() -> Event? {
         if stickActive {
             guard let innerStick = self.innerstickEntity.node as? SKSpriteNode else {
                 return nil
@@ -71,7 +70,7 @@ class Joystick: Touchable {
         return nil
     }
 
-    private func handleTouchInput(location: CGPoint) -> Input? {
+    private func handleTouchInput(location: CGPoint) -> Event? {
         guard let outerStick = self.outerstickEntity.node as? SKSpriteNode else {
             return nil
         }
@@ -83,10 +82,10 @@ class Joystick: Touchable {
 
         let locationChange = CGVector(dx: -xDist * Constants.speedMultiplier,
                                       dy: yDist * Constants.speedMultiplier)
-        return Input(inputType: .move(entity: associatedEntity, by: locationChange))
+        return Event(type: .inputMove(entity: associatedEntity, by: locationChange))
     }
 
-    private func moveInnerStick(to location: CGPoint) -> Input? {
+    private func moveInnerStick(to location: CGPoint) -> Event? {
         guard let innerStick = self.innerstickEntity.node as? SKSpriteNode,
               let outerStick = self.outerstickEntity.node as? SKSpriteNode
         else {
@@ -109,7 +108,7 @@ class Joystick: Touchable {
         }
 
         touchArea.position = location
-        return Input(inputType: .move(entity: innerstickEntity,
+        return Event(type: .inputMove(entity: innerstickEntity,
                                       by: finalPosition - initialPosition))
 
     }

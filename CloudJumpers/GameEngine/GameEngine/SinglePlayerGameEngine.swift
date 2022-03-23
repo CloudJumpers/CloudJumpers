@@ -129,18 +129,16 @@ class SinglePlayerGameEngine: GameEngine {
         // Your handler should not add anything to the event queue, only
         // add to the different systems, which add to the event queue later on update
         switch event.type {
-        case .input(let info):
-            switch info.inputType {
-            case let .move(entity, by):
-                handleMoveEvent(entity: entity, by: by)
-            case let .jump(entity):
-                handleJumpEvent(entity: entity)
-            default:
-                return
-            }
+        case let .inputMove(entity, by):
+            handleMoveEvent(entity: entity, by: by)
+        case let .inputJump(entity):
+            handleJumpEvent(entity: entity)
         case .gameEnd:
             handleGameEnd()
+        default:
+            return
         }
+
     }
 
     private func handleMoveEvent(entity: Entity, by distance: CGVector) {

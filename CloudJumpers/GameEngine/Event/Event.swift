@@ -15,7 +15,9 @@ class Event {
     }
 
     enum EventType {
-        case input(info: Input)
+        case inputMove(entity: Entity, by: CGVector)
+        case inputJump(entity: Entity)
+        case powerUp
         case gameEnd
     }
 }
