@@ -9,7 +9,8 @@ import Foundation
 
 /// Synchronizer provides a mechanism for devices with
 /// different receive times to start a game approximately
-/// at the same time, ignoring clock drift between two devices.
+/// at the same time, ignoring relatively minor differences,
+/// e.g. clock drift or any scheduling differences between two devices.
 struct Synchronizer {
     private var callbackAtMillis: Int
     private var timer: Timer?

@@ -108,9 +108,9 @@ class SinglePlayerGameEngine: GameEngine {
 
         gameTicks += 1
 
-//        if gameTicks.isMultiple(of: 6), let activeLobby = lobby, let userId = AuthService().getUserId() {
-//            networkUpdater.sendMessage(message: "\(activeLobby.id)-\(userId)")
-//        }
+        if gameTicks.isMultiple(of: 6), let activeLobby = lobby, let userId = AuthService().getUserId() {
+            networkUpdater.sendMessage(message: "\(activeLobby.id)-\(userId)")
+        }
     }
 
     private func addEntity(_ entity: SKEntity) {
