@@ -91,7 +91,6 @@
 		A135932627E392F90034A9F0 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932527E392F90034A9F0 /* GameState.swift */; };
 		A135932927E398140034A9F0 /* CloudEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932827E398140034A9F0 /* CloudEntity.swift */; };
 		A135932B27E399CA0034A9F0 /* PlatformEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932A27E399CA0034A9F0 /* PlatformEntity.swift */; };
-		A141F3B027E09A240027F180 /* TouchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141F3AF27E09A240027F180 /* TouchArea.swift */; };
 		A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEB27E033DB00527358 /* PlayerEntity.swift */; };
 		A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEF27E051A500527358 /* TouchableManager.swift */; };
 		A1CFED4D27E5890F0062BCB2 /* TimeTrialGameEndState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CFED4C27E5890F0062BCB2 /* TimeTrialGameEndState.swift */; };
@@ -208,7 +207,6 @@
 		A135932527E392F90034A9F0 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		A135932827E398140034A9F0 /* CloudEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEntity.swift; sourceTree = "<group>"; };
 		A135932A27E399CA0034A9F0 /* PlatformEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEntity.swift; sourceTree = "<group>"; };
-		A141F3AF27E09A240027F180 /* TouchArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchArea.swift; sourceTree = "<group>"; };
 		A14DDAEB27E033DB00527358 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		A14DDAEF27E051A500527358 /* TouchableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableManager.swift; sourceTree = "<group>"; };
 		A1CFED4C27E5890F0062BCB2 /* TimeTrialGameEndState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameEndState.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				3E246B6627DECCD300D51300 /* Touchable.swift */,
 				3E246B6B27DF366100D51300 /* JumpButton.swift */,
 				A14DDAEF27E051A500527358 /* TouchableManager.swift */,
-				A141F3AF27E09A240027F180 /* TouchArea.swift */,
 			);
 			path = Touchables;
 			sourceTree = "<group>";
@@ -901,7 +898,6 @@
 				A11470A627DB4193005FA3EC /* Level.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				A114709E27DB2F7E005FA3EC /* EntitiesManager.swift in Sources */,
-				A141F3B027E09A240027F180 /* TouchArea.swift in Sources */,
 				A1DBB83A27D884200077AB96 /* Component.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				3E246B7827E2FBB400D51300 /* TimerEntity.swift in Sources */,

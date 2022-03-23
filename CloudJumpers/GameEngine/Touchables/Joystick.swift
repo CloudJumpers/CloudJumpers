@@ -10,7 +10,7 @@ import CoreGraphics
 
 class Joystick: Touchable {
     private var stickActive = false
-    private var touchArea = TouchArea(position: Constants.joystickPosition, size: Constants.innerstickSize)
+    private var touchArea = CGRect(origin: Constants.joystickPosition, size: Constants.innerstickSize)
 
     var innerstickEntity = InnerStick()
     var outerstickEntity = OuterStick()
@@ -53,7 +53,7 @@ class Joystick: Touchable {
 
         let initialPosition = innerStick.position
         let newPosition = outerStick.position
-        touchArea.position = outerStick.position
+        touchArea.origin = outerStick.position
 
         stickActive = false
         return Event(type: .inputMove(entity: innerstickEntity, by: newPosition - initialPosition))
@@ -107,7 +107,7 @@ class Joystick: Touchable {
                                     y: outerStick.position.y + yDist)
         }
 
-        touchArea.position = location
+        touchArea.origin = location
         return Event(type: .inputMove(entity: innerstickEntity,
                                       by: finalPosition - initialPosition))
 
