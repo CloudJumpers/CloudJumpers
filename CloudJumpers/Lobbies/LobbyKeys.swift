@@ -19,5 +19,5 @@ enum LobbyKeys {
     // root/{lobbyid}/participants/{userid}/*
     static let participantName = "name"
     static let participantReady = "ready"
-    static let participantLastUpdatedAt = "LUA"
+    static let participantLastUpdatedAt = "updatedAt"
 }

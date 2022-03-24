@@ -27,7 +27,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(lobby: lobby)
+        gameEngine = SinglePlayerGameEngine()
         gameEngine?.delegate = self
     }
 
