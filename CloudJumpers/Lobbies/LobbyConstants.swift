@@ -14,7 +14,7 @@ enum LobbyConstants {
     static let minUpdateInterval = 1
 
     static let MinSupportedPlayers = 1
-    static let MaxSupportedPlayers = 3
+    static let MaxSupportedPlayers = 1
 
-    static let gameStartDelayMillis = 5_000
+    static let gameStartDelayMillis = 2_000
 }
