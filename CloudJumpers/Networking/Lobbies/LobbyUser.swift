@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LobbyUser: NetworkedEntity {
+struct LobbyUser: IdentifiableByEntityID {
     let id: EntityID
     let displayName: String
 
