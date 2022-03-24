@@ -9,7 +9,7 @@ import SpriteKit
 
 class ContactResolver {
     weak var entitiesManager: EntitiesManager?
-    weak var eventDelegate: EventDelegate?
+    weak var metaDataDelegate: GameMetaDataDelegate?
 
     init(entitiesManager: EntitiesManager) {
         self.entitiesManager = entitiesManager
@@ -17,19 +17,21 @@ class ContactResolver {
 
     func resolveBeginContact(contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
-              let nodeB = contact.bodyB.node
+              let nodeB = contact.bodyB.node,
+              let entityA = entitiesManager?.getEntity(of: nodeA),
+              let entityB = entitiesManager?.getEntity(of: nodeB)
         else {
             return
         }
-        // Need to handle this properly
+        // Really need to handle this properly
 
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
-        if nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPlatform &&
-            isPlayerOnPlatform(player: nodeA, platform: nodeB) {
-
-            eventDelegate?.event(add: Event(type: .gameEnd))
+        if nodeABitMask == Constants.bitmaskPlayer
+            && nodeBBitMask == Constants.bitmaskPlatform
+            && isPlayerOnPlatform(player: nodeA, platform: nodeB) {
+            metaDataDelegate?.metaData(changePlayerLocation: entityA.id, location: entityB.id)
         }
 
     }

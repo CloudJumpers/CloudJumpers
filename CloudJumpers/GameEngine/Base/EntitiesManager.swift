@@ -17,6 +17,10 @@ class EntitiesManager {
 
     func addEntity(_ entity: Entity) {
         entities.insert(entity)
+        guard let node = getNode(of: entity) else {
+            return
+        }
+        nodeEntityMapping[node] = entity
     }
 
     func removeEntity(_ entity: Entity) {

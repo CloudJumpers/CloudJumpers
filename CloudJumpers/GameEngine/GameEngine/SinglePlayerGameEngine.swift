@@ -17,6 +17,8 @@ class SinglePlayerGameEngine: GameEngine {
 
     weak var delegate: GameEngineDelegate?
 
+    var gameMetaData: GameMetaData
+
     private var playerEntity: PlayerEntity
 
     // System
@@ -33,11 +35,12 @@ class SinglePlayerGameEngine: GameEngine {
         self.timerSystem = TimerSystem(entitiesManager: entitiesManager)
 
         self.playerEntity = PlayerEntity(position: Constants.playerInitialPosition)
-        setupEventDelegate()
+        self.gameMetaData = GameMetaData()
+        setupDelegate()
     }
 
-    func setupEventDelegate() {
-        self.contactResolver.eventDelegate = eventManager
+    func setupDelegate() {
+        self.contactResolver.metaDataDelegate = self
         self.touchableManager.eventDelegate = eventManager
     }
 
@@ -57,16 +60,20 @@ class SinglePlayerGameEngine: GameEngine {
            CloudEntity(position: CGPoint(x: 200, y: 100)),
            CloudEntity(position: CGPoint(x: -100, y: 250)),
            CloudEntity(position: CGPoint(x: 200, y: 400)),
-           CloudEntity(position: CGPoint(x: -100, y: 550)),
-           PlatformEntity(position: CGPoint(x: 0, y: 700))
+           CloudEntity(position: CGPoint(x: -100, y: 550))
        ]
 
         for entity in entities {
             addEntity(entity)
         }
+
+        let platformEntity = PlatformEntity(position: CGPoint(x: 0, y: 700))
+        addEntity(platformEntity)
+        gameMetaData.topPlatformId = platformEntity.id
     }
 
     private func setupPlayer() {
+        gameMetaData.playerId = playerEntity.id
         addPlayer(playerEntity)
     }
 
@@ -138,8 +145,6 @@ class SinglePlayerGameEngine: GameEngine {
             default:
                 return
             }
-        case .gameEnd:
-            handleGameEnd()
         }
     }
 
@@ -152,11 +157,15 @@ class SinglePlayerGameEngine: GameEngine {
         let movingComponent = MovingComponent(movement: .jump(impulse: Constants.jumpImpulse))
         movingSystem.addComponent(entity: playerEntity, component: movingComponent)
     }
+}
 
-    private func handleGameEnd() {
-        let time = timerSystem.getTime()
-        let endGameState = TimeTrialGameEndState(playerEndTime: time)
-        delegate?.engine(self, didEndGameWith: endGameState)
-
+extension SinglePlayerGameEngine: GameMetaDataDelegate {
+    func metaData(changePlayerLocation player: UUID, location: UUID?) {
+        if let location = location {
+            gameMetaData.playerLocationMapping[player] = location
+        } else {
+            gameMetaData.playerLocationMapping.removeValue(forKey: player)
+        }
     }
+
 }

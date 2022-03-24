@@ -7,6 +7,7 @@ class GameViewController: UIViewController {
 
     private var gameEngine: GameEngine?
     private var scene: GameScene?
+    private var gameRules: GameRules?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +18,7 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         gameEngine = SinglePlayerGameEngine()
+        gameRules = TimeTrialGameRules()
         gameEngine?.delegate = self
     }
 
@@ -70,6 +72,17 @@ class GameViewController: UIViewController {
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         gameEngine?.update(interval)
+
+        guard let gameData = gameEngine?.gameMetaData,
+              let gameRules = gameRules
+        else {
+            return
+        }
+
+        if gameRules.hasGameEnd(with: gameData) {
+            transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameData.time))
+        }
+
     }
 
     func scene(_ scene: GameScene, didBeginTouchAt location: CGPoint) {

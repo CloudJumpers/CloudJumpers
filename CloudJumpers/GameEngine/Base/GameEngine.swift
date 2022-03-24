@@ -14,6 +14,8 @@ protocol GameEngine: AnyObject {
     var contactResolver: ContactResolver { get }
     var delegate: GameEngineDelegate? { get set }
 
+    var gameMetaData: GameMetaData { get set }
+
     func setupGame(with level: Level)
     func update(_ deltaTime: Double)
 }

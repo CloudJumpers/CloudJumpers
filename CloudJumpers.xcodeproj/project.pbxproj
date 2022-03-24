@@ -92,6 +92,10 @@
 		A135932627E392F90034A9F0 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932527E392F90034A9F0 /* GameState.swift */; };
 		A135932927E398140034A9F0 /* CloudEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932827E398140034A9F0 /* CloudEntity.swift */; };
 		A135932B27E399CA0034A9F0 /* PlatformEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A135932A27E399CA0034A9F0 /* PlatformEntity.swift */; };
+		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
+		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
+		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
+		A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */; };
 		A141F3B027E09A240027F180 /* TouchArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = A141F3AF27E09A240027F180 /* TouchArea.swift */; };
 		A14DDAEC27E033DB00527358 /* PlayerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEB27E033DB00527358 /* PlayerEntity.swift */; };
 		A14DDAF027E051A500527358 /* TouchableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14DDAEF27E051A500527358 /* TouchableManager.swift */; };
@@ -210,6 +214,10 @@
 		A135932527E392F90034A9F0 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		A135932827E398140034A9F0 /* CloudEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudEntity.swift; sourceTree = "<group>"; };
 		A135932A27E399CA0034A9F0 /* PlatformEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformEntity.swift; sourceTree = "<group>"; };
+		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
+		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
+		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
+		A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaDataDelegate.swift; sourceTree = "<group>"; };
 		A141F3AF27E09A240027F180 /* TouchArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchArea.swift; sourceTree = "<group>"; };
 		A14DDAEB27E033DB00527358 /* PlayerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEntity.swift; sourceTree = "<group>"; };
 		A14DDAEF27E051A500527358 /* TouchableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableManager.swift; sourceTree = "<group>"; };
@@ -267,6 +275,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				A1409A2A27ECB611000008E8 /* GameRules */,
 				934789B627DF06A300324DAF /* Lobbies */,
 				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
@@ -605,6 +614,15 @@
 			path = Event;
 			sourceTree = "<group>";
 		};
+		A1409A2A27ECB611000008E8 /* GameRules */ = {
+			isa = PBXGroup;
+			children = (
+				A1409A2B27ECB633000008E8 /* GameRules.swift */,
+				A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */,
+			);
+			path = GameRules;
+			sourceTree = "<group>";
+		};
 		A1CFED4927E5813A0062BCB2 /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +644,8 @@
 				A1DBB83427D884200077AB96 /* Base */,
 				A11470A527DB4193005FA3EC /* Level.swift */,
 				A108AB4B27E5033B003157E8 /* ContactResolver.swift */,
+				A1409A2D27ECB69B000008E8 /* GameMetaData.swift */,
+				A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -897,7 +917,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
+				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */,
 				3E246B6727DECCD300D51300 /* Touchable.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
@@ -915,6 +937,7 @@
 				A121006027E4760100C35151 /* EntityType.swift in Sources */,
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
+				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
 				9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
@@ -951,6 +974,7 @@
 				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
 				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
+				A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
@@ -1145,7 +1169,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X827RB5HGL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1159,7 +1183,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

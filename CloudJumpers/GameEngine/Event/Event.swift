@@ -16,6 +16,5 @@ class Event {
 
     enum EventType {
         case input(info: Input)
-        case gameEnd
     }
 }
