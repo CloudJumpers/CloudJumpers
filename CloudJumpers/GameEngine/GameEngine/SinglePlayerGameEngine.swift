@@ -16,6 +16,7 @@ class SinglePlayerGameEngine: GameEngine {
     var contactResolver: ContactResolver
 
     weak var delegate: GameEngineDelegate?
+
     private var playerEntity: PlayerEntity
 
     // System
