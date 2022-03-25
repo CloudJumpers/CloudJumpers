@@ -18,8 +18,8 @@ class ContactResolver {
     func resolveBeginContact(contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node,
-              let entityA = entitiesManager?.getEntity(of: nodeA),
-              let entityB = entitiesManager?.getEntity(of: nodeB)
+              let idA = nodeA.entityID,
+              let idB = nodeB.entityID
         else {
             return
         }
@@ -32,7 +32,7 @@ class ContactResolver {
         if nodeABitMask == Constants.bitmaskPlayer
             && nodeBBitMask == Constants.bitmaskPlatform
             && isPlayerOnPlatform(player: nodeA, platform: nodeB) {
-            metaDataDelegate?.metaData(changePlayerLocation: entityA.id, location: entityB.id)
+            metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         }
     }
 

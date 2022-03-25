@@ -8,14 +8,17 @@
 import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
+
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
     weak var delegate: GameEngineDelegate?
     var systems: [System]
     var associatedEntity: Entity?
+    var metaData: GameMetaData
 
     required init(for delegate: GameEngineDelegate) {
+        metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager()
         contactResolver = ContactResolver(to: eventManager)
@@ -26,6 +29,7 @@ class SinglePlayerGameEngine: GameEngine {
 
     func update(within time: CGFloat) {
         updateEvents()
+        updateTime()
         updateSystems(within: time)
     }
 
@@ -50,8 +54,8 @@ class SinglePlayerGameEngine: GameEngine {
     private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
         let player = Player(at: Constants.playerInitialPosition, texture: .character1)
+        let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
         let entities: [Entity] = [
-            Platform(at: CGPoint(x: 0, y: 700)),
             Cloud(at: CGPoint(x: 200, y: -200)),
             Cloud(at: CGPoint(x: -100, y: -50)),
             Cloud(at: CGPoint(x: 200, y: 100)),
@@ -61,6 +65,7 @@ class SinglePlayerGameEngine: GameEngine {
 
         entityManager.add(timer)
         entityManager.add(player)
+        entityManager.add(topPlatform)
         entities.forEach(entityManager.add(_:))
 
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
@@ -69,6 +74,8 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.timer = timer
         associatedEntity = player
+        metaData.playerId = player.id
+        metaData.topPlatformId = topPlatform.id
     }
 
     private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
@@ -82,8 +89,6 @@ class SinglePlayerGameEngine: GameEngine {
     private func updateEvents() {
         for event in eventManager.getEvents() {
             switch event.type {
-            case .gameEnd:
-                handleGameEnd()
             default:
                 return
             }
@@ -92,14 +97,13 @@ class SinglePlayerGameEngine: GameEngine {
         eventManager.resetEventQueue()
     }
 
-    private func handleGameEnd() {
+    // MARK: Temporary time update method
+    private func updateTime() {
         guard let timer = timer,
               let timedComponent = entityManager.component(ofType: TimedComponent.self, of: timer)
         else { return }
 
-        let time = timedComponent.time
-        let endGameState = TimeTrialGameEndState(playerEndTime: time)
-        delegate?.engine(self, didEndGameWith: endGameState)
+        metaData.time = timedComponent.time
     }
 }
 

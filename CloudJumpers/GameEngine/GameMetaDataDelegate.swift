@@ -8,5 +8,5 @@
 import Foundation
 
 protocol GameMetaDataDelegate: AnyObject {
-    func metaData(changePlayerLocation player: UUID, location: UUID?)
+    func metaData(changePlayerLocation player: EntityID, location: EntityID?)
 }

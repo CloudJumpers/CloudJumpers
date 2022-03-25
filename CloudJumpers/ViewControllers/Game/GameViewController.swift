@@ -100,7 +100,7 @@ extension GameViewController: GameSceneDelegate {
         gameEngine?.update(within: interval)
         gameEngine?.inputMove(by: joystick?.displacement ?? .zero)
 
-        guard let gameData = gameEngine?.gameMetaData,
+        guard let gameData = gameEngine?.metaData,
               let gameRules = gameRules
         else {
             return
