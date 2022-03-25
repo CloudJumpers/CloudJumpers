@@ -329,6 +329,7 @@
 			children = (
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
 				1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */,
+				3E81C0CB27EDFD3C00184C55 /* GameArea.swift */,
 				3E246B5627DE0EED00D51300 /* GameScene.sks */,
 			);
 			path = GameScene;
@@ -383,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				3E81C0C227EDEEC900184C55 /* PowerUpType.swift */,
-				3E81C0CB27EDFD3C00184C55 /* GameArea.swift */,
 				3E81C0C427EDEF5800184C55 /* PowerUpButton.swift */,
 				3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */,
 				3E81C0C027EDEDE900184C55 /* FreezeButton.swift */,
