@@ -6,12 +6,17 @@
 //
 
 import Foundation
-import CoreGraphics
+
+typealias EntityID = String
 
 protocol Entity: AnyObject {
-    typealias ID = UUID
-
-    var id: ID { get }
+    var id: EntityID { get }
 
     func setUpAndAdd(to manager: EntityManager)
+}
+
+extension Entity {
+    static var newID: EntityID {
+        UUID().uuidString
+    }
 }

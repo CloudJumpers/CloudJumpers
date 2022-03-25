@@ -26,12 +26,13 @@
 		1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94827ED8709001D8A86 /* AnimationComponent.swift */; };
 		1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */; };
 		1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94A27ED8709001D8A86 /* TimedComponent.swift */; };
-		1A94D95727ED8709001D8A86 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94C27ED8709001D8A86 /* Timer.swift */; };
+		1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94C27ED8709001D8A86 /* TimedLabel.swift */; };
 		1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94D27ED8709001D8A86 /* Cloud.swift */; };
 		1A94D95927ED8709001D8A86 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94E27ED8709001D8A86 /* Platform.swift */; };
 		1A94D95A27ED8709001D8A86 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94F27ED8709001D8A86 /* Player.swift */; };
 		1A94D95B27ED8709001D8A86 /* SpriteSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D95127ED8709001D8A86 /* SpriteSystem.swift */; };
 		1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D95227ED8709001D8A86 /* TimedSystem.swift */; };
+		1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */; };
 		1ACE976E27E60D50005AA18B /* GameEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */; };
 		1ACE97C827EB26BB005AA18B /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C327EB26BB005AA18B /* Component.swift */; };
 		1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C427EB26BB005AA18B /* EntityManager.swift */; };
@@ -72,6 +73,7 @@
 		934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C527DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift */; };
 		934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C727DF576E00324DAF /* LobbyKeys.swift */; };
 		934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934789C927DF6B5700324DAF /* LobbyCell.swift */; };
+		9353889527EB0DCC00F093F7 /* LobbySynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353889427EB0DCC00F093F7 /* LobbySynchronizer.swift */; };
 		9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0C27E6E45600B26E63 /* LandingViewController.swift */; };
 		9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */; };
 		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
@@ -135,12 +137,13 @@
 		1A94D94827ED8709001D8A86 /* AnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
 		1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsComponent.swift; sourceTree = "<group>"; };
 		1A94D94A27ED8709001D8A86 /* TimedComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedComponent.swift; sourceTree = "<group>"; };
-		1A94D94C27ED8709001D8A86 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		1A94D94C27ED8709001D8A86 /* TimedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedLabel.swift; sourceTree = "<group>"; };
 		1A94D94D27ED8709001D8A86 /* Cloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cloud.swift; sourceTree = "<group>"; };
 		1A94D94E27ED8709001D8A86 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		1A94D94F27ED8709001D8A86 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1A94D95127ED8709001D8A86 /* SpriteSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSystem.swift; sourceTree = "<group>"; };
 		1A94D95227ED8709001D8A86 /* TimedSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedSystem.swift; sourceTree = "<group>"; };
+		1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+EntityID.swift"; sourceTree = "<group>"; };
 		1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngineDelegate.swift; sourceTree = "<group>"; };
 		1ACE97C327EB26BB005AA18B /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		1ACE97C427EB26BB005AA18B /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -185,6 +188,7 @@
 		934789C527DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUpdaterDelegate.swift; sourceTree = "<group>"; };
 		934789C727DF576E00324DAF /* LobbyKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyKeys.swift; sourceTree = "<group>"; };
 		934789C927DF6B5700324DAF /* LobbyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyCell.swift; sourceTree = "<group>"; };
+		9353889427EB0DCC00F093F7 /* LobbySynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbySynchronizer.swift; sourceTree = "<group>"; };
 		9353AE0C27E6E45600B26E63 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifier.swift; sourceTree = "<group>"; };
 		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
@@ -287,6 +291,7 @@
 			children = (
 				A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */,
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
+				1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -352,7 +357,7 @@
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
-				1A94D94C27ED8709001D8A86 /* Timer.swift */,
+				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				93C2A04527E87FD400294588 /* NetworkedLobby.swift */,
 				934789BB27DF07E800324DAF /* LobbyUtils.swift */,
 				934789C727DF576E00324DAF /* LobbyKeys.swift */,
+				9353889427EB0DCC00F093F7 /* LobbySynchronizer.swift */,
 			);
 			path = Lobbies;
 			sourceTree = "<group>";
@@ -892,6 +898,7 @@
 				9359ABB327E0465A00D85899 /* GameMode.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
+				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
@@ -900,7 +907,7 @@
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
-				1A94D95727ED8709001D8A86 /* Timer.swift in Sources */,
+				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				93D4E16727DA0CAE0054F45B /* FirebaseRTDBManager.swift in Sources */,
@@ -942,6 +949,7 @@
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				3E335FC527E6F00700817B5B /* EndGameConstants.swift in Sources */,
+				9353889527EB0DCC00F093F7 /* LobbySynchronizer.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				1ACE976E27E60D50005AA18B /* GameEngineDelegate.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,

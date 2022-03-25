@@ -8,13 +8,13 @@
 import Foundation
 
 class TimedComponent: Component {
-    let id: ID
+    let id: ComponentID
     unowned var entity: Entity?
 
     var time: Double
 
     init(time: Double) {
-        id = UUID()
+        id = UUID().uuidString
         self.time = time
     }
 }

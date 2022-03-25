@@ -7,14 +7,14 @@
 
 import SpriteKit
 
-class Timer: Entity {
-    let id: ID
+class TimedLabel: Entity {
+    let id: EntityID
 
     private var position: CGPoint
     private var initial: Double
 
-    init(at position: CGPoint, initial: Double) {
-        id = UUID()
+    init(at position: CGPoint, initial: Double, with id: EntityID = newID) {
+        self.id = id
         self.position = position
         self.initial = initial
     }
@@ -35,7 +35,7 @@ class Timer: Entity {
         labelNode.fontColor = .black
         labelNode.zPosition = SpriteZPosition.timer.rawValue
 
-        return SpriteComponent(node: labelNode)
+        return SpriteComponent(node: labelNode, forEntityWith: id)
     }
 
     private func createTimedComponent() -> TimedComponent {

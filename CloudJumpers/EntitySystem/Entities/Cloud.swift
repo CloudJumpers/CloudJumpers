@@ -8,12 +8,12 @@
 import SpriteKit
 
 class Cloud: Entity {
-    let id: ID
+    let id: EntityID
 
     private let position: CGPoint
 
-    init(at position: CGPoint) {
-        id = UUID()
+    init(at position: CGPoint, with id: EntityID = newID) {
+        self.id = id
         self.position = position
     }
 
@@ -28,7 +28,12 @@ class Cloud: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         // TODO: Abstract out Clouds texture atlas
         let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
-        let spriteComponent = SpriteComponent(texture: texture, size: Constants.cloudNodeSize, at: position)
+        let spriteComponent = SpriteComponent(
+            texture: texture,
+            size: Constants.cloudNodeSize,
+            at: position,
+            forEntityWith: id)
+
         spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
 
         return spriteComponent

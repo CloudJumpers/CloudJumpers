@@ -8,14 +8,14 @@
 import Foundation
 
 class AnimationComponent: Component {
-    let id: ID
+    let id: ComponentID
     unowned var entity: Entity?
 
     let texture: Textures
     var kind: Textures.Kind
 
     init(texture: Textures, kind: Textures.Kind) {
-        id = UUID()
+        id = UUID().uuidString
         self.texture = texture
         self.kind = kind
     }
