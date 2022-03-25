@@ -53,6 +53,9 @@
 		3E81C0C827EDF18A00184C55 /* ConfuseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */; };
 		3E81C0CA27EDF75C00184C55 /* PowerUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */; };
 		3E81C0CC27EDFD3C00184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0CB27EDFD3C00184C55 /* GameArea.swift */; };
+		3E81C0CE27EE108B00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0CD27EE108B00184C55 /* PowerUp.swift */; };
+		3E81C0D127EE140B00184C55 /* Freeze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D027EE140B00184C55 /* Freeze.swift */; };
+		3E81C0D327EE149800184C55 /* Confuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D227EE149800184C55 /* Confuse.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -166,6 +169,9 @@
 		3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseButton.swift; sourceTree = "<group>"; };
 		3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpManager.swift; sourceTree = "<group>"; };
 		3E81C0CB27EDFD3C00184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
+		3E81C0CD27EE108B00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
+		3E81C0D027EE140B00184C55 /* Freeze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freeze.swift; sourceTree = "<group>"; };
+		3E81C0D227EE149800184C55 /* Confuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confuse.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -355,6 +361,7 @@
 			isa = PBXGroup;
 			children = (
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
+				3E81C0CF27EE13EC00184C55 /* PowerUps */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
 				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
@@ -395,6 +402,16 @@
 				3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */,
 			);
 			path = PowerUp;
+			sourceTree = "<group>";
+		};
+		3E81C0CF27EE13EC00184C55 /* PowerUps */ = {
+			isa = PBXGroup;
+			children = (
+				3E81C0CD27EE108B00184C55 /* PowerUp.swift */,
+				3E81C0D027EE140B00184C55 /* Freeze.swift */,
+				3E81C0D227EE149800184C55 /* Confuse.swift */,
+			);
+			path = PowerUps;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -897,6 +914,7 @@
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,
 				9359ABB327E0465A00D85899 /* GameMode.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
+				3E81C0D127EE140B00184C55 /* Freeze.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
@@ -905,6 +923,7 @@
 				9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
+				3E81C0CE27EE108B00184C55 /* PowerUp.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
 				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
@@ -964,6 +983,7 @@
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				3E81C0CA27EDF75C00184C55 /* PowerUpManager.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
+				3E81C0D327EE149800184C55 /* Confuse.swift in Sources */,
 				9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */,
 				3E81C0C827EDF18A00184C55 /* ConfuseButton.swift in Sources */,
 			);

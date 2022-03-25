@@ -54,6 +54,8 @@ class SinglePlayerGameEngine: GameEngine {
         let player = Player(at: Constants.playerInitialPosition, texture: .character1)
         let entities: [Entity] = [
             Platform(at: CGPoint(x: 0, y: 700)),
+            Freeze(at: CGPoint(x: 200, y: -300)),
+            Confuse(at: CGPoint(x: -200, y: -300)),
             Cloud(at: CGPoint(x: 200, y: -200)),
             Cloud(at: CGPoint(x: -100, y: -50)),
             Cloud(at: CGPoint(x: 200, y: 100)),

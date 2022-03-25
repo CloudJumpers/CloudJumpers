@@ -53,7 +53,7 @@ class PowerUpButton: SKSpriteNode {
 
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = SpriteZPosition.button.rawValue
         alpha = Constants.opacityOne
         self.position = position
     }

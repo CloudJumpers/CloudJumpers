@@ -28,6 +28,18 @@ class ContactResolver {
            isPlayerOnPlatform(player: nodeA, platform: nodeB) {
             eventManager?.event(add: Event(type: .gameEnd))
         }
+
+        if nodeABitMask == Constants.bitmaskPlayer &&
+            nodeBBitMask == Constants.bitmaskFreezePowerUp {
+
+            print("freeze")
+        }
+
+        if nodeABitMask == Constants.bitmaskPlayer &&
+            nodeBBitMask == Constants.bitmaskConfusePowerUp {
+
+            print("confuse")
+        }
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {

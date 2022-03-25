@@ -19,6 +19,12 @@ class PhysicsComponent: Component {
         spriteComponent.node.physicsBody = body
     }
 
+    init(circleOf radius: CGFloat, for spriteComponent: SpriteComponent) {
+        id = UUID().uuidString
+        body = SKPhysicsBody(circleOfRadius: radius)
+        spriteComponent.node.physicsBody = body
+    }
+
     init(texture: SKTexture, size: CGSize, for spriteComponent: SpriteComponent) {
         id = UUID().uuidString
         body = SKPhysicsBody(texture: texture, size: size)
