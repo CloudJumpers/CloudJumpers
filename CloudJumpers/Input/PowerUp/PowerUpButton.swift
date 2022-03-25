@@ -36,14 +36,7 @@ class PowerUpButton: SKSpriteNode {
         alpha = self.isSet ? 1 : 0.3
     }
 
-    func activatePowerUp() {
-        guard isSet else {
-            return
-        }
-
-        print(type)
-//        responder?.activatePowerUp()
-    }
+    func activatePowerUp(location: CGPoint) { }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class PowerUpManager {
     private var powerUp: PowerUpButton?
@@ -16,7 +17,7 @@ class PowerUpManager {
         self.powerUp?.set(true)
     }
 
-    func activatePowerUp() {
-        powerUp?.activatePowerUp()
+    func activatePowerUp(touchLocation: CGPoint) {
+        powerUp?.activatePowerUp(location: touchLocation)
     }
 }

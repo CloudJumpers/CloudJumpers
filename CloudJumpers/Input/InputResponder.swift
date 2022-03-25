@@ -15,7 +15,7 @@ protocol InputResponder: AnyObject {
     func inputPause()
 
     func setPowerUp(powerUp: PowerUpButton)
-    func activatePowerUp()
+    func activatePowerUp(touchLocation: CGPoint)
 }
 
 extension InputResponder {

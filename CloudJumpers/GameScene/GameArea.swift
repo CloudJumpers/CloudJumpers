@@ -24,7 +24,7 @@ class GameArea: SKSpriteNode {
               isValidTouch(touch)
         else { return }
 
-        responder?.activatePowerUp()
+        responder?.activatePowerUp(touchLocation: touch.location(in: self))
     }
 
     private func isValidTouch(_ touch: UITouch) -> Bool {

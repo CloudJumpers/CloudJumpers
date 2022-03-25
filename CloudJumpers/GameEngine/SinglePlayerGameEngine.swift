@@ -130,8 +130,8 @@ extension SinglePlayerGameEngine: InputResponder {
         powerUpManager.setPowerUp(powerUp: powerUp)
     }
 
-    func activatePowerUp() {
-        powerUpManager.activatePowerUp()
+    func activatePowerUp(touchLocation: CGPoint) {
+        powerUpManager.activatePowerUp(touchLocation: touchLocation)
     }
 
     private func animateJump(_ entity: Entity) {

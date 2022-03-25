@@ -12,4 +12,12 @@ class ConfuseButton: PowerUpButton {
         super.init(at: location, to: inputResponder, type: .confuse,
                    name: Images.confuseButton.name)
     }
+
+    override func activatePowerUp(location: CGPoint) {
+        guard isSet else {
+            return
+        }
+
+        print("confuse \(location)")
+    }
 }
