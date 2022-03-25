@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias EntityID = String
-
 class AuthService {
     private let authManager: AuthManager
 

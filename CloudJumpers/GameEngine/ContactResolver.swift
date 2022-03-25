@@ -8,11 +8,11 @@
 import SpriteKit
 
 class ContactResolver {
-    weak var entitiesManager: EntitiesManager?
     weak var metaDataDelegate: GameMetaDataDelegate?
+    unowned var eventManager: EventManager?
 
-    init(entitiesManager: EntitiesManager) {
-        self.entitiesManager = entitiesManager
+    init(to eventManager: EventManager) {
+        self.eventManager = eventManager
     }
 
     func resolveBeginContact(contact: SKPhysicsContact) {
@@ -25,6 +25,7 @@ class ContactResolver {
         }
         // Really need to handle this properly
 
+        // ???: Need to handle this properly
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
@@ -33,11 +34,10 @@ class ContactResolver {
             && isPlayerOnPlatform(player: nodeA, platform: nodeB) {
             metaDataDelegate?.metaData(changePlayerLocation: entityA.id, location: entityB.id)
         }
-
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {
-        // Do nothing for now
+        // TODO: To be implemented
     }
 
     private func isPlayerOnPlatform(player: SKNode, platform: SKNode) -> Bool {

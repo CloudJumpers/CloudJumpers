@@ -7,19 +7,31 @@ class GameViewController: UIViewController {
 
     private var gameEngine: GameEngine?
     private var scene: GameScene?
+    private var joystick: Joystick?
     private var gameRules: GameRules?
+
+    var lobby: GameLobby?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpSynchronizedStart()
 
+    }
+
+    private func setUpSynchronizedStart() {
+        lobby?.synchronizer?.updateCallback(setUpGame)
+    }
+
+    private func setUpGame() {
+        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
         setUpGameEngine()
         setUpGameScene()
+        setUpInputControls()
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine()
+        gameEngine = SinglePlayerGameEngine(for: self)
         gameRules = TimeTrialGameRules()
-        gameEngine?.delegate = self
     }
 
     private func setUpGameScene() {
@@ -30,7 +42,7 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setupGame(with: Level())
+        gameEngine?.setUpGame()
         setUpSKViewAndPresent(scene: scene)
     }
 
@@ -42,6 +54,20 @@ class GameViewController: UIViewController {
         skView.showsFPS = true
         skView.presentScene(scene)
         view = skView
+    }
+
+    private func setUpInputControls() {
+        guard let gameEngine = gameEngine else {
+            return
+        }
+
+        let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
+        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
+
+        scene?.addStaticChild(joystick)
+        scene?.addStaticChild(jumpButton)
+
+        self.joystick = joystick
     }
 
     private func transitionToEndGame(state: TimeTrialGameEndState) {
@@ -71,7 +97,8 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        gameEngine?.update(interval)
+        gameEngine?.update(within: interval)
+        gameEngine?.inputMove(by: joystick?.displacement ?? .zero)
 
         guard let gameData = gameEngine?.gameMetaData,
               let gameRules = gameRules
@@ -83,18 +110,6 @@ extension GameViewController: GameSceneDelegate {
             transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameData.time))
         }
 
-    }
-
-    func scene(_ scene: GameScene, didBeginTouchAt location: CGPoint) {
-        gameEngine?.touchableManager.handleTouchBeganEvent(location: location)
-    }
-
-    func scene(_ scene: GameScene, didMoveTouchAt location: CGPoint) {
-        gameEngine?.touchableManager.handleTouchMovedEvent(location: location)
-    }
-
-    func scene(_ scene: GameScene, didEndTouchAt location: CGPoint) {
-        gameEngine?.touchableManager.handleTouchEndedEvent(location: location)
     }
 
     func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact) {
@@ -109,7 +124,6 @@ extension GameViewController: GameSceneDelegate {
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
     func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
-        // TODO: Navigate to EndViewController
         if let endState = state as? TimeTrialGameEndState {
             self.transitionToEndGame(state: endState)
         }

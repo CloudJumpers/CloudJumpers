@@ -17,12 +17,14 @@ class GameLobby: NetworkedLobby {
     let id: EntityID
     private(set) var name: String
     private(set) var gameMode = GameMode.TimeTrial  // TODO: refactor when new gamemodes exist
+    private(set) var lobbyState: LobbyState?
 
     let hostId: EntityID
     private(set) var users: [LobbyUser] = [LobbyUser]()
 
     var updater: LobbyUpdaterDelegate?
     var listener: ListenerDelegate?
+    var synchronizer: LobbySynchronizer?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
     var onLobbyDataChange: LobbyDataAvailableCallback?
@@ -62,8 +64,6 @@ class GameLobby: NetworkedLobby {
         }
 
         self.hostId = deviceUserId
-        self.users.append(LobbyUser(id: deviceUserId, displayName: deviceUserDisplayName, isReady: false))
-
         self.updater = FirebaseUpdaterDelegate()
         self.listener = FirebaseListenerDelegate(lobbyId: self.id)
 
@@ -96,8 +96,6 @@ class GameLobby: NetworkedLobby {
             return nil
         }
 
-        self.users.append(LobbyUser(id: deviceUserId, displayName: deviceUserDisplayName, isReady: false))
-
         self.updater = FirebaseUpdaterDelegate()
         self.listener = FirebaseListenerDelegate(lobbyId: self.id)
 
@@ -117,18 +115,12 @@ class GameLobby: NetworkedLobby {
 
     // MARK: - Callbacks
     func onLobbyConnectionOpen() {
+        lobbyState = .matchmaking
         onLobbyStateChange?(.matchmaking)
     }
 
-    func onLobbyUsersFinalized() {
-        guard isLobbyFinalized else {
-            return
-        }
-
-        onLobbyStateChange?(.gameInProgress)
-    }
-
     func onLobbyConnectionClosed() {
+        lobbyState = .disconnected
         onLobbyStateChange?(.disconnected)
     }
 
@@ -192,16 +184,26 @@ class GameLobby: NetworkedLobby {
             return
         }
 
-        // It would be possible for us to optimistically set the user to ready here first
-        // However, this may lead to fairness issues - the last user to become ready
-        // will get to the finalized state before all other lobby users
         updater?.toggleReady(userId: deviceUser.id)
     }
 
     private func processLobbyUpdate() {
-        guard isLobbyFinalized else {
+        guard
+            isLobbyFinalized,
+            let lastUpdatedUser = users.max(by: { a, b in a.lastUpdatedAt < b.lastUpdatedAt })
+        else {
             return
         }
-        onLobbyUsersFinalized()
+
+        if synchronizer != nil {
+            synchronizer?.updateServerRegisteredTime(lastUpdatedUser.lastUpdatedAt)
+        } else {
+            synchronizer = LobbySynchronizer(lastUpdatedUser.lastUpdatedAt)
+        }
+
+        if let currState = lobbyState, currState == .matchmaking {
+            lobbyState = .gameInProgress
+            onLobbyStateChange?(.gameInProgress)
+        }
     }
 }
