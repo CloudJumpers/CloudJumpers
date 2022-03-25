@@ -6,9 +6,9 @@
 //
 
 class EntityManager {
-    var entities: [Entity.ID: Entity]
-    var components: [Component.ID: Component]
-    var entitiesComponents: [Entity.ID: Set<Component.ID>]
+    var entities: [EntityID: Entity]
+    var components: [ComponentID: Component]
+    var entitiesComponents: [EntityID: Set<ComponentID>]
 
     init() {
         entities = [:]

@@ -9,14 +9,14 @@ import Foundation
 import CoreGraphics
 
 class Player: Entity {
-    let id: ID
+    let id: EntityID
 
     private let position: CGPoint
-    private let kind: Textures
+    private let texture: Textures
 
-    init(kind: Textures, at position: CGPoint) {
-        id = UUID()
-        self.kind = kind
+    init(at position: CGPoint, texture: Textures, with id: EntityID = newID) {
+        self.id = id
+        self.texture = texture
         self.position = position
     }
 
@@ -31,7 +31,12 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(texture: kind.idle, size: Constants.playerSize, at: position)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            at: position,
+            forEntityWith: id)
+
         spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
 
         return spriteComponent
@@ -48,6 +53,6 @@ class Player: Entity {
     }
 
     private func createAnimationComponent() -> AnimationComponent {
-        AnimationComponent(texture: kind, kind: .idle)
+        AnimationComponent(texture: texture, kind: .idle)
     }
 }
