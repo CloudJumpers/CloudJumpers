@@ -41,6 +41,7 @@ class Player: Entity {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
         physicsComponent.body.affectedByGravity = true
         physicsComponent.body.allowsRotation = false
+        physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
 
         return physicsComponent

@@ -39,6 +39,7 @@ class Cloud: Entity {
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
+        physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
         physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
 
