@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGame() {
-        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())")
+        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
         setUpGameEngine()
         setUpGameScene()
         setUpInputControls()
