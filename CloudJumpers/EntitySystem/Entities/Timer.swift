@@ -8,15 +8,19 @@
 import SpriteKit
 
 class Timer: Entity {
-    let id: ID
+    let id: EntityID
 
     private var position: CGPoint
     private var initial: Double
 
-    init(at position: CGPoint, initial: Double) {
-        id = UUID()
+    init(with id: EntityID?, at position: CGPoint, initial: Double) {
+        self.id = id ?? UUID().uuidString
         self.position = position
         self.initial = initial
+    }
+
+    convenience init(at position: CGPoint, initial: Double) {
+        self.init(with: nil, at: position, initial: initial)
     }
 
     func setUpAndAdd(to manager: EntityManager) {

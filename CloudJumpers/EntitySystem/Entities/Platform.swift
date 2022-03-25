@@ -8,13 +8,17 @@
 import SpriteKit
 
 class Platform: Entity {
-    let id: ID
+    let id: EntityID
 
     private let position: CGPoint
 
-    init(at position: CGPoint) {
-        id = UUID()
+    init(with id: EntityID?, at position: CGPoint) {
+        self.id = UUID().uuidString
         self.position = position
+    }
+
+    convenience init(at position: CGPoint) {
+        self.init(with: nil, at: position)
     }
 
     func setUpAndAdd(to manager: EntityManager) {
