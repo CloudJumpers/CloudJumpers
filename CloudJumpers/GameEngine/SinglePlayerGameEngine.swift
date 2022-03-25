@@ -49,7 +49,7 @@ class SinglePlayerGameEngine: GameEngine {
 
     private func setUpSampleGame() {
         let timer = Timer(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(kind: .character1, at: Constants.playerInitialPosition)
+        let player = Player(at: Constants.playerInitialPosition, texture: .character1)
         let entities: [Entity] = [
             Platform(at: CGPoint(x: 0, y: 700)),
             Cloud(at: CGPoint(x: 200, y: -200)),
