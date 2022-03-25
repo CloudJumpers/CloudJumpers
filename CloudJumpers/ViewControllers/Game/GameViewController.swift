@@ -9,9 +9,20 @@ class GameViewController: UIViewController {
     private var scene: GameScene?
     private var joystick: Joystick?
 
+    var lobby: GameLobby?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpSynchronizedStart()
 
+    }
+
+    private func setUpSynchronizedStart() {
+        lobby?.synchronizer?.updateCallback(setUpGame)
+    }
+
+    private func setUpGame() {
+        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
         setUpGameEngine()
         setUpGameScene()
         setUpInputControls()
