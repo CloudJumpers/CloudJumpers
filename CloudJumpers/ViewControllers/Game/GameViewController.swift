@@ -18,7 +18,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpSynchronizedStart() {
-        lobby?.synchronizer?.setNewCallback(newCallback: setUpGame)
+        lobby?.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {

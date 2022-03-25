@@ -24,7 +24,7 @@ class GameLobby: NetworkedLobby {
 
     var updater: LobbyUpdaterDelegate?
     var listener: ListenerDelegate?
-    var synchronizer: Synchronizer?
+    var synchronizer: LobbySynchronizer?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
     var onLobbyDataChange: LobbyDataAvailableCallback?
@@ -196,9 +196,9 @@ class GameLobby: NetworkedLobby {
         }
 
         if synchronizer != nil {
-            synchronizer?.updateSynchronizer(serverTimeMillis: lastUpdatedUser.lastUpdatedAt)
+            synchronizer?.updateServerRegisteredTime(lastUpdatedUser.lastUpdatedAt)
         } else {
-            synchronizer = Synchronizer(serverTimeMillis: lastUpdatedUser.lastUpdatedAt)
+            synchronizer = LobbySynchronizer(lastUpdatedUser.lastUpdatedAt)
         }
 
         if let currState = lobbyState, currState == .matchmaking {
