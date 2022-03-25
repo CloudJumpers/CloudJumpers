@@ -10,6 +10,7 @@ import SpriteKit
 class SinglePlayerGameEngine: GameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
+    let powerUpManager: PowerUpManager
     let contactResolver: ContactResolver
     weak var delegate: GameEngineDelegate?
     var systems: [System]
@@ -18,6 +19,7 @@ class SinglePlayerGameEngine: GameEngine {
     required init(for delegate: GameEngineDelegate) {
         entityManager = EntityManager()
         eventManager = EventManager()
+        powerUpManager = PowerUpManager()
         contactResolver = ContactResolver(to: eventManager)
         systems = []
         self.delegate = delegate
@@ -122,6 +124,14 @@ extension SinglePlayerGameEngine: InputResponder {
             animateJump(entity)
             physicsComponent.body.applyImpulse(Constants.jumpImpulse)
         }
+    }
+
+    func setPowerUp(powerUp: PowerUpButton) {
+        powerUpManager.setPowerUp(powerUp: powerUp)
+    }
+
+    func activatePowerUp() {
+        powerUpManager.activatePowerUp()
     }
 
     private func animateJump(_ entity: Entity) {

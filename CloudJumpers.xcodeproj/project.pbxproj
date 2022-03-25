@@ -46,6 +46,12 @@
 		3E246B8127E3414400D51300 /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B8027E3414400D51300 /* EndGameViewController.swift */; };
 		3E335FC527E6F00700817B5B /* EndGameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E335FC427E6F00700817B5B /* EndGameConstants.swift */; };
 		3E335FC927E6F51B00817B5B /* EndGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E335FC827E6F51B00817B5B /* EndGameCell.swift */; };
+		3E81C0C127EDEDE900184C55 /* FreezeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C027EDEDE900184C55 /* FreezeButton.swift */; };
+		3E81C0C327EDEEC900184C55 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C227EDEEC900184C55 /* PowerUpType.swift */; };
+		3E81C0C527EDEF5800184C55 /* PowerUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C427EDEF5800184C55 /* PowerUpButton.swift */; };
+		3E81C0C827EDF18A00184C55 /* ConfuseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */; };
+		3E81C0CA27EDF75C00184C55 /* PowerUpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */; };
+		3E81C0CC27EDFD3C00184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0CB27EDFD3C00184C55 /* GameArea.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -151,6 +157,12 @@
 		3E335FC427E6F00700817B5B /* EndGameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameConstants.swift; sourceTree = "<group>"; };
 		3E335FC827E6F51B00817B5B /* EndGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameCell.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E81C0C027EDEDE900184C55 /* FreezeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeButton.swift; sourceTree = "<group>"; };
+		3E81C0C227EDEEC900184C55 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
+		3E81C0C427EDEF5800184C55 /* PowerUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpButton.swift; sourceTree = "<group>"; };
+		3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseButton.swift; sourceTree = "<group>"; };
+		3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpManager.swift; sourceTree = "<group>"; };
+		3E81C0CB27EDFD3C00184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -307,6 +319,7 @@
 				1A94D93727EB4AB9001D8A86 /* InputResponder.swift */,
 				1A94D93527EB41E0001D8A86 /* Joystick.swift */,
 				1A94D93927EB5090001D8A86 /* JumpButton.swift */,
+				3E81C0C627EDF17300184C55 /* PowerUp */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -364,6 +377,19 @@
 				1A94D95027ED8709001D8A86 /* Systems */,
 			);
 			path = EntitySystem;
+			sourceTree = "<group>";
+		};
+		3E81C0C627EDF17300184C55 /* PowerUp */ = {
+			isa = PBXGroup;
+			children = (
+				3E81C0C227EDEEC900184C55 /* PowerUpType.swift */,
+				3E81C0CB27EDFD3C00184C55 /* GameArea.swift */,
+				3E81C0C427EDEF5800184C55 /* PowerUpButton.swift */,
+				3E81C0C927EDF75C00184C55 /* PowerUpManager.swift */,
+				3E81C0C027EDEDE900184C55 /* FreezeButton.swift */,
+				3E81C0C727EDF18A00184C55 /* ConfuseButton.swift */,
+			);
+			path = PowerUp;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -855,6 +881,7 @@
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
+				3E81C0C527EDEF5800184C55 /* PowerUpButton.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
@@ -885,6 +912,7 @@
 				A108AB5027E5070E003157E8 /* EventManager.swift in Sources */,
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
+				3E81C0C127EDEDE900184C55 /* FreezeButton.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
@@ -897,6 +925,7 @@
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				93D4E17927DA125C0054F45B /* NetworkedEntity.swift in Sources */,
 				1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */,
+				3E81C0C327EDEEC900184C55 /* PowerUpType.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */,
@@ -920,12 +949,15 @@
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
+				3E81C0CC27EDFD3C00184C55 /* GameArea.swift in Sources */,
 				1A94D95927ED8709001D8A86 /* Platform.swift in Sources */,
 				1A94D93C27EB9642001D8A86 /* SinglePlayerGameEngine.swift in Sources */,
 				3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
+				3E81C0CA27EDF75C00184C55 /* PowerUpManager.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
 				9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */,
+				3E81C0C827EDF18A00184C55 /* ConfuseButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

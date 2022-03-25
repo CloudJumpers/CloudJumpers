@@ -9,8 +9,11 @@ import UIKit
 
 enum Images: String {
     case player
+    case background
     case innerStick
     case outerStick
+    case freezeButton
+    case confuseButton
 
     var name: String {
         rawValue

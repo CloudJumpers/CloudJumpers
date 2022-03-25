@@ -51,4 +51,12 @@ struct Constants {
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
+
+    static let freezeButtonPosition = CGPoint(x: 100.0, y: -420.0)
+    static let freezeButtonImageName = "innerstick"
+    static let confuseButtonPosition = CGPoint(x: 170.0, y: -420.0)
+    static let powerUpButtonSize = CGSize(width: 60.0, height: 60.0)
+    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width - 170,
+                                     height: UIScreen.main.bounds.height - 240)
+    static let gameAreaPosition = CGPoint(x: 0, y: 110)
 }
