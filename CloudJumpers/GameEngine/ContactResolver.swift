@@ -26,7 +26,8 @@ class ContactResolver {
         if nodeABitMask == Constants.bitmaskPlayer &&
            nodeBBitMask == Constants.bitmaskPlatform &&
            isPlayerOnPlatform(player: nodeA, platform: nodeB) {
-            eventManager?.event(add: Event(type: .gameEnd))
+            // TODO: @jushg Handle game end
+            // eventManager?.event(add: Event(type: .gameEnd))
         }
     }
 
