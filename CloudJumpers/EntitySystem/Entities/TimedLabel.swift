@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class Timer: Entity {
+class TimedLabel: Entity {
     let id: EntityID
 
     private var position: CGPoint

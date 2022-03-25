@@ -45,10 +45,10 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     // MARK: - Temporary methods to abstract
-    private var timer: Timer?
+    private var timer: TimedLabel?
 
     private func setUpSampleGame() {
-        let timer = Timer(at: Constants.timerPosition, initial: Constants.timerInitial)
+        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
         let player = Player(at: Constants.playerInitialPosition, texture: .character1)
         let entities: [Entity] = [
             Platform(at: CGPoint(x: 0, y: 700)),
