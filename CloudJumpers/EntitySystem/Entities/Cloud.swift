@@ -12,13 +12,9 @@ class Cloud: Entity {
 
     private let position: CGPoint
 
-    init(with id: EntityID?, at position: CGPoint) {
-        self.id = id ?? UUID().uuidString
+    init(at position: CGPoint, with id: EntityID = newID) {
+        self.id = id
         self.position = position
-    }
-
-    convenience init(at position: CGPoint) {
-        self.init(with: nil, at: position)
     }
 
     func setUpAndAdd(to manager: EntityManager) {

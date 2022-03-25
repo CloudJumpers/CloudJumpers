@@ -13,14 +13,10 @@ class Timer: Entity {
     private var position: CGPoint
     private var initial: Double
 
-    init(with id: EntityID?, at position: CGPoint, initial: Double) {
-        self.id = id ?? UUID().uuidString
+    init(at position: CGPoint, initial: Double, with id: EntityID = newID) {
+        self.id = id
         self.position = position
         self.initial = initial
-    }
-
-    convenience init(at position: CGPoint, initial: Double) {
-        self.init(with: nil, at: position, initial: initial)
     }
 
     func setUpAndAdd(to manager: EntityManager) {
