@@ -260,6 +260,7 @@
 				1A94D93227EB41B5001D8A86 /* Input */,
 				1ACE97BC27EB2650005AA18B /* EntitySystem */,
 				A1DBB82827D884200077AB96 /* GameEngine */,
+				A1347AA927DA66A10011CF40 /* Events */,
 				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
 				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
 				1A91C90F27E08D2B00D755BE /* Extensions */,
@@ -577,13 +578,13 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
-		A1347AA927DA66A10011CF40 /* Event */ = {
+		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
 			);
-			path = Event;
+			path = Events;
 			sourceTree = "<group>";
 		};
 		A1CFED4927E5813A0062BCB2 /* State */ = {
@@ -603,7 +604,6 @@
 				1A94D93B27EB9642001D8A86 /* SinglePlayerGameEngine.swift */,
 				A1CFED4927E5813A0062BCB2 /* State */,
 				9359ABB127E0464200D85899 /* Modes */,
-				A1347AA927DA66A10011CF40 /* Event */,
 				A108AB4B27E5033B003157E8 /* ContactResolver.swift */,
 			);
 			path = GameEngine;
