@@ -24,6 +24,7 @@ struct Constants {
 
     static let speedMultiplier = 0.15
 
+    static let fullOpacity = 1.0
     static let opacityOne = 0.3
     static let opacityTwo = 0.6
 

@@ -33,7 +33,7 @@ class PowerUpButton: SKSpriteNode {
 
     func set(_ set: Bool) {
         self.isSet = set
-        alpha = self.isSet ? 1 : 0.3
+        alpha = self.isSet ? Constants.fullOpacity : Constants.opacityOne
     }
 
     func activatePowerUp(location: CGPoint) { }
@@ -54,7 +54,7 @@ class PowerUpButton: SKSpriteNode {
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
         zPosition = SpriteZPosition.outerStick.rawValue
-        alpha = 0.3
+        alpha = Constants.opacityOne
         self.position = position
     }
 
