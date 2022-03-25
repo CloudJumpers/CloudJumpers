@@ -7,7 +7,7 @@
 
 import Foundation
 
-class EventManager: EventDelegate {
+class EventManager {
     private var eventQueue = [Event]()
 
     func event(add event: Event) {

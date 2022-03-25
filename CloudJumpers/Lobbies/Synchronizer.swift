@@ -13,7 +13,7 @@ import Foundation
 /// e.g. clock drift or any scheduling differences between two devices.
 struct Synchronizer {
     private var callbackAtMillis: Int
-    private var timer: Timer?
+    private var timer: Foundation.Timer?
     private var callback: (() -> Void)?
 
     init(serverTimeMillis: Int) {
@@ -29,7 +29,7 @@ struct Synchronizer {
         }
 
         let delta = Double(callbackAtMillis - localTime) / 1_000
-        let newTimer = Timer.scheduledTimer(
+        let newTimer = Foundation.Timer.scheduledTimer(
             withTimeInterval: TimeInterval(delta),
             repeats: false
         ) { _ in newCallback() }
