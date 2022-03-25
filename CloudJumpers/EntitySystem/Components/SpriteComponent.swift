@@ -8,19 +8,19 @@
 import SpriteKit
 
 class SpriteComponent: Component {
-    let id: ID
+    let id: ComponentID
     unowned var entity: Entity?
 
     let node: SKNode
 
     init(texture: SKTexture, size: CGSize, at position: CGPoint) {
-        id = UUID()
+        id = UUID().uuidString
         node = SKSpriteNode(texture: texture, size: size)
         node.position = position
     }
 
     init(imageNamed name: String, at position: CGPoint) {
-        id = UUID()
+        id = UUID().uuidString
         node = SKSpriteNode(imageNamed: name)
         node.position = position
     }
@@ -30,7 +30,7 @@ class SpriteComponent: Component {
     }
 
     init(node: SKNode) {
-        id = UUID()
+        id = UUID().uuidString
         self.node = node
     }
 }

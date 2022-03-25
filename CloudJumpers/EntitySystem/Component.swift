@@ -5,11 +5,9 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import Foundation
+typealias ComponentID = String
 
 protocol Component: AnyObject {
-    typealias ID = UUID
-
-    var id: ID { get }
+    var id: ComponentID { get }
     var entity: Entity? { get set }
 }

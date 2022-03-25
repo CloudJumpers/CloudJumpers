@@ -8,19 +8,19 @@
 import SpriteKit
 
 class PhysicsComponent: Component {
-    let id: ID
+    let id: ComponentID
     unowned var entity: Entity?
 
     let body: SKPhysicsBody
 
     init(rectangleOf size: CGSize, for spriteComponent: SpriteComponent) {
-        id = UUID()
+        id = UUID().uuidString
         body = SKPhysicsBody(rectangleOf: size)
         spriteComponent.node.physicsBody = body
     }
 
     init(texture: SKTexture, size: CGSize, for spriteComponent: SpriteComponent) {
-        id = UUID()
+        id = UUID().uuidString
         body = SKPhysicsBody(texture: texture, size: size)
         spriteComponent.node.physicsBody = body
     }
