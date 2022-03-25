@@ -8,16 +8,33 @@
 import Foundation
 
 class EventManager {
-    private var eventQueue = [Event]()
+    private typealias EventQueue = PriorityQueue<Event>
 
-    func event(add event: Event) {
-        eventQueue.append(event)
-    }
-    func getEvents() -> [Event] {
-        eventQueue
+    private var events: EventQueue
+
+    init() {
+        events = EventQueue { $0.timestamp < $1.timestamp }
     }
 
-    func resetEventQueue() {
-        eventQueue.removeAll()
+    static var timestamp: TimeInterval {
+        Date().timeIntervalSince1970
+    }
+
+    func add(_ event: Event) {
+        events.enqueue(event)
+    }
+
+    func executeAll(in entityManager: EntityManager) {
+        while let event = events.dequeue() {
+            event.execute(in: entityManager)
+        }
+    }
+
+    func publish(_ event: Event) {
+        // TODO: @rssujay Serialise and publish Event here
+    }
+
+    func subscribe() {
+        // TODO: @rssujay Initialise network subscriber here
     }
 }

@@ -2,22 +2,17 @@
 //  Event.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 3/11/22.
+//  Created by Phillmont Muktar on 25/3/22.
 //
 
-import SpriteKit
+import Foundation
 
-// Some asynchronous event that require a general handler
-class Event {
-    let type: EventType
-    init (type: EventType) {
-        self.type = type
-    }
+protocol Event: Codable {
+    var timestamp: TimeInterval { get }
 
-    enum EventType {
-        case inputMove(entity: Entity, by: CGVector)
-        case inputJump(entity: Entity)
-        case powerUp
-        case gameEnd
-    }
+    func execute(in entityManager: EntityManager)
+}
+
+extension Event {
+    func execute(in entityManager: EntityManager) { }
 }
