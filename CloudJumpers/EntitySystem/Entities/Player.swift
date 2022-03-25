@@ -35,7 +35,12 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(texture: texture.idle, size: Constants.playerSize, at: position)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            at: position,
+            forEntityWith: id)
+
         spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
 
         return spriteComponent
