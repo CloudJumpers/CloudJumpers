@@ -14,14 +14,10 @@ class Player: Entity {
     private let position: CGPoint
     private let texture: Textures
 
-    init(with id: EntityID?, at position: CGPoint, texture: Textures) {
-        self.id = id ?? UUID().uuidString
+    init(at position: CGPoint, texture: Textures, with id: EntityID = newID) {
+        self.id = id
         self.texture = texture
         self.position = position
-    }
-
-    convenience init(at position: CGPoint, texture: Textures) {
-        self.init(with: nil, at: position, texture: texture)
     }
 
     func setUpAndAdd(to manager: EntityManager) {
