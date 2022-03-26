@@ -25,7 +25,7 @@ class SpriteSystem: System {
         for entityID in addedEntity {
             guard let entity = manager.entity(with: entityID),
                   manager.component(ofType: RemovedSpriteComponent.self,
-                                                                 of: entity) != nil
+                                    of: entity) != nil
             else {
                 continue
             }
