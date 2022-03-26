@@ -25,17 +25,39 @@ class FirebaseGameEventListener: GameEventListener {
         gameReference.removeAllObservers()
     }
 
+    /// https://stackoverflow.com/questions/25536547/how-do-i-get-a-server-timestamp-from-firebases-ios-api
+    /// Creating items with a server timestamp will trigger listeners twice:
+    /// on childAdded will be triggered on local creation
+    /// on childChanged will be triggered on remote creation
+    /// Since we're interested in only remote creation time, on the device
+    /// generating the update, we filter out self updates via onChildAdded.
     private func setupListener() {
         gameReference.observe(.childAdded) { snapshot in
-            print("Snapshot \(snapshot.value)")
-
             guard
+                let userId = AuthService().getUserId(),
                 let body = snapshot.value as? [String: Any],
                 let source = body[GameKeys.source] as? EntityID,
+                source != userId,
+                let recipients = body[GameKeys.recipients] as? [EntityID]?,
+                recipients == nil || recipients?.contains(userId) ?? false,
+                let payload = body[GameKeys.payload] as? String,
+                let manager = self.eventManager,
+                DefaultCommand(sourceId: source, recipients: recipients, payload: payload).unpackIntoEvent(manager)
+            else {
+                return
+            }
+        }
+
+        gameReference.observe(.childChanged) { snapshot in
+            guard
+                let userId = AuthService().getUserId(),
+                let body = snapshot.value as? [String: Any],
+                let source = body[GameKeys.source] as? EntityID,
+                source == userId,
                 let recipients = body[GameKeys.recipients] as? [EntityID]?,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
-                DefaultCommand(sourceId: source, recipients: recipients, payload: payload).processEvent(manager)
+                DefaultCommand(sourceId: source, recipients: recipients, payload: payload).unpackIntoEvent(manager)
             else {
                 return
             }

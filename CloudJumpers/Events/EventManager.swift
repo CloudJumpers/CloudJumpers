@@ -12,8 +12,28 @@ class EventManager {
 
     private var events: EventQueue
 
-    init() {
+    private var gameEventListener: GameEventListener?
+    private var gameEventDispatcher: GameEventDispatcher?
+
+    init(channel: EntityID?) {
         events = EventQueue { $0.timestamp < $1.timestamp }
+
+        if let channel = channel {
+            gameEventListener = FirebaseGameEventListener(channel)
+            gameEventDispatcher = FirebaseGameEventDispatcher(channel)
+            gameEventListener?.eventManager = self
+        }
+
+        // TODO: This is just a hardcoded way to create positional updates
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: {_ in
+            guard let userId = AuthService().getUserId() else {
+                return
+            }
+
+            let event = FutureMovementEvent(positionX: 10.0, positionY: 10.0, action: "networkmove")
+            let cmd = PositionalUpdateCommand(sourceId: userId, futureMovementEvent: event)
+            self.gameEventDispatcher?.dispatchGameEventCommand(cmd)
+        })
     }
 
     static var timestamp: TimeInterval {
@@ -28,13 +48,5 @@ class EventManager {
         while let event = events.dequeue() {
             event.execute(in: entityManager)
         }
-    }
-
-    func publish(_ event: Event) {
-        // TODO: @rssujay Serialise and publish Event here
-    }
-
-    func subscribe() {
-        // TODO: @rssujay Initialise network subscriber here
     }
 }

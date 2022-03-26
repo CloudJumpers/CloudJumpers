@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(for: self)
+        gameEngine = SinglePlayerGameEngine(for: self, channel: lobby?.id)
     }
 
     private func setUpGameScene() {

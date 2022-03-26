@@ -20,6 +20,12 @@ struct MoveEvent: Event {
         self.displacement = displacement
     }
 
+    init(_ id: EntityID, _ timestamp: TimeInterval, by displacement: CGVector) {
+        self.entityID = id
+        self.timestamp = timestamp
+        self.displacement = displacement
+    }
+
     func execute(in entityManager: EntityManager) {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)

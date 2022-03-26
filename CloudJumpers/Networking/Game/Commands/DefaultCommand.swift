@@ -20,8 +20,8 @@ class DefaultCommand: GameEventCommand {
         self.payload = payload
     }
 
-    func processEvent(_ eventManager: EventManager) -> Bool {
-        nextCommand = MovementCommand(sourceId: source, recipients: recipients, payload: payload)
-        return nextCommand?.processEvent(eventManager) ?? false
+    func unpackIntoEvent(_ eventManager: EventManager) -> Bool {
+        nextCommand = PositionalUpdateCommand(sourceId: source, recipients: recipients, payload: payload)
+        return nextCommand?.unpackIntoEvent(eventManager) ?? false
     }
 }

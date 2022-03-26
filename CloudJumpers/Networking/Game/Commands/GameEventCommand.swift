@@ -31,5 +31,5 @@ protocol GameEventCommand {
 
     /// processContents facilitates the unpacking
     /// and processing of contents, on the receiver-side.
-    mutating func processEvent(_ eventManager: EventManager) -> Bool
+    mutating func unpackIntoEvent(_ eventManager: EventManager) -> Bool
 }
