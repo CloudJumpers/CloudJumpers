@@ -6,14 +6,22 @@
 //
 
 class EntityManager {
-    var entities: [EntityID: Entity]
-    var components: [ComponentID: Component]
-    var entitiesComponents: [EntityID: Set<ComponentID>]
+    typealias EntitiesMap = [EntityID: Entity]
+    typealias ComponentsMap = [ComponentID: Component]
+    typealias EntitiesComponentsMap = [EntityID: Set<ComponentID>]
+
+    private var entities: EntitiesMap
+    private var components: ComponentsMap
+    private var entitiesComponents: EntitiesComponentsMap
 
     init() {
         entities = [:]
         components = [:]
         entitiesComponents = [:]
+    }
+
+    var iterableEntities: EntitiesMap.Values {
+        entities.values
     }
 
     func add(_ entity: Entity) {
@@ -24,6 +32,10 @@ class EntityManager {
     func remove(_ entity: Entity) {
         entities[entity.id] = nil
         removeComponents(of: entity)
+    }
+
+    func entity(with entityID: EntityID) -> Entity? {
+        entities[entityID]
     }
 
     func component<T: Component>(ofType type: T.Type, of entity: Entity) -> T? {
