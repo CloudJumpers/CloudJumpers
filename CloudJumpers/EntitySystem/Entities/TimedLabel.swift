@@ -13,7 +13,7 @@ class TimedLabel: Entity {
     private var position: CGPoint
     private var initial: Double
 
-    init(at position: CGPoint, initial: Double, with id: EntityID = newID) {
+    init(at position: CGPoint, initial: Double, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.position = position
         self.initial = initial

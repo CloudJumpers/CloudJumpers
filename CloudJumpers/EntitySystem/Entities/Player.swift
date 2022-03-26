@@ -14,7 +14,7 @@ class Player: Entity {
     private let position: CGPoint
     private let texture: Textures
 
-    init(at position: CGPoint, texture: Textures, with id: EntityID = newID) {
+    init(at position: CGPoint, texture: Textures, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.texture = texture
         self.position = position

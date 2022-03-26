@@ -15,7 +15,7 @@ class AnimationComponent: Component {
     var kind: Textures.Kind
 
     init(texture: Textures, kind: Textures.Kind) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         self.texture = texture
         self.kind = kind
     }
