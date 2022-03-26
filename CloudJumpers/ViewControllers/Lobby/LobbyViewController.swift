@@ -62,7 +62,11 @@ class LobbyViewController: UIViewController {
     }
 
     @IBAction private func moveToLobbies() {
-        guard activeLobby != nil else {
+        guard
+            activeLobby != nil, // only run once
+            let viewControllers = navigationController?.viewControllers,
+            let lobbiesViewController = viewControllers.first(where: { $0 is LobbiesViewController })
+        else {
             return
         }
 
@@ -70,14 +74,24 @@ class LobbyViewController: UIViewController {
         self.activeLobby = nil
         self.activeListing = nil
 
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToViewController(lobbiesViewController, animated: true)
     }
 
     func moveToGame() {
         performSegue(
             withIdentifier: SegueIdentifier.lobbyToGame,
-            sender: nil
+            sender: activeLobby
         )
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard let dest = segue.destination as? GameViewController else {
+            return
+        }
+
+        dest.lobby = activeLobby
     }
 
     @IBAction private func onReadyButtonTap() {
