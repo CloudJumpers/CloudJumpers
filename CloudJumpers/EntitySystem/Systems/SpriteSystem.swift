@@ -11,8 +11,7 @@ class SpriteSystem: System {
     unowned var manager: EntityManager?
     unowned var gameEngine: GameEngine?
 
-    private var addedEntity: Set<SKNode> = []
-//    private var removeEntity: Set<SKNode> = []
+    private var addedEntity: Set<EntityID> = []
 
     required init(for manager: EntityManager) {
         self.manager = manager
@@ -23,17 +22,17 @@ class SpriteSystem: System {
             return
         }
 
-//        for entity in removeEntity {
-//            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
-//            else {
-//                continue
-//            }
-//
-//            let node = spriteComponent.node
-//
-//            removeNodeFromScene(entity)
-//            addedEntity.remove(node)
-//        }
+        for entityID in addedEntity {
+            guard let entity = manager.entity(with: entityID),
+                  manager.component(ofType: RemovedSpriteComponent.self,
+                                                                 of: entity) != nil
+            else {
+                continue
+            }
+
+            removeNodeFromScene(entity)
+            manager.removeComponent(ofType: RemovedSpriteComponent.self, from: entity)
+        }
 
         for entity in manager.iterableEntities {
             guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
@@ -42,9 +41,9 @@ class SpriteSystem: System {
             }
 
             let node = spriteComponent.node
-            if !addedEntity.contains(node) {
+            if !addedEntity.contains(entity.id) {
                 addNodeToScene(entity)
-                addedEntity.insert(node)
+                addedEntity.insert(entity.id)
             }
 
             updateTimed(of: node, with: entity)
@@ -78,22 +77,15 @@ class SpriteSystem: System {
         }
     }
 
-//    private func removeNodeFromScene(_ entity: Entity) {
-//        guard let entityManager = manager,
-//              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
-//              let gameEngine = gameEngine else {
-//            return
-//        }
-//
-//        let node = spriteComponent.node
-//
-//        gameEngine.delegate?.engine(gameEngine, removeEntityFrom: node)
-//        if entityManager.component(ofType: BindCameraComponent.self, of: entity) != nil {
-//            gameEngine.delegate?.engine(gameEngine, addPlayerWith: node)
-//        } else if entityManager.component(ofType: StaticCameraComponent.self, of: entity) != nil {
-//            gameEngine.delegate?.engine(gameEngine, addControlWith: node)
-//        } else {
-//            gameEngine.delegate?.engine(gameEngine, addEntityWith: node)
-//        }
-//    }
+    private func removeNodeFromScene(_ entity: Entity) {
+        guard let entityManager = manager,
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
+              let gameEngine = gameEngine else {
+            return
+        }
+
+        let node = spriteComponent.node
+
+        gameEngine.delegate?.engine(gameEngine, removeEntityFrom: node)
+    }
 }

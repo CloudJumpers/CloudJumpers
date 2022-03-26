@@ -130,4 +130,8 @@ extension GameViewController: GameEngineDelegate {
     func engine(_ engine: GameEngine, addControlWith node: SKNode) {
         scene?.addStaticChild(node)
     }
+
+    func engine(_ engine: GameEngine, removeEntityFrom node: SKNode) {
+        scene?.removeChild(node)
+    }
 }

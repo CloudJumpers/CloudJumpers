@@ -62,6 +62,7 @@
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		3E81C0EE27EF56C500184C55 /* BindCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */; };
 		3E81C0F027EF56DB00184C55 /* StaticCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */; };
+		3E81C0F627EF65B400184C55 /* RemovedSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -184,6 +185,7 @@
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindCameraComponent.swift; sourceTree = "<group>"; };
 		3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCameraComponent.swift; sourceTree = "<group>"; };
+		3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedSpriteComponent.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
+				3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */,
 				3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */,
 				3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
@@ -931,6 +934,7 @@
 				1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */,
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,
+				3E81C0F627EF65B400184C55 /* RemovedSpriteComponent.swift in Sources */,
 				9359ABB327E0465A00D85899 /* GameMode.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
