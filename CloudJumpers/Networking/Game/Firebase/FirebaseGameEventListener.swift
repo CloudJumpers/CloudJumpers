@@ -42,7 +42,7 @@ class FirebaseGameEventListener: GameEventListener {
                 recipients == nil || recipients?.contains(userId) ?? false,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
-                DefaultCommand(sourceId: source, recipients: recipients, payload: payload).unpackIntoEvent(manager)
+                DefaultCommand(source, recipients, payload).unpackIntoEventManager(manager)
             else {
                 return
             }
@@ -57,7 +57,7 @@ class FirebaseGameEventListener: GameEventListener {
                 let recipients = body[GameKeys.recipients] as? [NetworkID]?,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
-                DefaultCommand(sourceId: source, recipients: recipients, payload: payload).unpackIntoEvent(manager)
+                DefaultCommand(source, recipients, payload).unpackIntoEventManager(manager)
             else {
                 return
             }

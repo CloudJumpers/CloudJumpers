@@ -14,14 +14,14 @@ class DefaultCommand: GameEventCommand {
 
     var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, recipients: [NetworkID]?, payload: String) {
+    required init(_ sourceId: NetworkID, _ recipients: [NetworkID]?, _ payload: String) {
         self.source = sourceId
         self.recipients = recipients
         self.payload = payload
     }
 
-    func unpackIntoEvent(_ eventManager: EventManager) -> Bool {
-        nextCommand = PositionalUpdateCommand(sourceId: source, recipients: recipients, payload: payload)
-        return nextCommand?.unpackIntoEvent(eventManager) ?? false
+    func unpackIntoEventManager(_ eventManager: EventManager) -> Bool {
+        nextCommand = PositionalUpdateCommand(source, recipients, payload)
+        return nextCommand?.unpackIntoEventManager(eventManager) ?? false
     }
 }

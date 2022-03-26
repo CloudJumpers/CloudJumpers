@@ -16,24 +16,26 @@ struct PositionalUpdateCommand: GameEventCommand {
 
     var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, futureMovementEvent: FutureMovementEvent) {
+    /// This constructor is used for creation of a PositionalUpdateCommand
+    /// for distribution.
+    init(sourceId: NetworkID, event: OnlineMoveEvent) {
         self.source = sourceId
         self.recipients = nil
-        self.payload = CJNetworkEncoder.toJsonString(futureMovementEvent)
+        self.payload = CJNetworkEncoder.toJsonString(event)
     }
 
-    init(sourceId: NetworkID, recipients: [NetworkID]?, payload: String) {
+    init(_ sourceId: NetworkID, _ recipients: [NetworkID]?, _ payload: String) {
         self.source = sourceId
         self.recipients = recipients
         self.payload = payload
     }
 
-    mutating func unpackIntoEvent(_ eventManager: EventManager) -> Bool {
+    mutating func unpackIntoEventManager(_ eventManager: EventManager) -> Bool {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(FutureMovementEvent.self, from: jsonData) else {
-            return nextCommand?.unpackIntoEvent(eventManager) ?? false
+        guard let parameters = try? decoder.decode(OnlineMoveEvent.self, from: jsonData) else {
+            return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
         let displacement = CGVector(dx: parameters.positionX, dy: parameters.positionY)

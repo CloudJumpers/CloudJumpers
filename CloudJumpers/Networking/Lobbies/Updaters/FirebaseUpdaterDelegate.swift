@@ -82,6 +82,9 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 print("error occurred during exitLobby: \(err.localizedDescription)")
             }
         }
+
+        // Additionally, delete any game channels
+        Database.database().reference(withPath: "\(GameKeys.root)/\(lobby.id)").removeValue()
     }
 
     func toggleReady(userId: NetworkID) {

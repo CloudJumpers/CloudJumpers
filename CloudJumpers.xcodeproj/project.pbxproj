@@ -62,7 +62,6 @@
 		93360B9D27EC9CB100808295 /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9C27EC9CB100808295 /* GameEventListener.swift */; };
 		93360B9F27EC9CDA00808295 /* GameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9E27EC9CDA00808295 /* GameEventDispatcher.swift */; };
 		93360BA227EC9D4C00808295 /* FirebaseGameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA127EC9D4C00808295 /* FirebaseGameEventListener.swift */; };
-		93360BA427EC9E3F00808295 /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA327EC9E3F00808295 /* GameConstants.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -86,8 +85,8 @@
 		9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0C27E6E45600B26E63 /* LandingViewController.swift */; };
 		9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */; };
 		9356AB6927EEF4E0008CDEC1 /* LobbySynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356AB6827EEF4DF008CDEC1 /* LobbySynchronizer.swift */; };
-		9356AB6E27EEF719008CDEC1 /* FutureEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356AB6D27EEF719008CDEC1 /* FutureEvent.swift */; };
-		9356AB7A27EEFF9D008CDEC1 /* FutureMovementEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356AB7927EEFF9D008CDEC1 /* FutureMovementEvent.swift */; };
+		9356AB6E27EEF719008CDEC1 /* OnlineEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356AB6D27EEF719008CDEC1 /* OnlineEvent.swift */; };
+		9356AB7A27EEFF9D008CDEC1 /* OnlineMoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356AB7927EEFF9D008CDEC1 /* OnlineMoveEvent.swift */; };
 		9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E327DE20B2007F4D89 /* AuthManager.swift */; };
 		9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9356F4E627DE213E007F4D89 /* AuthService.swift */; };
 		9359ABB327E0465A00D85899 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9359ABB227E0465A00D85899 /* GameMode.swift */; };
@@ -184,7 +183,6 @@
 		93360B9C27EC9CB100808295 /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		93360B9E27EC9CDA00808295 /* GameEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventDispatcher.swift; sourceTree = "<group>"; };
 		93360BA127EC9D4C00808295 /* FirebaseGameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGameEventListener.swift; sourceTree = "<group>"; };
-		93360BA327EC9E3F00808295 /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
 		9339BF0227E626AE00FC8077 /* Highscore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highscore.swift; sourceTree = "<group>"; };
 		9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreConstants.swift; sourceTree = "<group>"; };
@@ -208,8 +206,8 @@
 		9353AE0C27E6E45600B26E63 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifier.swift; sourceTree = "<group>"; };
 		9356AB6827EEF4DF008CDEC1 /* LobbySynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LobbySynchronizer.swift; sourceTree = "<group>"; };
-		9356AB6D27EEF719008CDEC1 /* FutureEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureEvent.swift; sourceTree = "<group>"; };
-		9356AB7927EEFF9D008CDEC1 /* FutureMovementEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureMovementEvent.swift; sourceTree = "<group>"; };
+		9356AB6D27EEF719008CDEC1 /* OnlineEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineEvent.swift; sourceTree = "<group>"; };
+		9356AB7927EEFF9D008CDEC1 /* OnlineMoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineMoveEvent.swift; sourceTree = "<group>"; };
 		9356F4E327DE20B2007F4D89 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		9356F4E627DE213E007F4D89 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9359ABB227E0465A00D85899 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
@@ -429,7 +427,6 @@
 		93360B8427EC687E00808295 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				93360BA327EC9E3F00808295 /* GameConstants.swift */,
 				931D130227ECA023002C7AF3 /* GameKeys.swift */,
 				93360BA027EC9D3B00808295 /* Firebase */,
 				93360B9E27EC9CDA00808295 /* GameEventDispatcher.swift */,
@@ -535,13 +532,13 @@
 			path = Landing;
 			sourceTree = "<group>";
 		};
-		9356AB7327EEFD81008CDEC1 /* Futures */ = {
+		9356AB7327EEFD81008CDEC1 /* Online */ = {
 			isa = PBXGroup;
 			children = (
-				9356AB6D27EEF719008CDEC1 /* FutureEvent.swift */,
-				9356AB7927EEFF9D008CDEC1 /* FutureMovementEvent.swift */,
+				9356AB6D27EEF719008CDEC1 /* OnlineEvent.swift */,
+				9356AB7927EEFF9D008CDEC1 /* OnlineMoveEvent.swift */,
 			);
-			path = Futures;
+			path = Online;
 			sourceTree = "<group>";
 		};
 		9356F4E527DE2129007F4D89 /* Managers */ = {
@@ -650,7 +647,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				9356AB7327EEFD81008CDEC1 /* Futures */,
+				9356AB7327EEFD81008CDEC1 /* Online */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
@@ -931,7 +928,6 @@
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */,
-				93360BA427EC9E3F00808295 /* GameConstants.swift in Sources */,
 				93360B9327EC919100808295 /* PositionalUpdateCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventListener.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventDispatcher.swift in Sources */,
@@ -1015,9 +1011,9 @@
 				3E246B4427DDA9C800D51300 /* GameEngine.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */,
-				9356AB7A27EEFF9D008CDEC1 /* FutureMovementEvent.swift in Sources */,
+				9356AB7A27EEFF9D008CDEC1 /* OnlineMoveEvent.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
-				9356AB6E27EEF719008CDEC1 /* FutureEvent.swift in Sources */,
+				9356AB6E27EEF719008CDEC1 /* OnlineEvent.swift in Sources */,
 				9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
