@@ -14,12 +14,12 @@ enum LobbyState {
 }
 
 class GameLobby: NetworkedLobby {
-    let id: EntityID
+    let id: NetworkID
     private(set) var name: String
     private(set) var gameMode = GameMode.TimeTrial  // TODO: refactor when new gamemodes exist
     private(set) var lobbyState: LobbyState?
 
-    let hostId: EntityID
+    let hostId: NetworkID
     private(set) var users: [LobbyUser] = [LobbyUser]()
 
     var updater: LobbyUpdaterDelegate?
@@ -74,9 +74,9 @@ class GameLobby: NetworkedLobby {
     }
 
     /// Constructor for joining an externally created lobby
-    init?(id: EntityID,
+    init?(id: NetworkID,
           name: String,
-          hostId: EntityID,
+          hostId: NetworkID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
           onLobbyDataChange: LobbyDataAvailableCallback? = nil,
           onLobbyNameChange: LobbyMetadataCallback? = nil,
@@ -105,11 +105,11 @@ class GameLobby: NetworkedLobby {
         joinLobby(userId: deviceUserId, userDisplayName: deviceUserDisplayName)
     }
 
-    private func createLobby(hostId: EntityID, hostDisplayName: String) {
+    private func createLobby(hostId: NetworkID, hostDisplayName: String) {
         updater?.createLobby(hostId: hostId, hostDisplayName: hostDisplayName)
     }
 
-    private func joinLobby(userId: EntityID, userDisplayName: String) {
+    private func joinLobby(userId: NetworkID, userDisplayName: String) {
         updater?.joinLobby(userId: userId, userDisplayName: userDisplayName)
     }
 
@@ -155,7 +155,7 @@ class GameLobby: NetworkedLobby {
         processLobbyUpdate()
     }
 
-    func onUserRemove(_ userId: EntityID) {
+    func onUserRemove(_ userId: NetworkID) {
         guard users.contains(where: { $0.id == userId }) else {
             return
         }
