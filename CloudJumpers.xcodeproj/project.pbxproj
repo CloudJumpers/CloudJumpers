@@ -58,7 +58,7 @@
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
 		931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130A27ECBC50002C7AF3 /* CJNetworkEncoder.swift */; };
 		93360B8B27EC8AA700808295 /* GameEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B8A27EC8AA700808295 /* GameEventCommand.swift */; };
-		93360B9327EC919100808295 /* PositionalUpdateCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9227EC919100808295 /* PositionalUpdateCommand.swift */; };
+		93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9227EC919100808295 /* MoveEventCommand.swift */; };
 		93360B9D27EC9CB100808295 /* GameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9C27EC9CB100808295 /* GameEventListener.swift */; };
 		93360B9F27EC9CDA00808295 /* GameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9E27EC9CDA00808295 /* GameEventDispatcher.swift */; };
 		93360BA227EC9D4C00808295 /* FirebaseGameEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA127EC9D4C00808295 /* FirebaseGameEventListener.swift */; };
@@ -179,7 +179,7 @@
 		931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGameEventDispatcher.swift; sourceTree = "<group>"; };
 		931D130A27ECBC50002C7AF3 /* CJNetworkEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkEncoder.swift; sourceTree = "<group>"; };
 		93360B8A27EC8AA700808295 /* GameEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventCommand.swift; sourceTree = "<group>"; };
-		93360B9227EC919100808295 /* PositionalUpdateCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionalUpdateCommand.swift; sourceTree = "<group>"; };
+		93360B9227EC919100808295 /* MoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveEventCommand.swift; sourceTree = "<group>"; };
 		93360B9C27EC9CB100808295 /* GameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventListener.swift; sourceTree = "<group>"; };
 		93360B9E27EC9CDA00808295 /* GameEventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventDispatcher.swift; sourceTree = "<group>"; };
 		93360BA127EC9D4C00808295 /* FirebaseGameEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseGameEventListener.swift; sourceTree = "<group>"; };
@@ -441,7 +441,7 @@
 			children = (
 				93360B8A27EC8AA700808295 /* GameEventCommand.swift */,
 				931D130427ECB022002C7AF3 /* DefaultCommand.swift */,
-				93360B9227EC919100808295 /* PositionalUpdateCommand.swift */,
+				93360B9227EC919100808295 /* MoveEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -928,7 +928,7 @@
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */,
-				93360B9327EC919100808295 /* PositionalUpdateCommand.swift in Sources */,
+				93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventListener.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventDispatcher.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,

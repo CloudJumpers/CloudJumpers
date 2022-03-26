@@ -21,7 +21,7 @@ class DefaultCommand: GameEventCommand {
     }
 
     func unpackIntoEventManager(_ eventManager: EventManager) -> Bool {
-        nextCommand = PositionalUpdateCommand(source, recipients, payload)
+        nextCommand = MoveEventCommand(source, recipients, payload)
         return nextCommand?.unpackIntoEventManager(eventManager) ?? false
     }
 }

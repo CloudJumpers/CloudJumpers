@@ -8,7 +8,7 @@
 import Foundation
 
 struct OnlineMoveEvent: OnlineEvent {
-    var positionX: Double
-    var positionY: Double
+    var displacementX: Double
+    var displacementY: Double
     var action: String?
 }

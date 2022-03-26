@@ -1,5 +1,5 @@
 //
-//  PositionalUpdateCommand.swift
+//  MoveEventCommand.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 24/3/22.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct PositionalUpdateCommand: GameEventCommand {
+struct MoveEventCommand: GameEventCommand {
     var source: NetworkID
     let recipients: [NetworkID]?
 
@@ -16,7 +16,7 @@ struct PositionalUpdateCommand: GameEventCommand {
 
     var nextCommand: GameEventCommand?
 
-    /// This constructor is used for creation of a PositionalUpdateCommand
+    /// This constructor is used for creation of a MoveEventCommand
     /// for distribution.
     init(sourceId: NetworkID, event: OnlineMoveEvent) {
         self.source = sourceId
@@ -38,7 +38,7 @@ struct PositionalUpdateCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let displacement = CGVector(dx: parameters.positionX, dy: parameters.positionY)
+        let displacement = CGVector(dx: parameters.displacementX, dy: parameters.displacementY)
         let event = MoveEvent(source, parameters.timestamp, by: displacement)
         eventManager.add(event)
 

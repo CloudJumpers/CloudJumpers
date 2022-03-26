@@ -32,8 +32,8 @@ class EventManager {
                 return
             }
 
-            let event = OnlineMoveEvent(positionX: 10.0, positionY: 10.0, action: "networkmove")
-            let cmd = PositionalUpdateCommand(sourceId: userId, event: event)
+            let event = OnlineMoveEvent(displacementX: 10.0, displacementY: 10.0, action: "networkmove")
+            let cmd = MoveEventCommand(sourceId: userId, event: event)
             self?.gameEventDispatcher?.dispatchGameEventCommand(cmd)
         })
     }
