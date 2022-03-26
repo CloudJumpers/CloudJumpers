@@ -44,12 +44,12 @@ class SpriteSystem: System {
             manager.removeComponent(ofType: RemovedSpriteComponent.self, from: entity)
         }
     }
-    
+
     private func addNewEntities() {
         guard let manager = manager else {
             return
         }
-        
+
         for entity in manager.iterableEntities {
             guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else {
@@ -65,12 +65,12 @@ class SpriteSystem: System {
             updateTimed(of: node, with: entity)
         }
     }
-    
+
     private func updateTimedEntities() {
         guard let manager = manager else {
             return
         }
-        
+
         for entity in manager.iterableEntities {
             guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else {

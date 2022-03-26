@@ -44,7 +44,7 @@ struct Constants {
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
-    static let powerUpNodeSize = CGSize(width: 100.0, height: 100.0)
+    static let powerUpNodeSize = CGSize(width: 60.0, height: 60.0)
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)
@@ -58,5 +58,5 @@ struct Constants {
                                      height: UIScreen.main.bounds.height - 240)
     static let gameAreaPosition = CGPoint(x: 0, y: 110)
 
-    static let powerUpEffectSize = CGSize(width: 100.0, height: 100.0)
+    static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
 }
