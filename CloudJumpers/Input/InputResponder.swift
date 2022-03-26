@@ -13,10 +13,14 @@ protocol InputResponder: AnyObject {
     func inputMove(by displacement: CGVector)
     func inputJump()
     func inputPause()
+
+    func activatePowerUp(touchLocation: CGPoint)
 }
 
 extension InputResponder {
     func inputMove(by displacement: CGVector) { }
     func inputJump() { }
     func inputPause() { }
+
+    func activatePowerUp(touchLocation: CGPoint) { }
 }

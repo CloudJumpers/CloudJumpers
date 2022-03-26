@@ -44,11 +44,17 @@ struct Constants {
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
+    static let powerUpNodeSize = CGSize(width: 100.0, height: 100.0)
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)
     static let bitmaskPlatform = UInt32(0x1 << 2)
+    static let bitmaskPowerUp = UInt32(0x1 << 3)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
+
+    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width - 170,
+                                     height: UIScreen.main.bounds.height - 240)
+    static let gameAreaPosition = CGPoint(x: 0, y: 110)
 }
