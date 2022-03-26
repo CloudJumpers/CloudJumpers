@@ -17,10 +17,10 @@ class SinglePlayerGameEngine: GameEngine {
     var associatedEntity: Entity?
     var metaData: GameMetaData
 
-    required init(for delegate: GameEngineDelegate) {
+    required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        eventManager = EventManager()
+        eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
         systems = []
         self.delegate = delegate
@@ -53,8 +53,12 @@ class SinglePlayerGameEngine: GameEngine {
     private var timer: TimedLabel?
 
     private func setUpSampleGame() {
+        guard let userId = AuthService().getUserId() else {
+            return
+        }
+
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1)
+        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: userId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
         let entities: [Entity] = [
             Cloud(at: CGPoint(x: 200, y: -200)),

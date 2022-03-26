@@ -30,7 +30,7 @@ class AuthService {
         authManager.logoutUser()
     }
 
-    func getUserId() -> EntityID? {
+    func getUserId() -> NetworkID? {
         authManager.getCurrentUser()?.userId
     }
 

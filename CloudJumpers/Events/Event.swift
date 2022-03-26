@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Event: Codable {
+protocol Event {
     var timestamp: TimeInterval { get }
     var entityID: EntityID { get }
 

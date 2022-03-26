@@ -12,7 +12,7 @@ class Platform: Entity {
 
     private let position: CGPoint
 
-    init(at position: CGPoint, with id: EntityID = newID) {
+    init(at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.position = position
     }

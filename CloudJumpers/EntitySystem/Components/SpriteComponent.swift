@@ -14,14 +14,14 @@ class SpriteComponent: Component {
     let node: SKNode
 
     init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         node = SKSpriteNode(texture: texture, size: size)
         node.position = position
         node.entityID = entityID
     }
 
     init(imageNamed name: String, at position: CGPoint, forEntityWith entityID: EntityID) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         node = SKSpriteNode(imageNamed: name)
         node.position = position
         node.entityID = entityID
@@ -32,7 +32,7 @@ class SpriteComponent: Component {
     }
 
     init(node: SKNode, forEntityWith entityID: EntityID) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         self.node = node
         node.entityID = entityID
     }

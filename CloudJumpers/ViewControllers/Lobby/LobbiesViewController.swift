@@ -49,7 +49,7 @@ class LobbiesViewController: UIViewController {
         lobbiesRef?.observe(.childAdded) { snapshot in
             guard
                 let value = snapshot.value as? NSDictionary,
-                let hostId = value[LobbyKeys.hostId] as? EntityID,
+                let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
@@ -85,7 +85,7 @@ class LobbiesViewController: UIViewController {
         }
     }
 
-    private func addLobbyListing(lobbyId: EntityID, hostId: EntityID, lobbyName: String, occupancy: Int) {
+    private func addLobbyListing(lobbyId: NetworkID, hostId: NetworkID, lobbyName: String, occupancy: Int) {
         let newLobbyListing = LobbyListing(
             lobbyId: lobbyId,
             hostId: hostId,
@@ -96,11 +96,11 @@ class LobbiesViewController: UIViewController {
         lobbies.append(newLobbyListing)
     }
 
-    private func removeLobbyListing(lobbyId: EntityID) {
+    private func removeLobbyListing(lobbyId: NetworkID) {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(lobbyId: EntityID, newOccupancy: Int?, newName: String?) {
+    private func updateLobbyListing(lobbyId: NetworkID, newOccupancy: Int?, newName: String?) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
             return
         }

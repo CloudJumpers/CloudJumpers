@@ -41,7 +41,8 @@ class Joystick: SKSpriteNode {
         let angle = Self.angle(from: position, to: locationInView)
         let location = touch.location(in: self)
 
-        displacement = distance(to: location, along: angle)
+        let displacement = distance(to: location, along: angle)
+        self.displacement = CGVector(dx: displacement.dx, dy: 0)
         moveInnerStickNode(to: location, along: angle)
     }
 

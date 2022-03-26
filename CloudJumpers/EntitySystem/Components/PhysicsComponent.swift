@@ -14,13 +14,13 @@ class PhysicsComponent: Component {
     let body: SKPhysicsBody
 
     init(rectangleOf size: CGSize, for spriteComponent: SpriteComponent) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         body = SKPhysicsBody(rectangleOf: size)
         spriteComponent.node.physicsBody = body
     }
 
     init(texture: SKTexture, size: CGSize, for spriteComponent: SpriteComponent) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         body = SKPhysicsBody(texture: texture, size: size)
         spriteComponent.node.physicsBody = body
     }
