@@ -8,16 +8,9 @@
 import SpriteKit
 
 class ConfuseButton: PowerUpButton {
-    init(at location: CGPoint, to inputResponder: InputResponder) {
-        super.init(at: location, to: inputResponder, type: .confuse,
-                   name: Images.confuse.name)
+    init(at location: CGPoint, powerUpManager: PowerUpManager, eventManger: EventManager) {
+        super.init(at: location, powerUpManager: powerUpManager,
+                   eventManager: eventManger, type: .confuse, name: Images.confuse.name)
     }
 
-    override func activatePowerUp(location: CGPoint) {
-        guard isSet else {
-            return
-        }
-
-        print("confuse \(location)")
-    }
 }

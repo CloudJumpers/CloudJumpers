@@ -56,6 +56,8 @@
 		3E81C0CE27EE108B00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0CD27EE108B00184C55 /* PowerUp.swift */; };
 		3E81C0D127EE140B00184C55 /* Freeze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D027EE140B00184C55 /* Freeze.swift */; };
 		3E81C0D327EE149800184C55 /* Confuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D227EE149800184C55 /* Confuse.swift */; };
+		3E81C0D727EEF51900184C55 /* FreezeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D627EEF51900184C55 /* FreezeEffect.swift */; };
+		3E81C0D927EEF86300184C55 /* ConfuseEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0D827EEF86300184C55 /* ConfuseEffect.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -172,6 +174,8 @@
 		3E81C0CD27EE108B00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0D027EE140B00184C55 /* Freeze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Freeze.swift; sourceTree = "<group>"; };
 		3E81C0D227EE149800184C55 /* Confuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confuse.swift; sourceTree = "<group>"; };
+		3E81C0D627EEF51900184C55 /* FreezeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeEffect.swift; sourceTree = "<group>"; };
+		3E81C0D827EEF86300184C55 /* ConfuseEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseEffect.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -409,7 +413,9 @@
 			children = (
 				3E81C0CD27EE108B00184C55 /* PowerUp.swift */,
 				3E81C0D027EE140B00184C55 /* Freeze.swift */,
+				3E81C0D627EEF51900184C55 /* FreezeEffect.swift */,
 				3E81C0D227EE149800184C55 /* Confuse.swift */,
+				3E81C0D827EEF86300184C55 /* ConfuseEffect.swift */,
 			);
 			path = PowerUps;
 			sourceTree = "<group>";
@@ -906,6 +912,7 @@
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
 				3E81C0C527EDEF5800184C55 /* PowerUpButton.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
+				3E81C0D927EEF86300184C55 /* ConfuseEffect.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
@@ -922,6 +929,7 @@
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */,
 				93D4E17627DA10740054F45B /* NetworkDataProcessor.swift in Sources */,
+				3E81C0D727EEF51900184C55 /* FreezeEffect.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				3E81C0CE27EE108B00184C55 /* PowerUp.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,

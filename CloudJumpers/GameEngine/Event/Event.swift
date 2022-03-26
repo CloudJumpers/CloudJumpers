@@ -18,6 +18,7 @@ class Event {
         case inputMove(entity: Entity, by: CGVector)
         case inputJump(entity: Entity)
         case getPowerUp(powerUp: PowerUpType, powerUpNode: SKNode)
+        case activatePowerUp(type: PowerUpType, location: CGPoint)
         case gameEnd
     }
 }

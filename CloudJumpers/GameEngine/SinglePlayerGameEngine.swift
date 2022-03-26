@@ -75,8 +75,12 @@ class SinglePlayerGameEngine: GameEngine {
         self.timer = timer
         associatedEntity = player
 
-        let powerUpsAvailable = [FreezeButton(at: Constants.freezeButtonPosition, to: powerUpManager),
-                                 ConfuseButton(at: Constants.confuseButtonPosition, to: powerUpManager)]
+        let powerUpsAvailable = [FreezeButton(at: Constants.freezeButtonPosition,
+                                              powerUpManager: powerUpManager,
+                                              eventManger: eventManager),
+                                 ConfuseButton(at: Constants.confuseButtonPosition,
+                                               powerUpManager: powerUpManager,
+                                               eventManger: eventManager)]
         powerUpManager.initializePowerUp(powerUps: powerUpsAvailable)
     }
 
@@ -89,10 +93,6 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func removeNodeFromScene(_ node: SKNode, with method: ((GameEngine, SKNode) -> Void)?) {
-//        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-//            return
-//        }
-
         method?(self, node)
     }
 
@@ -103,6 +103,8 @@ class SinglePlayerGameEngine: GameEngine {
                 handleGameEnd()
             case let .getPowerUp(powerUp, powerUpNode):
                 handleGetPowerUp(powerUp: powerUp, powerUpNode: powerUpNode)
+            case let .activatePowerUp(type, location):
+                handlePowerUpActivation(type: type, location: location)
             default:
                 return
             }
@@ -132,6 +134,21 @@ class SinglePlayerGameEngine: GameEngine {
             entityManager.remove(entity)
             removeNodeFromScene(powerUpNode, with: delegate?.engine(_:removeEntityWith:))
         }
+    }
+
+    private func handlePowerUpActivation(type: PowerUpType, location: CGPoint) {
+        // TODO: disturb other players
+        switch type {
+        case .freeze:
+            let freezeEffect = FreezeEffect(at: location)
+            entityManager.add(freezeEffect)
+            addNodeToScene(freezeEffect, with: delegate?.engine(_:addEntityWith:))
+        case .confuse:
+            let confuseEffect = ConfuseEffect(at: location)
+            entityManager.add(confuseEffect)
+            addNodeToScene(confuseEffect, with: delegate?.engine(_:addEntityWith:))
+        }
+
     }
 }
 

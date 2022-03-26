@@ -45,9 +45,10 @@ class PowerUp: Entity {
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(circleOf: Constants.powerUpNodeSize.width / 3, for: spriteComponent)
+        physicsComponent.body.mass = 0
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
+        physicsComponent.body.isDynamic = true
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = getBitmask()
         physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer

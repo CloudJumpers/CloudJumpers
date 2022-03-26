@@ -13,7 +13,9 @@ enum Images: String {
     case innerStick
     case outerStick
     case freeze
+    case freezeEffect
     case confuse
+    case confuseEffect
 
     var name: String {
         rawValue

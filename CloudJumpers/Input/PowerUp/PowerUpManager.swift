@@ -10,7 +10,7 @@ import CoreGraphics
 
 class PowerUpManager: InputResponder {
     var associatedEntity: Entity?
-    private var powerUp: PowerUpButton?
+    var powerUp: PowerUpButton?
     var powerUpsAvailable: [PowerUpButton] = []
 
     init(associatedEntity: Entity?) {
@@ -38,16 +38,6 @@ class PowerUpManager: InputResponder {
 
     }
 
-    func setPowerUp(powerUp: PowerUpButton) {
-        guard powerUp.quantity > 0 else {
-            return
-        }
-
-        self.powerUp?.set(false)
-        self.powerUp = powerUp
-        self.powerUp?.set(true)
-    }
-
     func activatePowerUp(touchLocation: CGPoint) {
         guard let powerUp = powerUp else {
             return
@@ -60,5 +50,15 @@ class PowerUpManager: InputResponder {
             powerUp.set(false)
             self.powerUp = nil
         }
+    }
+
+    func setPowerUp(powerUp: PowerUpButton) {
+        guard powerUp.quantity > 0 else {
+            return
+        }
+
+        self.powerUp?.set(false)
+        self.powerUp = powerUp
+        self.powerUp?.set(true)
     }
 }

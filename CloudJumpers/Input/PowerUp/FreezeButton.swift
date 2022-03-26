@@ -8,15 +8,8 @@
 import SpriteKit
 
 class FreezeButton: PowerUpButton {
-    init(at location: CGPoint, to inputResponder: InputResponder) {
-        super.init(at: location, to: inputResponder, type: .freeze, name: Images.freeze.name)
-    }
-
-    override func activatePowerUp(location: CGPoint) {
-        guard isSet else {
-            return
-        }
-
-        print("freeze \(location)")
+    init(at location: CGPoint, powerUpManager: PowerUpManager, eventManger: EventManager) {
+        super.init(at: location, powerUpManager: powerUpManager,
+                   eventManager: eventManger, type: .freeze, name: Images.freeze.name)
     }
 }

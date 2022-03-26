@@ -8,15 +8,21 @@
 import SpriteKit
 
 class PowerUpButton: SKSpriteNode {
-    private unowned var responder: InputResponder?
+    private unowned var powerUpManager: PowerUpManager
+    private unowned var eventManager: EventManager
     private var type: PowerUpType
     private(set) var quantity: Int = 0
     private(set) var isSet = false
     private(set) var imageName: String
     private var label: SKLabelNode?
 
-    init(at position: CGPoint, to responder: InputResponder, type: PowerUpType, name: String) {
-        self.responder = responder
+    init(at position: CGPoint,
+         powerUpManager: PowerUpManager,
+         eventManager: EventManager,
+         type: PowerUpType,
+         name: String) {
+        self.powerUpManager = powerUpManager
+        self.eventManager = eventManager
         self.type = type
         self.imageName = name
         super.init(
@@ -50,14 +56,20 @@ class PowerUpButton: SKSpriteNode {
         alpha = self.isSet ? Constants.fullOpacity : Constants.opacityTwo
     }
 
-    func activatePowerUp(location: CGPoint) { }
+    func activatePowerUp(location: CGPoint) {
+        guard isSet else {
+            return
+        }
+
+        eventManager.event(add: Event(type: .activatePowerUp(type: type, location: location)))
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first,
               isValidTouch(touch)
         else { return }
 
-        responder?.setPowerUp(powerUp: self)
+        powerUpManager.setPowerUp(powerUp: self)
     }
 
     private func isValidTouch(_ touch: UITouch) -> Bool {
