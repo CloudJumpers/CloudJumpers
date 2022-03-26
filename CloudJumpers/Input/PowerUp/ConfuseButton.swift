@@ -10,7 +10,7 @@ import SpriteKit
 class ConfuseButton: PowerUpButton {
     init(at location: CGPoint, to inputResponder: InputResponder) {
         super.init(at: location, to: inputResponder, type: .confuse,
-                   name: Images.confuseButton.name)
+                   name: Images.confuse.name)
     }
 
     override func activatePowerUp(location: CGPoint) {

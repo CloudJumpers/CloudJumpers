@@ -61,14 +61,14 @@ class GameViewController: UIViewController {
 
         let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
         let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
-        let freezeButton = FreezeButton(at: Constants.freezeButtonPosition, to: gameEngine)
-        let confuseButton = ConfuseButton(at: Constants.confuseButtonPosition, to: gameEngine)
-        let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine)
+        let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine.powerUpManager)
 
         scene?.addStaticChild(joystick)
         scene?.addStaticChild(jumpButton)
-        scene?.addStaticChild(freezeButton)
-        scene?.addStaticChild(confuseButton)
+
+        // TODO: gameScene knows too much about gameEngine here
+        gameEngine.powerUpManager.powerUpsAvailable.forEach { scene?.addStaticChild($0) }
+
         scene?.addStaticChild(gameArea)
 
         self.joystick = joystick
@@ -124,6 +124,10 @@ extension GameViewController: GameEngineDelegate {
 
     func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
         scene?.addChild(node)
+    }
+
+    func engine(_ engine: GameEngine, removeEntityWith node: SKNode) {
+        node.removeFromParent()
     }
 
     func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {

@@ -10,6 +10,7 @@ import SpriteKit
 protocol GameEngine: InputResponder {
     var entityManager: EntityManager { get }
     var eventManager: EventManager { get }
+    var powerUpManager: PowerUpManager { get }
     var contactResolver: ContactResolver { get }
     var delegate: GameEngineDelegate? { get }
     var systems: [System] { get set }

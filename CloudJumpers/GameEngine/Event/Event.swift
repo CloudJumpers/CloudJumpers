@@ -17,7 +17,7 @@ class Event {
     enum EventType {
         case inputMove(entity: Entity, by: CGVector)
         case inputJump(entity: Entity)
-        case powerUp
+        case getPowerUp(powerUp: PowerUpType, powerUpNode: SKNode)
         case gameEnd
     }
 }

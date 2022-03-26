@@ -23,5 +23,5 @@ extension InputResponder {
     func inputJump() { }
     func inputPause() { }
     func setPowerUp(powerUp: PowerUpButton) { }
-    func activatePowerUp() { }
+    func activatePowerUp(touchLocation: CGPoint) { }
 }

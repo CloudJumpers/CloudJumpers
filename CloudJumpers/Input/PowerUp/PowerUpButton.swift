@@ -12,28 +12,40 @@ class PowerUpButton: SKSpriteNode {
     private var type: PowerUpType
     private(set) var quantity: Int = 0
     private(set) var isSet = false
+    private(set) var imageName: String
 
     init(at position: CGPoint, to responder: InputResponder, type: PowerUpType, name: String) {
         self.responder = responder
         self.type = type
+        self.imageName = name
         super.init(
-            texture: SKTexture(imageNamed: name),
+            texture: SKTexture(imageNamed: name + "\(quantity)"),
             color: .clear,
             size: Constants.powerUpButtonSize)
         configureNode(at: position)
     }
 
     func increaseQuantity() {
+        guard quantity < 9 else {
+            return
+        }
+
         quantity += 1
+        texture = SKTexture(imageNamed: "\(imageName)\(quantity)")
     }
 
     func decreaseQuantity() {
+        guard quantity > 0 else {
+            return
+        }
+
         quantity -= 1
+        texture = SKTexture(imageNamed: "\(imageName)\(quantity)")
     }
 
     func set(_ set: Bool) {
         self.isSet = set
-        alpha = self.isSet ? Constants.fullOpacity : Constants.opacityOne
+        alpha = self.isSet ? Constants.fullOpacity : Constants.opacityTwo
     }
 
     func activatePowerUp(location: CGPoint) { }
@@ -54,7 +66,7 @@ class PowerUpButton: SKSpriteNode {
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
         zPosition = SpriteZPosition.button.rawValue
-        alpha = Constants.opacityOne
+        alpha = Constants.opacityTwo
         self.position = position
     }
 

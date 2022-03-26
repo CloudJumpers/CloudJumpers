@@ -9,7 +9,7 @@ import SpriteKit
 
 class FreezeButton: PowerUpButton {
     init(at location: CGPoint, to inputResponder: InputResponder) {
-        super.init(at: location, to: inputResponder, type: .freeze, name: Images.freezeButton.name)
+        super.init(at: location, to: inputResponder, type: .freeze, name: "freeze")
     }
 
     override func activatePowerUp(location: CGPoint) {

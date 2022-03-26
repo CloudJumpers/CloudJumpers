@@ -32,11 +32,15 @@ class ContactResolver {
         if nodeABitMask == Constants.bitmaskPlayer &&
             nodeBBitMask == Constants.bitmaskFreezePowerUp {
 
+            eventManager?.event(add: Event(type: .getPowerUp(powerUp: .freeze, powerUpNode: nodeB)))
+
             print("freeze")
         }
 
         if nodeABitMask == Constants.bitmaskPlayer &&
             nodeBBitMask == Constants.bitmaskConfusePowerUp {
+
+            eventManager?.event(add: Event(type: .getPowerUp(powerUp: .confuse, powerUpNode: nodeB)))
 
             print("confuse")
         }
@@ -44,6 +48,7 @@ class ContactResolver {
 
     func resolveEndContact(contact: SKPhysicsContact) {
         // TODO: To be implemented
+
     }
 
     private func isPlayerOnPlatform(player: SKNode, platform: SKNode) -> Bool {

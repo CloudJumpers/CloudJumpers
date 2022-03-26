@@ -10,6 +10,6 @@ import CoreGraphics
 
 class Freeze: PowerUp {
     init(at position: CGPoint, with id: EntityID = newID) {
-        super.init(at: position, with: id, type: .freeze, name: Images.freezeButton.name)
+        super.init(at: position, with: id, type: .freeze, name: Images.freeze.name)
     }
 }

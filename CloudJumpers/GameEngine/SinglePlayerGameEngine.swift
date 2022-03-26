@@ -19,7 +19,7 @@ class SinglePlayerGameEngine: GameEngine {
     required init(for delegate: GameEngineDelegate) {
         entityManager = EntityManager()
         eventManager = EventManager()
-        powerUpManager = PowerUpManager()
+        powerUpManager = PowerUpManager(associatedEntity: associatedEntity)
         contactResolver = ContactResolver(to: eventManager)
         systems = []
         self.delegate = delegate
@@ -56,6 +56,7 @@ class SinglePlayerGameEngine: GameEngine {
             Platform(at: CGPoint(x: 0, y: 700)),
             Freeze(at: CGPoint(x: 200, y: -300)),
             Confuse(at: CGPoint(x: -200, y: -300)),
+            Confuse(at: CGPoint(x: 0, y: -200)),
             Cloud(at: CGPoint(x: 200, y: -200)),
             Cloud(at: CGPoint(x: -100, y: -50)),
             Cloud(at: CGPoint(x: 200, y: 100)),
@@ -73,6 +74,10 @@ class SinglePlayerGameEngine: GameEngine {
 
         self.timer = timer
         associatedEntity = player
+
+        let powerUpsAvailable = [FreezeButton(at: Constants.freezeButtonPosition, to: powerUpManager),
+                                 ConfuseButton(at: Constants.confuseButtonPosition, to: powerUpManager)]
+        powerUpManager.initializePowerUp(powerUps: powerUpsAvailable)
     }
 
     private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
@@ -83,11 +88,21 @@ class SinglePlayerGameEngine: GameEngine {
         method?(self, spriteComponent.node)
     }
 
+    private func removeNodeFromScene(_ node: SKNode, with method: ((GameEngine, SKNode) -> Void)?) {
+//        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
+//            return
+//        }
+
+        method?(self, node)
+    }
+
     private func updateEvents() {
         for event in eventManager.getEvents() {
             switch event.type {
             case .gameEnd:
                 handleGameEnd()
+            case let .getPowerUp(powerUp, powerUpNode):
+                handleGetPowerUp(powerUp: powerUp, powerUpNode: powerUpNode)
             default:
                 return
             }
@@ -104,6 +119,19 @@ class SinglePlayerGameEngine: GameEngine {
         let time = timedComponent.time
         let endGameState = TimeTrialGameEndState(playerEndTime: time)
         delegate?.engine(self, didEndGameWith: endGameState)
+    }
+
+    private func handleGetPowerUp(powerUp: PowerUpType, powerUpNode: SKNode) {
+        powerUpManager.getPowerUp(powerUp: powerUp)
+
+        guard let name = powerUpNode.name else {
+            return
+        }
+
+        if let entity = entityManager.entities[name] {
+            entityManager.remove(entity)
+            removeNodeFromScene(powerUpNode, with: delegate?.engine(_:removeEntityWith:))
+        }
     }
 }
 
@@ -126,14 +154,6 @@ extension SinglePlayerGameEngine: InputResponder {
             animateJump(entity)
             physicsComponent.body.applyImpulse(Constants.jumpImpulse)
         }
-    }
-
-    func setPowerUp(powerUp: PowerUpButton) {
-        powerUpManager.setPowerUp(powerUp: powerUp)
-    }
-
-    func activatePowerUp(touchLocation: CGPoint) {
-        powerUpManager.activatePowerUp(touchLocation: touchLocation)
     }
 
     private func animateJump(_ entity: Entity) {
