@@ -15,13 +15,9 @@ class EventManager {
     private var gameEventListener: GameEventListener?
     private var gameEventDispatcher: GameEventDispatcher?
 
-    // TODO: This timer is just a hardcoded way to demonstrate creation of positional updates
-    private var tempTimer: Timer?
-
     init(channel: NetworkID?) {
         events = EventQueue { $0.timestamp < $1.timestamp }
         subscribe(to: channel)
-        setUpPeriodicOnlineMoveEventDispatchTimer()
     }
 
     static var timestamp: TimeInterval {
@@ -50,21 +46,5 @@ class EventManager {
         gameEventListener = FirebaseGameEventListener(channel)
         gameEventDispatcher = FirebaseGameEventDispatcher(channel)
         gameEventListener?.eventManager = self
-    }
-
-    private func setUpPeriodicOnlineMoveEventDispatchTimer() {
-        tempTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
-            guard let userId = AuthService().getUserId() else {
-                return
-            }
-
-            let event = OnlineMoveEvent(displacementX: 10.0, displacementY: 10.0, action: "networkmove")
-            let cmd = MoveEventCommand(sourceId: userId, event: event)
-            self?.dispatchGameEventCommand(cmd)
-        })
-    }
-
-    deinit {
-        tempTimer?.invalidate()
     }
 }
