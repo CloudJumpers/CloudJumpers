@@ -20,26 +20,8 @@ class EventManager {
 
     init(channel: NetworkID?) {
         events = EventQueue { $0.timestamp < $1.timestamp }
-
-        if let channel = channel {
-            gameEventListener = FirebaseGameEventListener(channel)
-            gameEventDispatcher = FirebaseGameEventDispatcher(channel)
-            gameEventListener?.eventManager = self
-        }
-
-        tempTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
-            guard let userId = AuthService().getUserId() else {
-                return
-            }
-
-            let event = OnlineMoveEvent(displacementX: 10.0, displacementY: 10.0, action: "networkmove")
-            let cmd = MoveEventCommand(sourceId: userId, event: event)
-            self?.dispatchGameEventCommand(cmd)
-        })
-    }
-
-    deinit {
-        tempTimer?.invalidate()
+        subscribe(to: channel)
+        setUpPeriodicOnlineMoveEventDispatchTimer()
     }
 
     static var timestamp: TimeInterval {
@@ -58,5 +40,31 @@ class EventManager {
 
     func dispatchGameEventCommand(_ command: GameEventCommand) {
         gameEventDispatcher?.dispatchGameEventCommand(command)
+    }
+
+    private func subscribe(to channel: NetworkID?) {
+        guard let channel = channel else {
+            return
+        }
+
+        gameEventListener = FirebaseGameEventListener(channel)
+        gameEventDispatcher = FirebaseGameEventDispatcher(channel)
+        gameEventListener?.eventManager = self
+    }
+
+    private func setUpPeriodicOnlineMoveEventDispatchTimer() {
+        tempTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
+            guard let userId = AuthService().getUserId() else {
+                return
+            }
+
+            let event = OnlineMoveEvent(displacementX: 10.0, displacementY: 10.0, action: "networkmove")
+            let cmd = MoveEventCommand(sourceId: userId, event: event)
+            self?.dispatchGameEventCommand(cmd)
+        })
+    }
+
+    deinit {
+        tempTimer?.invalidate()
     }
 }
