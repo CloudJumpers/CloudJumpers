@@ -13,16 +13,18 @@ class PowerUpButton: SKSpriteNode {
     private(set) var quantity: Int = 0
     private(set) var isSet = false
     private(set) var imageName: String
+    private var label: SKLabelNode?
 
     init(at position: CGPoint, to responder: InputResponder, type: PowerUpType, name: String) {
         self.responder = responder
         self.type = type
         self.imageName = name
         super.init(
-            texture: SKTexture(imageNamed: name + "\(quantity)"),
+            texture: SKTexture(imageNamed: name),
             color: .clear,
             size: Constants.powerUpButtonSize)
         configureNode(at: position)
+        addQuantityLabelNode()
     }
 
     func increaseQuantity() {
@@ -31,7 +33,7 @@ class PowerUpButton: SKSpriteNode {
         }
 
         quantity += 1
-        texture = SKTexture(imageNamed: "\(imageName)\(quantity)")
+        label?.text = "\(quantity)"
     }
 
     func decreaseQuantity() {
@@ -40,7 +42,7 @@ class PowerUpButton: SKSpriteNode {
         }
 
         quantity -= 1
-        texture = SKTexture(imageNamed: "\(imageName)\(quantity)")
+        label?.text = "\(quantity)"
     }
 
     func set(_ set: Bool) {
@@ -63,11 +65,24 @@ class PowerUpButton: SKSpriteNode {
         return contains(location)
     }
 
+    private func addQuantityLabelNode() {
+        let node = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        node.text = "\(quantity)"
+        node.fontSize = 30.0
+        node.fontColor = .red
+        node.position = CGPoint(x: 0.0, y: 0.0)
+        node.zPosition = SpriteZPosition.text.rawValue
+        label = node
+
+        addChild(node)
+    }
+
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
         zPosition = SpriteZPosition.button.rawValue
         alpha = Constants.opacityTwo
         self.position = position
+
     }
 
     @available(*, unavailable)
