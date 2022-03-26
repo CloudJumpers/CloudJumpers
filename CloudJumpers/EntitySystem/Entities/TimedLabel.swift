@@ -22,9 +22,11 @@ class TimedLabel: Entity {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let timedComponent = createTimedComponent()
+        let staticCameraComponent = createStaticCameraComponent()
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(timedComponent, to: self)
+        manager.addComponent(staticCameraComponent, to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -40,5 +42,9 @@ class TimedLabel: Entity {
 
     private func createTimedComponent() -> TimedComponent {
         TimedComponent(time: initial)
+    }
+
+    private func createStaticCameraComponent() -> StaticCameraComponent {
+        StaticCameraComponent()
     }
 }

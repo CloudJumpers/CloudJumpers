@@ -35,8 +35,12 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setUpSystems() {
-        systems.append(TimedSystem(for: entityManager))
-        systems.append(SpriteSystem(for: entityManager))
+        let timedSystem = TimedSystem(for: entityManager)
+        let spriteSystem = SpriteSystem(for: entityManager)
+        spriteSystem.gameEngine = self
+
+        systems.append(timedSystem)
+        systems.append(spriteSystem)
     }
 
     private func updateSystems(within time: CGFloat) {
@@ -67,20 +71,8 @@ class SinglePlayerGameEngine: GameEngine {
         entityManager.add(player)
         entities.forEach(entityManager.add(_:))
 
-        addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
-        entities.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
-
         self.timer = timer
         associatedEntity = player
-    }
-
-    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
-        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
-
-        method?(self, spriteComponent.node)
     }
 
     private func updateEvents() {

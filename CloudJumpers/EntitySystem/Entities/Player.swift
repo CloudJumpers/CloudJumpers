@@ -25,11 +25,13 @@ class Player: Entity {
         let physicsComponent = createPhysicsComponent(for: spriteComponent)
         let animationComponent = createAnimationComponent()
         let inventoryComponent = createInventoryComponent()
+        let bindCameraComponent = createBindCameraComponent()
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
         manager.addComponent(inventoryComponent, to: self)
+        manager.addComponent(bindCameraComponent, to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -60,5 +62,9 @@ class Player: Entity {
 
     private func createInventoryComponent() -> InventoryComponent {
         InventoryComponent()
+    }
+
+    private func createBindCameraComponent() -> BindCameraComponent {
+        BindCameraComponent()
     }
 }
