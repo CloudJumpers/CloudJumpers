@@ -8,9 +8,7 @@
 enum Events: Int, CaseIterable {
     case move
     case jump
-    case animateIdle
-    case animateWalking
-    case animateJumping
+    case animate
 
     func type(of event: Event) -> Events? {
         switch event {
