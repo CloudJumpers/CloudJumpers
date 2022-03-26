@@ -8,9 +8,11 @@
 import SpriteKit
 
 class ContactResolver {
+    unowned var entityManager: EntityManager?
     unowned var eventManager: EventManager?
 
-    init(to eventManager: EventManager) {
+    init(to eventManager: EventManager, entityManager: EntityManager) {
+        self.entityManager = entityManager
         self.eventManager = eventManager
     }
 
@@ -28,6 +30,19 @@ class ContactResolver {
            isPlayerOnPlatform(player: nodeA, platform: nodeB) {
             // TODO: @jushg Handle game end
             // eventManager?.event(add: Event(type: .gameEnd))
+        }
+        
+        if nodeABitMask == Constants.bitmaskPlayer &&
+            nodeBBitMask == Constants.bitmaskPowerUp {
+            
+            guard let entityIDA = nodeA.entityID,
+                  let entityIDB = nodeB.entityID,
+                  let entityA = entityManager?.entity(with: entityIDA),
+                  let entityB = entityManager?.entity(with: entityIDB) else {
+                return
+            }
+            
+            eventManager?.add(ObtainEvent(on: entityA, obtains: entityB))
         }
     }
 

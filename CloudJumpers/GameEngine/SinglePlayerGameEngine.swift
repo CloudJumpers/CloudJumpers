@@ -18,7 +18,8 @@ class SinglePlayerGameEngine: GameEngine {
     required init(for delegate: GameEngineDelegate) {
         entityManager = EntityManager()
         eventManager = EventManager()
-        contactResolver = ContactResolver(to: eventManager)
+        contactResolver = ContactResolver(to: eventManager,
+                                          entityManager: entityManager)
         systems = []
         self.delegate = delegate
         setUpSystems()
