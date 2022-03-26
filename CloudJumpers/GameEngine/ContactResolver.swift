@@ -29,10 +29,9 @@ class ContactResolver {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
-        if nodeABitMask == Constants.bitmaskPlayer
-            && nodeBBitMask == Constants.bitmaskPlatform
-            && isPlayerOnPlatform(player: nodeA, platform: nodeB) {
-            print("I got here")
+        if nodeABitMask == Constants.bitmaskPlayer &&
+           nodeBBitMask == Constants.bitmaskPlatform &&
+           isPlayerOnPlatform(player: nodeA, platform: nodeB) {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         }
     }

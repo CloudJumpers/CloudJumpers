@@ -89,14 +89,7 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func updateEvents() {
-        for event in eventManager.getEvents() {
-            switch event.type {
-            default:
-                return
-            }
-        }
-
-        eventManager.resetEventQueue()
+        eventManager.executeAll(in: entityManager)
     }
 
     // MARK: Temporary time update method
@@ -124,33 +117,18 @@ extension SinglePlayerGameEngine: GameMetaDataDelegate {
 // MARK: - InputResponder
 extension SinglePlayerGameEngine: InputResponder {
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity,
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return }
-
-        spriteComponent.node.position += CGVector(dx: displacement.dx, dy: 0)
-    }
-
-    func inputJump() {
-        guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
-        else { return }
-
-        if !isJumping(body: physicsComponent.body) {
-            animateJump(entity)
-            physicsComponent.body.applyImpulse(Constants.jumpImpulse)
-        }
-    }
-
-    private func animateJump(_ entity: Entity) {
-        guard let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity) else {
+        guard let entity = associatedEntity else {
             return
         }
 
-        animationComponent.kind = .jumping
+        eventManager.add(MoveEvent(on: entity, by: displacement))
     }
 
-    private func isJumping(body: SKPhysicsBody) -> Bool {
-        abs(body.velocity.dy) > Constants.jumpYTolerance
+    func inputJump() {
+        guard let entity = associatedEntity else {
+            return
+        }
+
+        eventManager.add(JumpEvent(on: entity))
     }
 }

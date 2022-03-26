@@ -19,7 +19,7 @@ class SpriteSystem: System {
             return
         }
 
-        for entity in manager.entities.values {
+        for entity in manager.iterableEntities {
             guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity) else {
                 continue
             }
