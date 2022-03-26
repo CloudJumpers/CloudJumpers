@@ -8,7 +8,7 @@
 import Foundation
 
 class GameMetaData {
-    var time: Double = Double.zero
+    var time = Double.zero
     var playerId = EntityID()
     var playerLocationMapping = [EntityID: EntityID]()
     var topPlatformId = EntityID()
