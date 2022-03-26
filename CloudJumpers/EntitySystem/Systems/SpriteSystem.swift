@@ -18,6 +18,12 @@ class SpriteSystem: System {
     }
 
     func update(within time: CGFloat) {
+        updateAddedEntities()
+        addNewEntities()
+        updateTimedEntities()
+    }
+
+    private func updateAddedEntities() {
         guard let manager = manager else {
             return
         }
@@ -37,7 +43,13 @@ class SpriteSystem: System {
             removeNodeFromScene(entity)
             manager.removeComponent(ofType: RemovedSpriteComponent.self, from: entity)
         }
-
+    }
+    
+    private func addNewEntities() {
+        guard let manager = manager else {
+            return
+        }
+        
         for entity in manager.iterableEntities {
             guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else {
@@ -50,6 +62,22 @@ class SpriteSystem: System {
                 addedEntity.insert(entity.id)
             }
 
+            updateTimed(of: node, with: entity)
+        }
+    }
+    
+    private func updateTimedEntities() {
+        guard let manager = manager else {
+            return
+        }
+        
+        for entity in manager.iterableEntities {
+            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
+            else {
+                continue
+            }
+
+            let node = spriteComponent.node
             updateTimed(of: node, with: entity)
         }
     }
