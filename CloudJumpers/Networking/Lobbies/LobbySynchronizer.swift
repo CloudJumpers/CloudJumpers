@@ -1,5 +1,5 @@
 //
-//  LobbySynchronizer.swift
+//  Synchronizer.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 23/3/22.
