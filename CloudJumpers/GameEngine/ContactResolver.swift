@@ -19,7 +19,7 @@ class ContactResolver {
               let nodeB = contact.bodyB.node
         else { return }
 
-        // ???: Need to handle this properly
+        // ???: Need to handle this properly !!!
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
@@ -33,16 +33,12 @@ class ContactResolver {
             nodeBBitMask == Constants.bitmaskFreezePowerUp {
 
             eventManager?.event(add: Event(type: .getPowerUp(powerUp: .freeze, powerUpNode: nodeB)))
-
-            print("freeze")
         }
 
         if nodeABitMask == Constants.bitmaskPlayer &&
             nodeBBitMask == Constants.bitmaskConfusePowerUp {
 
             eventManager?.event(add: Event(type: .getPowerUp(powerUp: .confuse, powerUpNode: nodeB)))
-
-            print("confuse")
         }
     }
 
