@@ -14,7 +14,7 @@ class TimedComponent: Component {
     var time: Double
 
     init(time: Double) {
-        id = UUID().uuidString
+        id = EntityManager.newComponentID
         self.time = time
     }
 }

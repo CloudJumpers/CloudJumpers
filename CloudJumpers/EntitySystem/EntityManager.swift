@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
+import Foundation
+
 class EntityManager {
     typealias EntitiesMap = [EntityID: Entity]
     typealias ComponentsMap = [ComponentID: Component]
@@ -91,5 +93,16 @@ class EntityManager {
 
         entitiesComponents[entity.id] = nil
         entities[entity.id] = nil
+    }
+}
+
+// MARK: - EntityID and ComponentID Generation
+extension EntityManager {
+    static var newEntityID: EntityID {
+        UUID().uuidString
+    }
+
+    static var newComponentID: ComponentID {
+        UUID().uuidString
     }
 }
