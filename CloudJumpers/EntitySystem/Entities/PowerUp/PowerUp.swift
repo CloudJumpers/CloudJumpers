@@ -51,4 +51,5 @@ class PowerUp: Entity {
 
         return physicsComponent
     }
+
 }

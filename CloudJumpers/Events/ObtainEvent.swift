@@ -24,6 +24,6 @@ struct ObtainEvent: Event {
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity)
         else { return }
 
-        inventoryComponent.inventory.insert(otherEntityID)
+        inventoryComponent.inventory.append(otherEntityID)
     }
 }

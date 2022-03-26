@@ -58,6 +58,8 @@
 		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0E527EF37BC00184C55 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E427EF37BC00184C55 /* PowerUpType.swift */; };
+		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
+		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -176,6 +178,8 @@
 		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0E427EF37BC00184C55 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
+		3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatePowerUpEvent.swift; sourceTree = "<group>"; };
+		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -411,6 +415,7 @@
 			children = (
 				3E81C0E427EF37BC00184C55 /* PowerUpType.swift */,
 				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
+				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
 			);
 			path = PowerUp;
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 				1A94D96327EE0D4D001D8A86 /* MoveEvent.swift */,
 				1A94D96527EE0EF2001D8A86 /* JumpEvent.swift */,
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
+				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
 			);
 			path = Events;
@@ -970,6 +976,7 @@
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
+				3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
@@ -984,6 +991,7 @@
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
+				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				3E81C0E527EF37BC00184C55 /* PowerUpType.swift in Sources */,

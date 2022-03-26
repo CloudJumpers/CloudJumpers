@@ -115,4 +115,12 @@ extension SinglePlayerGameEngine: InputResponder {
 
         eventManager.add(JumpEvent(on: entity))
     }
+
+    func activatePowerUp(touchLocation: CGPoint) {
+        guard let entity = associatedEntity else {
+            return
+        }
+
+        eventManager.add(ActivatePowerUpEvent(on: entity, location: touchLocation))
+    }
 }
