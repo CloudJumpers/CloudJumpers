@@ -32,6 +32,7 @@ class ContactResolver {
         if nodeABitMask == Constants.bitmaskPlayer
             && nodeBBitMask == Constants.bitmaskPlatform
             && isPlayerOnPlatform(player: nodeA, platform: nodeB) {
+            print("I got here")
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         }
     }

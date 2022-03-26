@@ -24,6 +24,7 @@ class SinglePlayerGameEngine: GameEngine {
         contactResolver = ContactResolver(to: eventManager)
         systems = []
         self.delegate = delegate
+        contactResolver.metaDataDelegate = self
         setUpSystems()
     }
 
@@ -70,6 +71,7 @@ class SinglePlayerGameEngine: GameEngine {
 
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
         addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
+        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
         entities.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
@@ -105,6 +107,18 @@ class SinglePlayerGameEngine: GameEngine {
 
         metaData.time = timedComponent.time
     }
+}
+
+// MARK: - GameMetaDataDelegate
+extension SinglePlayerGameEngine: GameMetaDataDelegate {
+    func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
+        if let location = location {
+            metaData.playerLocationMapping[player] = location
+        } else {
+            metaData.playerLocationMapping.removeValue(forKey: player)
+        }
+    }
+
 }
 
 // MARK: - InputResponder
