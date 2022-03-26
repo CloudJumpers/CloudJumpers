@@ -8,13 +8,13 @@
 import Foundation
 
 class DefaultCommand: GameEventCommand {
-    let source: EntityID
-    var recipients: [EntityID]?
+    let source: NetworkID
+    var recipients: [NetworkID]?
     var payload: String
 
     var nextCommand: GameEventCommand?
 
-    init(sourceId: EntityID, recipients: [EntityID]?, payload: String) {
+    init(sourceId: NetworkID, recipients: [NetworkID]?, payload: String) {
         self.source = sourceId
         self.recipients = recipients
         self.payload = payload

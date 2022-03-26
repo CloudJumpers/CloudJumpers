@@ -10,14 +10,15 @@ import Foundation
 protocol GameEventCommand {
     /// source refers to the identifier for the
     /// player this update originates from. By convention,
-    /// we use the player's userId.
-    var source: EntityID { get }
+    /// we use the player's userId, which also serves as the
+    /// device's network id.
+    var source: NetworkID { get }
 
     /// recipients is a list of recipient userIds that should
     /// be concerned with this command, in the event of
     /// unicast or multicasting. If used in a broadcasting
     /// context, this can be left blank.
-    var recipients: [EntityID]? { get }
+    var recipients: [NetworkID]? { get }
 
     /// To have separation of concerns, we transport
     /// the payload as a String. It is to be handled based

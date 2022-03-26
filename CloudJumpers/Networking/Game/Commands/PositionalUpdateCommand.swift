@@ -9,20 +9,20 @@ import Foundation
 import CoreGraphics
 
 struct PositionalUpdateCommand: GameEventCommand {
-    var source: EntityID
-    let recipients: [EntityID]?
+    var source: NetworkID
+    let recipients: [NetworkID]?
 
     var payload: String
 
     var nextCommand: GameEventCommand?
 
-    init(sourceId: EntityID, futureMovementEvent: FutureMovementEvent) {
+    init(sourceId: NetworkID, futureMovementEvent: FutureMovementEvent) {
         self.source = sourceId
         self.recipients = nil
         self.payload = CJNetworkEncoder.toJsonString(futureMovementEvent)
     }
 
-    init(sourceId: EntityID, recipients: [EntityID]?, payload: String) {
+    init(sourceId: NetworkID, recipients: [NetworkID]?, payload: String) {
         self.source = sourceId
         self.recipients = recipients
         self.payload = payload

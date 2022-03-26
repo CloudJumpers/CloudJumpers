@@ -14,7 +14,7 @@ protocol GameEngine: InputResponder {
     var delegate: GameEngineDelegate? { get }
     var systems: [System] { get set }
 
-    init(for delegate: GameEngineDelegate, channel: EntityID?)
+    init(for delegate: GameEngineDelegate, channel: NetworkID?)
     func setUpGame()
     func update(within time: CGFloat)
 }

@@ -15,7 +15,7 @@ class SinglePlayerGameEngine: GameEngine {
     var systems: [System]
     var associatedEntity: Entity?
 
-    required init(for delegate: GameEngineDelegate, channel: EntityID? = nil) {
+    required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)

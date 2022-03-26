@@ -15,7 +15,9 @@ class EventManager {
     private var gameEventListener: GameEventListener?
     private var gameEventDispatcher: GameEventDispatcher?
 
-    init(channel: EntityID?) {
+    private var tempTimer: Timer?
+
+    init(channel: NetworkID?) {
         events = EventQueue { $0.timestamp < $1.timestamp }
 
         if let channel = channel {
@@ -25,15 +27,19 @@ class EventManager {
         }
 
         // TODO: This is just a hardcoded way to create positional updates
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: {_ in
+        tempTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
             guard let userId = AuthService().getUserId() else {
                 return
             }
 
             let event = FutureMovementEvent(positionX: 10.0, positionY: 10.0, action: "networkmove")
             let cmd = PositionalUpdateCommand(sourceId: userId, futureMovementEvent: event)
-            self.gameEventDispatcher?.dispatchGameEventCommand(cmd)
+            self?.gameEventDispatcher?.dispatchGameEventCommand(cmd)
         })
+    }
+
+    deinit {
+        tempTimer?.invalidate()
     }
 
     static var timestamp: TimeInterval {

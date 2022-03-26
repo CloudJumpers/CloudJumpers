@@ -11,7 +11,7 @@ import FirebaseDatabase
 class FirebaseGameEventDispatcher: GameEventDispatcher {
     private let gameReference: DatabaseReference
 
-    init(_ channelId: EntityID) {
+    init(_ channelId: NetworkID) {
         self.gameReference = Database
             .database()
             .reference(withPath: GameKeys.root)

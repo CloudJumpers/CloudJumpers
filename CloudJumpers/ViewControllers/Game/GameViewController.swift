@@ -11,10 +11,16 @@ class GameViewController: UIViewController {
 
     var lobby: GameLobby?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setUpSynchronizedStart()
+    }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        gameEngine = nil
+        scene = nil
+        joystick = nil
     }
 
     private func setUpSynchronizedStart() {

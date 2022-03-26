@@ -11,7 +11,7 @@ import FirebaseDatabase
 class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
     weak var managedLobby: NetworkedLobby?
 
-    func createLobby(hostId: EntityID, hostDisplayName: String) {
+    func createLobby(hostId: NetworkID, hostDisplayName: String) {
         guard let lobby = managedLobby else {
             return
         }
@@ -35,7 +35,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func joinLobby(userId: EntityID, userDisplayName: String) {
+    func joinLobby(userId: NetworkID, userDisplayName: String) {
         guard let lobby = managedLobby else {
             return
         }
@@ -67,7 +67,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func exitLobby(userId: EntityID, deleteLobby: Bool = false) {
+    func exitLobby(userId: NetworkID, deleteLobby: Bool = false) {
         guard let lobby = managedLobby else {
             return
         }
@@ -84,7 +84,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func toggleReady(userId: EntityID) {
+    func toggleReady(userId: NetworkID) {
         guard let lobby = managedLobby else {
             return
         }
@@ -116,20 +116,20 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    private func constructLobbyPath(lobbyId: EntityID) -> String {
+    private func constructLobbyPath(lobbyId: NetworkID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"
     }
 
-    private func getLobbyReference(lobbyId: EntityID) -> DatabaseReference {
+    private func getLobbyReference(lobbyId: NetworkID) -> DatabaseReference {
         Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
     }
 
-    private func getLobbyParticipantsReference(lobbyId: EntityID) -> DatabaseReference {
+    private func getLobbyParticipantsReference(lobbyId: NetworkID) -> DatabaseReference {
         let lobbyReference = getLobbyReference(lobbyId: lobbyId)
         return lobbyReference.child(LobbyKeys.participants)
     }
 
-    private func getLobbyUserReference(lobbyId: EntityID, userId: EntityID) -> DatabaseReference {
+    private func getLobbyUserReference(lobbyId: NetworkID, userId: NetworkID) -> DatabaseReference {
         getLobbyParticipantsReference(lobbyId: lobbyId).child(userId)
     }
 }

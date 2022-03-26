@@ -97,7 +97,7 @@
 		938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A327DE2A0F00A1892C /* AuthInfo.swift */; };
 		938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A627DE4A6500A1892C /* LoginViewController.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
-		93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */; };
+		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
@@ -220,7 +220,7 @@
 		938C15A327DE2A0F00A1892C /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		938C15A627DE4A6500A1892C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
-		93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByEntityID.swift; sourceTree = "<group>"; };
+		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -625,7 +625,7 @@
 		93D4E17727DA12330054F45B /* Definitions */ = {
 			isa = PBXGroup;
 			children = (
-				93D4E17A27DA15550054F45B /* IdentifiableByEntityID.swift */,
+				93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */,
 				93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */,
 				9344624D27E502DE00063BE9 /* NetworkCallback.swift */,
 			);
@@ -930,7 +930,7 @@
 			files = (
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
-				93D4E17B27DA15550054F45B /* IdentifiableByEntityID.swift in Sources */,
+				93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */,
 				93360BA427EC9E3F00808295 /* GameConstants.swift in Sources */,
 				93360B9327EC919100808295 /* PositionalUpdateCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventListener.swift in Sources */,

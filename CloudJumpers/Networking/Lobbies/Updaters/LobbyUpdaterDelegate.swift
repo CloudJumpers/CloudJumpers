@@ -8,8 +8,8 @@
 protocol LobbyUpdaterDelegate: AnyObject {
     var managedLobby: NetworkedLobby? { get set }
 
-    func createLobby(hostId: EntityID, hostDisplayName: String)
-    func joinLobby(userId: EntityID, userDisplayName: String)
-    func exitLobby(userId: EntityID, deleteLobby: Bool)
-    func toggleReady(userId: EntityID)
+    func createLobby(hostId: NetworkID, hostDisplayName: String)
+    func joinLobby(userId: NetworkID, userDisplayName: String)
+    func exitLobby(userId: NetworkID, deleteLobby: Bool)
+    func toggleReady(userId: NetworkID)
 }

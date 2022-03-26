@@ -12,7 +12,7 @@ class FirebaseGameEventListener: GameEventListener {
     private let gameReference: DatabaseReference
     weak var eventManager: EventManager?
 
-    init(_ channelId: EntityID) {
+    init(_ channelId: NetworkID) {
         self.gameReference = Database
             .database()
             .reference(withPath: GameKeys.root)
@@ -36,9 +36,9 @@ class FirebaseGameEventListener: GameEventListener {
             guard
                 let userId = AuthService().getUserId(),
                 let body = snapshot.value as? [String: Any],
-                let source = body[GameKeys.source] as? EntityID,
+                let source = body[GameKeys.source] as? NetworkID,
                 source != userId,
-                let recipients = body[GameKeys.recipients] as? [EntityID]?,
+                let recipients = body[GameKeys.recipients] as? [NetworkID]?,
                 recipients == nil || recipients?.contains(userId) ?? false,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
@@ -52,9 +52,9 @@ class FirebaseGameEventListener: GameEventListener {
             guard
                 let userId = AuthService().getUserId(),
                 let body = snapshot.value as? [String: Any],
-                let source = body[GameKeys.source] as? EntityID,
+                let source = body[GameKeys.source] as? NetworkID,
                 source == userId,
-                let recipients = body[GameKeys.recipients] as? [EntityID]?,
+                let recipients = body[GameKeys.recipients] as? [NetworkID]?,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
                 DefaultCommand(sourceId: source, recipients: recipients, payload: payload).unpackIntoEvent(manager)

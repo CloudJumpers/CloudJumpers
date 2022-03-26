@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct LobbyUser: IdentifiableByEntityID {
-    let id: EntityID
+struct LobbyUser: IdentifiableByNetworkID {
+    let id: NetworkID
     let displayName: String
 
     let isReady: Bool
     let lastUpdatedAt: Int
 
-    init(id: EntityID, displayName: String, lastUpdatedAt: Int, isReady: Bool = false) {
+    init(id: NetworkID, displayName: String, lastUpdatedAt: Int, isReady: Bool = false) {
         self.id = id
         self.displayName = displayName
         self.isReady = isReady

@@ -10,7 +10,7 @@ import Foundation
 class HighscoreManager {
     func fetchTopFiveRecords(
         gameMode: GameMode,
-        gameSeed: EntityID,
+        gameSeed: NetworkID,
         callback: @escaping ([Highscore]) -> Void
     ) {
         let url = constructEndpointUrl(gameMode: gameMode, gameSeed: gameSeed)
@@ -36,7 +36,7 @@ class HighscoreManager {
     }
 
     func submitToTimeTrialHighscores(
-        userId: EntityID,
+        userId: NetworkID,
         userDisplayName: String,
         gameScore: String,
         gameSeed: String,
@@ -71,7 +71,7 @@ class HighscoreManager {
         }
     }
 
-    private func constructEndpointUrl(gameMode: GameMode, gameSeed: EntityID) -> URL {
+    private func constructEndpointUrl(gameMode: GameMode, gameSeed: NetworkID) -> URL {
         let urlAsString = "\(HighscoreConstants.webProtocol)\(HighscoreConstants.ipAddress):"
         + "\(HighscoreConstants.portNum)/\(HighscoreConstants.path)"
         + "\(gameSeed)/\(urlSafeGameMode(mode: gameMode))"

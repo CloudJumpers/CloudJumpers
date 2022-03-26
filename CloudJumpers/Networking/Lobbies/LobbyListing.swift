@@ -8,8 +8,8 @@
 import Foundation
 
 struct LobbyListing {
-    let lobbyId: EntityID
-    let hostId: EntityID
+    let lobbyId: NetworkID
+    let hostId: NetworkID
     let lobbyName: String
     let numPlayers: Int
 }
