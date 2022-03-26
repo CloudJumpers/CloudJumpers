@@ -34,7 +34,7 @@ class EventManager {
 
             let event = OnlineMoveEvent(displacementX: 10.0, displacementY: 10.0, action: "networkmove")
             let cmd = MoveEventCommand(sourceId: userId, event: event)
-            self?.gameEventDispatcher?.dispatchGameEventCommand(cmd)
+            self?.dispatchGameEventCommand(cmd)
         })
     }
 
@@ -54,5 +54,9 @@ class EventManager {
         while let event = events.dequeue() {
             event.execute(in: entityManager)
         }
+    }
+
+    func dispatchGameEventCommand(_ command: GameEventCommand) {
+        gameEventDispatcher?.dispatchGameEventCommand(command)
     }
 }
