@@ -10,8 +10,8 @@ import CoreGraphics
 
 struct MoveEvent: Event {
     let timestamp: TimeInterval
+    let entityID: EntityID
 
-    private let entityID: EntityID
     private let displacement: CGVector
 
     init(on entity: Entity, by displacement: CGVector) {

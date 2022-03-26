@@ -10,8 +10,7 @@ import SpriteKit
 
 struct JumpEvent: Event {
     let timestamp: TimeInterval
-
-    private let entityID: EntityID
+    let entityID: EntityID
 
     init(on entity: Entity) {
         timestamp = EventManager.timestamp

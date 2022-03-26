@@ -9,6 +9,7 @@ import Foundation
 
 protocol Event: Codable {
     var timestamp: TimeInterval { get }
+    var entityID: EntityID { get }
 
     func execute(in entityManager: EntityManager)
 }
