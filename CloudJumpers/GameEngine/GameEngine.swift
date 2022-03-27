@@ -12,9 +12,10 @@ protocol GameEngine: InputResponder {
     var eventManager: EventManager { get }
     var contactResolver: ContactResolver { get }
     var delegate: GameEngineDelegate? { get }
+    var metaData: GameMetaData { get set }
     var systems: [System] { get set }
 
-    init(for delegate: GameEngineDelegate)
+    init(for delegate: GameEngineDelegate, channel: NetworkID?)
     func setUpGame()
     func update(within time: CGFloat)
 }

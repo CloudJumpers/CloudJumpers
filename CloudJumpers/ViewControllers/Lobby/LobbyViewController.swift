@@ -40,7 +40,7 @@ class LobbyViewController: UIViewController {
         }
     }
 
-    func setActiveLobby(id: EntityID, name: String, hostId: EntityID) {
+    func setActiveLobby(id: NetworkID, name: String, hostId: NetworkID) {
         activeLobby = GameLobby(
             id: id,
             name: name,

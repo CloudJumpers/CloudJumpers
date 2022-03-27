@@ -8,13 +8,20 @@ class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
+    private var gameRules: GameRules?
 
     var lobby: GameLobby?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         setUpSynchronizedStart()
+    }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        gameEngine = nil
+        scene = nil
+        joystick = nil
     }
 
     private func setUpSynchronizedStart() {
@@ -29,7 +36,8 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(for: self)
+        gameEngine = SinglePlayerGameEngine(for: self, channel: lobby?.id)
+        gameRules = TimeTrialGameRules()
     }
 
     private func setUpGameScene() {
@@ -99,6 +107,17 @@ extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         gameEngine?.update(within: interval)
         gameEngine?.inputMove(by: joystick?.displacement ?? .zero)
+
+        guard let gameData = gameEngine?.metaData,
+              let gameRules = gameRules
+        else {
+            return
+        }
+
+        if gameRules.hasGameEnd(with: gameData) {
+            transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameData.time))
+        }
+
     }
 
     func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact) {

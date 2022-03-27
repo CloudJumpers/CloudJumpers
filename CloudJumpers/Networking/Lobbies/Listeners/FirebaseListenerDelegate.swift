@@ -15,7 +15,7 @@ class FirebaseListenerDelegate: ListenerDelegate {
     private var lobbyRef: DatabaseReference
     private var lobbyUsersRef: DatabaseReference
 
-    init(lobbyId: EntityID) {
+    init(lobbyId: NetworkID) {
         self.lobbyRef = Database.database().reference(withPath: LobbyKeys.root).child(lobbyId)
         self.lobbyUsersRef = lobbyRef.child(LobbyKeys.participants)
 

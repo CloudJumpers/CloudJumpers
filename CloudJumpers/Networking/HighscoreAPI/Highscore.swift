@@ -8,7 +8,7 @@
 import Foundation
 
 struct Highscore: Codable {
-    let userId: EntityID
+    let userId: NetworkID
     let userDisplayName: String
     let completionTime: String
     let completedAt: String

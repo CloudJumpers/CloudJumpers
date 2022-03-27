@@ -7,6 +7,8 @@
 
 import Foundation
 
-protocol IdentifiableByEntityID {
-    var id: EntityID { get }
+typealias NetworkID = String
+
+protocol IdentifiableByNetworkID {
+    var id: NetworkID { get }
 }

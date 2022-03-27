@@ -8,25 +8,30 @@
 import SpriteKit
 
 class SinglePlayerGameEngine: GameEngine {
+
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
     weak var delegate: GameEngineDelegate?
     var systems: [System]
     var associatedEntity: Entity?
+    var metaData: GameMetaData
 
-    required init(for delegate: GameEngineDelegate) {
+    required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
+        metaData = GameMetaData()
         entityManager = EntityManager()
-        eventManager = EventManager()
+        eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager,
                                           entityManager: entityManager)
         systems = []
         self.delegate = delegate
+        contactResolver.metaDataDelegate = self
         setUpSystems()
     }
 
     func update(within time: CGFloat) {
         updateEvents()
+        updateTime()
         updateSystems(within: time)
     }
 
@@ -53,8 +58,13 @@ class SinglePlayerGameEngine: GameEngine {
     private var timer: TimedLabel?
 
     private func setUpSampleGame() {
+        guard let userId = AuthService().getUserId() else {
+            return
+        }
+
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1)
+        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: userId)
+        let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
         let entities: [Entity] = [
             Platform(at: CGPoint(x: 0, y: 700)),
             PowerUp(at: CGPoint(x: 200, y: -300), type: .freeze),
@@ -69,25 +79,39 @@ class SinglePlayerGameEngine: GameEngine {
 
         entityManager.add(timer)
         entityManager.add(player)
+        entityManager.add(topPlatform)
         entities.forEach(entityManager.add(_:))
 
         self.timer = timer
         associatedEntity = player
+        metaData.playerId = player.id
+        metaData.topPlatformId = topPlatform.id
     }
 
     private func updateEvents() {
         eventManager.executeAll(in: entityManager)
     }
 
-    private func handleGameEnd() {
+    // MARK: Temporary time update method
+    private func updateTime() {
         guard let timer = timer,
               let timedComponent = entityManager.component(ofType: TimedComponent.self, of: timer)
         else { return }
 
-        let time = timedComponent.time
-        let endGameState = TimeTrialGameEndState(playerEndTime: time)
-        delegate?.engine(self, didEndGameWith: endGameState)
+        metaData.time = timedComponent.time
     }
+}
+
+// MARK: - GameMetaDataDelegate
+extension SinglePlayerGameEngine: GameMetaDataDelegate {
+    func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
+        if let location = location {
+            metaData.playerLocationMapping[player] = location
+        } else {
+            metaData.playerLocationMapping.removeValue(forKey: player)
+        }
+    }
+
 }
 
 // MARK: - InputResponder
