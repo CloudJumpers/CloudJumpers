@@ -25,7 +25,6 @@ class SinglePlayerGameEngine: GameEngine {
         systems = []
         self.delegate = delegate
         contactResolver.metaDataDelegate = self
-        setUpSystems()
     }
 
     func update(within time: CGFloat) {
@@ -36,12 +35,14 @@ class SinglePlayerGameEngine: GameEngine {
 
     func setUpGame() {
         setUpSampleGame()
+        setUpSystems()
     }
 
     private func setUpSystems() {
         let timedSystem = TimedSystem(for: entityManager)
         let spriteSystem = SpriteSystem(for: entityManager)
         spriteSystem.delegate = delegate
+        spriteSystem.associatedEntity = associatedEntity
 
         systems.append(timedSystem)
         systems.append(spriteSystem)

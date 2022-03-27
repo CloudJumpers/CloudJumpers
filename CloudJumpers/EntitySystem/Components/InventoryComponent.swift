@@ -11,6 +11,7 @@ class InventoryComponent: Component {
     let id: ComponentID
     unowned var entity: Entity?
 
+    var isUpdated = false
     var inventory: [EntityID]
 
     init() {
@@ -18,10 +19,17 @@ class InventoryComponent: Component {
         inventory = []
     }
 
+    func enqueue(entityID: EntityID) {
+        inventory.append(entityID)
+        isUpdated = true
+    }
+
     func dequeue() -> EntityID? {
         guard !inventory.isEmpty else {
             return nil
         }
+
+        isUpdated = true
 
         let entityId = inventory[0]
         self.inventory.remove(at: 0)

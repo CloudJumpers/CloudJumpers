@@ -24,7 +24,9 @@ class ActivatePowerUpEvent: Event {
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self,
                                                                of: entity),
               let eventId = inventoryComponent.dequeue(),
-              let powerUpEntity = entityManager.entity(with: eventId) as? PowerUp
+              let powerUpEntity = entityManager.entity(with: eventId) as? PowerUp,
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self,
+                                                            of: powerUpEntity)
         else { return }
 
         switch powerUpEntity.type {
@@ -36,6 +38,7 @@ class ActivatePowerUpEvent: Event {
             entityManager.add(confuseEffect)
         }
 
+        spriteComponent.setRemoveNodeFromScene(true)
         // TODO: handle effects on other players
     }
 }

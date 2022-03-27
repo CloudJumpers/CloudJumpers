@@ -10,7 +10,7 @@ import SpriteKit
 class SpriteComponent: Component {
     let id: ComponentID
     unowned var entity: Entity?
-    private(set) var cameraBind: CameraBind
+    var cameraBind: CameraBind
     private(set) var removeNodeFromScene = false
 
     let node: SKNode

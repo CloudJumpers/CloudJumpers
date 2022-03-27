@@ -7,9 +7,11 @@
 
 import SpriteKit
 
+// TODO: refactor
 class SpriteSystem: System {
     unowned var manager: EntityManager?
     unowned var delegate: GameEngineDelegate?
+    unowned var associatedEntity: Entity?
 
     private var addedEntity: Set<EntityID> = []
 
@@ -19,11 +21,12 @@ class SpriteSystem: System {
 
     func update(within time: CGFloat) {
         updateAddedEntities()
+        removeEntities()
         addNewEntities()
+        updateInventoryItems()
         updateTimedEntities()
     }
 
-    // TODO: refactor
     private func updateAddedEntities() {
         guard let manager = manager else {
             return
@@ -34,11 +37,6 @@ class SpriteSystem: System {
                   let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity) else {
                 addedEntity.remove(entityID)
                 continue
-            }
-
-            if spriteComponent.removeNodeFromScene {
-                removeNodeFromScene(entity)
-                spriteComponent.setRemoveNodeFromScene(false)
             }
 
             guard let powerUpEffect = entity as? PowerUpEffect,
@@ -52,11 +50,45 @@ class SpriteSystem: System {
             node.alpha = (Constants.powerUpEffectDuration - time) / Constants.powerUpEffectDuration
 
             if powerUpEffect.shouldRemoveEffect(manager: manager) {
-                removeNodeFromScene(entity)
-                manager.remove(entity)
-                addedEntity.remove(entityID)
+                spriteComponent.setRemoveNodeFromScene(true)
             }
         }
+    }
+
+    // TODO: definitely have to refactor this
+    private func updateInventoryItems() {
+        guard let manager = manager else {
+            return
+        }
+
+        guard let entity = associatedEntity as? Player,
+              let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
+              inventoryComponent.isUpdated else {
+            return
+        }
+
+        var position = Constants.initialPowerUpQueuePosition
+        for inventoryItemID in inventoryComponent.inventory {
+            guard let inventoryEntity = manager.entity(with: inventoryItemID),
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: inventoryEntity) else {
+                continue
+            }
+
+            removeNodeFromScene(inventoryEntity)
+
+            spriteComponent.node.position = position
+            spriteComponent.cameraBind = .staticBind
+
+            if let physicsComponent = manager.component(ofType: PhysicsComponent.self, of: inventoryEntity) {
+                manager.removeComponent(ofType: PhysicsComponent.self, from: inventoryEntity)
+            }
+
+            addNodeToScene(inventoryEntity)
+
+            position.y -= Constants.powerUpQueueYInterval
+        }
+
+        inventoryComponent.isUpdated = false
     }
 
     private func addNewEntities() {
@@ -77,6 +109,25 @@ class SpriteSystem: System {
             }
 
             updateTimed(of: node, with: entity)
+        }
+    }
+
+    private func removeEntities() {
+        guard let manager = manager else {
+            return
+        }
+
+        for entity in manager.iterableEntities {
+            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
+            else {
+                continue
+            }
+
+            if spriteComponent.removeNodeFromScene {
+                removeNodeFromScene(entity)
+                addedEntity.remove(entity.id)
+                manager.remove(entity)
+            }
         }
     }
 
