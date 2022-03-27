@@ -13,10 +13,10 @@ struct ObtainEvent: Event {
 
     private let otherEntityID: EntityID
 
-    init(on entity: Entity, obtains otherEntity: Entity) {
+    init(on entityID: EntityID, obtains otherEntityID: EntityID) {
         timestamp = EventManager.timestamp
-        entityID = entity.id
-        otherEntityID = otherEntity.id
+        self.entityID = entityID
+        self.otherEntityID = otherEntityID
     }
 
     func execute(in entityManager: EntityManager) {

@@ -41,13 +41,11 @@ class ContactResolver {
             nodeBBitMask == Constants.bitmaskPowerUp {
 
             guard let entityIDA = nodeA.entityID,
-                  let entityIDB = nodeB.entityID,
-                  let entityA = entityManager?.entity(with: entityIDA),
-                  let entityB = entityManager?.entity(with: entityIDB) else {
+                  let entityIDB = nodeB.entityID else {
                 return
             }
 
-            eventManager?.add(ObtainEvent(on: entityA, obtains: entityB))
+            eventManager?.add(ObtainEvent(on: entityIDA, obtains: entityIDB))
         }
     }
 
