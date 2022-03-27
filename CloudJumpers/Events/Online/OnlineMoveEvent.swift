@@ -10,5 +10,4 @@ import Foundation
 struct OnlineMoveEvent: OnlineEvent {
     var displacementX: Double
     var displacementY: Double
-    var action: String?
 }

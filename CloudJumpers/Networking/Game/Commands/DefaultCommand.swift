@@ -9,19 +9,17 @@ import Foundation
 
 class DefaultCommand: GameEventCommand {
     let source: NetworkID
-    var recipients: [NetworkID]?
-    var payload: String
+    let payload: String
+    private(set) var isSourceRecipient: Bool?
+    private(set) var nextCommand: GameEventCommand?
 
-    var nextCommand: GameEventCommand?
-
-    required init(_ sourceId: NetworkID, _ recipients: [NetworkID]?, _ payload: String) {
+    required init(_ sourceId: NetworkID, _ payload: String) {
         self.source = sourceId
-        self.recipients = recipients
         self.payload = payload
     }
 
     func unpackIntoEventManager(_ eventManager: EventManager) -> Bool {
-        nextCommand = MoveEventCommand(source, recipients, payload)
+        nextCommand = MoveEventCommand(source, payload)
         return nextCommand?.unpackIntoEventManager(eventManager) ?? false
     }
 }
