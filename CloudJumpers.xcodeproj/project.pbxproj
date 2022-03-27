@@ -60,9 +60,8 @@
 		3E81C0E527EF37BC00184C55 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E427EF37BC00184C55 /* PowerUpType.swift */; };
 		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
-		3E81C0EE27EF56C500184C55 /* BindCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */; };
-		3E81C0F027EF56DB00184C55 /* StaticCameraComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */; };
 		3E81C0F627EF65B400184C55 /* RemovedSpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */; };
+		3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F927F0016500184C55 /* CameraBind.swift */; };
 		9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0027E6264800FC8077 /* HighscoreManager.swift */; };
 		9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0227E626AE00FC8077 /* Highscore.swift */; };
 		9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9339BF0427E6271E00FC8077 /* HighscoreConstants.swift */; };
@@ -183,9 +182,8 @@
 		3E81C0E427EF37BC00184C55 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatePowerUpEvent.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
-		3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindCameraComponent.swift; sourceTree = "<group>"; };
-		3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticCameraComponent.swift; sourceTree = "<group>"; };
 		3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemovedSpriteComponent.swift; sourceTree = "<group>"; };
+		3E81C0F927F0016500184C55 /* CameraBind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBind.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		9339BF0027E6264800FC8077 /* HighscoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreManager.swift; sourceTree = "<group>"; };
@@ -364,9 +362,8 @@
 			isa = PBXGroup;
 			children = (
 				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
+				3E81C0F927F0016500184C55 /* CameraBind.swift */,
 				3E81C0F527EF65B400184C55 /* RemovedSpriteComponent.swift */,
-				3E81C0ED27EF56C500184C55 /* BindCameraComponent.swift */,
-				3E81C0EF27EF56DB00184C55 /* StaticCameraComponent.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
 				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
 				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
@@ -964,7 +961,6 @@
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
-				3E81C0EE27EF56C500184C55 /* BindCameraComponent.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
@@ -986,6 +982,7 @@
 				1A94D95B27ED8709001D8A86 /* SpriteSystem.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				93D4E16D27DA0E0F0054F45B /* NetworkingManager.swift in Sources */,
+				3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
@@ -1004,7 +1001,6 @@
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
-				3E81C0F027EF56DB00184C55 /* StaticCameraComponent.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				3E81C0E527EF37BC00184C55 /* PowerUpType.swift in Sources */,
 				1A94D96427EE0D4D001D8A86 /* MoveEvent.swift in Sources */,

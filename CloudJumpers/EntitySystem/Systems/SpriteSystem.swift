@@ -100,12 +100,13 @@ class SpriteSystem: System {
 
         let node = spriteComponent.node
 
-        if entityManager.component(ofType: BindCameraComponent.self, of: entity) != nil {
-            gameEngine.delegate?.engine(gameEngine, addPlayerWith: node)
-        } else if entityManager.component(ofType: StaticCameraComponent.self, of: entity) != nil {
-            gameEngine.delegate?.engine(gameEngine, addControlWith: node)
-        } else {
+        switch spriteComponent.cameraBind {
+        case .normalBind:
             gameEngine.delegate?.engine(gameEngine, addEntityWith: node)
+        case .anchorBind:
+            gameEngine.delegate?.engine(gameEngine, addPlayerWith: node)
+        case .staticBind:
+            gameEngine.delegate?.engine(gameEngine, addControlWith: node)
         }
     }
 
