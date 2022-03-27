@@ -19,11 +19,21 @@ struct JumpEvent: Event {
 
     func execute(in entityManager: EntityManager) {
         guard let entity = entityManager.entity(with: entityID),
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return }
 
-        if !isJumping(body: physicsComponent.body) {
-            physicsComponent.body.applyImpulse(Constants.jumpImpulse)
+        guard !isJumping(body: physicsComponent.body) else {
+            return
+        }
+        physicsComponent.body.applyImpulse(Constants.jumpImpulse)
+        if spriteComponent.node.action(forKey: "jumpCharacter") == nil {
+          // if legs are not moving, start them
+            let moveAnimation = SKAction.animate(with: Textures.character1.jumping,
+                                                 timePerFrame: 0.3,
+                                                 resize: false,
+                                                 restore: true )
+            spriteComponent.node.run(SKAction.repeatForever(moveAnimation), withKey: "jumpCharacter")
         }
     }
 
