@@ -27,6 +27,15 @@ class PowerUpEffect: Entity {
         manager.addComponent(timedComponent, to: self)
     }
 
+    func shouldRemoveEffect(manager: EntityManager) -> Bool {
+        guard let timedComponent = manager.component(ofType: TimedComponent.self, of: self)
+        else {
+            return false
+        }
+
+        return timedComponent.time >= Constants.powerUpEffectDuration
+    }
+
     private func createSpriteComponent() -> SpriteComponent {
         let node = SKSpriteNode(
             texture: SKTexture(imageNamed: "\(type)Effect"),

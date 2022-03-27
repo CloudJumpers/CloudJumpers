@@ -59,4 +59,5 @@ struct Constants {
     static let gameAreaPosition = CGPoint(x: 0, y: 110)
 
     static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
+    static let powerUpEffectDuration = 5.0
 }
