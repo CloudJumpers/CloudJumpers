@@ -15,9 +15,9 @@ protocol GameEventCommand {
     var source: NetworkID { get }
 
     /// isSourceRecipient is set if an event
-    /// should be processed by the sender on receive from the
+    /// should be processed by the sender upon reception from the
     /// network. This is used for events that need to be confirmed
-    /// by the network e.g. 2 players picking up a power up.
+    /// by the network before being locally processed.
     /// nil or false values will cause the event to be ignored by the
     /// sender.
     var isSourceRecipient: Bool? { get }

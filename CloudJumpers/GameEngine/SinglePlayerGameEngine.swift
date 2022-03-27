@@ -46,9 +46,10 @@ class SinglePlayerGameEngine: GameEngine {
     }
 
     private func setUpCrossDeviceSyncTimer() {
-        crossDeviceSyncTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-            self?.syncToOtherDevices()
-        }
+        crossDeviceSyncTimer = Timer.scheduledTimer(
+            withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
+            repeats: true
+        ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
     private func setUpSystems() {
