@@ -137,20 +137,20 @@ extension GameViewController: GameEngineDelegate {
         }
     }
 
-    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
+    func engine(addEntityWith node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
-        self.engine(engine, addEntityWith: node)
+    func engine(addPlayerWith node: SKNode) {
+        self.engine(addEntityWith: node)
         scene?.cameraAnchorNode = node
     }
 
-    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
+    func engine(addControlWith node: SKNode) {
         scene?.addStaticChild(node)
     }
 
-    func engine(_ engine: GameEngine, removeEntityFrom node: SKNode) {
+    func engine(removeEntityFrom node: SKNode) {
         scene?.removeChild(node)
     }
 }

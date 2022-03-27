@@ -41,7 +41,7 @@ class SinglePlayerGameEngine: GameEngine {
     private func setUpSystems() {
         let timedSystem = TimedSystem(for: entityManager)
         let spriteSystem = SpriteSystem(for: entityManager)
-        spriteSystem.gameEngine = self
+        spriteSystem.delegate = delegate
 
         systems.append(timedSystem)
         systems.append(spriteSystem)

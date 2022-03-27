@@ -9,7 +9,7 @@ import SpriteKit
 
 class SpriteSystem: System {
     unowned var manager: EntityManager?
-    unowned var gameEngine: GameEngine?
+    unowned var delegate: GameEngineDelegate?
 
     private var addedEntity: Set<EntityID> = []
 
@@ -108,7 +108,7 @@ class SpriteSystem: System {
     private func addNodeToScene(_ entity: Entity) {
         guard let entityManager = manager,
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
-              let gameEngine = gameEngine else {
+              let delegate = delegate else {
             return
         }
 
@@ -116,23 +116,23 @@ class SpriteSystem: System {
 
         switch spriteComponent.cameraBind {
         case .normalBind:
-            gameEngine.delegate?.engine(gameEngine, addEntityWith: node)
+            delegate.engine(addEntityWith: node)
         case .anchorBind:
-            gameEngine.delegate?.engine(gameEngine, addPlayerWith: node)
+            delegate.engine(addPlayerWith: node)
         case .staticBind:
-            gameEngine.delegate?.engine(gameEngine, addControlWith: node)
+            delegate.engine(addControlWith: node)
         }
     }
 
     private func removeNodeFromScene(_ entity: Entity) {
         guard let entityManager = manager,
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
-              let gameEngine = gameEngine else {
+              let delegate = delegate else {
             return
         }
 
         let node = spriteComponent.node
 
-        gameEngine.delegate?.engine(gameEngine, removeEntityFrom: node)
+        delegate.engine(removeEntityFrom: node)
     }
 }

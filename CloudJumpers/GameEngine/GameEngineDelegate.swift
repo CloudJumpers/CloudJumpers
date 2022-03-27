@@ -8,8 +8,8 @@
 import SpriteKit
 
 protocol GameEngineDelegate: AnyObject {
-    func engine(_ engine: GameEngine, addEntityWith node: SKNode)
-    func engine(_ engine: GameEngine, addPlayerWith node: SKNode)
-    func engine(_ engine: GameEngine, addControlWith node: SKNode)
-    func engine(_ engine: GameEngine, removeEntityFrom node: SKNode)
+    func engine(addEntityWith node: SKNode)
+    func engine(addPlayerWith node: SKNode)
+    func engine(addControlWith node: SKNode)
+    func engine(removeEntityFrom node: SKNode)
 }
