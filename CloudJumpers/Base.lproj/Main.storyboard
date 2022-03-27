@@ -27,67 +27,6 @@
             </objects>
             <point key="canvasLocation" x="-168" y="-1522"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="csI-R4-PA3">
-            <objects>
-                <viewController id="Arl-Tq-KlU" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nn6-mD-XQG">
-                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Nk-7b-n4t">
-                                <rect key="frame" x="260" y="574.5" width="300" height="31"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9B-fp-cdZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="75" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Login"/>
-                                        <connections>
-                                            <segue destination="4ZM-xx-Rji" kind="show" identifier="" id="QQ5-EI-xo1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-UE-mh8">
-                                        <rect key="frame" x="75" y="0.0" width="75" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
-                                        <connections>
-                                            <segue destination="nYZ-Qb-RqU" kind="show" id="q7t-c1-yNg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v8v-G1-hE0">
-                                        <rect key="frame" x="150" y="0.0" width="75" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Game"/>
-                                        <connections>
-                                            <segue destination="g9F-CB-D37" kind="show" id="5BG-nN-Q0N"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N6e-81-ZjA">
-                                        <rect key="frame" x="225" y="0.0" width="75" height="31"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Lobbies"/>
-                                        <connections>
-                                            <segue destination="2IY-Rh-Zla" kind="show" id="XLE-Se-grG"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="UGa-Ei-0PV"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="2Nk-7b-n4t" firstAttribute="centerY" secondItem="Nn6-mD-XQG" secondAttribute="centerY" id="c4p-QM-3nb"/>
-                            <constraint firstItem="2Nk-7b-n4t" firstAttribute="centerX" secondItem="Nn6-mD-XQG" secondAttribute="centerX" id="qMe-X5-hbw"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="QdG-y8-NLw">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="XNs-tG-OM1"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oF1-o1-vPk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4770" y="-1522"/>
-        </scene>
         <!--Login View Controller-->
         <scene sceneID="JSF-Ik-AtH">
             <objects>
@@ -362,11 +301,11 @@
             <objects>
                 <viewController id="g9F-CB-D37" customClass="GameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5yJ-2v-lb9">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hj2-dQ-3Pl">
-                                <rect key="frame" x="272.5" y="462.5" width="159.5" height="70.5"/>
+                                <rect key="frame" x="330.5" y="555" width="159.5" height="70.5"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="pQn-m1-Ik5">
                                         <rect key="frame" x="0.0" y="0.0" width="159.5" height="20"/>
@@ -402,14 +341,14 @@
             <objects>
                 <viewController id="2IY-Rh-Zla" customClass="LobbiesViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bQ8-uZ-v8T">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gd1-Au-OeV">
-                                <rect key="frame" x="20" y="20" width="664" height="955.5"/>
+                                <rect key="frame" x="20" y="94" width="780" height="1046"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM6-KP-A1F">
-                                        <rect key="frame" x="0.0" y="0.0" width="664" height="446.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="780" height="537"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="New Lobby"/>
                                         <connections>
@@ -417,7 +356,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-4e-VmL">
-                                        <rect key="frame" x="0.0" y="446.5" width="664" height="509"/>
+                                        <rect key="frame" x="0.0" y="537" width="780" height="509"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JLm-e3-XPJ">
                                             <size key="itemSize" width="337" height="111"/>
@@ -427,7 +366,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="com.cs3217.cloudjumpers.lobbycell" id="VH1-1y-wE4" customClass="LobbyCell" customModule="CloudJumpers" customModuleProvider="target">
-                                                <rect key="frame" x="163.5" y="0.0" width="337" height="111"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="337" height="111"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K2C-Xt-sYE">
                                                     <rect key="frame" x="0.0" y="0.0" width="337" height="111"/>
@@ -507,7 +446,7 @@
                     <navigationItem key="navigationItem" id="ysX-Ud-B4D">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Rok-e8-c2E">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5Vl-D7-MOL">
-                                <rect key="frame" x="302" y="5" width="92" height="34.5"/>
+                                <rect key="frame" x="708" y="8" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign out"/>
@@ -531,23 +470,23 @@
             <objects>
                 <viewController interfaceStyle="light" id="N2h-Lp-5b5" customClass="LobbyViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Uy-my-ygc">
-                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="xKO-qk-hgx">
-                                <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
+                                <rect key="frame" x="0.0" y="74" width="820" height="1032"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-az-ZI5">
-                                        <rect key="frame" x="0.0" y="0.0" width="704" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Lobby Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-eb-lhJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="704" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="820" height="30"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfb-OW-zE9">
-                                                <rect key="frame" x="0.0" y="40" width="704" height="30"/>
+                                                <rect key="frame" x="0.0" y="40" width="820" height="30"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -555,22 +494,22 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-jv-S6e">
-                                        <rect key="frame" x="0.0" y="120" width="704" height="374"/>
+                                        <rect key="frame" x="0.0" y="120" width="820" height="374"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.lobbyusercell" rowHeight="145" id="SMN-Mw-odl" customClass="LobbyUserCell" customModule="CloudJumpers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="704" height="145"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="820" height="145"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SMN-Mw-odl" id="OTx-Dp-1LT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="704" height="145"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="820" height="145"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="saH-ya-elu">
-                                                            <rect key="frame" x="0.0" y="0.0" width="704" height="145"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="820" height="145"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wTz-6Y-ljf">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="704" height="145"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="820" height="145"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V1J-1h-IG3">
                                                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="145"/>
@@ -586,13 +525,13 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lobby User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5v-SM-aOa">
-                                                                            <rect key="frame" x="140" y="0.0" width="544" height="145"/>
+                                                                            <rect key="frame" x="140" y="0.0" width="660" height="145"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooQ-gz-ajg">
-                                                                            <rect key="frame" x="704" y="0.0" width="0.0" height="145"/>
+                                                                            <rect key="frame" x="820" y="0.0" width="0.0" height="145"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" id="8kD-qn-fFt"/>
@@ -626,17 +565,17 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-fp-gLg">
-                                        <rect key="frame" x="0.0" y="544" width="704" height="451.5"/>
+                                        <rect key="frame" x="0.0" y="544" width="820" height="488"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-hO-Yuq">
-                                                <rect key="frame" x="0.0" y="201" width="0.0" height="50"/>
+                                                <rect key="frame" x="0.0" y="219" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="dpm-5g-E4C"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzR-Ye-Sn6">
-                                                <rect key="frame" x="134.5" y="202.5" width="150" height="47"/>
+                                                <rect key="frame" x="173.5" y="220.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="DbT-T2-OLM"/>
                                                 </constraints>
@@ -647,7 +586,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEb-ek-1jl">
-                                                <rect key="frame" x="419.5" y="202.5" width="150" height="47"/>
+                                                <rect key="frame" x="496.5" y="220.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="1dO-Ih-Gl6"/>
                                                 </constraints>
@@ -659,7 +598,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-NK-l0f">
-                                                <rect key="frame" x="704" y="201" width="0.0" height="50"/>
+                                                <rect key="frame" x="820" y="219" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="FI2-Lp-oBD"/>
@@ -699,10 +638,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="XLE-Se-grG"/>
-        <segue reference="5BG-nN-Q0N"/>
-        <segue reference="q7t-c1-yNg"/>
-        <segue reference="QQ5-EI-xo1"/>
+        <segue reference="WLb-Fh-vqD"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="player" width="27" height="40"/>
