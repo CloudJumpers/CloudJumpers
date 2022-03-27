@@ -154,15 +154,19 @@ extension SinglePlayerGameEngine: GameMetaDataDelegate {
 extension SinglePlayerGameEngine: InputResponder {
     func inputMove(by displacement: CGVector) {
         guard let entity = associatedEntity,
-              displacement != .zero
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
         else {
             return
         }
+        if displacement != .zero {
+            var event = MoveEvent(on: entity, by: displacement)
+            event.gameDataTracker = self
+            eventManager.add(event)
+            eventManager.add(AnimateEvent(on: entity, to: .walking))
+        } else if physicsComponent.body.velocity == .zero {
+            eventManager.add(AnimateEvent(on: entity, to: .idle))
+        }
 
-        var event = MoveEvent(on: entity, by: displacement)
-        event.gameDataTracker = self
-        eventManager.add(event)
-        eventManager.add(AnimateEvent(on: entity, to: .walking))
     }
 
     func inputJump() {
@@ -171,6 +175,6 @@ extension SinglePlayerGameEngine: InputResponder {
         }
 
         eventManager.add(JumpEvent(on: entity))
-        eventManager.add(AnimateEvent(on: entity, to: .prejump))
+        eventManager.add(AnimateEvent(on: entity, to: .jumping))
     }
 }
