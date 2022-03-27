@@ -11,6 +11,7 @@ class SpriteComponent: Component {
     let id: ComponentID
     unowned var entity: Entity?
     private(set) var cameraBind: CameraBind
+    private(set) var removeNodeFromScene = false
 
     let node: SKNode
 
@@ -42,5 +43,9 @@ class SpriteComponent: Component {
         self.node = node
         node.entityID = entityID
         self.cameraBind = cameraBind
+    }
+
+    func setRemoveNodeFromScene(_ set: Bool) {
+        removeNodeFromScene = set
     }
 }

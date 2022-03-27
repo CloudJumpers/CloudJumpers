@@ -22,10 +22,11 @@ struct ObtainEvent: Event {
     func execute(in entityManager: EntityManager) {
         guard let entity = entityManager.entity(with: entityID),
               let otherEntity = entityManager.entity(with: otherEntityID),
-              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity)
+              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: otherEntity)
         else { return }
 
         inventoryComponent.inventory.append(otherEntityID)
-        entityManager.addComponent(RemovedSpriteComponent(), to: otherEntity)
+        spriteComponent.setRemoveNodeFromScene(true)
     }
 }
