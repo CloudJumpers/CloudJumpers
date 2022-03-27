@@ -41,6 +41,7 @@ class PowerUpEffect: Entity {
             texture: SKTexture(imageNamed: "\(type)Effect"),
             size: Constants.powerUpEffectSize)
         node.position = position
+        node.zPosition = SpriteZPosition.powerUp.rawValue
 
         return SpriteComponent(node: node, forEntityWith: id)
     }

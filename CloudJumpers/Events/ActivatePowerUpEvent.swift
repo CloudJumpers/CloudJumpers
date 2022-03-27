@@ -35,5 +35,7 @@ class ActivatePowerUpEvent: Event {
             let confuseEffect = PowerUpEffect(at: location, type: .confuse)
             entityManager.add(confuseEffect)
         }
+
+        // TODO: handle effects on other players
     }
 }

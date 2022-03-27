@@ -43,6 +43,7 @@ class PowerUp: Entity {
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(circleOf: Constants.powerUpNodeSize.width / 2,
                                                 for: spriteComponent)
+        physicsComponent.body.mass = Constants.powerUpMass
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
