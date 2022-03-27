@@ -21,8 +21,7 @@ class SinglePlayerGameEngine: GameEngine {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
-        contactResolver = ContactResolver(to: eventManager,
-                                          entityManager: entityManager)
+        contactResolver = ContactResolver(to: eventManager)
         systems = []
         self.delegate = delegate
         contactResolver.metaDataDelegate = self

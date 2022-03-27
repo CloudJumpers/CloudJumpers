@@ -8,12 +8,10 @@
 import SpriteKit
 
 class ContactResolver {
-    unowned var entityManager: EntityManager?
     weak var metaDataDelegate: GameMetaDataDelegate?
     unowned var eventManager: EventManager?
 
-    init(to eventManager: EventManager, entityManager: EntityManager) {
-        self.entityManager = entityManager
+    init(to eventManager: EventManager) {
         self.eventManager = eventManager
     }
 
