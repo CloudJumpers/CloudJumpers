@@ -9,24 +9,21 @@ import Foundation
 import CoreGraphics
 
 struct MoveEventCommand: GameEventCommand {
-    var source: NetworkID
-    let recipients: [NetworkID]?
-
-    var payload: String
-
-    var nextCommand: GameEventCommand?
+    let source: NetworkID
+    let payload: String
+    private(set) var isSourceRecipient: Bool?
+    private(set) var nextCommand: GameEventCommand?
 
     /// This constructor is used for creation of a MoveEventCommand
     /// for distribution.
     init(sourceId: NetworkID, event: OnlineMoveEvent) {
         self.source = sourceId
-        self.recipients = nil
+        self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
     }
 
-    init(_ sourceId: NetworkID, _ recipients: [NetworkID]?, _ payload: String) {
+    init(_ sourceId: NetworkID, _ payload: String) {
         self.source = sourceId
-        self.recipients = recipients
         self.payload = payload
     }
 
@@ -35,6 +32,7 @@ struct MoveEventCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard let parameters = try? decoder.decode(OnlineMoveEvent.self, from: jsonData) else {
+            nextCommand = RepositionEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 

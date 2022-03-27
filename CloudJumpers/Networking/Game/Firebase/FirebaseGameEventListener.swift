@@ -38,11 +38,9 @@ class FirebaseGameEventListener: GameEventListener {
                 let body = snapshot.value as? [String: Any],
                 let source = body[GameKeys.source] as? NetworkID,
                 source != userId,
-                let recipients = body[GameKeys.recipients] as? [NetworkID]?,
-                recipients == nil || recipients?.contains(userId) ?? false,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
-                DefaultCommand(source, recipients, payload).unpackIntoEventManager(manager)
+                DefaultCommand(source, payload).unpackIntoEventManager(manager)
             else {
                 return
             }
@@ -53,11 +51,11 @@ class FirebaseGameEventListener: GameEventListener {
                 let userId = AuthService().getUserId(),
                 let body = snapshot.value as? [String: Any],
                 let source = body[GameKeys.source] as? NetworkID,
-                source == userId,
-                let recipients = body[GameKeys.recipients] as? [NetworkID]?,
+                let sourceIsRecipient = body[GameKeys.sourceIsRecipient] as? Bool,
+                source == userId && sourceIsRecipient,
                 let payload = body[GameKeys.payload] as? String,
                 let manager = self.eventManager,
-                DefaultCommand(source, recipients, payload).unpackIntoEventManager(manager)
+                DefaultCommand(source, payload).unpackIntoEventManager(manager)
             else {
                 return
             }
