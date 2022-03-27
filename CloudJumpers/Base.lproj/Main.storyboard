@@ -444,7 +444,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ysX-Ud-B4D">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="Rok-e8-c2E">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="Rok-e8-c2E">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5Vl-D7-MOL">
                                 <rect key="frame" x="708" y="8" width="92" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
