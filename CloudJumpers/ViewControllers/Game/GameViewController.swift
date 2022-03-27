@@ -41,14 +41,14 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameScene() {
-        guard let scene = GameScene(fileNamed: "GameScene") else {
+        guard let userId = AuthService().getUserId(), let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
         }
 
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setUpGame()
+        gameEngine?.setUpGame(userId, additionalPlayerIds: lobby?.otherUsers.map { $0.id } ?? [])
         setUpSKViewAndPresent(scene: scene)
     }
 

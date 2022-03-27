@@ -41,8 +41,8 @@ class SinglePlayerGameEngine: GameEngine {
         updateSystems(within: time)
     }
 
-    func setUpGame() {
-        setUpSampleGame()
+    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID] = []) {
+        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds)
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -66,13 +66,9 @@ class SinglePlayerGameEngine: GameEngine {
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
-    private func setUpSampleGame() {
-        guard let userId = AuthService().getUserId() else {
-            return
-        }
-
+    private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: userId)
+        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
         let entities: [Entity] = [
             Cloud(at: CGPoint(x: 200, y: -200)),
@@ -87,10 +83,16 @@ class SinglePlayerGameEngine: GameEngine {
         entityManager.add(topPlatform)
         entities.forEach(entityManager.add(_:))
 
+        let otherPlayers = additionalPlayerIds.map {
+            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
+        }
+        otherPlayers.forEach(entityManager.add(_:))
+
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
         addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
         addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
         entities.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
+        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addPlayerWith:)) }
 
         self.timer = timer
         associatedEntity = player
