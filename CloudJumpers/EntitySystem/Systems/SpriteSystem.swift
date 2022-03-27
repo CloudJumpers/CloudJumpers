@@ -78,14 +78,11 @@ class SpriteSystem: System {
 
             spriteComponent.node.position = position
             spriteComponent.cameraBind = .staticBind
-
-            if let physicsComponent = manager.component(ofType: PhysicsComponent.self, of: inventoryEntity) {
-                manager.removeComponent(ofType: PhysicsComponent.self, from: inventoryEntity)
-            }
+            spriteComponent.node.physicsBody = nil
 
             addNodeToScene(inventoryEntity)
 
-            position.y -= Constants.powerUpQueueYInterval
+            position.x += Constants.powerUpQueueXInterval
         }
 
         inventoryComponent.isUpdated = false
