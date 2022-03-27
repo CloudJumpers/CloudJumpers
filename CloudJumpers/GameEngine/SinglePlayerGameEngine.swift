@@ -153,13 +153,16 @@ extension SinglePlayerGameEngine: GameMetaDataDelegate {
 // MARK: - InputResponder
 extension SinglePlayerGameEngine: InputResponder {
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
+        guard let entity = associatedEntity,
+              displacement != .zero
+        else {
             return
         }
 
         var event = MoveEvent(on: entity, by: displacement)
         event.gameDataTracker = self
         eventManager.add(event)
+        eventManager.add(AnimateEvent(on: entity, to: .walking))
     }
 
     func inputJump() {
@@ -168,5 +171,6 @@ extension SinglePlayerGameEngine: InputResponder {
         }
 
         eventManager.add(JumpEvent(on: entity))
+        eventManager.add(AnimateEvent(on: entity, to: .prejump))
     }
 }
