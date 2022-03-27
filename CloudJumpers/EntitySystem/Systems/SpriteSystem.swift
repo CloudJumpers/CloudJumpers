@@ -45,12 +45,12 @@ class SpriteSystem: System {
                   let timedComponent = manager.component(ofType: TimedComponent.self, of: entity)  else {
                 continue
             }
-            
+
             // animation to fade power-up effect
             let node = spriteComponent.node
             let time = timedComponent.time
             node.alpha = (Constants.powerUpEffectDuration - time) / Constants.powerUpEffectDuration
-            
+
             if powerUpEffect.shouldRemoveEffect(manager: manager) {
                 removeNodeFromScene(entity)
                 manager.remove(entity)
