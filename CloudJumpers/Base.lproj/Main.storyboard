@@ -129,26 +129,26 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="6va-SC-h6l">
                                 <rect key="frame" x="0.0" y="24" width="820" height="1136"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WZy-gj-bIH">
-                                        <rect key="frame" x="0.0" y="0.0" width="820" height="0.0"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="WZy-gj-bIH" userLabel="Results Stack View">
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="41"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Win !" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8A-GE-J8E">
-                                                <rect key="frame" x="374.5" y="0.0" width="71.5" height="0.0"/>
+                                                <rect key="frame" x="374.5" y="0.0" width="71.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHJ-b6-1Ht">
-                                                <rect key="frame" x="346" y="0.0" width="128" height="0.0"/>
+                                                <rect key="frame" x="346" y="20.5" width="128" height="20.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Timing: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Por-je-lbX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="0.0"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wr9-lE-moD">
-                                                        <rect key="frame" x="99.5" y="0.0" width="28.5" height="0.0"/>
+                                                        <rect key="frame" x="99.5" y="0.0" width="28.5" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -157,23 +157,20 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-G1-zZO">
-                                        <rect key="frame" x="0.0" y="30" width="820" height="1106"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0ZJ-G1-zZO" userLabel="Leaderboard Stack View">
+                                        <rect key="frame" x="0.0" y="71" width="820" height="1065"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fastest timings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16c-Lr-Ucv">
-                                                <rect key="frame" x="30" y="30" width="760" height="0.0"/>
+                                                <rect key="frame" x="30" y="30" width="760" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e1-P6-4cW">
-                                                <rect key="frame" x="30" y="45" width="760" height="1031"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e1-P6-4cW" userLabel="Tables Stack View">
+                                                <rect key="frame" x="30" y="65.5" width="760" height="969.5"/>
                                                 <subviews>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2CN-h5-6NJ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="606" height="1031"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="500" id="gXC-jY-FVW"/>
-                                                        </constraints>
+                                                        <rect key="frame" x="0.0" y="0.0" width="606" height="969.5"/>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameCell" id="zZ4-fC-d76" customClass="EndGameCell" customModule="CloudJumpers" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="44.5" width="606" height="43.5"/>
@@ -188,11 +185,8 @@
                                                         <sections/>
                                                     </tableView>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="m9T-bq-sV0">
-                                                        <rect key="frame" x="606" y="0.0" width="154" height="1031"/>
+                                                        <rect key="frame" x="606" y="0.0" width="154" height="969.5"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="154" id="lZc-Wm-P4G"/>
-                                                        </constraints>
                                                         <prototypes>
                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scoreCell" id="aYe-XF-b8S" customClass="EndGameCell" customModule="CloudJumpers" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="44.5" width="154" height="43.5"/>
@@ -205,6 +199,10 @@
                                                         </prototypes>
                                                     </tableView>
                                                 </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="2CN-h5-6NJ" firstAttribute="width" secondItem="3e1-P6-4cW" secondAttribute="width" multiplier="0.797368" id="6TO-ng-w1m"/>
+                                                    <constraint firstItem="m9T-bq-sV0" firstAttribute="width" secondItem="3e1-P6-4cW" secondAttribute="width" multiplier="0.202632" id="Ttg-vS-geH"/>
+                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="30" leading="30" bottom="30" trailing="30"/>
@@ -215,8 +213,8 @@
                         <viewLayoutGuide key="safeArea" id="CEa-Hr-Tfu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="CEa-Hr-Tfu" firstAttribute="trailing" secondItem="6va-SC-h6l" secondAttribute="trailing" id="Jyz-qC-Ojo"/>
-                            <constraint firstItem="CEa-Hr-Tfu" firstAttribute="bottom" secondItem="6va-SC-h6l" secondAttribute="bottom" id="PfV-3y-l7Q"/>
+                            <constraint firstItem="6va-SC-h6l" firstAttribute="trailing" secondItem="CEa-Hr-Tfu" secondAttribute="trailing" id="Jyz-qC-Ojo"/>
+                            <constraint firstItem="6va-SC-h6l" firstAttribute="bottom" secondItem="CEa-Hr-Tfu" secondAttribute="bottom" id="PfV-3y-l7Q"/>
                             <constraint firstItem="6va-SC-h6l" firstAttribute="leading" secondItem="CEa-Hr-Tfu" secondAttribute="leading" id="sOg-Bg-gQw"/>
                             <constraint firstItem="6va-SC-h6l" firstAttribute="top" secondItem="CEa-Hr-Tfu" secondAttribute="top" id="zpL-dB-4pN"/>
                         </constraints>
