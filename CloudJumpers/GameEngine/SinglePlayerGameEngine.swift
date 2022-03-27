@@ -14,7 +14,6 @@ class SinglePlayerGameEngine: GameEngine {
     let contactResolver: ContactResolver
     weak var delegate: GameEngineDelegate?
     var systems: [System]
-    var associatedEntity: Entity?
     var metaData: GameMetaData
 
     private var crossDeviceSyncTimer: Timer?
@@ -93,7 +92,6 @@ class SinglePlayerGameEngine: GameEngine {
         entities.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
-        associatedEntity = player
         metaData.playerId = player.id
         metaData.topPlatformId = topPlatform.id
     }
@@ -152,6 +150,17 @@ extension SinglePlayerGameEngine: GameMetaDataDelegate {
 
 // MARK: - InputResponder
 extension SinglePlayerGameEngine: InputResponder {
+    var associatedEntity: Entity? {
+        get {
+            entityManager.entity(with: metaData.playerId)
+        }
+        set {
+            if let newId = newValue?.id {
+                metaData.playerId = newId
+            }
+        }
+    }
+
     func inputMove(by displacement: CGVector) {
         guard let entity = associatedEntity,
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
