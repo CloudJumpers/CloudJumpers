@@ -81,15 +81,17 @@ class SinglePlayerGameEngine: GameEngine {
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
         let entities: [Entity] = [
             Platform(at: CGPoint(x: 0, y: 700)),
+            Meteor(at: CGPoint(x: 0, y: 300), velocity: CGVector(dx: -400.0, dy: -500.0)),
             PowerUp(at: CGPoint(x: 200, y: -300), type: .freeze),
             PowerUp(at: CGPoint(x: -200, y: -300), type: .confuse),
             PowerUp(at: CGPoint(x: 0, y: -200), type: .confuse),
             Cloud(at: CGPoint(x: 200, y: -200)),
             Cloud(at: CGPoint(x: -100, y: -50)),
-            Cloud(at: CGPoint(x: 200, y: 100)),
-            Cloud(at: CGPoint(x: -100, y: 250)),
-            Cloud(at: CGPoint(x: 200, y: 400)),
-            Cloud(at: CGPoint(x: -100, y: 550))]
+            Cloud(at: CGPoint(x: 200, y: 100))
+//            Cloud(at: CGPoint(x: -100, y: 250)),
+//            Cloud(at: CGPoint(x: 200, y: 400)),
+//            Cloud(at: CGPoint(x: -100, y: 550))
+        ]
 
         entityManager.add(timer)
         entityManager.add(player)

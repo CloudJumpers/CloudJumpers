@@ -46,7 +46,7 @@ class Cloud: Entity {
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
 
         return physicsComponent
     }

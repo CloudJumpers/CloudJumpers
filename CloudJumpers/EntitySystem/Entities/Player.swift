@@ -51,6 +51,8 @@ class Player: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.collisionBitMask = Constants.bitmaskCloud | Constants.bitmaskPlatform |
+        Constants.bitmaskDisaster | Constants.bitmaskPowerUp
 
         return physicsComponent
     }

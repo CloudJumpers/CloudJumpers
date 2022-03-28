@@ -61,6 +61,9 @@
 		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F927F0016500184C55 /* CameraBind.swift */; };
+		3E81C10127F1DAE700184C55 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10027F1DAE700184C55 /* Meteor.swift */; };
+		3E81C10327F1DAF300184C55 /* DisasterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10227F1DAF300184C55 /* DisasterType.swift */; };
+		3E81C10527F1E55C00184C55 /* DisasterHitEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -196,6 +199,9 @@
 		3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatePowerUpEvent.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		3E81C0F927F0016500184C55 /* CameraBind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBind.swift; sourceTree = "<group>"; };
+		3E81C10027F1DAE700184C55 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
+		3E81C10227F1DAF300184C55 /* DisasterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterType.swift; sourceTree = "<group>"; };
+		3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEvent.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -401,6 +407,7 @@
 		1A94D94B27ED8709001D8A86 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				3E81C0FD27F1DAD200184C55 /* Disaster */,
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
 				3E81C0E627EF3AA200184C55 /* PowerUp */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
@@ -450,6 +457,15 @@
 				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
 			);
 			path = PowerUp;
+			sourceTree = "<group>";
+		};
+		3E81C0FD27F1DAD200184C55 /* Disaster */ = {
+			isa = PBXGroup;
+			children = (
+				3E81C10027F1DAE700184C55 /* Meteor.swift */,
+				3E81C10227F1DAF300184C55 /* DisasterType.swift */,
+			);
+			path = Disaster;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -705,6 +721,7 @@
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
+				3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */,
 				9353464127F02EFA00DC6F9E /* RepositionEvent.swift */,
 			);
 			path = Events;
@@ -1000,6 +1017,7 @@
 				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
+				3E81C10127F1DAE700184C55 /* Meteor.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
@@ -1035,6 +1053,7 @@
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
+				3E81C10527F1E55C00184C55 /* DisasterHitEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
@@ -1070,6 +1089,7 @@
 				93360B8B27EC8AA700808295 /* GameEventCommand.swift in Sources */,
 				1A94D96627EE0EF2001D8A86 /* JumpEvent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
+				3E81C10327F1DAF300184C55 /* DisasterType.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				3E335FC527E6F00700817B5B /* EndGameConstants.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,

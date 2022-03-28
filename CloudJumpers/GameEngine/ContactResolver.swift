@@ -29,14 +29,19 @@ class ContactResolver {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
-        if nodeABitMask == Constants.bitmaskPlayer &&
+        if (nodeABitMask == Constants.bitmaskPlayer &&
            nodeBBitMask == Constants.bitmaskPlatform &&
-           isPlayerOnPlatform(player: nodeA, platform: nodeB) {
+           isPlayerOnPlatform(player: nodeA, platform: nodeB)) ||
+            (nodeBBitMask == Constants.bitmaskPlayer &&
+           nodeABitMask == Constants.bitmaskPlatform &&
+           isPlayerOnPlatform(player: nodeB, platform: nodeA)) {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         }
 
-        if nodeABitMask == Constants.bitmaskPlayer &&
-            nodeBBitMask == Constants.bitmaskPowerUp {
+        if (nodeABitMask == Constants.bitmaskPlayer &&
+            nodeBBitMask == Constants.bitmaskPowerUp) ||
+            (nodeABitMask == Constants.bitmaskPlayer &&
+            nodeBBitMask == Constants.bitmaskPowerUp) {
 
             guard let entityIDA = nodeA.entityID,
                   let entityIDB = nodeB.entityID else {
@@ -44,6 +49,22 @@ class ContactResolver {
             }
 
             eventManager?.add(ObtainEvent(on: entityIDA, obtains: entityIDB))
+        }
+
+        if nodeABitMask == Constants.bitmaskDisaster {
+            guard let entityIDA = nodeA.entityID,
+                  let entityIDB = nodeB.entityID else {
+                return
+            }
+            eventManager?.add(DisasterHitEvent(from: entityIDA, on: entityIDB))
+        }
+
+        if nodeBBitMask == Constants.bitmaskDisaster {
+            guard let entityIDA = nodeA.entityID,
+                  let entityIDB = nodeB.entityID else {
+                return
+            }
+            eventManager?.add(DisasterHitEvent(from: entityIDB, on: entityIDA))
         }
     }
 

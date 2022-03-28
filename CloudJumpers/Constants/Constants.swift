@@ -52,6 +52,8 @@ struct Constants {
     static let bitmaskCloud = UInt32(0x1 << 1)
     static let bitmaskPlatform = UInt32(0x1 << 2)
     static let bitmaskPowerUp = UInt32(0x1 << 3)
+    static let bitmaskDisaster = UInt32(0x1 << 4)
+    static let bitmaskWall = UInt32(0x1 << 5)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
@@ -63,4 +65,6 @@ struct Constants {
     static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
     static let powerUpEffectDuration = 5.0
     static let powerUpMass = 0.000_000_1
+
+    static let disasterSize = CGSize(width: 50.0, height: 200.0)
 }
