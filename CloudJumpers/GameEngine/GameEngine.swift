@@ -40,7 +40,7 @@ class GameEngine: AbstractGameEngine {
         updateSystems(within: time)
     }
 
-    func updatePlayer(with joystickDisplacement: CGVector) {
+    func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
@@ -48,8 +48,8 @@ class GameEngine: AbstractGameEngine {
         else {
             return
         }
-        if joystickDisplacement != .zero {
-            inputMove(by: joystickDisplacement)
+        if displacement != .zero {
+            inputMove(by: displacement)
         } else if physicsComponent.body.velocity == .zero {
             eventManager.add( AnimateEvent(on: entity, to: .idle))
         }
