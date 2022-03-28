@@ -14,11 +14,13 @@ protocol GameEventCommand {
     /// device's network id.
     var source: NetworkID { get }
 
-    /// recipients is a list of recipient ids that should
-    /// be concerned with this command, in the event of
-    /// unicast or multicasting. If used in a broadcasting
-    /// context, this can be left as nil.
-    var recipients: [NetworkID]? { get }
+    /// isSourceRecipient is set if an event
+    /// should be processed by the sender upon reception from the
+    /// network. This is used for events that need to be confirmed
+    /// by the network before being locally processed.
+    /// nil or false values will cause the event to be ignored by the
+    /// sender.
+    var isSourceRecipient: Bool? { get }
 
     /// The payload is transported as a String.
     /// It is to be handled based on the command
@@ -35,5 +37,5 @@ protocol GameEventCommand {
 
     /// This constructor is used for recovery of a GameEventCommand
     /// received from another device.
-    init(_ source: NetworkID, _ recipients: [NetworkID]?, _ payload: String)
+    init(_ source: NetworkID, _ payload: String)
 }

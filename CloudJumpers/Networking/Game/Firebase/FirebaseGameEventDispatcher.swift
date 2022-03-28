@@ -21,7 +21,7 @@ class FirebaseGameEventDispatcher: GameEventDispatcher {
     func dispatchGameEventCommand(_ command: GameEventCommand) {
         gameReference.childByAutoId().setValue([
             GameKeys.source: command.source,
-            GameKeys.recipients: command.recipients ?? [],
+            GameKeys.sourceIsRecipient: command.isSourceRecipient ?? false,
             GameKeys.payload: command.payload,
             GameKeys.registeredAt: ServerValue.timestamp()
         ])

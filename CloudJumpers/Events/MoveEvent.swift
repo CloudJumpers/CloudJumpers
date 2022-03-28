@@ -11,6 +11,7 @@ import CoreGraphics
 struct MoveEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
+    weak var gameDataTracker: GameMetaDataDelegate?
 
     private let displacement: CGVector
 
@@ -32,5 +33,6 @@ struct MoveEvent: Event {
         else { return }
 
         spriteComponent.node.position += displacement
+        gameDataTracker?.updatePlayerPosition(position: spriteComponent.node.position)
     }
 }

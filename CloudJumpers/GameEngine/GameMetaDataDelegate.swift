@@ -6,7 +6,14 @@
 //
 
 import Foundation
+import CoreGraphics
 
 protocol GameMetaDataDelegate: AnyObject {
     func metaData(changePlayerLocation player: EntityID, location: EntityID?)
+
+    func updatePlayerPosition(position: CGPoint)
+
+    func updatePlayerTextureKind(texture: Textures.Kind)
+
+    func syncToOtherDevices()
 }

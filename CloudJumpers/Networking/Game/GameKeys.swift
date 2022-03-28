@@ -13,7 +13,7 @@ enum GameKeys {
     // root/{channelId}/{child}/*
     // saving some bytes with the key names ...
     static let source = "s"
-    static let recipients = "r"
+    static let sourceIsRecipient = "r"
     static let payload = "p"
     static let registeredAt = "u"
 }

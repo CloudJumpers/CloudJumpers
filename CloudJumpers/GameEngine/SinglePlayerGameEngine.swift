@@ -17,6 +17,8 @@ class SinglePlayerGameEngine: GameEngine {
     var associatedEntity: Entity?
     var metaData: GameMetaData
 
+    private var crossDeviceSyncTimer: Timer?
+
     required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
         metaData = GameMetaData()
         entityManager = EntityManager()
@@ -25,6 +27,11 @@ class SinglePlayerGameEngine: GameEngine {
         systems = []
         self.delegate = delegate
         contactResolver.metaDataDelegate = self
+        setUpCrossDeviceSyncTimer()
+    }
+
+    deinit {
+        crossDeviceSyncTimer?.invalidate()
     }
 
     func update(within time: CGFloat) {
@@ -36,6 +43,13 @@ class SinglePlayerGameEngine: GameEngine {
     func setUpGame() {
         setUpSampleGame()
         setUpSystems()
+    }
+
+    private func setUpCrossDeviceSyncTimer() {
+        crossDeviceSyncTimer = Timer.scheduledTimer(
+            withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
+            repeats: true
+        ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
     private func setUpSystems() {
@@ -104,6 +118,14 @@ class SinglePlayerGameEngine: GameEngine {
 
 // MARK: - GameMetaDataDelegate
 extension SinglePlayerGameEngine: GameMetaDataDelegate {
+    func updatePlayerPosition(position: CGPoint) {
+        metaData.playerPosition = position
+    }
+
+    func updatePlayerTextureKind(texture: Textures.Kind) {
+        metaData.playerTexture = texture
+    }
+
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
             metaData.playerLocationMapping[player] = location
@@ -112,6 +134,16 @@ extension SinglePlayerGameEngine: GameMetaDataDelegate {
         }
     }
 
+    func syncToOtherDevices() {
+        let positionalUpdate = OnlineRepositionEvent(
+            positionX: metaData.playerPosition.x,
+            positionY: metaData.playerPosition.y,
+            texture: metaData.playerTexture.rawValue
+        )
+
+        let repositionCmd = RepositionEventCommand(sourceId: metaData.playerId, event: positionalUpdate)
+        eventManager.dispatchGameEventCommand(repositionCmd)
+    }
 }
 
 // MARK: - InputResponder
@@ -121,7 +153,9 @@ extension SinglePlayerGameEngine: InputResponder {
             return
         }
 
-        eventManager.add(MoveEvent(on: entity, by: displacement))
+        var event = MoveEvent(on: entity, by: displacement)
+        event.gameDataTracker = self
+        eventManager.add(event)
     }
 
     func inputJump() {
