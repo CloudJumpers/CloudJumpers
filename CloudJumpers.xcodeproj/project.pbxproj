@@ -370,6 +370,7 @@
 				1A94D93727EB4AB9001D8A86 /* InputResponder.swift */,
 				1A94D93527EB41E0001D8A86 /* Joystick.swift */,
 				1A94D93927EB5090001D8A86 /* JumpButton.swift */,
+				3E81C0E027EF359300184C55 /* GameArea.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -537,10 +538,8 @@
 			isa = PBXGroup;
 			children = (
 				3E246B4727DDAB1300D51300 /* GameViewController.swift */,
-				3E81C0E027EF359300184C55 /* GameArea.swift */,
 				3E246B8027E3414400D51300 /* EndGameViewController.swift */,
 				3E335FC827E6F51B00817B5B /* EndGameCell.swift */,
-				3E335FC427E6F00700817B5B /* EndGameConstants.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -749,6 +748,7 @@
 			children = (
 				3E58412A27DBABF4005B2EB9 /* Constants.swift */,
 				3E246B5227DE05E500D51300 /* SpriteZPosition.swift */,
+				3E335FC427E6F00700817B5B /* EndGameConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
