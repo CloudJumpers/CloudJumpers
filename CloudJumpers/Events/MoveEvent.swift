@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import SpriteKit
 
 struct MoveEvent: Event {
     let timestamp: TimeInterval
@@ -32,7 +33,12 @@ struct MoveEvent: Event {
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return }
 
-        spriteComponent.node.position += displacement
+        let moveAction = SKAction.move(by: displacement, duration: 0.1)
+
+        spriteComponent.node.run(moveAction)
+
+        spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+
         gameDataTracker?.updatePlayerPosition(position: spriteComponent.node.position)
     }
 }

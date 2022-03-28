@@ -22,9 +22,11 @@ struct JumpEvent: Event {
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
         else { return }
 
-        if !isJumping(body: physicsComponent.body) {
-            physicsComponent.body.applyImpulse(Constants.jumpImpulse)
+        guard !isJumping(body: physicsComponent.body) else {
+            return
         }
+        physicsComponent.body.applyImpulse(Constants.jumpImpulse)
+
     }
 
     private func isJumping(body: SKPhysicsBody) -> Bool {
