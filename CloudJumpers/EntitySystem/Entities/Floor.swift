@@ -44,7 +44,7 @@ class Floor: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
+        physicsComponent.body.categoryBitMask = Constants.bitmaskWall
         physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
 
         return physicsComponent

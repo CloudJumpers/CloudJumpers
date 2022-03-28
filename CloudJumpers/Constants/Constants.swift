@@ -53,6 +53,7 @@ struct Constants {
     static let bitmaskPlatform = UInt32(0x1 << 2)
     static let bitmaskPowerUp = UInt32(0x1 << 3)
     static let bitmaskDisaster = UInt32(0x1 << 4)
+    static let bitmaskWall = UInt32(0x1 << 5)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
@@ -69,4 +70,7 @@ struct Constants {
     static let floorSize = CGSize(width: 750.0, height: 300.0)
 
     static let disasterSize = CGSize(width: 30.0, height: 150.0)
+
+    static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
+    static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)
 }
