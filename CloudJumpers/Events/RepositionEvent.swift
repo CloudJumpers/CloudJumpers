@@ -28,7 +28,12 @@ struct RepositionEvent: Event {
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)
         else { return }
 
-        spriteComponent.node.position = nextPosition
+        let displacement = CGVector(
+            dx: nextPosition.x - spriteComponent.node.position.x,
+            dy: nextPosition.y - spriteComponent.node.position.y
+        )
+
+        spriteComponent.node.run(.move(by: displacement, duration: 0.1))
         animationComponent.kind = kind
     }
 }

@@ -5,7 +5,7 @@ class GameViewController: UIViewController {
     static let MainStoryboard = "Main"
     static let EndGameViewControllerId = "EndGameViewController"
 
-    private var gameEngine: GameEngine?
+    private var gameEngine: AbstractGameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
     private var gameRules: GameRules?
@@ -36,19 +36,19 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(for: self, channel: lobby?.id)
+        gameEngine = GameEngine(for: self, channel: lobby?.id)
         gameRules = TimeTrialGameRules()
     }
 
     private func setUpGameScene() {
-        guard let scene = GameScene(fileNamed: "GameScene") else {
+        guard let userId = AuthService().getUserId(), let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
         }
 
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setUpGame()
+        gameEngine?.setUpGame(userId, additionalPlayerIds: lobby?.otherUsers.map { $0.id } ?? [])
         setUpSKViewAndPresent(scene: scene)
     }
 
@@ -129,22 +129,22 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
+    func engine(_ engine: AbstractGameEngine, didEndGameWith state: GameState) {
         if let endState = state as? TimeTrialGameEndState {
             self.transitionToEndGame(state: endState)
         }
     }
 
-    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
+    func engine(_ engine: AbstractGameEngine, addEntityWith node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
+    func engine(_ engine: AbstractGameEngine, addPlayerWith node: SKNode) {
         self.engine(engine, addEntityWith: node)
         scene?.cameraAnchorNode = node
     }
 
-    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
+    func engine(_ engine: AbstractGameEngine, addControlWith node: SKNode) {
         scene?.addStaticChild(node)
     }
 }
