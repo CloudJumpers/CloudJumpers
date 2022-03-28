@@ -171,9 +171,13 @@ extension SinglePlayerGameEngine: InputResponder {
             var event = MoveEvent(on: entity, by: displacement)
             event.gameDataTracker = self
             eventManager.add(event)
-            eventManager.add(AnimateEvent(on: entity, to: .walking))
+            var animationEvent = AnimateEvent(on: entity, to: .walking)
+            animationEvent.gameDataTracker = self
+            eventManager.add(animationEvent)
         } else if physicsComponent.body.velocity == .zero {
-            eventManager.add(AnimateEvent(on: entity, to: .idle))
+            var animationEvent = AnimateEvent(on: entity, to: .idle)
+            animationEvent.gameDataTracker = self
+            eventManager.add(animationEvent)
         }
 
     }
