@@ -120,7 +120,8 @@ class SpriteSystem: System {
                 continue
             }
 
-            if spriteComponent.removeNodeFromScene {
+            if spriteComponent.removeNodeFromScene ||
+                spriteComponent.isOutOfBound {
                 removeNodeFromScene(entity)
                 addedEntity.remove(entity.id)
                 manager.remove(entity)

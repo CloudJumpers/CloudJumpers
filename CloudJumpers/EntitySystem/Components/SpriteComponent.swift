@@ -15,6 +15,11 @@ class SpriteComponent: Component {
 
     let node: SKNode
 
+    var isOutOfBound: Bool {
+        node.position.x < -Constants.screenWidth / 2 ||
+        node.position.x > Constants.screenWidth / 2
+    }
+
     init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID,
          cameraBind: CameraBind = .normalBind) {
         id = EntityManager.newComponentID

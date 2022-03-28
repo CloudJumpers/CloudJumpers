@@ -71,7 +71,7 @@ struct Constants {
     static let floorSize = CGSize(width: 750.0, height: 300.0)
 
     static let disasterNodeSize = CGSize(width: 30.0, height: 150.0)
-    static let disasterPhysicsSize = CGSize(width: 30.0, height: 30.0)
+    static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
 
     static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
     static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)
