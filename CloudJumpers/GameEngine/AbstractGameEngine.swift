@@ -17,5 +17,6 @@ protocol AbstractGameEngine: InputResponder {
 
     init(for delegate: GameEngineDelegate, channel: NetworkID?)
     func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID])
+    func updatePlayer(with joystickDisplacement: CGVector)
     func update(within time: CGFloat)
 }

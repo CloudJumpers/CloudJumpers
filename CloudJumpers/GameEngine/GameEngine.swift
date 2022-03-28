@@ -40,6 +40,24 @@ class GameEngine: AbstractGameEngine {
         updateSystems(within: time)
     }
 
+    func updatePlayer(with joystickDisplacement: CGVector) {
+        guard let entity = associatedEntity,
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
+              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else {
+            return
+        }
+        if joystickDisplacement != .zero {
+            inputMove(by: joystickDisplacement)
+        } else if physicsComponent.body.velocity == .zero {
+            eventManager.add( AnimateEvent(on: entity, to: .idle))
+        }
+
+        updatePlayerTextureKind(texture: animationComponent.kind)
+        updatePlayerPosition(position: spriteComponent.node.position)
+    }
+
     func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID] = []) {
         setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds)
     }
@@ -164,23 +182,11 @@ extension GameEngine: InputResponder {
     }
 
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
-        else {
+        guard let entity = associatedEntity else {
             return
         }
-        if displacement != .zero {
-            var event = MoveEvent(on: entity, by: displacement)
-            event.gameDataTracker = self
-            eventManager.add(event)
-            var animationEvent = AnimateEvent(on: entity, to: .walking)
-            animationEvent.gameDataTracker = self
-            eventManager.add(animationEvent)
-        } else if physicsComponent.body.velocity == .zero {
-            var animationEvent = AnimateEvent(on: entity, to: .idle)
-            animationEvent.gameDataTracker = self
-            eventManager.add(animationEvent)
-        }
+        eventManager.add(MoveEvent(on: entity, by: displacement))
+        eventManager.add(AnimateEvent(on: entity, to: .walking))
 
     }
 
