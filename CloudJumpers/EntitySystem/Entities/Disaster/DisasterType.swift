@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum DisasterType {
+enum DisasterType: String {
     case meteor
 }

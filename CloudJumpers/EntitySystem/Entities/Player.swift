@@ -11,7 +11,7 @@ import CoreGraphics
 class Player: Entity {
     let id: EntityID
 
-    private let position: CGPoint
+    let position: CGPoint
     private let texture: Textures
 
     init(at position: CGPoint, texture: Textures, with id: EntityID = EntityManager.newEntityID) {

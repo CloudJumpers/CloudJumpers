@@ -38,6 +38,7 @@ class SinglePlayerGameEngine: GameEngine {
         updateEvents()
         updateTime()
         updateSystems(within: time)
+        updateRandomDisaster()
     }
 
     func setUpGame() {
@@ -84,17 +85,16 @@ class SinglePlayerGameEngine: GameEngine {
         let floor = Floor(at: CGPoint(x: 0, y: -500))
 
         let entities: [Entity] = [
-            Platform(at: CGPoint(x: 0, y: 700)),
-//            Meteor(at: CGPoint(x: 0, y: 300), velocity: CGVector(dx: -400.0, dy: -500.0)),
+            Platform(at: CGPoint(x: 0, y: 1000)),
             PowerUp(at: CGPoint(x: 200, y: -300), type: .freeze),
             PowerUp(at: CGPoint(x: -200, y: -300), type: .confuse),
             PowerUp(at: CGPoint(x: 0, y: -200), type: .confuse),
             Cloud(at: CGPoint(x: 200, y: -200)),
-            Cloud(at: CGPoint(x: -100, y: -50)),
-            Cloud(at: CGPoint(x: 200, y: 100)),
-            Cloud(at: CGPoint(x: -100, y: 250)),
-            Cloud(at: CGPoint(x: 200, y: 400)),
-            Cloud(at: CGPoint(x: -100, y: 550))
+            Cloud(at: CGPoint(x: -200, y: 0)),
+            Cloud(at: CGPoint(x: 200, y: 200)),
+            Cloud(at: CGPoint(x: -200, y: 400)),
+            Cloud(at: CGPoint(x: 200, y: 600)),
+            Cloud(at: CGPoint(x: -200, y: 800))
         ]
 
         entityManager.add(timer)
@@ -122,6 +122,28 @@ class SinglePlayerGameEngine: GameEngine {
         else { return }
 
         metaData.time = timedComponent.time
+    }
+
+    private func updateRandomDisaster() {
+        let random = Int.random(in: 1...100)
+        if random == 1 {
+            let xDir = Double.random(in: -1...1)
+            let yDir = Double.random(in: -1...0)
+            let velocity = Double.random(in: 150..<300)
+
+            var disasterPosition = CGPoint(x: 0.0, y: 0.0)
+            if let player = associatedEntity as? Player {
+                disasterPosition.x = Double.random(in: -350...350)
+                let minY = player.position.y + 300
+                let maxY = player.position.y + 800
+                disasterPosition.y = Double.random(in: minY...maxY)
+            }
+
+            let disaster = Disaster(at: disasterPosition,
+                                    velocity: velocity * CGVector(dx: xDir, dy: yDir).normalized(), type: .meteor)
+
+            entityManager.add(disaster)
+        }
     }
 }
 

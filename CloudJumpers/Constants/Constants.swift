@@ -31,7 +31,7 @@ struct Constants {
 
     static let jumpButtonPosition = CGPoint(x: 280.0, y: -420.0)
     static let jumpButtonSize = CGSize(width: 100.0, height: 100.0)
-    static let jumpImpulse = CGVector(dx: 0.0, dy: 150.0)
+    static let jumpImpulse = CGVector(dx: 0.0, dy: 160.0)
     static let jumpYTolerance = 0.0
 
     static let timerPosition = CGPoint(x: 250, y: 410)
@@ -68,5 +68,5 @@ struct Constants {
     static let wallSize = CGSize(width: 50.0, height: 1_200.0)
     static let floorSize = CGSize(width: 750.0, height: 300.0)
 
-    static let disasterSize = CGSize(width: 50.0, height: 200.0)
+    static let disasterSize = CGSize(width: 30.0, height: 150.0)
 }

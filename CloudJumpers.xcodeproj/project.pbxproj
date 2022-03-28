@@ -61,11 +61,11 @@
 		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F927F0016500184C55 /* CameraBind.swift */; };
-		3E81C10127F1DAE700184C55 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10027F1DAE700184C55 /* Meteor.swift */; };
 		3E81C10327F1DAF300184C55 /* DisasterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10227F1DAF300184C55 /* DisasterType.swift */; };
 		3E81C10527F1E55C00184C55 /* DisasterHitEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */; };
 		3E81C10727F1E77600184C55 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10627F1E77600184C55 /* Wall.swift */; };
 		3E81C10927F1E83E00184C55 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10827F1E83E00184C55 /* Floor.swift */; };
+		3E81C10B27F1F12E00184C55 /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10A27F1F12E00184C55 /* Disaster.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -201,11 +201,11 @@
 		3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatePowerUpEvent.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		3E81C0F927F0016500184C55 /* CameraBind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBind.swift; sourceTree = "<group>"; };
-		3E81C10027F1DAE700184C55 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
 		3E81C10227F1DAF300184C55 /* DisasterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterType.swift; sourceTree = "<group>"; };
 		3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEvent.swift; sourceTree = "<group>"; };
 		3E81C10627F1E77600184C55 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		3E81C10827F1E83E00184C55 /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
+		3E81C10A27F1F12E00184C55 /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -468,8 +468,8 @@
 		3E81C0FD27F1DAD200184C55 /* Disaster */ = {
 			isa = PBXGroup;
 			children = (
-				3E81C10027F1DAE700184C55 /* Meteor.swift */,
 				3E81C10227F1DAF300184C55 /* DisasterType.swift */,
+				3E81C10A27F1F12E00184C55 /* Disaster.swift */,
 			);
 			path = Disaster;
 			sourceTree = "<group>";
@@ -1023,7 +1023,6 @@
 				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
-				3E81C10127F1DAE700184C55 /* Meteor.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
@@ -1036,6 +1035,7 @@
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
+				3E81C10B27F1F12E00184C55 /* Disaster.swift in Sources */,
 				1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,

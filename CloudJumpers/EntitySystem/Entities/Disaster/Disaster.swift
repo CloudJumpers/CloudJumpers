@@ -1,24 +1,25 @@
 //
-//  Meteor.swift
+//  Disaster.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 28/3/22.
 //
 
-import Foundation
 import SpriteKit
 
-class Meteor: Entity {
+class Disaster: Entity {
     let id: EntityID
 
     private let position: CGPoint
     private let velocity: CGVector
+    private(set) var type: DisasterType
 
     init(at position: CGPoint, velocity: CGVector,
-         with id: EntityID = EntityManager.newEntityID) {
+         type: DisasterType, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
-        self.position = position
         self.velocity = velocity
+        self.type = type
+        self.position = position
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -31,7 +32,7 @@ class Meteor: Entity {
 
     private func createSpriteComponent() -> SpriteComponent {
         let node = SKSpriteNode(
-            texture: SKTexture(imageNamed: "meteor"),
+            texture: SKTexture(imageNamed: "\(type)"),
             size: Constants.disasterSize)
 
         node.position = position
@@ -58,4 +59,5 @@ class Meteor: Entity {
     private func getRotationAngle() -> CGFloat {
         -atan(velocity.dx / velocity.dy)
     }
+
 }
