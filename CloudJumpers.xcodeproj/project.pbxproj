@@ -64,6 +64,8 @@
 		3E81C10127F1DAE700184C55 /* Meteor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10027F1DAE700184C55 /* Meteor.swift */; };
 		3E81C10327F1DAF300184C55 /* DisasterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10227F1DAF300184C55 /* DisasterType.swift */; };
 		3E81C10527F1E55C00184C55 /* DisasterHitEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */; };
+		3E81C10727F1E77600184C55 /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10627F1E77600184C55 /* Wall.swift */; };
+		3E81C10927F1E83E00184C55 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C10827F1E83E00184C55 /* Floor.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -202,6 +204,8 @@
 		3E81C10027F1DAE700184C55 /* Meteor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meteor.swift; sourceTree = "<group>"; };
 		3E81C10227F1DAF300184C55 /* DisasterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterType.swift; sourceTree = "<group>"; };
 		3E81C10427F1E55C00184C55 /* DisasterHitEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEvent.swift; sourceTree = "<group>"; };
+		3E81C10627F1E77600184C55 /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		3E81C10827F1E83E00184C55 /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				3E81C0E627EF3AA200184C55 /* PowerUp */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
+				3E81C10627F1E77600184C55 /* Wall.swift */,
+				3E81C10827F1E83E00184C55 /* Floor.swift */,
 				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
 			);
 			path = Entities;
@@ -1053,6 +1059,7 @@
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
+				3E81C10727F1E77600184C55 /* Wall.swift in Sources */,
 				3E81C10527F1E55C00184C55 /* DisasterHitEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
@@ -1083,6 +1090,7 @@
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
+				3E81C10927F1E83E00184C55 /* Floor.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
 				931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */,
