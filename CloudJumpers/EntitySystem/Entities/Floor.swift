@@ -27,13 +27,13 @@ class Floor: Entity {
 
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: "wall_1080x50"),
+            texture: SKTexture(imageNamed: "floor"),
             size: Constants.floorSize,
             at: position,
             forEntityWith: id
         )
 
-        spriteComponent.node.zPosition = SpriteZPosition.wall.rawValue
+        spriteComponent.node.zPosition = SpriteZPosition.floor.rawValue
 
         return spriteComponent
     }
@@ -44,8 +44,10 @@ class Floor: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskWall
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.body.categoryBitMask = Constants.bitmaskFloor
+        physicsComponent.body.collisionBitMask = Constants.bitmaskDisaster |
+        Constants.bitmaskPlayer
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskDisaster
 
         return physicsComponent
     }

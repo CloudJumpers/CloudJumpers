@@ -28,7 +28,7 @@ class Wall: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         // TODO: Abstract out Clouds texture atlas
         let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: "wall_50x1700"),
+            texture: SKTexture(imageNamed: "wall"),
             size: Constants.wallSize,
             at: position,
             forEntityWith: id
@@ -45,8 +45,9 @@ class Wall: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.body.categoryBitMask = Constants.bitmaskWall
+        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
 
         return physicsComponent
     }
