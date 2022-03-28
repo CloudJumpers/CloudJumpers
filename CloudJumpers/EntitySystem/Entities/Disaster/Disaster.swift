@@ -66,7 +66,7 @@ class Disaster: Entity {
     private func getRandomVelocity() -> CGVector {
         let xDir = getRandomDouble(from: -1, to: 1)
         let yDir = getRandomDouble(from: -1, to: 0)
-        let velocity = getRandomDouble(from: 150, to: 300)
+        let velocity = getRandomDouble(from: 80, to: 150)
 
         return velocity * CGVector(dx: xDir, dy: yDir).normalized()
     }
