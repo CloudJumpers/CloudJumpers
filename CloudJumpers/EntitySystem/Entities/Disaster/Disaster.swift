@@ -36,17 +36,18 @@ class Disaster: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let node = SKSpriteNode(
             texture: SKTexture(imageNamed: "\(type)"),
-            size: Constants.disasterSize)
+            size: Constants.disasterNodeSize)
 
         node.position = position
         node.zRotation = getRotationAngle()
         node.zPosition = SpriteZPosition.powerUp.rawValue
+        node.anchorPoint = CGPoint(x: 0.5, y: 0)
 
         return SpriteComponent(node: node, forEntityWith: id)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterSize,
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize,
                                                 for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.velocity = self.velocity
@@ -66,7 +67,7 @@ class Disaster: Entity {
     private func getRandomVelocity() -> CGVector {
         let xDir = getRandomDouble(from: -1, to: 1)
         let yDir = getRandomDouble(from: -1, to: 0)
-        let velocity = getRandomDouble(from: 80, to: 150)
+        let velocity = getRandomDouble(from: 100, to: 170)
 
         return velocity * CGVector(dx: xDir, dy: yDir).normalized()
     }
@@ -74,7 +75,7 @@ class Disaster: Entity {
     private func getRandomPosition() -> CGPoint {
         var disasterPosition = CGPoint(x: 0.0, y: 0.0)
         if let player = associatedEntity as? Player {
-            disasterPosition.x = getRandomDouble(from: -350, to: 350)
+            disasterPosition.x = getRandomDouble(from: -300, to: 300)
             let minY = player.position.y + 300
             let maxY = player.position.y + 800
             disasterPosition.y = getRandomDouble(from: minY, to: maxY)
