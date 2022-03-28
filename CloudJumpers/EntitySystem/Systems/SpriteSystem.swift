@@ -140,6 +140,7 @@ class SpriteSystem: System {
             }
 
             let node = spriteComponent.node
+            updateAnimation(of: node, with: entity)
             updateTimed(of: node, with: entity)
         }
     }
@@ -182,5 +183,22 @@ class SpriteSystem: System {
         let node = spriteComponent.node
 
         delegate.engine(removeEntityFrom: node)
+    }
+    func updateAnimation(of node: SKNode, with entity: Entity) {
+        guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: entity) else {
+            return
+        }
+
+        let texture = animationComponent.texture.of(animationComponent.kind)
+
+        if node.action(forKey: animationComponent.kind.name) == nil {
+            node.removeAllActions()
+            node.run(.repeatForever(.animate(
+                with: texture,
+                timePerFrame: 0.1,
+                resize: false,
+                restore: true)),
+            withKey: animationComponent.kind.name)
+        }
     }
 }
