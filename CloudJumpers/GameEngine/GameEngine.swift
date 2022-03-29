@@ -44,6 +44,7 @@ class GameEngine: AbstractGameEngine {
             entityManager.add(entity)
             addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
         }
+    }
 
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,

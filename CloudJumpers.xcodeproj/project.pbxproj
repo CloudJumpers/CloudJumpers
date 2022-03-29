@@ -20,7 +20,6 @@
 		1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D93527EB41E0001D8A86 /* Joystick.swift */; };
 		1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D93727EB4AB9001D8A86 /* InputResponder.swift */; };
 		1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D93927EB5090001D8A86 /* JumpButton.swift */; };
-		1A94D93C27EB9642001D8A86 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D93B27EB9642001D8A86 /* GameEngine.swift */; };
 		1A94D94227ECB808001D8A86 /* Character1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A94D94127ECB808001D8A86 /* Character1.atlas */; };
 		1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94727ED8709001D8A86 /* SpriteComponent.swift */; };
 		1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94827ED8709001D8A86 /* AnimationComponent.swift */; };
@@ -43,6 +42,7 @@
 		1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D97227EEED61001D8A86 /* ObtainEvent.swift */; };
 		1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603D27F19369006E4018 /* Blueprint.swift */; };
 		1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603F27F19386006E4018 /* LevelGenerator.swift */; };
+		1AC1605327F2F56D006E4018 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605227F2F56D006E4018 /* GameEngine.swift */; };
 		1ACE976E27E60D50005AA18B /* GameEngineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */; };
 		1ACE97C827EB26BB005AA18B /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C327EB26BB005AA18B /* Component.swift */; };
 		1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C427EB26BB005AA18B /* EntityManager.swift */; };
@@ -172,6 +172,7 @@
 		1A94D97227EEED61001D8A86 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		1AC1603D27F19369006E4018 /* Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blueprint.swift; sourceTree = "<group>"; };
 		1AC1603F27F19386006E4018 /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
+		1AC1605227F2F56D006E4018 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngineDelegate.swift; sourceTree = "<group>"; };
 		1ACE97C327EB26BB005AA18B /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		1ACE97C427EB26BB005AA18B /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 				1A4E3D6D27D85BC80033A29D /* Products */,
 				90C586EF6BCC2E7EFA91485D /* Pods */,
 				EA08B77308ED456EC74F5D13 /* Frameworks */,
+				1AC1605127F2F561006E4018 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -425,6 +427,14 @@
 				1AC1603F27F19386006E4018 /* LevelGenerator.swift */,
 			);
 			path = Levels;
+			sourceTree = "<group>";
+		};
+		1AC1605127F2F561006E4018 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				1A94D93B27EB9642001D8A86 /* GameEngine.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		1ACE97BC27EB2650005AA18B /* EntitySystem */ = {
@@ -721,7 +731,7 @@
 			isa = PBXGroup;
 			children = (
 				935ACD4A27F20D750049EB28 /* AbstractGameEngine.swift */,
-				3E246B4327DDA9C800D51300 /* GameEngine.swift */,
+				1AC1605227F2F56D006E4018 /* GameEngine.swift */,
 				1ACE976D27E60D50005AA18B /* GameEngineDelegate.swift */,
 				A1CFED4927E5813A0062BCB2 /* State */,
 				9359ABB127E0464200D85899 /* Modes */,
@@ -1041,6 +1051,7 @@
 				9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */,
 				A1CFED4D27E5890F0062BCB2 /* TimeTrialGameEndState.swift in Sources */,
 				1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */,
+				1AC1605327F2F56D006E4018 /* GameEngine.swift in Sources */,
 				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
 				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
 				1A94D95B27ED8709001D8A86 /* SpriteSystem.swift in Sources */,
@@ -1071,7 +1082,6 @@
 				9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */,
 				1A94D95927ED8709001D8A86 /* Platform.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
-				1A94D93C27EB9642001D8A86 /* GameEngine.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				9353464227F02EFA00DC6F9E /* RepositionEvent.swift in Sources */,
 				931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */,

@@ -48,11 +48,11 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        setUpGameEngine()
+        setUpGameEngine(withUserId: userId)
         setUpSKViewAndPresent(scene: scene)
     }
 
-    private func setUpGameEngine() {
+    private func setUpGameEngine(withUserId userId: NetworkID) {
         guard let scene = scene else {
             fatalError("GameScene was not set up before GameEngine")
         }

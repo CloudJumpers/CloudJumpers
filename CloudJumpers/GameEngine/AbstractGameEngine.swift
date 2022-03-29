@@ -16,7 +16,7 @@ protocol AbstractGameEngine: InputResponder {
     var systems: [System] { get set }
 
     init(for delegate: GameEngineDelegate, channel: NetworkID?)
-    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID])
+    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID], with clouds: [Cloud])
     func updatePlayer(with displacement: CGVector)
     func update(within time: CGFloat)
 }
