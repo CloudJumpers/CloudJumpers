@@ -30,13 +30,13 @@ class GameViewController: UIViewController {
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        setUpGameEngine()
+        prepareGameEngine()
         setUpGameScene()
         setUpInputControls()
     }
 
-    private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(for: self, channel: lobby?.id)
+    private func prepareGameEngine() {
+        gameEngine = GameEngine(for: self, channel: lobby?.id)
         gameRules = TimeTrialGameRules()
     }
 
@@ -48,8 +48,26 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setUpGame()
+        setUpGameEngine()
         setUpSKViewAndPresent(scene: scene)
+    }
+
+    private func setUpGameEngine() {
+        guard let scene = scene else {
+            fatalError("GameScene was not set up before GameEngine")
+        }
+
+        let blueprint = Blueprint(
+            worldSize: scene.size,
+            platformSize: Constants.cloudNodeSize,
+            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            xToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...1.0,
+            firstPlatformPosition: Constants.playerInitialPosition)
+
+        let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
+
+        gameEngine?.setUpGame(with: clouds)
     }
 
     private func setUpSKViewAndPresent(scene: SKScene) {
