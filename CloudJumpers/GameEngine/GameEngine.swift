@@ -57,9 +57,9 @@ class GameEngine: AbstractGameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID] = [], with clouds: [Cloud]) {
+    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
         setUpClouds(clouds)
-        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds)
+        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
     }
 
     private func setUpClouds(_ clouds: [Cloud]) {
@@ -107,6 +107,7 @@ class GameEngine: AbstractGameEngine {
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
         addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
         addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
+        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
         metaData.playerId = player.id

@@ -67,7 +67,10 @@ class GameViewController: UIViewController {
 
         let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
 
-        gameEngine?.setUpGame(userId, additionalPlayerIds: lobby?.otherUsers.map { $0.id } ?? [], with: clouds)
+        gameEngine?.setUpGame(
+            with: clouds,
+            playerId: userId,
+            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
     private func setUpSKViewAndPresent(scene: SKScene) {
