@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class GameEngine: AbstractGameEngine {
+class GameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
@@ -114,7 +114,7 @@ class GameEngine: AbstractGameEngine {
         metaData.topPlatformId = topPlatform.id
     }
 
-    private func addNodeToScene(_ entity: Entity, with method: ((AbstractGameEngine, SKNode) -> Void)?) {
+    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
         guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
             return
         }

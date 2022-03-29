@@ -5,7 +5,7 @@ class GameViewController: UIViewController {
     static let MainStoryboard = "Main"
     static let EndGameViewControllerId = "EndGameViewController"
 
-    private var gameEngine: AbstractGameEngine?
+    private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
     private var gameRules: GameRules?
@@ -150,22 +150,22 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: AbstractGameEngine, didEndGameWith state: GameState) {
+    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
         if let endState = state as? TimeTrialGameEndState {
             self.transitionToEndGame(state: endState)
         }
     }
 
-    func engine(_ engine: AbstractGameEngine, addEntityWith node: SKNode) {
+    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(_ engine: AbstractGameEngine, addPlayerWith node: SKNode) {
+    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
         self.engine(engine, addEntityWith: node)
         scene?.cameraAnchorNode = node
     }
 
-    func engine(_ engine: AbstractGameEngine, addControlWith node: SKNode) {
+    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
         scene?.addStaticChild(node)
     }
 }
