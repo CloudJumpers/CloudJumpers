@@ -33,9 +33,11 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
+        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.playerSize)
+
         let spriteComponent = SpriteComponent(
             texture: texture.idle,
-            size: Constants.playerSize,
+            size: size,
             at: position,
             forEntityWith: id)
 
@@ -45,7 +47,9 @@ class Player: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
+        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.playerSize)
+
+        let physicsComponent = PhysicsComponent(rectangleOf: size, for: spriteComponent)
         physicsComponent.body.affectedByGravity = true
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0

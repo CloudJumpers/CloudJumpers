@@ -28,9 +28,11 @@ class Cloud: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         // TODO: Abstract out Clouds texture atlas
         let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
+
+        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.cloudNodeSize)
         let spriteComponent = SpriteComponent(
             texture: texture,
-            size: Constants.cloudNodeSize,
+            size: size,
             at: position,
             forEntityWith: id)
 
@@ -40,7 +42,9 @@ class Cloud: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize, for: spriteComponent)
+        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.cloudPhysicsSize)
+
+        let physicsComponent = PhysicsComponent(rectangleOf: size, for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false

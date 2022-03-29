@@ -11,7 +11,7 @@ struct Constants {
     static let outerstickSize = CGSize(width: 100.0, height: 100.0)
     static let innerstickSize = CGSize(width: 50.0, height: 50.0)
 
-    static let playerSize = CGSize(width: 60.0, height: 60.0)
+    static let playerSize = CGSize(width: 0.07, height: 0.07)
 
     static let joystickPosition = CGPoint(x: -280.0, y: -420.0)
 
@@ -40,10 +40,10 @@ struct Constants {
     static let timerInitial: Double = 0.0
 
     // Temporary Constant
-    static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
-    static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)
-    static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
-    static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
+    static let cloudNodeSize = CGSize(width: 0.25, height: 0.125)
+    static let cloudPhysicsSize = CGSize(width: 0.25, height: 0.005)
+    static let platformNodeSize = CGSize(width: 0.25, height: 0.125)
+    static let platformPhysicsSize = CGSize(width: 0.25, height: 0.005)
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)

@@ -9,18 +9,18 @@ import CoreGraphics
 
 class CGConverter {
     static let sharedConverter = CGConverter()
-    var sceneBound: CGRect
-    
+    var screenSize: CGSize
+
     private init() {
-        sceneBound = CGRect.zero
+        screenSize = .zero
     }
-    
-    func setSceneBound(bound: CGRect) {
-        sceneBound = bound
+
+    func setScreenSize(size: CGSize) {
+        screenSize = size
     }
-    
+
     func getSceneSize(for size: CGSize) -> CGSize {
-        return size.applying(.init(scaleX: sceneBound.width, y: sceneBound.width))
+        size.applying(.init(scaleX: screenSize.width, y: screenSize.width))
     }
-    
+
 }

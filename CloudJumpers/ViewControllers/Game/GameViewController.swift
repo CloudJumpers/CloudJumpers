@@ -48,6 +48,7 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
+
         setUpGameEngine(withUserId: userId)
         setUpSKViewAndPresent(scene: scene)
     }
@@ -56,10 +57,11 @@ class GameViewController: UIViewController {
         guard let scene = scene else {
             fatalError("GameScene was not set up before GameEngine")
         }
+        CGConverter.sharedConverter.setScreenSize(size: scene.size)
 
         let blueprint = Blueprint(
             worldSize: scene.size,
-            platformSize: Constants.cloudNodeSize,
+            platformSize: CGConverter.sharedConverter.getSceneSize(for: Constants.cloudNodeSize),
             tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
