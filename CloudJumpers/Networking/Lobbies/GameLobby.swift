@@ -35,6 +35,10 @@ class GameLobby: NetworkedLobby {
         users.count
     }
 
+    var otherUsers: [LobbyUser] {
+        users.filter { $0.id != AuthService().getUserId() }
+    }
+
     var userIsHost: Bool {
         hostId == AuthService().getUserId()
     }

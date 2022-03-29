@@ -7,11 +7,11 @@
 
 import Foundation
 import CoreGraphics
+import SpriteKit
 
 struct MoveEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
-    weak var gameDataTracker: GameMetaDataDelegate?
 
     private let displacement: CGVector
 
@@ -32,7 +32,11 @@ struct MoveEvent: Event {
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return }
 
-        spriteComponent.node.position += displacement
-        gameDataTracker?.updatePlayerPosition(position: spriteComponent.node.position)
+        let moveAction = SKAction.move(by: displacement, duration: 0.1)
+
+        spriteComponent.node.run(moveAction)
+
+        spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+
     }
 }

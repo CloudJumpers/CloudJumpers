@@ -7,13 +7,12 @@
 
 import SpriteKit
 
-class GameEngine {
+class GameEngine: AbstractGameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
     weak var delegate: GameEngineDelegate?
     var systems: [System]
-    var associatedEntity: Entity?
     var metaData: GameMetaData
 
     private var crossDeviceSyncTimer: Timer?
@@ -46,7 +45,34 @@ class GameEngine {
             addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
         }
 
-        setUpSampleGame()
+    func updatePlayer(with displacement: CGVector) {
+        guard let entity = associatedEntity,
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
+              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else {
+            return
+        }
+        if displacement != .zero {
+            inputMove(by: displacement)
+        } else if physicsComponent.body.velocity == .zero {
+            eventManager.add( AnimateEvent(on: entity, to: .idle))
+        }
+
+        updatePlayerTextureKind(texture: animationComponent.kind)
+        updatePlayerPosition(position: spriteComponent.node.position)
+    }
+
+    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID] = [], with clouds: [Cloud]) {
+        setUpClouds(clouds)
+        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds)
+    }
+
+    private func setUpClouds(_ clouds: [Cloud]) {
+        clouds.forEach { entity in
+            entityManager.add(entity)
+            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
+        }
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -70,30 +96,30 @@ class GameEngine {
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
-    private func setUpSampleGame() {
-        guard let userId = AuthService().getUserId() else {
-            return
-        }
-
+    private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: userId)
+        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
         entityManager.add(timer)
         entityManager.add(player)
         entityManager.add(topPlatform)
 
+        let otherPlayers = additionalPlayerIds.map {
+            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
+        }
+        otherPlayers.forEach(entityManager.add(_:))
+
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
         addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
         addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
 
         self.timer = timer
-        associatedEntity = player
         metaData.playerId = player.id
         metaData.topPlatformId = topPlatform.id
     }
 
-    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
+    private func addNodeToScene(_ entity: Entity, with method: ((AbstractGameEngine, SKNode) -> Void)?) {
         guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
             return
         }
@@ -147,14 +173,24 @@ extension GameEngine: GameMetaDataDelegate {
 
 // MARK: - InputResponder
 extension GameEngine: InputResponder {
+    var associatedEntity: Entity? {
+        get {
+            entityManager.entity(with: metaData.playerId)
+        }
+        set {
+            if let newId = newValue?.id {
+                metaData.playerId = newId
+            }
+        }
+    }
+
     func inputMove(by displacement: CGVector) {
         guard let entity = associatedEntity else {
             return
         }
+        eventManager.add(MoveEvent(on: entity, by: displacement))
+        eventManager.add(AnimateEvent(on: entity, to: .walking))
 
-        var event = MoveEvent(on: entity, by: displacement)
-        event.gameDataTracker = self
-        eventManager.add(event)
     }
 
     func inputJump() {
@@ -163,5 +199,6 @@ extension GameEngine: InputResponder {
         }
 
         eventManager.add(JumpEvent(on: entity))
+        eventManager.add(AnimateEvent(on: entity, to: .jumping))
     }
 }
