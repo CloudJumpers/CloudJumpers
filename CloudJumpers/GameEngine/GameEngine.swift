@@ -39,13 +39,6 @@ class GameEngine: AbstractGameEngine {
         updateSystems(within: time)
     }
 
-    func setUpGame(with entities: [Entity]) {
-        entities.forEach { entity in
-            entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
-        }
-    }
-
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
