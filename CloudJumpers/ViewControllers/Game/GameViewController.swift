@@ -5,7 +5,7 @@ class GameViewController: UIViewController {
     static let MainStoryboard = "Main"
     static let EndGameViewControllerId = "EndGameViewController"
 
-    private var gameEngine: AbstractGameEngine?
+    private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
     private var gameRules: GameRules?
@@ -30,12 +30,12 @@ class GameViewController: UIViewController {
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        setUpGameEngine()
+        prepareGameEngine()
         setUpGameScene()
         setUpInputControls()
     }
 
-    private func setUpGameEngine() {
+    private func prepareGameEngine() {
         gameEngine = GameEngine(for: self, channel: lobby?.id)
         gameRules = TimeTrialGameRules()
     }
@@ -48,8 +48,29 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setUpGame(userId, additionalPlayerIds: lobby?.otherUsers.map { $0.id } ?? [])
+        setUpGameEngine(withUserId: userId)
         setUpSKViewAndPresent(scene: scene)
+    }
+
+    private func setUpGameEngine(withUserId userId: NetworkID) {
+        guard let scene = scene else {
+            fatalError("GameScene was not set up before GameEngine")
+        }
+
+        let blueprint = Blueprint(
+            worldSize: scene.size,
+            platformSize: Constants.cloudNodeSize,
+            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            xToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...1.0,
+            firstPlatformPosition: Constants.playerInitialPosition)
+
+        let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
+
+        gameEngine?.setUpGame(
+            with: clouds,
+            playerId: userId,
+            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
     private func setUpSKViewAndPresent(scene: SKScene) {
@@ -129,22 +150,22 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: AbstractGameEngine, didEndGameWith state: GameState) {
+    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
         if let endState = state as? TimeTrialGameEndState {
             self.transitionToEndGame(state: endState)
         }
     }
 
-    func engine(_ engine: AbstractGameEngine, addEntityWith node: SKNode) {
+    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(_ engine: AbstractGameEngine, addPlayerWith node: SKNode) {
+    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
         self.engine(engine, addEntityWith: node)
         scene?.cameraAnchorNode = node
     }
 
-    func engine(_ engine: AbstractGameEngine, addControlWith node: SKNode) {
+    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
         scene?.addStaticChild(node)
     }
 }

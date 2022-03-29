@@ -7,8 +7,7 @@
 
 import SpriteKit
 
-class GameEngine: AbstractGameEngine {
-
+class GameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
@@ -58,8 +57,16 @@ class GameEngine: AbstractGameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(_ playerId: EntityID, additionalPlayerIds: [EntityID] = []) {
-        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds)
+    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+        setUpClouds(clouds)
+        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+    }
+
+    private func setUpClouds(_ clouds: [Cloud]) {
+        clouds.forEach { entity in
+            entityManager.add(entity)
+            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
+        }
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -87,18 +94,10 @@ class GameEngine: AbstractGameEngine {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
         let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
-        let entities: [Entity] = [
-            Cloud(at: CGPoint(x: 200, y: -200)),
-            Cloud(at: CGPoint(x: -100, y: -50)),
-            Cloud(at: CGPoint(x: 200, y: 100)),
-            Cloud(at: CGPoint(x: -100, y: 250)),
-            Cloud(at: CGPoint(x: 200, y: 400)),
-            Cloud(at: CGPoint(x: -100, y: 550))]
 
         entityManager.add(timer)
         entityManager.add(player)
         entityManager.add(topPlatform)
-        entities.forEach(entityManager.add(_:))
 
         let otherPlayers = additionalPlayerIds.map {
             Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
@@ -108,7 +107,6 @@ class GameEngine: AbstractGameEngine {
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
         addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
         addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
-        entities.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
         otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
@@ -116,7 +114,7 @@ class GameEngine: AbstractGameEngine {
         metaData.topPlatformId = topPlatform.id
     }
 
-    private func addNodeToScene(_ entity: Entity, with method: ((AbstractGameEngine, SKNode) -> Void)?) {
+    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
         guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
             return
         }
