@@ -488,7 +488,7 @@
                                                 <rect key="frame" x="0.0" y="40" width="820" height="30"/>
                                                 <menu key="menu" id="81y-aa-GWk">
                                                     <children>
-                                                        <command title="Item 1" id="Fef-4Z-GWu"/>
+                                                        <command title="Time Trial" id="Fef-4Z-GWu"/>
                                                         <command title="Item 2" id="VeQ-et-0je"/>
                                                     </children>
                                                 </menu>
