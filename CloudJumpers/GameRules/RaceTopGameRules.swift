@@ -11,7 +11,7 @@ class RaceTopGameRules: GameRules {
 
     unowned var lobby: GameLobby?
 
-    init(with lobby: GameLobby) {
+    init(with lobby: GameLobby?) {
         self.lobby = lobby
     }
 

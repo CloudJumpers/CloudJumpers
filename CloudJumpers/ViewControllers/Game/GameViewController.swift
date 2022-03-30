@@ -30,17 +30,19 @@ class GameViewController: UIViewController {
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
+
+        gameRules = RaceTopGameRules(with: lobby)
+//        gameRules = TimeTrialGameRules()
         prepareGameEngine()
         setUpGameScene()
+        setUpGameEngine()
         setUpInputControls()
+        setUpSKViewAndPresent()
+
     }
 
     private func prepareGameEngine() {
-        guard let lobby = lobby else {
-            return
-        }
-        gameEngine = GameEngine(for: self, channel: lobby.id)
-        gameRules = RaceTopGameRules(with: lobby)
+        gameEngine = GameEngine(for: self, channel: lobby?.id)
     }
 
     private func setUpGameScene() {
@@ -51,15 +53,13 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        setUpGameEngine()
-        setUpSKViewAndPresent(scene: scene)
     }
 
     private func setUpGameEngine() {
         guard let scene = scene,
               let gameEngine = gameEngine
         else {
-            fatalError("GameScene was not set up or GameEngine was not setup")
+            fatalError("GameScene was not set up or GameEngine was not prepared")
         }
 
         let blueprint = Blueprint(
@@ -76,7 +76,10 @@ class GameViewController: UIViewController {
 
     }
 
-    private func setUpSKViewAndPresent(scene: SKScene) {
+    private func setUpSKViewAndPresent() {
+        guard let scene = scene else {
+            fatalError("GameScene was not set up")
+        }
         let skView = SKView(frame: view.frame)
         skView.isMultipleTouchEnabled = true
         skView.ignoresSiblingOrder = true
@@ -135,8 +138,11 @@ extension GameViewController: GameSceneDelegate {
         else {
             return
         }
+        let newModeEvents = gameRules.createGameEvents(with: gameData)
+        newModeEvents.forEach({ gameEngine?.eventManager.add($0) })
 
         if gameRules.hasGameEnd(with: gameData) {
+            // TO DO: streamlined this
             transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameData.time))
         }
 
