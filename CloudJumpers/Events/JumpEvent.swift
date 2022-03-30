@@ -25,11 +25,11 @@ struct JumpEvent: Event {
         guard !isJumping(body: physicsComponent.body) else {
             return
         }
-        physicsComponent.body.applyImpulse(Constants.jumpImpulse)
+        physicsComponent.body.applyImpulse(SizeConstants.jumpImpulse)
 
     }
 
     private func isJumping(body: SKPhysicsBody) -> Bool {
-        abs(body.velocity.dy) > Constants.jumpYTolerance
+        abs(body.velocity.dy) > SizeConstants.jumpYTolerance
     }
 }

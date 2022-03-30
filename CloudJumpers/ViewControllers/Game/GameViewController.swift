@@ -61,11 +61,11 @@ class GameViewController: UIViewController {
 
         let blueprint = Blueprint(
             worldSize: scene.size,
-            platformSize: CGConverter.sharedConverter.getSceneSize(for: Constants.cloudNodeSize),
-            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            platformSize: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.cloudNodeSize),
+            tolerance: CGVector(dx: 150, dy: SizeConstants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition)
+            firstPlatformPosition: PositionConstants.playerInitialPosition)
 
         let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
 
@@ -90,8 +90,8 @@ class GameViewController: UIViewController {
             return
         }
 
-        let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
-        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
+        let joystick = Joystick(at: PositionConstants.joystickPosition, to: gameEngine)
+        let jumpButton = JumpButton(at: PositionConstants.jumpButtonPosition, to: gameEngine)
 
         scene?.addStaticChild(joystick)
         scene?.addStaticChild(jumpButton)

@@ -33,7 +33,7 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.playerSize)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.playerSize)
 
         let spriteComponent = SpriteComponent(
             texture: texture.idle,
@@ -41,19 +41,19 @@ class Player: Entity {
             at: position,
             forEntityWith: id)
 
-        spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
+        spriteComponent.node.zPosition = DepthPosition.player.rawValue
 
         return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.playerSize)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.playerSize)
 
         let physicsComponent = PhysicsComponent(rectangleOf: size, for: spriteComponent)
         physicsComponent.body.affectedByGravity = true
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.categoryBitMask = MiscConstants.bitmaskPlayer
 
         return physicsComponent
     }

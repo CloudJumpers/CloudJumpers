@@ -91,8 +91,8 @@ class GameEngine {
     private var timer: TimedLabel?
 
     private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
-        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
+        let timer = TimedLabel(at: PositionConstants.timerPosition, initial: SizeConstants.timerInitial)
+        let player = Player(at: PositionConstants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
         entityManager.add(timer)
@@ -100,7 +100,7 @@ class GameEngine {
         entityManager.add(topPlatform)
 
         let otherPlayers = additionalPlayerIds.map {
-            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
+            Player(at: PositionConstants.playerInitialPosition, texture: .character1, with: $0)
         }
         otherPlayers.forEach(entityManager.add(_:))
 

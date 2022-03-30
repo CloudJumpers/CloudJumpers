@@ -15,7 +15,7 @@ class JumpButton: SKSpriteNode {
         super.init(
             texture: SKTexture(imageNamed: Images.outerStick.name),
             color: .clear,
-            size: Constants.jumpButtonSize)
+            size: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.jumpButtonSize))
         configureNode(at: position)
     }
 
@@ -34,7 +34,7 @@ class JumpButton: SKSpriteNode {
 
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = DepthPosition.outerStick.rawValue
         self.position = position
     }
 

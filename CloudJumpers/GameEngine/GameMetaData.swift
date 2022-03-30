@@ -10,7 +10,7 @@ import Foundation
 class GameMetaData {
     var time = Double.zero
     var playerId = EntityID()
-    var playerPosition = Constants.playerInitialPosition
+    var playerPosition = PositionConstants.playerInitialPosition
     var playerTexture = Textures.Kind.idle
     var playerLocationMapping = [EntityID: EntityID]()
     var topPlatformId = EntityID()

@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-enum SpriteZPosition: CGFloat {
+enum DepthPosition: CGFloat {
     // z-index in increasing order
     case background, platform, player, outerStick, innerStick, button, timer
 }

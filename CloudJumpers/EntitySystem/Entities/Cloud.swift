@@ -29,28 +29,28 @@ class Cloud: Entity {
         // TODO: Abstract out Clouds texture atlas
         let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
 
-        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.cloudNodeSize)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.cloudNodeSize)
         let spriteComponent = SpriteComponent(
             texture: texture,
             size: size,
             at: position,
             forEntityWith: id)
 
-        spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
+        spriteComponent.node.zPosition = DepthPosition.platform.rawValue
 
         return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let size = CGConverter.sharedConverter.getSceneSize(for: Constants.cloudPhysicsSize)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.cloudPhysicsSize)
 
         let physicsComponent = PhysicsComponent(rectangleOf: size, for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.categoryBitMask = MiscConstants.bitmaskCloud
+        physicsComponent.body.contactTestBitMask = MiscConstants.bitmaskPlayer
 
         return physicsComponent
     }

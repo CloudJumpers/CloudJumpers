@@ -42,7 +42,7 @@ class EndGameViewController: UIViewController {
                 userId: playerId,
                 userDisplayName: displayName,
                 gameScore: score,
-                gameSeed: Constants.testLevelName, // TODO: change to prod level name
+                gameSeed: SizeConstants.testLevelName, // TODO: change to prod level name
                 callback: fetchNewHighscoresData
             )
         } else {
@@ -55,7 +55,7 @@ class EndGameViewController: UIViewController {
 
         highscoreManager.fetchTopFiveRecords(
             gameMode: .TimeTrial,
-            gameSeed: Constants.testLevelName, // TODO: change to prod level name
+            gameSeed: SizeConstants.testLevelName, // TODO: change to prod level name
             callback: onNewHighscoresData
         )
     }

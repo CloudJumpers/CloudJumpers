@@ -19,7 +19,7 @@ class Joystick: SKSpriteNode {
         super.init(
             texture: SKTexture(imageNamed: Images.outerStick.name),
             color: .clear,
-            size: Constants.outerstickSize)
+            size: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.outerstickSize))
         configureNode(at: position)
         addInnerStickNode()
     }
@@ -66,9 +66,9 @@ class Joystick: SKSpriteNode {
     }
 
     private func configureNode(at position: CGPoint) {
-        alpha = Constants.opacityTwo
+        alpha = MiscConstants.opacityTwo
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = DepthPosition.outerStick.rawValue
         self.position = position
     }
 
@@ -89,8 +89,8 @@ class Joystick: SKSpriteNode {
         let x = angle.dx * innerStickDisplacement
         let y = angle.dy * innerStickDisplacement
         return CGVector(
-            dx: -x * Constants.speedMultiplier,
-            dy: y * Constants.speedMultiplier)
+            dx: -x * SizeConstants.speedMultiplier,
+            dy: y * SizeConstants.speedMultiplier)
     }
 
     // MARK: - Inner Stick Modifiers
@@ -100,8 +100,8 @@ class Joystick: SKSpriteNode {
 
     private func addInnerStickNode() {
         let node = SKSpriteNode(imageNamed: Images.innerStick.name)
-        node.size = Constants.innerstickSize
-        node.zPosition = SpriteZPosition.innerStick.rawValue
+        node.size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.innerstickSize)
+        node.zPosition = DepthPosition.innerStick.rawValue
         innerStickNode = node
         addChild(node)
     }

@@ -30,10 +30,10 @@ class TimedLabel: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let labelNode = SKLabelNode()
         labelNode.position = position
-        labelNode.fontSize = Constants.timerSize.width
+        labelNode.fontSize = SizeConstants.timerSize.width
         labelNode.text = "\(initial)"
         labelNode.fontColor = .black
-        labelNode.zPosition = SpriteZPosition.timer.rawValue
+        labelNode.zPosition = DepthPosition.timer.rawValue
 
         return SpriteComponent(node: labelNode, forEntityWith: id)
     }
