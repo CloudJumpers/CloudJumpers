@@ -115,6 +115,24 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
+    func changeLobbyGameMode(to gameMode: GameMode) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
+        lobbyGameModeReference.setValue(gameMode.rawValue)
+    }
+
+    func changeLobbyName(to name: String) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyNameReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.lobbyName)
+        lobbyNameReference.setValue(name)
+    }
+
     private func constructLobbyPath(lobbyId: NetworkID) -> String {
         "/\(LobbyKeys.root)/\(lobbyId)"
     }

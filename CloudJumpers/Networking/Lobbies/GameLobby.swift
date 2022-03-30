@@ -191,6 +191,14 @@ class GameLobby: NetworkedLobby {
         updater?.toggleReady(userId: deviceUser.id)
     }
 
+    func changeGameMode(mode: GameMode) {
+        guard userIsHost else {
+            return
+        }
+
+        updater?.changeLobbyGameMode(to: mode)
+    }
+
     private func processLobbyUpdate() {
         guard
             isLobbyFinalized,

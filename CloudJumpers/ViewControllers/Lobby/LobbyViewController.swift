@@ -10,7 +10,7 @@ import UIKit
 class LobbyViewController: UIViewController {
     @IBOutlet private var lobbyUsersView: UITableView!
     @IBOutlet private var lobbyName: UILabel!
-    @IBOutlet private var gameMode: UILabel!
+    @IBOutlet private var gameMode: UIButton!
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
@@ -38,6 +38,8 @@ class LobbyViewController: UIViewController {
         } else {
             setActiveLobby()
         }
+
+        setUpGameModeMenu()
     }
 
     func setActiveLobby(id: NetworkID, name: String, hostId: NetworkID) {
@@ -123,7 +125,32 @@ class LobbyViewController: UIViewController {
     }
 
     private func setLobbyGameMode(_ mode: String) {
-        gameMode.text = mode
+        gameMode.menu?.children.forEach { action in
+            guard let action = action as? UIAction, action.title == mode else {
+                return
+            }
+
+            action.state = .on
+        }
+    }
+
+    private func setLobbyGameMode(action: UIAction) {
+        guard let selectedGameMode = GameMode(rawValue: action.title) else {
+            return
+        }
+
+        activeLobby?.changeGameMode(mode: selectedGameMode)
+    }
+
+    private func setUpGameModeMenu() {
+        if let lobby = activeLobby, lobby.userIsHost {
+            gameMode.menu = UIMenu(children: [
+                UIAction(title: GameMode.TimeTrial.rawValue, state: .on, handler: setLobbyGameMode)
+            ])
+        } else {
+            print("HELLO \(activeLobby)")
+            gameMode.isEnabled = false
+        }
     }
 }
 
