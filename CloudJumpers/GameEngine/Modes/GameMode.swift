@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GameMode: String {
+enum GameMode: String, CaseIterable {
     case timeTrial = "Time Trial"
     case raceTop = "Race Top"
 

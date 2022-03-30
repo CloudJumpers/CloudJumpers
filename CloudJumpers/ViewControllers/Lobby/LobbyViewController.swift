@@ -144,14 +144,17 @@ class LobbyViewController: UIViewController {
     }
 
     private func setUpGameModeMenu() {
-        guard let lobby = activeLobby, lobby.userIsHost else {
+        let gameModeOptions = GameMode.allCases.map({
+            UIAction(title: $0.rawValue, handler: changeLobbyGameMode)
+        })
+
+        guard let lobby = activeLobby, lobby.userIsHost, let defaultAction = gameModeOptions.first else {
             gameMode.isEnabled = false
             return
         }
 
-        gameMode.menu = UIMenu(children: [
-            UIAction(title: GameMode.TimeTrial.rawValue, state: .on, handler: changeLobbyGameMode)
-        ])
+        gameMode.menu = UIMenu(children: gameModeOptions)
+        changeLobbyGameMode(action: defaultAction)
     }
 }
 
