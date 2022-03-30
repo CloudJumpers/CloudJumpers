@@ -10,12 +10,14 @@ import SpriteKit
 class JumpButton: SKSpriteNode {
     private unowned var responder: InputResponder?
 
-    init(at position: CGPoint, to responder: InputResponder) {
+    init(to responder: InputResponder) {
+        let position = CGConverter.sharedConverter.getScenePosition(for: PositionConstants.jumpButtonPosition)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.jumpButtonSize)
         self.responder = responder
         super.init(
             texture: SKTexture(imageNamed: Images.outerStick.name),
             color: .clear,
-            size: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.jumpButtonSize))
+            size: size)
         configureNode(at: position)
     }
 

@@ -91,7 +91,8 @@ class GameEngine {
     private var timer: TimedLabel?
 
     private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
-        let timer = TimedLabel(at: PositionConstants.timerPosition, initial: SizeConstants.timerInitial)
+        let timerPosition = CGConverter.sharedConverter.getScenePosition(for: PositionConstants.timerPosition)
+        let timer = TimedLabel(at: timerPosition, initial: .zero)
         let player = Player(at: PositionConstants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 

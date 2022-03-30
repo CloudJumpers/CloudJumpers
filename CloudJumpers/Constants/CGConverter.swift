@@ -23,4 +23,12 @@ class CGConverter {
         size.applying(.init(scaleX: screenSize.width, y: screenSize.width))
     }
 
+    func getSceneVector(for vector: CGVector) -> CGVector {
+        vector.applying(.init(scaleX: screenSize.width, y: screenSize.width))
+    }
+
+    func getScenePosition(for position: CGPoint) -> CGPoint {
+        position.applying(.init(scaleX: screenSize.width, y: screenSize.width))
+    }
+
 }

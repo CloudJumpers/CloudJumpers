@@ -28,9 +28,10 @@ class TimedLabel: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.timerSize)
         let labelNode = SKLabelNode()
         labelNode.position = position
-        labelNode.fontSize = SizeConstants.timerSize.width
+        labelNode.fontSize = size.width
         labelNode.text = "\(initial)"
         labelNode.fontColor = .black
         labelNode.zPosition = DepthPosition.timer.rawValue

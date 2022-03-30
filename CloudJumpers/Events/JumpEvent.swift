@@ -25,11 +25,13 @@ struct JumpEvent: Event {
         guard !isJumping(body: physicsComponent.body) else {
             return
         }
-        physicsComponent.body.applyImpulse(SizeConstants.jumpImpulse)
+
+        let impulse = CGConverter.sharedConverter.getSceneVector(for: MiscConstants.jumpImpulse)
+        physicsComponent.body.applyImpulse(impulse)
 
     }
 
     private func isJumping(body: SKPhysicsBody) -> Bool {
-        abs(body.velocity.dy) > SizeConstants.jumpYTolerance
+        abs(body.velocity.dy) > MiscConstants.jumpYTolerance
     }
 }

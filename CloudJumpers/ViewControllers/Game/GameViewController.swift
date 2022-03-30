@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
         let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.cloudNodeSize),
-            tolerance: CGVector(dx: 150, dy: SizeConstants.jumpImpulse.dy),
+            tolerance: CGConverter.sharedConverter.getSceneVector(for: MiscConstants.tolerance),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
             firstPlatformPosition: PositionConstants.playerInitialPosition)
@@ -90,8 +90,8 @@ class GameViewController: UIViewController {
             return
         }
 
-        let joystick = Joystick(at: PositionConstants.joystickPosition, to: gameEngine)
-        let jumpButton = JumpButton(at: PositionConstants.jumpButtonPosition, to: gameEngine)
+        let joystick = Joystick(to: gameEngine)
+        let jumpButton = JumpButton(to: gameEngine)
 
         scene?.addStaticChild(joystick)
         scene?.addStaticChild(jumpButton)

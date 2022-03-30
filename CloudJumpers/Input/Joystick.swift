@@ -14,12 +14,14 @@ class Joystick: SKSpriteNode {
 
     var displacement: CGVector?
 
-    init(at position: CGPoint, to responder: InputResponder) {
+    init(to responder: InputResponder) {
         self.responder = responder
+        let position = CGConverter.sharedConverter.getScenePosition(for: PositionConstants.joystickPosition)
+        let size = CGConverter.sharedConverter.getSceneSize(for: SizeConstants.outerstickSize)
         super.init(
             texture: SKTexture(imageNamed: Images.outerStick.name),
             color: .clear,
-            size: CGConverter.sharedConverter.getSceneSize(for: SizeConstants.outerstickSize))
+            size: size)
         configureNode(at: position)
         addInnerStickNode()
     }
@@ -89,8 +91,8 @@ class Joystick: SKSpriteNode {
         let x = angle.dx * innerStickDisplacement
         let y = angle.dy * innerStickDisplacement
         return CGVector(
-            dx: -x * SizeConstants.speedMultiplier,
-            dy: y * SizeConstants.speedMultiplier)
+            dx: -x * MiscConstants.speedMultiplier,
+            dy: y * MiscConstants.speedMultiplier)
     }
 
     // MARK: - Inner Stick Modifiers
