@@ -66,9 +66,11 @@ class GameViewController: UIViewController {
             firstPlatformPosition: Constants.playerInitialPosition)
 
         let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
+        let powerUps = LevelGenerator.from(blueprint, seed: 69).map { PowerUp(at: $0, type: .freeze) }
 
         gameEngine?.setUpGame(
             with: clouds,
+            powerUps: powerUps,
             playerId: userId,
             additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }

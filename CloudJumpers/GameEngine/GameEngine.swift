@@ -25,7 +25,6 @@ class GameEngine {
         systems = []
         self.delegate = delegate
         contactResolver.metaDataDelegate = self
-        setUpSystems()
         setUpCrossDeviceSyncTimer()
     }
 
@@ -57,16 +56,24 @@ class GameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+    func setUpGame(with clouds: [Cloud], powerUps: [PowerUp], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
         setUpClouds(clouds)
+        setUpPowerUps(powerUps)
         setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        setUpSystems()
     }
 
     private func setUpClouds(_ clouds: [Cloud]) {
         clouds.forEach { entity in
             entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
         }
+    }
+
+    private func setUpPowerUps(_ powerUps: [PowerUp]) {
+        powerUps.forEach { entity in
+            entityManager.add(entity)
+        }
+        entityManager.add(PowerUp(at: CGPoint(x: -200.0, y: -300.0), type: .freeze))
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -77,8 +84,13 @@ class GameEngine {
     }
 
     private func setUpSystems() {
-        systems.append(TimedSystem(for: entityManager))
-        systems.append(SpriteSystem(for: entityManager))
+        let timedSystem = TimedSystem(for: entityManager)
+        let spriteSystem = SpriteSystem(for: entityManager)
+        spriteSystem.delegate = delegate
+        spriteSystem.associatedEntity = associatedEntity
+
+        systems.append(timedSystem)
+        systems.append(spriteSystem)
     }
 
     private func updateSystems(within time: CGFloat) {
@@ -94,32 +106,25 @@ class GameEngine {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
         let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
+        let leftWall = Wall(at: CGPoint(x: -350, y: 76.7))
+        let rightWall = Wall(at: CGPoint(x: 350, y: 76.7))
+        let floor = Floor(at: CGPoint(x: 0, y: -500))
 
         entityManager.add(timer)
         entityManager.add(player)
         entityManager.add(topPlatform)
+        entityManager.add(leftWall)
+        entityManager.add(rightWall)
+        entityManager.add(floor)
 
         let otherPlayers = additionalPlayerIds.map {
             Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
         }
         otherPlayers.forEach(entityManager.add(_:))
 
-        addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
-        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
-        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
-
         self.timer = timer
         metaData.playerId = player.id
         metaData.topPlatformId = topPlatform.id
-    }
-
-    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
-        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
-
-        method?(self, spriteComponent.node)
     }
 
     private func updateEvents() {
@@ -195,5 +200,13 @@ extension GameEngine: InputResponder {
 
         eventManager.add(JumpEvent(on: entity))
         eventManager.add(AnimateEvent(on: entity, to: .jumping))
+    }
+
+    func activatePowerUp(touchLocation: CGPoint) {
+        guard let entity = associatedEntity else {
+            return
+        }
+
+        eventManager.add(ActivatePowerUpEvent(on: entity, location: touchLocation))
     }
 }
