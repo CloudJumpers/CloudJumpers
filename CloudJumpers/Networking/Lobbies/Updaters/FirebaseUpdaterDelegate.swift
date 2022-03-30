@@ -72,19 +72,15 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             return
         }
 
-        let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
-        let lobbyReference = getLobbyReference(lobbyId: lobby.id)
-
-        let refToDelete = deleteLobby ? lobbyReference : userReference
-
-        refToDelete.removeValue { error, _ in
-            if let err = error {
-                print("error occurred during exitLobby: \(err.localizedDescription)")
-            }
+        if deleteLobby {
+            let lobbyReference = getLobbyReference(lobbyId: lobby.id)
+            let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
+            lobbyReference.removeValue()
+            channelReference.removeValue()
+        } else {
+            let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
+            userReference.removeValue()
         }
-
-        // Additionally, delete any game channels
-        Database.database().reference(withPath: "\(GameKeys.root)/\(lobby.id)").removeValue()
     }
 
     func toggleReady(userId: NetworkID) {
@@ -134,5 +130,9 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
     private func getLobbyUserReference(lobbyId: NetworkID, userId: NetworkID) -> DatabaseReference {
         getLobbyParticipantsReference(lobbyId: lobbyId).child(userId)
+    }
+
+    private func getLobbyChannelReference(lobbyId: NetworkID) -> DatabaseReference {
+        Database.database().reference(withPath: "\(GameKeys.root)/\(lobbyId)")
     }
 }

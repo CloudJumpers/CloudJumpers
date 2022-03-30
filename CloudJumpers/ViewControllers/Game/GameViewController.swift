@@ -30,26 +30,47 @@ class GameViewController: UIViewController {
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        setUpGameEngine()
+        prepareGameEngine()
         setUpGameScene()
         setUpInputControls()
     }
 
-    private func setUpGameEngine() {
-        gameEngine = SinglePlayerGameEngine(for: self, channel: lobby?.id)
+    private func prepareGameEngine() {
+        gameEngine = GameEngine(for: self, channel: lobby?.id)
         gameRules = TimeTrialGameRules()
     }
 
     private func setUpGameScene() {
-        guard let scene = GameScene(fileNamed: "GameScene") else {
+        guard let userId = AuthService().getUserId(), let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
         }
 
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        gameEngine?.setUpGame()
+        setUpGameEngine(withUserId: userId)
         setUpSKViewAndPresent(scene: scene)
+    }
+
+    private func setUpGameEngine(withUserId userId: NetworkID) {
+        guard let scene = scene else {
+            fatalError("GameScene was not set up before GameEngine")
+        }
+
+        let blueprint = Blueprint(
+            worldSize: scene.size,
+            platformSize: Constants.cloudNodeSize,
+            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            xToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...1.0,
+            firstPlatformPosition: Constants.playerInitialPosition)
+
+        let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
+
+        gameEngine?.setUpGame(
+            with: clouds,
+            playerId: userId,
+            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
     private func setUpSKViewAndPresent(scene: SKScene) {
@@ -106,7 +127,7 @@ class GameViewController: UIViewController {
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         gameEngine?.update(within: interval)
-        gameEngine?.inputMove(by: joystick?.displacement ?? .zero)
+        gameEngine?.updatePlayer(with: joystick?.displacement ?? .zero)
 
         guard let gameData = gameEngine?.metaData,
               let gameRules = gameRules
