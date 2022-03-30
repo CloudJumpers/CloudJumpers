@@ -44,7 +44,7 @@ class LobbyViewController: UIViewController {
             setActiveLobby()
         }
 
-        setUpGameModeMenu()
+        refreshGameModeMenu()
     }
 
     func setActiveLobby(id: NetworkID, name: String, gameMode: GameMode, hostId: NetworkID) {
@@ -119,6 +119,7 @@ class LobbyViewController: UIViewController {
 
     private func handleLobbyDataChange() {
         lobbyUsersView.reloadData()
+        refreshGameModeMenu()
 
         guard
             let lobby = activeLobby,
@@ -153,17 +154,34 @@ class LobbyViewController: UIViewController {
         activeLobby?.changeGameMode(mode: selectedGameMode)
     }
 
-    private func setUpGameModeMenu() {
-        let gameModeOptions = GameMode.allCases.map({
-            UIAction(title: $0.rawValue, handler: changeLobbyGameMode)
-        })
+    private func refreshGameModeMenu() {
+        guard let lobby = activeLobby else {
+            return
+        }
+
+        var gameModeOptions = [UIAction]()
+
+        GameMode.allCases.forEach {
+            let maxSupportedPlayers = $0.getMaxPlayer()
+
+            if maxSupportedPlayers >= lobby.numUsers {
+                gameModeOptions.append(UIAction(title: $0.rawValue, handler: changeLobbyGameMode))
+            }
+        }
+
+        guard let defaultAction = gameModeOptions.first else {
+            return
+        }
 
         gameMode.menu = UIMenu(children: gameModeOptions)
 
-        if let defaultAction = gameModeOptions.first, let lobby = activeLobby {
+        if let menu = gameMode.menu, let selected = menu.selectedElements.first as? UIAction {
+            changeLobbyGameMode(action: selected)
+        } else {
             changeLobbyGameMode(action: defaultAction)
-            gameMode.isEnabled = lobby.userIsHost
         }
+
+        gameMode.isEnabled = lobby.userIsHost
     }
 }
 
