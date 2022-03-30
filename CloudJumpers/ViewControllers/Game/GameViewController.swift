@@ -36,25 +36,30 @@ class GameViewController: UIViewController {
     }
 
     private func prepareGameEngine() {
-        gameEngine = GameEngine(for: self, channel: lobby?.id)
-        gameRules = TimeTrialGameRules()
+        guard let lobby = lobby else {
+            return
+        }
+        gameEngine = GameEngine(for: self, channel: lobby.id)
+        gameRules = RaceTopGameRules(with: lobby)
     }
 
     private func setUpGameScene() {
-        guard let userId = AuthService().getUserId(), let scene = GameScene(fileNamed: "GameScene") else {
+        guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
         }
 
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
-        setUpGameEngine(withUserId: userId)
+        setUpGameEngine()
         setUpSKViewAndPresent(scene: scene)
     }
 
-    private func setUpGameEngine(withUserId userId: NetworkID) {
-        guard let scene = scene else {
-            fatalError("GameScene was not set up before GameEngine")
+    private func setUpGameEngine() {
+        guard let scene = scene,
+              let gameEngine = gameEngine
+        else {
+            fatalError("GameScene was not set up or GameEngine was not setup")
         }
 
         let blueprint = Blueprint(
@@ -63,14 +68,12 @@ class GameViewController: UIViewController {
             tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition)
+            firstPlatformPosition: Constants.playerInitialPosition,
+            seed: 161_001
+        )
 
-        let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
+        gameRules?.prepareGameModes(gameEngine: gameEngine, blueprint: blueprint)
 
-        gameEngine?.setUpGame(
-            with: clouds,
-            playerId: userId,
-            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
     private func setUpSKViewAndPresent(scene: SKScene) {
@@ -150,11 +153,6 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
-        if let endState = state as? TimeTrialGameEndState {
-            self.transitionToEndGame(state: endState)
-        }
-    }
 
     func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
         scene?.addChild(node)
