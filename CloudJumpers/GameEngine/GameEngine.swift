@@ -36,6 +36,8 @@ class GameEngine {
         updateEvents()
         updateTime()
         updateSystems(within: time)
+
+        generateRandomEvents()
     }
 
     func updatePlayer(with displacement: CGVector) {
@@ -73,7 +75,6 @@ class GameEngine {
         powerUps.forEach { entity in
             entityManager.add(entity)
         }
-        entityManager.add(PowerUp(at: CGPoint(x: -200.0, y: -300.0), type: .freeze))
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -91,6 +92,20 @@ class GameEngine {
 
         systems.append(timedSystem)
         systems.append(spriteSystem)
+    }
+
+    private func generateRandomEvents() {
+        func getRandomEventHappen(at percentage: Int) -> Bool {
+            Int.random(in: 1...100) <= percentage
+        }
+        
+        // 1% chance that meteor will fall every 1/fps seconds
+        guard getRandomEventHappen(at: 1), let entity = associatedEntity else {
+            return
+        }
+
+        let disaster = Disaster(for: entity)
+        entityManager.add(disaster)
     }
 
     private func updateSystems(within time: CGFloat) {

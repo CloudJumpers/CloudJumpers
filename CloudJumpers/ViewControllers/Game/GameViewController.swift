@@ -66,7 +66,12 @@ class GameViewController: UIViewController {
             firstPlatformPosition: Constants.playerInitialPosition)
 
         let clouds = LevelGenerator.from(blueprint, seed: 69_420).map { Cloud(at: $0) }
-        let powerUps = LevelGenerator.from(blueprint, seed: 69).map { PowerUp(at: $0, type: .freeze) }
+
+        // TODO: Chane this to be generated from LevelGenerator
+        let powerUps = [
+            PowerUp(at: CGPoint(x: -200.0, y: -300.0), type: .freeze),
+            PowerUp(at: CGPoint(x: 200.0, y: -300.0), type: .confuse)
+        ]
 
         gameEngine?.setUpGame(
             with: clouds,
