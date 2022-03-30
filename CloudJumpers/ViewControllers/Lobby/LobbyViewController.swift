@@ -14,6 +14,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
+    let mode: GameMode = .timeTrial
     var activeListing: LobbyListing?
     var activeLobby: GameLobby?
 

@@ -1,12 +1,20 @@
 //
-//  TimeTrialGameRules.swift
+//  RaceTopGameRules.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 3/24/22.
+//  Created by Trong Tan on 3/30/22.
 //
 
 import Foundation
-class TimeTrialGameRules: GameRules {
+
+class RaceTopGameRules: GameRules {
+
+    unowned var lobby: GameLobby?
+
+    init(with lobby: GameLobby?) {
+        self.lobby = lobby
+    }
+
     func prepareGameModes(gameEngine: GameEngine, blueprint: Blueprint) {
         guard let userId = AuthService().getUserId() else {
             fatalError("Cannot find user")
@@ -15,7 +23,7 @@ class TimeTrialGameRules: GameRules {
         gameEngine.setUpGame(
             with: blueprint,
             playerId: userId,
-            additionalPlayerIds: nil)
+            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
     func createGameEvents(with gameData: GameMetaData) -> [Event] {
@@ -23,10 +31,7 @@ class TimeTrialGameRules: GameRules {
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
-        guard let playerLocationId = gameData.playerLocationMapping[gameData.playerId] else {
-            return false
-        }
-        return playerLocationId == gameData.topPlatformId
+        false
     }
 
 }

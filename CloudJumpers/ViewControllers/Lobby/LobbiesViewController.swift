@@ -178,11 +178,13 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let occupancy = lobbies[indexPath.item].numPlayers
         let name = lobbies[indexPath.item].lobbyName
 
+        let mode = GameMode.timeTrial
+
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)    // TODO: refactor when new gamemodes exist
+        lobbyCell.setGameMode(mode: mode)    // TODO: refactor when new gamemodes exist
         lobbyCell.setOccupancy(num: occupancy)
 
-        if occupancy < LobbyConstants.MaxSupportedPlayers {
+        if occupancy < mode.getMaxPlayer() {
             lobbyCell.backgroundColor = .green
         } else {
             lobbyCell.backgroundColor = .systemGray

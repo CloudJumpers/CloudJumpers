@@ -14,6 +14,7 @@ struct Blueprint {
     let xToleranceRange: ClosedRange<Float>
     let yToleranceRange: ClosedRange<Float>
     let firstPlatformPosition: CGPoint
+    let seed: Int
 }
 
 // MARK: - Codable

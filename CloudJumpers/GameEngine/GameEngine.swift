@@ -57,7 +57,8 @@ class GameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+    func setUpGame(with blueprint: Blueprint, playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+        let clouds = LevelGenerator.from(blueprint, seed: blueprint.seed).map { Cloud(at: $0) }
         setUpClouds(clouds)
         setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
     }
