@@ -48,7 +48,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if
-                currentData.childrenCount < GameMode.timeTrial.getMaxPlayer(),
+                currentData.childrenCount < lobby.gameMode.getMaxPlayer(),
                 var nextData = currentData.value as? [String: AnyObject],
                 nextData[userId] == nil
             {

@@ -81,6 +81,7 @@ class GameLobby: NetworkedLobby {
     /// Constructor for joining an externally created lobby
     init?(id: NetworkID,
           name: String,
+          gameMode: GameMode,
           hostId: NetworkID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
           onLobbyDataChange: LobbyDataAvailableCallback? = nil,
@@ -89,6 +90,7 @@ class GameLobby: NetworkedLobby {
     ) {
         self.id = id
         self.name = name
+        self.gameMode = gameMode
         self.hostId = hostId
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
