@@ -54,7 +54,7 @@ class EndGameViewController: UIViewController {
         let highscoreManager = HighscoreManager()
 
         highscoreManager.fetchTopFiveRecords(
-            gameMode: .TimeTrial,
+            gameMode: .timeTrial,
             gameSeed: Constants.testLevelName, // TODO: change to prod level name
             callback: onNewHighscoresData
         )
