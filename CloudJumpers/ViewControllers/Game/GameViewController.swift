@@ -30,9 +30,16 @@ class GameViewController: UIViewController {
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
+        guard let mode = lobby?.gameMode else {
+            return
+        }
+        switch mode {
+        case .timeTrial:
+            gameRules = TimeTrialGameRules()
+        case .raceTop:
+            gameRules = RaceTopGameRules(with: lobby)
+        }
 
-        gameRules = RaceTopGameRules(with: lobby)
-//        gameRules = TimeTrialGameRules()
         prepareGameEngine()
         setUpGameScene()
         setUpGameEngine()
