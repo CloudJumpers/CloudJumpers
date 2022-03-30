@@ -23,6 +23,7 @@ class EndGameViewController: UIViewController {
         scoreTableView.dataSource = self
         score.text = playerScore
         performGameScoreUpdates(score: playerScore)
+        SoundManager.i.play(.endWin)
     }
 
     func configure(names: [String], scores: [String], playerScore: String) {
