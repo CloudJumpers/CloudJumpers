@@ -142,7 +142,7 @@ class LobbyViewController: UIViewController {
                 return
             }
 
-            action.state = .on
+            action.state = action.title == mode ? .on : .off
         }
     }
 
@@ -169,19 +169,9 @@ class LobbyViewController: UIViewController {
             }
         }
 
-        guard let defaultAction = gameModeOptions.first else {
-            return
-        }
-
         gameMode.menu = UIMenu(children: gameModeOptions)
-
-        if let menu = gameMode.menu, let selected = menu.selectedElements.first as? UIAction {
-            changeLobbyGameMode(action: selected)
-        } else {
-            changeLobbyGameMode(action: defaultAction)
-        }
-
         gameMode.isEnabled = lobby.userIsHost
+        setLobbyGameMode(lobby.gameMode.rawValue)
     }
 }
 
