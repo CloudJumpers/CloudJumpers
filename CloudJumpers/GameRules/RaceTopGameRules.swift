@@ -27,7 +27,13 @@ class RaceTopGameRules: GameRules {
     }
 
     func createGameEvents(with gameData: GameMetaData) -> [Event] {
-        []
+        var events = [Event]()
+        for player in gameData.playerLocationMapping.keys where player != gameData.playerId {
+            if gameData.playerLocationMapping[player] == gameData.playerLocationMapping[gameData.playerId] {
+                events.append(RespawnEvent(onEntityWith: gameData.playerId, at: gameData.time))
+            }
+        }
+        return events
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
