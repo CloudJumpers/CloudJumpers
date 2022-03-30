@@ -98,7 +98,7 @@ class GameEngine {
         func getRandomEventHappen(at percentage: Int) -> Bool {
             Int.random(in: 1...100) <= percentage
         }
-        
+
         // 1% chance that meteor will fall every 1/fps seconds
         guard getRandomEventHappen(at: 1), let entity = associatedEntity else {
             return

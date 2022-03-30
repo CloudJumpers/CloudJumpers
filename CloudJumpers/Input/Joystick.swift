@@ -34,16 +34,18 @@ class Joystick: SKSpriteNode {
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard active,
-              let touch = touches.first
+              let touch = touches.first,
+              let innerStickNode = innerStickNode
         else { return }
 
         let locationInView = touch.location(in: scene?.camera ?? self)
         let angle = Self.angle(from: position, to: locationInView)
         let location = touch.location(in: self)
 
-        let displacement = distance(to: location, along: angle)
-        self.displacement = CGVector(dx: displacement.dx, dy: 0)
         moveInnerStickNode(to: location, along: angle)
+        let displacement = distance(to: innerStickNode.position, along: angle)
+        self.displacement = CGVector(dx: displacement.dx, dy: 0)
+
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

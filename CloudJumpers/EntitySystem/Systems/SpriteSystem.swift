@@ -44,7 +44,7 @@ class SpriteSystem: System {
                 continue
             }
 
-            // animation to fade power-up effect
+            // TODO: May not be a good idea to put it this way
             let node = spriteComponent.node
             let time = timedComponent.time
             node.alpha = (Constants.powerUpEffectDuration - time) / Constants.powerUpEffectDuration
@@ -55,7 +55,7 @@ class SpriteSystem: System {
         }
     }
 
-    // TODO: definitely have to refactor this
+    // TODO: May not be a good idea to put it this way
     private func updateInventoryItems() {
         guard let manager = manager else {
             return
