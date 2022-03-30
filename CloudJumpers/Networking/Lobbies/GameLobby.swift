@@ -16,7 +16,7 @@ enum LobbyState {
 class GameLobby: NetworkedLobby {
     let id: NetworkID
     private(set) var name: String
-    private(set) var gameMode: GameMode = .timeTrial // TODO: Pass this in from top level
+    private(set) var gameMode: GameMode = .timeTrial
     private(set) var lobbyState: LobbyState?
 
     let hostId: NetworkID
@@ -44,8 +44,9 @@ class GameLobby: NetworkedLobby {
     }
 
     private var isLobbyFinalized: Bool {
-        // TO DO: Change logic on this
-        users.count == gameMode.getMaxPlayer() && users.allSatisfy({ $0.isReady })
+        let minPlayersNeeded = gameMode.getMinPlayer()
+        let maxPlayersAllowed = gameMode.getMaxPlayer()
+        return (minPlayersNeeded ... maxPlayersAllowed).contains(users.count) && users.allSatisfy({ $0.isReady })
     }
 
     /// Constructor for creating a lobby hosted by the device user
