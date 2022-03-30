@@ -134,7 +134,7 @@ class LobbyViewController: UIViewController {
         }
     }
 
-    private func setLobbyGameMode(action: UIAction) {
+    private func changeLobbyGameMode(action: UIAction) {
         guard let selectedGameMode = GameMode(rawValue: action.title) else {
             return
         }
@@ -143,13 +143,14 @@ class LobbyViewController: UIViewController {
     }
 
     private func setUpGameModeMenu() {
-        if let lobby = activeLobby, lobby.userIsHost {
-            gameMode.menu = UIMenu(children: [
-                UIAction(title: GameMode.TimeTrial.rawValue, state: .on, handler: setLobbyGameMode)
-            ])
-        } else {
+        guard let lobby = activeLobby, lobby.userIsHost else {
             gameMode.isEnabled = false
+            return
         }
+
+        gameMode.menu = UIMenu(children: [
+            UIAction(title: GameMode.TimeTrial.rawValue, state: .on, handler: changeLobbyGameMode)
+        ])
     }
 }
 
