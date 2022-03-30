@@ -148,7 +148,6 @@ class LobbyViewController: UIViewController {
                 UIAction(title: GameMode.TimeTrial.rawValue, state: .on, handler: setLobbyGameMode)
             ])
         } else {
-            print("HELLO \(activeLobby)")
             gameMode.isEnabled = false
         }
     }
