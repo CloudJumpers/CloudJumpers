@@ -152,12 +152,6 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: GameEngine, didEndGameWith state: GameState) {
-        if let endState = state as? TimeTrialGameEndState {
-            self.transitionToEndGame(state: endState)
-        }
-    }
-
     func engine(addEntityWith node: SKNode) {
         scene?.addChild(node)
     }
