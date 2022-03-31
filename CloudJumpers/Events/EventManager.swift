@@ -16,7 +16,7 @@ class EventManager {
     private var gameEventDispatcher: GameEventDispatcher?
 
     init(channel: NetworkID?) {
-        events = EventQueue { $0.timestamp < $1.timestamp }
+        events = EventQueue(sort: Self.priority(_:_:))
         subscribe(to: channel)
     }
 
@@ -46,5 +46,17 @@ class EventManager {
         gameEventListener = FirebaseGameEventListener(channel)
         gameEventDispatcher = FirebaseGameEventDispatcher(channel)
         gameEventListener?.eventManager = self
+    }
+
+    private static func priority(_ event1: Event, _ event2: Event) -> Bool {
+        guard let rank1 = Events.type(of: event1)?.rawValue,
+              let rank2 = Events.type(of: event2)?.rawValue
+        else { fatalError("An Event was not registered in Events enum") }
+
+        if rank1 != rank2 {
+            return rank1 < rank2
+        } else {
+            return event1.timestamp < event2.timestamp
+        }
     }
 }
