@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class PostGameViewController: UIViewController {
-    private var postGameManager: PostGameManager?
+    var postGameManager: PostGameManager?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

@@ -112,26 +112,43 @@ class GameViewController: UIViewController {
     }
 
     private func transitionToEndGame(state: TimeTrialGameEndState) {
-        let storyboard = UIStoryboard(name: GameViewController.MainStoryboard, bundle: nil)
-
-        guard let endGameViewController = storyboard
-                .instantiateViewController(identifier: GameViewController.EndGameViewControllerId)
-                as? EndGameViewController
+        guard
+            let activeLobby = lobby,
+            let score = state.scores.first?.score
         else {
-            fatalError("Cannot find controller with identifier \(GameViewController.EndGameViewControllerId)")
+            return
         }
 
-        let scores = state.scores
-        let names = scores[1...].map { score in score.name }
-        let highScores = scores[1...].map { score in "\(score.score)" }
-        let playerScore = String(format: "%.1f", scores[0].score)
+        switch activeLobby.gameMode {
+        case.timeTrial:
+            let gameData = TimeTrialData(
+                lobbyId: activeLobby.id,
+                playerId: activeLobby.hostId,
+                playerName: AuthService().getUserDisplayName(),
+                seed: 161_001, // TODO: find a way to get seed
+                gameMode: activeLobby.gameMode.rawValue,
+                completionTime: score
+            )
 
-        endGameViewController.configure(names: names, scores: highScores, playerScore: playerScore)
-
-        if var viewControllers = self.navigationController?.viewControllers {
-            viewControllers[viewControllers.count - 1] = endGameViewController
-            self.navigationController?.setViewControllers(viewControllers, animated: true)
+            let timeTrialManager = TimeTrialsManager(gameData)
+            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
+        default:
+            return
         }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard
+            let dest = segue.destination as? PostGameViewController,
+            let manager = sender as? PostGameManager
+        else {
+            return
+        }
+
+        dest.postGameManager = manager
+        dest.postGameManager?.submitLocalData()
     }
 }
 

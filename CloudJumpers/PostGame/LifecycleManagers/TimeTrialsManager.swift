@@ -59,5 +59,10 @@ class TimeTrialsManager: PostGameManager {
     }
 
     private func handleRankingsResponse(_ data: Data) {
+        let decoder = JSONDecoder()
+
+        if let highscores = try? decoder.decode(HighscoreResponse.self, from: data) {
+            print(highscores.topFivePlayers)
+        }
     }
 }

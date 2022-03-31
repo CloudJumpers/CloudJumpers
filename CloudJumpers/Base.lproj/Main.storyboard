@@ -330,10 +330,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="R75-1h-J9X"/>
+                    <connections>
+                        <segue destination="6sz-Vb-aS8" kind="show" identifier="com.cs3217.cloudjumpers.gametopostgame" id="qQT-NS-5mE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1R-oS-Uhb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2644" y="-928"/>
+            <point key="canvasLocation" x="2606" y="-929"/>
         </scene>
         <!--Lobbies View Controller-->
         <scene sceneID="XVF-xh-Sy2">
@@ -648,7 +651,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sKG-Bl-ISY">
-                                <rect key="frame" x="50" y="74" width="720" height="1036"/>
+                                <rect key="frame" x="50" y="124" width="720" height="986"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.rankingcell" id="spZ-gi-BgD" customClass="PostGameRankingCell" customModule="CloudJumpers" customModuleProvider="target">
@@ -685,6 +688,7 @@
                             <constraint firstItem="91r-6l-Weu" firstAttribute="trailing" secondItem="sKG-Bl-ISY" secondAttribute="trailing" constant="50" id="chP-WT-1jv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="MOL-Or-OKj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRF-k8-VL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
