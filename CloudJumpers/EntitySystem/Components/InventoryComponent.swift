@@ -5,8 +5,6 @@
 //  Created by Phillmont Muktar on 26/3/22.
 //
 
-import Foundation
-
 class InventoryComponent: Component {
     typealias Inventory = Queue<EntityID>
 
