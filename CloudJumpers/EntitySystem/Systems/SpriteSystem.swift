@@ -175,15 +175,12 @@ class SpriteSystem: System {
 
     private func removeNodeFromScene(_ entity: Entity) {
         guard let entityManager = manager,
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
-              let delegate = delegate else {
-            return
-        }
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else { return }
 
-        let node = spriteComponent.node
-
-        delegate.engine(removeEntityFrom: node)
+        spriteComponent.node.removeFromParent()
     }
+
     func updateAnimation(of node: SKNode, with entity: Entity) {
         guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: entity) else {
             return
