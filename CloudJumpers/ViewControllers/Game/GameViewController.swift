@@ -36,7 +36,7 @@ class GameViewController: UIViewController {
     }
 
     private func prepareGameEngine() {
-        gameEngine = GameEngine(for: self, channel: lobby?.id)
+        gameEngine = GameEngine(rendersTo: self, channel: lobby?.id)
         gameRules = TimeTrialGameRules()
     }
 
@@ -150,17 +150,17 @@ extension GameViewController: GameSceneDelegate {
     }
 }
 
-// MARK: - GameEngineDelegate
-extension GameViewController: GameEngineDelegate {
-    func engine(_ engine: GameEngine, addNode node: SKNode) {
+// MARK: - SpriteSystemDelegate
+extension GameViewController: SpriteSystemDelegate {
+    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(_ engine: GameEngine, addStaticNode node: SKNode) {
+    func spriteSystem(_ system: SpriteSystem, addStaticNode node: SKNode) {
         scene?.addStaticChild(node)
     }
 
-    func engine(_ engine: GameEngine, bindCameraTo node: SKNode) {
+    func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
         scene?.cameraAnchorNode = node
     }
 }

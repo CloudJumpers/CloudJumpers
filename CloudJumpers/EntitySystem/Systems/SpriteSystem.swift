@@ -7,16 +7,20 @@
 
 import SpriteKit
 
-// TODO: refactor
 class SpriteSystem: System {
     unowned var manager: EntityManager?
-    unowned var delegate: GameEngineDelegate?
     unowned var associatedEntity: Entity?
+    unowned var delegate: SpriteSystemDelegate?
 
     private var addedEntity: Set<EntityID> = []
 
     required init(for manager: EntityManager) {
         self.manager = manager
+    }
+
+    convenience init(for manager: EntityManager, rendersTo delegate: SpriteSystemDelegate) {
+        self.delegate = delegate
+        self.init(for: manager)
     }
 
     func update(within time: CGFloat) {
@@ -165,11 +169,12 @@ class SpriteSystem: System {
 
         switch spriteComponent.cameraBind {
         case .normalBind:
-            delegate.engine(addEntityWith: node)
+            delegate.spriteSystem(self, addNode: node)
         case .anchorBind:
-            delegate.engine(addPlayerWith: node)
+            delegate.spriteSystem(self, addNode: node)
+            delegate.spriteSystem(self, bindCameraTo: node)
         case .staticBind:
-            delegate.engine(addControlWith: node)
+            delegate.spriteSystem(self, addStaticNode: node)
         }
     }
 

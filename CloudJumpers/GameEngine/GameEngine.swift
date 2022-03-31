@@ -11,21 +11,19 @@ class GameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
-    weak var delegate: GameEngineDelegate?
     var systems: [System]
     var metaData: GameMetaData
 
     private var crossDeviceSyncTimer: Timer?
 
-    required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
+    required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate, channel: NetworkID? = nil) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
         systems = []
-        self.delegate = delegate
         contactResolver.metaDataDelegate = self
-        setUpSystems()
+        setUpSystems(rendersTo: spriteSystemDelegate)
         setUpCrossDeviceSyncTimer()
     }
 
@@ -76,9 +74,11 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
-    private func setUpSystems() {
+    private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
+        let spriteSystem = SpriteSystem(for: entityManager)
+        spriteSystem.delegate = spriteSystemDelegate
+        systems.append(spriteSystem)
         systems.append(TimedSystem(for: entityManager))
-        systems.append(SpriteSystem(for: entityManager))
     }
 
     private func updateSystems(within time: CGFloat) {
