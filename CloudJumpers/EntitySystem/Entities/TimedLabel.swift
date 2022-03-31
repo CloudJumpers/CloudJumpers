@@ -35,7 +35,7 @@ class TimedLabel: Entity {
         labelNode.fontColor = .black
         labelNode.zPosition = SpriteZPosition.timer.rawValue
 
-        return SpriteComponent(node: labelNode, forEntityWith: id, cameraBind: .staticBind)
+        return SpriteComponent(node: labelNode, forEntityWith: id)
     }
 
     private func createTimedComponent() -> TimedComponent {

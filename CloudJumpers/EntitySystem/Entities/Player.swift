@@ -37,8 +37,7 @@ class Player: Entity {
             texture: texture.idle,
             size: Constants.playerSize,
             at: position,
-            forEntityWith: id,
-            cameraBind: .anchorBind)
+            forEntityWith: id)
 
         spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
 

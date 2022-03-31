@@ -10,39 +10,32 @@ import SpriteKit
 class SpriteComponent: Component {
     let id: ComponentID
     unowned var entity: Entity?
-    var cameraBind: CameraBind
     private(set) var removeNodeFromScene = false
 
     let node: SKNode
 
-    init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID,
-         cameraBind: CameraBind = .normalBind) {
+    init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
         id = EntityManager.newComponentID
         node = SKSpriteNode(texture: texture, size: size)
         node.position = position
         node.entityID = entityID
-        self.cameraBind = cameraBind
     }
 
-    init(imageNamed name: String, at position: CGPoint, forEntityWith entityID: EntityID,
-         cameraBind: CameraBind = .normalBind) {
+    init(imageNamed name: String, at position: CGPoint, forEntityWith entityID: EntityID) {
         id = EntityManager.newComponentID
         node = SKSpriteNode(imageNamed: name)
         node.position = position
         node.entityID = entityID
-        self.cameraBind = cameraBind
     }
 
-    convenience init(texture: SKTexture, at position: CGPoint, forEntityWith entityID: EntityID,
-                     cameraBind: CameraBind = .normalBind) {
-        self.init(texture: texture, size: texture.size(), at: position, forEntityWith: entityID, cameraBind: cameraBind)
+    convenience init(texture: SKTexture, at position: CGPoint, forEntityWith entityID: EntityID) {
+        self.init(texture: texture, size: texture.size(), at: position, forEntityWith: entityID)
     }
 
-    init(node: SKNode, forEntityWith entityID: EntityID, cameraBind: CameraBind = .normalBind) {
+    init(node: SKNode, forEntityWith entityID: EntityID) {
         id = EntityManager.newComponentID
         self.node = node
         node.entityID = entityID
-        self.cameraBind = cameraBind
     }
 
     func setRemoveNodeFromScene(_ set: Bool) {

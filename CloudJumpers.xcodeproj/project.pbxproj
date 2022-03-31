@@ -61,7 +61,6 @@
 		3E81C0E527EF37BC00184C55 /* PowerUpType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E427EF37BC00184C55 /* PowerUpType.swift */; };
 		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
-		3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0F927F0016500184C55 /* CameraBind.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -198,7 +197,6 @@
 		3E81C0E427EF37BC00184C55 /* PowerUpType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpType.swift; sourceTree = "<group>"; };
 		3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatePowerUpEvent.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
-		3E81C0F927F0016500184C55 /* CameraBind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraBind.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -394,7 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
-				3E81C0F927F0016500184C55 /* CameraBind.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
 				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
 				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
@@ -1081,7 +1078,6 @@
 				1A94D95B27ED8709001D8A86 /* SpriteSystem.swift in Sources */,
 				9353463E27F02D5400DC6F9E /* OnlineRepositionEvent.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
-				3E81C0FA27F0016500184C55 /* CameraBind.swift in Sources */,
 				A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */,
 				9353464027F02DA400DC6F9E /* RepositionEventCommand.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
