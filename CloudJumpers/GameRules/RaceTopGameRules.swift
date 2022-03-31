@@ -31,6 +31,7 @@ class RaceTopGameRules: GameRules {
         if isPlayerRespawn(with: gameData) {
             events.append(RespawnEvent(onEntityWith: gameData.playerId,
                                        to: gameData.playerStartingPosition))
+            gameData.locationMapping.removeValue(forKey: gameData.playerId)
         }
         return events
     }
@@ -54,7 +55,11 @@ class RaceTopGameRules: GameRules {
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
-        false
+        // Temporary end game condition
+        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.0 else {
+            return false
+        }
+        return playerLocationId == gameData.topPlatformId
     }
 
 }

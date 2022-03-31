@@ -30,6 +30,8 @@ class RespawnEvent: Event {
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return }
 
+        print("RESPAWN")
+
         spriteComponent.node.position = position
     }
 }

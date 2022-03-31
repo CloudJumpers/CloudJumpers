@@ -95,6 +95,7 @@ class GameEngine {
                                    with: id)
             entityManager.add(character)
             if id == playerId {
+                metaData.playerStartingPosition = Constants.playerInitialPositions[locationIndex]
                 addNodeToScene(character, with: delegate?.engine(_:addPlayerWith:))
             } else {
                 addNodeToScene(character, with: delegate?.engine(_:addEntityWith:))
