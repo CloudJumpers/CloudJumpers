@@ -15,7 +15,7 @@ class GameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setUpSynchronizedStart()
-        SoundManager.i.stop(.background)
+        SoundManager.instance.stop(.background)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

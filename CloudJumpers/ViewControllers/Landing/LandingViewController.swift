@@ -14,7 +14,7 @@ class LandingViewController: UIViewController {
         let auth = AuthService()
         auth.isLoggedIn() ? moveToLobbies() : moveToLoginOptions()
 
-        SoundManager.i.play(.background, loopsBy: -1)
+        SoundManager.instance.play(.background, loopsBy: -1)
     }
 
     private func moveToLoginOptions() {

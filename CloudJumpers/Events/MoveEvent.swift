@@ -38,6 +38,6 @@ struct MoveEvent: Event {
 
         spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
 
-        SoundManager.i.play(.walking)
+        SoundManager.instance.play(.walking)
     }
 }

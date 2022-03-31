@@ -27,8 +27,8 @@ struct JumpEvent: Event {
         }
         physicsComponent.body.applyImpulse(Constants.jumpImpulse)
 
-        SoundManager.i.play(.jumpFoot)
-        SoundManager.i.play(.jumpCape)
+        SoundManager.instance.play(.jumpFoot)
+        SoundManager.instance.play(.jumpCape)
     }
 
     private func isJumping(body: SKPhysicsBody) -> Bool {

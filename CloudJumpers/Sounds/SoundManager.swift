@@ -8,7 +8,7 @@
 import AVFAudio
 
 class SoundManager {
-    static let i = SoundManager()
+    static let instance = SoundManager()
     private var players: [Sounds: AVAudioPlayer]
 
     init() {
