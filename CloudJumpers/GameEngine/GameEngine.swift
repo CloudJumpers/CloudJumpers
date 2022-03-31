@@ -200,11 +200,15 @@ extension GameEngine: InputResponder {
     }
 
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
+        guard let entity = associatedEntity,
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+        else {
             return
         }
         eventManager.add(MoveEvent(on: entity, by: displacement))
-        eventManager.add(AnimateEvent(on: entity, to: .walking))
+        if physicsComponent.body.velocity == .zero {
+            eventManager.add(AnimateEvent(on: entity, to: .walking))
+        }
 
     }
 
