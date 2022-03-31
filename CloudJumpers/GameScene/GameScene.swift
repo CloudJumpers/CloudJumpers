@@ -62,10 +62,6 @@ class GameScene: SKScene {
         cameraNode?.addChild(node)
     }
 
-    func removeChild(_ node: SKNode) {
-        node.removeFromParent()
-    }
-
     private func panCameraToAnchorNode() {
         guard let cameraAnchorNode = cameraAnchorNode else {
             return
