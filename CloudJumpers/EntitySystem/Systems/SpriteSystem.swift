@@ -28,13 +28,18 @@ class SpriteSystem: System {
             return
         }
 
+        var entitiesToPrune = sprites
+
         for spriteComponent in manager.components(ofType: SpriteComponent.self) {
             guard let entity = spriteComponent.entity else {
                 fatalError("SpriteComponent does not contain reference to its Entity")
             }
 
+            markInvalidEntity(entity, into: &entitiesToPrune)
             updateNode(spriteComponent.node, with: entity)
         }
+
+        pruneSprites(in: entitiesToPrune)
     }
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
@@ -115,6 +120,22 @@ class SpriteSystem: System {
         delegate?.spriteSystem(self, removeNode: node)
 
         sprites.remove(entity.id)
+    }
+
+    private func markInvalidEntity(_ entity: Entity, into entitiesToPrune: inout Set<EntityID>) {
+        if entitiesToPrune.contains(entity.id) {
+            entitiesToPrune.remove(entity.id)
+        }
+    }
+
+    private func pruneSprites(in entitiesToPrune: Set<EntityID>) {
+        for entityID in entitiesToPrune {
+            guard let entity = manager?.entity(with: entityID),
+                  let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity)
+            else { continue }
+
+            removeSprite(spriteComponent.node, with: entity)
+        }
     }
 
     private func isEntityNotRendered(_ entity: Entity, _ node: SKNode) -> Bool {
