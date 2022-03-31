@@ -6,13 +6,10 @@
 //
 
 class TimedComponent: Component {
-    let id: ComponentID
-    unowned var entity: Entity?
-
     var time: Double
 
     init(time: Double) {
-        id = EntityManager.newComponentID
         self.time = time
+        super.init()
     }
 }

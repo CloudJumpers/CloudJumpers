@@ -5,4 +5,4 @@
 //  Created by Phillmont Muktar on 31/3/22.
 //
 
-class CameraAnchorTag: EmptyComponent { }
+class CameraAnchorTag: Component { }

@@ -8,13 +8,10 @@
 class InventoryComponent: Component {
     typealias Inventory = Queue<EntityID>
 
-    let id: ComponentID
-    unowned var entity: Entity?
-
     var inventory: Inventory
 
-    init() {
-        id = EntityManager.newComponentID
+    override init() {
         inventory = Inventory()
+        super.init()
     }
 }

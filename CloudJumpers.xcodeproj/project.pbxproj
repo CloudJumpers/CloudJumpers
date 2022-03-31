@@ -50,7 +50,6 @@
 		1ACE97CB27EB26BB005AA18B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C627EB26BB005AA18B /* System.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
-		1ADEDD8B27F587CC00C3AFD3 /* EmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
 		1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */; };
 		1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */; };
@@ -189,7 +188,6 @@
 		1ACE97C627EB26BB005AA18B /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyComponent.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
 		1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStaticTag.swift; sourceTree = "<group>"; };
 		1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerComponent.swift; sourceTree = "<group>"; };
@@ -407,7 +405,6 @@
 				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
 				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
 				1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */,
-				1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */,
 				1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */,
 			);
 			path = Components;
@@ -1043,7 +1040,6 @@
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
-				1ADEDD8B27F587CC00C3AFD3 /* EmptyComponent.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,

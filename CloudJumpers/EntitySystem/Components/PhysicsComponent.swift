@@ -8,26 +8,23 @@
 import SpriteKit
 
 class PhysicsComponent: Component {
-    let id: ComponentID
-    unowned var entity: Entity?
-
     let body: SKPhysicsBody
 
     init(rectangleOf size: CGSize, for spriteComponent: SpriteComponent) {
-        id = EntityManager.newComponentID
         body = SKPhysicsBody(rectangleOf: size)
+        super.init()
         spriteComponent.node.physicsBody = body
     }
 
     init(circleOf radius: CGFloat, for spriteComponent: SpriteComponent) {
-        id = EntityManager.newComponentID
         body = SKPhysicsBody(circleOfRadius: radius)
+        super.init()
         spriteComponent.node.physicsBody = body
     }
 
     init(texture: SKTexture, size: CGSize, for spriteComponent: SpriteComponent) {
-        id = EntityManager.newComponentID
         body = SKPhysicsBody(texture: texture, size: size)
+        super.init()
         spriteComponent.node.physicsBody = body
     }
 
