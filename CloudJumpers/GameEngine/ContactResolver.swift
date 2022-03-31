@@ -26,19 +26,25 @@ class ContactResolver {
 
         if isPlayerChangingLocation(nodeA: nodeA, nodeB: nodeB) {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
+        } else if isPlayerChangingLocation(nodeA: nodeB, nodeB: nodeA) {
+            metaDataDelegate?.metaData(changePlayerLocation: idB, location: idA)
         }
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node,
-              let idA = nodeA.entityID
+              let idA = nodeA.entityID,
+              let idB = nodeB.entityID
+
         else {
             return
         }
 
         if isPlayerChangingLocation(nodeA: nodeA, nodeB: nodeB) {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: nil)
+        } else if isPlayerChangingLocation(nodeA: nodeB, nodeB: nodeA) {
+            metaDataDelegate?.metaData(changePlayerLocation: idB, location: nil)
         }
     }
 
