@@ -23,7 +23,8 @@ struct ObtainEvent: Event {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let otherEntity = entityManager.entity(with: otherEntityID),
-              let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity)
+              let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
+              ownerComponent.ownerEntityId == nil
         else { return }
 
         inventoryComponent.inventory.enqueue(otherEntityID)
