@@ -182,4 +182,12 @@ extension GameEngine: InputResponder {
         eventManager.add(JumpEvent(on: entity))
         eventManager.add(AnimateEvent(on: entity, to: .jumping))
     }
+
+    func activatePowerUp(at location: CGPoint) {
+        guard let entity = associatedEntity else {
+            return
+        }
+
+        eventManager.add(ActivatePowerUpEvent(on: entity, location: location))
+    }
 }
