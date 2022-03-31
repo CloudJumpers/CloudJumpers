@@ -25,6 +25,7 @@ class PowerUp: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(OwnerComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
