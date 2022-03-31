@@ -199,7 +199,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
 
         lobbyCell.setRoomName(name: name)
         lobbyCell.setGameMode(mode: mode)
-        lobbyCell.setOccupancy(num: occupancy)
+        lobbyCell.setOccupancy(num: occupancy, mode: mode)
 
         if occupancy < mode.getMaxPlayer() {
             lobbyCell.backgroundColor = .green

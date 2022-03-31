@@ -88,19 +88,17 @@ class GameEngine {
 
         allPlayerId.sort()
 
-        var locationIndex = 0 // Assume that we only have max 4 players
-        for id in allPlayerId {
-            let character = Player(at: Constants.playerInitialPositions[locationIndex],
+        for (index, id) in allPlayerId.enumerated() {
+            let character = Player(at: Constants.playerInitialPositions[index],
                                    texture: .character1,
                                    with: id)
             entityManager.add(character)
             if id == playerId {
-                metaData.playerStartingPosition = Constants.playerInitialPositions[locationIndex]
+                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
                 addNodeToScene(character, with: delegate?.engine(_:addPlayerWith:))
             } else {
                 addNodeToScene(character, with: delegate?.engine(_:addEntityWith:))
             }
-            locationIndex += 1
         }
 
     }

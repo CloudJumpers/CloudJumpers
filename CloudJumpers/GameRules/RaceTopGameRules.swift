@@ -46,8 +46,8 @@ class RaceTopGameRules: GameRules {
                 continue
             }
 
-            if characterLocationInfo.0 == playerLocationInfo.0 &&
-                characterLocationInfo.1 > playerLocationInfo.1 {
+            if characterLocationInfo.location == playerLocationInfo.location &&
+                characterLocationInfo.time > playerLocationInfo.time {
                 return true
             }
         }
@@ -56,7 +56,7 @@ class RaceTopGameRules: GameRules {
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
         // Temporary end game condition
-        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.0 else {
+        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.location else {
             return false
         }
         return playerLocationId == gameData.topPlatformId
