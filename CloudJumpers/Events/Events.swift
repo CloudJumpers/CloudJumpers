@@ -6,6 +6,8 @@
 //
 
 enum Events: Int, CaseIterable {
+    case bi
+    case log
     case move
     case jump
     case animate
@@ -14,6 +16,10 @@ enum Events: Int, CaseIterable {
 
     static func type(of event: Event) -> Events? {
         switch event {
+        case is BiEvent:
+            return .bi
+        case is LogEvent:
+            return .log
         case is MoveEvent:
             return .move
         case is JumpEvent:

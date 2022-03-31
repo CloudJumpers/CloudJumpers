@@ -183,9 +183,9 @@ extension GameEngine: InputResponder {
         guard let entity = associatedEntity else {
             return
         }
+
         eventManager.add(MoveEvent(on: entity, by: displacement))
         eventManager.add(AnimateEvent(on: entity, to: .walking))
-
     }
 
     func inputJump() {

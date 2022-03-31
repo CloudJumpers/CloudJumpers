@@ -16,4 +16,8 @@ protocol Event {
 
 extension Event {
     func execute(in entityManager: EntityManager) { }
+
+    func then(do event: Event) -> Event {
+        BiEvent(self, event)
+    }
 }
