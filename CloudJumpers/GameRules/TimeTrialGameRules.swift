@@ -23,7 +23,7 @@ class TimeTrialGameRules: GameRules {
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
-        guard let playerLocationId = gameData.playerLocationMapping[gameData.playerId] else {
+        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.0 else {
             return false
         }
         return playerLocationId == gameData.topPlatformId

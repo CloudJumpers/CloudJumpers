@@ -41,13 +41,11 @@ class ContactResolver {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: nil)
         }
     }
-    
-    
-    
+
     func isPlayerChangingLocation(nodeA: SKNode, nodeB: SKNode) -> Bool {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
-        
+
         return nodeABitMask == Constants.bitmaskPlayer
         && (nodeBBitMask == Constants.bitmaskPlatform || nodeBBitMask == Constants.bitmaskCloud)
         && isPlayerOnPlatform(player: nodeA, platform: nodeB)

@@ -28,12 +28,29 @@ class RaceTopGameRules: GameRules {
 
     func createGameEvents(with gameData: GameMetaData) -> [Event] {
         var events = [Event]()
-        for player in gameData.playerLocationMapping.keys where player != gameData.playerId {
-            if gameData.playerLocationMapping[player] == gameData.playerLocationMapping[gameData.playerId] {
-                events.append(RespawnEvent(onEntityWith: gameData.playerId, at: gameData.time))
-            }
+        if isPlayerRespawn(with: gameData) {
+            events.append(RespawnEvent(onEntityWith: gameData.playerId,
+                                       to: gameData.playerStartingPosition))
         }
         return events
+    }
+
+    private func isPlayerRespawn(with gameData: GameMetaData) -> Bool {
+
+        for character in gameData.locationMapping.keys {
+            guard character != gameData.playerId,
+                  let characterLocationInfo = gameData.locationMapping[character],
+                  let playerLocationInfo = gameData.locationMapping[gameData.playerId]
+            else {
+                continue
+            }
+
+            if characterLocationInfo.0 == playerLocationInfo.0 &&
+                characterLocationInfo.1 > playerLocationInfo.1 {
+                return true
+            }
+        }
+        return false
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {

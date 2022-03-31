@@ -11,7 +11,8 @@ class GameMetaData {
     var time = Double.zero
     var playerId = EntityID()
     var playerPosition = Constants.playerInitialPosition
+    var playerStartingPosition = Constants.playerInitialPosition
     var playerTexture = Textures.Kind.idle
-    var playerLocationMapping = [EntityID: EntityID]()
+    var locationMapping = [EntityID: (EntityID, TimeInterval)]()
     var topPlatformId = EntityID()
 }

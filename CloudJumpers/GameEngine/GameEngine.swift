@@ -149,9 +149,9 @@ extension GameEngine: GameMetaDataDelegate {
 
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
-            metaData.playerLocationMapping[player] = location
+            metaData.locationMapping[player] = (location, metaData.time)
         } else {
-            metaData.playerLocationMapping.removeValue(forKey: player)
+            metaData.locationMapping.removeValue(forKey: player)
         }
     }
 
