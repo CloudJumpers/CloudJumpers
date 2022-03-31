@@ -65,7 +65,7 @@ class GameEngine {
     private func setUpClouds(_ clouds: [Cloud]) {
         clouds.forEach { entity in
             entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
+            addNodeToScene(entity, with: delegate?.engine(addEntityWith:))
         }
     }
 
@@ -104,22 +104,22 @@ class GameEngine {
         }
         otherPlayers.forEach(entityManager.add(_:))
 
-        addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
-        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
-        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
+        addNodeToScene(timer, with: delegate?.engine(addControlWith:))
+        addNodeToScene(player, with: delegate?.engine(addPlayerWith:))
+        addNodeToScene(topPlatform, with: delegate?.engine(addEntityWith:))
+        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(addEntityWith:)) }
 
         self.timer = timer
         metaData.playerId = player.id
         metaData.topPlatformId = topPlatform.id
     }
 
-    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
+    private func addNodeToScene(_ entity: Entity, with method: ((SKNode) -> Void)?) {
         guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
             return
         }
 
-        method?(self, spriteComponent.node)
+        method?(spriteComponent.node)
     }
 
     private func updateEvents() {
