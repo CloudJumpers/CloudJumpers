@@ -81,7 +81,6 @@ class SpriteSystem: System {
             removeNodeFromScene(inventoryEntity)
 
             spriteComponent.node.position = position
-            spriteComponent.cameraBind = .staticBind
             spriteComponent.node.physicsBody = nil
 
             addNodeToScene(inventoryEntity)
@@ -172,9 +171,9 @@ class SpriteSystem: System {
             delegate.spriteSystem(self, addNode: node)
         case .anchorBind:
             delegate.spriteSystem(self, addNode: node)
+        let `static` = entityManager.hasComponent(ofType: CameraStaticTag.self, in: entity)
+        if entityManager.hasComponent(ofType: CameraAnchorTag.self, in: entity) {
             delegate.spriteSystem(self, bindCameraTo: node)
-        case .staticBind:
-            delegate.spriteSystem(self, addStaticNode: node)
         }
     }
 

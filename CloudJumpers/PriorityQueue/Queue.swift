@@ -7,7 +7,7 @@
 
 /// A first-in first-out data structure. Enqueuing and dequeuing are O(1) operations.
 struct Queue<T> {
-    private var array = [T?]()
+    private var array: [T?] = []
     private var head = 0
 
     var count: Int {
@@ -47,6 +47,17 @@ struct Queue<T> {
         } else {
             return array[head]
         }
+    }
+
+    var iterable: [T] {
+        var array: [T] = []
+
+        var queue = self
+        while let item = queue.dequeue() {
+            array.append(item)
+        }
+
+        return array
     }
 }
 

@@ -60,6 +60,10 @@ class EntityManager {
         return nil
     }
 
+    func hasComponent<T: Component>(ofType type: T.Type, in entity: Entity) -> Bool {
+        component(ofType: T.self, of: entity) != nil
+    }
+
     func components<T: Component>(ofType type: T.Type) -> [T] {
         components.values.compactMap { $0 as? T }
     }

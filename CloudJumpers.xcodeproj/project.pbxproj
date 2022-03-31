@@ -49,6 +49,9 @@
 		1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C527EB26BB005AA18B /* Entity.swift */; };
 		1ACE97CB27EB26BB005AA18B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C627EB26BB005AA18B /* System.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
+		1ADEDD8B27F587CC00C3AFD3 /* EmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */; };
+		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
+		1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
 		3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5227DE05E500D51300 /* SpriteZPosition.swift */; };
@@ -183,6 +186,9 @@
 		1ACE97C527EB26BB005AA18B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		1ACE97C627EB26BB005AA18B /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
+		1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyComponent.swift; sourceTree = "<group>"; };
+		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
+		1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStaticTag.swift; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4727DDAB1300D51300 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -391,11 +397,13 @@
 		1A94D94627ED8709001D8A86 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1ADEDD8F27F58D1600C3AFD3 /* Tags */,
 				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
 				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
 				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
 				1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */,
+				1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -460,6 +468,15 @@
 				1A94D95027ED8709001D8A86 /* Systems */,
 			);
 			path = EntitySystem;
+			sourceTree = "<group>";
+		};
+		1ADEDD8F27F58D1600C3AFD3 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */,
+				1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */,
+			);
+			path = Tags;
 			sourceTree = "<group>";
 		};
 		3E81C0E627EF3AA200184C55 /* PowerUp */ = {
@@ -1020,6 +1037,7 @@
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
+				1ADEDD8B27F587CC00C3AFD3 /* EmptyComponent.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
@@ -1044,6 +1062,7 @@
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				1A94D96F27EEB361001D8A86 /* AnimateEvent.swift in Sources */,
+				1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */,
 				9339BF0127E6264800FC8077 /* HighscoreManager.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
@@ -1113,6 +1132,7 @@
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
 				9356AB6E27EEF719008CDEC1 /* OnlineEvent.swift in Sources */,
 				9339BF0727E62E9700FC8077 /* HighscoreResponse.swift in Sources */,
+				1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
