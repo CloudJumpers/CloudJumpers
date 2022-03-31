@@ -40,64 +40,9 @@ class SpriteSystem: System {
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
         synchronizeSprite(node, with: entity)
+        updateInventory(of: node, with: entity)
         updateAnimation(of: node, with: entity)
         updateTimed(of: node, with: entity)
-    }
-
-    private func updateAddedEntities() {
-        guard let manager = manager else {
-            return
-        }
-
-        for entityID in addedEntity {
-            guard let entity = manager.entity(with: entityID),
-                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity) else {
-                addedEntity.remove(entityID)
-                continue
-            }
-
-            guard let powerUpEffect = entity as? PowerUpEffect,
-                  let timedComponent = manager.component(ofType: TimedComponent.self, of: entity)  else {
-                continue
-            }
-
-            // animation to fade power-up effect
-            let node = spriteComponent.node
-            let time = timedComponent.time
-            node.alpha = (Constants.powerUpEffectDuration - time) / Constants.powerUpEffectDuration
-
-            if powerUpEffect.shouldRemoveEffect(manager: manager) {
-                spriteComponent.removeNodeFromScene = true
-            }
-        }
-    }
-
-    // TODO: definitely have to refactor this
-    private func updateInventoryItems() {
-        guard let manager = manager else {
-            return
-        }
-
-        guard let entity = associatedEntity as? Player,
-              let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity)
-        else { return }
-
-        var position = Constants.initialPowerUpQueuePosition
-        for inventoryItemID in inventoryComponent.inventory.iterable {
-            guard let inventoryEntity = manager.entity(with: inventoryItemID),
-                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: inventoryEntity)
-            else { continue }
-
-            removeNodeFromScene(inventoryEntity)
-
-            spriteComponent.node.position = position
-            spriteComponent.node.physicsBody = nil
-
-            addNodeToScene(inventoryEntity)
-
-            position.x += Constants.powerUpQueueXInterval
-        }
-
     }
 
     // MARK: - Per-component Updates
@@ -125,6 +70,27 @@ class SpriteSystem: System {
                 resize: false,
                 restore: true)),
             withKey: animationComponent.kind.name)
+        }
+    }
+
+    private func updateInventory(of node: SKNode, with entity: Entity) {
+        guard let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity) else {
+            return
+        }
+
+        var position = Constants.initialPowerUpQueuePosition
+
+        for entityID in inventoryComponent.inventory.iterable {
+            guard let entity = manager?.entity(with: entityID),
+                  let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity),
+                  let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: entity),
+                  ownerComponent.ownerEntityId != nil
+            else { continue }
+
+            spriteComponent.node.position = position
+            spriteComponent.node.physicsBody = nil
+
+            position.x += Constants.powerUpQueueXInterval
         }
     }
 
