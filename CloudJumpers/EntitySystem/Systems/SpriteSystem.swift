@@ -19,8 +19,8 @@ class SpriteSystem: System {
     }
 
     convenience init(for manager: EntityManager, rendersTo delegate: SpriteSystemDelegate) {
-        self.delegate = delegate
         self.init(for: manager)
+        self.delegate = delegate
     }
 
     func update(within time: CGFloat) {
@@ -66,17 +66,14 @@ class SpriteSystem: System {
         }
 
         guard let entity = associatedEntity as? Player,
-              let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
-              inventoryComponent.isUpdated else {
-            return
-        }
+              let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity)
+        else { return }
 
         var position = Constants.initialPowerUpQueuePosition
-        for inventoryItemID in inventoryComponent.inventory {
+        for inventoryItemID in inventoryComponent.inventory.iterable {
             guard let inventoryEntity = manager.entity(with: inventoryItemID),
-                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: inventoryEntity) else {
-                continue
-            }
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: inventoryEntity)
+            else { continue }
 
             removeNodeFromScene(inventoryEntity)
 
@@ -88,7 +85,6 @@ class SpriteSystem: System {
             position.x += Constants.powerUpQueueXInterval
         }
 
-        inventoryComponent.isUpdated = false
     }
 
     private func addNewEntities() {

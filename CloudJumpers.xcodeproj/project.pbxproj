@@ -49,6 +49,7 @@
 		1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C527EB26BB005AA18B /* Entity.swift */; };
 		1ACE97CB27EB26BB005AA18B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C627EB26BB005AA18B /* System.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
+		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
 		1ADEDD8B27F587CC00C3AFD3 /* EmptyComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
 		1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */; };
@@ -186,6 +187,7 @@
 		1ACE97C527EB26BB005AA18B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		1ACE97C627EB26BB005AA18B /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
+		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1ADEDD8A27F587CC00C3AFD3 /* EmptyComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyComponent.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
 		1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStaticTag.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			children = (
 				1A94D96727EE12E3001D8A86 /* Heap.swift */,
 				1A94D96A27EE1465001D8A86 /* PriorityQueue.swift */,
+				1ADEDD8827F582F300C3AFD3 /* Queue.swift */,
 			);
 			path = PriorityQueue;
 			sourceTree = "<group>";
@@ -1086,6 +1089,7 @@
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				9356AB6927EEF4E0008CDEC1 /* LobbySynchronizer.swift in Sources */,
 				1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */,
+				1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				9339BF0327E626AE00FC8077 /* Highscore.swift in Sources */,
