@@ -42,7 +42,7 @@ class HighscoreManager {
         gameSeed: String,
         callback: @escaping NetworkCallback
     ) {
-        let url = constructEndpointUrl(gameMode: GameMode.TimeTrial, gameSeed: gameSeed)
+        let url = constructEndpointUrl(gameMode: .timeTrial, gameSeed: gameSeed)
 
         var jsonToSend = [String: Any]()
         jsonToSend["userId"] = userId

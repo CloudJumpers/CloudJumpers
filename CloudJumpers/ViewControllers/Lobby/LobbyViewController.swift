@@ -10,7 +10,7 @@ import UIKit
 class LobbyViewController: UIViewController {
     @IBOutlet private var lobbyUsersView: UITableView!
     @IBOutlet private var lobbyName: UILabel!
-    @IBOutlet private var gameMode: UILabel!
+    @IBOutlet private var gameMode: UIButton!
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
@@ -34,16 +34,24 @@ class LobbyViewController: UIViewController {
         }
 
         if let listing = activeListing {
-            setActiveLobby(id: listing.lobbyId, name: listing.lobbyName, hostId: listing.hostId)
+            setActiveLobby(
+                id: listing.lobbyId,
+                name: listing.lobbyName,
+                gameMode: listing.gameMode,
+                hostId: listing.hostId
+            )
         } else {
             setActiveLobby()
         }
+
+        refreshGameModeMenu()
     }
 
-    func setActiveLobby(id: NetworkID, name: String, hostId: NetworkID) {
+    func setActiveLobby(id: NetworkID, name: String, gameMode: GameMode, hostId: NetworkID) {
         activeLobby = GameLobby(
             id: id,
             name: name,
+            gameMode: gameMode,
             hostId: hostId,
             onLobbyStateChange: handleLobbyUpdate,
             onLobbyDataChange: handleLobbyDataChange,
@@ -97,6 +105,7 @@ class LobbyViewController: UIViewController {
     @IBAction private func onReadyButtonTap() {
         self.activeLobby?.toggleDeviceUserReadyStatus()
         leaveButton.isEnabled = false
+        gameMode.isEnabled = false
     }
 
     // MARK: - Lobby management
@@ -110,12 +119,17 @@ class LobbyViewController: UIViewController {
 
     private func handleLobbyDataChange() {
         lobbyUsersView.reloadData()
+        refreshGameModeMenu()
 
-        guard let deviceUser = activeLobby?.users.first(where: { $0.id == AuthService().getUserId() }) else {
+        guard
+            let lobby = activeLobby,
+            let deviceUser = lobby.users.first(where: { $0.id == AuthService().getUserId() })
+        else {
             return
         }
 
         leaveButton.isEnabled = !deviceUser.isReady
+        gameMode.isEnabled = !deviceUser.isReady && lobby.userIsHost
     }
 
     private func setLobbyName(_ name: String) {
@@ -123,7 +137,41 @@ class LobbyViewController: UIViewController {
     }
 
     private func setLobbyGameMode(_ mode: String) {
-        gameMode.text = mode
+        gameMode.menu?.children.forEach { action in
+            guard let action = action as? UIAction, action.title == mode else {
+                return
+            }
+
+            action.state = action.title == mode ? .on : .off
+        }
+    }
+
+    private func changeLobbyGameMode(action: UIAction) {
+        guard let selectedGameMode = GameMode(rawValue: action.title) else {
+            return
+        }
+
+        activeLobby?.changeGameMode(mode: selectedGameMode)
+    }
+
+    private func refreshGameModeMenu() {
+        guard let lobby = activeLobby else {
+            return
+        }
+
+        var gameModeOptions = [UIAction]()
+
+        GameMode.allCases.forEach {
+            let maxSupportedPlayers = $0.getMaxPlayer()
+
+            if maxSupportedPlayers >= lobby.numUsers {
+                gameModeOptions.append(UIAction(title: $0.rawValue, handler: changeLobbyGameMode))
+            }
+        }
+
+        gameMode.menu = UIMenu(children: gameModeOptions)
+        gameMode.isEnabled = lobby.userIsHost
+        setLobbyGameMode(lobby.gameMode.rawValue)
     }
 }
 

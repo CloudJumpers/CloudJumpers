@@ -7,11 +7,26 @@
 
 import Foundation
 class TimeTrialGameRules: GameRules {
+    func prepareGameModes(gameEngine: GameEngine, blueprint: Blueprint) {
+        guard let userId = AuthService().getUserId() else {
+            fatalError("Cannot find user")
+        }
+
+        gameEngine.setUpGame(
+            with: blueprint,
+            playerId: userId,
+            additionalPlayerIds: nil)
+    }
+
+    func createGameEvents(with gameData: GameMetaData) -> [Event] {
+        []
+    }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
-        guard let playerLocationId = gameData.playerLocationMapping[gameData.playerId] else {
+        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.location else {
             return false
         }
         return playerLocationId == gameData.topPlatformId
     }
+
 }
