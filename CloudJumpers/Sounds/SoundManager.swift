@@ -11,7 +11,7 @@ class SoundManager {
     static let instance = SoundManager()
     private var players: [Sounds: AVAudioPlayer]
 
-    init() {
+    private init() {
         players = [:]
     }
 
