@@ -8,7 +8,13 @@
 import SpriteKit
 
 protocol GameEngineDelegate: AnyObject {
-    func engine(addEntityWith node: SKNode)
-    func engine(addPlayerWith node: SKNode)
-    func engine(addControlWith node: SKNode)
+    func engine(_ engine: GameEngine, addNode node: SKNode)
+    func engine(_ engine: GameEngine, addStaticNode node: SKNode)
+    func engine(_ engine: GameEngine, bindCameraTo node: SKNode)
+}
+
+extension GameEngineDelegate {
+    func engine(_ engine: GameEngine, addNode node: SKNode) { }
+    func engine(_ engine: GameEngine, addStaticNode node: SKNode) { }
+    func engine(_ engine: GameEngine, bindCameraTo node: SKNode) { }
 }

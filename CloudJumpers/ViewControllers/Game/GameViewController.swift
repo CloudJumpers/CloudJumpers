@@ -152,16 +152,15 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameEngineDelegate
 extension GameViewController: GameEngineDelegate {
-    func engine(addEntityWith node: SKNode) {
+    func engine(_ engine: GameEngine, addNode node: SKNode) {
         scene?.addChild(node)
     }
 
-    func engine(addPlayerWith node: SKNode) {
-        self.engine(addEntityWith: node)
-        scene?.cameraAnchorNode = node
+    func engine(_ engine: GameEngine, addStaticNode node: SKNode) {
+        scene?.addStaticChild(node)
     }
 
-    func engine(addControlWith node: SKNode) {
-        scene?.addStaticChild(node)
+    func engine(_ engine: GameEngine, bindCameraTo node: SKNode) {
+        scene?.cameraAnchorNode = node
     }
 }
