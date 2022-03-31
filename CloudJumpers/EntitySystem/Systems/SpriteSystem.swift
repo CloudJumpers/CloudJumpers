@@ -166,12 +166,9 @@ class SpriteSystem: System {
 
         let node = spriteComponent.node
 
-        switch spriteComponent.cameraBind {
-        case .normalBind:
-            delegate.spriteSystem(self, addNode: node)
-        case .anchorBind:
-            delegate.spriteSystem(self, addNode: node)
         let `static` = entityManager.hasComponent(ofType: CameraStaticTag.self, in: entity)
+        delegate.spriteSystem(self, addNode: node, static: `static`)
+
         if entityManager.hasComponent(ofType: CameraAnchorTag.self, in: entity) {
             delegate.spriteSystem(self, bindCameraTo: node)
         }

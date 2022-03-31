@@ -92,9 +92,9 @@ class GameViewController: UIViewController {
         let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
         let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine)
 
-        scene?.addStaticChild(joystick)
-        scene?.addStaticChild(jumpButton)
-        scene?.addStaticChild(gameArea)
+        scene?.addChild(joystick, static: true)
+        scene?.addChild(jumpButton, static: true)
+        scene?.addChild(gameArea, static: true)
 
         self.joystick = joystick
     }
@@ -152,12 +152,8 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - SpriteSystemDelegate
 extension GameViewController: SpriteSystemDelegate {
-    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode) {
-        scene?.addChild(node)
-    }
-
-    func spriteSystem(_ system: SpriteSystem, addStaticNode node: SKNode) {
-        scene?.addStaticChild(node)
+    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode, static: Bool) {
+        scene?.addChild(node, static: `static`)
     }
 
     func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
