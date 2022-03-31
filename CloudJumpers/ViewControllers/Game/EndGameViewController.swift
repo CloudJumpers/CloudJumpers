@@ -23,6 +23,7 @@ class EndGameViewController: UIViewController {
         scoreTableView.dataSource = self
         score.text = playerScore
         performGameScoreUpdates(score: playerScore)
+        SoundManager.instance.play(.endWin)
     }
 
     func configure(names: [String], scores: [String], playerScore: String) {
@@ -54,7 +55,7 @@ class EndGameViewController: UIViewController {
         let highscoreManager = HighscoreManager()
 
         highscoreManager.fetchTopFiveRecords(
-            gameMode: .TimeTrial,
+            gameMode: .timeTrial,
             gameSeed: Constants.testLevelName, // TODO: change to prod level name
             callback: onNewHighscoresData
         )

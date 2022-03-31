@@ -12,4 +12,7 @@ protocol LobbyUpdaterDelegate: AnyObject {
     func joinLobby(userId: NetworkID, userDisplayName: String)
     func exitLobby(userId: NetworkID, deleteLobby: Bool)
     func toggleReady(userId: NetworkID)
+
+    func changeLobbyGameMode(to gameMode: GameMode)
+    func changeLobbyName(to name: String)
 }

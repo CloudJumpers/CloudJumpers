@@ -7,8 +7,27 @@
 
 import Foundation
 
-enum GameMode: String {
-    case TimeTrial = "Time Trial"
+enum GameMode: String, CaseIterable {
+    case timeTrial = "Time Trial"
+    case raceTop = "Race Top"
+
+    func getMaxPlayer() -> Int {
+        switch self {
+        case .timeTrial:
+            return 1
+        case .raceTop:
+            return 4
+        }
+    }
+
+    func getMinPlayer() -> Int {
+        switch self {
+        case .timeTrial:
+            return 1
+        case .raceTop:
+            return 2
+        }
+    }
 }
 
 func urlSafeGameMode(mode: GameMode) -> String {

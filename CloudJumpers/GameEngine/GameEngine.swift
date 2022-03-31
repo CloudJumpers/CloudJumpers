@@ -57,16 +57,50 @@ class GameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
-        setUpClouds(clouds)
-        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+    func setUpGame(with blueprint: Blueprint, playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+        let positions = LevelGenerator.from(blueprint, seed: blueprint.seed)
+        setUpEnvironment(positions)
+        setUpPlayers(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        setUpSampleGame()
     }
 
-    private func setUpClouds(_ clouds: [Cloud]) {
-        clouds.forEach { entity in
-            entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
+    private func setUpEnvironment(_ positions: [CGPoint]) {
+        guard let highestPosition = positions.max(by: { $0.y < $1.y }) else {
+            return
         }
+        let topPlatform = Platform(at: highestPosition)
+        entityManager.add(topPlatform)
+        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
+        metaData.topPlatformId = topPlatform.id
+
+        positions.forEach { position in
+            if position != highestPosition {
+                let newCloud = Cloud(at: position)
+                entityManager.add(newCloud)
+                addNodeToScene(newCloud, with: delegate?.engine(_:addEntityWith:))
+            }
+        }
+    }
+
+    private func setUpPlayers(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+        metaData.playerId = playerId
+        var allPlayerId = [playerId] + additionalPlayerIds
+
+        allPlayerId.sort()
+
+        for (index, id) in allPlayerId.enumerated() {
+            let character = Player(at: Constants.playerInitialPositions[index],
+                                   texture: .character1,
+                                   with: id)
+            entityManager.add(character)
+            if id == playerId {
+                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+                addNodeToScene(character, with: delegate?.engine(_:addPlayerWith:))
+            } else {
+                addNodeToScene(character, with: delegate?.engine(_:addEntityWith:))
+            }
+        }
+
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -90,28 +124,13 @@ class GameEngine {
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
-    private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+    private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
-        let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
         entityManager.add(timer)
-        entityManager.add(player)
-        entityManager.add(topPlatform)
-
-        let otherPlayers = additionalPlayerIds.map {
-            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
-        }
-        otherPlayers.forEach(entityManager.add(_:))
-
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
-        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
-        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
-        metaData.playerId = player.id
-        metaData.topPlatformId = topPlatform.id
     }
 
     private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
@@ -148,9 +167,9 @@ extension GameEngine: GameMetaDataDelegate {
 
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
-            metaData.playerLocationMapping[player] = location
+            metaData.locationMapping[player] = (location, metaData.time)
         } else {
-            metaData.playerLocationMapping.removeValue(forKey: player)
+            metaData.locationMapping.removeValue(forKey: player)
         }
     }
 
@@ -180,11 +199,15 @@ extension GameEngine: InputResponder {
     }
 
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
+        guard let entity = associatedEntity,
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+        else {
             return
         }
         eventManager.add(MoveEvent(on: entity, by: displacement))
-        eventManager.add(AnimateEvent(on: entity, to: .walking))
+        if physicsComponent.body.velocity == .zero {
+            eventManager.add(AnimateEvent(on: entity, to: .walking))
+        }
 
     }
 

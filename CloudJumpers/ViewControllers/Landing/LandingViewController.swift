@@ -13,6 +13,8 @@ class LandingViewController: UIViewController {
         super.viewDidAppear(animated)
         let auth = AuthService()
         auth.isLoggedIn() ? moveToLobbies() : moveToLoginOptions()
+
+        SoundManager.instance.play(.background, loopsBy: -1)
     }
 
     private func moveToLoginOptions() {
