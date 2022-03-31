@@ -50,7 +50,7 @@ class SpriteSystem: System {
             node.alpha = (Constants.powerUpEffectDuration - time) / Constants.powerUpEffectDuration
 
             if powerUpEffect.shouldRemoveEffect(manager: manager) {
-                spriteComponent.setRemoveNodeFromScene(true)
+                spriteComponent.removeNodeFromScene = true
             }
         }
     }

@@ -10,9 +10,9 @@ import SpriteKit
 class SpriteComponent: Component {
     let id: ComponentID
     unowned var entity: Entity?
-    private(set) var removeNodeFromScene = false
 
     let node: SKNode
+    var removeNodeFromScene = false
 
     init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
         id = EntityManager.newComponentID
@@ -36,9 +36,5 @@ class SpriteComponent: Component {
         id = EntityManager.newComponentID
         self.node = node
         node.entityID = entityID
-    }
-
-    func setRemoveNodeFromScene(_ set: Bool) {
-        removeNodeFromScene = set
     }
 }

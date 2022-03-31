@@ -38,7 +38,7 @@ class ActivatePowerUpEvent: Event {
             entityManager.add(confuseEffect)
         }
 
-        spriteComponent.setRemoveNodeFromScene(true)
+        spriteComponent.removeNodeFromScene = true
         // TODO: handle effects on other players
     }
 }
