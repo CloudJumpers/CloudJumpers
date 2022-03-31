@@ -58,16 +58,50 @@ class GameEngine {
     }
 
     func setUpGame(with blueprint: Blueprint, playerId: EntityID, additionalPlayerIds: [EntityID]?) {
-        let clouds = LevelGenerator.from(blueprint, seed: blueprint.seed).map { Cloud(at: $0) }
-        setUpClouds(clouds)
-        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        let positions = LevelGenerator.from(blueprint, seed: blueprint.seed)
+        setUpEnvironment(positions)
+        setUpPlayers(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        setUpSampleGame()
     }
 
-    private func setUpClouds(_ clouds: [Cloud]) {
-        clouds.forEach { entity in
-            entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(_:addEntityWith:))
+    private func setUpEnvironment(_ positions: [CGPoint]) {
+        guard let highestPosition = positions.max(by: { $0.y < $1.y }) else {
+            return
         }
+        let topPlatform = Platform(at: highestPosition)
+        entityManager.add(topPlatform)
+        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
+        metaData.topPlatformId = topPlatform.id
+
+        positions.forEach { position in
+            if position != highestPosition {
+                let newCloud = Cloud(at: position)
+                entityManager.add(newCloud)
+                addNodeToScene(newCloud, with: delegate?.engine(_:addEntityWith:))
+            }
+        }
+    }
+
+    private func setUpPlayers(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+        metaData.playerId = playerId
+        var allPlayerId = [playerId] + additionalPlayerIds
+
+        allPlayerId.sort()
+
+        var locationIndex = 0 // Assume that we only have max 4 players
+        for id in allPlayerId {
+            let character = Player(at: Constants.playerInitialPositions[locationIndex],
+                                   texture: .character1,
+                                   with: id)
+            entityManager.add(character)
+            if id == playerId {
+                addNodeToScene(character, with: delegate?.engine(_:addPlayerWith:))
+            } else {
+                addNodeToScene(character, with: delegate?.engine(_:addEntityWith:))
+            }
+            locationIndex += 1
+        }
+
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -91,28 +125,13 @@ class GameEngine {
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
-    private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+    private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
-        let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
         entityManager.add(timer)
-        entityManager.add(player)
-        entityManager.add(topPlatform)
-
-        let otherPlayers = additionalPlayerIds.map {
-            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
-        }
-        otherPlayers.forEach(entityManager.add(_:))
-
         addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(_:addPlayerWith:))
-        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
-        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(_:addEntityWith:)) }
 
         self.timer = timer
-        metaData.playerId = player.id
-        metaData.topPlatformId = topPlatform.id
     }
 
     private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
