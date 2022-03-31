@@ -15,7 +15,7 @@ struct BiEvent: Event {
     private let event2: Event
 
     init(_ event1: Event, _ event2: Event) {
-        timestamp = EventManager.timestamp
+        timestamp = event1.timestamp
         entityID = event1.entityID
         self.event1 = event1
         self.event2 = event2
