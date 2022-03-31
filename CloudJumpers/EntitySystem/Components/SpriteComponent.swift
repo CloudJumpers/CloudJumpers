@@ -9,7 +9,6 @@ import SpriteKit
 
 class SpriteComponent: Component {
     let node: SKNode
-    var removeNodeFromScene = false
 
     init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
         node = SKSpriteNode(texture: texture, size: size)

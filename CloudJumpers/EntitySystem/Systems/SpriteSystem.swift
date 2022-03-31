@@ -9,7 +9,6 @@ import SpriteKit
 
 class SpriteSystem: System {
     unowned var manager: EntityManager?
-    unowned var associatedEntity: Entity?
     unowned var delegate: SpriteSystemDelegate?
 
     private var sprites: Set<EntityID> = []
