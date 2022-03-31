@@ -21,6 +21,10 @@ struct BiEvent: Event {
         self.event2 = event2
     }
 
+    func shouldExecute(in entityManager: EntityManager) -> Bool {
+        event1.shouldExecute(in: entityManager)
+    }
+
     func execute(in entityManager: EntityManager) {
         event1.execute(in: entityManager)
         event2.execute(in: entityManager)
