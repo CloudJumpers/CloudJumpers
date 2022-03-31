@@ -23,7 +23,7 @@ class ActivatePowerUpEvent: Event {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self,
                                                                of: entity),
-              let eventId = inventoryComponent.dequeue(),
+              let eventId = inventoryComponent.inventory.dequeue(),
               let powerUpEntity = entityManager.entity(with: eventId) as? PowerUp,
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self,
                                                             of: powerUpEntity)

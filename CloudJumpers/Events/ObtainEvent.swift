@@ -24,6 +24,6 @@ struct ObtainEvent: Event {
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity)
         else { return }
 
-        inventoryComponent.enqueue(entityID: otherEntityID)
+        inventoryComponent.inventory.enqueue(otherEntityID)
     }
 }

@@ -8,33 +8,15 @@
 import Foundation
 
 class InventoryComponent: Component {
+    typealias Inventory = Queue<EntityID>
+
     let id: ComponentID
     unowned var entity: Entity?
 
-    var isUpdated = false
-    var inventory: [EntityID]
+    var inventory: Inventory
 
     init() {
         id = EntityManager.newComponentID
-        inventory = []
+        inventory = Inventory()
     }
-
-    func enqueue(entityID: EntityID) {
-        inventory.append(entityID)
-        isUpdated = true
-    }
-
-    func dequeue() -> EntityID? {
-        guard !inventory.isEmpty else {
-            return nil
-        }
-
-        isUpdated = true
-
-        let entityId = inventory[0]
-        self.inventory.remove(at: 0)
-
-        return entityId
-    }
-
 }
