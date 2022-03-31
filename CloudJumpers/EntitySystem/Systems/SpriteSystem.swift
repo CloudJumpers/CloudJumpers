@@ -12,7 +12,7 @@ class SpriteSystem: System {
     unowned var associatedEntity: Entity?
     unowned var delegate: SpriteSystemDelegate?
 
-    private var addedEntity: Set<EntityID> = []
+    private var sprites: Set<EntityID> = []
 
     required init(for manager: EntityManager) {
         self.manager = manager
@@ -23,12 +23,25 @@ class SpriteSystem: System {
         self.delegate = delegate
     }
 
+    // MARK: - System Update
     func update(within time: CGFloat) {
-        updateAddedEntities()
-        removeEntities()
-        addNewEntities()
-        updateInventoryItems()
-        updateTimedEntities()
+        guard let manager = manager else {
+            return
+        }
+
+        for spriteComponent in manager.components(ofType: SpriteComponent.self) {
+            guard let entity = spriteComponent.entity else {
+                fatalError("SpriteComponent does not contain reference to its Entity")
+            }
+
+            updateNode(spriteComponent.node, with: entity)
+        }
+    }
+
+    private func updateNode(_ node: SKNode, with entity: Entity) {
+        synchronizeSprite(node, with: entity)
+        updateAnimation(of: node, with: entity)
+        updateTimed(of: node, with: entity)
     }
 
     private func updateAddedEntities() {
@@ -87,63 +100,7 @@ class SpriteSystem: System {
 
     }
 
-    private func addNewEntities() {
-        guard let manager = manager else {
-            return
-        }
-
-        for entity in manager.iterableEntities {
-            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
-            else {
-                continue
-            }
-
-            let node = spriteComponent.node
-            if !addedEntity.contains(entity.id) {
-                addNodeToScene(entity)
-                addedEntity.insert(entity.id)
-            }
-
-            updateTimed(of: node, with: entity)
-        }
-    }
-
-    private func removeEntities() {
-        guard let manager = manager else {
-            return
-        }
-
-        for entity in manager.iterableEntities {
-            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
-            else {
-                continue
-            }
-
-            if spriteComponent.removeNodeFromScene {
-                removeNodeFromScene(entity)
-                addedEntity.remove(entity.id)
-                manager.remove(entity)
-            }
-        }
-    }
-
-    private func updateTimedEntities() {
-        guard let manager = manager else {
-            return
-        }
-
-        for entity in manager.iterableEntities {
-            guard let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
-            else {
-                continue
-            }
-
-            let node = spriteComponent.node
-            updateAnimation(of: node, with: entity)
-            updateTimed(of: node, with: entity)
-        }
-    }
-
+    // MARK: - Per-component Updates
     func updateTimed(of node: SKNode, with entity: Entity) {
         // TODO: Generalise this to support more than just SKLabelNode
         guard let timedComponent = manager?.component(ofType: TimedComponent.self, of: entity),
@@ -151,31 +108,6 @@ class SpriteSystem: System {
         else { return }
 
         labelNode.text = String(format: "%.1f", timedComponent.time)
-    }
-
-    private func addNodeToScene(_ entity: Entity) {
-        guard let entityManager = manager,
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
-              let delegate = delegate else {
-            return
-        }
-
-        let node = spriteComponent.node
-
-        let `static` = entityManager.hasComponent(ofType: CameraStaticTag.self, in: entity)
-        delegate.spriteSystem(self, addNode: node, static: `static`)
-
-        if entityManager.hasComponent(ofType: CameraAnchorTag.self, in: entity) {
-            delegate.spriteSystem(self, bindCameraTo: node)
-        }
-    }
-
-    private func removeNodeFromScene(_ entity: Entity) {
-        guard let entityManager = manager,
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return }
-
-        spriteComponent.node.removeFromParent()
     }
 
     func updateAnimation(of node: SKNode, with entity: Entity) {
@@ -194,5 +126,50 @@ class SpriteSystem: System {
                 restore: true)),
             withKey: animationComponent.kind.name)
         }
+    }
+
+    // MARK: - Rendering Lifecycle
+    private func synchronizeSprite(_ node: SKNode, with entity: Entity) {
+        if isEntityNotRendered(entity, node) ||
+           isEntityInSpriteSystemNotInParent(entity, node) {
+            addSprite(node, with: entity)
+        } else if isEntityInParentNotInSpriteSystem(entity, node) {
+            removeSprite(node, with: entity)
+        }
+    }
+
+    private func addSprite(_ node: SKNode, with entity: Entity) {
+        let `static` = manager?.hasComponent(ofType: CameraStaticTag.self, in: entity)
+        delegate?.spriteSystem(self, addNode: node, static: `static` ?? false)
+        bindCameraToSprite(node, with: entity)
+
+        sprites.insert(entity.id)
+    }
+
+    private func removeSprite(_ node: SKNode, with entity: Entity) {
+        node.removeFromParent()
+        manager?.remove(entity)
+
+        sprites.remove(entity.id)
+    }
+
+    private func isEntityNotRendered(_ entity: Entity, _ node: SKNode) -> Bool {
+        !sprites.contains(entity.id) && node.parent == nil
+    }
+
+    private func isEntityInSpriteSystemNotInParent(_ entity: Entity, _ node: SKNode) -> Bool {
+        sprites.contains(entity.id) && node.parent == nil
+    }
+
+    private func isEntityInParentNotInSpriteSystem(_ entity: Entity, _ node: SKNode) -> Bool {
+        node.parent != nil && !sprites.contains(entity.id)
+    }
+
+    private func bindCameraToSprite(_ node: SKNode, with entity: Entity) {
+        guard manager?.hasComponent(ofType: CameraAnchorTag.self, in: entity) ?? false else {
+            return
+        }
+
+        delegate?.spriteSystem(self, bindCameraTo: node)
     }
 }

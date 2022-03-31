@@ -56,15 +56,8 @@ class GameEngine {
     }
 
     func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
-        setUpClouds(clouds)
+        clouds.forEach(entityManager.add(_:))
         setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
-    }
-
-    private func setUpClouds(_ clouds: [Cloud]) {
-        clouds.forEach { entity in
-            entityManager.add(entity)
-            addNodeToScene(entity, with: delegate?.engine(addEntityWith:))
-        }
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -95,31 +88,24 @@ class GameEngine {
         let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
+        let powerups = [
+            PowerUp(at: CGPoint(x: 200, y: -300), type: .freeze),
+            PowerUp(at: CGPoint(x: -200, y: -300), type: .confuse),
+            PowerUp(at: CGPoint(x: 0, y: -200), type: .confuse)]
+
         entityManager.add(timer)
         entityManager.add(player)
         entityManager.add(topPlatform)
+        powerups.forEach(entityManager.add(_:))
 
         let otherPlayers = additionalPlayerIds.map {
             Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
         }
         otherPlayers.forEach(entityManager.add(_:))
 
-        addNodeToScene(timer, with: delegate?.engine(addControlWith:))
-        addNodeToScene(player, with: delegate?.engine(addPlayerWith:))
-        addNodeToScene(topPlatform, with: delegate?.engine(addEntityWith:))
-        otherPlayers.forEach { addNodeToScene($0, with: delegate?.engine(addEntityWith:)) }
-
         self.timer = timer
         metaData.playerId = player.id
         metaData.topPlatformId = topPlatform.id
-    }
-
-    private func addNodeToScene(_ entity: Entity, with method: ((SKNode) -> Void)?) {
-        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
-
-        method?(spriteComponent.node)
     }
 
     private func updateEvents() {
