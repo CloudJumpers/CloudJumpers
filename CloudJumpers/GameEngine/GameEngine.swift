@@ -89,9 +89,9 @@ class GameEngine {
         let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
 
         let powerups = [
-            PowerUp(at: CGPoint(x: 200, y: -300), type: .freeze),
-            PowerUp(at: CGPoint(x: -200, y: -300), type: .confuse),
-            PowerUp(at: CGPoint(x: 0, y: -200), type: .confuse)]
+            PowerUp(.freeze, at: CGPoint(x: 200, y: -300)),
+            PowerUp(.confuse, at: CGPoint(x: -200, y: -300)),
+            PowerUp(.confuse, at: CGPoint(x: 0, y: -200))]
 
         entityManager.add(timer)
         entityManager.add(player)

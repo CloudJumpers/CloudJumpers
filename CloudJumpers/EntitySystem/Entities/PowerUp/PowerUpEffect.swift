@@ -28,8 +28,7 @@ class PowerUpEffect: Entity {
     }
 
     func shouldRemoveEffect(manager: EntityManager) -> Bool {
-        guard let timedComponent = manager.component(ofType: TimedComponent.self, of: self)
-        else {
+        guard let timedComponent = manager.component(ofType: TimedComponent.self, of: self) else {
             return false
         }
 
@@ -40,6 +39,7 @@ class PowerUpEffect: Entity {
         let node = SKSpriteNode(
             texture: SKTexture(imageNamed: "\(type)Effect"),
             size: Constants.powerUpEffectSize)
+
         node.position = position
         node.zPosition = SpriteZPosition.powerUp.rawValue
 

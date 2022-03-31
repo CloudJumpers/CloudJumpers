@@ -13,7 +13,7 @@ class PowerUp: Entity {
     private let position: CGPoint
     private(set) var type: PowerUpType
 
-    init(at position: CGPoint, type: PowerUpType, with id: EntityID = EntityManager.newEntityID) {
+    init(_ type: PowerUpType, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.type = type
         self.position = position
@@ -33,8 +33,7 @@ class PowerUp: Entity {
             texture: SKTexture(imageNamed: type.name),
             size: Constants.powerUpNodeSize,
             at: position,
-            forEntityWith: id
-        )
+            forEntityWith: id)
 
         spriteComponent.node.zPosition = SpriteZPosition.powerUp.rawValue
 
@@ -42,8 +41,10 @@ class PowerUp: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(circleOf: Constants.powerUpNodeSize.width / 2,
-                                                for: spriteComponent)
+        let physicsComponent = PhysicsComponent(
+            circleOf: Constants.powerUpNodeSize.width / 2,
+            for: spriteComponent)
+
         physicsComponent.body.mass = Constants.powerUpMass
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
