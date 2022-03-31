@@ -29,9 +29,24 @@ class EventManager {
     }
 
     func executeAll(in entityManager: EntityManager) {
-        while let event = events.dequeue() {
-            event.execute(in: entityManager)
+        var counter = events.count
+        var deferredEvents: [Event] = []
+
+        while counter > 0 {
+            guard let event = events.dequeue() else {
+                fatalError("EventManager.executeAll(in:) dequeued an empty EventQueue")
+            }
+
+            if event.shouldExecute(in: entityManager) {
+                event.execute(in: entityManager)
+            } else {
+                deferredEvents.append(event)
+            }
+
+            counter -= 1
         }
+
+        deferredEvents.forEach(add(_:))
     }
 
     func dispatchGameEventCommand(_ command: GameEventCommand) {

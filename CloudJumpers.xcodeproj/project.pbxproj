@@ -59,6 +59,8 @@
 		1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C527EB26BB005AA18B /* Entity.swift */; };
 		1ACE97CB27EB26BB005AA18B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C627EB26BB005AA18B /* System.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
+		1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */; };
+		1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */; };
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
 		3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5227DE05E500D51300 /* SpriteZPosition.swift */; };
@@ -198,6 +200,8 @@
 		1ACE97C527EB26BB005AA18B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		1ACE97C627EB26BB005AA18B /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
+		1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEvent.swift; sourceTree = "<group>"; };
+		1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiEvent.swift; sourceTree = "<group>"; };
 		1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4727DDAB1300D51300 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -744,6 +748,8 @@
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
+				1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */,
+				1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */,
 				1A94D96327EE0D4D001D8A86 /* MoveEvent.swift */,
 				1A94D96527EE0EF2001D8A86 /* JumpEvent.swift */,
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
@@ -1067,6 +1073,7 @@
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
+				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
 				9339BF0527E6271E00FC8077 /* HighscoreConstants.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
@@ -1085,6 +1092,7 @@
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
+				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
