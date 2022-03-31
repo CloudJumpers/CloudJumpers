@@ -12,7 +12,6 @@ import SpriteKit
 struct MoveEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
-    weak var gameDataTracker: GameMetaDataDelegate?
 
     private let displacement: CGVector
 
@@ -39,6 +38,5 @@ struct MoveEvent: Event {
 
         spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
 
-        gameDataTracker?.updatePlayerPosition(position: spriteComponent.node.position)
     }
 }

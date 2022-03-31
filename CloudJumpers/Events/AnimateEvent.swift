@@ -10,7 +10,6 @@ import Foundation
 struct AnimateEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
-    weak var gameDataTracker: GameMetaDataDelegate?
 
     private let kind: Textures.Kind
 
@@ -26,6 +25,5 @@ struct AnimateEvent: Event {
         else { return }
 
         animationComponent.kind = kind
-        gameDataTracker?.updatePlayerTextureKind(texture: kind)
     }
 }
