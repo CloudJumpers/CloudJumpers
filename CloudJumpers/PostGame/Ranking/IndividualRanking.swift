@@ -21,7 +21,17 @@ struct IndividualRanking {
      associated with this ranking entry. E.g. time taken, number of kills
      will all be stored as key value pairs within characteristics.
      */
-    let characteristics: [String: String]
+    let characteristics: [PostGameColumnKey: String]
 
-    let displayName: String
+    private var keys: [PostGameColumnKey] {
+        characteristics.keys.sorted(by: { $0.order < $1.order })
+    }
+
+    var columnNames: [String] {
+        keys.map { $0.description }
+    }
+
+    var values: [String] {
+        keys.compactMap { characteristics[$0]?.description }
+    }
 }

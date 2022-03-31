@@ -6,6 +6,8 @@
 //
 
 enum PostGameConstants {
+    static let rankingCellIdentifier = "com.cs3217.cloudjumpers.rankingcell"
+
     static let pollInterval: Double = 2.0
 
     // server information
@@ -20,8 +22,6 @@ enum PostGameConstants {
 
     // status codes
     static let httpOK = 200
-
-    static let postGameAPIQueue = "CJPostGameAPICallQueue"
 }
 
 enum PostGameHTTPError: Error {

@@ -639,6 +639,57 @@
             </objects>
             <point key="canvasLocation" x="1864" y="-928"/>
         </scene>
+        <!--Post Game View Controller-->
+        <scene sceneID="aeV-Vn-986">
+            <objects>
+                <viewController id="6sz-Vb-aS8" customClass="PostGameViewController" customModule="CloudJumpers" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mcz-Sd-VqA">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sKG-Bl-ISY">
+                                <rect key="frame" x="50" y="74" width="720" height="1036"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.rankingcell" id="spZ-gi-BgD" customClass="PostGameRankingCell" customModule="CloudJumpers" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="720" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="spZ-gi-BgD" id="1se-Yb-7ue">
+                                            <rect key="frame" x="0.0" y="0.0" width="720" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="Uet-Ud-JqK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="720" height="43.5"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Uet-Ud-JqK" firstAttribute="leading" secondItem="1se-Yb-7ue" secondAttribute="leading" id="0y9-7C-y4f"/>
+                                                <constraint firstAttribute="trailing" secondItem="Uet-Ud-JqK" secondAttribute="trailing" id="JmY-5T-wjI"/>
+                                                <constraint firstItem="Uet-Ud-JqK" firstAttribute="top" secondItem="1se-Yb-7ue" secondAttribute="top" id="xv3-Bh-OfS"/>
+                                                <constraint firstAttribute="bottom" secondItem="Uet-Ud-JqK" secondAttribute="bottom" id="yKh-Xf-8c5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="row" destination="Uet-Ud-JqK" id="A02-BH-MTF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="91r-6l-Weu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="91r-6l-Weu" firstAttribute="bottom" secondItem="sKG-Bl-ISY" secondAttribute="bottom" constant="50" id="Fki-Au-B7d"/>
+                            <constraint firstItem="sKG-Bl-ISY" firstAttribute="top" secondItem="91r-6l-Weu" secondAttribute="top" constant="50" id="G3A-Y4-Vj5"/>
+                            <constraint firstItem="sKG-Bl-ISY" firstAttribute="leading" secondItem="91r-6l-Weu" secondAttribute="leading" constant="50" id="SwP-Jr-Ccp"/>
+                            <constraint firstItem="91r-6l-Weu" firstAttribute="trailing" secondItem="sKG-Bl-ISY" secondAttribute="trailing" constant="50" id="chP-WT-1jv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YRF-k8-VL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2644" y="-228"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="iWe-RT-ICK"/>

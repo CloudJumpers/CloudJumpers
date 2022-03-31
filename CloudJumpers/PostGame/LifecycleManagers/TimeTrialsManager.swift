@@ -9,7 +9,7 @@ import Foundation
 
 class TimeTrialsManager: PostGameManager {
     private let completionData: TimeTrialData
-
+    private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
     private var pollTimer: Timer?
     var callback: PostGameCallback = nil
 

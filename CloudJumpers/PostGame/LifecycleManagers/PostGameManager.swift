@@ -17,6 +17,18 @@ protocol PostGameManager: AnyObject {
     var callback: PostGameCallback { get set }
 
     /*
+     rankings is the latest ranking data
+     available to the manager.
+     */
+    var rankings: [IndividualRanking] { get }
+
+    /*
+     rankingsTable returns a 2D table representation of rankings.
+     If data rows are present, the first row will be the header.
+     */
+    var rankingsTable: [[String]] { get }
+
+    /*
      submitLocalData allows a player who has
      completed the game to create or update
      their game data.
@@ -49,6 +61,14 @@ extension PostGameManager {
         urlString += PostGameConstants.commonPath
 
         return urlString
+    }
+
+    var rankingsTable: [[String]] {
+        guard let firstRow = rankings.first else {
+            return [[String]]()
+        }
+
+        return [firstRow.columnNames] + rankings.map { $0.values }
     }
 
     func postWithoutResponse(_ url: URL, _ jsonData: [String: Any]) {
