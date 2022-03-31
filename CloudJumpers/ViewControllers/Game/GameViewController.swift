@@ -156,6 +156,10 @@ extension GameViewController: SpriteSystemDelegate {
         scene?.addChild(node, static: `static`)
     }
 
+    func spriteSystem(_ system: SpriteSystem, removeNode node: SKNode) {
+        scene?.removeChild(node)
+    }
+
     func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
         scene?.cameraAnchorNode = node
     }

@@ -147,7 +147,7 @@ class SpriteSystem: System {
     }
 
     private func removeSprite(_ node: SKNode, with entity: Entity) {
-        node.removeFromParent()
+        delegate?.spriteSystem(self, removeNode: node)
 
         sprites.remove(entity.id)
     }

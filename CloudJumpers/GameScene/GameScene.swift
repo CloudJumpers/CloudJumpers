@@ -66,6 +66,14 @@ class GameScene: SKScene {
         }
     }
 
+    func removeChild(_ node: SKNode) {
+        node.removeFromParent()
+
+        if cameraAnchorNode == node {
+            cameraAnchorNode = nil
+        }
+    }
+
     private func panCameraToAnchorNode() {
         guard let cameraAnchorNode = cameraAnchorNode else {
             return
