@@ -15,39 +15,28 @@ enum Events: Int, CaseIterable {
     case removeEntity
     case activatePowerUp
     case reposition
+    case respawn
     case deferred
     case disasterHit
     case generateDisaster
 
-    // swiftlint:disable cyclomatic_complexity
-    static func type(of event: Event) -> Events? {
-        switch event {
-        case is BiEvent:
-            return .bi
-        case is LogEvent:
-            return .log
-        case is MoveEvent:
-            return .move
-        case is JumpEvent:
-            return .jump
-        case is AnimateEvent:
-            return .animate
-        case is ObtainEvent:
-            return .obtain
-        case is RemoveEntityEvent:
-            return .removeEntity
-        case is ActivatePowerUpEvent:
-            return .activatePowerUp
-        case is RepositionEvent:
-            return .reposition
-        case is DeferredEvent:
-            return .deferred
-        case is DisasterHitEvent:
-            return .disasterHit
-        case is GenerateDisasterEvent:
-            return .generateDisaster
-        default:
-            return nil
-        }
+    static let events: [String: Events] = [
+        String(describing: BiEvent.self): .bi,
+        String(describing: LogEvent.self): .log,
+        String(describing: MoveEvent.self): .move,
+        String(describing: JumpEvent.self): .jump,
+        String(describing: AnimateEvent.self): .animate,
+        String(describing: ObtainEvent.self): .obtain,
+        String(describing: RemoveEntityEvent.self): .removeEntity,
+        String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
+        String(describing: RepositionEvent.self): .reposition,
+        String(describing: RespawnEvent.self): .respawn,
+        String(describing: DeferredEvent.self): .deferred,
+        String(describing: DisasterHitEvent.self): .disasterHit,
+        String(describing: GenerateDisasterEvent.self): .generateDisaster
+    ]
+
+    static func eventType(for event: Event) -> Events? {
+        events[String(describing: type(of: event.self))]
     }
 }

@@ -32,7 +32,7 @@ struct MoveEvent: Event {
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }
 
-        let moveAction = SKAction.move(by: displacement, duration: 0.1)
+        let moveAction = SKAction.move(by: displacement, duration: 0.05)
         spriteComponent.node.run(moveAction)
 
         spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )

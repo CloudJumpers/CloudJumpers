@@ -98,7 +98,8 @@ class GameEngine {
                 at: Constants.playerInitialPositions[index],
                 texture: .character1,
                 with: id,
-                isCameraAnchor: id == playerId)
+                isCameraAnchor: id == playerId,
+                isGuest: id != playerId)
 
             entityManager.add(character)
 
