@@ -13,11 +13,18 @@ class Player: Entity {
 
     private(set) var position: CGPoint
     private let texture: Textures
+    private let isCameraAnchor: Bool
 
-    init(at position: CGPoint, texture: Textures, with id: EntityID = EntityManager.newEntityID) {
+    init(
+        at position: CGPoint,
+        texture: Textures,
+        with id: EntityID = EntityManager.newEntityID,
+        isCameraAnchor: Bool = false
+    ) {
         self.id = id
         self.texture = texture
         self.position = position
+        self.isCameraAnchor = isCameraAnchor
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -29,7 +36,10 @@ class Player: Entity {
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
         manager.addComponent(InventoryComponent(), to: self)
-        manager.addComponent(CameraAnchorTag(), to: self)
+
+        if isCameraAnchor {
+            manager.addComponent(CameraAnchorTag(), to: self)
+        }
     }
 
     private func createSpriteComponent() -> SpriteComponent {

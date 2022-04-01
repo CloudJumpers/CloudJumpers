@@ -466,7 +466,8 @@
 			isa = PBXGroup;
 			children = (
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
-				3E81C0E627EF3AA200184C55 /* PowerUp */,
+				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
+				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				3E3E0BEE27F6D5C900BF526C /* Floor.swift */,
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
@@ -558,15 +559,6 @@
 				1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */,
 			);
 			path = Tags;
-			sourceTree = "<group>";
-		};
-		3E81C0E627EF3AA200184C55 /* PowerUp */ = {
-			isa = PBXGroup;
-			children = (
-				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
-				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
-			);
-			path = PowerUp;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
