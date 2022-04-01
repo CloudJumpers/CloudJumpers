@@ -171,7 +171,10 @@ class LobbiesViewController: UIViewController {
 extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listing = lobbies[indexPath.item]
-        moveToLobby(listing: listing)
+
+        if listing.occupancy < listing.gameMode.getMaxPlayer() {
+            moveToLobby(listing: listing)
+        }
     }
 }
 

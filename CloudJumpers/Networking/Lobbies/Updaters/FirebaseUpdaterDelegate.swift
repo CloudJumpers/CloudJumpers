@@ -47,6 +47,10 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - user is not (somehow) in the lobby already
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if currentData.childrenCount >= lobby.gameMode.getMaxPlayer() {
+                return TransactionResult.abort()
+            }
+
             if
                 currentData.childrenCount < lobby.gameMode.getMaxPlayer(),
                 var nextData = currentData.value as? [String: AnyObject],
@@ -62,8 +66,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 return TransactionResult.success(withValue: currentData)
             }
             return TransactionResult.success(withValue: currentData)
-        }) { error, _, _ in
-            error == nil ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
+        }) { error, committed, _ in
+            (error == nil && committed) ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
         }
     }
 
@@ -90,7 +94,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         let participantsReference = getLobbyParticipantsReference(lobbyId: lobby.id)
 
-        // setReady requires the following:
+        // e.g. setReady requires the following:
         // - the lobby exists
         // - the user exists in the lobby
         // - the user was previously not ready
