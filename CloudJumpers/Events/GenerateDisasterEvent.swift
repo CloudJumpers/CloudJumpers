@@ -21,23 +21,18 @@ struct GenerateDisasterEvent: Event {
         guard getProbabilisticSuccess(successRate: 1),
               let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else {
-            return nil
-        }
+        else { return nil }
 
         let yPosition = spriteComponent.node.position.y
-        let disaster = Disaster(getRandomType(),
-                                position: getRandomPosition(minY: yPosition + 300),
-                                velocity: getRandomVelocity())
+
+        let disaster = Disaster(
+            getRandomType(),
+            position: getRandomPosition(minY: yPosition + 300),
+            velocity: getRandomVelocity())
+
         entityManager.add(disaster)
 
-        guard let disasterSpriteComponent = entityManager.component(ofType: SpriteComponent.self, of: disaster) else {
-            return []
-        }
-
-        return [DeferredEvent(disaster,
-                              until: { isPositionOutOfBound(position: disasterSpriteComponent.node.position) },
-                              action: { entityManager.remove(disaster) })]
+        return [RemoveUnboundEntityEvent(disaster)]
     }
 
     private func getRandomVelocity() -> CGVector {
@@ -67,9 +62,5 @@ struct GenerateDisasterEvent: Event {
 
     private func getProbabilisticSuccess(successRate: Int) -> Bool {
         Int.random(in: 0..<100) < successRate
-    }
-
-    private func isPositionOutOfBound(position: CGPoint) -> Bool {
-        position.x < -480 || position.x > 480
     }
 }
