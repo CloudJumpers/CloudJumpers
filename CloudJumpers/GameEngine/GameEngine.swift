@@ -88,11 +88,11 @@ class GameEngine {
             let character = Player(
                 at: Constants.playerInitialPositions[index],
                 texture: .character1,
-                with: id)
+                with: id,
+                isCameraAnchor: id == playerId)
 
             entityManager.add(character)
 
-            // TODO: SpriteSystem should be able to differentiate players
             if id == playerId {
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
             }
