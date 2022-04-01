@@ -51,6 +51,8 @@ class LobbiesViewController: UIViewController {
                 let value = snapshot.value as? NSDictionary,
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
+                let gameModeString = value[LobbyKeys.gameMode] as? String,
+                let gameMode = GameMode(rawValue: gameModeString),
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
                 return
@@ -60,6 +62,7 @@ class LobbiesViewController: UIViewController {
                 lobbyId: snapshot.key,
                 hostId: hostId,
                 lobbyName: lobbyName,
+                gameMode: gameMode,
                 occupancy: participants.count
             )
 
@@ -72,25 +75,39 @@ class LobbiesViewController: UIViewController {
         }
 
         lobbiesRef?.observe(.childChanged) { snapshot in
-            guard let value = snapshot.value as? NSDictionary else {
+            guard
+                let value = snapshot.value as? NSDictionary,
+                let occupancy = value[LobbyKeys.participants] as? NSDictionary,
+                let name = value[LobbyKeys.lobbyName] as? String,
+                let gameModeString = value[LobbyKeys.gameMode] as? String,
+                let gameMode = GameMode(rawValue: gameModeString)
+            else {
                 return
             }
 
             self.updateLobbyListing(
                 lobbyId: snapshot.key,
-                newOccupancy: (value[LobbyKeys.participants] as? NSDictionary)?.count,
-                newName: value[LobbyKeys.lobbyName] as? String
+                newName: name,
+                newGameMode: gameMode,
+                newOccupancy: occupancy.count
             )
             self.lobbiesCollectionView.reloadData()
         }
     }
 
-    private func addLobbyListing(lobbyId: NetworkID, hostId: NetworkID, lobbyName: String, occupancy: Int) {
+    private func addLobbyListing(
+        lobbyId: NetworkID,
+        hostId: NetworkID,
+        lobbyName: String,
+        gameMode: GameMode,
+        occupancy: Int
+    ) {
         let newLobbyListing = LobbyListing(
             lobbyId: lobbyId,
             hostId: hostId,
             lobbyName: lobbyName,
-            numPlayers: occupancy
+            gameMode: gameMode,
+            occupancy: occupancy
         )
 
         lobbies.append(newLobbyListing)
@@ -100,7 +117,7 @@ class LobbiesViewController: UIViewController {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(lobbyId: NetworkID, newOccupancy: Int?, newName: String?) {
+    private func updateLobbyListing(lobbyId: NetworkID, newName: String, newGameMode: GameMode, newOccupancy: Int) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
             return
         }
@@ -108,8 +125,9 @@ class LobbiesViewController: UIViewController {
         lobbies[index] = LobbyListing(
             lobbyId: lobbyId,
             hostId: lobbies[index].hostId,
-            lobbyName: newName ?? lobbies[index].lobbyName,
-            numPlayers: newOccupancy ?? lobbies[index].numPlayers
+            lobbyName: newName,
+            gameMode: newGameMode,
+            occupancy: newOccupancy
         )
     }
 
@@ -175,14 +193,15 @@ extension LobbiesViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let occupancy = lobbies[indexPath.item].numPlayers
+        let occupancy = lobbies[indexPath.item].occupancy
         let name = lobbies[indexPath.item].lobbyName
+        let mode = lobbies[indexPath.item].gameMode
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: GameMode.TimeTrial.rawValue)    // TODO: refactor when new gamemodes exist
-        lobbyCell.setOccupancy(num: occupancy)
+        lobbyCell.setGameMode(mode: mode)
+        lobbyCell.setOccupancy(num: occupancy, mode: mode)
 
-        if occupancy < LobbyConstants.MaxSupportedPlayers {
+        if occupancy < mode.getMaxPlayer() {
             lobbyCell.backgroundColor = .green
         } else {
             lobbyCell.backgroundColor = .systemGray

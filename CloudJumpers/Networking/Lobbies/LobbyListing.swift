@@ -11,5 +11,6 @@ struct LobbyListing {
     let lobbyId: NetworkID
     let hostId: NetworkID
     let lobbyName: String
-    let numPlayers: Int
+    let gameMode: GameMode
+    let occupancy: Int
 }
