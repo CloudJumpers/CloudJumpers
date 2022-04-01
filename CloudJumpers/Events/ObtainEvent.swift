@@ -19,11 +19,13 @@ struct ObtainEvent: Event {
         otherEntityID = otherEntity.id
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity)
-        else { return }
+        else { return nil }
 
         inventoryComponent.inventory.insert(otherEntityID)
+
+        return nil
     }
 }

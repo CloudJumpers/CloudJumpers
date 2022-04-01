@@ -19,7 +19,9 @@ struct LogEvent: Event {
         self.message = message
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         print(message)
+
+        return nil
     }
 }
