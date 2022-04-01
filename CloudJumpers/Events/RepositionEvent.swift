@@ -22,11 +22,11 @@ struct RepositionEvent: Event {
         self.kind = kind
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)
-        else { return }
+        else { return nil }
 
         let displacement = CGVector(
             dx: nextPosition.x - spriteComponent.node.position.x,
@@ -35,5 +35,7 @@ struct RepositionEvent: Event {
 
         spriteComponent.node.run(.move(by: displacement, duration: 0.1))
         animationComponent.kind = kind
+
+        return nil
     }
 }

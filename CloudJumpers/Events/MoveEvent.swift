@@ -27,17 +27,18 @@ struct MoveEvent: Event {
         self.displacement = displacement
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return }
+        else { return nil }
 
         let moveAction = SKAction.move(by: displacement, duration: 0.1)
-
         spriteComponent.node.run(moveAction)
 
         spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
 
         SoundManager.instance.play(.walking)
+
+        return nil
     }
 }
