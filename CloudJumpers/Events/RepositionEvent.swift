@@ -35,7 +35,7 @@ struct RepositionEvent: Event {
         if displacement.dx != 0 {
             spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
         }
-        spriteComponent.node.run(.move(by: displacement, duration: 0.05))
+        spriteComponent.node.run(.move(by: displacement, duration: 0.1))
         animationComponent.kind = kind
 
         return nil
