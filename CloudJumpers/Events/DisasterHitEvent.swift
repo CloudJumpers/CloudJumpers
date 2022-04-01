@@ -22,7 +22,7 @@ struct DisasterHitEvent: Event {
         guard let disaster = entityManager.entity(with: entityID)
         else { return nil }
 
-        return [RemoveEntityEvent(disaster, after: Constants.disasterHitDuration)]
+        return [RemoveEntityEvent(disaster)]
 
         // handle something on the thing the disaster land on
     }
