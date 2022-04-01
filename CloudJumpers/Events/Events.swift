@@ -12,6 +12,7 @@ enum Events: Int, CaseIterable {
     case jump
     case animate
     case obtain
+    case removeEntity
     case activatePowerUp
     case reposition
 
@@ -29,6 +30,8 @@ enum Events: Int, CaseIterable {
             return .animate
         case is ObtainEvent:
             return .obtain
+        case is RemoveEntityEvent:
+            return .removeEntity
         case is ActivatePowerUpEvent:
             return .activatePowerUp
         case is RepositionEvent:
