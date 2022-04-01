@@ -8,6 +8,7 @@
 import AVFAudio
 
 class SoundManager {
+    private static let enabled = false
     static let instance = SoundManager()
     private var players: [Sounds: AVAudioPlayer]
 
@@ -16,6 +17,10 @@ class SoundManager {
     }
 
     func play(_ sound: Sounds, loopsBy loops: Int = 0) {
+        guard Self.enabled else {
+            return
+        }
+
         if players[sound] == nil {
             players[sound] = sound.player
         }
@@ -25,14 +30,26 @@ class SoundManager {
     }
 
     func pause(_ sound: Sounds) {
+        guard Self.enabled else {
+            return
+        }
+
         players[sound]?.pause()
     }
 
     func stop(_ sound: Sounds) {
+        guard Self.enabled else {
+            return
+        }
+
         players[sound]?.stop()
     }
 
     func stopAll() {
+        guard Self.enabled else {
+            return
+        }
+
         players.values.forEach { $0.stop() }
     }
 }
