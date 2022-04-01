@@ -33,7 +33,8 @@ struct RepositionEvent: Event {
             dy: nextPosition.y - spriteComponent.node.position.y
         )
 
-        spriteComponent.node.run(.move(by: displacement, duration: 0.1))
+        spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+        spriteComponent.node.run(.move(by: displacement, duration: 0.05))
         animationComponent.kind = kind
 
         return nil
