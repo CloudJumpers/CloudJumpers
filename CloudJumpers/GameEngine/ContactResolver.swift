@@ -19,9 +19,7 @@ class ContactResolver {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node,
               let idA = nodeA.entityID,
-              let idB = nodeB.entityID,
-              let nodeABitMask = nodeA.physicsBody?.categoryBitMask,
-              let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
+              let idB = nodeB.entityID
         else {
             return
         }
@@ -32,15 +30,16 @@ class ContactResolver {
             metaDataDelegate?.metaData(changePlayerLocation: idB, location: idA)
         }
 
-        if nodeABitMask == Constants.bitmaskPlayer &&
-           nodeBBitMask == Constants.bitmaskPowerUp {
+        if isPlayerObtainingPowerUp(nodeA: nodeA, nodeB: nodeB) {
+            eventManager?.add(ObtainEvent(on: idA, obtains: idB))
+        } else if isPlayerObtainingPowerUp(nodeA: nodeB, nodeB: nodeA) {
+            eventManager?.add(ObtainEvent(on: idB, obtains: idA))
+        }
 
-            guard let entityIDA = nodeA.entityID,
-                  let entityIDB = nodeB.entityID else {
-                return
-            }
-
-            eventManager?.add(ObtainEvent(on: entityIDA, obtains: entityIDB))
+        if isDisasterHitting(nodeA: nodeA) {
+            eventManager?.add(DisasterHitEvent(from: idA, on: idB))
+        } else if isDisasterHitting(nodeA: nodeB) {
+            eventManager?.add(DisasterHitEvent(from: idB, on: idA))
         }
     }
 
@@ -81,5 +80,17 @@ class ContactResolver {
         return playerPosition.x > platformTopLeftX - player.frame.size.width / 2 &&
         playerPosition.x < platformTopRightX + player.frame.size.width / 2 &&
         playerPosition.y > platformY
+    }
+
+    private func isPlayerObtainingPowerUp(nodeA: SKNode, nodeB: SKNode) -> Bool {
+        let nodeABitMask = nodeA.physicsBody?.categoryBitMask
+        let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
+
+        return nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPowerUp
+    }
+
+    private func isDisasterHitting(nodeA: SKNode) -> Bool {
+        let nodeABitMask = nodeA.physicsBody?.categoryBitMask
+        return nodeABitMask == Constants.bitmaskDisaster
     }
 }

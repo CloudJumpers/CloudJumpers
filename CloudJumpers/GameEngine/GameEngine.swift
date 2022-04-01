@@ -67,7 +67,16 @@ class GameEngine {
             return
         }
         let topPlatform = Platform(at: highestPosition)
+
+        let wallHeight = (Constants.screenHeight / 2) + highestPosition.y + Constants.wallHeightFromPlatform
+
+        let leftWall = Wall(at: Constants.leftWallPosition, height: wallHeight)
+        let rightWall = Wall(at: Constants.rightWallPosition, height: wallHeight)
+        let floor = Floor(at: Constants.floorPosition)
         entityManager.add(topPlatform)
+        entityManager.add(leftWall)
+        entityManager.add(rightWall)
+        entityManager.add(floor)
         metaData.topPlatformId = topPlatform.id
 
         positions.forEach { position in
@@ -138,6 +147,7 @@ class GameEngine {
     }
 
     private func updateEvents() {
+        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
         eventManager.executeAll(in: entityManager)
     }
 
