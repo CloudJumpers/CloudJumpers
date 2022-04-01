@@ -44,7 +44,6 @@
 		1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603D27F19369006E4018 /* Blueprint.swift */; };
 		1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603F27F19386006E4018 /* LevelGenerator.swift */; };
 		1AC1605327F2F56D006E4018 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605227F2F56D006E4018 /* GameEngine.swift */; };
-		1ACE976E27E60D50005AA18B /* SpriteSystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE976D27E60D50005AA18B /* SpriteSystemDelegate.swift */; };
 		1AC1605F27F31DEE006E4018 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605E27F31DED006E4018 /* SoundManager.swift */; };
 		1AC1606427F31E08006E4018 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1606327F31E08006E4018 /* Sounds.swift */; };
 		1AC1606D27F43B15006E4018 /* end-lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1AC1606827F43B15006E4018 /* end-lose.wav */; };
@@ -55,6 +54,7 @@
 		1AC1607727F4404A006E4018 /* walking.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1AC1607327F4404A006E4018 /* walking.wav */; };
 		1AC1607827F4404A006E4018 /* jump-foot.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1AC1607427F4404A006E4018 /* jump-foot.wav */; };
 		1AC1607927F4404A006E4018 /* respawned.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1AC1607527F4404A006E4018 /* respawned.wav */; };
+		1ACE976E27E60D50005AA18B /* SpriteSystemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE976D27E60D50005AA18B /* SpriteSystemDelegate.swift */; };
 		1ACE97C827EB26BB005AA18B /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C327EB26BB005AA18B /* Component.swift */; };
 		1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C427EB26BB005AA18B /* EntityManager.swift */; };
 		1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C527EB26BB005AA18B /* Entity.swift */; };
@@ -195,7 +195,6 @@
 		1AC1603D27F19369006E4018 /* Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blueprint.swift; sourceTree = "<group>"; };
 		1AC1603F27F19386006E4018 /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
 		1AC1605227F2F56D006E4018 /* GameEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
-		1ACE976D27E60D50005AA18B /* SpriteSystemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSystemDelegate.swift; sourceTree = "<group>"; };
 		1AC1605E27F31DED006E4018 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1AC1606327F31E08006E4018 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		1AC1606827F43B15006E4018 /* end-lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "end-lose.wav"; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		1AC1607327F4404A006E4018 /* walking.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = walking.wav; sourceTree = "<group>"; };
 		1AC1607427F4404A006E4018 /* jump-foot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "jump-foot.wav"; sourceTree = "<group>"; };
 		1AC1607527F4404A006E4018 /* respawned.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = respawned.wav; sourceTree = "<group>"; };
+		1ACE976D27E60D50005AA18B /* SpriteSystemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteSystemDelegate.swift; sourceTree = "<group>"; };
 		1ACE97C327EB26BB005AA18B /* Component.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		1ACE97C427EB26BB005AA18B /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		1ACE97C527EB26BB005AA18B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
