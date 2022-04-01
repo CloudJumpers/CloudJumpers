@@ -19,9 +19,7 @@ class ContactResolver {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node,
               let idA = nodeA.entityID,
-              let idB = nodeB.entityID,
-              let nodeABitMask = nodeA.physicsBody?.categoryBitMask,
-              let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
+              let idB = nodeB.entityID
         else {
             return
         }
@@ -32,16 +30,27 @@ class ContactResolver {
             metaDataDelegate?.metaData(changePlayerLocation: idB, location: idA)
         }
 
-        if nodeABitMask == Constants.bitmaskPlayer &&
-           nodeBBitMask == Constants.bitmaskPowerUp {
-
-            guard let entityIDA = nodeA.entityID,
-                  let entityIDB = nodeB.entityID else {
-                return
-            }
-
-            eventManager?.add(ObtainEvent(on: entityIDA, obtains: entityIDB))
+        if isPlayerObtainingPowerUp(nodeA: nodeA, nodeB: nodeB) {
+            eventManager?.add(ObtainEvent(on: idA, obtains: idB))
+        } else if isPlayerObtainingPowerUp(nodeA: nodeB, nodeB: nodeA) {
+            eventManager?.add(ObtainEvent(on: idB, obtains: idA))
         }
+
+//            if nodeABitMask == Constants.bitmaskDisaster {
+//                guard let entityIDA = nodeA.entityID,
+//                      let entityIDB = nodeB.entityID else {
+//                    return
+//                }
+//                eventManager?.add(DisasterHitEvent(from: entityIDA, on: entityIDB))
+//            }
+//
+//            if nodeBBitMask == Constants.bitmaskDisaster {
+//                guard let entityIDA = nodeA.entityID,
+//                      let entityIDB = nodeB.entityID else {
+//                    return
+//                }
+//                eventManager?.add(DisasterHitEvent(from: entityIDB, on: entityIDA))
+//            }
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {
@@ -81,5 +90,12 @@ class ContactResolver {
         return playerPosition.x > platformTopLeftX &&
         playerPosition.x < platformTopRightX &&
         playerPosition.y > platformY
+    }
+
+    func isPlayerObtainingPowerUp(nodeA: SKNode, nodeB: SKNode) -> Bool {
+        let nodeABitMask = nodeA.physicsBody?.categoryBitMask
+        let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
+
+        return nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPowerUp
     }
 }

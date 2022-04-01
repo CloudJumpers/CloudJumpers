@@ -1,13 +1,12 @@
 //
-//  Cloud.swift
+//  Floor.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 23/3/22.
+//  Created by Eric Bryan on 28/3/22.
 //
-
 import SpriteKit
 
-class Cloud: Entity {
+class Floor: Entity {
     let id: EntityID
 
     private let position: CGPoint
@@ -26,28 +25,28 @@ class Cloud: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        // TODO: Abstract out Clouds texture atlas
-        let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
         let spriteComponent = SpriteComponent(
-            texture: texture,
-            size: Constants.cloudNodeSize,
+            texture: SKTexture(imageNamed: "floor"),
+            size: Constants.floorSize,
             at: position,
-            forEntityWith: id)
+            forEntityWith: id
+        )
 
-        spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
+        spriteComponent.node.zPosition = SpriteZPosition.floor.rawValue
 
         return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize, for: spriteComponent)
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.floorSize, for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.body.categoryBitMask = Constants.bitmaskFloor
+        physicsComponent.body.collisionBitMask = Constants.bitmaskDisaster |
+        Constants.bitmaskPlayer
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskDisaster
 
         return physicsComponent
     }

@@ -67,7 +67,13 @@ class GameEngine {
             return
         }
         let topPlatform = Platform(at: highestPosition)
+        let leftWall = Wall(at: Constants.leftWallPosition)
+        let rightWall = Wall(at: Constants.rightWallPosition)
+        let floor = Floor(at: Constants.floorPosition)
         entityManager.add(topPlatform)
+        entityManager.add(leftWall)
+        entityManager.add(rightWall)
+        entityManager.add(floor)
         metaData.topPlatformId = topPlatform.id
 
         positions.forEach { position in

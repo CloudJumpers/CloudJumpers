@@ -9,5 +9,6 @@ import CoreGraphics
 
 enum SpriteZPosition: CGFloat {
     // z-index in increasing order
-    case background, platform, player, powerUp, outerStick, innerStick, button, timer
+    case floor, background, platform, player, powerUp,
+         disaster, wall, outerStick, innerStick, button, timer
 }
