@@ -78,8 +78,8 @@ class ContactResolver {
         let platformTopRightX = platformPosition.x + platform.frame.size.width / 2
         let platformY = platformPosition.y
 
-        return playerPosition.x > platformTopLeftX &&
-        playerPosition.x < platformTopRightX &&
+        return playerPosition.x > platformTopLeftX - player.frame.size.width / 2 &&
+        playerPosition.x < platformTopRightX + player.frame.size.width / 2 &&
         playerPosition.y > platformY
     }
 }
