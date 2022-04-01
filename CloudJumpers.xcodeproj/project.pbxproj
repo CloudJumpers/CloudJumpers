@@ -77,6 +77,9 @@
 		3E335FC927E6F51B00817B5B /* EndGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E335FC827E6F51B00817B5B /* EndGameCell.swift */; };
 		3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BEE27F6D5C900BF526C /* Floor.swift */; };
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
+		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
+		3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */; };
+		3E3E0BF927F6DD5C00BF526C /* DisasterHitEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */; };
 		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */; };
@@ -234,6 +237,9 @@
 		3E335FC827E6F51B00817B5B /* EndGameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameCell.swift; sourceTree = "<group>"; };
 		3E3E0BEE27F6D5C900BF526C /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		3E3E0BF027F6D61200BF526C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
+		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
+		3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterComponent.swift; sourceTree = "<group>"; };
+		3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEvent.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
@@ -447,6 +453,7 @@
 				1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */,
 				1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */,
 				1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */,
+				3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -461,6 +468,7 @@
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
 				3E3E0BF027F6D61200BF526C /* Wall.swift */,
 				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
+				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -812,6 +820,7 @@
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
+				3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */,
 				1ADEDD9A27F6177000C3AFD3 /* RemoveEntityEvent.swift */,
 				9353464127F02EFA00DC6F9E /* RepositionEvent.swift */,
 				A176387E27F4927E009EA7E7 /* RespawnEvent.swift */,
@@ -1145,6 +1154,7 @@
 				3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */,
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
 				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
+				3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				1A94D96F27EEB361001D8A86 /* AnimateEvent.swift in Sources */,
@@ -1205,6 +1215,7 @@
 				1ACE976E27E60D50005AA18B /* SpriteSystemDelegate.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
 				931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */,
+				3E3E0BF927F6DD5C00BF526C /* DisasterHitEvent.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
@@ -1214,6 +1225,7 @@
 				A176387F27F4927E009EA7E7 /* RespawnEvent.swift in Sources */,
 				1A94D96427EE0D4D001D8A86 /* MoveEvent.swift in Sources */,
 				9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */,
+				3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */,
 				1A94D95927ED8709001D8A86 /* Platform.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,

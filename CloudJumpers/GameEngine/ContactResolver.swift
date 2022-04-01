@@ -36,21 +36,11 @@ class ContactResolver {
             eventManager?.add(ObtainEvent(on: idB, obtains: idA))
         }
 
-//            if nodeABitMask == Constants.bitmaskDisaster {
-//                guard let entityIDA = nodeA.entityID,
-//                      let entityIDB = nodeB.entityID else {
-//                    return
-//                }
-//                eventManager?.add(DisasterHitEvent(from: entityIDA, on: entityIDB))
-//            }
-//
-//            if nodeBBitMask == Constants.bitmaskDisaster {
-//                guard let entityIDA = nodeA.entityID,
-//                      let entityIDB = nodeB.entityID else {
-//                    return
-//                }
-//                eventManager?.add(DisasterHitEvent(from: entityIDB, on: entityIDA))
-//            }
+        if isDisasterHitting(nodeA: nodeA) {
+            eventManager?.add(DisasterHitEvent(from: idA, on: idB))
+        } else if isDisasterHitting(nodeA: nodeB) {
+            eventManager?.add(DisasterHitEvent(from: idB, on: idA))
+        }
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {
@@ -92,10 +82,15 @@ class ContactResolver {
         playerPosition.y > platformY
     }
 
-    func isPlayerObtainingPowerUp(nodeA: SKNode, nodeB: SKNode) -> Bool {
+    private func isPlayerObtainingPowerUp(nodeA: SKNode, nodeB: SKNode) -> Bool {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
         return nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPowerUp
+    }
+
+    private func isDisasterHitting(nodeA: SKNode) -> Bool {
+        let nodeABitMask = nodeA.physicsBody?.categoryBitMask
+        return nodeABitMask == Constants.bitmaskDisaster
     }
 }
