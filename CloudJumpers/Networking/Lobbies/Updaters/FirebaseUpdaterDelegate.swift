@@ -48,7 +48,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             if
-                currentData.childrenCount < LobbyConstants.MaxSupportedPlayers,
+                currentData.childrenCount < lobby.gameMode.getMaxPlayer(),
                 var nextData = currentData.value as? [String: AnyObject],
                 nextData[userId] == nil
             {
@@ -113,6 +113,24 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 print("error occurred during toggleReady: \(err.localizedDescription)")
             }
         }
+    }
+
+    func changeLobbyGameMode(to gameMode: GameMode) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
+        lobbyGameModeReference.setValue(gameMode.rawValue)
+    }
+
+    func changeLobbyName(to name: String) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyNameReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.lobbyName)
+        lobbyNameReference.setValue(name)
     }
 
     private func constructLobbyPath(lobbyId: NetworkID) -> String {

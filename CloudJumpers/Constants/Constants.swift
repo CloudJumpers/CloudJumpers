@@ -17,6 +17,13 @@ struct Constants {
 
     static let playerInitialPosition = CGPoint(x: 0, y: -300)
 
+    static let playerInitialPositions = [
+        CGPoint(x: -50, y: -300),
+        CGPoint(x: 50, y: -300),
+        CGPoint(x: -150, y: -300),
+        CGPoint(x: 150, y: -300)
+    ]
+
     static let screenWidth = UIScreen.main.bounds.size.width
     static let screenHeight = UIScreen.main.bounds.size.height
     static let gameSceneSize = CGSize(width: screenWidth,

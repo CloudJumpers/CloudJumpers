@@ -55,9 +55,49 @@ class GameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(with clouds: [Cloud], playerId: EntityID, additionalPlayerIds: [EntityID]?) {
-        clouds.forEach(entityManager.add(_:))
-        setUpSampleGame(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+    func setUpGame(with blueprint: Blueprint, playerId: EntityID, additionalPlayerIds: [EntityID]?) {
+        let positions = LevelGenerator.from(blueprint, seed: blueprint.seed)
+        setUpEnvironment(positions)
+        setUpPlayers(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        setUpSampleGame()
+    }
+
+    private func setUpEnvironment(_ positions: [CGPoint]) {
+        guard let highestPosition = positions.max(by: { $0.y < $1.y }) else {
+            return
+        }
+        let topPlatform = Platform(at: highestPosition)
+        entityManager.add(topPlatform)
+        metaData.topPlatformId = topPlatform.id
+
+        positions.forEach { position in
+            if position != highestPosition {
+                let newCloud = Cloud(at: position)
+                entityManager.add(newCloud)
+            }
+        }
+    }
+
+    private func setUpPlayers(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+        metaData.playerId = playerId
+        var allPlayerId = [playerId] + additionalPlayerIds
+
+        allPlayerId.sort()
+
+        for (index, id) in allPlayerId.enumerated() {
+            let character = Player(
+                at: Constants.playerInitialPositions[index],
+                texture: .character1,
+                with: id)
+
+            entityManager.add(character)
+
+            // TODO: SpriteSystem should be able to differentiate players
+            if id == playerId {
+                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            }
+        }
+
     }
 
     private func setUpCrossDeviceSyncTimer() {
@@ -83,29 +123,17 @@ class GameEngine {
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
-    private func setUpSampleGame(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+    private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let player = Player(at: Constants.playerInitialPosition, texture: .character1, with: playerId)
-        let topPlatform = Platform(at: CGPoint(x: 0, y: 700))
-
         let powerups = [
             PowerUp(.freeze, at: CGPoint(x: 200, y: -300)),
             PowerUp(.confuse, at: CGPoint(x: -200, y: -300)),
             PowerUp(.confuse, at: CGPoint(x: 0, y: -200))]
 
         entityManager.add(timer)
-        entityManager.add(player)
-        entityManager.add(topPlatform)
         powerups.forEach(entityManager.add(_:))
 
-        let otherPlayers = additionalPlayerIds.map {
-            Player(at: Constants.playerInitialPosition, texture: .character1, with: $0)
-        }
-        otherPlayers.forEach(entityManager.add(_:))
-
         self.timer = timer
-        metaData.playerId = player.id
-        metaData.topPlatformId = topPlatform.id
     }
 
     private func updateEvents() {
@@ -134,9 +162,9 @@ extension GameEngine: GameMetaDataDelegate {
 
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
-            metaData.playerLocationMapping[player] = location
+            metaData.locationMapping[player] = (location, metaData.time)
         } else {
-            metaData.playerLocationMapping.removeValue(forKey: player)
+            metaData.locationMapping.removeValue(forKey: player)
         }
     }
 
@@ -166,12 +194,17 @@ extension GameEngine: InputResponder {
     }
 
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
+        guard let entity = associatedEntity,
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+        else {
             return
         }
 
         eventManager.add(MoveEvent(on: entity, by: displacement))
-        eventManager.add(AnimateEvent(on: entity, to: .walking))
+
+        if physicsComponent.body.velocity == .zero {
+            eventManager.add(AnimateEvent(on: entity, to: .walking))
+        }
     }
 
     func inputJump() {
