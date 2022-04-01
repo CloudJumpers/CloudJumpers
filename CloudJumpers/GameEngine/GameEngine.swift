@@ -11,21 +11,19 @@ class GameEngine {
     let entityManager: EntityManager
     let eventManager: EventManager
     let contactResolver: ContactResolver
-    weak var delegate: GameEngineDelegate?
     var systems: [System]
     var metaData: GameMetaData
 
     private var crossDeviceSyncTimer: Timer?
 
-    required init(for delegate: GameEngineDelegate, channel: NetworkID? = nil) {
+    required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate, channel: NetworkID? = nil) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
         systems = []
-        self.delegate = delegate
         contactResolver.metaDataDelegate = self
-        setUpSystems()
+        setUpSystems(rendersTo: spriteSystemDelegate)
         setUpCrossDeviceSyncTimer()
     }
 
@@ -70,14 +68,12 @@ class GameEngine {
         }
         let topPlatform = Platform(at: highestPosition)
         entityManager.add(topPlatform)
-        addNodeToScene(topPlatform, with: delegate?.engine(_:addEntityWith:))
         metaData.topPlatformId = topPlatform.id
 
         positions.forEach { position in
             if position != highestPosition {
                 let newCloud = Cloud(at: position)
                 entityManager.add(newCloud)
-                addNodeToScene(newCloud, with: delegate?.engine(_:addEntityWith:))
             }
         }
     }
@@ -89,15 +85,16 @@ class GameEngine {
         allPlayerId.sort()
 
         for (index, id) in allPlayerId.enumerated() {
-            let character = Player(at: Constants.playerInitialPositions[index],
-                                   texture: .character1,
-                                   with: id)
+            let character = Player(
+                at: Constants.playerInitialPositions[index],
+                texture: .character1,
+                with: id)
+
             entityManager.add(character)
+
+            // TODO: SpriteSystem should be able to differentiate players
             if id == playerId {
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
-                addNodeToScene(character, with: delegate?.engine(_:addPlayerWith:))
-            } else {
-                addNodeToScene(character, with: delegate?.engine(_:addEntityWith:))
             }
         }
 
@@ -110,9 +107,11 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
-    private func setUpSystems() {
+    private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
+        let spriteSystem = SpriteSystem(for: entityManager)
+        spriteSystem.delegate = spriteSystemDelegate
+        systems.append(spriteSystem)
         systems.append(TimedSystem(for: entityManager))
-        systems.append(SpriteSystem(for: entityManager))
     }
 
     private func updateSystems(within time: CGFloat) {
@@ -126,19 +125,15 @@ class GameEngine {
 
     private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        let powerups = [
+            PowerUp(.freeze, at: CGPoint(x: 200, y: -300)),
+            PowerUp(.confuse, at: CGPoint(x: -200, y: -300)),
+            PowerUp(.confuse, at: CGPoint(x: 0, y: -200))]
 
         entityManager.add(timer)
-        addNodeToScene(timer, with: delegate?.engine(_:addControlWith:))
+        powerups.forEach(entityManager.add(_:))
 
         self.timer = timer
-    }
-
-    private func addNodeToScene(_ entity: Entity, with method: ((GameEngine, SKNode) -> Void)?) {
-        guard let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
-
-        method?(self, spriteComponent.node)
     }
 
     private func updateEvents() {
@@ -219,5 +214,13 @@ extension GameEngine: InputResponder {
 
         eventManager.add(JumpEvent(on: entity))
         eventManager.add(AnimateEvent(on: entity, to: .jumping))
+    }
+
+    func activatePowerUp(at location: CGPoint) {
+        guard let entity = associatedEntity else {
+            return
+        }
+
+        eventManager.add(ActivatePowerUpEvent(in: entity, location: location))
     }
 }

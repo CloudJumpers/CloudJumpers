@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     }
 
     private func prepareGameEngine() {
-        gameEngine = GameEngine(for: self, channel: lobby?.id)
+        gameEngine = GameEngine(rendersTo: self, channel: lobby?.id)
     }
 
     private func setUpGameScene() {
@@ -104,9 +104,11 @@ class GameViewController: UIViewController {
 
         let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
         let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
+        let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine)
 
-        scene?.addStaticChild(joystick)
-        scene?.addStaticChild(jumpButton)
+        scene?.addChild(joystick, static: true)
+        scene?.addChild(jumpButton, static: true)
+        scene?.addChild(gameArea, static: true)
 
         self.joystick = joystick
     }
@@ -165,19 +167,17 @@ extension GameViewController: GameSceneDelegate {
     }
 }
 
-// MARK: - GameEngineDelegate
-extension GameViewController: GameEngineDelegate {
-
-    func engine(_ engine: GameEngine, addEntityWith node: SKNode) {
-        scene?.addChild(node)
+// MARK: - SpriteSystemDelegate
+extension GameViewController: SpriteSystemDelegate {
+    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode, static: Bool) {
+        scene?.addChild(node, static: `static`)
     }
 
-    func engine(_ engine: GameEngine, addPlayerWith node: SKNode) {
-        self.engine(engine, addEntityWith: node)
+    func spriteSystem(_ system: SpriteSystem, removeNode node: SKNode) {
+        scene?.removeChild(node)
+    }
+
+    func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
         scene?.cameraAnchorNode = node
-    }
-
-    func engine(_ engine: GameEngine, addControlWith node: SKNode) {
-        scene?.addStaticChild(node)
     }
 }

@@ -25,13 +25,15 @@ class RespawnEvent: Event {
         self.position = position
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return }
+        else { return nil }
 
         print("RESPAWN")
 
         spriteComponent.node.position = position
+
+        return nil
     }
 }

@@ -19,7 +19,9 @@ class ContactResolver {
         guard let nodeA = contact.bodyA.node,
               let nodeB = contact.bodyB.node,
               let idA = nodeA.entityID,
-              let idB = nodeB.entityID
+              let idB = nodeB.entityID,
+              let nodeABitMask = nodeA.physicsBody?.categoryBitMask,
+              let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
         else {
             return
         }
@@ -28,6 +30,17 @@ class ContactResolver {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         } else if isPlayerChangingLocation(nodeA: nodeB, nodeB: nodeA) {
             metaDataDelegate?.metaData(changePlayerLocation: idB, location: idA)
+        }
+
+        if nodeABitMask == Constants.bitmaskPlayer &&
+           nodeBBitMask == Constants.bitmaskPowerUp {
+
+            guard let entityIDA = nodeA.entityID,
+                  let entityIDB = nodeB.entityID else {
+                return
+            }
+
+            eventManager?.add(ObtainEvent(on: entityIDA, obtains: entityIDB))
         }
     }
 

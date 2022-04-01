@@ -13,17 +13,23 @@ struct ObtainEvent: Event {
 
     private let otherEntityID: EntityID
 
-    init(on entity: Entity, obtains otherEntity: Entity) {
+    init(on entityID: EntityID, obtains otherEntityID: EntityID) {
         timestamp = EventManager.timestamp
-        entityID = entity.id
-        otherEntityID = otherEntity.id
+        self.entityID = entityID
+        self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
-              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity)
-        else { return }
+              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
+              let otherEntity = entityManager.entity(with: otherEntityID),
+              let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
+              ownerComponent.ownerEntityId == nil
+        else { return nil }
 
-        inventoryComponent.inventory.insert(otherEntityID)
+        inventoryComponent.inventory.enqueue(otherEntityID)
+        ownerComponent.ownerEntityId = entityID
+
+        return nil
     }
 }
