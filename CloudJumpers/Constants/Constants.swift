@@ -74,7 +74,8 @@ struct Constants {
     static let powerUpEffectDuration = 5.0
     static let powerUpMass = 0.000_000_1
 
-    static let wallSize = CGSize(width: 50.0, height: 1_200.0)
+    static let wallWidth = 100.0
+    static let wallHeightFromPlatform = 2_000.0
     static let leftWallPosition = CGPoint(x: -350, y: 76.7)
     static let rightWallPosition = CGPoint(x: 350, y: 76.7)
 

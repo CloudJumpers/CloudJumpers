@@ -67,8 +67,11 @@ class GameEngine {
             return
         }
         let topPlatform = Platform(at: highestPosition)
-        let leftWall = Wall(at: Constants.leftWallPosition)
-        let rightWall = Wall(at: Constants.rightWallPosition)
+
+        let wallHeight = (Constants.screenHeight / 2) + highestPosition.y + Constants.wallHeightFromPlatform
+
+        let leftWall = Wall(at: Constants.leftWallPosition, height: wallHeight)
+        let rightWall = Wall(at: Constants.rightWallPosition, height: wallHeight)
         let floor = Floor(at: Constants.floorPosition)
         entityManager.add(topPlatform)
         entityManager.add(leftWall)
