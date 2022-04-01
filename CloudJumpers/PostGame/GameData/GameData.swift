@@ -12,5 +12,5 @@ protocol GameData: Codable {
     var playerId: NetworkID { get }
     var playerName: String { get }
     var seed: Int { get }
-    var gameMode: String { get }
+    var gameModeIdentifier: String { get }
 }

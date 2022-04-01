@@ -14,10 +14,10 @@ class TimeTrialsManager: PostGameManager {
     var callback: PostGameCallback = nil
 
     private var endpoint: URL {
-        let parameters = "\(completionData.seed)/\(completionData.gameMode)"
+        let parameters = "\(completionData.seed)/\(completionData.gameModeIdentifier)"
 
         guard let url = URL(string: baseUrl + parameters) else {
-            fatalError("Malformed URL string")
+            fatalError("Malformed URL string \(baseUrl + parameters)")
         }
 
         return url
@@ -33,7 +33,7 @@ class TimeTrialsManager: PostGameManager {
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
 
-        postWithoutResponse(endpoint, data)
+        post(endpoint, data)
     }
 
     func startRankingsFetch() {
@@ -49,7 +49,7 @@ class TimeTrialsManager: PostGameManager {
                 return
             }
 
-            self?.getResponse(url, self?.handleRankingsResponse)
+            self?.get(url, self?.handleRankingsResponse)
         }
     }
 
@@ -61,8 +61,33 @@ class TimeTrialsManager: PostGameManager {
     private func handleRankingsResponse(_ data: Data) {
         let decoder = JSONDecoder()
 
-        if let highscores = try? decoder.decode(HighscoreResponse.self, from: data) {
-            print(highscores.topFivePlayers)
+        guard let response = try? decoder.decode(TimeTrialResponses.self, from: data) else {
+            return
+        }
+
+        rankings.removeAll()
+        response.topFivePlayers.enumerated().forEach { index, item in
+            var columns = [PostGameColumnKey: String]()
+
+            let completionTimeString = String(format: "%.2f", item.completionTime)
+            let completedAt = Date(timeIntervalSince1970: item.completedAt)
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = PostGameConstants.dateTimeFormat
+
+            columns[PostGameColumnKey(order: 1, description: "Name")] = item.userDisplayName
+            columns[PostGameColumnKey(order: 2, description: "Completion Time")] = completionTimeString
+            columns[PostGameColumnKey(order: 3, description: "Completed At")] = formatter.string(from: completedAt)
+
+            let rankingRow = IndividualRanking(
+                position: index + 1,
+                characteristics: columns
+            )
+            rankings.append(rankingRow)
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.callback?()
         }
     }
 }

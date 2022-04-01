@@ -9,7 +9,14 @@ import Foundation
 import UIKit
 
 class PostGameViewController: UIViewController {
+    @IBOutlet private var rankingsTableView: UITableView!
+
     var postGameManager: PostGameManager?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        rankingsTableView.dataSource = self
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -24,7 +31,7 @@ class PostGameViewController: UIViewController {
     }
 
     private func updateRankingData() {
-
+        rankingsTableView.reloadData()
     }
 }
 

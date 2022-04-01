@@ -12,6 +12,6 @@ struct TimeTrialData: GameData {
     let playerId: NetworkID
     let playerName: String
     let seed: Int
-    let gameMode: String
+    let gameModeIdentifier: String
     let completionTime: Double
 }

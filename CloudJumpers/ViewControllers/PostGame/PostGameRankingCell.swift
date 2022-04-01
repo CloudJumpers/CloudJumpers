@@ -11,9 +11,18 @@ class PostGameRankingCell: UITableViewCell {
     @IBOutlet private var row: UIStackView!
 
     func setRow(values: [String]) {
+        let toRemove = row.arrangedSubviews
+
+        toRemove.forEach {
+            $0.removeFromSuperview()
+        }
+
         values.forEach {
             let field = UILabel()
+
             field.text = $0
+            field.textAlignment = .center
+
             row.addArrangedSubview(field)
         }
 

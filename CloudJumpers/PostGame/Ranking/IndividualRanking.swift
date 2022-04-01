@@ -28,10 +28,10 @@ struct IndividualRanking {
     }
 
     var columnNames: [String] {
-        keys.map { $0.description }
+        ["Position"] + keys.map { $0.description }
     }
 
     var values: [String] {
-        keys.compactMap { characteristics[$0]?.description }
+        [position?.description ?? "-"] + keys.compactMap { characteristics[$0]?.description }
     }
 }

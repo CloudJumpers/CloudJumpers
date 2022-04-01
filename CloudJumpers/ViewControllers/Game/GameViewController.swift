@@ -2,13 +2,12 @@ import Combine
 import SpriteKit
 
 class GameViewController: UIViewController {
-    static let MainStoryboard = "Main"
-    static let EndGameViewControllerId = "EndGameViewController"
-
     private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
     private var gameRules: GameRules?
+
+    private var isMovingToPostGame = false
 
     var lobby: GameLobby?
 
@@ -23,6 +22,7 @@ class GameViewController: UIViewController {
         gameEngine = nil
         scene = nil
         joystick = nil
+        isMovingToPostGame = false
     }
 
     private func setUpSynchronizedStart() {
@@ -113,6 +113,7 @@ class GameViewController: UIViewController {
 
     private func transitionToEndGame(state: TimeTrialGameEndState) {
         guard
+            !isMovingToPostGame,
             let activeLobby = lobby,
             let score = state.scores.first?.score
         else {
@@ -126,9 +127,11 @@ class GameViewController: UIViewController {
                 playerId: activeLobby.hostId,
                 playerName: AuthService().getUserDisplayName(),
                 seed: 161_001, // TODO: find a way to get seed
-                gameMode: activeLobby.gameMode.rawValue,
+                gameModeIdentifier: urlSafeGameMode(mode: activeLobby.gameMode),
                 completionTime: score
             )
+
+            isMovingToPostGame = true
 
             let timeTrialManager = TimeTrialsManager(gameData)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)

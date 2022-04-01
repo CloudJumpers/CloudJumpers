@@ -71,7 +71,7 @@ extension PostGameManager {
         return [firstRow.columnNames] + rankings.map { $0.values }
     }
 
-    func postWithoutResponse(_ url: URL, _ jsonData: [String: Any]) {
+    func post(_ url: URL, _ jsonData: [String: Any]) {
         Task(priority: .userInitiated) {
             var request = URLRequest(url: url)
             request.httpMethod = PostGameConstants.postRequest
@@ -89,7 +89,7 @@ extension PostGameManager {
         }
     }
 
-    func getResponse(_ url: URL, _ callback: ((Data) -> Void)?) {
+    func get(_ url: URL, _ callback: ((Data) -> Void)?) {
         Task(priority: .medium) {
             do {
                 let (data, response) = try await URLSession.shared.data(from: url)

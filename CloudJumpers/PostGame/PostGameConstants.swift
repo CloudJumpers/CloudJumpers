@@ -10,6 +10,8 @@ enum PostGameConstants {
 
     static let pollInterval: Double = 2.0
 
+    static let dateTimeFormat = "HH:mm, d MMM y"
+
     // server information
     static let webProtocol = "http://"
     static let ipAddress = "54.169.132.128"
