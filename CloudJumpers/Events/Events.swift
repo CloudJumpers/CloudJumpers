@@ -13,9 +13,12 @@ enum Events: Int, CaseIterable {
     case animate
     case obtain
     case removeEntity
+    case removeUnboundEntity
     case activatePowerUp
     case reposition
     case respawn
+    case disasterHit
+    case generateDisaster
     case respawnEffect
 
     static let events: [String: Events] = [
@@ -28,6 +31,9 @@ enum Events: Int, CaseIterable {
         String(describing: RemoveEntityEvent.self): .removeEntity,
         String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
         String(describing: RepositionEvent.self): .reposition,
+        String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
+        String(describing: DisasterHitEvent.self): .disasterHit,
+        String(describing: GenerateDisasterEvent.self): .generateDisaster
         String(describing: RespawnEvent.self): .respawn,
         String(describing: RespawnEffectEvent.self): .respawnEffect,
     ]

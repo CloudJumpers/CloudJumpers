@@ -46,7 +46,8 @@ class Platform: Entity {
         physicsComponent.body.isDynamic = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlatform
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
 
         return physicsComponent
     }
