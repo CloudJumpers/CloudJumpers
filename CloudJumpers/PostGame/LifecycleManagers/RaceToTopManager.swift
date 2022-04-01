@@ -18,7 +18,7 @@ class RaceToTopManager: PostGameManager {
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
 
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
+        let parameters = "\(seed)/\(urlSafeGameMode(mode: .raceTop))/\(lobbyId)"
         return baseUrl + parameters
     }
 
