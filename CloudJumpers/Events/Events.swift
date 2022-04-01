@@ -15,6 +15,7 @@ enum Events: Int, CaseIterable {
     case removeEntity
     case activatePowerUp
     case reposition
+    case deferred
     case disasterHit
     case generateDisaster
 
@@ -39,6 +40,8 @@ enum Events: Int, CaseIterable {
             return .activatePowerUp
         case is RepositionEvent:
             return .reposition
+        case is DeferredEvent:
+            return .deferred
         case is DisasterHitEvent:
             return .disasterHit
         case is GenerateDisasterEvent:

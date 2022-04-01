@@ -18,16 +18,26 @@ struct GenerateDisasterEvent: Event {
     }
 
     func execute(in entityManager: EntityManager) -> [Event]? {
-        guard getProbabilisticSuccess(successRate: 1) else {
+        guard getProbabilisticSuccess(successRate: 1),
+              let entity = entityManager.entity(with: entityID),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else {
             return nil
         }
 
+        let yPosition = spriteComponent.node.position.y
         let disaster = Disaster(getRandomType(),
-                                position: getRandomPosition(entityManager),
+                                position: getRandomPosition(minY: yPosition + 300),
                                 velocity: getRandomVelocity())
         entityManager.add(disaster)
 
-        return nil
+        guard let disasterSpriteComponent = entityManager.component(ofType: SpriteComponent.self, of: disaster) else {
+            return []
+        }
+
+        return [DeferredEvent(disaster,
+                              until: { isPositionOutOfBound(position: disasterSpriteComponent.node.position) },
+                              action: { entityManager.remove(disaster) })]
     }
 
     private func getRandomVelocity() -> CGVector {
@@ -38,13 +48,7 @@ struct GenerateDisasterEvent: Event {
         return velocity * CGVector(dx: xDir, dy: yDir).normalized()
     }
 
-    private func getRandomPosition(_ entityManager: EntityManager) -> CGPoint {
-        guard let entity = entityManager.entity(with: entityID),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
-            return Constants.defaultPosition
-        }
-
-        let minY = spriteComponent.node.position.y + 300
+    private func getRandomPosition(minY: CGFloat) -> CGPoint {
         var disasterPosition = CGPoint(x: 0.0, y: 0.0)
         disasterPosition.x = getRandomDouble(from: -300, to: 300)
         let maxY = minY + 500
@@ -63,5 +67,9 @@ struct GenerateDisasterEvent: Event {
 
     private func getProbabilisticSuccess(successRate: Int) -> Bool {
         Int.random(in: 0..<100) < successRate
+    }
+
+    private func isPositionOutOfBound(position: CGPoint) -> Bool {
+        position.x < -400 || position.x > 400
     }
 }

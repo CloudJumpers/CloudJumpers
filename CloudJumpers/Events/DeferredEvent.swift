@@ -11,10 +11,10 @@ struct DeferredEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
     let condition: () -> Bool
-    let action: (EntityManager) -> Void
+    let action: () -> Void
 
     init(_ entity: Entity, until condition: @escaping () -> Bool,
-         action: @escaping (EntityManager) -> Void) {
+         action: @escaping () -> Void) {
         timestamp = EventManager.timestamp
         entityID = entity.id
         self.condition = condition
@@ -26,7 +26,7 @@ struct DeferredEvent: Event {
     }
 
     func execute(in entityManager: EntityManager) -> [Event]? {
-        action(entityManager)
+        action()
         return nil
     }
 }
