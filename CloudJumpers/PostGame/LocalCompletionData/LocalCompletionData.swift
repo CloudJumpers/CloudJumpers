@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameData: Codable {
+protocol LocalCompletionData: Codable {
     var playerId: NetworkID { get }
     var playerName: String { get }
 }

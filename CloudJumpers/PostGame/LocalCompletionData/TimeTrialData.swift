@@ -1,13 +1,13 @@
 //
-//  RaceToTopData.swift
+//  TimeTrialData.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 1/4/22.
+//  Created by Sujay R Subramanian on 31/3/22.
 //
 
 import Foundation
 
-struct RaceToTopData: GameData {
+struct TimeTrialData: LocalCompletionData {
     let playerId: NetworkID
     let playerName: String
     let completionTime: Double

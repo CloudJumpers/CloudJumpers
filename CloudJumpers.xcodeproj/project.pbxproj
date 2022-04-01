@@ -120,8 +120,7 @@
 		9359ABB327E0465A00D85899 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9359ABB227E0465A00D85899 /* GameMode.swift */; };
 		936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228D927F5CF9B00BB05FE /* PostGameManager.swift */; };
 		936228DE27F5D4C200BB05FE /* IndividualRanking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228DD27F5D4C200BB05FE /* IndividualRanking.swift */; };
-		936228E427F5FFD100BB05FE /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E327F5FFD100BB05FE /* TimeTrialData.swift */; };
-		936228E627F5FFDC00BB05FE /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E527F5FFDC00BB05FE /* GameData.swift */; };
+		936228E627F5FFDC00BB05FE /* LocalCompletionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */; };
 		936228E927F602F700BB05FE /* TimeTrialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E827F602F700BB05FE /* TimeTrialsManager.swift */; };
 		936228EB27F6046200BB05FE /* PostGameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228EA27F6046200BB05FE /* PostGameConstants.swift */; };
 		9385D9B127F727B700593930 /* RaceToTopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B027F727B700593930 /* RaceToTopManager.swift */; };
@@ -130,12 +129,14 @@
 		9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B727F72E8300593930 /* RESTConstants.swift */; };
 		9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */; };
 		9385D9BE27F7349100593930 /* RestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9BD27F7349100593930 /* RestDelegate.swift */; };
+		9385D9C027F740E800593930 /* RaceToTopResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9BF27F740E800593930 /* RaceToTopResponse.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B022227E0954D003D84CF /* LobbyUpdaterDelegate.swift */; };
 		938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A327DE2A0F00A1892C /* AuthInfo.swift */; };
 		938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C15A627DE4A6500A1892C /* LoginViewController.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
+		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
@@ -288,8 +289,7 @@
 		9359ABB227E0465A00D85899 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		936228D927F5CF9B00BB05FE /* PostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameManager.swift; sourceTree = "<group>"; };
 		936228DD27F5D4C200BB05FE /* IndividualRanking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualRanking.swift; sourceTree = "<group>"; };
-		936228E327F5FFD100BB05FE /* TimeTrialData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
-		936228E527F5FFDC00BB05FE /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCompletionData.swift; sourceTree = "<group>"; };
 		936228E827F602F700BB05FE /* TimeTrialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialsManager.swift; sourceTree = "<group>"; };
 		936228EA27F6046200BB05FE /* PostGameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameConstants.swift; sourceTree = "<group>"; };
 		9385D9B027F727B700593930 /* RaceToTopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopManager.swift; sourceTree = "<group>"; };
@@ -298,6 +298,7 @@
 		9385D9B727F72E8300593930 /* RESTConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTConstants.swift; sourceTree = "<group>"; };
 		9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameRequestDelegate.swift; sourceTree = "<group>"; };
 		9385D9BD27F7349100593930 /* RestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestDelegate.swift; sourceTree = "<group>"; };
+		9385D9BF27F740E800593930 /* RaceToTopResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopResponse.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -305,6 +306,7 @@
 		938C15A327DE2A0F00A1892C /* AuthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfo.swift; sourceTree = "<group>"; };
 		938C15A627DE4A6500A1892C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
+		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
@@ -674,8 +676,9 @@
 		935280D327F6B053002E3A1D /* ResponseData */ = {
 			isa = PBXGroup;
 			children = (
-				935280D427F6B073002E3A1D /* TimeTrialResponse.swift */,
 				935280D627F6B082002E3A1D /* Response.swift */,
+				935280D427F6B073002E3A1D /* TimeTrialResponse.swift */,
+				9385D9BF27F740E800593930 /* RaceToTopResponse.swift */,
 			);
 			path = ResponseData;
 			sourceTree = "<group>";
@@ -719,10 +722,10 @@
 		936228D827F5CF7A00BB05FE /* PostGame */ = {
 			isa = PBXGroup;
 			children = (
+				936228E227F5FFAB00BB05FE /* LocalCompletionData */,
 				935280D327F6B053002E3A1D /* ResponseData */,
 				936228EA27F6046200BB05FE /* PostGameConstants.swift */,
 				936228E727F602D700BB05FE /* LifecycleManagers */,
-				936228E227F5FFAB00BB05FE /* GameData */,
 				936228DF27F5D67100BB05FE /* Ranking */,
 			);
 			path = PostGame;
@@ -737,14 +740,14 @@
 			path = Ranking;
 			sourceTree = "<group>";
 		};
-		936228E227F5FFAB00BB05FE /* GameData */ = {
+		936228E227F5FFAB00BB05FE /* LocalCompletionData */ = {
 			isa = PBXGroup;
 			children = (
-				936228E327F5FFD100BB05FE /* TimeTrialData.swift */,
+				93C93AD727F744C4001246F2 /* TimeTrialData.swift */,
 				9385D9B227F727E200593930 /* RaceToTopData.swift */,
-				936228E527F5FFDC00BB05FE /* GameData.swift */,
+				936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */,
 			);
-			path = GameData;
+			path = LocalCompletionData;
 			sourceTree = "<group>";
 		};
 		936228E727F602D700BB05FE /* LifecycleManagers */ = {
@@ -1187,9 +1190,11 @@
 				9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */,
 				935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
+				9385D9C027F740E800593930 /* RaceToTopResponse.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
 				A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */,
+				93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */,
 				1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */,
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,
@@ -1229,7 +1234,7 @@
 				A108AB5027E5070E003157E8 /* EventManager.swift in Sources */,
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
-				936228E627F5FFDC00BB05FE /* GameData.swift in Sources */,
+				936228E627F5FFDC00BB05FE /* LocalCompletionData.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
@@ -1238,7 +1243,6 @@
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
 				9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */,
 				A135932627E392F90034A9F0 /* GameState.swift in Sources */,
-				936228E427F5FFD100BB05FE /* TimeTrialData.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */,

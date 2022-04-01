@@ -35,6 +35,8 @@ class RaceToTopManager: PostGameManager {
         data["userId"] = completionData.playerId
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
+        data["kills"] = Int.zero // TODO: get from game
+        data["deaths"] = Int.zero
 
         requestHandler?.submitLocalData(endpoint, data)
     }
@@ -50,18 +52,20 @@ class RaceToTopManager: PostGameManager {
     private func handleRankingsResponse(_ data: Data) {
         let decoder = JSONDecoder()
 
-        guard let response = try? decoder.decode(TimeTrialResponses.self, from: data) else {
+        guard let response = try? decoder.decode(RaceToTopResponses.self, from: data) else {
             return
         }
 
         rankings.removeAll()
-        response.topFivePlayers.enumerated().forEach { index, item in
+        response.topLobbyPlayers.enumerated().forEach { index, item in
             var columns = [PostGameColumnKey: String]()
 
             let completionTimeString = String(format: "%.2f", item.completionTime)
 
             columns[PostGameColumnKey(order: 1, description: "Name")] = item.userDisplayName
             columns[PostGameColumnKey(order: 2, description: "Completion Time")] = completionTimeString
+            columns[PostGameColumnKey(order: 3, description: "Kills")] = "\(item.kills)"
+            columns[PostGameColumnKey(order: 4, description: "Deaths")] = "\(item.deaths)"
 
             let rankingRow = IndividualRanking(
                 position: index + 1,

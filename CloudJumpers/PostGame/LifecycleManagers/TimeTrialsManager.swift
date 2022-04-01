@@ -53,7 +53,7 @@ class TimeTrialsManager: PostGameManager {
         }
 
         rankings.removeAll()
-        response.topFivePlayers.enumerated().forEach { index, item in
+        response.topGlobalPlayers.enumerated().forEach { index, item in
             var columns = [PostGameColumnKey: String]()
 
             let completionTimeString = String(format: "%.2f", item.completionTime)
