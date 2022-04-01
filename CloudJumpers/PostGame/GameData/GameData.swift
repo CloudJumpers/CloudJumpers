@@ -8,9 +8,6 @@
 import Foundation
 
 protocol GameData: Codable {
-    var lobbyId: NetworkID { get }
     var playerId: NetworkID { get }
     var playerName: String { get }
-    var seed: Int { get }
-    var gameModeIdentifier: String { get }
 }

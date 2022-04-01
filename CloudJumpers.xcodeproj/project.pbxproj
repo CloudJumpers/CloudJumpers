@@ -124,6 +124,12 @@
 		936228E627F5FFDC00BB05FE /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E527F5FFDC00BB05FE /* GameData.swift */; };
 		936228E927F602F700BB05FE /* TimeTrialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E827F602F700BB05FE /* TimeTrialsManager.swift */; };
 		936228EB27F6046200BB05FE /* PostGameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228EA27F6046200BB05FE /* PostGameConstants.swift */; };
+		9385D9B127F727B700593930 /* RaceToTopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B027F727B700593930 /* RaceToTopManager.swift */; };
+		9385D9B327F727E200593930 /* RaceToTopData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B227F727E200593930 /* RaceToTopData.swift */; };
+		9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B527F72DB800593930 /* RequestMaker.swift */; };
+		9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B727F72E8300593930 /* RESTConstants.swift */; };
+		9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */; };
+		9385D9BE27F7349100593930 /* RestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9BD27F7349100593930 /* RestDelegate.swift */; };
 		9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */; };
 		9389E60727D8C6170049ADDD /* TestFirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */; };
 		938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938B022227E0954D003D84CF /* LobbyUpdaterDelegate.swift */; };
@@ -286,6 +292,12 @@
 		936228E527F5FFDC00BB05FE /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		936228E827F602F700BB05FE /* TimeTrialsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialsManager.swift; sourceTree = "<group>"; };
 		936228EA27F6046200BB05FE /* PostGameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameConstants.swift; sourceTree = "<group>"; };
+		9385D9B027F727B700593930 /* RaceToTopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopManager.swift; sourceTree = "<group>"; };
+		9385D9B227F727E200593930 /* RaceToTopData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopData.swift; sourceTree = "<group>"; };
+		9385D9B527F72DB800593930 /* RequestMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMaker.swift; sourceTree = "<group>"; };
+		9385D9B727F72E8300593930 /* RESTConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTConstants.swift; sourceTree = "<group>"; };
+		9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameRequestDelegate.swift; sourceTree = "<group>"; };
+		9385D9BD27F7349100593930 /* RestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestDelegate.swift; sourceTree = "<group>"; };
 		9389E5F527D8BFA30049ADDD /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		9389E5FB27D8C5EB0049ADDD /* CloudJumpersTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudJumpersTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389E60627D8C6170049ADDD /* TestFirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFirebaseAuthManager.swift; sourceTree = "<group>"; };
@@ -729,6 +741,7 @@
 			isa = PBXGroup;
 			children = (
 				936228E327F5FFD100BB05FE /* TimeTrialData.swift */,
+				9385D9B227F727E200593930 /* RaceToTopData.swift */,
 				936228E527F5FFDC00BB05FE /* GameData.swift */,
 			);
 			path = GameData;
@@ -738,7 +751,10 @@
 			isa = PBXGroup;
 			children = (
 				936228D927F5CF9B00BB05FE /* PostGameManager.swift */,
+				9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */,
 				936228E827F602F700BB05FE /* TimeTrialsManager.swift */,
+				9385D9B027F727B700593930 /* RaceToTopManager.swift */,
+				9385D9BD27F7349100593930 /* RestDelegate.swift */,
 			);
 			path = LifecycleManagers;
 			sourceTree = "<group>";
@@ -750,6 +766,15 @@
 				935280CE27F62BBE002E3A1D /* PostGameRankingCell.swift */,
 			);
 			path = PostGame;
+			sourceTree = "<group>";
+		};
+		9385D9B427F72DA500593930 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9385D9B527F72DB800593930 /* RequestMaker.swift */,
+				9385D9B727F72E8300593930 /* RESTConstants.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		9389E5F427D8BF7D0049ADDD /* Authentication */ = {
@@ -804,6 +829,7 @@
 		93D4E16527DA0C920054F45B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				9385D9B427F72DA500593930 /* API */,
 				931D130927ECBC43002C7AF3 /* Utils */,
 				93360B8427EC687E00808295 /* Game */,
 				934789B627DF06A300324DAF /* Lobbies */,
@@ -1158,6 +1184,7 @@
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
+				9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */,
 				935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
@@ -1173,12 +1200,14 @@
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
 				1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */,
+				9385D9B127F727B700593930 /* RaceToTopManager.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
+				9385D9BE27F7349100593930 /* RestDelegate.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
@@ -1207,6 +1236,7 @@
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
+				9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */,
 				A135932627E392F90034A9F0 /* GameState.swift in Sources */,
 				936228E427F5FFD100BB05FE /* TimeTrialData.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
@@ -1223,6 +1253,7 @@
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				A1CFED4D27E5890F0062BCB2 /* TimeTrialGameEndState.swift in Sources */,
 				1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */,
+				9385D9B327F727E200593930 /* RaceToTopData.swift in Sources */,
 				1AC1605327F2F56D006E4018 /* GameEngine.swift in Sources */,
 				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
 				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
@@ -1241,6 +1272,7 @@
 				1A94D96627EE0EF2001D8A86 /* JumpEvent.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
+				9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */,
 				1ADEDD9B27F6177000C3AFD3 /* RemoveEntityEvent.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				1ACE976E27E60D50005AA18B /* SpriteSystemDelegate.swift in Sources */,

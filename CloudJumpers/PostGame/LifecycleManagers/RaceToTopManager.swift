@@ -1,31 +1,33 @@
 //
-//  TimeTrialsManager.swift
+//  RaceToTopManager.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 31/3/22.
+//  Created by Sujay R Subramanian on 1/4/22.
 //
 
 import Foundation
 
-class TimeTrialsManager: PostGameManager {
-    private let completionData: TimeTrialData
+class RaceToTopManager: PostGameManager {
+    private let completionData: RaceToTopData
+    private let lobbyId: NetworkID
     private let seed: Int
     private var requestHandler: PostGameRequestDelegate?
 
-    private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
-
     var callback: PostGameCallback = nil
 
+    private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
+
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))"
+        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
         return baseUrl + parameters
     }
 
-    init(_ completionData: TimeTrialData, _ seed: Int) {
+    init(_ completionData: RaceToTopData, _ seed: Int, _ lobbyId: NetworkID) {
         self.completionData = completionData
+        self.lobbyId = lobbyId
         self.seed = seed
         self.requestHandler = RestDelegate()
-        requestHandler?.postGameManager = self
+        self.requestHandler?.postGameManager = self
     }
 
     func submitForRanking() {
@@ -57,14 +59,9 @@ class TimeTrialsManager: PostGameManager {
             var columns = [PostGameColumnKey: String]()
 
             let completionTimeString = String(format: "%.2f", item.completionTime)
-            let completedAt = Date(timeIntervalSince1970: item.completedAt)
-
-            let formatter = DateFormatter()
-            formatter.dateFormat = PostGameConstants.dateTimeFormat
 
             columns[PostGameColumnKey(order: 1, description: "Name")] = item.userDisplayName
             columns[PostGameColumnKey(order: 2, description: "Completion Time")] = completionTimeString
-            columns[PostGameColumnKey(order: 3, description: "Completed At")] = formatter.string(from: completedAt)
 
             let rankingRow = IndividualRanking(
                 position: index + 1,
