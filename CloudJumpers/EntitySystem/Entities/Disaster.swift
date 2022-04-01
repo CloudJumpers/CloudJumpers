@@ -12,7 +12,7 @@ class Disaster: Entity {
     private var velocity: CGVector
     private let kind: DisasterComponent.Kind
 
-    init(_ kind: DisasterComponent.Kind, position: CGPoint, velocity: CGVector,
+    init(_ kind: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector,
          with id: EntityID = EntityManager.newEntityID) {
 
         self.id = id

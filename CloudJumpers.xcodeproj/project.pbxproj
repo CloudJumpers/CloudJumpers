@@ -16,6 +16,7 @@
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		1A8EC1A927F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */; };
+		1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C91A27E099E000D755BE /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91927E099E000D755BE /* Textures.swift */; };
 		1A91C92627E099F400D755BE /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91F27E099F400D755BE /* Clouds.atlas */; };
@@ -179,6 +180,7 @@
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveUnboundEntityEvent.swift; sourceTree = "<group>"; };
+		1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Random.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91927E099E000D755BE /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
 				1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */,
 				1A245D7327F6B668004FA29C /* Dictionary+Create.swift */,
+				1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1225,6 +1228,7 @@
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
 				936228E627F5FFDC00BB05FE /* GameData.swift in Sources */,
+				1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
