@@ -14,17 +14,20 @@ class Player: Entity {
     private let position: CGPoint
     private let texture: Textures
     private let isCameraAnchor: Bool
+    private let isGuest: Bool
 
     init(
         at position: CGPoint,
         texture: Textures,
         with id: EntityID = EntityManager.newEntityID,
-        isCameraAnchor: Bool = false
+        isCameraAnchor: Bool = false,
+        isGuest: Bool = false
     ) {
         self.id = id
         self.texture = texture
         self.position = position
         self.isCameraAnchor = isCameraAnchor
+        self.isGuest = isGuest
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -60,7 +63,7 @@ class Player: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
-
+        physicsComponent.body.collisionBitMask = isGuest ? .min: .max
         return physicsComponent
     }
 
