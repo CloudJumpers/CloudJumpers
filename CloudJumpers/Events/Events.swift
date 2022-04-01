@@ -15,7 +15,10 @@ enum Events: Int, CaseIterable {
     case removeEntity
     case activatePowerUp
     case reposition
+    case disasterHit
+    case generateDisaster
 
+    // swiftlint:disable cyclomatic_complexity
     static func type(of event: Event) -> Events? {
         switch event {
         case is BiEvent:
@@ -36,6 +39,10 @@ enum Events: Int, CaseIterable {
             return .activatePowerUp
         case is RepositionEvent:
             return .reposition
+        case is DisasterHitEvent:
+            return .disasterHit
+        case is GenerateDisasterEvent:
+            return .generateDisaster
         default:
             return nil
         }

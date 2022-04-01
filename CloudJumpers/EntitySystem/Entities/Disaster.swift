@@ -8,21 +8,17 @@ import SpriteKit
 
 class Disaster: Entity {
     let id: EntityID
-
-    private var associatedEntity: Entity
-    private var position: CGPoint = Constants.defaultPosition
-    private var velocity: CGVector = Constants.defaultVelocity
+    private var position: CGPoint
+    private var velocity: CGVector
     private let kind: DisasterComponent.Kind
 
-    init(_ kind: DisasterComponent.Kind, for entity: Entity,
+    init(_ kind: DisasterComponent.Kind, position: CGPoint, velocity: CGVector,
          with id: EntityID = EntityManager.newEntityID) {
 
         self.id = id
-        self.associatedEntity = entity
         self.kind = kind
-        self.position = getRandomPosition()
-        self.velocity = getRandomVelocity()
-
+        self.position = position
+        self.velocity = velocity
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -66,33 +62,5 @@ class Disaster: Entity {
 
     private func getRotationAngle() -> CGFloat {
         -atan(velocity.dx / velocity.dy)
-    }
-
-    private func getRandomVelocity() -> CGVector {
-        let xDir = getRandomDouble(from: -1, to: 1)
-        let yDir = getRandomDouble(from: -1, to: 0)
-        let velocity = getRandomDouble(from: 100, to: 170)
-
-        return velocity * CGVector(dx: xDir, dy: yDir).normalized()
-    }
-
-    private func getRandomPosition() -> CGPoint {
-        var disasterPosition = CGPoint(x: 0.0, y: 0.0)
-        if let player = associatedEntity as? Player {
-            disasterPosition.x = getRandomDouble(from: -300, to: 300)
-            let minY = player.position.y + 300
-            let maxY = player.position.y + 800
-            disasterPosition.y = getRandomDouble(from: minY, to: maxY)
-        }
-
-        return disasterPosition
-    }
-
-    private func getRandomDouble(from: Double, to: Double) -> Double {
-        Double.random(in: from...to)
-    }
-
-    private func getRandomType() -> DisasterComponent.Kind {
-        .meteor
     }
 }
