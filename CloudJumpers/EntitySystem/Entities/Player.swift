@@ -11,7 +11,7 @@ import CoreGraphics
 class Player: Entity {
     let id: EntityID
 
-    private let position: CGPoint
+    private(set) var position: CGPoint
     private let texture: Textures
     private let isCameraAnchor: Bool
     private let isGuest: Bool
@@ -65,6 +65,7 @@ class Player: Entity {
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
         physicsComponent.body.collisionBitMask = isGuest ? guestCollisionBitmask: .max
+        physicsComponent.body.contactTestBitMask = 0xFFFFFFFF
         return physicsComponent
     }
 
