@@ -36,6 +36,14 @@ class EntityManager {
         removeComponents(of: entity)
     }
 
+    func remove(withID entityID: EntityID) {
+        guard let entity = entity(with: entityID) else {
+            return
+        }
+
+        remove(entity)
+    }
+
     func entity(with entityID: EntityID) -> Entity? {
         entities[entityID]
     }
