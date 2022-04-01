@@ -39,6 +39,6 @@ class PowerUpEffect: Entity {
     }
 
     private func createTimedComponent() -> TimedComponent {
-        TimedComponent(time: 0.0)
+        TimedComponent()
     }
 }

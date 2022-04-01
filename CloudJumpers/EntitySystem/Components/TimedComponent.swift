@@ -8,7 +8,7 @@
 class TimedComponent: Component {
     var time: Double
 
-    init(time: Double) {
+    init(time: Double = .zero) {
         self.time = time
         super.init()
     }
