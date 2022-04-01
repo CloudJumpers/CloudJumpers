@@ -29,11 +29,8 @@ class RespawnEvent: Event {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }
-
-        print("RESPAWN")
-
         spriteComponent.node.position = position
 
-        return nil
+        return [RespawnEffectEvent(onEntityWith: entityID)]
     }
 }
