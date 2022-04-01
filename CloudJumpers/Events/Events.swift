@@ -12,6 +12,7 @@ enum Events: Int, CaseIterable {
     case jump
     case animate
     case obtain
+    case activatePowerUp
     case reposition
 
     static func type(of event: Event) -> Events? {
@@ -28,6 +29,8 @@ enum Events: Int, CaseIterable {
             return .animate
         case is ObtainEvent:
             return .obtain
+        case is ActivatePowerUpEvent:
+            return .activatePowerUp
         case is RepositionEvent:
             return .reposition
         default:
