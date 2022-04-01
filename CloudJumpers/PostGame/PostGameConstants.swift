@@ -8,7 +8,7 @@
 enum PostGameConstants {
     static let pollInterval: Double = 2.0
 
-    // Interface
+    // interface
     static let rankingCellIdentifier = "com.cs3217.cloudjumpers.rankingcell"
     static let dateTimeFormat = "HH:mm, d MMM y"
 
