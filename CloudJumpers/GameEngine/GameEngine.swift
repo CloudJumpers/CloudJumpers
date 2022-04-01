@@ -204,11 +204,12 @@ extension GameEngine: InputResponder {
         else {
             return
         }
+
         eventManager.add(MoveEvent(on: entity, by: displacement))
+
         if physicsComponent.body.velocity == .zero {
             eventManager.add(AnimateEvent(on: entity, to: .walking))
         }
-
     }
 
     func inputJump() {
