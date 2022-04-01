@@ -52,7 +52,6 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             }
 
             if
-                currentData.childrenCount < lobby.gameMode.getMaxPlayer(),
                 var nextData = currentData.value as? [String: AnyObject],
                 nextData[userId] == nil
             {
