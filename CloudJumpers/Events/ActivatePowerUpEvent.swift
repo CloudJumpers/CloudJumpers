@@ -13,29 +13,23 @@ struct ActivatePowerUpEvent: Event {
 
     private var location: CGPoint
 
-    init(on entity: Entity, location: CGPoint) {
+    init(in entity: Entity, location: CGPoint) {
         timestamp = EventManager.timestamp
         entityID = entity.id
         self.location = location
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
-              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self,
-                                                               of: entity),
-              let eventId = inventoryComponent.inventory.dequeue(),
-              let powerUpEntity = entityManager.entity(with: eventId) as? PowerUp,
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self,
-                                                            of: powerUpEntity)
-        else { return }
+              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
+              let powerUpEntityID = inventoryComponent.inventory.dequeue(),
+              let powerUpEntity = entityManager.entity(with: powerUpEntityID),
+              let powerUpComponent = entityManager.component(ofType: PowerUpComponent.self, of: powerUpEntity)
+        else { return nil }
 
-        switch powerUpEntity.type {
-        case .freeze:
-            let freezeEffect = PowerUpEffect(at: location, type: .freeze)
-            entityManager.add(freezeEffect)
-        case .confuse:
-            let confuseEffect = PowerUpEffect(at: location, type: .confuse)
-            entityManager.add(confuseEffect)
-        }
+        let effect = PowerUpEffect(powerUpComponent.kind, at: location)
+        entityManager.add(effect)
+
+        return [RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration)]
     }
 }
