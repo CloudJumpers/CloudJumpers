@@ -51,6 +51,9 @@ class TimeTrialsManager: PostGameManager {
 
             self?.get(url, self?.handleRankingsResponse)
         }
+
+        // Immediately fire off initial request
+        pollTimer?.fire()
     }
 
     func stopRankingsFetch() {

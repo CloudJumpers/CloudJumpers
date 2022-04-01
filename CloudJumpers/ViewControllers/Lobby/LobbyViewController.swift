@@ -28,7 +28,7 @@ class LobbyViewController: UIViewController {
         super.viewDidAppear(animated)
 
         guard isMovingToParent else {
-            // If we are returning from a child VC (game session), exit back to all lobbies menu
+            // If we are returning from a child VC (game session or postgame), exit back to all lobbies menu
             moveToLobbies()
             return
         }

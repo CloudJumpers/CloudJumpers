@@ -10,12 +10,14 @@ import UIKit
 
 class PostGameViewController: UIViewController {
     @IBOutlet private var rankingsTableView: UITableView!
+    @IBOutlet private var backToLobbiesButton: UIButton!
 
     var postGameManager: PostGameManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         rankingsTableView.dataSource = self
+        navigationItem.hidesBackButton = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +34,17 @@ class PostGameViewController: UIViewController {
 
     private func updateRankingData() {
         rankingsTableView.reloadData()
+    }
+
+    @IBAction private func buttonOnTap() {
+        guard
+            let viewControllers = navigationController?.viewControllers,
+            let lobbiesViewController = viewControllers.first(where: { $0 is LobbyViewController })
+        else {
+            return
+        }
+
+        navigationController?.popToViewController(lobbiesViewController, animated: true)
     }
 }
 

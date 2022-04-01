@@ -650,46 +650,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sKG-Bl-ISY">
-                                <rect key="frame" x="50" y="124" width="720" height="986"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.rankingcell" id="spZ-gi-BgD" customClass="PostGameRankingCell" customModule="CloudJumpers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="720" height="40.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="spZ-gi-BgD" id="1se-Yb-7ue">
-                                            <rect key="frame" x="0.0" y="0.0" width="720" height="40.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uet-Ud-JqK">
-                                                    <rect key="frame" x="20" y="20" width="680" height="0.5"/>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Uet-Ud-JqK" secondAttribute="trailing" constant="20" id="KoS-sK-spF"/>
-                                                <constraint firstAttribute="bottom" secondItem="Uet-Ud-JqK" secondAttribute="bottom" constant="20" id="Y1G-Rl-QGB"/>
-                                                <constraint firstItem="Uet-Ud-JqK" firstAttribute="top" secondItem="1se-Yb-7ue" secondAttribute="top" constant="20" id="bmk-pb-vw8"/>
-                                                <constraint firstItem="Uet-Ud-JqK" firstAttribute="leading" secondItem="1se-Yb-7ue" secondAttribute="leading" constant="20" id="dbF-Nr-yl7"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XvY-1t-U5D">
+                                <rect key="frame" x="20" y="144" width="780" height="966"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sKG-Bl-ISY">
+                                        <rect key="frame" x="0.0" y="0.0" width="780" height="804.5"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.rankingcell" id="spZ-gi-BgD" customClass="PostGameRankingCell" customModule="CloudJumpers" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.5" width="780" height="40.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="spZ-gi-BgD" id="1se-Yb-7ue">
+                                                    <rect key="frame" x="0.0" y="0.0" width="780" height="40.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uet-Ud-JqK">
+                                                            <rect key="frame" x="20" y="20" width="740" height="0.5"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Uet-Ud-JqK" secondAttribute="trailing" constant="20" id="KoS-sK-spF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Uet-Ud-JqK" secondAttribute="bottom" constant="20" id="Y1G-Rl-QGB"/>
+                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="top" secondItem="1se-Yb-7ue" secondAttribute="top" constant="20" id="bmk-pb-vw8"/>
+                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="leading" secondItem="1se-Yb-7ue" secondAttribute="leading" constant="20" id="dbF-Nr-yl7"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="row" destination="Uet-Ud-JqK" id="A02-BH-MTF"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANX-16-ahe">
+                                        <rect key="frame" x="0.0" y="824.5" width="780" height="141.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Lobbies"/>
                                         <connections>
-                                            <outlet property="row" destination="Uet-Ud-JqK" id="A02-BH-MTF"/>
+                                            <action selector="buttonOnTap" destination="6sz-Vb-aS8" eventType="touchUpInside" id="9GP-eM-ENc"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="91r-6l-Weu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="91r-6l-Weu" firstAttribute="bottom" secondItem="sKG-Bl-ISY" secondAttribute="bottom" constant="50" id="Fki-Au-B7d"/>
-                            <constraint firstItem="sKG-Bl-ISY" firstAttribute="top" secondItem="91r-6l-Weu" secondAttribute="top" constant="50" id="G3A-Y4-Vj5"/>
-                            <constraint firstItem="sKG-Bl-ISY" firstAttribute="leading" secondItem="91r-6l-Weu" secondAttribute="leading" constant="50" id="SwP-Jr-Ccp"/>
-                            <constraint firstItem="91r-6l-Weu" firstAttribute="trailing" secondItem="sKG-Bl-ISY" secondAttribute="trailing" constant="50" id="chP-WT-1jv"/>
+                            <constraint firstItem="XvY-1t-U5D" firstAttribute="leading" secondItem="91r-6l-Weu" secondAttribute="leading" constant="20" id="2U9-cH-wjd"/>
+                            <constraint firstItem="XvY-1t-U5D" firstAttribute="top" secondItem="91r-6l-Weu" secondAttribute="top" constant="70" id="NTz-Xw-msm"/>
+                            <constraint firstItem="91r-6l-Weu" firstAttribute="trailing" secondItem="XvY-1t-U5D" secondAttribute="trailing" constant="20" id="eE8-CZ-15k"/>
+                            <constraint firstAttribute="bottom" secondItem="XvY-1t-U5D" secondAttribute="bottom" constant="70" id="gn6-hK-JfO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="MOL-Or-OKj"/>
                     <connections>
+                        <outlet property="backToLobbiesButton" destination="ANX-16-ahe" id="HgF-LM-KLu"/>
                         <outlet property="rankingsTableView" destination="sKG-Bl-ISY" id="vL4-0K-cHp"/>
                     </connections>
                 </viewController>
