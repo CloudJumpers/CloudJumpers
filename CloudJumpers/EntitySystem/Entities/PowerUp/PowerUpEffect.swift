@@ -10,12 +10,12 @@ import SpriteKit
 class PowerUpEffect: Entity {
     let id: EntityID
 
-    private var type: PowerUpType
     private var position: CGPoint
+    private var kind: PowerUpComponent.Kind
 
-    init(at position: CGPoint, type: PowerUpType, with id: EntityID = EntityManager.newEntityID) {
+    init(_ kind: PowerUpComponent.Kind, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
-        self.type = type
+        self.kind = kind
         self.position = position
     }
 
@@ -29,7 +29,7 @@ class PowerUpEffect: Entity {
 
     private func createSpriteComponent() -> SpriteComponent {
         let node = SKSpriteNode(
-            texture: SKTexture(imageNamed: "\(type)Effect"),
+            texture: SKTexture(imageNamed: "\(kind)Effect"),
             size: Constants.powerUpEffectSize)
 
         node.position = position

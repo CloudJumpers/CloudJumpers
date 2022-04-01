@@ -11,11 +11,11 @@ class PowerUp: Entity {
     let id: EntityID
 
     private let position: CGPoint
-    private(set) var type: PowerUpType
+    private let kind: PowerUpComponent.Kind
 
-    init(_ type: PowerUpType, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(_ kind: PowerUpComponent.Kind, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
-        self.type = type
+        self.kind = kind
         self.position = position
     }
 
@@ -26,11 +26,12 @@ class PowerUp: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(OwnerComponent(), to: self)
+        manager.addComponent(PowerUpComponent(kind), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: type.name),
+            texture: SKTexture(imageNamed: kind.name),
             size: Constants.powerUpNodeSize,
             at: position,
             forEntityWith: id)
