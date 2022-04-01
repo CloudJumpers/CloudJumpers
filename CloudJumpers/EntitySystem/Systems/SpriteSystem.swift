@@ -11,9 +11,10 @@ class SpriteSystem: System {
     unowned var manager: EntityManager?
     unowned var delegate: SpriteSystemDelegate?
 
-    private var sprites: Set<EntityID> = []
+    private var sprites: [EntityID: SKNode]
 
     required init(for manager: EntityManager) {
+        sprites = [:]
         self.manager = manager
     }
 
@@ -28,7 +29,7 @@ class SpriteSystem: System {
             return
         }
 
-        var entitiesToPrune = sprites
+        var entitiesToPrune = Set(sprites.keys)
 
         for spriteComponent in manager.components(ofType: SpriteComponent.self) {
             guard let entity = spriteComponent.entity else {
@@ -104,7 +105,7 @@ class SpriteSystem: System {
            isEntityInSpriteSystemNotInParent(entity, node) {
             addSprite(node, with: entity)
         } else if isEntityInParentNotInSpriteSystem(entity, node) {
-            removeSprite(node, with: entity)
+            removeSprite(node, with: entity.id)
         }
     }
 
@@ -113,13 +114,13 @@ class SpriteSystem: System {
         delegate?.spriteSystem(self, addNode: node, static: `static` ?? false)
         bindCameraToSprite(node, with: entity)
 
-        sprites.insert(entity.id)
+        sprites[entity.id] = node
     }
 
-    private func removeSprite(_ node: SKNode, with entity: Entity) {
+    private func removeSprite(_ node: SKNode, with entityID: EntityID) {
         delegate?.spriteSystem(self, removeNode: node)
 
-        sprites.remove(entity.id)
+        sprites[entityID] = nil
     }
 
     private func markInvalidEntity(_ entity: Entity, into entitiesToPrune: inout Set<EntityID>) {
@@ -130,24 +131,24 @@ class SpriteSystem: System {
 
     private func pruneSprites(in entitiesToPrune: Set<EntityID>) {
         for entityID in entitiesToPrune {
-            guard let entity = manager?.entity(with: entityID),
-                  let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity)
-            else { continue }
+            guard let node = sprites[entityID] else {
+                continue
+            }
 
-            removeSprite(spriteComponent.node, with: entity)
+            removeSprite(node, with: entityID)
         }
     }
 
     private func isEntityNotRendered(_ entity: Entity, _ node: SKNode) -> Bool {
-        !sprites.contains(entity.id) && node.parent == nil
+        !sprites.contains(key: entity.id) && node.parent == nil
     }
 
     private func isEntityInSpriteSystemNotInParent(_ entity: Entity, _ node: SKNode) -> Bool {
-        sprites.contains(entity.id) && node.parent == nil
+        sprites.contains(key: entity.id) && node.parent == nil
     }
 
     private func isEntityInParentNotInSpriteSystem(_ entity: Entity, _ node: SKNode) -> Bool {
-        node.parent != nil && !sprites.contains(entity.id)
+        node.parent != nil && !sprites.contains(key: entity.id)
     }
 
     private func bindCameraToSprite(_ node: SKNode, with entity: Entity) {
