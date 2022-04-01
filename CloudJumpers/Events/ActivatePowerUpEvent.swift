@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class ActivatePowerUpEvent: Event {
+struct ActivatePowerUpEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
