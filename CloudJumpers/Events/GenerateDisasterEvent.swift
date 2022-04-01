@@ -12,7 +12,7 @@ struct GenerateDisasterEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
-    init(entityID: EntityID) {
+    init(towards entityID: EntityID) {
         timestamp = EventManager.timestamp
         self.entityID = entityID
     }
