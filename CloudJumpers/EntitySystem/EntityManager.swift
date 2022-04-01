@@ -36,6 +36,14 @@ class EntityManager {
         removeComponents(of: entity)
     }
 
+    func remove(withID entityID: EntityID) {
+        guard let entity = entity(with: entityID) else {
+            return
+        }
+
+        remove(entity)
+    }
+
     func entity(with entityID: EntityID) -> Entity? {
         entities[entityID]
     }
@@ -58,6 +66,10 @@ class EntityManager {
         }
 
         return nil
+    }
+
+    func hasComponent<T: Component>(ofType type: T.Type, in entity: Entity) -> Bool {
+        component(ofType: T.self, of: entity) != nil
     }
 
     func components<T: Component>(ofType type: T.Type) -> [T] {

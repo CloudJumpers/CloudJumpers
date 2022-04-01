@@ -7,7 +7,11 @@
 
 typealias ComponentID = String
 
-protocol Component: AnyObject {
-    var id: ComponentID { get }
-    var entity: Entity? { get set }
+class Component {
+    let id: ComponentID
+    unowned var entity: Entity?
+
+    init() {
+        id = EntityManager.newComponentID
+    }
 }

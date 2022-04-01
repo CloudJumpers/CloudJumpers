@@ -16,7 +16,7 @@ class EventManager {
     private var gameEventDispatcher: GameEventDispatcher?
 
     init(channel: NetworkID?) {
-        events = EventQueue { $0.timestamp < $1.timestamp }
+        events = EventQueue(sort: Self.priority(_:_:))
         subscribe(to: channel)
     }
 
@@ -29,9 +29,26 @@ class EventManager {
     }
 
     func executeAll(in entityManager: EntityManager) {
-        while let event = events.dequeue() {
-            event.execute(in: entityManager)
+        var counter = events.count
+        var deferredEvents: [Event] = []
+
+        while counter > 0 {
+            guard let event = events.dequeue() else {
+                fatalError("EventManager.executeAll(in:) dequeued an empty EventQueue")
+            }
+
+            if event.shouldExecute(in: entityManager) {
+                let nextEvents = event.execute(in: entityManager)
+                nextEvents?.forEach(add(_:))
+                counter += nextEvents?.count ?? 0
+            } else {
+                deferredEvents.append(event)
+            }
+
+            counter -= 1
         }
+
+        deferredEvents.forEach(add(_:))
     }
 
     func dispatchGameEventCommand(_ command: GameEventCommand) {
@@ -46,5 +63,17 @@ class EventManager {
         gameEventListener = FirebaseGameEventListener(channel)
         gameEventDispatcher = FirebaseGameEventDispatcher(channel)
         gameEventListener?.eventManager = self
+    }
+
+    private static func priority(_ event1: Event, _ event2: Event) -> Bool {
+        guard let rank1 = Events.type(of: event1)?.rawValue,
+              let rank2 = Events.type(of: event2)?.rawValue
+        else { fatalError("An Event was not registered in Events enum") }
+
+        if rank1 != rank2 {
+            return rank1 < rank2
+        } else {
+            return event1.timestamp < event2.timestamp
+        }
     }
 }

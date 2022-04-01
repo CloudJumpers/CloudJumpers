@@ -11,9 +11,15 @@ protocol Event {
     var timestamp: TimeInterval { get }
     var entityID: EntityID { get }
 
-    func execute(in entityManager: EntityManager)
+    func shouldExecute(in entityManager: EntityManager) -> Bool
+    func execute(in entityManager: EntityManager) -> [Event]?
 }
 
 extension Event {
-    func execute(in entityManager: EntityManager) { }
+    func shouldExecute(in entityManager: EntityManager) -> Bool { true }
+    func execute(in entityManager: EntityManager) -> [Event]? { nil }
+
+    func then(do event: Event) -> Event {
+        BiEvent(self, event)
+    }
 }

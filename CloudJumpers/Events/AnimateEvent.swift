@@ -19,11 +19,13 @@ struct AnimateEvent: Event {
         self.kind = kind
     }
 
-    func execute(in entityManager: EntityManager) {
+    func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)
-        else { return }
+        else { return nil }
 
         animationComponent.kind = kind
+
+        return nil
     }
 }

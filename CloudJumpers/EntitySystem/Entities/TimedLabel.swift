@@ -25,6 +25,7 @@ class TimedLabel: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(timedComponent, to: self)
+        manager.addComponent(CameraStaticTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

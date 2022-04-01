@@ -51,11 +51,23 @@ struct Constants {
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
+    static let powerUpNodeSize = CGSize(width: 60.0, height: 60.0)
+    static let initialPowerUpQueuePosition = CGPoint(x: -120.0, y: -420.0)
+    static let powerUpQueueXInterval = 80.0
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
     static let bitmaskCloud = UInt32(0x1 << 1)
     static let bitmaskPlatform = UInt32(0x1 << 2)
+    static let bitmaskPowerUp = UInt32(0x1 << 3)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
+
+    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width - 170,
+                                     height: UIScreen.main.bounds.height - 240)
+    static let gameAreaPosition = CGPoint(x: 0, y: 110)
+
+    static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
+    static let powerUpEffectDuration = 5.0
+    static let powerUpMass = 0.000_000_1
 }

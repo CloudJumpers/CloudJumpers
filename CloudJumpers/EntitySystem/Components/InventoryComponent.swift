@@ -5,16 +5,13 @@
 //  Created by Phillmont Muktar on 26/3/22.
 //
 
-import Foundation
-
 class InventoryComponent: Component {
-    let id: ComponentID
-    unowned var entity: Entity?
+    typealias Inventory = Queue<EntityID>
 
-    var inventory: Set<EntityID>
+    var inventory: Inventory
 
-    init() {
-        id = EntityManager.newComponentID
-        inventory = []
+    override init() {
+        inventory = Inventory()
+        super.init()
     }
 }

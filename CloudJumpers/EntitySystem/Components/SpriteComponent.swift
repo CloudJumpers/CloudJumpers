@@ -8,21 +8,18 @@
 import SpriteKit
 
 class SpriteComponent: Component {
-    let id: ComponentID
-    unowned var entity: Entity?
-
     let node: SKNode
 
     init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
-        id = EntityManager.newComponentID
         node = SKSpriteNode(texture: texture, size: size)
+        super.init()
         node.position = position
         node.entityID = entityID
     }
 
     init(imageNamed name: String, at position: CGPoint, forEntityWith entityID: EntityID) {
-        id = EntityManager.newComponentID
         node = SKSpriteNode(imageNamed: name)
+        super.init()
         node.position = position
         node.entityID = entityID
     }
@@ -32,8 +29,8 @@ class SpriteComponent: Component {
     }
 
     init(node: SKNode, forEntityWith entityID: EntityID) {
-        id = EntityManager.newComponentID
         self.node = node
+        super.init()
         node.entityID = entityID
     }
 }

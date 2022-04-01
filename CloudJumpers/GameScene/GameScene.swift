@@ -57,9 +57,21 @@ class GameScene: SKScene {
         panCameraToAnchorNode()
     }
 
-    /// Adds a node that is always positioned relative to the camera's viewport.
-    func addStaticChild(_ node: SKNode) {
-        cameraNode?.addChild(node)
+    /// `static = true` adds a child that is always positioned relative to the camera's viewport.
+    func addChild(_ node: SKNode, static: Bool = false) {
+        if `static` {
+            cameraNode?.addChild(node)
+        } else {
+            super.addChild(node)
+        }
+    }
+
+    func removeChild(_ node: SKNode) {
+        node.removeFromParent()
+
+        if cameraAnchorNode == node {
+            cameraAnchorNode = nil
+        }
     }
 
     private func panCameraToAnchorNode() {
