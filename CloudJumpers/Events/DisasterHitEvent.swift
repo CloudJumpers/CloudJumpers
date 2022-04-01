@@ -19,11 +19,17 @@ struct DisasterHitEvent: Event {
     }
 
     func execute(in entityManager: EntityManager) -> [Event]? {
-        guard let disaster = entityManager.entity(with: entityID)
+        guard let disaster = entityManager.entity(with: entityID),
+              let otherEntity = entityManager.entity(with: otherEntityID)
         else { return nil }
 
-        return [RemoveEntityEvent(disaster)]
+        var events: [Event] = [RemoveEntityEvent(disaster)]
 
-        // handle something on the thing the disaster land on
+        if otherEntity is Player {
+            events.append(RespawnEvent(onEntityWith: otherEntityID,
+                                       to: Constants.playerInitialPosition))
+        }
+
+        return events
     }
 }

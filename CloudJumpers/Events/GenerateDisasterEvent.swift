@@ -70,6 +70,6 @@ struct GenerateDisasterEvent: Event {
     }
 
     private func isPositionOutOfBound(position: CGPoint) -> Bool {
-        position.x < -400 || position.x > 400
+        position.x < -480 || position.x > 480
     }
 }
