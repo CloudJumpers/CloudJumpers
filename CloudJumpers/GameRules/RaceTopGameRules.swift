@@ -26,14 +26,24 @@ class RaceTopGameRules: GameRules {
             additionalPlayerIds: lobby?.otherUsers.map { $0.id })
     }
 
-    func createGameEvents(with gameData: GameMetaData) -> [Event] {
-        var events = [Event]()
+    func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
+        var localEvents = [Event]()
+        var remoteEvents = [RemoteEvent]()
+
         if isPlayerRespawn(with: gameData) {
-            events.append(RespawnEvent(onEntityWith: gameData.playerId,
-                                       to: gameData.playerStartingPosition))
+            localEvents.append(RespawnEvent(
+                onEntityWith: gameData.playerId,
+                to: gameData.playerStartingPosition)
+            )
+
+            remoteEvents.append(ExternalRespawnEvent(
+                positionX: gameData.playerStartingPosition.x,
+                positionY: gameData.playerStartingPosition.y
+            ))
+
             gameData.locationMapping.removeValue(forKey: gameData.playerId)
         }
-        return events
+        return (localEvents, remoteEvents)
     }
 
     private func isPlayerRespawn(with gameData: GameMetaData) -> Bool {

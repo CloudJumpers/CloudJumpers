@@ -17,7 +17,7 @@ struct GenerateDisasterEvent: Event {
         self.entityID = entityID
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard getProbabilisticSuccess(successRate: 1),
               let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
@@ -30,7 +30,7 @@ struct GenerateDisasterEvent: Event {
         let disaster = Disaster(.meteor, at: randomPosition, velocity: randomVelocity)
         entityManager.add(disaster)
 
-        return [RemoveUnboundEntityEvent(disaster)]
+        return ([RemoveUnboundEntityEvent(disaster)], nil)
     }
 
     private func getRandomVelocity() -> CGVector {

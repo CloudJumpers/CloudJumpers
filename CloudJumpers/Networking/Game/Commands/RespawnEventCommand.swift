@@ -1,20 +1,20 @@
 //
-//  RepositionEventCommand.swift
+//  RespawnEffectEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 27/3/22.
+//  Created by Trong Tan on 4/2/22.
 //
 
 import Foundation
 import CoreGraphics
 
-struct RepositionEventCommand: GameEventCommand {
+struct RespawnEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalRepositionEvent) {
+    init(sourceId: NetworkID, event: ExternalRespawnEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,19 +29,14 @@ struct RepositionEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard
-            let parameters = try? decoder.decode(ExternalRepositionEvent.self, from: jsonData),
-            let movementKind = Textures.Kind(rawValue: parameters.texture)
-        else {
-            nextCommand = RespawnEventCommand(source, payload)
+        guard let parameters = try? decoder.decode(ExternalRespawnEvent.self, from: jsonData) else {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RepositionEvent(
+        let eventToProcess = RespawnEvent(
             onEntityWith: source,
             at: parameters.timestamp,
-            to: CGPoint(x: parameters.positionX, y: parameters.positionY),
-            as: movementKind
+            to: CGPoint(x: parameters.positionX, y: parameters.positionY)
         )
 
         eventManager.add(eventToProcess)

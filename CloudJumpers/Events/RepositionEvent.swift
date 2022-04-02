@@ -22,7 +22,14 @@ struct RepositionEvent: Event {
         self.kind = kind
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    init(onEntityWith id: EntityID, to nextPosition: CGPoint, as kind: Textures.Kind) {
+        entityID = id
+        self.timestamp = EventManager.timestamp
+        self.nextPosition = nextPosition
+        self.kind = kind
+    }
+
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)

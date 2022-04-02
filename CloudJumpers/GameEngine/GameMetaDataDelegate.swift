@@ -14,6 +14,4 @@ protocol GameMetaDataDelegate: AnyObject {
     func updatePlayerPosition(position: CGPoint)
 
     func updatePlayerTextureKind(texture: Textures.Kind)
-
-    func syncToOtherDevices()
 }

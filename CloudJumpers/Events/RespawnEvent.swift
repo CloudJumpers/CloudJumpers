@@ -8,14 +8,15 @@
 import Foundation
 import CoreGraphics
 
-class RespawnEvent: Event {
+struct RespawnEvent: Event {
     var timestamp: TimeInterval
     var position: CGPoint
 
     var entityID: EntityID
+
     init(onEntityWith id: EntityID, to position: CGPoint) {
-        timestamp = EventManager.timestamp
         self.entityID = id
+        self.timestamp = EventManager.timestamp
         self.position = position
     }
 
@@ -25,15 +26,14 @@ class RespawnEvent: Event {
         self.position = position
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }
 
-        print("RESPAWN")
-
+        let effectEvent = RespawnEffectEvent(onEntityWith: entityID, at: spriteComponent.node.position)
         spriteComponent.node.position = position
 
-        return nil
+        return ([effectEvent], nil)
     }
 }

@@ -32,7 +32,7 @@ struct RemoveEntityEvent: Event {
         return timedComponent.time >= timeToRemove
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         entityManager.remove(withID: entityID)
 
         return nil

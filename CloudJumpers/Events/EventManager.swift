@@ -39,8 +39,9 @@ class EventManager {
 
             if event.shouldExecute(in: entityManager) {
                 let nextEvents = event.execute(in: entityManager)
-                nextEvents?.forEach(add(_:))
-                counter += nextEvents?.count ?? 0
+                nextEvents?.remoteEvents?.forEach(sendOutRemoteEvent(_:))
+                nextEvents?.localEvents?.forEach(add(_:))
+                counter += nextEvents?.localEvents?.count ?? 0
             } else {
                 deferredEvents.append(event)
             }
@@ -51,8 +52,15 @@ class EventManager {
         deferredEvents.forEach(add(_:))
     }
 
-    func dispatchGameEventCommand(_ command: GameEventCommand) {
-        gameEventDispatcher?.dispatchGameEventCommand(command)
+    func sendOutRemoteEvent(_ event: RemoteEvent) {
+        guard
+            let command = event.createDispatchCommand(),
+            let dispatcher = gameEventDispatcher
+        else {
+            return
+        }
+
+        dispatcher.dispatchGameEventCommand(command)
     }
 
     private func subscribe(to channel: NetworkID?) {

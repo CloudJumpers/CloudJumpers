@@ -174,7 +174,8 @@ extension GameViewController: GameSceneDelegate {
             return
         }
         let newModeEvents = gameRules.createGameEvents(with: gameData)
-        newModeEvents.forEach({ gameEngine?.eventManager.add($0) })
+        newModeEvents.localEvents.forEach { gameEngine?.eventManager.add($0) }
+        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.sendOutRemoteEvent($0) }
 
         if gameRules.hasGameEnd(with: gameData) {
             // TO DO: streamlined this
