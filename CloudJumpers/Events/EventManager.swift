@@ -39,8 +39,9 @@ class EventManager {
 
             if event.shouldExecute(in: entityManager) {
                 let nextEvents = event.execute(in: entityManager)
-                nextEvents?.forEach(add(_:))
-                counter += nextEvents?.count ?? 0
+                nextEvents?.remoteEvents?.forEach(sendOutRemoteEvent(_:))
+                nextEvents?.localEvents?.forEach(add(_:))
+                counter += nextEvents?.localEvents?.count ?? 0
             } else {
                 deferredEvents.append(event)
             }

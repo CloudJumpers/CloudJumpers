@@ -19,7 +19,7 @@ struct ActivatePowerUpEvent: Event {
         self.location = location
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let powerUpEntityID = inventoryComponent.inventory.dequeue(),
@@ -30,6 +30,6 @@ struct ActivatePowerUpEvent: Event {
         let effect = PowerUpEffect(powerUpComponent.kind, at: location)
         entityManager.add(effect)
 
-        return [RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration)]
+        return ([RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration)], nil)
     }
 }

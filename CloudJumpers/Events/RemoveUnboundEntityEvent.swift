@@ -25,7 +25,7 @@ struct RemoveUnboundEntityEvent: Event {
         return Self.isPositionOutOfBound(spriteComponent.node.position)
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         entityManager.remove(withID: entityID)
 
         return nil

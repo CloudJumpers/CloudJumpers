@@ -26,7 +26,7 @@ struct RespawnEffectEvent: Event {
         self.originalPosition = originalPosition
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }

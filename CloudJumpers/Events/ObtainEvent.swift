@@ -19,7 +19,7 @@ struct ObtainEvent: Event {
         self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let otherEntity = entityManager.entity(with: otherEntityID),
