@@ -79,10 +79,12 @@ class SpriteSystem: System {
     }
 
     private func updateInventory(of node: SKNode, with entity: Entity) {
-        guard let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity) else {
+        guard let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
+              inventoryComponent.inventory.isUpdated else {
             return
         }
 
+        inventoryComponent.inventory.isUpdated = false
         var position = Constants.initialPowerUpQueuePosition
 
         for entityID in inventoryComponent.inventory.iterable {

@@ -10,6 +10,7 @@ struct Queue<T> {
     private var array: [T?] = []
     private var head = 0
 
+    var isUpdated = false
     var count: Int {
         array.count - head
     }
@@ -22,12 +23,14 @@ struct Queue<T> {
 
     mutating func enqueue(_ element: T) {
         array.append(element)
+        isUpdated = true
     }
 
     mutating func dequeue() -> T? {
         guard let element = array[guarded: head] else {
             return nil
         }
+        isUpdated = true
 
         array[head] = nil
         head += 1
