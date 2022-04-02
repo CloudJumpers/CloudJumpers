@@ -106,9 +106,12 @@ class SpriteSystem: System {
 
             displayCount += 1
 
+            spriteComponent.node.removeFromParent()
+
             spriteComponent.node.position = position
             spriteComponent.node.physicsBody = nil
 
+            delegate?.spriteSystem(self, addNode: spriteComponent.node, static: true)
             position.x += Constants.powerUpQueueXInterval
         }
     }
