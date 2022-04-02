@@ -32,6 +32,7 @@ struct DisasterStartEventCommand: GameEventCommand {
         guard let parameters = try? decoder.decode(ExternalDisasterEvent.self, from: jsonData),
               let disasterType = DisasterComponent.Kind(rawValue: parameters.disasterType)
         else {
+            nextCommand = RespawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
