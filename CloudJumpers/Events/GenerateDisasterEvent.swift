@@ -27,11 +27,12 @@ struct GenerateDisasterEvent: Event {
 
         let randomPosition = getRandomPosition(within: maxY)
         let randomVelocity = getRandomVelocity()
+        let disasterType = getRandomType() ?? .meteor
 
-        let disasterPrompt = DisasterPrompt(.meteor, at: randomPosition)
+        let disasterPrompt = DisasterPrompt(disasterType, at: randomPosition)
         entityManager.add(disasterPrompt)
 
-        let disaster = Disaster(.meteor, at: randomPosition, velocity: randomVelocity)
+        let disaster = Disaster(disasterType, at: randomPosition, velocity: randomVelocity)
 
         return [FadeEntityEvent(on: disasterPrompt, until: Constants.disasterPromptPeriod, fadeType: .fadeIn),
                 RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
@@ -60,5 +61,9 @@ struct GenerateDisasterEvent: Event {
 
     private func getProbabilisticSuccess(successRate: Int) -> Bool {
         Int.random(in: 0..<100) < successRate
+    }
+
+    private func getRandomType() -> DisasterComponent.Kind? {
+        DisasterComponent.Kind.allCases.randomElement()
     }
 }
