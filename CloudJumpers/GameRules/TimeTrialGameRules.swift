@@ -7,6 +7,10 @@
 
 import Foundation
 class TimeTrialGameRules: GameRules {
+    func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
+        ([], [])
+    }
+
     func prepareGameModes(gameEngine: GameEngine, blueprint: Blueprint) {
         guard let userId = AuthService().getUserId() else {
             fatalError("Cannot find user")
@@ -16,10 +20,6 @@ class TimeTrialGameRules: GameRules {
             with: blueprint,
             playerId: userId,
             additionalPlayerIds: nil)
-    }
-
-    func createGameEvents(with gameData: GameMetaData) -> [Event] {
-        []
     }
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {

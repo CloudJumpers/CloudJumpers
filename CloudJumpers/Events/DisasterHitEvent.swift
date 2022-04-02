@@ -25,12 +25,10 @@ struct DisasterHitEvent: Event {
 
         var events: [Event] = [RemoveEntityEvent(disaster)]
 
-        // TO DO: Reconsider this later
+        // TODO: Reconsider this later
         if otherEntity is Player {
             events.append(RespawnEvent(onEntityWith: otherEntityID,
-                                       to: Constants.playerInitialPosition,
-                                       isSharing: false,
-                                       isExecutedLocally: true))
+                                       to: Constants.playerInitialPosition))
         }
 
         return events

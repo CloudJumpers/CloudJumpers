@@ -8,6 +8,25 @@
 import Foundation
 
 class RaceTopGameRules: GameRules {
+    func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
+        var localEvents = [Event]()
+        var remoteEvents = [RemoteEvent]()
+
+        if isPlayerRespawn(with: gameData) {
+            localEvents.append(RespawnEvent(
+                onEntityWith: gameData.playerId,
+                to: gameData.playerStartingPosition)
+            )
+
+            remoteEvents.append(ExternalRespawnEvent(
+                positionX: gameData.playerStartingPosition.x,
+                positionY: gameData.playerStartingPosition.y
+            ))
+
+            gameData.locationMapping.removeValue(forKey: gameData.playerId)
+        }
+        return (localEvents, remoteEvents)
+    }
 
     unowned var lobby: GameLobby?
 
@@ -24,18 +43,6 @@ class RaceTopGameRules: GameRules {
             with: blueprint,
             playerId: userId,
             additionalPlayerIds: lobby?.otherUsers.map { $0.id })
-    }
-
-    func createGameEvents(with gameData: GameMetaData) -> [Event] {
-        var events = [Event]()
-        if isPlayerRespawn(with: gameData) {
-            events.append(RespawnEvent(onEntityWith: gameData.playerId,
-                                       to: gameData.playerStartingPosition,
-                                       isSharing: true,
-                                       isExecutedLocally: true))
-            gameData.locationMapping.removeValue(forKey: gameData.playerId)
-        }
-        return events
     }
 
     private func isPlayerRespawn(with gameData: GameMetaData) -> Bool {
