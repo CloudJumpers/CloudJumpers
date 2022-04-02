@@ -910,30 +910,54 @@
 			path = TestUtils;
 			sourceTree = "<group>";
 		};
+		A11A00AF27F8CDED001BB83D /* UtilityEvents */ = {
+			isa = PBXGroup;
+			children = (
+				1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */,
+				3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */,
+				1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */,
+			);
+			path = UtilityEvents;
+			sourceTree = "<group>";
+		};
+		A11A00B027F8CE0E001BB83D /* PlayerEvents */ = {
+			isa = PBXGroup;
+			children = (
+				9353464127F02EFA00DC6F9E /* RepositionEvent.swift */,
+				A176387E27F4927E009EA7E7 /* RespawnEvent.swift */,
+				1A94D96327EE0D4D001D8A86 /* MoveEvent.swift */,
+				1A94D96527EE0EF2001D8A86 /* JumpEvent.swift */,
+			);
+			path = PlayerEvents;
+			sourceTree = "<group>";
+		};
+		A11A00B127F8CE1E001BB83D /* EffectEvents */ = {
+			isa = PBXGroup;
+			children = (
+				A1BC45A827F73BE1000BF1A3 /* RespawnEffectEvent.swift */,
+				3EA7C86027F7F627009BCA63 /* BlinkEffectEvent.swift */,
+			);
+			path = EffectEvents;
+			sourceTree = "<group>";
+		};
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A11A00B127F8CE1E001BB83D /* EffectEvents */,
+				A11A00B027F8CE0E001BB83D /* PlayerEvents */,
+				A11A00AF27F8CDED001BB83D /* UtilityEvents */,
 				9356AB7327EEFD81008CDEC1 /* Online */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
-				A108AB4F27E5070E003157E8 /* EventManager.swift */,
-				1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */,
-				1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */,
-				1A94D96327EE0D4D001D8A86 /* MoveEvent.swift */,
-				1A94D96527EE0EF2001D8A86 /* JumpEvent.swift */,
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
+				A108AB4F27E5070E003157E8 /* EventManager.swift */,
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
-				3EA7C86027F7F627009BCA63 /* BlinkEffectEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
 				3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */,
 				1ADEDD9A27F6177000C3AFD3 /* RemoveEntityEvent.swift */,
 				1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */,
 				3E3E0BFC27F6E84900BF526C /* GenerateDisasterEvent.swift */,
 				3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */,
-				3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */,
-				9353464127F02EFA00DC6F9E /* RepositionEvent.swift */,
-				A176387E27F4927E009EA7E7 /* RespawnEvent.swift */,
-				A1BC45A827F73BE1000BF1A3 /* RespawnEffectEvent.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
