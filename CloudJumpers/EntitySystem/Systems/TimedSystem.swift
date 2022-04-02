@@ -20,7 +20,6 @@ class TimedSystem: System {
         }
 
         for timedComponent in manager.components(ofType: TimedComponent.self) {
-            print(timedComponent.entity?.id)
             timedComponent.time += time
         }
     }

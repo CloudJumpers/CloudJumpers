@@ -67,9 +67,9 @@ struct Constants {
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
 
-    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width - 170,
-                                     height: UIScreen.main.bounds.height - 240)
-    static let gameAreaPosition = CGPoint(x: 0, y: 110)
+    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width,
+                                     height: UIScreen.main.bounds.height + 1_000_000)
+    static let gameAreaPosition = CGPoint(x: 0, y: 0)
 
     static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
     static let powerUpEffectDuration = 5.0

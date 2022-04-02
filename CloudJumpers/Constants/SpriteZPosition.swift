@@ -8,13 +8,13 @@
 import CoreGraphics
 
 enum SpriteZPosition: CGFloat {
-    case floor
-    case background
     case platform
     case player
+    case background
+    case floor
+    case wall
     case powerUp
     case disaster
-    case wall
     case outerStick
     case innerStick
     case button

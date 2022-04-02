@@ -40,8 +40,6 @@ struct FadeEntityEvent: Event {
         }
 
         let currentTime = timedComponent.time
-        print(currentTime)
-
         spriteComponent.node.alpha = (fadingEndTime - currentTime) / fadingEndTime
         return [FadeEntityEvent(on: entity, until: fadingEndTime, previousUpdateTime: currentTime)]
     }

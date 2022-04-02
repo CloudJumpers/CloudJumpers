@@ -141,8 +141,7 @@ class GameEngine {
             PowerUp(.confuse, at: CGPoint(x: 0, y: -200)),
             PowerUp(.confuse, at: CGPoint(x: -200, y: -100)),
             PowerUp(.confuse, at: CGPoint(x: 0, y: -100)),
-            PowerUp(.confuse, at: CGPoint(x: -200, y: -200)),
-            PowerUp(.confuse, at: CGPoint(x: 0, y: -500))]
+            PowerUp(.confuse, at: CGPoint(x: -200, y: -200))]
 
         entityManager.add(timer)
         powerups.forEach(entityManager.add(_:))
@@ -151,7 +150,7 @@ class GameEngine {
     }
 
     private func updateEvents() {
-//        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
+        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
         eventManager.executeAll(in: entityManager)
     }
 

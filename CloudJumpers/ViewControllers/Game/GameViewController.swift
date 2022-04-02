@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
-        scene?.addChild(gameArea, static: true)
+        scene?.addChild(gameArea, static: false)
 
         self.joystick = joystick
     }
