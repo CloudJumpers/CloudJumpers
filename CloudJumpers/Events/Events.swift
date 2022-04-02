@@ -21,6 +21,7 @@ enum Events: Int, CaseIterable {
     case generateDisaster
     case fadeEntity
     case deferred
+    case disasterStart
 
     static let events: [String: Events] = [
         String(describing: BiEvent.self): .bi,
@@ -37,7 +38,8 @@ enum Events: Int, CaseIterable {
         String(describing: DisasterHitEvent.self): .disasterHit,
         String(describing: GenerateDisasterEvent.self): .generateDisaster,
         String(describing: FadeEntityEvent.self): .fadeEntity,
-        String(describing: DeferredEvent.self): .deferred
+        String(describing: DeferredEvent.self): .deferred,
+        String(describing: DisasterStartEvent.self): .disasterStart
     ]
 
     static func eventType(for event: Event) -> Events? {

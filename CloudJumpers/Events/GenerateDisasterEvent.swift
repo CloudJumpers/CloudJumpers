@@ -29,20 +29,9 @@ struct GenerateDisasterEvent: Event {
         let randomVelocity = getRandomVelocity()
         let disasterType = getRandomType() ?? .meteor
 
-        let disasterPrompt = DisasterPrompt(disasterType, at: randomPosition)
-        entityManager.add(disasterPrompt)
-
-        let disaster = Disaster(disasterType, at: randomPosition, velocity: randomVelocity)
-
-        return [FadeEntityEvent(on: disasterPrompt, until: Constants.disasterPromptPeriod, fadeType: .fadeIn),
-                RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
-                DeferredEvent(disaster, until: {
-                    entityManager.entity(with: disasterPrompt.id) == nil
-                }, action: {
-                    entityManager.add(disaster)
-                    return [RemoveUnboundEntityEvent(disaster)]
-                })
-            ]
+        return [DisasterStartEvent(position: randomPosition,
+                                   velocity: randomVelocity,
+                                   disasterType: disasterType)]
     }
 
     private func getRandomVelocity() -> CGVector {

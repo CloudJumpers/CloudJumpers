@@ -96,7 +96,7 @@ class GameEngine {
             guard let newPowerUp = generatePowerUp(at: position) else {
                 return
             }
-            
+
             entityManager.add(newPowerUp)
         }
     }
@@ -170,7 +170,7 @@ class GameEngine {
 
         metaData.time = timedComponent.time
     }
-    
+
     private func generatePowerUp(at position: CGPoint) -> PowerUp? {
         guard let powerUpType = PowerUpComponent.Kind.allCases.randomElement() else {
             return nil
