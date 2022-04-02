@@ -40,7 +40,9 @@ struct RepositionEventCommand: GameEventCommand {
             onEntityWith: source,
             at: parameters.timestamp,
             to: CGPoint(x: parameters.positionX, y: parameters.positionY),
-            as: movementKind
+            as: movementKind,
+            isSharing: false,
+            isExecutedLocally: true
         )
 
         eventManager.add(eventToProcess)
