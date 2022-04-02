@@ -38,7 +38,6 @@ enum Events: Int, CaseIterable {
         String(describing: DisasterHitEvent.self): .disasterHit,
         String(describing: GenerateDisasterEvent.self): .generateDisaster,
         String(describing: BlinkEffectEvent.self): .blinkEffect,
-        String(describing: ConditionalEvent.self): .conditional,
         String(describing: DisasterStartEvent.self): .disasterStart,
         String(describing: RespawnEvent.self): .respawn,
         String(describing: RespawnEffectEvent.self): .respawnEffect
