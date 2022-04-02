@@ -58,15 +58,17 @@ class GameEngine {
         updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(with blueprint: Blueprint, playerId: EntityID, additionalPlayerIds: [EntityID]?) {
-        let positions = LevelGenerator.from(blueprint, seed: blueprint.seed)
-        setUpEnvironment(positions)
+    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint, playerId: EntityID,
+                   additionalPlayerIds: [EntityID]?) {
+        let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
+        let powerUpPositions = LevelGenerator.from(powerUpBlueprint, seed: powerUpBlueprint.seed)
+        setUpEnvironment(cloudPositions: cloudPositions, powerUpPositions: powerUpPositions)
         setUpPlayers(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
         setUpSampleGame()
     }
 
-    private func setUpEnvironment(_ positions: [CGPoint]) {
-        guard let highestPosition = positions.max(by: { $0.y < $1.y }) else {
+    private func setUpEnvironment(cloudPositions: [CGPoint], powerUpPositions: [CGPoint]) {
+        guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
         let topPlatform = Platform(at: highestPosition)
@@ -83,11 +85,19 @@ class GameEngine {
         metaData.topPlatformId = topPlatform.id
         metaData.highestPosition = highestPosition
 
-        positions.forEach { position in
+        cloudPositions.forEach { position in
             if position != highestPosition {
                 let newCloud = Cloud(at: position)
                 entityManager.add(newCloud)
             }
+        }
+
+        powerUpPositions.forEach { position in
+            guard let newPowerUp = generatePowerUp(at: position) else {
+                return
+            }
+            
+            entityManager.add(newPowerUp)
         }
     }
 
@@ -140,17 +150,8 @@ class GameEngine {
 
     private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        let powerups = [
-            PowerUp(.freeze, at: CGPoint(x: 200, y: -300)),
-            PowerUp(.confuse, at: CGPoint(x: -200, y: -300)),
-            PowerUp(.confuse, at: CGPoint(x: 0, y: -200)),
-            PowerUp(.confuse, at: CGPoint(x: -200, y: -100)),
-            PowerUp(.confuse, at: CGPoint(x: 0, y: -100)),
-            PowerUp(.confuse, at: CGPoint(x: -200, y: -200))]
 
         entityManager.add(timer)
-        powerups.forEach(entityManager.add(_:))
-
         self.timer = timer
     }
 
@@ -168,6 +169,13 @@ class GameEngine {
         else { return }
 
         metaData.time = timedComponent.time
+    }
+    
+    private func generatePowerUp(at position: CGPoint) -> PowerUp? {
+        guard let powerUpType = PowerUpComponent.Kind.allCases.randomElement() else {
+            return nil
+        }
+        return PowerUp(powerUpType, at: position)
     }
 }
 

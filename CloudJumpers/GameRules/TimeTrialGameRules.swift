@@ -7,13 +7,16 @@
 
 import Foundation
 class TimeTrialGameRules: GameRules {
-    func prepareGameModes(gameEngine: GameEngine, blueprint: Blueprint) {
+    func prepareGameModes(gameEngine: GameEngine,
+                          cloudBlueprint: Blueprint,
+                          powerUpBlueprint: Blueprint) {
         guard let userId = AuthService().getUserId() else {
             fatalError("Cannot find user")
         }
 
         gameEngine.setUpGame(
-            with: blueprint,
+            cloudBlueprint: cloudBlueprint,
+            powerUpBlueprint: powerUpBlueprint,
             playerId: userId,
             additionalPlayerIds: nil)
     }
