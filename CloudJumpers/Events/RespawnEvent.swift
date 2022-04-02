@@ -46,8 +46,6 @@ struct RespawnEvent: SharedEvent {
         let effectEvent = RespawnEffectEvent(onEntityWith: entityID,
                                              at: spriteComponent.node.position)
         spriteComponent.node.position = position
-        print("RESPAWN")
-
         return [effectEvent]
     }
 
