@@ -33,7 +33,7 @@ class PowerUpEffect: Entity {
             size: Constants.powerUpEffectSize)
 
         node.position = position
-        node.zPosition = SpriteZPosition.powerUp.rawValue
+        node.zPosition = SpriteZPosition.powerUpEffect.rawValue
 
         return SpriteComponent(node: node, forEntityWith: id)
     }

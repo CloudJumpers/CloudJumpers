@@ -11,6 +11,7 @@ enum SpriteZPosition: CGFloat {
     case platform
     case player
     case background
+    case powerUpEffect
     case floor
     case wall
     case powerUp
