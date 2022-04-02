@@ -15,7 +15,8 @@ struct FadeEntityEvent: Event {
     private var fadingEndTime: TimeInterval
     private var fadeType: FadeType
 
-    init(on entity: Entity, until endTime: TimeInterval, previousUpdateTime: TimeInterval = 0, fadeType: FadeType = .fadeOut) {
+    init(on entity: Entity, until endTime: TimeInterval, previousUpdateTime: TimeInterval = 0,
+         fadeType: FadeType = .fadeOut) {
         timestamp = EventManager.timestamp
         self.entityID = entity.id
         self.previousUpdateTime = previousUpdateTime

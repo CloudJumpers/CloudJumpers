@@ -36,7 +36,7 @@ class Disaster: Entity {
 
         node.position = position
         node.zRotation = getRotationAngle()
-        node.zPosition = SpriteZPosition.powerUp.rawValue
+        node.zPosition = SpriteZPosition.disaster.rawValue
         node.anchorPoint = CGPoint(x: 0.5, y: 0)
 
         return SpriteComponent(node: node, forEntityWith: id)
