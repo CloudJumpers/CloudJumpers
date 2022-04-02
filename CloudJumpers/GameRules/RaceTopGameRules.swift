@@ -30,7 +30,9 @@ class RaceTopGameRules: GameRules {
         var events = [Event]()
         if isPlayerRespawn(with: gameData) {
             events.append(RespawnEvent(onEntityWith: gameData.playerId,
-                                       to: gameData.playerStartingPosition))
+                                       to: gameData.playerStartingPosition,
+                                       isSharing: true,
+                                       isExecutedLocally: true))
             gameData.locationMapping.removeValue(forKey: gameData.playerId)
         }
         return events

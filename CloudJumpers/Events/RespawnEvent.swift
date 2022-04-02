@@ -18,8 +18,8 @@ class RespawnEvent: SharedEvent {
     var entityID: EntityID
     init(onEntityWith id: EntityID,
          to position: CGPoint,
-         isSharing: Bool = false,
-         isExecutedLocally: Bool = true) {
+         isSharing: Bool,
+         isExecutedLocally: Bool) {
         timestamp = EventManager.timestamp
         self.entityID = id
         self.position = position
@@ -30,8 +30,8 @@ class RespawnEvent: SharedEvent {
     init(onEntityWith id: EntityID,
          at timestamp: TimeInterval,
          to position: CGPoint,
-         isSharing: Bool = false,
-         isExecutedLocally: Bool = true) {
+         isSharing: Bool,
+         isExecutedLocally: Bool) {
         self.entityID = id
         self.timestamp = timestamp
         self.position = position
@@ -46,6 +46,7 @@ class RespawnEvent: SharedEvent {
         let effectEvent = RespawnEffectEvent(onEntityWith: entityID,
                                              at: spriteComponent.node.position)
         spriteComponent.node.position = position
+        print("RESPAWN")
 
         return [effectEvent]
     }

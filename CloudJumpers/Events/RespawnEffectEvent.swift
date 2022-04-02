@@ -36,7 +36,7 @@ class RespawnEffectEvent: Event {
         let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.1)
 
         let respawnEffect = SKAction.repeat(SKAction.sequence([fadeOut, fadeIn]), count: 15)
-        
+
         spriteComponent.node.run(respawnEffect)
 
         return nil

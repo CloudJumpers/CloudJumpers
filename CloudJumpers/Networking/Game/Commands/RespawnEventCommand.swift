@@ -33,12 +33,12 @@ struct RespawnEventCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RespawnEvent(onEntityWith: source,
-                                          at: parameters.timestamp,
-                                          to: CGPoint(x: parameters.positionX, y: parameters.positionY),
-                                          isSharing: false,
-                                          isExecutedLocally: true)
-
+        let eventToProcess = RespawnEvent(
+            onEntityWith: source,
+            at: parameters.timestamp,
+            to: CGPoint(x: parameters.positionX, y: parameters.positionY),
+            isSharing: false,
+            isExecutedLocally: true)
         eventManager.add(eventToProcess)
         return true
     }
