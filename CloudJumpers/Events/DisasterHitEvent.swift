@@ -27,7 +27,7 @@ struct DisasterHitEvent: Event {
         var events: [Event] = [RemoveEntityEvent(disaster)]
 
         // TO DO: Reconsider this later
-        if otherEntity is Player && physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
+        if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
             events.append(RespawnEvent(onEntityWith: otherEntityID,
                                        to: Constants.playerInitialPosition,
                                        isSharing: false,

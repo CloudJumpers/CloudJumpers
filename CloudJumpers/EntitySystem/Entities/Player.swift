@@ -63,9 +63,9 @@ class Player: Entity {
         physicsComponent.body.affectedByGravity = !isGuest
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.categoryBitMask = isGuest ? Constants.bitmaskGuest : Constants.bitmaskPlayer
         physicsComponent.body.collisionBitMask = isGuest ? guestCollisionBitmask: .max
-        physicsComponent.body.contactTestBitMask = 0xFFFFFFFF
+        physicsComponent.body.contactTestBitMask = isGuest ? guestCollisionBitmask: .max
         return physicsComponent
     }
 

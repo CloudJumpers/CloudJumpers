@@ -86,7 +86,8 @@ class ContactResolver {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
-        return nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPowerUp
+        return (nodeABitMask == Constants.bitmaskPlayer || nodeABitMask == Constants.bitmaskGuest)
+        && nodeBBitMask == Constants.bitmaskPowerUp
     }
 
     private func isDisasterHitting(nodeA: SKNode) -> Bool {
