@@ -86,6 +86,7 @@ class SpriteSystem: System {
 
         inventoryComponent.inventory.isUpdated = false
         var position = Constants.initialPowerUpQueuePosition
+        var displayCount = 0
 
         for entityID in inventoryComponent.inventory.iterable {
             guard let entity = manager?.entity(with: entityID),
@@ -93,6 +94,12 @@ class SpriteSystem: System {
                   let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: entity),
                   ownerComponent.ownerEntityId != nil
             else { continue }
+
+            guard displayCount <= Constants.powerUpMaxNumDisplay else {
+                break
+            }
+
+            displayCount += 1
 
             spriteComponent.node.position = position
             spriteComponent.node.physicsBody = nil

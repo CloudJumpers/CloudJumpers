@@ -22,7 +22,6 @@ struct ObtainEvent: Event {
     func execute(in entityManager: EntityManager) -> [Event]? {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
-              !inventoryComponent.isFull,
               let otherEntity = entityManager.entity(with: otherEntityID),
               let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
               ownerComponent.ownerEntityId == nil
