@@ -29,11 +29,19 @@ struct GenerateDisasterEvent: Event {
         let randomVelocity = getRandomVelocity()
         let disasterType = getRandomType() ?? .meteor
 
-        return ([DisasterStartEvent(
+        let localDisasterStart = DisasterStartEvent(
             position: randomPosition,
             velocity: randomVelocity,
             disasterType: disasterType,
-            playerId: entityID)], nil)
+            playerId: entityID)
+        let remoteDisasterStart = ExternalDisasterEvent(
+            disasterPositionX: randomPosition.x,
+            disasterPositionY: randomPosition.y,
+            disasterVelocityX: randomVelocity.dx,
+            disasterVelocityY: randomVelocity.dy,
+            disasterType: disasterType.rawValue)
+
+        return ([localDisasterStart], [remoteDisasterStart])
 
     }
 

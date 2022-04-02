@@ -39,29 +39,20 @@ struct DisasterStartEvent: Event {
         self.disasterType = disasterType
      }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         let disasterPrompt = DisasterPrompt(disasterType, at: position)
         entityManager.add(disasterPrompt)
 
         let disaster = Disaster(disasterType, at: position, velocity: velocity)
 
-        return [FadeEntityEvent(on: disasterPrompt, until: Constants.disasterPromptPeriod, fadeType: .fadeIn),
-                RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
-                ConditionalEvent(disaster, until: {
-                    entityManager.entity(with: disasterPrompt.id) == nil
-                }, action: {
-                    entityManager.add(disaster)
-                    return [RemoveUnboundEntityEvent(disaster)]
-                })
-                ]
+        return ([BlinkEffectEvent(on: disasterPrompt.id,
+                                  duration: Constants.disasterPromptPeriod / 20,
+                                  numberOfLoop: 10),
+                 RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
+                 ConditionalEvent(disaster,
+                                  until: { entityManager.entity(with: disasterPrompt.id) == nil },
+                                  action: {   entityManager.add(disaster)
+                                        return [RemoveUnboundEntityEvent(disaster)] })
+                ], nil)
     }
-//    func getSharedCommand() -> GameEventCommand {
-//        let onlineUpdate = OnlineDisasterEvent(
-//            disasterPositionX: position.x,
-//            disasterPositionY: position.y,
-//            disasterVelocityX: velocity.dx,
-//            disasterVelocityY: velocity.dy,
-//            disasterType: disasterType.rawValue)
-//        return DisasterStartEventCommand(sourceId: entityID, event: onlineUpdate)
-//    }
 }

@@ -32,6 +32,8 @@ struct ActivatePowerUpEvent: Event {
 
         return ([RemoveEntityEvent(powerUpEntity),
                  RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration),
-                 FadeEntityEvent(on: effect, until: Constants.powerUpEffectDuration)], nil)
+                 BlinkEffectEvent(on: effect.id,
+                                  duration: Constants.powerUpEffectDuration / 10,
+                                  numberOfLoop: 5)], nil)
     }
 }
