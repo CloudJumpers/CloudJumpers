@@ -138,7 +138,11 @@ class GameEngine {
         let powerups = [
             PowerUp(.freeze, at: CGPoint(x: 200, y: -300)),
             PowerUp(.confuse, at: CGPoint(x: -200, y: -300)),
-            PowerUp(.confuse, at: CGPoint(x: 0, y: -200))]
+            PowerUp(.confuse, at: CGPoint(x: 0, y: -200)),
+            PowerUp(.confuse, at: CGPoint(x: -200, y: -100)),
+            PowerUp(.confuse, at: CGPoint(x: 0, y: -100)),
+            PowerUp(.confuse, at: CGPoint(x: -200, y: -200)),
+            PowerUp(.confuse, at: CGPoint(x: 0, y: -500))]
 
         entityManager.add(timer)
         powerups.forEach(entityManager.add(_:))

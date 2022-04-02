@@ -10,6 +10,10 @@ class InventoryComponent: Component {
 
     var inventory: Inventory
 
+    var isFull: Bool {
+        inventory.count >= Constants.powerUpMaxNum
+    }
+
     override init() {
         inventory = Inventory()
         super.init()
