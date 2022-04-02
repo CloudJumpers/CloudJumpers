@@ -48,7 +48,7 @@ struct DisasterStartEvent: Event {
         return ([BlinkEffectEvent(on: disasterPrompt.id,
                                   duration: Constants.disasterPromptPeriod / 20,
                                   numberOfLoop: 10),
-                 RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
+                 RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod),
                  ConditionalEvent(disaster,
                                   until: { entityManager.entity(with: disasterPrompt.id) == nil },
                                   action: {   entityManager.add(disaster)

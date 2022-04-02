@@ -30,8 +30,8 @@ struct ActivatePowerUpEvent: Event {
         let effect = PowerUpEffect(powerUpComponent.kind, at: location)
         entityManager.add(effect)
 
-        return ([RemoveEntityEvent(powerUpEntity),
-                 RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration),
+        return ([RemoveEntityEvent(powerUpEntity.id),
+                 RemoveEntityEvent(effect.id, after: Constants.powerUpEffectDuration),
                  BlinkEffectEvent(on: effect.id,
                                   duration: Constants.powerUpEffectDuration / 10,
                                   numberOfLoop: 5)], nil)

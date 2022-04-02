@@ -24,8 +24,10 @@ struct DisasterHitEvent: Event {
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: otherEntity)
         else { return nil }
 
-        var localEvents: [Event] = [RemoveEntityEvent(disaster)]
-        var remoteEvents: [RemoteEvent] = []
+        var localEvents: [Event] = [RemoveEntityEvent(disaster.id)]
+
+        // TO DO: Consider this also, should the state of this only handle by host or by all ?
+        var remoteEvents: [RemoteEvent] = [ExternalRemoveEvent(entityToRemoveId: disaster.id)]
 
         // TODO: Reconsider this later
 
