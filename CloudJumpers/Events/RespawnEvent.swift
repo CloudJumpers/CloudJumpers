@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class RespawnEvent: SharedEvent {
+struct RespawnEvent: SharedEvent {
     var isSharing: Bool
 
     var isExecutedLocally: Bool

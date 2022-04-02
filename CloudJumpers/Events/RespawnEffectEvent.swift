@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class RespawnEffectEvent: Event {
+struct RespawnEffectEvent: Event {
     var timestamp: TimeInterval
 
     var entityID: EntityID
