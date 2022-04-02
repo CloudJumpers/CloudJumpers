@@ -14,7 +14,7 @@ struct RepositionEventCommand: GameEventCommand {
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: OnlineRepositionEvent) {
+    init(sourceId: NetworkID, event: ExternalRepositionEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -30,7 +30,7 @@ struct RepositionEventCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard
-            let parameters = try? decoder.decode(OnlineRepositionEvent.self, from: jsonData),
+            let parameters = try? decoder.decode(ExternalRepositionEvent.self, from: jsonData),
             let movementKind = Textures.Kind(rawValue: parameters.texture)
         else {
             nextCommand = RespawnEventCommand(source, payload)
@@ -41,9 +41,7 @@ struct RepositionEventCommand: GameEventCommand {
             onEntityWith: source,
             at: parameters.timestamp,
             to: CGPoint(x: parameters.positionX, y: parameters.positionY),
-            as: movementKind,
-            isSharing: false,
-            isExecutedLocally: true
+            as: movementKind
         )
 
         eventManager.add(eventToProcess)

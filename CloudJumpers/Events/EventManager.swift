@@ -38,12 +38,7 @@ class EventManager {
             }
 
             if event.shouldExecute(in: entityManager) {
-                let nextEvents: [Event]?
-                if let sharedEvent = event as? SharedEvent {
-                    nextEvents = handleSharedEvent(event: sharedEvent, in: entityManager)
-                } else {
-                    nextEvents = event.execute(in: entityManager)
-                }
+                let nextEvents = event.execute(in: entityManager)
                 nextEvents?.forEach(add(_:))
                 counter += nextEvents?.count ?? 0
             } else {
@@ -56,8 +51,15 @@ class EventManager {
         deferredEvents.forEach(add(_:))
     }
 
-    func dispatchGameEventCommand(_ command: GameEventCommand) {
-        gameEventDispatcher?.dispatchGameEventCommand(command)
+    func sendOutRemoteEvent(_ event: RemoteEvent) {
+        guard
+            let command = event.createDispatchCommand(),
+            let dispatcher = gameEventDispatcher
+        else {
+            return
+        }
+
+        dispatcher.dispatchGameEventCommand(command)
     }
 
     private func subscribe(to channel: NetworkID?) {
@@ -68,17 +70,6 @@ class EventManager {
         gameEventListener = FirebaseGameEventListener(channel)
         gameEventDispatcher = FirebaseGameEventDispatcher(channel)
         gameEventListener?.eventManager = self
-    }
-
-    private func handleSharedEvent(event: SharedEvent, in entityManager: EntityManager) -> [Event]? {
-        if event.isSharing {
-            let command = event.getSharedCommand()
-            dispatchGameEventCommand(command)
-        }
-        if event.isExecutedLocally {
-            return event.execute(in: entityManager)
-        }
-        return nil
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {
