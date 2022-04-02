@@ -11,14 +11,16 @@ struct FadeEntityEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
-    let previousUpdateTime: TimeInterval
-    let fadingEndTime: TimeInterval
+    private var previousUpdateTime: TimeInterval
+    private var fadingEndTime: TimeInterval
+    private var fadeType: FadeType
 
-    init(on entity: Entity, until endTime: TimeInterval, previousUpdateTime: TimeInterval = 0) {
+    init(on entity: Entity, until endTime: TimeInterval, previousUpdateTime: TimeInterval = 0, fadeType: FadeType = .fadeOut) {
         timestamp = EventManager.timestamp
         self.entityID = entity.id
         self.previousUpdateTime = previousUpdateTime
         self.fadingEndTime = endTime
+        self.fadeType = fadeType
     }
 
     func shouldExecute(in entityManager: EntityManager) -> Bool {
@@ -40,7 +42,18 @@ struct FadeEntityEvent: Event {
         }
 
         let currentTime = timedComponent.time
-        spriteComponent.node.alpha = (fadingEndTime - currentTime) / fadingEndTime
-        return [FadeEntityEvent(on: entity, until: fadingEndTime, previousUpdateTime: currentTime)]
+        switch fadeType {
+        case .fadeIn:
+            spriteComponent.node.alpha = currentTime / fadingEndTime
+        case .fadeOut:
+            spriteComponent.node.alpha = (fadingEndTime - currentTime) / fadingEndTime
+        }
+
+        return [FadeEntityEvent(on: entity, until: fadingEndTime, previousUpdateTime: currentTime, fadeType: fadeType)]
     }
+}
+
+enum FadeType {
+    case fadeIn
+    case fadeOut
 }
