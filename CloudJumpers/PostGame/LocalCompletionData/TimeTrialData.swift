@@ -7,11 +7,8 @@
 
 import Foundation
 
-struct TimeTrialData: GameData {
-    let lobbyId: NetworkID
+struct TimeTrialData: LocalCompletionData {
     let playerId: NetworkID
     let playerName: String
-    let seed: Int
-    let gameModeIdentifier: String
     let completionTime: Double
 }
