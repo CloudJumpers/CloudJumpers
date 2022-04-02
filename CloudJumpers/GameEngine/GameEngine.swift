@@ -131,6 +131,16 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
+    private func syncToOtherDevices() {
+        let sharingPositionEvent = RepositionEvent(
+            onEntityWith: metaData.playerId,
+            to: metaData.playerPosition,
+            as: metaData.playerTexture,
+            isSharing: true,
+            isExecutedLocally: false)
+        eventManager.add(sharingPositionEvent)
+    }
+
     private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
         let spriteSystem = SpriteSystem(for: entityManager)
         spriteSystem.delegate = spriteSystemDelegate
@@ -195,17 +205,6 @@ extension GameEngine: GameMetaDataDelegate {
         } else {
             metaData.locationMapping.removeValue(forKey: player)
         }
-    }
-
-    func syncToOtherDevices() {
-        let positionalUpdate = OnlineRepositionEvent(
-            positionX: metaData.playerPosition.x,
-            positionY: metaData.playerPosition.y,
-            texture: metaData.playerTexture.rawValue
-        )
-
-        let repositionCmd = RepositionEventCommand(sourceId: metaData.playerId, event: positionalUpdate)
-        eventManager.dispatchGameEventCommand(repositionCmd)
     }
 }
 
