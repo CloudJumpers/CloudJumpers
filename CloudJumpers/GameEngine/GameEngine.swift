@@ -166,10 +166,10 @@ class GameEngine {
     }
 
     private func updateEvents() {
-        if let inChargeID = inChargeID, metaData.playerId == inChargeID {
-            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y,
-                                                   entityID: metaData.playerId))
-        }
+//        if let inChargeID = inChargeID, metaData.playerId == inChargeID {
+//            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y,
+//                                                   entityID: metaData.playerId))
+//        }
         eventManager.executeAll(in: entityManager)
     }
 
