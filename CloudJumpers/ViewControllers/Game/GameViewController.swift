@@ -128,28 +128,33 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
-            let score = state.scores.first?.score
+            let score = state.scores.first?.score,
+            let deviceUserId = AuthService().getUserId()
         else {
             return
         }
 
+        isMovingToPostGame = true
+
         switch activeLobby.gameMode {
-        case.timeTrial:
-            let gameData = TimeTrialData(
-                lobbyId: activeLobby.id,
+        case .timeTrial:
+            let gameCompletionData = TimeTrialData(
                 playerId: activeLobby.hostId,
                 playerName: AuthService().getUserDisplayName(),
-                seed: 161_001, // TODO: find a way to get seed
-                gameModeIdentifier: urlSafeGameMode(mode: activeLobby.gameMode),
                 completionTime: score
             )
 
-            isMovingToPostGame = true
-
-            let timeTrialManager = TimeTrialsManager(gameData)
+            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
-        default:
-            return
+        case .raceTop:
+            let gameCompletionData = RaceToTopData(
+                playerId: deviceUserId,
+                playerName: AuthService().getUserDisplayName(),
+                completionTime: score
+            )
+
+            let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
+            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
         }
     }
 
@@ -164,7 +169,7 @@ class GameViewController: UIViewController {
         }
 
         dest.postGameManager = manager
-        dest.postGameManager?.submitLocalData()
+        dest.postGameManager?.submitForRanking()
     }
 }
 
@@ -180,7 +185,8 @@ extension GameViewController: GameSceneDelegate {
             return
         }
         let newModeEvents = gameRules.createGameEvents(with: gameData)
-        newModeEvents.forEach({ gameEngine?.eventManager.add($0) })
+        newModeEvents.localEvents.forEach { gameEngine?.eventManager.add($0) }
+        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.sendOutRemoteEvent($0) }
 
         if gameRules.hasGameEnd(with: gameData) {
             // TO DO: streamlined this

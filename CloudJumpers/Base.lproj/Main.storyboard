@@ -412,7 +412,7 @@
                                                                                 <constraint firstAttribute="width" id="Kv0-4k-gsk"/>
                                                                             </constraints>
                                                                         </view>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player" translatesAutoresizingMaskIntoConstraints="NO" id="1aI-Yv-n67">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="idle" translatesAutoresizingMaskIntoConstraints="NO" id="1aI-Yv-n67">
                                                                             <rect key="frame" x="20" y="0.0" width="100" height="145"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="100" id="UKS-tZ-ZdR"/>
@@ -604,7 +604,7 @@
         <segue reference="iWe-RT-ICK"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="player" width="27" height="40"/>
+        <image name="idle" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

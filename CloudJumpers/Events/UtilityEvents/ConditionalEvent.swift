@@ -26,7 +26,8 @@ struct ConditionalEvent: Event {
         condition()
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
-        action()
+    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+        let localEvents = action()
+        return (localEvents, nil)
     }
 }

@@ -19,7 +19,7 @@ struct ObtainEvent: Event {
         self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
@@ -32,7 +32,7 @@ struct ObtainEvent: Event {
             inventoryComponent.inventory.enqueue(otherEntityID)
             ownerComponent.ownerEntityId = entityID
         } else if physicsComponent.body.categoryBitMask == Constants.bitmaskGuest {
-            return [RemoveEntityEvent(otherEntity)]
+            return ([RemoveEntityEvent(otherEntity.id)], nil)
         }
 
         return nil

@@ -14,7 +14,7 @@ struct DisasterStartEventCommand: GameEventCommand {
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: OnlineDisasterEvent) {
+    init(sourceId: NetworkID, event: ExternalDisasterEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,9 +29,10 @@ struct DisasterStartEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(OnlineDisasterEvent.self, from: jsonData),
+        guard let parameters = try? decoder.decode(ExternalDisasterEvent.self, from: jsonData),
               let disasterType = DisasterComponent.Kind(rawValue: parameters.disasterType)
         else {
+            nextCommand = RespawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
@@ -40,9 +41,7 @@ struct DisasterStartEventCommand: GameEventCommand {
             at: parameters.timestamp,
             velocity: CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY),
             disasterType: disasterType,
-            playerId: source,
-            isSharing: false,
-            isExecutedLocally: true)
+            entityId: parameters.disasterId)
         eventManager.add(eventToProcess)
         return true
     }

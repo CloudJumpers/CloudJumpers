@@ -19,7 +19,7 @@ struct AnimateEvent: Event {
         self.kind = kind
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)
         else { return nil }

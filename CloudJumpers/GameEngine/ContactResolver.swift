@@ -24,9 +24,6 @@ class ContactResolver {
             return
         }
 
-        print(nodeA)
-        print(nodeB)
-
         if isPlayerChangingLocation(nodeA: nodeA, nodeB: nodeB) {
             metaDataDelegate?.metaData(changePlayerLocation: idA, location: idB)
         } else if isPlayerChangingLocation(nodeA: nodeB, nodeB: nodeA) {
