@@ -20,7 +20,7 @@ enum Events: Int, CaseIterable {
     case disasterHit
     case generateDisaster
     case fadeEntity
-    case deferred
+    case conditional
     case disasterStart
 
     static let events: [String: Events] = [
@@ -38,7 +38,7 @@ enum Events: Int, CaseIterable {
         String(describing: DisasterHitEvent.self): .disasterHit,
         String(describing: GenerateDisasterEvent.self): .generateDisaster,
         String(describing: FadeEntityEvent.self): .fadeEntity,
-        String(describing: DeferredEvent.self): .deferred,
+        String(describing: ConditionalEvent.self): .conditional,
         String(describing: DisasterStartEvent.self): .disasterStart
     ]
 

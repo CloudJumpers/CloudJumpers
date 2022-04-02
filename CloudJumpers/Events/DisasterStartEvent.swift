@@ -32,7 +32,7 @@ struct DisasterStartEvent: Event {
 
         return [FadeEntityEvent(on: disasterPrompt, until: Constants.disasterPromptPeriod, fadeType: .fadeIn),
                 RemoveEntityEvent(disasterPrompt, after: Constants.disasterPromptPeriod),
-                DeferredEvent(disaster, until: {
+                ConditionalEvent(disaster, until: {
                     entityManager.entity(with: disasterPrompt.id) == nil
                 }, action: {
                     entityManager.add(disaster)

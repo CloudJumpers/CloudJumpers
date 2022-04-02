@@ -1,5 +1,5 @@
 //
-//  DeferredEvent.swift
+//  ConditionalEvent.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 2/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DeferredEvent: Event {
+struct ConditionalEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
     let condition: () -> Bool
