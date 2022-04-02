@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct RespawnEffectEventCommand: GameEventCommand {
+struct RespawnEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
@@ -33,9 +33,11 @@ struct RespawnEffectEventCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RespawnEffectEvent(onEntityWith: source,
-                                                at: parameters.timestamp,
-                                                at: CGPoint(x: parameters.positionX, y: parameters.positionY))
+        let eventToProcess = RespawnEvent(onEntityWith: source,
+                                          at: parameters.timestamp,
+                                          to: CGPoint(x: parameters.positionX, y: parameters.positionY),
+                                          isSharing: false,
+                                          isExecutedLocally: true)
 
         eventManager.add(eventToProcess)
         return true
