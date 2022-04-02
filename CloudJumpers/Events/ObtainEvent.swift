@@ -32,7 +32,7 @@ struct ObtainEvent: Event {
             inventoryComponent.inventory.enqueue(otherEntityID)
             ownerComponent.ownerEntityId = entityID
         } else if physicsComponent.body.categoryBitMask == Constants.bitmaskGuest {
-            return [RemoveEntityEvent(otherEntity)]
+            return ([RemoveEntityEvent(otherEntity)], nil)
         }
 
         return nil

@@ -11,7 +11,6 @@ class TimeTrialGameRules: GameRules {
         ([], [])
     }
 
-    func prepareGameModes(gameEngine: GameEngine, blueprint: Blueprint) {
     func prepareGameModes(gameEngine: GameEngine,
                           cloudBlueprint: Blueprint,
                           powerUpBlueprint: Blueprint) {

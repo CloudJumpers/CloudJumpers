@@ -29,20 +29,12 @@ struct DisasterHitEvent: Event {
 
         // TODO: Reconsider this later
 
-        if otherEntity is Player {
-            localEvents.append(RespawnEvent(onEntityWith: otherEntityID,
-                                            to: Constants.playerInitialPosition))
+        if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
+            localEvents.append(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
             remoteEvents.append(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y
             ))
-
-        // TO DO: Reconsider this later
-        if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
-            events.append(RespawnEvent(onEntityWith: otherEntityID,
-                                       to: Constants.playerInitialPosition,
-                                       isSharing: false,
-                                       isExecutedLocally: true))
         }
 
         return (localEvents, remoteEvents)

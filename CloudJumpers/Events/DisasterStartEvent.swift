@@ -8,11 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct DisasterStartEvent: SharedEvent {
-    var isSharing: Bool
-
-    var isExecutedLocally: Bool
-
+struct DisasterStartEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -23,32 +19,24 @@ struct DisasterStartEvent: SharedEvent {
     init(position: CGPoint,
          velocity: CGVector,
          disasterType: DisasterComponent.Kind,
-         playerId: EntityID,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
+         playerId: EntityID) {
         timestamp = EventManager.timestamp
         entityID = playerId
         self.position = position
         self.velocity = velocity
         self.disasterType = disasterType
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
      }
 
     init(position: CGPoint,
          at timestamp: TimeInterval,
          velocity: CGVector,
          disasterType: DisasterComponent.Kind,
-         playerId: EntityID,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
+         playerId: EntityID) {
         entityID = playerId
         self.position = position
         self.timestamp = timestamp
         self.velocity = velocity
         self.disasterType = disasterType
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
      }
 
     func execute(in entityManager: EntityManager) -> [Event]? {
@@ -67,13 +55,13 @@ struct DisasterStartEvent: SharedEvent {
                 })
                 ]
     }
-    func getSharedCommand() -> GameEventCommand {
-        let onlineUpdate = OnlineDisasterEvent(
-            disasterPositionX: position.x,
-            disasterPositionY: position.y,
-            disasterVelocityX: velocity.dx,
-            disasterVelocityY: velocity.dy,
-            disasterType: disasterType.rawValue)
-        return DisasterStartEventCommand(sourceId: entityID, event: onlineUpdate)
-    }
+//    func getSharedCommand() -> GameEventCommand {
+//        let onlineUpdate = OnlineDisasterEvent(
+//            disasterPositionX: position.x,
+//            disasterPositionY: position.y,
+//            disasterVelocityX: velocity.dx,
+//            disasterVelocityY: velocity.dy,
+//            disasterType: disasterType.rawValue)
+//        return DisasterStartEventCommand(sourceId: entityID, event: onlineUpdate)
+//    }
 }
