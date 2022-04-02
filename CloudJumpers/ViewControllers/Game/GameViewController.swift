@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     }
 
     private func prepareGameEngine() {
-        gameEngine = GameEngine(rendersTo: self, channel: lobby?.id)
+        gameEngine = GameEngine(rendersTo: self, inChargeID: lobby?.hostId, channel: lobby?.id)
     }
 
     private func setUpGameScene() {

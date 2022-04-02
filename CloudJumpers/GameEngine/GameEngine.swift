@@ -13,15 +13,18 @@ class GameEngine {
     let contactResolver: ContactResolver
     var systems: [System]
     var metaData: GameMetaData
+    var inChargeID: NetworkID?
 
     private var crossDeviceSyncTimer: Timer?
 
-    required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate, channel: NetworkID? = nil) {
+    required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
+                  inChargeID: NetworkID?, channel: NetworkID? = nil) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
         systems = []
+        self.inChargeID = inChargeID
         contactResolver.metaDataDelegate = self
         setUpSystems(rendersTo: spriteSystemDelegate)
         setUpCrossDeviceSyncTimer()
@@ -152,7 +155,9 @@ class GameEngine {
     }
 
     private func updateEvents() {
-        eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y))
+        if let inChargeID = inChargeID, metaData.playerId == inChargeID {
+            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y))
+        }
         eventManager.executeAll(in: entityManager)
     }
 
