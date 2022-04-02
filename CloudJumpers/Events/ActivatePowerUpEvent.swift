@@ -30,6 +30,8 @@ struct ActivatePowerUpEvent: Event {
         let effect = PowerUpEffect(powerUpComponent.kind, at: location)
         entityManager.add(effect)
 
-        return [RemoveEntityEvent(powerUpEntity), RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration)]
+        return [RemoveEntityEvent(powerUpEntity),
+                RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration),
+                FadeEntityEvent(on: effect, until: Constants.powerUpEffectDuration)]
     }
 }

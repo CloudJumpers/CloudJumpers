@@ -151,7 +151,7 @@ class GameEngine {
     }
 
     private func updateEvents() {
-        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
+//        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
         eventManager.executeAll(in: entityManager)
     }
 
