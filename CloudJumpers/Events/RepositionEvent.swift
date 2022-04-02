@@ -8,43 +8,28 @@
 import Foundation
 import CoreGraphics
 
-struct RepositionEvent: SharedEvent {
-    var isSharing: Bool
-    var isExecutedLocally: Bool
+struct RepositionEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
     private let nextPosition: CGPoint
     private let kind: Textures.Kind
 
-    init(onEntityWith id: EntityID,
-         at timestamp: TimeInterval,
-         to nextPosition: CGPoint,
-         as kind: Textures.Kind,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
+    init(onEntityWith id: EntityID, at timestamp: TimeInterval, to nextPosition: CGPoint, as kind: Textures.Kind) {
         entityID = id
         self.timestamp = timestamp
         self.nextPosition = nextPosition
         self.kind = kind
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
     }
 
-    init(onEntityWith id: EntityID,
-         to nextPosition: CGPoint,
-         as kind: Textures.Kind,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
+    init(onEntityWith id: EntityID, to nextPosition: CGPoint, as kind: Textures.Kind) {
         entityID = id
-        timestamp = EventManager.timestamp
+        self.timestamp = EventManager.timestamp
         self.nextPosition = nextPosition
         self.kind = kind
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity),
               let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity)
@@ -61,15 +46,5 @@ struct RepositionEvent: SharedEvent {
         animationComponent.kind = kind
 
         return nil
-    }
-
-    func getSharedCommand() -> GameEventCommand {
-        let positionalUpdate = OnlineRepositionEvent(
-            positionX: nextPosition.x,
-            positionY: nextPosition.y,
-            texture: kind.rawValue
-        )
-
-        return RepositionEventCommand(sourceId: entityID, event: positionalUpdate)
     }
 }

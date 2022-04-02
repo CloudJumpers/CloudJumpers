@@ -17,7 +17,7 @@ struct JumpEvent: Event {
         entityID = entity.id
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
               !isJumping(body: physicsComponent.body)

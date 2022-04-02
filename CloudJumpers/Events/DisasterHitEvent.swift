@@ -18,13 +18,24 @@ struct DisasterHitEvent: Event {
         self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let disaster = entityManager.entity(with: entityID),
               let otherEntity = entityManager.entity(with: otherEntityID),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: otherEntity)
         else { return nil }
 
-        var events: [Event] = [RemoveEntityEvent(disaster)]
+        var localEvents: [Event] = [RemoveEntityEvent(disaster)]
+        var remoteEvents: [RemoteEvent] = []
+
+        // TODO: Reconsider this later
+
+        if otherEntity is Player {
+            localEvents.append(RespawnEvent(onEntityWith: otherEntityID,
+                                            to: Constants.playerInitialPosition))
+            remoteEvents.append(ExternalRespawnEvent(
+                positionX: Constants.playerInitialPosition.x,
+                positionY: Constants.playerInitialPosition.y
+            ))
 
         // TO DO: Reconsider this later
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
@@ -34,6 +45,6 @@ struct DisasterHitEvent: Event {
                                        isExecutedLocally: true))
         }
 
-        return events
+        return (localEvents, remoteEvents)
     }
 }

@@ -15,5 +15,5 @@ struct TimeTrialResponse: Response {
 }
 
 struct TimeTrialResponses: Decodable {
-    let topFivePlayers: [TimeTrialResponse]
+    let topGlobalPlayers: [TimeTrialResponse]
 }

@@ -16,7 +16,7 @@ struct MoveEventCommand: GameEventCommand {
 
     /// This constructor is used for creation of a MoveEventCommand
     /// for distribution.
-    init(sourceId: NetworkID, event: OnlineMoveEvent) {
+    init(sourceId: NetworkID, event: ExternalMoveEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -31,7 +31,7 @@ struct MoveEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(OnlineMoveEvent.self, from: jsonData) else {
+        guard let parameters = try? decoder.decode(ExternalMoveEvent.self, from: jsonData) else {
             nextCommand = RepositionEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }

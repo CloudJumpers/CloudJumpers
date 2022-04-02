@@ -12,7 +12,7 @@ protocol GameRules {
                           cloudBlueprint: Blueprint,
                           powerUpBlueprint: Blueprint)
 
-    func createGameEvents(with gameData: GameMetaData) -> [Event]
+    func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent])
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool
 }

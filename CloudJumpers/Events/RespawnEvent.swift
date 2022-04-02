@@ -8,49 +8,32 @@
 import Foundation
 import CoreGraphics
 
-struct RespawnEvent: SharedEvent {
-    var isSharing: Bool
-
-    var isExecutedLocally: Bool
+struct RespawnEvent: Event {
     var timestamp: TimeInterval
     var position: CGPoint
 
     var entityID: EntityID
-    init(onEntityWith id: EntityID,
-         to position: CGPoint,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
-        timestamp = EventManager.timestamp
+
+    init(onEntityWith id: EntityID, to position: CGPoint) {
         self.entityID = id
+        self.timestamp = EventManager.timestamp
         self.position = position
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
     }
 
-    init(onEntityWith id: EntityID,
-         at timestamp: TimeInterval,
-         to position: CGPoint,
-         isSharing: Bool,
-         isExecutedLocally: Bool) {
+    init(onEntityWith id: EntityID, at timestamp: TimeInterval, to position: CGPoint) {
         self.entityID = id
         self.timestamp = timestamp
         self.position = position
-        self.isSharing = isSharing
-        self.isExecutedLocally = isExecutedLocally
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }
-        let effectEvent = RespawnEffectEvent(onEntityWith: entityID,
-                                             at: spriteComponent.node.position)
-        spriteComponent.node.position = position
-        return [effectEvent]
-    }
 
-    func getSharedCommand() -> GameEventCommand {
-        let onlineUpdate = OnlineRespawnEvent(positionX: position.x, positionY: position.y)
-        return RespawnEventCommand(sourceId: entityID, event: onlineUpdate)
+        let effectEvent = RespawnEffectEvent(onEntityWith: entityID, at: spriteComponent.node.position)
+        spriteComponent.node.position = position
+
+        return ([effectEvent], nil)
     }
 }

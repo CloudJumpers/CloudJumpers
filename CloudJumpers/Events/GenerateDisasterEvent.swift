@@ -20,7 +20,11 @@ struct GenerateDisasterEvent: Event {
         self.maxY = highestHeight
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+        guard getProbabilisticSuccess(successRate: 1),
+              let entity = entityManager.entity(with: entityID),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else { return nil }
         guard getProbabilisticSuccess(successRate: 1) else {
             return nil
         }
@@ -35,6 +39,10 @@ struct GenerateDisasterEvent: Event {
                                    playerId: entityID,
                                    isSharing: true,
                                    isExecutedLocally: true)]
+        let disaster = Disaster(.meteor, at: randomPosition, velocity: randomVelocity)
+        entityManager.add(disaster)
+
+        return ([RemoveUnboundEntityEvent(disaster)], nil)
     }
 
     private func getRandomVelocity() -> CGVector {
