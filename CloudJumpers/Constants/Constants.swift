@@ -88,6 +88,7 @@ struct Constants {
     static let disasterPromptSize = CGSize(width: 30.0, height: 30.0)
     static let disasterPromptPeriod = 4.0
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
+    static let disasterMass = CGFloat(1_000_000)
 
     static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
     static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)

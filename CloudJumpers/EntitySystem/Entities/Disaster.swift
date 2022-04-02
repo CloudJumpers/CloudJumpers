@@ -46,6 +46,7 @@ class Disaster: Entity {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize,
                                                 for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
+        physicsComponent.body.mass = Constants.disasterMass
         physicsComponent.body.velocity = self.velocity
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0

@@ -24,7 +24,12 @@ struct DisasterHitEvent: Event {
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: otherEntity)
         else { return nil }
 
-        var events: [Event] = [RemoveEntityEvent(disaster)]
+        var events: [Event] = []
+
+        if physicsComponent.body.categoryBitMask != Constants.bitmaskGuest &&
+            physicsComponent.body.categoryBitMask != Constants.bitmaskPlayer {
+            events.append(RemoveEntityEvent(disaster))
+        }
 
         // TO DO: Reconsider this later
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
