@@ -8,7 +8,7 @@
 import Foundation
 
 class DisasterComponent: Component {
-    enum Kind: String, CaseIterable {
+    enum Kind: String, CaseIterable, Codable {
         case meteor
 
         var name: String { rawValue }

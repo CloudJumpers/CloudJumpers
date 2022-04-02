@@ -88,6 +88,8 @@
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */; };
 		3EA7C86D27F87F8E009BCA63 /* ConditionalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */; };
+		3EA7C86F27F88152009BCA63 /* OnlineDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* OnlineDisasterEvent.swift */; };
+		3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -264,6 +266,8 @@
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEvent.swift; sourceTree = "<group>"; };
 		3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalEvent.swift; sourceTree = "<group>"; };
+		3EA7C86E27F88152009BCA63 /* OnlineDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineDisasterEvent.swift; sourceTree = "<group>"; };
+		3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEventCommand.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -630,6 +634,7 @@
 				93360B9227EC919100808295 /* MoveEventCommand.swift */,
 				9353463F27F02DA400DC6F9E /* RepositionEventCommand.swift */,
 				A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */,
+				3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -723,6 +728,7 @@
 				9356AB7927EEFF9D008CDEC1 /* OnlineMoveEvent.swift */,
 				9353463D27F02D5400DC6F9E /* OnlineRepositionEvent.swift */,
 				A14A57C827F7F18100A25DBA /* OnlineRespawnEvent.swift */,
+				3EA7C86E27F88152009BCA63 /* OnlineDisasterEvent.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1207,6 +1213,7 @@
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
+				3EA7C86F27F88152009BCA63 /* OnlineDisasterEvent.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
@@ -1230,6 +1237,7 @@
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				1A91C91A27E099E000D755BE /* Textures.swift in Sources */,
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
+				3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,

@@ -14,9 +14,9 @@ struct GenerateDisasterEvent: Event {
 
     private var maxY: CGFloat
 
-    init(within highestHeight: CGFloat) {
+    init(within highestHeight: CGFloat, entityID: EntityID) {
         timestamp = EventManager.timestamp
-        self.entityID = EntityManager.newEntityID
+        self.entityID = entityID
         self.maxY = highestHeight
     }
 
@@ -31,7 +31,10 @@ struct GenerateDisasterEvent: Event {
 
         return [DisasterStartEvent(position: randomPosition,
                                    velocity: randomVelocity,
-                                   disasterType: disasterType)]
+                                   disasterType: disasterType,
+                                   playerId: entityID,
+                                   isSharing: true,
+                                   isExecutedLocally: true)]
     }
 
     private func getRandomVelocity() -> CGVector {

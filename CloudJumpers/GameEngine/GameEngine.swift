@@ -92,8 +92,8 @@ class GameEngine {
             }
         }
 
-        powerUpPositions.forEach { position in
-            guard let newPowerUp = generatePowerUp(at: position) else {
+        for (index, position) in powerUpPositions.enumerated() {
+            guard let newPowerUp = generatePowerUp(at: position, type: index) else {
                 return
             }
 
@@ -167,7 +167,8 @@ class GameEngine {
 
     private func updateEvents() {
         if let inChargeID = inChargeID, metaData.playerId == inChargeID {
-            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y))
+            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y,
+                                                   entityID: metaData.playerId))
         }
         eventManager.executeAll(in: entityManager)
     }
@@ -181,10 +182,9 @@ class GameEngine {
         metaData.time = timedComponent.time
     }
 
-    private func generatePowerUp(at position: CGPoint) -> PowerUp? {
-        guard let powerUpType = PowerUpComponent.Kind.allCases.randomElement() else {
-            return nil
-        }
+    private func generatePowerUp(at position: CGPoint, type: Int) -> PowerUp? {
+        let powerUpTypeCount = PowerUpComponent.Kind.allCases.count
+        let powerUpType = PowerUpComponent.Kind.allCases[type % powerUpTypeCount]
         return PowerUp(powerUpType, at: position)
     }
 }
