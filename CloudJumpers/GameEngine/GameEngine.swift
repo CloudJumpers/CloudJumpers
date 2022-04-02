@@ -78,6 +78,7 @@ class GameEngine {
         entityManager.add(rightWall)
         entityManager.add(floor)
         metaData.topPlatformId = topPlatform.id
+        metaData.highestPosition = highestPosition
 
         positions.forEach { position in
             if position != highestPosition {
@@ -151,7 +152,7 @@ class GameEngine {
     }
 
     private func updateEvents() {
-        eventManager.add(GenerateDisasterEvent(towards: metaData.playerId))
+        eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y))
         eventManager.executeAll(in: entityManager)
     }
 
