@@ -108,18 +108,23 @@ class GameEngine {
         allPlayerId.sort()
 
         for (index, id) in allPlayerId.enumerated() {
-            let character = Player(
-                at: Constants.playerInitialPositions[index],
-                texture: .character1,
-                with: id,
-                isCameraAnchor: id == playerId,
-                isGuest: id != playerId)
+            let character: Entity
+
+            if id == playerId {
+                character = Player(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    with: id)
+                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else {
+                character = Guest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    with: id)
+            }
 
             entityManager.add(character)
 
-            if id == playerId {
-                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
-            }
         }
 
     }
