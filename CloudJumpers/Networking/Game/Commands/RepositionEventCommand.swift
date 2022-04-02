@@ -33,6 +33,7 @@ struct RepositionEventCommand: GameEventCommand {
             let parameters = try? decoder.decode(OnlineRepositionEvent.self, from: jsonData),
             let movementKind = Textures.Kind(rawValue: parameters.texture)
         else {
+            nextCommand = RespawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 

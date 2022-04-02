@@ -32,10 +32,10 @@ class RespawnEffectEvent: Event {
         else { return nil }
 
         // Character effect
-        let fadeOut = SKAction.fadeAlpha(to: 0.5, duration: 0.1)
-        let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.1)
+        let fadeOut = SKAction.fadeAlpha(to: 0.5, duration: 0.25)
+        let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.25)
 
-        let respawnEffect = SKAction.repeat(SKAction.sequence([fadeOut, fadeIn]), count: 15)
+        let respawnEffect = SKAction.repeat(SKAction.sequence([fadeOut, fadeIn]), count: 8)
 
         spriteComponent.node.run(respawnEffect)
 
