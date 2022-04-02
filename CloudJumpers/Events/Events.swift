@@ -33,9 +33,9 @@ enum Events: Int, CaseIterable {
         String(describing: RepositionEvent.self): .reposition,
         String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
         String(describing: DisasterHitEvent.self): .disasterHit,
-        String(describing: GenerateDisasterEvent.self): .generateDisaster
+        String(describing: GenerateDisasterEvent.self): .generateDisaster,
         String(describing: RespawnEvent.self): .respawn,
-        String(describing: RespawnEffectEvent.self): .respawnEffect,
+        String(describing: RespawnEffectEvent.self): .respawnEffect
     ]
 
     static func eventType(for event: Event) -> Events? {
