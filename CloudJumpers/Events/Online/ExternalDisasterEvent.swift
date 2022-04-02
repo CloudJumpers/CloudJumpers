@@ -14,6 +14,7 @@ struct ExternalDisasterEvent: RemoteEvent {
     var disasterVelocityX: Double
     var disasterVelocityY: Double
     var disasterType: String
+    var disasterId: String
 
     func createDispatchCommand() -> GameEventCommand? {
         guard let sourceId = getSourceId() else {

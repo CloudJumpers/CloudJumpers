@@ -943,6 +943,8 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A19A7A2327F8D203007E1C11 /* Power */,
+				A19A7A2227F8D1F3007E1C11 /* Disaster */,
 				A11A00B127F8CE1E001BB83D /* EffectEvents */,
 				A11A00B027F8CE0E001BB83D /* PlayerEvents */,
 				A11A00AF27F8CDED001BB83D /* UtilityEvents */,
@@ -951,13 +953,8 @@
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
-				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
-				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
-				3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */,
 				1ADEDD9A27F6177000C3AFD3 /* RemoveEntityEvent.swift */,
 				1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */,
-				3E3E0BFC27F6E84900BF526C /* GenerateDisasterEvent.swift */,
-				3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -970,6 +967,25 @@
 				A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */,
 			);
 			path = GameRules;
+			sourceTree = "<group>";
+		};
+		A19A7A2227F8D1F3007E1C11 /* Disaster */ = {
+			isa = PBXGroup;
+			children = (
+				3E3E0BF827F6DD5C00BF526C /* DisasterHitEvent.swift */,
+				3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */,
+				3E3E0BFC27F6E84900BF526C /* GenerateDisasterEvent.swift */,
+			);
+			path = Disaster;
+			sourceTree = "<group>";
+		};
+		A19A7A2327F8D203007E1C11 /* Power */ = {
+			isa = PBXGroup;
+			children = (
+				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
+				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
+			);
+			path = Power;
 			sourceTree = "<group>";
 		};
 		A1CFED4927E5813A0062BCB2 /* State */ = {

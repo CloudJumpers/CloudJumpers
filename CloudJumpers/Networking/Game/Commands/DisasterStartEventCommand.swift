@@ -40,7 +40,7 @@ struct DisasterStartEventCommand: GameEventCommand {
             at: parameters.timestamp,
             velocity: CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY),
             disasterType: disasterType,
-            playerId: source)
+            entityId: parameters.disasterId)
         eventManager.add(eventToProcess)
         return true
     }

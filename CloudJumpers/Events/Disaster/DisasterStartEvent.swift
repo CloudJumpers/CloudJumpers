@@ -19,9 +19,9 @@ struct DisasterStartEvent: Event {
     init(position: CGPoint,
          velocity: CGVector,
          disasterType: DisasterComponent.Kind,
-         playerId: EntityID) {
+         entityId: EntityID) {
         timestamp = EventManager.timestamp
-        entityID = playerId
+        entityID = entityId
         self.position = position
         self.velocity = velocity
         self.disasterType = disasterType
@@ -31,8 +31,8 @@ struct DisasterStartEvent: Event {
          at timestamp: TimeInterval,
          velocity: CGVector,
          disasterType: DisasterComponent.Kind,
-         playerId: EntityID) {
-        entityID = playerId
+         entityId: EntityID) {
+        entityID = entityId
         self.position = position
         self.timestamp = timestamp
         self.velocity = velocity
@@ -43,7 +43,7 @@ struct DisasterStartEvent: Event {
         let disasterPrompt = DisasterPrompt(disasterType, at: position)
         entityManager.add(disasterPrompt)
 
-        let disaster = Disaster(disasterType, at: position, velocity: velocity)
+        let disaster = Disaster(disasterType, at: position, velocity: velocity, with: entityID)
 
         return ([BlinkEffectEvent(on: disasterPrompt.id,
                                   duration: Constants.disasterPromptPeriod / 20,
