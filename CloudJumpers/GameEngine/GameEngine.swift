@@ -120,6 +120,7 @@ class GameEngine {
     private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
         let spriteSystem = SpriteSystem(for: entityManager)
         spriteSystem.delegate = spriteSystemDelegate
+        spriteSystem.metaData = metaData
         systems.append(spriteSystem)
         systems.append(TimedSystem(for: entityManager))
     }

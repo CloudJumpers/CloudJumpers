@@ -12,6 +12,7 @@ class SpriteSystem: System {
     unowned var delegate: SpriteSystemDelegate?
 
     private var sprites: [EntityID: SKNode]
+    var metaData: GameMetaData?
 
     required init(for manager: EntityManager) {
         sprites = [:]
@@ -41,11 +42,14 @@ class SpriteSystem: System {
         }
 
         pruneSprites(in: entitiesToPrune)
+
+        if let playerId = metaData?.playerId {
+            updateInventory(of: playerId)
+        }
     }
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
         synchronizeSprite(node, with: entity)
-        updateInventory(of: node, with: entity)
         updateAnimation(of: node, with: entity)
         updateTimed(of: node, with: entity)
     }
@@ -78,8 +82,9 @@ class SpriteSystem: System {
         }
     }
 
-    private func updateInventory(of node: SKNode, with entity: Entity) {
-        guard let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
+    private func updateInventory(of entityID: EntityID) {
+        guard let entity = manager?.entity(with: entityID),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
               inventoryComponent.inventory.isUpdated else {
             return
         }
