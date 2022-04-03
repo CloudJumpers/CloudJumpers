@@ -93,9 +93,10 @@ class GameEngine {
         }
 
         for (index, position) in powerUpPositions.enumerated() {
-            guard let newPowerUp = generatePowerUp(at: position, type: index) else {
-                return
-            }
+            guard let newPowerUp = generatePowerUp(at: position,
+                                                   type: index,
+                                                   id: generatePowerUpId(idx: index, position: position))
+           else { return }
 
             entityManager.add(newPowerUp)
         }
@@ -187,10 +188,14 @@ class GameEngine {
         metaData.time = timedComponent.time
     }
 
-    private func generatePowerUp(at position: CGPoint, type: Int) -> PowerUp? {
+    private func generatePowerUp(at position: CGPoint, type: Int, id: String) -> PowerUp? {
         let powerUpTypeCount = PowerUpComponent.Kind.allCases.count
         let powerUpType = PowerUpComponent.Kind.allCases[type % powerUpTypeCount]
-        return PowerUp(powerUpType, at: position)
+        return PowerUp(powerUpType, at: position, with: id)
+    }
+
+    private func generatePowerUpId(idx: Int, position: CGPoint) -> String {
+        "powerUp\(idx)\(position.x)\(position.y)"
     }
 }
 
