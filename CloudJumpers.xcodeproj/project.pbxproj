@@ -945,6 +945,8 @@
 		A11A00AF27F8CDED001BB83D /* UtilityEvents */ = {
 			isa = PBXGroup;
 			children = (
+				1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */,
+				1ADEDD9A27F6177000C3AFD3 /* RemoveEntityEvent.swift */,
 				1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */,
 				1ADEDD9627F5CF3100C3AFD3 /* LogEvent.swift */,
 			);
@@ -986,8 +988,6 @@
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
-				1ADEDD9A27F6177000C3AFD3 /* RemoveEntityEvent.swift */,
-				1A8EC1A827F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
