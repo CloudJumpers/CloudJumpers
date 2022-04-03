@@ -208,9 +208,14 @@ class GameLobby: NetworkedLobby {
     /// This function can be called to remove the local user from the lobby.
     /// After calling this function, the object should no longer be used.
     func removeDeviceUser() {
-        guard let userId = AuthService().getUserId() else {
+        guard
+            let userId = AuthService().getUserId(),
+            users.contains(where: { $0.id == userId })
+        else {
             return
         }
+
+        print("REMOVE DEV USER CALLED \(userId) \(AuthService().getUserDisplayName()) \(isOnlyUser)")
 
         updater?.exitLobby(userId: userId, deleteLobby: isOnlyUser)
     }
