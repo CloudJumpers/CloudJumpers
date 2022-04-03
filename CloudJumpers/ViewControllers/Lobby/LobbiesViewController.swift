@@ -121,7 +121,13 @@ class LobbiesViewController: UIViewController {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(lobbyId: NetworkID, newHostId: NetworkID, newName: String, newGameMode: GameMode, newOccupancy: Int) {
+    private func updateLobbyListing(
+        lobbyId: NetworkID,
+        newHostId: NetworkID,
+        newName: String,
+        newGameMode: GameMode,
+        newOccupancy: Int
+    ) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
             return
         }
