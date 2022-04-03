@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 class DisasterGenerator {
     static func createRandomDisaster(within highestHeight: CGFloat) -> DisasterInformation? {
-        guard getProbabilisticSuccess(successRate: 1) else {
+        guard getProbabilisticSuccess(successRate: Constants.disasterGenerationProbability) else {
             return nil
         }
 
@@ -22,25 +22,25 @@ class DisasterGenerator {
                                    type: disasterType)
     }
 
-    static func getRandomVelocity() -> CGVector {
-        let xDir = Double.random(between: -1, and: 1)
-        let yDir = Double.random(between: -1, and: 0)
-        let velocity = Double.random(between: 100, and: 170)
+    private static func getRandomVelocity() -> CGVector {
+        let xDir = Double.random(between: Constants.disasterMinXDirection, and: Constants.disasterMaxXDirection)
+        let yDir = Double.random(between: Constants.disasterMinYDirection, and: Constants.disasterMaxYDirection)
+        let velocity = Double.random(between: Constants.disasterMinSpeed, and: Constants.disasterMaxSpeed)
 
         return velocity * CGVector(dx: xDir, dy: yDir).normalized()
     }
 
-    static func getRandomPosition(within maxY: CGFloat) -> CGPoint {
+    private static func getRandomPosition(within maxY: CGFloat) -> CGPoint {
         CGPoint(
-            x: Double.random(between: -300, and: 300),
-            y: Double.random(between: -100, and: maxY - 100))
+            x: Double.random(between: -Constants.screenWidth / 2, and: Constants.screenWidth / 2),
+            y: Double.random(between: Constants.disasterMinYPosition, and: maxY - Constants.disasterYPositionOffset))
     }
 
-    static func getProbabilisticSuccess(successRate: Int) -> Bool {
+    private static func getProbabilisticSuccess(successRate: Int) -> Bool {
         Int.random(in: 0..<100) < successRate
     }
 
-    static func getRandomType() -> DisasterComponent.Kind? {
+    private static func getRandomType() -> DisasterComponent.Kind? {
         DisasterComponent.Kind.allCases.randomElement()
     }
 }
