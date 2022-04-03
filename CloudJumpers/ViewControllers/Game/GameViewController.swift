@@ -147,6 +147,8 @@ class GameViewController: UIViewController {
             let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
         }
+
+        lobby?.removeDeviceUser()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

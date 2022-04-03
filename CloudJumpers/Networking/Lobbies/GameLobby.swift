@@ -49,7 +49,7 @@ class GameLobby: NetworkedLobby {
 
     /// Deterministically orders currently valid users,
     /// consistent across up to date devices
-    private var orderedValidUsers: [LobbyUser] {
+    var orderedValidUsers: [LobbyUser] {
         users.sorted(by: { $0.id < $1.id })
     }
 
@@ -199,6 +199,7 @@ class GameLobby: NetworkedLobby {
     }
 
     func onHostChange(_ newHostId: NetworkID) {
+        print("\nCHANGED HOST \(hostId) -> \(newHostId)\n")
         hostId = newHostId
         onLobbyDataChange?()
     }

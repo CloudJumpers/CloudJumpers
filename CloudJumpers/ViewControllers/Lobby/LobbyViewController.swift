@@ -188,7 +188,7 @@ extension LobbyViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
         guard
-            let lobbyUser = activeLobby?.users[indexPath.row],
+            let lobbyUser = activeLobby?.orderedValidUsers[indexPath.row],
             let lobbyUserCell = cell as? LobbyUserCell,
             let lobbyHostId = activeLobby?.hostId
         else {
