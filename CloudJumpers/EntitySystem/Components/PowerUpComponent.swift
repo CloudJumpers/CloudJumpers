@@ -6,7 +6,7 @@
 //
 
 class PowerUpComponent: Component {
-    enum Kind: String {
+    enum Kind: String, CaseIterable {
         case freeze
         case confuse
 

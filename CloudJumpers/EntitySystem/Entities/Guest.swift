@@ -1,14 +1,14 @@
 //
-//  Player.swift
+//  Guest.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 23/3/22.
+//  Created by Trong Tan on 4/3/22.
 //
 
 import Foundation
 import CoreGraphics
 
-class Player: Entity {
+class Guest: Entity {
     let id: EntityID
 
     private(set) var position: CGPoint
@@ -32,9 +32,6 @@ class Player: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
-        manager.addComponent(InventoryComponent(), to: self)
-
-        manager.addComponent(CameraAnchorTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -44,19 +41,21 @@ class Player: Entity {
             at: position,
             forEntityWith: id)
 
-        spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
+        spriteComponent.node.zPosition = SpriteZPosition.guest.rawValue
 
         return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = true
+        let guestCollisionBitmask = .max ^ Constants.bitmaskCloud ^ Constants.bitmaskPlayer ^
+        Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp
+        physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
-        physicsComponent.body.collisionBitMask = .max ^ Constants.bitmaskGuest
-        physicsComponent.body.contactTestBitMask = .max ^ Constants.bitmaskGuest
+        physicsComponent.body.categoryBitMask = Constants.bitmaskGuest
+        physicsComponent.body.collisionBitMask = guestCollisionBitmask
+        physicsComponent.body.contactTestBitMask = guestCollisionBitmask
         return physicsComponent
     }
 

@@ -1,20 +1,19 @@
 //
-//  RespawnEffectEventCommand.swift
+//  RemoveEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/2/22.
+//  Created by Trong Tan on 4/3/22.
 //
 
 import Foundation
-import CoreGraphics
 
-struct RespawnEventCommand: GameEventCommand {
+struct RemoveEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalRespawnEvent) {
+    init(sourceId: NetworkID, event: ExternalRemoveEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,17 +28,12 @@ struct RespawnEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalRespawnEvent.self, from: jsonData) else {
-            nextCommand = DisasterStartEventCommand(source, payload)
+        guard let parameters = try? decoder.decode(ExternalRemoveEvent.self, from: jsonData) else {
+            nextCommand = PowerUpEffectStartEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RespawnEvent(
-            onEntityWith: source,
-            at: parameters.timestamp,
-            to: CGPoint(x: parameters.positionX, y: parameters.positionY)
-        )
-
+        let eventToProcess = RemoveEntityEvent(parameters.entityToRemoveId)
         eventManager.add(eventToProcess)
         return true
     }

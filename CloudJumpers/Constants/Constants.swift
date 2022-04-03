@@ -52,7 +52,8 @@ struct Constants {
     static let platformNodeSize = CGSize(width: 200.0, height: 100.0)
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let powerUpNodeSize = CGSize(width: 60.0, height: 60.0)
-    static let initialPowerUpQueuePosition = CGPoint(x: -120.0, y: -420.0)
+    static let powerUpMaxNumDisplay = 5
+    static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
 
     static let bitmaskPlayer = UInt32(0x1 << 0)
@@ -67,9 +68,9 @@ struct Constants {
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
 
-    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width - 170,
-                                     height: UIScreen.main.bounds.height - 240)
-    static let gameAreaPosition = CGPoint(x: 0, y: 110)
+    static let gameAreaSize = CGSize(width: UIScreen.main.bounds.width,
+                                     height: UIScreen.main.bounds.height + 1_000_000)
+    static let gameAreaPosition = CGPoint(x: 0, y: 0)
 
     static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
     static let powerUpEffectDuration = 5.0
@@ -83,8 +84,11 @@ struct Constants {
     static let floorSize = CGSize(width: 750.0, height: 300.0)
     static let floorPosition = CGPoint(x: 0, y: -500)
 
-    static let disasterNodeSize = CGSize(width: 30.0, height: 150.0)
+    static let disasterNodeSize = CGSize(width: 30.0, height: 80.0)
+    static let disasterPromptSize = CGSize(width: 30.0, height: 30.0)
+    static let disasterPromptPeriod = 4.0
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
+    static let disasterMass = CGFloat(1_000_000)
 
     static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
     static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)

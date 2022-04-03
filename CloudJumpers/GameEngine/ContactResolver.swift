@@ -31,9 +31,9 @@ class ContactResolver {
         }
 
         if isPlayerObtainingPowerUp(nodeA: nodeA, nodeB: nodeB) {
-            eventManager?.add(ObtainEvent(on: idA, obtains: idB))
+            eventManager?.add(PowerUpCollideEvent(on: idA, powerUp: idB))
         } else if isPlayerObtainingPowerUp(nodeA: nodeB, nodeB: nodeA) {
-            eventManager?.add(ObtainEvent(on: idB, obtains: idA))
+            eventManager?.add(PowerUpCollideEvent(on: idB, powerUp: idA))
         }
 
         if isDisasterHitting(nodeA: nodeA) {
@@ -86,7 +86,8 @@ class ContactResolver {
         let nodeABitMask = nodeA.physicsBody?.categoryBitMask
         let nodeBBitMask = nodeB.physicsBody?.categoryBitMask
 
-        return nodeABitMask == Constants.bitmaskPlayer && nodeBBitMask == Constants.bitmaskPowerUp
+        return (nodeABitMask == Constants.bitmaskPlayer || nodeABitMask == Constants.bitmaskGuest)
+        && nodeBBitMask == Constants.bitmaskPowerUp
     }
 
     private func isDisasterHitting(nodeA: SKNode) -> Bool {

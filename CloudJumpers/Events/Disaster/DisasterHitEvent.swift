@@ -23,19 +23,17 @@ struct DisasterHitEvent: Event {
               let otherEntity = entityManager.entity(with: otherEntityID)
         else { return nil }
 
-        var localEvents: [Event] = [RemoveEntityEvent(disaster)]
+        var localEvents: [Event] = [RemoveEntityEvent(disaster.id)]
+
         var remoteEvents: [RemoteEvent] = []
 
-        // TODO: Reconsider this later
-
         if otherEntity is Player {
-            localEvents.append(RespawnEvent(onEntityWith: otherEntityID,
-                                            to: Constants.playerInitialPosition))
+            localEvents.append(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
+            remoteEvents.append(ExternalRemoveEvent(entityToRemoveId: disaster.id))
             remoteEvents.append(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y
             ))
-
         }
 
         return (localEvents, remoteEvents)

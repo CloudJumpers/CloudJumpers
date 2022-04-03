@@ -13,14 +13,14 @@ struct RemoveEntityEvent: Event {
 
     let timeToRemove: TimeInterval
 
-    init(_ entity: Entity, after timeToRemove: TimeInterval) {
+    init(_ entityId: EntityID, after timeToRemove: TimeInterval) {
         timestamp = EventManager.timestamp
-        entityID = entity.id
+        entityID = entityId
         self.timeToRemove = timeToRemove
     }
 
-    init(_ entity: Entity) {
-        self.init(entity, after: 0)
+    init(_ entityId: EntityID) {
+        self.init(entityId, after: 0)
     }
 
     func shouldExecute(in entityManager: EntityManager) -> Bool {

@@ -27,9 +27,14 @@ struct ActivatePowerUpEvent: Event {
               let powerUpComponent = entityManager.component(ofType: PowerUpComponent.self, of: powerUpEntity)
         else { return nil }
 
-        let effect = PowerUpEffect(powerUpComponent.kind, at: location)
-        entityManager.add(effect)
+        let powerUpEffectStartEvent = PowerUpEffectStartEvent(position: location, powerUpType: powerUpComponent.kind)
+        let remotePowerUpEffectStartEvent = ExternalPowerUpStartEvent(activatePowerUpPositionX: location.x,
+                                                                      activatePowerUpPositionY: location.y,
+                                                                      activatePowerUpType: powerUpComponent.kind.name)
 
-        return ([RemoveEntityEvent(effect, after: Constants.powerUpEffectDuration)], nil)
+        let localEvents: [Event] = [RemoveEntityEvent(powerUpEntityID), powerUpEffectStartEvent]
+        let remoteEvents: [RemoteEvent] = [remotePowerUpEffectStartEvent]
+
+        return (localEvents, remoteEvents)
     }
 }

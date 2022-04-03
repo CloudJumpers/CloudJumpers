@@ -1,20 +1,20 @@
 //
-//  RespawnEffectEventCommand.swift
+//  DisasterStartEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/2/22.
+//  Created by Eric Bryan on 2/4/22.
 //
 
 import Foundation
 import CoreGraphics
 
-struct RespawnEventCommand: GameEventCommand {
+struct DisasterStartEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalRespawnEvent) {
+    init(sourceId: NetworkID, event: ExternalDisasterEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,17 +29,19 @@ struct RespawnEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalRespawnEvent.self, from: jsonData) else {
-            nextCommand = DisasterStartEventCommand(source, payload)
+        guard let parameters = try? decoder.decode(ExternalDisasterEvent.self, from: jsonData),
+              let disasterType = DisasterComponent.Kind(rawValue: parameters.disasterType)
+        else {
+            nextCommand = RemoveEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RespawnEvent(
-            onEntityWith: source,
+        let eventToProcess = DisasterStartEvent(
+            position: CGPoint(x: parameters.disasterPositionX, y: parameters.disasterPositionY),
             at: parameters.timestamp,
-            to: CGPoint(x: parameters.positionX, y: parameters.positionY)
-        )
-
+            velocity: CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY),
+            disasterType: disasterType,
+            entityId: parameters.disasterId)
         eventManager.add(eventToProcess)
         return true
     }

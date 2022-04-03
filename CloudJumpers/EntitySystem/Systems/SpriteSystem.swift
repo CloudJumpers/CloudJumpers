@@ -12,6 +12,7 @@ class SpriteSystem: System {
     unowned var delegate: SpriteSystemDelegate?
 
     private var sprites: [EntityID: SKNode]
+    var metaData: GameMetaData?
 
     required init(for manager: EntityManager) {
         sprites = [:]
@@ -41,11 +42,14 @@ class SpriteSystem: System {
         }
 
         pruneSprites(in: entitiesToPrune)
+
+        if let playerId = metaData?.playerId {
+            updateInventory(of: playerId)
+        }
     }
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
         synchronizeSprite(node, with: entity)
-        updateInventory(of: node, with: entity)
         updateAnimation(of: node, with: entity)
         updateTimed(of: node, with: entity)
     }
@@ -78,12 +82,16 @@ class SpriteSystem: System {
         }
     }
 
-    private func updateInventory(of node: SKNode, with entity: Entity) {
-        guard let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity) else {
+    private func updateInventory(of entityID: EntityID) {
+        guard let entity = manager?.entity(with: entityID),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
+              inventoryComponent.inventory.isUpdated else {
             return
         }
 
+        inventoryComponent.inventory.isUpdated = false
         var position = Constants.initialPowerUpQueuePosition
+        var displayCount = 0
 
         for entityID in inventoryComponent.inventory.iterable {
             guard let entity = manager?.entity(with: entityID),
@@ -92,9 +100,18 @@ class SpriteSystem: System {
                   ownerComponent.ownerEntityId != nil
             else { continue }
 
+            guard displayCount <= Constants.powerUpMaxNumDisplay else {
+                break
+            }
+
+            displayCount += 1
+
+            spriteComponent.node.removeFromParent()
+
             spriteComponent.node.position = position
             spriteComponent.node.physicsBody = nil
 
+            delegate?.spriteSystem(self, addNode: spriteComponent.node, static: true)
             position.x += Constants.powerUpQueueXInterval
         }
     }

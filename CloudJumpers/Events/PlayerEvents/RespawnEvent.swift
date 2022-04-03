@@ -31,8 +31,8 @@ struct RespawnEvent: Event {
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return nil }
 
-        let effectEvent = RespawnEffectEvent(onEntityWith: entityID, at: spriteComponent.node.position)
         spriteComponent.node.position = position
+        let effectEvent = RespawnEffectEvent(onEntityWith: entityID, at: spriteComponent.node.position)
 
         return ([effectEvent], nil)
     }

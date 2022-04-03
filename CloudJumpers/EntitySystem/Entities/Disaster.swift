@@ -36,7 +36,7 @@ class Disaster: Entity {
 
         node.position = position
         node.zRotation = getRotationAngle()
-        node.zPosition = SpriteZPosition.powerUp.rawValue
+        node.zPosition = SpriteZPosition.disaster.rawValue
         node.anchorPoint = CGPoint(x: 0.5, y: 0)
 
         return SpriteComponent(node: node, forEntityWith: id)
@@ -46,16 +46,17 @@ class Disaster: Entity {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize,
                                                 for: spriteComponent)
         physicsComponent.body.affectedByGravity = false
+        physicsComponent.body.mass = Constants.disasterMass
         physicsComponent.body.velocity = self.velocity
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskDisaster
         physicsComponent.body.collisionBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer | Constants.bitmaskPlatform |
-        Constants.bitmaskFloor
+        Constants.bitmaskCloud | Constants.bitmaskPlayer |
+        Constants.bitmaskPlatform | Constants.bitmaskFloor
         physicsComponent.body.contactTestBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer | Constants.bitmaskPlatform |
-        Constants.bitmaskFloor
+        Constants.bitmaskCloud | Constants.bitmaskPlayer |
+        Constants.bitmaskPlatform | Constants.bitmaskFloor
 
         return physicsComponent
     }

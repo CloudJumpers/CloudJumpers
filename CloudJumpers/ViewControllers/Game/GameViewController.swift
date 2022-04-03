@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
     }
 
     private func prepareGameEngine() {
-        gameEngine = GameEngine(rendersTo: self, channel: lobby?.id)
+        gameEngine = GameEngine(rendersTo: self, inChargeID: lobby?.hostId, channel: lobby?.id)
     }
 
     private func setUpGameScene() {
@@ -70,17 +70,28 @@ class GameViewController: UIViewController {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
 
-        let blueprint = Blueprint(
+        let seed = 161_001
+
+        let cloudBlueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
             tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
             firstPlatformPosition: Constants.playerInitialPosition,
-            seed: 161_001
+            seed: seed
         )
 
-        gameRules?.prepareGameModes(gameEngine: gameEngine, blueprint: blueprint)
+        let powerUpBluePrint = Blueprint(
+            worldSize: scene.size,
+            platformSize: Constants.powerUpNodeSize,
+            tolerance: CGVector(dx: 400, dy: 800),
+            xToleranceRange: 0.5...1.0,
+            yToleranceRange: 0.5...1.0,
+            firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
+
+        gameRules?.prepareGameModes(gameEngine: gameEngine, cloudBlueprint: cloudBlueprint,
+                                    powerUpBlueprint: powerUpBluePrint)
 
     }
 
@@ -108,7 +119,7 @@ class GameViewController: UIViewController {
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
-        scene?.addChild(gameArea, static: true)
+        scene?.addChild(gameArea, static: false)
 
         self.joystick = joystick
     }
