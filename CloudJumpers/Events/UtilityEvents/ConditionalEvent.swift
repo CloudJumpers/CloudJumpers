@@ -26,8 +26,10 @@ struct ConditionalEvent: Event {
         condition()
     }
 
-    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let localEvents = action()
-        return (localEvents, nil)
+        for event in localEvents ?? [] {
+            supplier.add(event)
+        }
     }
 }

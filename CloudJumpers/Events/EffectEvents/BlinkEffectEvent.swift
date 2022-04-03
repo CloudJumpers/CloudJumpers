@@ -22,12 +22,10 @@ struct BlinkEffectEvent: Event {
 
     }
 
-    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else {
-              return nil
-        }
+        else { return }
 
         let fadeOut = SKAction.fadeAlpha(to: 0.5, duration: duration)
         let fadeIn = SKAction.fadeAlpha(to: 1, duration: duration)
@@ -35,6 +33,5 @@ struct BlinkEffectEvent: Event {
         let respawnEffect = SKAction.repeat(SKAction.sequence([fadeOut, fadeIn]), count: numberOfLoop)
 
         spriteComponent.node.run(respawnEffect)
-        return nil
     }
 }

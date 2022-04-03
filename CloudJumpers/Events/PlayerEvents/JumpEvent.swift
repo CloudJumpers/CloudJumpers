@@ -17,18 +17,16 @@ struct JumpEvent: Event {
         entityID = entity.id
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
               !isJumping(body: physicsComponent.body)
-        else { return nil }
+        else { return }
 
         physicsComponent.body.applyImpulse(Constants.jumpImpulse)
 
         SoundManager.instance.play(.jumpFoot)
         SoundManager.instance.play(.jumpCape)
-
-        return nil
     }
 
     private func isJumping(body: SKPhysicsBody) -> Bool {

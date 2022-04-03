@@ -19,22 +19,22 @@ struct ActivatePowerUpEvent: Event {
         self.location = location
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let powerUpEntityID = inventoryComponent.inventory.dequeue(),
               let powerUpEntity = entityManager.entity(with: powerUpEntityID),
               let powerUpComponent = entityManager.component(ofType: PowerUpComponent.self, of: powerUpEntity)
-        else { return nil }
+        else { return }
 
         let powerUpEffectStartEvent = PowerUpEffectStartEvent(position: location, powerUpType: powerUpComponent.kind)
-        let remotePowerUpEffectStartEvent = ExternalPowerUpStartEvent(activatePowerUpPositionX: location.x,
-                                                                      activatePowerUpPositionY: location.y,
-                                                                      activatePowerUpType: powerUpComponent.kind.name)
+        let remotePowerUpEffectStartEvent = ExternalPowerUpStartEvent(
+            activatePowerUpPositionX: location.x,
+            activatePowerUpPositionY: location.y,
+            activatePowerUpType: powerUpComponent.kind.name)
 
-        let localEvents: [Event] = [RemoveEntityEvent(powerUpEntityID), powerUpEffectStartEvent]
-        let remoteEvents: [RemoteEvent] = [remotePowerUpEffectStartEvent]
-
-        return (localEvents, remoteEvents)
+        supplier.add(RemoveEntityEvent(powerUpEntityID))
+        supplier.add(powerUpEffectStartEvent)
+        supplier.add(remotePowerUpEffectStartEvent)
     }
 }

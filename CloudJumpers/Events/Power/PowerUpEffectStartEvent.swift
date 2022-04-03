@@ -30,13 +30,14 @@ struct PowerUpEffectStartEvent: Event {
         self.powerUpType = powerUpType
      }
 
-    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let effect = PowerUpEffect(powerUpType, at: position)
         entityManager.add(effect)
 
-        return ([RemoveEntityEvent(effect.id, after: Constants.powerUpEffectDuration),
-                 BlinkEffectEvent(on: effect.id,
-                                  duration: Constants.powerUpEffectDuration / 10,
-                                  numberOfLoop: 5)], nil)
+        supplier.add(RemoveEntityEvent(effect.id, after: Constants.powerUpEffectDuration))
+        supplier.add(BlinkEffectEvent(
+            on: effect.id,
+            duration: Constants.powerUpEffectDuration / 10,
+            numberOfLoop: 5))
     }
 }

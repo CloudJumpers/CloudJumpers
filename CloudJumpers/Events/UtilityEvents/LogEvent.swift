@@ -19,9 +19,7 @@ struct LogEvent: Event {
         self.message = message
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         print(message)
-
-        return nil
     }
 }

@@ -26,10 +26,8 @@ struct RespawnEffectEvent: Event {
         self.originalPosition = originalPosition
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
-
-        // TO DO: Add in explosion effect at original position
-
-        return ([BlinkEffectEvent(on: entityID, duration: 0.25, numberOfLoop: 8)], nil)
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
+        // TODO: Add in explosion effect at original position
+        supplier.add(BlinkEffectEvent(on: entityID, duration: 0.25, numberOfLoop: 8))
     }
 }

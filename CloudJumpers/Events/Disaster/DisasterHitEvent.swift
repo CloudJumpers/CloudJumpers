@@ -18,24 +18,20 @@ struct DisasterHitEvent: Event {
         self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let disaster = entityManager.entity(with: entityID),
               let otherEntity = entityManager.entity(with: otherEntityID)
-        else { return nil }
+        else { return }
 
-        var localEvents: [Event] = [RemoveEntityEvent(disaster.id)]
-
-        var remoteEvents: [RemoteEvent] = []
+        supplier.add(RemoveEntityEvent(disaster.id))
 
         if otherEntity is Player {
-            localEvents.append(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
-            remoteEvents.append(ExternalRemoveEvent(entityToRemoveId: disaster.id))
-            remoteEvents.append(ExternalRespawnEvent(
+            supplier.add(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
+            supplier.add(ExternalRemoveEvent(entityToRemoveId: disaster.id))
+            supplier.add(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y
             ))
         }
-
-        return (localEvents, remoteEvents)
     }
 }

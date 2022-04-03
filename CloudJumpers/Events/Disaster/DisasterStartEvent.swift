@@ -39,20 +39,25 @@ struct DisasterStartEvent: Event {
         self.disasterType = disasterType
      }
 
-    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let disasterPrompt = DisasterPrompt(disasterType, at: position)
         entityManager.add(disasterPrompt)
 
         let disaster = Disaster(disasterType, at: position, velocity: velocity, with: entityID)
 
-        return ([BlinkEffectEvent(on: disasterPrompt.id,
-                                  duration: Constants.disasterPromptPeriod / 20,
-                                  numberOfLoop: 10),
-                 RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod),
-                 ConditionalEvent(disaster,
-                                  until: { entityManager.entity(with: disasterPrompt.id) == nil },
-                                  action: {   entityManager.add(disaster)
-                                        return [RemoveUnboundEntityEvent(disaster)] })
-                ], nil)
+        supplier.add(BlinkEffectEvent(
+            on: disasterPrompt.id,
+            duration: Constants.disasterPromptPeriod / 20,
+            numberOfLoop: 10))
+
+        supplier.add(RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod))
+
+        supplier.add(ConditionalEvent(
+            disaster,
+            until: { entityManager.entity(with: disasterPrompt.id) == nil },
+            action: {
+                entityManager.add(disaster)
+                return [RemoveUnboundEntityEvent(disaster)]
+            }))
     }
 }
