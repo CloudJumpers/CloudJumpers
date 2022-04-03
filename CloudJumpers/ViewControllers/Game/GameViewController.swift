@@ -159,6 +159,7 @@ class GameViewController: UIViewController {
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
         }
 
+        lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
     }
 
