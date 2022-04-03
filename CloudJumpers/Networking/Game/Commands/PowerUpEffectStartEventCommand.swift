@@ -31,6 +31,7 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
 
         guard let parameters = try? decoder.decode(ExternalPowerUpStartEvent.self, from: jsonData),
               let powerUpType = PowerUpComponent.Kind(rawValue: parameters.activatePowerUpType) else {
+            nextCommand = ObtainEntityCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 

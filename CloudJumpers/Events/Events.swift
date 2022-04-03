@@ -11,6 +11,7 @@ enum Events: Int, CaseIterable {
     case move
     case jump
     case animate
+    case powerUpCollide
     case obtain
     case removeEntity
     case removeUnboundEntity
@@ -31,6 +32,7 @@ enum Events: Int, CaseIterable {
         String(describing: MoveEvent.self): .move,
         String(describing: JumpEvent.self): .jump,
         String(describing: AnimateEvent.self): .animate,
+        String(describing: PowerUpCollideEvent.self): .powerUpCollide,
         String(describing: ObtainEvent.self): .obtain,
         String(describing: RemoveEntityEvent.self): .removeEntity,
         String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
