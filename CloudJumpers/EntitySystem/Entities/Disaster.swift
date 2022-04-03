@@ -52,10 +52,10 @@ class Disaster: Entity {
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskDisaster
         physicsComponent.body.collisionBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer | Constants.bitmaskGuest |
+        Constants.bitmaskCloud | Constants.bitmaskPlayer |
         Constants.bitmaskPlatform | Constants.bitmaskFloor
         physicsComponent.body.contactTestBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer | Constants.bitmaskGuest |
+        Constants.bitmaskCloud | Constants.bitmaskPlayer |
         Constants.bitmaskPlatform | Constants.bitmaskFloor
 
         return physicsComponent
