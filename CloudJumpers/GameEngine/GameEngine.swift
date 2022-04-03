@@ -144,7 +144,7 @@ class GameEngine {
             texture: metaData.playerTexture.rawValue
         )
 
-        eventManager.sendOutRemoteEvent(positionalUpdate)
+        eventManager.dispatch(positionalUpdate)
     }
 
     private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
