@@ -47,7 +47,8 @@ class Cloud: Entity {
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
         physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer |
+        Constants.bitmaskDisaster | Constants.bitmaskGuest
 
         return physicsComponent
     }
