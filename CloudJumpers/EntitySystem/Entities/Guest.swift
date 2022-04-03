@@ -48,13 +48,13 @@ class Guest: Entity {
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        let guestCollisionBitmask = .max ^ Constants.bitmaskCloud ^ Constants.bitmaskPlayer ^
+        let guestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^
         Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskGuest
-        physicsComponent.body.collisionBitMask = guestCollisionBitmask
+        physicsComponent.body.collisionBitMask = guestCollisionBitmask ^ Constants.bitmaskCloud
         physicsComponent.body.contactTestBitMask = guestCollisionBitmask
         return physicsComponent
     }
