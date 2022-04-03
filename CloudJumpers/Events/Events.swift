@@ -20,7 +20,6 @@ enum Events: Int, CaseIterable {
     case reposition
     case respawn
     case disasterHit
-    case generateDisaster
     case blinkEffect
     case conditional
     case disasterStart
@@ -42,7 +41,6 @@ enum Events: Int, CaseIterable {
         String(describing: RepositionEvent.self): .reposition,
         String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
         String(describing: DisasterHitEvent.self): .disasterHit,
-        String(describing: GenerateDisasterEvent.self): .generateDisaster,
         String(describing: BlinkEffectEvent.self): .blinkEffect,
         String(describing: DisasterStartEvent.self): .disasterStart,
         String(describing: RespawnEvent.self): .respawn,
