@@ -209,7 +209,6 @@ class GameLobby: NetworkedLobby {
     }
 
     func onHostChange(_ newHostId: NetworkID) {
-        print("\nCHANGED HOST \(hostId) -> \(newHostId)\n")
         hostId = newHostId
         onLobbyDataChange?()
     }
@@ -224,8 +223,6 @@ class GameLobby: NetworkedLobby {
         else {
             return
         }
-
-        print("REMOVE DEV USER CALLED \(userId) \(AuthService().getUserDisplayName()) \(isOnlyUser)")
 
         updater?.exitLobby(userId: userId, deleteLobby: isOnlyUser)
     }
