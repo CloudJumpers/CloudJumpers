@@ -188,18 +188,19 @@ class GameLobby: NetworkedLobby {
         users = users.filter { $0.id != userId }
         onLobbyDataChange?()
 
-        if isOnlyUser {
+        if numUsers == .zero {
+            onLobbyConnectionClosed()
+        } else if isOnlyUser {
             updater?.setOnDisconnectRemove()
             updater?.changeLobbyHost(to: deviceUserId)
-            onLobbyConnectionClosed()
         } else if hostId == userId, let nextHost = orderedValidUsers.first {
             updater?.changeLobbyHost(to: nextHost.id)
         }
     }
 
     func onHostChange(_ newHostId: NetworkID) {
-        print("Changed host: \(hostId) -> \(newHostId)")
         hostId = newHostId
+        onLobbyDataChange?()
     }
 
     // MARK: - Device actions
@@ -210,7 +211,7 @@ class GameLobby: NetworkedLobby {
             return
         }
 
-        updater?.exitLobby(userId: userId, deleteLobby: userIsHost)
+        updater?.exitLobby(userId: userId, deleteLobby: isOnlyUser)
     }
 
     func toggleDeviceUserReadyStatus() {

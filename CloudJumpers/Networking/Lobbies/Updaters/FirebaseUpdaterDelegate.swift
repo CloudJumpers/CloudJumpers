@@ -31,7 +31,13 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
                 ]
             ]
         ]) { error, _ in
-            error == nil ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
+            if error == nil {
+                lobby.onLobbyConnectionOpen()
+                let participantsReference = self.getLobbyParticipantsReference(lobbyId: lobby.id)
+                participantsReference.child(hostId).onDisconnectRemoveValue()
+            } else {
+                lobby.onLobbyConnectionClosed()
+            }
         }
     }
 
@@ -66,7 +72,12 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             }
             return TransactionResult.success(withValue: currentData)
         }) { error, committed, _ in
-            (error == nil && committed) ? lobby.onLobbyConnectionOpen() : lobby.onLobbyConnectionClosed()
+            if error == nil && committed {
+                lobby.onLobbyConnectionOpen()
+                participantsReference.child(userId).onDisconnectRemoveValue()
+            } else {
+                lobby.onLobbyConnectionClosed()
+            }
         }
     }
 
@@ -175,12 +186,15 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
     }
 
     func clearOnDisconnectRemove() {
-        guard let lobby = managedLobby else {
+        guard let lobby = managedLobby, let deviceUserId = AuthService().getUserId() else {
             return
         }
 
-        let reference = getLobbyReference(lobbyId: lobby.id)
-        reference.cancelDisconnectOperations()
+        let lobbyReference = getLobbyReference(lobbyId: lobby.id)
+        let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: deviceUserId)
+
+        lobbyReference.cancelDisconnectOperations()
+        userReference.onDisconnectRemoveValue()
     }
 
     private func constructLobbyPath(lobbyId: NetworkID) -> String {
