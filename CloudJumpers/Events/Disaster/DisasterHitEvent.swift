@@ -25,10 +25,7 @@ struct DisasterHitEvent: Event {
 
         var localEvents: [Event] = [RemoveEntityEvent(disaster.id)]
 
-        // TODO: Consider this also, should the state of this only handle by host or by all ?
         var remoteEvents: [RemoteEvent] = []
-
-        // TODO: Reconsider this later
 
         if otherEntity is Player {
             localEvents.append(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
