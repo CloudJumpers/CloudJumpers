@@ -1,21 +1,22 @@
 //
-//  RemoveEventCommand.swift
+//  ObtainEntityCommand.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/3/22.
+//  Created by Eric Bryan on 3/4/22.
 //
 
 import Foundation
+import CoreGraphics
 
-struct RemoveEventCommand: GameEventCommand {
+struct ObtainEntityCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalRemoveEvent) {
+    init(sourceId: NetworkID, event: ExternalObtainEntityEvent) {
         self.source = sourceId
-        self.isSourceRecipient = false
+        self.isSourceRecipient = true
         self.payload = CJNetworkEncoder.toJsonString(event)
     }
 
@@ -28,12 +29,12 @@ struct RemoveEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalRemoveEvent.self, from: jsonData) else {
-            nextCommand = PowerUpEffectStartEventCommand(source, payload)
+        guard let parameters = try? decoder.decode(ExternalObtainEntityEvent.self, from: jsonData) else {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RemoveEntityEvent(parameters.entityToRemoveId)
+        let eventToProcess = ObtainEvent(on: source, obtains: parameters.obtainedEntityID)
+
         eventManager.add(eventToProcess)
         return true
     }

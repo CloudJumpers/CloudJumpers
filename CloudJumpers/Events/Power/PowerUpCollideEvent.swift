@@ -1,38 +1,41 @@
 //
-//  ObtainEvent.swift
+//  PowerUpCollideEvent.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 26/3/22.
+//  Created by Eric Bryan on 3/4/22.
 //
 
 import Foundation
 
-struct ObtainEvent: Event {
+struct PowerUpCollideEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
-    private let otherEntityID: EntityID
+    private let powerUpEntityID: EntityID
 
-    init(on entityID: EntityID, obtains otherEntityID: EntityID) {
+    init(on entityID: EntityID, powerUp otherEntityID: EntityID) {
         timestamp = EventManager.timestamp
         self.entityID = entityID
-        self.otherEntityID = otherEntityID
+        self.powerUpEntityID = otherEntityID
     }
 
     func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let entity = entityManager.entity(with: entityID),
-              let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
-              let otherEntity = entityManager.entity(with: otherEntityID),
+              let otherEntity = entityManager.entity(with: powerUpEntityID),
               let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
               ownerComponent.ownerEntityId == nil
         else { return nil }
 
+        var remoteEvents: [RemoteEvent] = []
+
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
-            inventoryComponent.inventory.enqueue(otherEntityID)
-            ownerComponent.ownerEntityId = entityID
+            let externalObtainEntityEvent = ExternalObtainEntityEvent(obtainedEntityID: powerUpEntityID)
+            let externalRemoveEntityEvent = ExternalRemoveEvent(entityToRemoveId: otherEntity.id)
+            remoteEvents.append(externalObtainEntityEvent)
+            remoteEvents.append(externalRemoveEntityEvent)
         }
 
-        return nil
+        return (nil, remoteEvents)
     }
 }

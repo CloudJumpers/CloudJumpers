@@ -20,19 +20,16 @@ struct DisasterHitEvent: Event {
 
     func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard let disaster = entityManager.entity(with: entityID),
-              let otherEntity = entityManager.entity(with: otherEntityID),
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: otherEntity)
+              let otherEntity = entityManager.entity(with: otherEntityID)
         else { return nil }
 
         var localEvents: [Event] = [RemoveEntityEvent(disaster.id)]
 
-        // TO DO: Consider this also, should the state of this only handle by host or by all ?
-        var remoteEvents: [RemoteEvent] = [ExternalRemoveEvent(entityToRemoveId: disaster.id)]
+        var remoteEvents: [RemoteEvent] = []
 
-        // TODO: Reconsider this later
-
-        if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
+        if otherEntity is Player {
             localEvents.append(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
+            remoteEvents.append(ExternalRemoveEvent(entityToRemoveId: disaster.id))
             remoteEvents.append(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y

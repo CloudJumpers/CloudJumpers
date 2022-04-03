@@ -10,6 +10,10 @@ import Foundation
 struct ExternalRemoveEvent: RemoteEvent {
     var entityToRemoveId: String
     func createDispatchCommand() -> GameEventCommand? {
-        nil
+        guard let sourceId = getSourceId() else {
+            return nil
+        }
+
+        return RemoveEventCommand(sourceId: sourceId, event: self)
     }
 }

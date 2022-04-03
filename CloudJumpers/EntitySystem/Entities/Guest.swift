@@ -32,9 +32,6 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
-
-        // TO DO: Maybe remove this
-        manager.addComponent(InventoryComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -52,7 +49,7 @@ class Guest: Entity {
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
         let guestCollisionBitmask = .max ^ Constants.bitmaskCloud ^ Constants.bitmaskPlayer ^
-                                    Constants.bitmaskGuest ^ Constants.bitmaskPlatform
+        Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
