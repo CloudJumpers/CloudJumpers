@@ -187,10 +187,15 @@ extension LobbyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
-        guard let lobbyUser = activeLobby?.users[indexPath.row], let lobbyUserCell = cell as? LobbyUserCell else {
+        guard
+            let lobbyUser = activeLobby?.users[indexPath.row],
+            let lobbyUserCell = cell as? LobbyUserCell,
+            let lobbyHostId = activeLobby?.hostId
+        else {
             return cell
         }
 
+        lobbyUserCell.setIsHostLabelVisible(isVisible: lobbyUser.id == lobbyHostId)
         lobbyUserCell.setDisplayName(newDisplayName: lobbyUser.displayName)
         lobbyUserCell.setIsReady(isReady: lobbyUser.isReady)
 

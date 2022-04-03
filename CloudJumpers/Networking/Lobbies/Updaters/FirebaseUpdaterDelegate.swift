@@ -17,7 +17,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
 
         let lobbyReference = getLobbyReference(lobbyId: lobby.id)
-        lobbyReference.onDisconnectRemoveValue() // When the host disconnects, the lobby closes
+        setOnDisconnectRemove()
 
         lobbyReference.setValue([
             LobbyKeys.hostId: hostId,
@@ -134,6 +134,53 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         let lobbyNameReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.lobbyName)
         lobbyNameReference.setValue(name)
+    }
+
+    /// All remaining devices independently arrive at the same new host,
+    /// and attempt to update the host. A single device cannot be
+    /// responsible for this update, as failure of this device will cause
+    /// the remaining (n-2) devices to have an outdated hostId.
+    func changeLobbyHost(to host: NetworkID) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyHostReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.hostId)
+
+        lobbyHostReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            if let currHostOnRemote = currentData.value as? String {
+                if currHostOnRemote != lobby.hostId {
+                    // Device has outdated information, better for it to just listen to updates
+                    return TransactionResult.abort()
+                }
+
+                currentData.value = host
+            }
+
+            return TransactionResult.success(withValue: currentData)
+        }) { error, _, _ in
+            if let err = error {
+                print("error occurred during changeLobbyHost: \(err.localizedDescription)")
+            }
+        }
+    }
+
+    func setOnDisconnectRemove() {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let reference = getLobbyReference(lobbyId: lobby.id)
+        reference.onDisconnectRemoveValue()
+    }
+
+    func clearOnDisconnectRemove() {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let reference = getLobbyReference(lobbyId: lobby.id)
+        reference.cancelDisconnectOperations()
     }
 
     private func constructLobbyPath(lobbyId: NetworkID) -> String {

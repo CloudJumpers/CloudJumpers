@@ -13,6 +13,9 @@ class GameViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        isMovingToPostGame = false
+
         setUpSynchronizedStart()
         SoundManager.instance.stop(.background)
     }
@@ -22,7 +25,6 @@ class GameViewController: UIViewController {
         gameEngine = nil
         scene = nil
         joystick = nil
-        isMovingToPostGame = false
     }
 
     private func setUpSynchronizedStart() {
