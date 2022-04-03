@@ -25,15 +25,16 @@ struct BiEvent: Event {
         event1.shouldExecute(in: entityManager)
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
-        var nextEvents: [Event] = []
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+        var nextEvents: (localEvents: [Event], remoteEvents: [RemoteEvent]) = ([], [])
 
         let nextEvents1 = event1.execute(in: entityManager)
         let nextEvents2 = event2.execute(in: entityManager)
 
-        nextEvents.append(contentsOf: nextEvents1 ?? [])
-        nextEvents.append(contentsOf: nextEvents2 ?? [])
-
+        nextEvents.localEvents.append(contentsOf: nextEvents1?.localEvents ?? [])
+        nextEvents.localEvents.append(contentsOf: nextEvents2?.localEvents ?? [])
+        nextEvents.remoteEvents.append(contentsOf: nextEvents1?.remoteEvents ?? [])
+        nextEvents.remoteEvents.append(contentsOf: nextEvents2?.remoteEvents ?? [])
         return nextEvents
     }
 }

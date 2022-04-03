@@ -23,12 +23,12 @@ class PostGameViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         postGameManager?.callback = updateRankingData
-        postGameManager?.startRankingsFetch()
+        postGameManager?.subscribeToRankings()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postGameManager?.stopRankingsFetch()
+        postGameManager?.unsubscribeFromRankings()
         postGameManager = nil
     }
 

@@ -17,15 +17,4 @@ enum PostGameConstants {
     static let ipAddress = "54.169.132.128"
     static let portNum = ":8080"
     static let commonPath = "/api/highscores/v1/"
-
-    // request types
-    static let postRequest = "POST"
-    static let getRequest = "GET"
-
-    // status codes
-    static let httpOK = 200
-}
-
-enum PostGameHTTPError: Error {
-    case unexpectedStatusCode
 }

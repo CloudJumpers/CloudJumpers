@@ -26,19 +26,10 @@ struct RespawnEffectEvent: Event {
         self.originalPosition = originalPosition
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
-        guard let entity = entityManager.entity(with: entityID),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return nil }
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
 
-        // Character effect
-        let fadeOut = SKAction.fadeAlpha(to: 0.5, duration: 0.25)
-        let fadeIn = SKAction.fadeAlpha(to: 1, duration: 0.25)
+        // TO DO: Add in explosion effect at original position
 
-        let respawnEffect = SKAction.repeat(SKAction.sequence([fadeOut, fadeIn]), count: 8)
-
-        spriteComponent.node.run(respawnEffect)
-
-        return nil
+        return ([BlinkEffectEvent(on: entityID, duration: 0.25, numberOfLoop: 8)], nil)
     }
 }

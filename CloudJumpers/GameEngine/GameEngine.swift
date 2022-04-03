@@ -108,18 +108,23 @@ class GameEngine {
         allPlayerId.sort()
 
         for (index, id) in allPlayerId.enumerated() {
-            let character = Player(
-                at: Constants.playerInitialPositions[index],
-                texture: .character1,
-                with: id,
-                isCameraAnchor: id == playerId,
-                isGuest: id != playerId)
+            let character: Entity
+
+            if id == playerId {
+                character = Player(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    with: id)
+                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else {
+                character = Guest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    with: id)
+            }
 
             entityManager.add(character)
 
-            if id == playerId {
-                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
-            }
         }
 
     }
@@ -132,13 +137,13 @@ class GameEngine {
     }
 
     private func syncToOtherDevices() {
-        let sharingPositionEvent = RepositionEvent(
-            onEntityWith: metaData.playerId,
-            to: metaData.playerPosition,
-            as: metaData.playerTexture,
-            isSharing: true,
-            isExecutedLocally: false)
-        eventManager.add(sharingPositionEvent)
+        let positionalUpdate = ExternalRepositionEvent(
+            positionX: metaData.playerPosition.x,
+            positionY: metaData.playerPosition.y,
+            texture: metaData.playerTexture.rawValue
+        )
+
+        eventManager.sendOutRemoteEvent(positionalUpdate)
     }
 
     private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {

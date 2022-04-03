@@ -20,7 +20,7 @@ struct GenerateDisasterEvent: Event {
         self.maxY = highestHeight
     }
 
-    func execute(in entityManager: EntityManager) -> [Event]? {
+    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         guard getProbabilisticSuccess(successRate: 1) else {
             return nil
         }
@@ -29,12 +29,23 @@ struct GenerateDisasterEvent: Event {
         let randomVelocity = getRandomVelocity()
         let disasterType = getRandomType() ?? .meteor
 
-        return [DisasterStartEvent(position: randomPosition,
-                                   velocity: randomVelocity,
-                                   disasterType: disasterType,
-                                   playerId: entityID,
-                                   isSharing: true,
-                                   isExecutedLocally: true)]
+        // Temporary solution as this is not guarantee to be unique
+        let disasterId = EntityManager.newEntityID
+        let localDisasterStart = DisasterStartEvent(
+            position: randomPosition,
+            velocity: randomVelocity,
+            disasterType: disasterType,
+            entityId: disasterId)
+        let remoteDisasterStart = ExternalDisasterEvent(
+            disasterPositionX: randomPosition.x,
+            disasterPositionY: randomPosition.y,
+            disasterVelocityX: randomVelocity.dx,
+            disasterVelocityY: randomVelocity.dy,
+            disasterType: disasterType.rawValue,
+            disasterId: disasterId)
+
+        return ([localDisasterStart], [remoteDisasterStart])
+
     }
 
     private func getRandomVelocity() -> CGVector {
