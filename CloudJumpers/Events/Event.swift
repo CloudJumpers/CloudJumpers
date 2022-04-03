@@ -12,12 +12,12 @@ protocol Event {
     var entityID: EntityID { get }
 
     func shouldExecute(in entityManager: EntityManager) -> Bool
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)?
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier)
 }
 
 extension Event {
     func shouldExecute(in entityManager: EntityManager) -> Bool { true }
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? { nil }
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) { }
 
     func then(do event: Event) -> Event {
         BiEvent(self, event)

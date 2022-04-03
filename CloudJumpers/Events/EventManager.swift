@@ -11,12 +11,14 @@ class EventManager {
     private typealias EventQueue = PriorityQueue<Event>
 
     private var events: EventQueue
+    private var effectors: [Effector]
 
     private var gameEventListener: GameEventListener?
     private var gameEventDispatcher: GameEventDispatcher?
 
     init(channel: NetworkID?) {
         events = EventQueue(sort: Self.priority(_:_:))
+        effectors = []
         subscribe(to: channel)
     }
 
@@ -28,20 +30,29 @@ class EventManager {
         events.enqueue(event)
     }
 
+    func add(_ effector: Effector) {
+        effectors.append(effector)
+    }
+
     func executeAll(in entityManager: EntityManager) {
+        validateEffectors(in: entityManager)
+
         var counter = events.count
         var deferredEvents: [Event] = []
 
         while counter > 0 {
-            guard let event = events.dequeue() else {
+            guard var event = events.dequeue() else {
                 fatalError("EventManager.executeAll(in:) dequeued an empty EventQueue")
             }
 
             if event.shouldExecute(in: entityManager) {
-                let nextEvents = event.execute(in: entityManager)
-                nextEvents?.remoteEvents?.forEach(sendOutRemoteEvent(_:))
-                nextEvents?.localEvents?.forEach(add(_:))
-                counter += nextEvents?.localEvents?.count ?? 0
+                event = transformEvent(event)
+
+                var supplier = Supplier()
+                event.execute(in: entityManager, thenSuppliesInto: &supplier)
+                let newEventsCount = supply(from: supplier)
+
+                counter += newEventsCount
             } else {
                 deferredEvents.append(event)
             }
@@ -52,9 +63,9 @@ class EventManager {
         deferredEvents.forEach(add(_:))
     }
 
-    func sendOutRemoteEvent(_ event: RemoteEvent) {
+    func dispatch(_ remoteEvent: RemoteEvent) {
         guard
-            let command = event.createDispatchCommand(),
+            let command = remoteEvent.createDispatchCommand(),
             let dispatcher = gameEventDispatcher
         else {
             return
@@ -83,5 +94,25 @@ class EventManager {
         } else {
             return event1.timestamp < event2.timestamp
         }
+    }
+
+    private func supply(from supplier: Supplier) -> Int {
+        supplier.events.forEach(add(_:))
+        supplier.remoteEvents.forEach(dispatch(_:))
+        supplier.effectors.forEach(add(_:))
+        return supplier.events.count
+    }
+
+    private func validateEffectors(in entityManager: EntityManager) {
+        effectors.removeAll { $0.shouldDetach(in: entityManager) }
+    }
+
+    private func transformEvent(_ event: Event) -> Event {
+        var event = event
+        for effector in effectors {
+            event = effector.apply(to: event)
+        }
+
+        return event
     }
 }
