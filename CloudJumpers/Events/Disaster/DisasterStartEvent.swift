@@ -49,7 +49,7 @@ struct DisasterStartEvent: Event {
             entityId: entityID,
             promptId: disasterPromptId)
 
-        return ( [DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType)
-            .then(do: disasterSpawnEvent)], nil)
+        return ( [DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType),
+                  disasterSpawnEvent], nil)
     }
 }
