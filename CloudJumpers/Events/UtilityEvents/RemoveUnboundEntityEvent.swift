@@ -27,7 +27,6 @@ struct RemoveUnboundEntityEvent: Event {
 
     func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
         entityManager.remove(withID: entityID)
-
         return nil
     }
 

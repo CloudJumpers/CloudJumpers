@@ -75,8 +75,6 @@ class LobbiesViewController: UIViewController {
         }
 
         lobbiesRef?.observe(.childChanged) { snapshot in
-            print("Changed \(snapshot)")
-
             guard
                 let value = snapshot.value as? NSDictionary,
                 let occupancy = value[LobbyKeys.participants] as? NSDictionary,
