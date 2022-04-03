@@ -29,6 +29,7 @@ struct RemoveEventCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard let parameters = try? decoder.decode(ExternalRemoveEvent.self, from: jsonData) else {
+            nextCommand = PowerUpEffectStartEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 

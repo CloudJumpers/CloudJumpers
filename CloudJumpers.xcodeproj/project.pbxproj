@@ -90,6 +90,9 @@
 		3EA7C86D27F87F8E009BCA63 /* ConditionalEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
 		3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */; };
+		3EA7C87B27F94B39009BCA63 /* PowerUpEffectStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */; };
+		3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */; };
+		3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebaseGameEventDispatcher.swift */; };
@@ -278,6 +281,9 @@
 		3EA7C86C27F87F8E009BCA63 /* ConditionalEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
 		3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEventCommand.swift; sourceTree = "<group>"; };
+		3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEvent.swift; sourceTree = "<group>"; };
+		3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpStartEvent.swift; sourceTree = "<group>"; };
+		3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEventCommand.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -657,6 +663,7 @@
 				A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */,
 				3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */,
 				A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */,
+				3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -753,6 +760,7 @@
 				3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */,
 				A19A7A2427F8D451007E1C11 /* ExternalSpawnEvent.swift */,
 				A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */,
+				3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -995,6 +1003,7 @@
 			isa = PBXGroup;
 			children = (
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
+				3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
 			);
 			path = Power;
@@ -1328,6 +1337,7 @@
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
 				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
 				3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */,
+				3EA7C87B27F94B39009BCA63 /* PowerUpEffectStartEvent.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
@@ -1363,6 +1373,7 @@
 				931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */,
 				936228E927F602F700BB05FE /* TimeTrialsManager.swift in Sources */,
 				936228EB27F6046200BB05FE /* PostGameConstants.swift in Sources */,
+				3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */,
 				3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */,
 				936228DE27F5D4C200BB05FE /* IndividualRanking.swift in Sources */,
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
@@ -1386,6 +1397,7 @@
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */,
 				A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */,
+				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A19A7A2527F8D451007E1C11 /* ExternalSpawnEvent.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,

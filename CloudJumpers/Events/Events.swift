@@ -15,6 +15,7 @@ enum Events: Int, CaseIterable {
     case removeEntity
     case removeUnboundEntity
     case activatePowerUp
+    case powerUpEffectStart
     case reposition
     case respawn
     case disasterHit
@@ -33,6 +34,7 @@ enum Events: Int, CaseIterable {
         String(describing: ObtainEvent.self): .obtain,
         String(describing: RemoveEntityEvent.self): .removeEntity,
         String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
+        String(describing: PowerUpEffectStartEvent.self): .powerUpEffectStart,
         String(describing: RepositionEvent.self): .reposition,
         String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
         String(describing: DisasterHitEvent.self): .disasterHit,
