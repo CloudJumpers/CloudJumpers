@@ -32,9 +32,6 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
-
-        // TO DO: Maybe remove this
-        manager.addComponent(InventoryComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
