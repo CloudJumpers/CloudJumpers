@@ -10,6 +10,7 @@ import Foundation
 enum LobbyState {
     case matchmaking
     case gameInProgress
+    case gameCompleted
     case disconnected
 }
 
@@ -138,8 +139,17 @@ class GameLobby: NetworkedLobby {
     }
 
     func onLobbyConnectionClosed() {
+        guard lobbyState != .gameCompleted else {
+            return
+        }
+
         lobbyState = .disconnected
         onLobbyStateChange?(.disconnected)
+    }
+
+    func onGameCompleted() {
+        lobbyState = .gameCompleted
+        onLobbyStateChange?(.gameCompleted)
     }
 
     func onGameModeChange(_ newGameMode: GameMode) {
