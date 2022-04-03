@@ -75,10 +75,13 @@ class LobbiesViewController: UIViewController {
         }
 
         lobbiesRef?.observe(.childChanged) { snapshot in
+            print("Changed \(snapshot)")
+
             guard
                 let value = snapshot.value as? NSDictionary,
                 let occupancy = value[LobbyKeys.participants] as? NSDictionary,
                 let name = value[LobbyKeys.lobbyName] as? String,
+                let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let gameModeString = value[LobbyKeys.gameMode] as? String,
                 let gameMode = GameMode(rawValue: gameModeString)
             else {
@@ -87,6 +90,7 @@ class LobbiesViewController: UIViewController {
 
             self.updateLobbyListing(
                 lobbyId: snapshot.key,
+                newHostId: hostId,
                 newName: name,
                 newGameMode: gameMode,
                 newOccupancy: occupancy.count
@@ -117,14 +121,20 @@ class LobbiesViewController: UIViewController {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(lobbyId: NetworkID, newName: String, newGameMode: GameMode, newOccupancy: Int) {
+    private func updateLobbyListing(
+        lobbyId: NetworkID,
+        newHostId: NetworkID,
+        newName: String,
+        newGameMode: GameMode,
+        newOccupancy: Int
+    ) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
             return
         }
 
         lobbies[index] = LobbyListing(
             lobbyId: lobbyId,
-            hostId: lobbies[index].hostId,
+            hostId: newHostId,
             lobbyName: newName,
             gameMode: newGameMode,
             occupancy: newOccupancy

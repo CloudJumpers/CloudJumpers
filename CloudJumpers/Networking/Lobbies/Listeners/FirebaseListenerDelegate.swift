@@ -59,6 +59,15 @@ class FirebaseListenerDelegate: ListenerDelegate {
 
             self.managedLobby?.onGameModeChange(newGameMode)
         }
+
+        lobbyRef.child(LobbyKeys.hostId).observe(.value) { snapshot in
+            guard let newHost = snapshot.value as? NetworkID else {
+                self.managedLobby?.onLobbyConnectionClosed()
+                return
+            }
+
+            self.managedLobby?.onHostChange(newHost)
+        }
     }
 
     private func handleAddUpdate(snapshot: DataSnapshot) {
