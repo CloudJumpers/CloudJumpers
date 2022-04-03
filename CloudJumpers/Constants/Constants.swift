@@ -97,9 +97,12 @@ struct Constants {
     static let disasterMinXDirection = -1.0
     static let disasterMaxXDirection = 1.0
     static let disasterMinYDirection = -1.0
-    static let disasterMaxYDirection = 0.0
+    static let disasterMaxYDirection = -0.1
 
     static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
     static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)
+
+    static let minOutOfBoundX = -450.0
+    static let maxOutOfBoundX = 450.0
 
 }

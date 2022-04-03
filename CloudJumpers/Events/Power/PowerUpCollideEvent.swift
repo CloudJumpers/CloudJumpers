@@ -31,9 +31,9 @@ struct PowerUpCollideEvent: Event {
 
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
             let externalObtainEntityEvent = ExternalObtainEntityEvent(obtainedEntityID: powerUpEntityID)
-            let externalRemoveEntityEvent = ExternalRemoveEvent(entityToRemoveId: otherEntity.id)
+//            let externalRemoveEntityEvent = ExternalRemoveEvent(entityToRemoveId: otherEntity.id)
             remoteEvents.append(externalObtainEntityEvent)
-            remoteEvents.append(externalRemoveEntityEvent)
+//            remoteEvents.append(externalRemoveEntityEvent)
         }
 
         return (nil, remoteEvents)
