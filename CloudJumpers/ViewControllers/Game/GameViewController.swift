@@ -13,6 +13,9 @@ class GameViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        isMovingToPostGame = false
+
         setUpSynchronizedStart()
         SoundManager.instance.stop(.background)
     }
@@ -22,7 +25,6 @@ class GameViewController: UIViewController {
         gameEngine = nil
         scene = nil
         joystick = nil
-        isMovingToPostGame = false
     }
 
     private func setUpSynchronizedStart() {
@@ -156,6 +158,9 @@ class GameViewController: UIViewController {
             let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
         }
+
+        lobby?.onGameCompleted()
+        lobby?.removeDeviceUser()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -418,12 +418,29 @@
                                                                                 <constraint firstAttribute="width" constant="100" id="UKS-tZ-ZdR"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lobby User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5v-SM-aOa">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-uF-ajo">
                                                                             <rect key="frame" x="140" y="0.0" width="660" height="145"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
+                                                                            <subviews>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K07-Nu-MJK">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="660" height="36.5"/>
+                                                                                </view>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Host" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-fr-D1E">
+                                                                                    <rect key="frame" x="0.0" y="36.5" width="660" height="36"/>
+                                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                                    <color key="textColor" systemColor="systemBlueColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lobby User Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S5v-SM-aOa">
+                                                                                    <rect key="frame" x="0.0" y="72.5" width="660" height="36.5"/>
+                                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                    <nil key="textColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3MF-Si-AHl">
+                                                                                    <rect key="frame" x="0.0" y="109" width="660" height="36"/>
+                                                                                </view>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooQ-gz-ajg">
                                                                             <rect key="frame" x="820" y="0.0" width="0.0" height="145"/>
                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -454,6 +471,7 @@
                                                 <connections>
                                                     <outlet property="background" destination="wTz-6Y-ljf" id="Rdg-lA-T7q"/>
                                                     <outlet property="displayName" destination="S5v-SM-aOa" id="Qoz-aP-dEN"/>
+                                                    <outlet property="isHostLabel" destination="P6D-fr-D1E" id="dnL-mG-O56"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -607,6 +625,9 @@
         <image name="idle" width="1024" height="1024"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

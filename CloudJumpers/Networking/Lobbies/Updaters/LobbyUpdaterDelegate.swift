@@ -15,4 +15,8 @@ protocol LobbyUpdaterDelegate: AnyObject {
 
     func changeLobbyGameMode(to gameMode: GameMode)
     func changeLobbyName(to name: String)
+    func changeLobbyHost(to host: NetworkID)
+
+    func setOnDisconnectRemove()
+    func clearOnDisconnectRemove()
 }

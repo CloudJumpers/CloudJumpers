@@ -10,6 +10,7 @@ import Foundation
 enum LobbyState {
     case matchmaking
     case gameInProgress
+    case gameCompleted
     case disconnected
 }
 
@@ -19,7 +20,7 @@ class GameLobby: NetworkedLobby {
     private(set) var gameMode: GameMode = .timeTrial
     private(set) var lobbyState: LobbyState?
 
-    let hostId: NetworkID
+    private(set) var hostId: NetworkID
     private(set) var users: [LobbyUser] = [LobbyUser]()
 
     var updater: LobbyUpdaterDelegate?
@@ -41,6 +42,16 @@ class GameLobby: NetworkedLobby {
 
     var userIsHost: Bool {
         hostId == AuthService().getUserId()
+    }
+
+    private var isOnlyUser: Bool {
+        numUsers == 1
+    }
+
+    /// Deterministically orders currently valid users,
+    /// consistent across up to date devices
+    var orderedValidUsers: [LobbyUser] {
+        users.sorted(by: { $0.id < $1.id })
     }
 
     private var isLobbyFinalized: Bool {
@@ -128,8 +139,17 @@ class GameLobby: NetworkedLobby {
     }
 
     func onLobbyConnectionClosed() {
+        guard lobbyState != .gameCompleted else {
+            return
+        }
+
         lobbyState = .disconnected
         onLobbyStateChange?(.disconnected)
+    }
+
+    func onGameCompleted() {
+        lobbyState = .gameCompleted
+        onLobbyStateChange?(.gameCompleted)
     }
 
     func onGameModeChange(_ newGameMode: GameMode) {
@@ -149,6 +169,10 @@ class GameLobby: NetworkedLobby {
             return
         }
 
+        if isOnlyUser && userIsHost {
+            updater?.clearOnDisconnectRemove()
+        }
+
         users.append(user)
         onLobbyDataChange?()
     }
@@ -164,27 +188,43 @@ class GameLobby: NetworkedLobby {
     }
 
     func onUserRemove(_ userId: NetworkID) {
-        guard users.contains(where: { $0.id == userId }) else {
+        guard
+            users.contains(where: { $0.id == userId }),
+            let deviceUserId = AuthService().getUserId()
+        else {
             return
         }
 
         users = users.filter { $0.id != userId }
         onLobbyDataChange?()
 
-        if userId == hostId {
+        if numUsers == .zero {
             onLobbyConnectionClosed()
+        } else if isOnlyUser {
+            updater?.setOnDisconnectRemove()
+            updater?.changeLobbyHost(to: deviceUserId)
+        } else if hostId == userId, let nextHost = orderedValidUsers.first {
+            updater?.changeLobbyHost(to: nextHost.id)
         }
+    }
+
+    func onHostChange(_ newHostId: NetworkID) {
+        hostId = newHostId
+        onLobbyDataChange?()
     }
 
     // MARK: - Device actions
     /// This function can be called to remove the local user from the lobby.
     /// After calling this function, the object should no longer be used.
     func removeDeviceUser() {
-        guard let userId = AuthService().getUserId() else {
+        guard
+            let userId = AuthService().getUserId(),
+            users.contains(where: { $0.id == userId })
+        else {
             return
         }
 
-        updater?.exitLobby(userId: userId, deleteLobby: userIsHost)
+        updater?.exitLobby(userId: userId, deleteLobby: isOnlyUser)
     }
 
     func toggleDeviceUserReadyStatus() {
