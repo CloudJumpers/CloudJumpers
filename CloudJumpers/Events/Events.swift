@@ -5,7 +5,7 @@
 //  Created by Phillmont Muktar on 25/3/22.
 //
 
-enum Events: Int, CaseIterable {
+enum Events: Int {
     case bi
     case log
     case move
@@ -27,7 +27,7 @@ enum Events: Int, CaseIterable {
     case disasterPromptEffect
     case disasterSpawn
 
-    static let events: [String: Events] = [
+    private static let events: [String: Events] = [
         String(describing: BiEvent.self): .bi,
         String(describing: LogEvent.self): .log,
         String(describing: MoveEvent.self): .move,
@@ -47,10 +47,9 @@ enum Events: Int, CaseIterable {
         String(describing: RespawnEffectEvent.self): .respawnEffect,
         String(describing: DisasterPromptEffectEvent.self): .disasterPromptEffect,
         String(describing: DisasterSpawnEvent.self): .disasterSpawn
-
     ]
 
-    static func eventType(for event: Event) -> Events? {
-        events[String(describing: type(of: event.self))]
+    static func rank(of event: Event) -> Int? {
+        events[String(describing: type(of: event))]?.rawValue
     }
 }

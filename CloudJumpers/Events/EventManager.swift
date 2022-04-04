@@ -85,9 +85,13 @@ class EventManager {
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {
-        guard let rank1 = Events.eventType(for: event1)?.rawValue,
-              let rank2 = Events.eventType(for: event2)?.rawValue
-        else { fatalError("An Event was not registered in Events enum") }
+        guard let rank1 = Events.rank(of: event1),
+              let rank2 = Events.rank(of: event2)
+        else { fatalError("""
+            One or more Events were not registered in Events enum
+            \(String(describing: type(of: event1))) -> \(String(describing: Events.rank(of: event1)))
+            \(String(describing: type(of: event2))) -> \(String(describing: Events.rank(of: event2)))
+            """) }
 
         if rank1 != rank2 {
             return rank1 < rank2
