@@ -987,8 +987,8 @@
 				9356AB7327EEFD81008CDEC1 /* Online */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
-				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
+				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
