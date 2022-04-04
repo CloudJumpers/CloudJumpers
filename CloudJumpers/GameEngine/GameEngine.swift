@@ -194,7 +194,7 @@ class GameEngine {
                 disasterType: eventInfo.type.rawValue,
                 disasterId: disasterId)
             eventManager.add(localDisasterStart)
-            eventManager.sendOutRemoteEvent(remoteDisasterStart)
+            eventManager.dispatch(remoteDisasterStart)
         }
     }
 
