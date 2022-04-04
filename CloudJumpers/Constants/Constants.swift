@@ -72,7 +72,7 @@ struct Constants {
                                      height: UIScreen.main.bounds.height + 1_000_000)
     static let gameAreaPosition = CGPoint(x: 0, y: 0)
 
-    static let powerUpEffectSize = CGSize(width: 80.0, height: 80.0)
+    static let powerUpEffectSize = CGSize(width: 120.0, height: 120.0)
     static let powerUpEffectDuration = 5.0
     static let powerUpMass = 0.000_000_1
 

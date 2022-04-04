@@ -20,9 +20,16 @@ struct ConfuseEvent: Event {
         self.location = location
     }
 
+    init(by entityID: EntityID, at location: CGPoint, timestamp: TimeInterval) {
+        self.timestamp = timestamp
+        self.entityID = entityID
+        self.location = location
+    }
+
     func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let targets = playersWithinRange(in: entityManager)
         let effectEntity = createEffectAndAdd(into: &supplier)
+        entityManager.add(effectEntity)
 
         targets.forEach { supplier.add(SwapMoveEffector(on: $0, watching: effectEntity)) }
     }
@@ -39,7 +46,7 @@ struct ConfuseEvent: Event {
     }
 
     private func isTarget(_ entity: Entity) -> Bool {
-        (entity is Player || entity is Guest) && entity.id != entityID
+        entity is Player && entity.id != entityID
     }
 
     private func playersWithinRange(in entityManager: EntityManager) -> [Entity] {
@@ -51,7 +58,8 @@ struct ConfuseEvent: Event {
             }
 
             let targetPosition = sprite.node.position
-            if location.distance(to: targetPosition) <= Constants.powerUpEffectSize.width * 2 {
+            if location.distance(to: targetPosition) <= (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2 {
+                print(location.distance(to: targetPosition))
                 targets.append(entity)
             }
         }

@@ -27,15 +27,7 @@ struct ActivatePowerUpEvent: Event {
               let powerUpComponent = entityManager.component(ofType: PowerUpComponent.self, of: powerUpEntity)
         else { return }
 
-//        let powerUpEffectStartEvent = PowerUpEffectStartEvent(position: location, powerUpType: powerUpComponent.kind)
-//        let remotePowerUpEffectStartEvent = ExternalPowerUpStartEvent(
-//            activatePowerUpPositionX: location.x,
-//            activatePowerUpPositionY: location.y,
-//            activatePowerUpType: powerUpComponent.kind.name)
-
         supplier.add(RemoveEntityEvent(powerUpEntityID))
-//        supplier.add(powerUpEffectStartEvent)
-//        supplier.add(remotePowerUpEffectStartEvent)
 
         switch powerUpComponent.kind {
         case .freeze:
@@ -43,5 +35,9 @@ struct ActivatePowerUpEvent: Event {
         case .confuse:
             supplier.add(ConfuseEvent(by: entity, at: location))
         }
+
+        supplier.add(ExternalPowerUpStartEvent(activatePowerUpPositionX: location.x,
+                                               activatePowerUpPositionY: location.y,
+                                               activatePowerUpType: powerUpComponent.kind.name))
     }
 }
