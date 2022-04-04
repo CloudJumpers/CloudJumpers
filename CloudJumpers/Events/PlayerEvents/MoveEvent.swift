@@ -35,7 +35,11 @@ struct MoveEvent: Event {
         let moveAction = SKAction.move(by: displacement, duration: 0.05)
         spriteComponent.node.run(moveAction)
 
-        spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+        if displacement.dx < 0 {
+            spriteComponent.node.xScale = -abs(spriteComponent.node.xScale)
+        } else if displacement.dx > 0 {
+            spriteComponent.node.xScale = abs(spriteComponent.node.xScale)
+        }
 
         SoundManager.instance.play(.walking)
     }

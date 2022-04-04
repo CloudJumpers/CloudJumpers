@@ -8,8 +8,11 @@
 struct NullMoveEffector: Effector {
     let entityID: EntityID
 
-    init(on entity: Entity) {
+    private let effectEntity: Entity
+
+    init(on entity: Entity, watching effectEntity: Entity) {
         entityID = entity.id
+        self.effectEntity = effectEntity
     }
 
     func apply(to event: Event) -> Event {
@@ -21,7 +24,10 @@ struct NullMoveEffector: Effector {
     }
 
     func shouldDetach(in entityManager: EntityManager) -> Bool {
-        // TODO: - Add timer logic here
-        false
+        guard let timerComponent = entityManager.component(ofType: TimedComponent.self, of: effectEntity) else {
+            return false
+        }
+
+        return timerComponent.time >= Constants.powerUpEffectDuration
     }
 }

@@ -44,6 +44,7 @@
 		1A94D96F27EEB361001D8A86 /* AnimateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */; };
 		1A94D97127EEEC36001D8A86 /* InventoryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */; };
 		1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D97227EEED61001D8A86 /* ObtainEvent.swift */; };
+		1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */; };
 		1AB6F2D127F98F57004BF6AF /* Effector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D027F98F57004BF6AF /* Effector.swift */; };
 		1AB6F2D327F99025004BF6AF /* NullMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D227F99025004BF6AF /* NullMoveEffector.swift */; };
 		1AB6F2D527F990E0004BF6AF /* SwapMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */; };
@@ -93,7 +94,6 @@
 		3EA7C86B27F87EA3009BCA63 /* DisasterStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
 		3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */; };
-		3EA7C87B27F94B39009BCA63 /* PowerUpEffectStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */; };
 		3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */; };
 		3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */; };
 		3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */; };
@@ -243,6 +243,7 @@
 		1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEvent.swift; sourceTree = "<group>"; };
 		1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryComponent.swift; sourceTree = "<group>"; };
 		1A94D97227EEED61001D8A86 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
+		1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeEvent.swift; sourceTree = "<group>"; };
 		1AB6F2D027F98F57004BF6AF /* Effector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effector.swift; sourceTree = "<group>"; };
 		1AB6F2D227F99025004BF6AF /* NullMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullMoveEffector.swift; sourceTree = "<group>"; };
 		1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMoveEffector.swift; sourceTree = "<group>"; };
@@ -294,7 +295,6 @@
 		3EA7C86A27F87EA3009BCA63 /* DisasterStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
 		3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEventCommand.swift; sourceTree = "<group>"; };
-		3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEvent.swift; sourceTree = "<group>"; };
 		3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpStartEvent.swift; sourceTree = "<group>"; };
 		3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEventCommand.swift; sourceTree = "<group>"; };
 		3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalObtainEntityEvent.swift; sourceTree = "<group>"; };
@@ -1038,10 +1038,10 @@
 			isa = PBXGroup;
 			children = (
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
-				3EA7C87A27F94B39009BCA63 /* PowerUpEffectStartEvent.swift */,
 				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
 				3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */,
 				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
+				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
 			);
 			path = Power;
 			sourceTree = "<group>";
@@ -1384,10 +1384,10 @@
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
 				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
 				3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */,
-				3EA7C87B27F94B39009BCA63 /* PowerUpEffectStartEvent.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
+				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
 				3EA7C86B27F87EA3009BCA63 /* DisasterStartEvent.swift in Sources */,
 				1A94D96F27EEB361001D8A86 /* AnimateEvent.swift in Sources */,
 				1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */,
