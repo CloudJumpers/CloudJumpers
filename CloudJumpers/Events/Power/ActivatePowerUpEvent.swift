@@ -36,8 +36,9 @@ struct ActivatePowerUpEvent: Event {
             supplier.add(ConfuseEvent(by: entity, at: location))
         }
 
-        supplier.add(ExternalPowerUpStartEvent(activatePowerUpPositionX: location.x,
-                                               activatePowerUpPositionY: location.y,
-                                               activatePowerUpType: powerUpComponent.kind.name))
+        supplier.add(ExternalPowerUpStartEvent(
+            activatePowerUpPositionX: location.x,
+            activatePowerUpPositionY: location.y,
+            activatePowerUpType: powerUpComponent.kind.name))
     }
 }

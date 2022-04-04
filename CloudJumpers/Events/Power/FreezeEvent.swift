@@ -59,8 +59,8 @@ struct FreezeEvent: Event {
             }
 
             let targetPosition = sprite.node.position
-            if location.distance(to: targetPosition) <= (Constants.powerUpEffectSize.width +
-                                                         Constants.playerSize.width) / 2 {
+            let targetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
+            if location.distance(to: targetPosition) <= targetRange {
                 targets.append(entity)
             }
         }
