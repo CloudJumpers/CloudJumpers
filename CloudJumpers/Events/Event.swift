@@ -17,7 +17,6 @@ protocol Event {
 
 extension Event {
     func shouldExecute(in entityManager: EntityManager) -> Bool { true }
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) { }
 
     func then(do event: Event) -> Event {
         BiEvent(self, event)
