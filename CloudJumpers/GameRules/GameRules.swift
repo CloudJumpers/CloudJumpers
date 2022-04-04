@@ -8,11 +8,17 @@
 import Foundation
 
 protocol GameRules {
-    func prepareGameModes(gameEngine: GameEngine,
-                          cloudBlueprint: Blueprint,
-                          powerUpBlueprint: Blueprint)
+    func prepareGameMode(gameEngine: GameEngine,
+                         cloudBlueprint: Blueprint,
+                         powerUpBlueprint: Blueprint)
 
     func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent])
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool
+}
+
+extension GameRules {
+    func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
+        ([], [])
+    }
 }

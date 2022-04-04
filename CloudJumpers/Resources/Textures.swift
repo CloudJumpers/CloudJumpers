@@ -8,7 +8,7 @@
 import SpriteKit
 
 enum Textures: String, Codable, CaseIterable {
-    enum Kind: String, Codable {
+    enum Kind: String, Codable, CaseIterable {
         case idle
         case walking
         case jumping

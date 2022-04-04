@@ -46,12 +46,11 @@ class PowerUp: Entity {
             circleOf: Constants.powerUpNodeSize.width / 2,
             for: spriteComponent)
 
-        physicsComponent.body.mass = Constants.powerUpMass
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPowerUp
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.collisionBitMask = 0
         physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
 
         return physicsComponent

@@ -90,7 +90,7 @@ struct Constants {
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
     static let disasterMass = CGFloat(1_000_000)
     static let disasterMinSpeed = 100.0
-    static let disasterMaxSpeed = 100.0
+    static let disasterMaxSpeed = 170.0
     static let disasterMinYPosition = -100.0
     static let disasterGenerationProbability = 1
     static let disasterYPositionOffset = 100.0
@@ -105,4 +105,10 @@ struct Constants {
     static let minOutOfBoundX = -450.0
     static let maxOutOfBoundX = 450.0
 
+    static let respawnLoopCount = 8
+    static let respawnDuration = 0.15
+
+    static let disasterPromptDuration = disasterPromptPeriod / Double(disasterPromptLoopCount * 2)
+
+    static let disasterPromptLoopCount = 8
 }

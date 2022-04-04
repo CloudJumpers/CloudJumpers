@@ -27,7 +27,10 @@ struct RespawnEffectEvent: Event {
     }
 
     func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
-        // TODO: Add in explosion effect at original position
-        supplier.add(BlinkEffectEvent(on: entityID, duration: 0.25, numberOfLoop: 8))
+        // TO DO: Add in explosion effect at original position
+        supplier.add(BlinkEffectEvent(
+            on: entityID,
+            duration: Constants.respawnDuration,
+            numberOfLoop: Constants.respawnLoopCount))
     }
 }

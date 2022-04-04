@@ -41,6 +41,9 @@ struct DisasterPromptEffectEvent: Event {
             duration: Constants.disasterPromptPeriod / 16,
             numberOfLoop: 8))
 
+        supplier.add(BlinkEffectEvent(on: disasterPrompt.id,
+            duration: Constants.disasterPromptDuration,
+            numberOfLoop: Constants.disasterPromptLoopCount))
         supplier.add(RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod))
     }
 }
