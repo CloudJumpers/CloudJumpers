@@ -51,6 +51,7 @@ class Disaster: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskDisaster
+        physicsComponent.body.linearDamping = 0.0
         physicsComponent.body.collisionBitMask =
         Constants.bitmaskCloud | Constants.bitmaskPlayer |
         Constants.bitmaskPlatform | Constants.bitmaskFloor

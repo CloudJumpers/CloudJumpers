@@ -55,7 +55,7 @@ class Player: Entity {
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
-        physicsComponent.body.collisionBitMask = .max ^ Constants.bitmaskGuest
+        physicsComponent.body.collisionBitMask = .max ^ Constants.bitmaskGuest ^ Constants.bitmaskPowerUp
         physicsComponent.body.contactTestBitMask = .max ^ Constants.bitmaskGuest
         return physicsComponent
     }
