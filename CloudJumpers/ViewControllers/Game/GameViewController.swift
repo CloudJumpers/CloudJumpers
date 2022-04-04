@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
 
-        gameRules?.prepareGameModes(gameEngine: gameEngine, cloudBlueprint: cloudBlueprint,
+        gameRules?.prepareGameMode(gameEngine: gameEngine, cloudBlueprint: cloudBlueprint,
                                     powerUpBlueprint: powerUpBluePrint)
 
     }
