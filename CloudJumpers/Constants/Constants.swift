@@ -90,7 +90,7 @@ struct Constants {
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
     static let disasterMass = CGFloat(1_000_000)
     static let disasterMinSpeed = 100.0
-    static let disasterMaxSpeed = 100.0
+    static let disasterMaxSpeed = 170.0
     static let disasterMinYPosition = -100.0
     static let disasterGenerationProbability = 1
     static let disasterYPositionOffset = 100.0
