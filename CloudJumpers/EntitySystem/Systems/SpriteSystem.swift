@@ -72,7 +72,10 @@ class SpriteSystem: System {
         let texture = animationComponent.texture.of(animationComponent.kind)
 
         if node.action(forKey: animationComponent.kind.name) == nil {
-            node.removeAllActions()
+
+            for actionKey in Textures.Kind.allCases {
+                node.removeAction(forKey: actionKey.name)
+            }
             node.run(.repeatForever(.animate(
                 with: texture,
                 timePerFrame: 0.1,

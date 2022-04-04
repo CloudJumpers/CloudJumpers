@@ -30,6 +30,9 @@ struct RespawnEffectEvent: Event {
 
         // TO DO: Add in explosion effect at original position
 
-        return ([BlinkEffectEvent(on: entityID, duration: 0.25, numberOfLoop: 8)], nil)
+        return ([BlinkEffectEvent(on: entityID,
+                                  duration: Constants.respawnDuration,
+                                  numberOfLoop: Constants.respawnLoopCount)],
+                nil)
     }
 }

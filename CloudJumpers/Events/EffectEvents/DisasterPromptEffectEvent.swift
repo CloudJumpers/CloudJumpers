@@ -37,8 +37,8 @@ struct DisasterPromptEffectEvent: Event {
         entityManager.add(disasterPrompt)
 
         return ([BlinkEffectEvent(on: disasterPrompt.id,
-                                  duration: Constants.disasterPromptPeriod / 16,
-                                  numberOfLoop: 8),
+                                  duration: Constants.disasterPromptDuration,
+                                  numberOfLoop: Constants.disasterPromptLoopCount),
                  RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod)], nil)
     }
 }

@@ -15,9 +15,9 @@ class RaceTopGameRules: GameRules {
         self.lobby = lobby
     }
 
-    func prepareGameModes(gameEngine: GameEngine,
-                          cloudBlueprint: Blueprint,
-                          powerUpBlueprint: Blueprint) {
+    func prepareGameMode(gameEngine: GameEngine,
+                         cloudBlueprint: Blueprint,
+                         powerUpBlueprint: Blueprint) {
         guard let userId = AuthService().getUserId() else {
             fatalError("Cannot find user")
         }
