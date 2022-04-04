@@ -19,21 +19,21 @@ struct ObtainEvent: Event {
         self.otherEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
               let otherEntity = entityManager.entity(with: otherEntityID),
               let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
               ownerComponent.ownerEntityId == nil
-        else { return nil }
+        else { return }
 
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer,
            let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity) {
             inventoryComponent.inventory.enqueue(otherEntityID)
             ownerComponent.ownerEntityId = entityID
-            return nil
+            return
         }
 
-        return ([RemoveEntityEvent(otherEntityID, timestamp: timestamp)], nil)
+        supplier.add(RemoveEntityEvent(otherEntityID, timestamp: timestamp))
     }
 }

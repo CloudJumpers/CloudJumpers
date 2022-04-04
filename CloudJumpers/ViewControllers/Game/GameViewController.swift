@@ -11,6 +11,11 @@ class GameViewController: UIViewController {
 
     var lobby: GameLobby?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.hidesBackButton = true
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -191,7 +196,7 @@ extension GameViewController: GameSceneDelegate {
         }
         let newModeEvents = gameRules.createGameEvents(with: gameData)
         newModeEvents.localEvents.forEach { gameEngine?.eventManager.add($0) }
-        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.sendOutRemoteEvent($0) }
+        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.dispatch($0) }
 
         if gameRules.hasGameEnd(with: gameData) {
             // TO DO: streamlined this

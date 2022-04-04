@@ -13,7 +13,7 @@ struct MoveEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
-    private let displacement: CGVector
+    let displacement: CGVector
 
     init(on entity: Entity, by displacement: CGVector) {
         timestamp = EventManager.timestamp
@@ -27,18 +27,20 @@ struct MoveEvent: Event {
         self.displacement = displacement
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return nil }
+        else { return }
 
         let moveAction = SKAction.move(by: displacement, duration: 0.05)
         spriteComponent.node.run(moveAction)
 
-        spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+        if displacement.dx < 0 {
+            spriteComponent.node.xScale = -abs(spriteComponent.node.xScale)
+        } else if displacement.dx > 0 {
+            spriteComponent.node.xScale = abs(spriteComponent.node.xScale)
+        }
 
         SoundManager.instance.play(.walking)
-
-        return nil
     }
 }

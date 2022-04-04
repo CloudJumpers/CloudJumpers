@@ -34,10 +34,9 @@ struct DisasterSpawnEvent: Event {
         entityManager.entity(with: promptId) == nil
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let disaster = Disaster(disasterType, at: position, velocity: velocity, with: entityID)
         entityManager.add(disaster)
-        return ([RemoveUnboundEntityEvent(disaster)], nil)
+        supplier.add(RemoveUnboundEntityEvent(disaster))
     }
-
 }

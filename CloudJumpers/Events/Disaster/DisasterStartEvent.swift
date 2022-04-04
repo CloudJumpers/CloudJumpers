@@ -40,7 +40,7 @@ struct DisasterStartEvent: Event {
         self.disasterType = disasterType
      }
 
-    func execute(in entityManager: EntityManager) -> (localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let disasterPromptId = EntityManager.newEntityID
         let disasterSpawnEvent = DisasterSpawnEvent(
             position: position,
@@ -49,7 +49,7 @@ struct DisasterStartEvent: Event {
             entityId: entityID,
             promptId: disasterPromptId)
 
-        return ( [DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType),
-                  disasterSpawnEvent], nil)
+        supplier.add(DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType))
+        supplier.add(disasterSpawnEvent)
     }
 }

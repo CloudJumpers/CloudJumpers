@@ -19,21 +19,17 @@ struct PowerUpCollideEvent: Event {
         self.powerUpEntityID = otherEntityID
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = entityManager.entity(with: entityID),
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
               let otherEntity = entityManager.entity(with: powerUpEntityID),
               let ownerComponent = entityManager.component(ofType: OwnerComponent.self, of: otherEntity),
               ownerComponent.ownerEntityId == nil
-        else { return nil }
-
-        var remoteEvents: [RemoteEvent] = []
+        else { return }
 
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
             let externalObtainEntityEvent = ExternalObtainEntityEvent(obtainedEntityID: powerUpEntityID)
-            remoteEvents.append(externalObtainEntityEvent)
+            supplier.add(externalObtainEntityEvent)
         }
-
-        return (nil, remoteEvents)
     }
 }

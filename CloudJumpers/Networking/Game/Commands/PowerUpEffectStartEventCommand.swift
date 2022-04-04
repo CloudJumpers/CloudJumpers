@@ -35,10 +35,20 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = PowerUpEffectStartEvent(position: CGPoint(x: parameters.activatePowerUpPositionX,
-                                                                       y: parameters.activatePowerUpPositionY),
-                                                     at: parameters.timestamp,
-                                                     powerUpType: powerUpType)
+        var eventToProcess: Event
+        switch powerUpType {
+        case .freeze:
+            eventToProcess = FreezeEvent(by: source,
+                                         at: CGPoint(x: parameters.activatePowerUpPositionX,
+                                                     y: parameters.activatePowerUpPositionY),
+                                         timestamp: parameters.timestamp)
+        case .confuse:
+            eventToProcess = ConfuseEvent(by: source,
+                                          at: CGPoint(x: parameters.activatePowerUpPositionX,
+                                                      y: parameters.activatePowerUpPositionY),
+                                          timestamp: parameters.timestamp)
+        }
+
         eventManager.add(eventToProcess)
         return true
     }
