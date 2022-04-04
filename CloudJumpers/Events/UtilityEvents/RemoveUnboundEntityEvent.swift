@@ -30,6 +30,6 @@ struct RemoveUnboundEntityEvent: Event {
     }
 
     private static func isPositionOutOfBound(_ position: CGPoint) -> Bool {
-        position.x < -480 || position.x > 480
+        position.x < Constants.minOutOfBoundX || position.x > Constants.maxOutOfBoundX
     }
 }

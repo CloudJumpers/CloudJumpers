@@ -39,12 +39,12 @@ class PostGameViewController: UIViewController {
     @IBAction private func buttonOnTap() {
         guard
             let viewControllers = navigationController?.viewControllers,
-            let lobbiesViewController = viewControllers.first(where: { $0 is LobbyViewController })
+            let lobbyViewController = viewControllers.first(where: { $0 is LobbyViewController })
         else {
             return
         }
 
-        navigationController?.popToViewController(lobbiesViewController, animated: true)
+        navigationController?.popToViewController(lobbyViewController, animated: true)
     }
 }
 

@@ -38,6 +38,7 @@ class GameEngine {
         updateEvents()
         updateTime()
         updateSystems(within: time)
+        generateDisaster()
     }
 
     func updatePlayer(with displacement: CGVector) {
@@ -172,11 +173,29 @@ class GameEngine {
     }
 
     private func updateEvents() {
-        if let inChargeID = inChargeID, metaData.playerId == inChargeID {
-            eventManager.add(GenerateDisasterEvent(within: metaData.highestPosition.y,
-                                                   entityID: metaData.playerId))
-        }
         eventManager.executeAll(in: entityManager)
+    }
+
+    private func generateDisaster() {
+        if let inChargeID = inChargeID,
+           metaData.playerId == inChargeID,
+           let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y) {
+            let disasterId = EntityManager.newEntityID
+            let localDisasterStart = DisasterStartEvent(
+                position: eventInfo.position,
+                velocity: eventInfo.velocity,
+                disasterType: eventInfo.type,
+                entityId: disasterId)
+            let remoteDisasterStart = ExternalDisasterEvent(
+                disasterPositionX: eventInfo.position.x,
+                disasterPositionY: eventInfo.position.y,
+                disasterVelocityX: eventInfo.velocity.dx,
+                disasterVelocityY: eventInfo.velocity.dy,
+                disasterType: eventInfo.type.rawValue,
+                disasterId: disasterId)
+            eventManager.add(localDisasterStart)
+            eventManager.sendOutRemoteEvent(remoteDisasterStart)
+        }
     }
 
     // MARK: Temporary time update method

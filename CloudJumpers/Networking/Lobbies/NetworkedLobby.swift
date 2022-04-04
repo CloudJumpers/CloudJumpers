@@ -23,6 +23,7 @@ protocol NetworkedLobby: AnyObject {
     func onUserRemove(_ userId: NetworkID)
     func onGameModeChange(_ newGameMode: GameMode)
     func onNameChange(_ newName: String)
+    func onHostChange(_ newHostId: NetworkID)
 
     func toggleDeviceUserReadyStatus()
 

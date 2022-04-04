@@ -31,7 +31,8 @@ struct DisasterStartEvent: Event {
          at timestamp: TimeInterval,
          velocity: CGVector,
          disasterType: DisasterComponent.Kind,
-         entityId: EntityID) {
+         entityId: EntityID
+    ) {
         entityID = entityId
         self.position = position
         self.timestamp = timestamp
@@ -40,24 +41,15 @@ struct DisasterStartEvent: Event {
      }
 
     func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
-        let disasterPrompt = DisasterPrompt(disasterType, at: position)
-        entityManager.add(disasterPrompt)
+        let disasterPromptId = EntityManager.newEntityID
+        let disasterSpawnEvent = DisasterSpawnEvent(
+            position: position,
+            velocity: velocity,
+            disasterType: disasterType,
+            entityId: entityID,
+            promptId: disasterPromptId)
 
-        let disaster = Disaster(disasterType, at: position, velocity: velocity, with: entityID)
-
-        supplier.add(BlinkEffectEvent(
-            on: disasterPrompt.id,
-            duration: Constants.disasterPromptPeriod / 20,
-            numberOfLoop: 10))
-
-        supplier.add(RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod))
-
-        supplier.add(ConditionalEvent(
-            disaster,
-            until: { entityManager.entity(with: disasterPrompt.id) == nil },
-            action: {
-                entityManager.add(disaster)
-                return [RemoveUnboundEntityEvent(disaster)]
-            }))
+        supplier.add(DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType))
+        supplier.add(disasterSpawnEvent)
     }
 }
