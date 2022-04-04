@@ -32,13 +32,15 @@ struct DisasterPromptEffectEvent: Event {
         self.disasterType = type
     }
 
-    func execute(in entityManager: EntityManager) ->(localEvents: [Event]?, remoteEvents: [RemoteEvent]?)? {
+    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
         let disasterPrompt = DisasterPrompt(disasterType, at: position, with: entityID)
         entityManager.add(disasterPrompt)
 
-        return ([BlinkEffectEvent(on: disasterPrompt.id,
-                                  duration: Constants.disasterPromptPeriod / 16,
-                                  numberOfLoop: 8),
-                 RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod)], nil)
+        supplier.add(BlinkEffectEvent(
+            on: disasterPrompt.id,
+            duration: Constants.disasterPromptPeriod / 16,
+            numberOfLoop: 8))
+
+        supplier.add(RemoveEntityEvent(disasterPrompt.id, after: Constants.disasterPromptPeriod))
     }
 }

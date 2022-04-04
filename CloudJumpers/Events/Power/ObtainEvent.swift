@@ -31,7 +31,7 @@ struct ObtainEvent: Event {
            let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity) {
             inventoryComponent.inventory.enqueue(otherEntityID)
             ownerComponent.ownerEntityId = entityID
-            return nil
+            return
         }
 
         supplier.add(RemoveEntityEvent(otherEntityID, timestamp: timestamp))
