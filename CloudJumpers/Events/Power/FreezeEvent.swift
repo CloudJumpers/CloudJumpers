@@ -32,6 +32,7 @@ struct FreezeEvent: Event {
         entityManager.add(effectEntity)
 
         targets.forEach { supplier.add(NullMoveEffector(on: $0, watching: effectEntity)) }
+        targets.forEach { supplier.add(NullJumpEffector(on: $0, watching: effectEntity)) }
     }
 
     private func createEffectAndAdd(into supplier: inout Supplier) -> Entity {
