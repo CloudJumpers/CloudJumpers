@@ -105,4 +105,10 @@ struct Constants {
     static let minOutOfBoundX = -450.0
     static let maxOutOfBoundX = 450.0
 
+    static let respawnLoopCount = 8
+    static let respawnDuration = 0.15
+
+    static let disasterPromptDuration = disasterPromptPeriod / Double(disasterPromptLoopCount * 2)
+
+    static let disasterPromptLoopCount = 8
 }

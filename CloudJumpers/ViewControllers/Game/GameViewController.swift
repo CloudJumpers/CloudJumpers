@@ -93,7 +93,7 @@ class GameViewController: UIViewController {
             firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
 
         gameRules?.prepareGameMode(gameEngine: gameEngine, cloudBlueprint: cloudBlueprint,
-                                    powerUpBlueprint: powerUpBluePrint)
+                                   powerUpBlueprint: powerUpBluePrint)
 
     }
 
