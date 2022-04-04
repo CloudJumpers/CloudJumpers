@@ -38,10 +38,14 @@ struct FreezeEvent: Event {
         return effect
     }
 
+    private func isTarget(_ entity: Entity) -> Bool {
+        (entity is Player || entity is Guest) && entity.id != entityID
+    }
+
     private func playersWithinRange(in entityManager: EntityManager) -> [Entity] {
         var targets: [Entity] = []
 
-        for entity in entityManager.iterableEntities where entity is Player || entity is Guest {
+        for entity in entityManager.iterableEntities where isTarget(entity) {
             guard let sprite = entityManager.component(ofType: SpriteComponent.self, of: entity) else {
                 fatalError("\(String(describing: entity)) does not possess a SpriteComponent")
             }
