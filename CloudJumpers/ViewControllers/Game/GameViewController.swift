@@ -151,7 +151,7 @@ class GameViewController: UIViewController {
                 completionTime: score
             )
 
-            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001)
+            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001, activeLobby.id)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
         case .raceTop:
             let gameCompletionData = RaceToTopData(
