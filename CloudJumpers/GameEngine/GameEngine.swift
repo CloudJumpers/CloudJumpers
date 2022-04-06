@@ -145,7 +145,7 @@ class GameEngine {
             texture: metaData.playerTexture.rawValue
         )
 
-        eventManager.dispatch(positionalUpdate)
+        eventManager.publish(positionalUpdate)
     }
 
     private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
@@ -194,7 +194,7 @@ class GameEngine {
                 disasterType: eventInfo.type.rawValue,
                 disasterId: disasterId)
             eventManager.add(localDisasterStart)
-            eventManager.dispatch(remoteDisasterStart)
+            eventManager.publish(remoteDisasterStart)
         }
     }
 

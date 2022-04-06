@@ -451,6 +451,7 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
+				936228D827F5CF7A00BB05FE /* PostGame */,
 				A1409A2A27ECB611000008E8 /* GameRules */,
 				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
@@ -1089,7 +1090,6 @@
 		A1DBB82827D884200077AB96 /* GameEngine */ = {
 			isa = PBXGroup;
 			children = (
-				936228D827F5CF7A00BB05FE /* PostGame */,
 				1AC1605227F2F56D006E4018 /* GameEngine.swift */,
 				A1CFED4927E5813A0062BCB2 /* State */,
 				9359ABB127E0464200D85899 /* Modes */,
