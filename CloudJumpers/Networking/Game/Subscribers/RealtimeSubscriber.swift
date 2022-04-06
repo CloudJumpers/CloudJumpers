@@ -1,5 +1,5 @@
 //
-//  FirebaseGameEventListener.swift
+//  RealtimeSubscriber.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 24/3/22.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseGameEventListener: GameEventListener {
+class RealtimeSubscriber: GameEventSubscriber {
     private let gameReference: DatabaseReference
     weak var eventManager: EventManager?
 

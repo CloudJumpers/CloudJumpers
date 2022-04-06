@@ -1,5 +1,5 @@
 //
-//  FirebaseGameEventDispatcher.swift
+//  RealtimePublisher.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 24/3/22.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseGameEventDispatcher: GameEventDispatcher {
+class FirebasePublisher: RealtimePublisher {
     private let gameReference: DatabaseReference
 
     init(_ channelId: NetworkID) {
@@ -18,7 +18,7 @@ class FirebaseGameEventDispatcher: GameEventDispatcher {
             .child(channelId)
     }
 
-    func dispatchGameEventCommand(_ command: GameEventCommand) {
+    func publishGameEventCommand(_ command: GameEventCommand) {
         gameReference.childByAutoId().setValue([
             GameKeys.source: command.source,
             GameKeys.sourceIsRecipient: command.isSourceRecipient ?? false,

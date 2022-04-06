@@ -13,8 +13,8 @@ class EventManager {
     private var events: EventQueue
     private var effectors: [Effector]
 
-    private var gameEventListener: GameEventListener?
-    private var gameEventDispatcher: GameEventDispatcher?
+    private var gameEventListener: GameEventSubscriber?
+    private var gameEventDispatcher: GameEventPublisher?
 
     init(channel: NetworkID?) {
         events = EventQueue(sort: Self.priority(_:_:))
@@ -71,7 +71,7 @@ class EventManager {
             return
         }
 
-        dispatcher.dispatchGameEventCommand(command)
+        dispatcher.publishGameEventCommand(command)
     }
 
     private func subscribe(to channel: NetworkID?) {
@@ -79,8 +79,8 @@ class EventManager {
             return
         }
 
-        gameEventListener = FirebaseGameEventListener(channel)
-        gameEventDispatcher = FirebaseGameEventDispatcher(channel)
+        gameEventListener = RealtimeSubscriber(channel)
+        gameEventDispatcher = FirebasePublisher(channel)
         gameEventListener?.eventManager = self
     }
 
