@@ -14,15 +14,22 @@ class GameEngine {
     var systems: [System]
     var metaData: GameMetaData
     var inChargeID: NetworkID?
+    let rules: GameRules
+
+    var hasGameEnd: Bool {
+        rules.hasGameEnd(with: metaData)
+    }
 
     private var crossDeviceSyncTimer: Timer?
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
-                  inChargeID: NetworkID?, channel: NetworkID? = nil) {
+                  rules: GameRules,
+                  inChargeID: NetworkID?, channel: NetworkID? = nil ) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
+        self.rules = rules
         systems = []
         self.inChargeID = inChargeID
         contactResolver.metaDataDelegate = self
@@ -38,14 +45,14 @@ class GameEngine {
         updateEvents()
         updateTime()
         updateSystems(within: time)
-        generateDisaster()
+        if rules.isSpawningDisaster {
+            generateDisaster()
+        }
     }
 
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
-              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
         else {
             return
         }
@@ -54,24 +61,25 @@ class GameEngine {
         } else if physicsComponent.body.velocity == .zero {
             eventManager.add( AnimateEvent(on: entity, to: .idle))
         }
-
-        updatePlayerTextureKind(texture: animationComponent.kind)
-        updatePlayerPosition(position: spriteComponent.node.position)
     }
 
-    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint, playerId: EntityID,
-                   additionalPlayerIds: [EntityID]?) {
+    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
+                   playerId: EntityID, allPlayersId: [EntityID]) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
-        let powerUpPositions = LevelGenerator.from(powerUpBlueprint, seed: powerUpBlueprint.seed)
-        setUpEnvironment(cloudPositions: cloudPositions, powerUpPositions: powerUpPositions)
-        setUpPlayers(playerId, additionalPlayerIds: additionalPlayerIds ?? [])
+        setUpEnvironment(cloudPositions: cloudPositions)
+        setUpPlayers(playerId, allPlayersId: allPlayersId)
         setUpSampleGame()
+
+        if rules.isSpawningPowerUp {
+            generatePowerUp(blueprint: powerUpBlueprint)
+        }
     }
 
-    private func setUpEnvironment(cloudPositions: [CGPoint], powerUpPositions: [CGPoint]) {
+    private func setUpEnvironment(cloudPositions: [CGPoint]) {
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
+
         let topPlatform = Platform(at: highestPosition)
 
         let wallHeight = (Constants.screenHeight / 2) + highestPosition.y + Constants.wallHeightFromPlatform
@@ -93,23 +101,12 @@ class GameEngine {
             }
         }
 
-        for (index, position) in powerUpPositions.enumerated() {
-            guard let newPowerUp = generatePowerUp(at: position,
-                                                   type: index,
-                                                   id: generatePowerUpId(idx: index, position: position))
-           else { return }
-
-            entityManager.add(newPowerUp)
-        }
     }
 
-    private func setUpPlayers(_ playerId: EntityID, additionalPlayerIds: [EntityID]) {
+    private func setUpPlayers(_ playerId: EntityID, allPlayersId: [EntityID]) {
         metaData.playerId = playerId
-        var allPlayerId = [playerId] + additionalPlayerIds
 
-        allPlayerId.sort()
-
-        for (index, id) in allPlayerId.enumerated() {
+        for (index, id) in allPlayersId.enumerated() {
             let character: Entity
 
             if id == playerId {
@@ -124,9 +121,7 @@ class GameEngine {
                     texture: .character1,
                     with: id)
             }
-
             entityManager.add(character)
-
         }
 
     }
@@ -139,10 +134,20 @@ class GameEngine {
     }
 
     private func syncToOtherDevices() {
+        guard let entity = associatedEntity,
+              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else {
+            return
+        }
+
+        // TO DO: Change after new way of getting sprite position
+        let playerPosition = spriteComponent.node.position
+        let playerTexture = animationComponent.texture
         let positionalUpdate = ExternalRepositionEvent(
-            positionX: metaData.playerPosition.x,
-            positionY: metaData.playerPosition.y,
-            texture: metaData.playerTexture.rawValue
+            positionX: playerPosition.x,
+            positionY: playerPosition.y,
+            texture: playerTexture.rawValue
         )
 
         eventManager.publish(positionalUpdate)
@@ -167,13 +172,31 @@ class GameEngine {
 
     private func setUpSampleGame() {
         let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-
         entityManager.add(timer)
         self.timer = timer
     }
 
     private func updateEvents() {
+        // TO DO: Abstract this further if possible - @jusg
+        let rulesEvents = rules.createGameEvents(with: metaData)
+        rulesEvents.localEvents.forEach { eventManager.add($0) }
+        rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
+    }
+
+    // TO DO: Refactor this with dynamic power up spawn- @jushg
+    private func generatePowerUp(blueprint: Blueprint) {
+        let powerUpPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
+
+        for (index, position) in powerUpPositions.enumerated() {
+            guard let newPowerUp = generatePowerUp(at: position,
+                                                   type: index,
+                                                   id: generatePowerUpId(idx: index, position: position))
+           else { return }
+
+            entityManager.add(newPowerUp)
+        }
+
     }
 
     private func generateDisaster() {
@@ -220,14 +243,6 @@ class GameEngine {
 
 // MARK: - GameMetaDataDelegate
 extension GameEngine: GameMetaDataDelegate {
-    func updatePlayerPosition(position: CGPoint) {
-        metaData.playerPosition = position
-    }
-
-    func updatePlayerTextureKind(texture: Textures.Kind) {
-        metaData.playerTexture = texture
-    }
-
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
             metaData.locationMapping[player] = (location, metaData.time)
