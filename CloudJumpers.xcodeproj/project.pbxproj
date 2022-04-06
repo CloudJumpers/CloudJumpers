@@ -108,7 +108,7 @@
 		93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9227EC919100808295 /* MoveEventCommand.swift */; };
 		93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */; };
 		93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9E27EC9CDA00808295 /* GameEventPublisher.swift */; };
-		93360BA227EC9D4C00808295 /* RealtimeSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA127EC9D4C00808295 /* RealtimeSubscriber.swift */; };
+		93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */; };
 		9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624D27E502DE00063BE9 /* NetworkCallback.swift */; };
 		9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624F27E5935000063BE9 /* LobbyUserCell.swift */; };
 		9344625227E5975300063BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9344625127E5975300063BE9 /* GoogleService-Info.plist */; };
@@ -167,6 +167,7 @@
 		93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */; };
 		93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486527FDA94500F6C188 /* EventualPublisher.swift */; };
 		93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486827FDB17200F6C188 /* RealtimePublisher.swift */; };
+		93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */; };
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4B27E5033B003157E8 /* ContactResolver.swift */; };
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
@@ -315,7 +316,7 @@
 		93360B9227EC919100808295 /* MoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveEventCommand.swift; sourceTree = "<group>"; };
 		93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventSubscriber.swift; sourceTree = "<group>"; };
 		93360B9E27EC9CDA00808295 /* GameEventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventPublisher.swift; sourceTree = "<group>"; };
-		93360BA127EC9D4C00808295 /* RealtimeSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSubscriber.swift; sourceTree = "<group>"; };
+		93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSubscriber.swift; sourceTree = "<group>"; };
 		9344624D27E502DE00063BE9 /* NetworkCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallback.swift; sourceTree = "<group>"; };
 		9344624F27E5935000063BE9 /* LobbyUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUserCell.swift; sourceTree = "<group>"; };
 		9344625127E5975300063BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -375,6 +376,7 @@
 		93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSubscriber.swift; sourceTree = "<group>"; };
 		93EF486527FDA94500F6C188 /* EventualPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventualPublisher.swift; sourceTree = "<group>"; };
 		93EF486827FDB17200F6C188 /* RealtimePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimePublisher.swift; sourceTree = "<group>"; };
+		93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSubscriber.swift; sourceTree = "<group>"; };
 		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A108AB4B27E5033B003157E8 /* ContactResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResolver.swift; sourceTree = "<group>"; };
@@ -975,8 +977,9 @@
 			isa = PBXGroup;
 			children = (
 				93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */,
+				93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */,
 				93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */,
-				93360BA127EC9D4C00808295 /* RealtimeSubscriber.swift */,
+				93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */,
 			);
 			path = Subscribers;
 			sourceTree = "<group>";
@@ -1382,7 +1385,7 @@
 				9359ABB327E0465A00D85899 /* GameMode.swift in Sources */,
 				A1BC45A927F73BE1000BF1A3 /* RespawnEffectEvent.swift in Sources */,
 				935280CD27F6295E002E3A1D /* PostGameViewController.swift in Sources */,
-				93360BA227EC9D4C00808295 /* RealtimeSubscriber.swift in Sources */,
+				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
@@ -1456,6 +1459,7 @@
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				A1CFED4D27E5890F0062BCB2 /* TimeTrialGameEndState.swift in Sources */,
+				93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */,
 				1A8EC1A927F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift in Sources */,
 				1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */,
 				9385D9B327F727E200593930 /* RaceToTopData.swift in Sources */,

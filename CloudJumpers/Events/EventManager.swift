@@ -79,7 +79,7 @@ class EventManager {
             return
         }
 
-        gameEventListener = RealtimeSubscriber(channel)
+        gameEventListener = FirebaseSubscriber(channel)
         gameEventDispatcher = FirebasePublisher(channel)
         gameEventListener?.eventManager = self
     }
