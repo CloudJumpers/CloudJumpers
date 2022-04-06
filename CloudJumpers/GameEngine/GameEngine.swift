@@ -180,7 +180,7 @@ class GameEngine {
         // TO DO: Abstract this further if possible - @jusg
         let rulesEvents = rules.createGameEvents(with: metaData)
         rulesEvents.localEvents.forEach { eventManager.add($0) }
-        rulesEvents.remoteEvents.forEach { eventManager.dispatch($0) }
+        rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
 
