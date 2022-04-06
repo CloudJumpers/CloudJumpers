@@ -60,6 +60,8 @@ class GameViewController: UIViewController {
 
     }
 
+
+
     private func setUpGameScene() {
         guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
@@ -76,7 +78,7 @@ class GameViewController: UIViewController {
         else {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
-
+        
         guard let userId = AuthService().getUserId(),
               let allUsersSortedById = lobby?.users.map({ $0.id }).sorted()
         else {
@@ -102,6 +104,7 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.5...1.0,
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
+        
 
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,
@@ -140,11 +143,10 @@ class GameViewController: UIViewController {
         self.joystick = joystick
     }
 
-    private func transitionToEndGame(state: TimeTrialGameEndState) {
+    private func transitionToEndGame(playerEndTime: Double) {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
-            let score = state.scores.first?.score,
             let deviceUserId = AuthService().getUserId()
         else {
             return
@@ -157,7 +159,7 @@ class GameViewController: UIViewController {
             let gameCompletionData = TimeTrialData(
                 playerId: activeLobby.hostId,
                 playerName: AuthService().getUserDisplayName(),
-                completionTime: score
+                completionTime: playerEndTime
             )
 
             let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001)
@@ -166,7 +168,7 @@ class GameViewController: UIViewController {
             let gameCompletionData = RaceToTopData(
                 playerId: deviceUserId,
                 playerName: AuthService().getUserDisplayName(),
-                completionTime: score
+                completionTime: playerEndTime
             )
 
             let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
@@ -201,10 +203,9 @@ extension GameViewController: GameSceneDelegate {
         gameEngine.update(within: interval)
         gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
 
-        if gameEngine.hasGameEnd {
-            // TO DO: streamlined this
+        if gameEngine.hasGameEnd{
             // TO DO: maybe not expose meta data 
-            transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameEngine.metaData.time))
+            transitionToEndGame(playerEndTime: gameEngine.metaData.time)
         }
 
     }
