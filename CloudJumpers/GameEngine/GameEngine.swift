@@ -43,9 +43,7 @@ class GameEngine {
 
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity),
-              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
         else {
             return
         }
@@ -54,9 +52,6 @@ class GameEngine {
         } else if physicsComponent.body.velocity == .zero {
             eventManager.add( AnimateEvent(on: entity, to: .idle))
         }
-
-        updatePlayerTextureKind(texture: animationComponent.kind)
-        updatePlayerPosition(position: spriteComponent.node.position)
     }
 
     func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint, playerId: EntityID,
@@ -139,10 +134,20 @@ class GameEngine {
     }
 
     private func syncToOtherDevices() {
+        guard let entity = associatedEntity,
+              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
+              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
+        else {
+            return
+        }
+
+        // TO DO: Change after new way of getting sprite position
+        let playerPosition = spriteComponent.node.position
+        let playerTexture = animationComponent.texture
         let positionalUpdate = ExternalRepositionEvent(
-            positionX: metaData.playerPosition.x,
-            positionY: metaData.playerPosition.y,
-            texture: metaData.playerTexture.rawValue
+            positionX: playerPosition.x,
+            positionY: playerPosition.y,
+            texture: playerTexture.rawValue
         )
 
         eventManager.dispatch(positionalUpdate)
@@ -220,14 +225,6 @@ class GameEngine {
 
 // MARK: - GameMetaDataDelegate
 extension GameEngine: GameMetaDataDelegate {
-    func updatePlayerPosition(position: CGPoint) {
-        metaData.playerPosition = position
-    }
-
-    func updatePlayerTextureKind(texture: Textures.Kind) {
-        metaData.playerTexture = texture
-    }
-
     func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
         if let location = location {
             metaData.locationMapping[player] = (location, metaData.time)
