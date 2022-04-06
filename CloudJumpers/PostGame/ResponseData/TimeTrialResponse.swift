@@ -9,6 +9,7 @@ import Foundation
 
 struct TimeTrialResponse: Response {
     let userId: NetworkID
+    let lobbyId: NetworkID
     let userDisplayName: String
     let completionTime: Double
     let completedAt: Double

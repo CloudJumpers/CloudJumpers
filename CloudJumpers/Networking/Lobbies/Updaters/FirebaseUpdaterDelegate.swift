@@ -90,7 +90,10 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             let lobbyReference = getLobbyReference(lobbyId: lobby.id)
             let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
             lobbyReference.removeValue()
-            channelReference.removeValue()
+            // Perform a deferred delete of channel.
+            // Provides some grace period for all updates across devices
+            // to reach the server first.
+            channelReference.onDisconnectRemoveValue()
         } else {
             let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
             userReference.removeValue()
@@ -197,12 +200,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         userReference.onDisconnectRemoveValue()
     }
 
-    private func constructLobbyPath(lobbyId: NetworkID) -> String {
-        "/\(LobbyKeys.root)/\(lobbyId)"
-    }
-
     private func getLobbyReference(lobbyId: NetworkID) -> DatabaseReference {
-        Database.database().reference(withPath: constructLobbyPath(lobbyId: lobbyId))
+        Database.database().reference().child(LobbyKeys.root).child(lobbyId)
     }
 
     private func getLobbyParticipantsReference(lobbyId: NetworkID) -> DatabaseReference {
@@ -215,6 +214,6 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
     }
 
     private func getLobbyChannelReference(lobbyId: NetworkID) -> DatabaseReference {
-        Database.database().reference(withPath: "\(GameKeys.root)/\(lobbyId)")
+        Database.database().reference().child(GameKeys.root).child(lobbyId)
     }
 }
