@@ -60,8 +60,6 @@ class GameViewController: UIViewController {
 
     }
 
-
-
     private func setUpGameScene() {
         guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
@@ -78,9 +76,9 @@ class GameViewController: UIViewController {
         else {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
-        
+
         guard let userId = AuthService().getUserId(),
-              let allUsersSortedById = lobby?.users.map({ $0.id }).sorted()
+              let allUsersSortedById = lobby?.orderedValidUsers.map({ $0.id })
         else {
             fatalError("Cannot find user")
         }
@@ -104,7 +102,6 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.5...1.0,
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
-        
 
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,
@@ -203,8 +200,8 @@ extension GameViewController: GameSceneDelegate {
         gameEngine.update(within: interval)
         gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
 
-        if gameEngine.hasGameEnd{
-            // TO DO: maybe not expose meta data 
+        if gameEngine.hasGameEnd {
+            // TO DO: maybe not expose meta data
             transitionToEndGame(playerEndTime: gameEngine.metaData.time)
         }
 
