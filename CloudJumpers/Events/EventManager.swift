@@ -13,8 +13,8 @@ class EventManager {
     private var events: EventQueue
     private var effectors: [Effector]
 
-    private var gameEventListener: GameEventListener?
-    private var gameEventDispatcher: GameEventDispatcher?
+    private var gameEventSubscriber: GameEventSubscriber?
+    private var gameEventPublisher: GameEventPublisher?
 
     init(channel: NetworkID?) {
         events = EventQueue(sort: Self.priority(_:_:))
@@ -63,15 +63,15 @@ class EventManager {
         deferredEvents.forEach(add(_:))
     }
 
-    func dispatch(_ remoteEvent: RemoteEvent) {
+    func publish(_ remoteEvent: RemoteEvent) {
         guard
             let command = remoteEvent.createDispatchCommand(),
-            let dispatcher = gameEventDispatcher
+            let publisher = gameEventPublisher
         else {
             return
         }
 
-        dispatcher.dispatchGameEventCommand(command)
+        publisher.publishGameEventCommand(command)
     }
 
     private func subscribe(to channel: NetworkID?) {
@@ -79,9 +79,9 @@ class EventManager {
             return
         }
 
-        gameEventListener = FirebaseGameEventListener(channel)
-        gameEventDispatcher = FirebaseGameEventDispatcher(channel)
-        gameEventListener?.eventManager = self
+        gameEventSubscriber = FirebaseSubscriber(channel)
+        gameEventPublisher = FirebasePublisher(channel)
+        gameEventSubscriber?.eventManager = self
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {
@@ -102,7 +102,7 @@ class EventManager {
 
     private func supply(from supplier: Supplier) -> Int {
         supplier.events.forEach(add(_:))
-        supplier.remoteEvents.forEach(dispatch(_:))
+        supplier.remoteEvents.forEach(publish(_:))
         supplier.effectors.forEach(add(_:))
         return supplier.events.count
     }

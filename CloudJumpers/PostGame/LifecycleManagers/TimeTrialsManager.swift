@@ -9,6 +9,7 @@ import Foundation
 
 class TimeTrialsManager: PostGameManager {
     private let completionData: TimeTrialData
+    private let lobbyId: NetworkID
     private let seed: Int
     private var requestHandler: PostGameRequestDelegate?
 
@@ -16,14 +17,20 @@ class TimeTrialsManager: PostGameManager {
 
     var callback: PostGameCallback = nil
 
-    private var endpoint: String {
+    private var submitEndpoint: String {
+        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
+        return baseUrl + parameters
+    }
+
+    private var fetchEndpoint: String {
         let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))"
         return baseUrl + parameters
     }
 
-    init(_ completionData: TimeTrialData, _ seed: Int) {
+    init(_ completionData: TimeTrialData, _ seed: Int, _ lobbyId: NetworkID) {
         self.completionData = completionData
         self.seed = seed
+        self.lobbyId = lobbyId
         self.requestHandler = RestDelegate()
         requestHandler?.postGameManager = self
     }
@@ -34,11 +41,11 @@ class TimeTrialsManager: PostGameManager {
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
 
-        requestHandler?.submitLocalData(endpoint, data)
+        requestHandler?.submitLocalData(submitEndpoint, data)
     }
 
     func subscribeToRankings() {
-        requestHandler?.startRankingsFetch(endpoint, handleRankingsResponse)
+        requestHandler?.startRankingsFetch(fetchEndpoint, handleRankingsResponse)
     }
 
     func unsubscribeFromRankings() {

@@ -151,7 +151,7 @@ class GameViewController: UIViewController {
                 completionTime: score
             )
 
-            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001)
+            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001, activeLobby.id)
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
         case .raceTop:
             let gameCompletionData = RaceToTopData(
@@ -196,7 +196,7 @@ extension GameViewController: GameSceneDelegate {
         }
         let newModeEvents = gameRules.createGameEvents(with: gameData)
         newModeEvents.localEvents.forEach { gameEngine?.eventManager.add($0) }
-        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.dispatch($0) }
+        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.publish($0) }
 
         if gameRules.hasGameEnd(with: gameData) {
             // TO DO: streamlined this
