@@ -9,7 +9,7 @@ import Foundation
 class TimeTrialGameRules: GameRules {
     var isSpawningPowerUp = false
 
-    var isSpawningDisaster = false
+    var isSpawningDisaster = true
 
     func hasGameEnd(with gameData: GameMetaData) -> Bool {
         guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.location else {
