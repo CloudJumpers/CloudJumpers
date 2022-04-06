@@ -8,26 +8,9 @@
 import Foundation
 
 class RaceTopGameRules: GameRules {
+    var isSpawningPowerUp = true
 
-    unowned var lobby: GameLobby?
-
-    init(with lobby: GameLobby?) {
-        self.lobby = lobby
-    }
-
-    func prepareGameMode(gameEngine: GameEngine,
-                         cloudBlueprint: Blueprint,
-                         powerUpBlueprint: Blueprint) {
-        guard let userId = AuthService().getUserId() else {
-            fatalError("Cannot find user")
-        }
-
-        gameEngine.setUpGame(
-            cloudBlueprint: cloudBlueprint,
-            powerUpBlueprint: powerUpBlueprint,
-            playerId: userId,
-            additionalPlayerIds: lobby?.otherUsers.map { $0.id })
-    }
+    var isSpawningDisaster = true
 
     func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
         var localEvents = [Event]()

@@ -8,9 +8,8 @@
 import Foundation
 
 protocol GameRules {
-    func prepareGameMode(gameEngine: GameEngine,
-                         cloudBlueprint: Blueprint,
-                         powerUpBlueprint: Blueprint)
+    var isSpawningPowerUp: Bool { get set }
+    var isSpawningDisaster: Bool { get set }
 
     func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent])
 

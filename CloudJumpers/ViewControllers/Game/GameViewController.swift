@@ -5,7 +5,6 @@ class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
-    private var gameRules: GameRules?
 
     private var isMovingToPostGame = false
 
@@ -41,23 +40,24 @@ class GameViewController: UIViewController {
         guard let mode = lobby?.gameMode else {
             return
         }
+        let gameRules: GameRules
         switch mode {
         case .timeTrial:
             gameRules = TimeTrialGameRules()
         case .raceTop:
-            gameRules = RaceTopGameRules(with: lobby)
+            gameRules = RaceTopGameRules()
         }
+        gameEngine = GameEngine(
+            rendersTo: self,
+            rules: gameRules,
+            inChargeID: lobby?.hostId,
+            channel: lobby?.id)
 
-        prepareGameEngine()
         setUpGameScene()
         setUpGameEngine()
         setUpInputControls()
         setUpSKViewAndPresent()
 
-    }
-
-    private func prepareGameEngine() {
-        gameEngine = GameEngine(rendersTo: self, inChargeID: lobby?.hostId, channel: lobby?.id)
     }
 
     private func setUpGameScene() {
@@ -77,6 +77,12 @@ class GameViewController: UIViewController {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
 
+        guard let userId = AuthService().getUserId(),
+              let allUsersSortedById = lobby?.users.map({ $0.id }).sorted()
+        else {
+            fatalError("Cannot find user")
+        }
+
         let seed = 161_001
 
         let cloudBlueprint = Blueprint(
@@ -89,7 +95,7 @@ class GameViewController: UIViewController {
             seed: seed
         )
 
-        let powerUpBluePrint = Blueprint(
+        let powerUpBlueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.powerUpNodeSize,
             tolerance: CGVector(dx: 400, dy: 800),
@@ -97,8 +103,11 @@ class GameViewController: UIViewController {
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
 
-        gameRules?.prepareGameMode(gameEngine: gameEngine, cloudBlueprint: cloudBlueprint,
-                                   powerUpBlueprint: powerUpBluePrint)
+        gameEngine.setUpGame(
+            cloudBlueprint: cloudBlueprint,
+            powerUpBlueprint: powerUpBlueprint,
+            playerId: userId,
+            allPlayersId: allUsersSortedById)
 
     }
 
@@ -186,21 +195,16 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        gameEngine?.update(within: interval)
-        gameEngine?.updatePlayer(with: joystick?.displacement ?? .zero)
-
-        guard let gameData = gameEngine?.metaData,
-              let gameRules = gameRules
-        else {
+        guard let gameEngine = gameEngine else {
             return
         }
-        let newModeEvents = gameRules.createGameEvents(with: gameData)
-        newModeEvents.localEvents.forEach { gameEngine?.eventManager.add($0) }
-        newModeEvents.remoteEvents.forEach { gameEngine?.eventManager.dispatch($0) }
+        gameEngine.update(within: interval)
+        gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
 
-        if gameRules.hasGameEnd(with: gameData) {
+        if gameEngine.hasGameEnd {
             // TO DO: streamlined this
-            transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameData.time))
+            // TO DO: maybe not expose meta data 
+            transitionToEndGame(state: TimeTrialGameEndState(playerEndTime: gameEngine.metaData.time))
         }
 
     }
