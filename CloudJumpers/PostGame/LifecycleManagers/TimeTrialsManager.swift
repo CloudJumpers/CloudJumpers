@@ -61,22 +61,23 @@ class TimeTrialsManager: PostGameManager {
 
         rankings.removeAll()
         response.topGlobalPlayers.enumerated().forEach { index, item in
-            var columns = [PostGameColumnKey: String]()
-
             let completionTimeString = String(format: "%.2f", item.completionTime)
             let completedAt = Date(timeIntervalSince1970: item.completedAt)
 
             let formatter = DateFormatter()
             formatter.dateFormat = PostGameConstants.dateTimeFormat
 
-            columns[PostGameColumnKey(order: 1, description: "Name")] = item.userDisplayName
-            columns[PostGameColumnKey(order: 2, description: "Completion Time")] = completionTimeString
-            columns[PostGameColumnKey(order: 3, description: "Completed At")] = formatter.string(from: completedAt)
+            var rankingRow = IndividualRanking()
 
-            let rankingRow = IndividualRanking(
-                position: index + 1,
-                characteristics: columns
-            )
+            rankingRow.setPrimaryField(colName: "Position", value: index)
+            rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
+            rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
+            rankingRow.setPrimaryField(colName: "Completed At", value: formatter.string(from: completedAt))
+
+            if item.lobbyId == lobbyId, completionData.playerId == item.userId {
+                rankingRow.setSupportingField(colName: "isUserRow", value: true)
+            }
+
             rankings.append(rankingRow)
         }
 

@@ -9,29 +9,42 @@ import Foundation
 
 struct IndividualRanking {
     /*
-     Position is used to demonstrate relative rankings between
-     players. It is not expected to be available (to facilitate
-     non-competitive game modes) and is not expected to be unique,
-     to facilitate ties.
+     primaryFields represent the gamemode dependent list of fields
+     associated with this ranking entry. E.g. time taken, number of kills
+     will all be stored as key value pairs.
      */
-    let position: Int?
+    private(set) var primaryFields: [PostGameColumnKey: String]
 
     /*
-     Characteristics represent the gamemode dependent list of fields
-     associated with this ranking entry. E.g. time taken, number of kills
-     will all be stored as key value pairs within characteristics.
+     supportingFields contain fields that are used for purposes other than
+     text displayed to the user. For example, fields that determine order,
+     fields that provides other identifying information.
      */
-    let characteristics: [PostGameColumnKey: String]
+    private(set) var supportingFields: [String: String]
 
     private var keys: [PostGameColumnKey] {
-        characteristics.keys.sorted(by: { $0.order < $1.order })
+        primaryFields.keys.sorted(by: { $0.order < $1.order })
     }
 
     var columnNames: [String] {
-        ["Position"] + keys.map { $0.description }
+        keys.map { $0.description }
     }
 
     var values: [String] {
-        [position?.description ?? "-"] + keys.compactMap { characteristics[$0]?.description }
+        keys.compactMap { primaryFields[$0]?.description }
+    }
+
+    init() {
+        self.primaryFields = [:]
+        self.supportingFields = [:]
+    }
+
+    mutating func setPrimaryField<T: CustomStringConvertible>(colName: String, value: T) {
+        let key = PostGameColumnKey(order: primaryFields.count + 1, description: colName)
+        primaryFields[key] = value.description
+    }
+
+    mutating func setSupportingField<T: CustomStringConvertible>(colName: String, value: T) {
+        supportingFields[colName] = value.description
     }
 }
