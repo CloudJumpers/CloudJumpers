@@ -13,7 +13,7 @@ class GameEngine {
     let contactResolver: ContactResolver
     var systems: [System]
     var metaData: GameMetaData
-    var inChargeID: NetworkID?
+    var getInChargeID: () -> NetworkID?
     let rules: GameRules
 
     var hasGameEnd: Bool {
@@ -24,14 +24,14 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  inChargeID: NetworkID?, channel: NetworkID? = nil ) {
+                  getInChargeID: @escaping () -> NetworkID?, channel: NetworkID? = nil ) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(channel: channel)
         contactResolver = ContactResolver(to: eventManager)
         self.rules = rules
         systems = []
-        self.inChargeID = inChargeID
+        self.getInChargeID = getInChargeID
         contactResolver.metaDataDelegate = self
         setUpSystems(rendersTo: spriteSystemDelegate)
         setUpCrossDeviceSyncTimer()
@@ -200,7 +200,7 @@ class GameEngine {
     }
 
     private func generateDisaster() {
-        if let inChargeID = inChargeID,
+        if let inChargeID = getInChargeID(),
            metaData.playerId == inChargeID,
            let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y) {
             let disasterId = EntityManager.newEntityID
