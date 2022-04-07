@@ -17,13 +17,8 @@ class TimeTrialsManager: PostGameManager {
 
     var callback: PostGameCallback = nil
 
-    private var submitEndpoint: String {
+    private var endpoint: String {
         let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
-        return baseUrl + parameters
-    }
-
-    private var fetchEndpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))"
         return baseUrl + parameters
     }
 
@@ -41,11 +36,11 @@ class TimeTrialsManager: PostGameManager {
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
 
-        requestHandler?.submitLocalData(submitEndpoint, data)
+        requestHandler?.submitLocalData(endpoint, data)
     }
 
     func subscribeToRankings() {
-        requestHandler?.startRankingsFetch(fetchEndpoint, handleRankingsResponse)
+        requestHandler?.startRankingsFetch(endpoint, handleRankingsResponse)
     }
 
     func unsubscribeFromRankings() {
@@ -60,7 +55,7 @@ class TimeTrialsManager: PostGameManager {
         }
 
         rankings.removeAll()
-        response.topGlobalPlayers.enumerated().forEach { index, item in
+        response.topGlobalPlayers.forEach { item in
             let completionTimeString = String(format: "%.2f", item.completionTime)
             let completedAt = Date(timeIntervalSince1970: item.completedAt)
 
@@ -69,7 +64,7 @@ class TimeTrialsManager: PostGameManager {
 
             var rankingRow = IndividualRanking()
 
-            rankingRow.setPrimaryField(colName: "Position", value: index)
+            rankingRow.setPrimaryField(colName: "Position", value: item.position)
             rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
             rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
             rankingRow.setPrimaryField(colName: "Completed At", value: formatter.string(from: completedAt))

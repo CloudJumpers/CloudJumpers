@@ -57,12 +57,12 @@ class RaceToTopManager: PostGameManager {
         }
 
         rankings.removeAll()
-        response.topLobbyPlayers.enumerated().forEach { index, item in
+        response.topLobbyPlayers.forEach { item in
             let completionTimeString = String(format: "%.2f", item.completionTime)
 
             var rankingRow = IndividualRanking()
 
-            rankingRow.setPrimaryField(colName: "Position", value: index)
+            rankingRow.setPrimaryField(colName: "Position", value: item.position)
             rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
             rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
             rankingRow.setPrimaryField(colName: "Kills", value: item.kills)
