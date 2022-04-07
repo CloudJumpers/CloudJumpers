@@ -69,7 +69,7 @@ class RaceToTopManager: PostGameManager {
             rankingRow.setPrimaryField(colName: "Deaths", value: item.deaths)
 
             if completionData.playerId == item.userId {
-                rankingRow.setSupportingField(colName: "isUserRow", value: true)
+                rankingRow.setSupportingField(colName: PGKeys.isUserRow, value: true)
             }
 
             rankings.append(rankingRow)

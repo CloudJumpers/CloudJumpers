@@ -75,7 +75,7 @@ class TimeTrialsManager: PostGameManager {
             rankingRow.setPrimaryField(colName: "Completed At", value: formatter.string(from: completedAt))
 
             if item.lobbyId == lobbyId, completionData.playerId == item.userId {
-                rankingRow.setSupportingField(colName: "isUserRow", value: true)
+                rankingRow.setSupportingField(colName: PGKeys.isUserRow, value: true)
             }
 
             rankings.append(rankingRow)

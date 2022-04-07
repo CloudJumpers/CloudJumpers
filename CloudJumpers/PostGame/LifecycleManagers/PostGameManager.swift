@@ -14,7 +14,7 @@ protocol PostGameManager: AnyObject {
     /// to the set of rankings is detected.
     var callback: PostGameCallback { get set }
 
-    var fieldNames: [String] { get }
+    var fieldNames: [String]? { get }
 
     /// Latest ranking data available to the manager.
     var rankings: [IndividualRanking] { get }
@@ -42,7 +42,7 @@ extension PostGameManager {
         return urlString
     }
 
-    var fieldNames: [String] {
-        rankings.first?.columnNames ?? [String]()
+    var fieldNames: [String]? {
+        rankings.first?.columnNames
     }
 }
