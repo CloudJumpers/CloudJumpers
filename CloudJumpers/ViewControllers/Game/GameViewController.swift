@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
         gameEngine = GameEngine(
             rendersTo: self,
             rules: gameRules,
-            getInChargeID: { self.lobby?.hostId },
+            isHost: { self.lobby?.userIsHost ?? false },
             channel: lobby?.id)
 
         setUpGameScene()
