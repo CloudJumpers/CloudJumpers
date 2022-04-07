@@ -40,8 +40,8 @@ struct RepositionEvent: Event {
             dy: nextPosition.y - spriteComponent.node.position.y
 
         )
-        
-        if abs(displacement.dx) >= 0.05 {
+
+        if abs(displacement.dx) >= 0.1 {
             spriteComponent.node.xScale = (displacement.dx / abs(displacement.dx) )
             spriteComponent.node.children.forEach({ $0.xScale = (displacement.dx / abs(displacement.dx) ) })
         }
