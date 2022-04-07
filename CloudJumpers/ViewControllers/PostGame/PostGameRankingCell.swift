@@ -8,7 +8,16 @@
 import UIKit
 
 class PostGameRankingCell: UITableViewCell {
+    @IBOutlet private var rowHolder: UIView!
     @IBOutlet private var row: UIStackView!
+
+    func highlight() {
+        rowHolder.backgroundColor = .darkGray
+    }
+
+    func unhighlight() {
+        rowHolder.backgroundColor = .clear
+    }
 
     func setRow(values: [String]) {
         let toRemove = row.arrangedSubviews

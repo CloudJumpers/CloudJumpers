@@ -18,3 +18,7 @@ enum PostGameConstants {
     static let portNum = ":8080"
     static let commonPath = "/api/highscores/v1/"
 }
+
+enum PGKeys {
+    static let isUserRow = "isUserRow"
+}

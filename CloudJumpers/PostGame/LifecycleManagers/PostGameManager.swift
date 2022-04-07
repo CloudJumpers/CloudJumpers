@@ -14,12 +14,10 @@ protocol PostGameManager: AnyObject {
     /// to the set of rankings is detected.
     var callback: PostGameCallback { get set }
 
+    var fieldNames: [String]? { get }
+
     /// Latest ranking data available to the manager.
     var rankings: [IndividualRanking] { get }
-
-    /// A 2D table representation of rankings.
-    /// If data rows are present, the first row will be the header.
-    var rankingsTable: [[String]] { get }
 
     /// Allows a player who has completed their game
     /// to create or update their game data.
@@ -44,11 +42,7 @@ extension PostGameManager {
         return urlString
     }
 
-    var rankingsTable: [[String]] {
-        guard let firstRow = rankings.first else {
-            return [[String]]()
-        }
-
-        return [firstRow.columnNames] + rankings.map { $0.values }
+    var fieldNames: [String]? {
+        rankings.first?.columnNames
     }
 }
