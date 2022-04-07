@@ -147,7 +147,7 @@ class GameEngine {
 
         // TO DO: Change after new way of getting sprite position
         let playerPosition = spriteComponent.node.position
-        let playerTexture = animationComponent.texture
+        let playerTexture = animationComponent.kind
         let positionalUpdate = ExternalRepositionEvent(
             positionX: playerPosition.x,
             positionY: playerPosition.y,

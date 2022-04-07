@@ -114,4 +114,5 @@ struct Constants {
 
     static let nameLabelFontSize = 20.0
     static let nameLabelRelativePosition = CGPoint(x: 0.0, y: 35.0)
+    static let playerDisplaynameSize = 5
 }

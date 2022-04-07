@@ -53,8 +53,8 @@ class Guest: Entity {
 
     private func createNameLabel(for spriteComponent: SpriteComponent) {
         var displayname = name
-        if displayname.count > 5 {
-            let index = displayname.index(displayname.startIndex, offsetBy: 5)
+        if displayname.count > Constants.playerDisplaynameSize {
+            let index = displayname.index(displayname.startIndex, offsetBy: Constants.playerDisplaynameSize)
             displayname = displayname[..<index] + "..."
         }
 
