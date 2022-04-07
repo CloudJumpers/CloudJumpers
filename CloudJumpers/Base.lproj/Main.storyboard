@@ -583,6 +583,7 @@
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="row" destination="Uet-Ud-JqK" id="A02-BH-MTF"/>
+                                                    <outlet property="rowHolder" destination="1se-Yb-7ue" id="goL-1Q-OS0"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

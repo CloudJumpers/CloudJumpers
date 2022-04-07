@@ -8,14 +8,15 @@
 import UIKit
 
 class PostGameRankingCell: UITableViewCell {
+    @IBOutlet private var rowHolder: UIView!
     @IBOutlet private var row: UIStackView!
 
     func highlight() {
-        row.backgroundColor = .darkGray
+        rowHolder.backgroundColor = .darkGray
     }
 
     func unhighlight() {
-        row.backgroundColor = .clear
+        rowHolder.backgroundColor = .clear
     }
 
     func setRow(values: [String]) {
