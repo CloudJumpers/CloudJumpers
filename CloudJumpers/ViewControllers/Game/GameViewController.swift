@@ -84,8 +84,9 @@ class GameViewController: UIViewController {
             fatalError("Cannot find user")
         }
 
-        let userInfo = AuthInfo(userId: userId, displayName: authService.getUserDisplayName())
-        let allUsersInfo = allUsersSortedById.map({ AuthInfo(userId: $0.id, displayName: $0.displayName) })
+        let userDisplayName = authService.getUserDisplayName()
+        let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
+        let allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
         let seed = 161_001
 

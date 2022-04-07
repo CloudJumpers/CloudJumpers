@@ -64,7 +64,7 @@ class GameEngine {
     }
 
     func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
-                   playerInfo: AuthInfo, allPlayersInfo: [AuthInfo]) {
+                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
         setUpEnvironment(cloudPositions: cloudPositions)
         setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
@@ -103,15 +103,15 @@ class GameEngine {
 
     }
 
-    private func setUpPlayers(_ playerInfo: AuthInfo, allPlayersInfo: [AuthInfo]) {
-        metaData.playerId = playerInfo.userId
+    private func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        metaData.playerId = playerInfo.playerId
 
         for (index, info) in allPlayersInfo.enumerated() {
-            let id = info.userId
-            let name = info.displayName ?? ""
+            let id = info.playerId
+            let name = info.displayName
             let character: Entity
 
-            if id == playerInfo.userId {
+            if id == playerInfo.playerId {
                 character = Player(
                     at: Constants.playerInitialPositions[index],
                     texture: .character1,
