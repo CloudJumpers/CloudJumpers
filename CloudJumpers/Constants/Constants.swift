@@ -111,4 +111,7 @@ struct Constants {
     static let disasterPromptDuration = disasterPromptPeriod / Double(disasterPromptLoopCount * 2)
 
     static let disasterPromptLoopCount = 8
+
+    static let nameLabelFontSize = 20.0
+    static let nameLabelRelativePosition = CGPoint(x: 0.0, y: 35.0)
 }

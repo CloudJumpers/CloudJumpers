@@ -7,20 +7,24 @@
 
 import Foundation
 import CoreGraphics
+import SpriteKit
 
 class Player: Entity {
     let id: EntityID
 
     private(set) var position: CGPoint
+    private let name: String
     private let texture: Textures
 
     init(
         at position: CGPoint,
         texture: Textures,
+        name: String,
         with id: EntityID = EntityManager.newEntityID
     ) {
         self.id = id
         self.texture = texture
+        self.name = name
         self.position = position
     }
 
@@ -45,8 +49,25 @@ class Player: Entity {
             forEntityWith: id)
 
         spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
+        createNameLabel(for: spriteComponent)
 
         return spriteComponent
+    }
+
+    private func createNameLabel(for spriteComponent: SpriteComponent) {
+        var displayname = name
+        if displayname.count > 5 {
+            let index = displayname.index(displayname.startIndex, offsetBy: 5)
+            displayname = displayname[..<index] + "..."
+        }
+
+        let labelNode = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        labelNode.text = displayname
+        labelNode.fontSize = Constants.nameLabelFontSize
+        labelNode.position = Constants.nameLabelRelativePosition
+        labelNode.fontColor = .red
+
+        spriteComponent.node.addChild(labelNode)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {

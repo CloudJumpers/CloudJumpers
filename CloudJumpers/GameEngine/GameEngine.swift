@@ -64,10 +64,10 @@ class GameEngine {
     }
 
     func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
-                   playerId: EntityID, allPlayersId: [EntityID]) {
+                   playerInfo: AuthInfo, allPlayersInfo: [AuthInfo]) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
         setUpEnvironment(cloudPositions: cloudPositions)
-        setUpPlayers(playerId, allPlayersId: allPlayersId)
+        setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
         setUpSampleGame()
 
         if rules.isSpawningPowerUp {
@@ -103,22 +103,26 @@ class GameEngine {
 
     }
 
-    private func setUpPlayers(_ playerId: EntityID, allPlayersId: [EntityID]) {
-        metaData.playerId = playerId
+    private func setUpPlayers(_ playerInfo: AuthInfo, allPlayersInfo: [AuthInfo]) {
+        metaData.playerId = playerInfo.userId
 
-        for (index, id) in allPlayersId.enumerated() {
+        for (index, info) in allPlayersInfo.enumerated() {
+            let id = info.userId
+            let name = info.displayName ?? ""
             let character: Entity
 
-            if id == playerId {
+            if id == playerInfo.userId {
                 character = Player(
                     at: Constants.playerInitialPositions[index],
                     texture: .character1,
+                    name: name,
                     with: id)
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],
                     texture: .character1,
+                    name: name,
                     with: id)
             }
             entityManager.add(character)
