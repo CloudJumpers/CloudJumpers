@@ -99,7 +99,12 @@ class GameViewController: UIViewController {
 
         let userDisplayName = authService.getUserDisplayName()
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
-        let allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
+
+        var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
+
+        if lobby?.gameMode == .timeTrial {
+            allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "(shadow)"))
+        }
 
         let seed = 161_001
 
