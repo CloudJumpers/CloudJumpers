@@ -1,33 +1,31 @@
 //
-//  TimeTrialsManager.swift
+//  RaceToTopManager.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 31/3/22.
+//  Created by Sujay R Subramanian on 1/4/22.
 //
 
 import Foundation
 
-class TimeTrialsManager: PostGameManager {
-    private let completionData: TimeTrialData
+class RaceToTopPostGameManager: PostGameManager {
+    private let completionData: RaceToTopData
     private let lobbyId: NetworkID
     private let seed: Int
-    private var requestHandler: PostGameRequestDelegate?
+
+    weak var requestHandler: PostGameRequestDelegate?
+    var callback: PostGameCallback = nil
 
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
 
-    var callback: PostGameCallback = nil
-
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
+        let parameters = "\(seed)/\(urlSafeGameMode(mode: .raceTop))/\(lobbyId)"
         return baseUrl + parameters
     }
 
-    init(_ completionData: TimeTrialData, _ seed: Int, _ lobbyId: NetworkID) {
+    init(_ completionData: RaceToTopData, _ seed: Int, _ lobbyId: NetworkID) {
         self.completionData = completionData
-        self.seed = seed
         self.lobbyId = lobbyId
-        self.requestHandler = RestDelegate()
-        requestHandler?.postGameManager = self
+        self.seed = seed
     }
 
     func submitForRanking() {
@@ -35,6 +33,8 @@ class TimeTrialsManager: PostGameManager {
         data["userId"] = completionData.playerId
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
+        data["kills"] = Int.zero // TODO: get from game
+        data["deaths"] = Int.zero
 
         requestHandler?.submitLocalData(endpoint, data)
     }
@@ -50,26 +50,23 @@ class TimeTrialsManager: PostGameManager {
     private func handleRankingsResponse(_ data: Data) {
         let decoder = JSONDecoder()
 
-        guard let response = try? decoder.decode(TimeTrialResponses.self, from: data) else {
+        guard let response = try? decoder.decode(RaceToTopResponses.self, from: data) else {
             return
         }
 
         rankings.removeAll()
-        response.topGlobalPlayers.forEach { item in
+        response.topLobbyPlayers.forEach { item in
             let completionTimeString = String(format: "%.2f", item.completionTime)
-            let completedAt = Date(timeIntervalSince1970: item.completedAt)
-
-            let formatter = DateFormatter()
-            formatter.dateFormat = PostGameConstants.dateTimeFormat
 
             var rankingRow = IndividualRanking()
 
             rankingRow.setPrimaryField(colName: "Position", value: item.position)
             rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
             rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
-            rankingRow.setPrimaryField(colName: "Completed At", value: formatter.string(from: completedAt))
+            rankingRow.setPrimaryField(colName: "Kills", value: item.kills)
+            rankingRow.setPrimaryField(colName: "Deaths", value: item.deaths)
 
-            if item.lobbyId == lobbyId, completionData.playerId == item.userId {
+            if completionData.playerId == item.userId {
                 rankingRow.setSupportingField(colName: PGKeys.isUserRow, value: true)
             }
 

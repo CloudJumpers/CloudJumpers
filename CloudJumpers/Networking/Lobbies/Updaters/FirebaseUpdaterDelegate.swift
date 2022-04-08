@@ -88,12 +88,12 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         if deleteLobby {
             let lobbyReference = getLobbyReference(lobbyId: lobby.id)
-            let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
+//            let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
             lobbyReference.removeValue()
             // Perform a deferred delete of channel.
             // Provides some grace period for all updates across devices
             // to reach the server first.
-            channelReference.onDisconnectRemoveValue()
+//            channelReference.onDisconnectRemoveValue()
         } else {
             let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
             userReference.removeValue()

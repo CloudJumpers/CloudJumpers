@@ -34,10 +34,10 @@ extension PostGameManager {
     var baseUrl: String {
         var urlString = ""
 
-        urlString += PostGameConstants.webProtocol
-        urlString += PostGameConstants.ipAddress
-        urlString += PostGameConstants.portNum
-        urlString += PostGameConstants.commonPath
+        urlString += LifecycleConstants.webProtocol
+        urlString += LifecycleConstants.ipAddress
+        urlString += LifecycleConstants.portNum
+        urlString += LifecycleConstants.commonPath
 
         return urlString
     }

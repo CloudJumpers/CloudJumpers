@@ -164,7 +164,11 @@ class GameViewController: UIViewController {
                 completionTime: playerEndTime
             )
 
-            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001, activeLobby.id)
+            let timeTrialManager = TimeTrialPostGameManager(gameCompletionData, 161_001, activeLobby.id)
+            let requestDelegate = PostGameRestDelegate()
+            timeTrialManager.requestHandler = requestDelegate
+            requestDelegate.postGameManager = timeTrialManager
+
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
         case .raceTop:
             let gameCompletionData = RaceToTopData(
@@ -173,7 +177,11 @@ class GameViewController: UIViewController {
                 completionTime: playerEndTime
             )
 
-            let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
+            let raceToTopManager = RaceToTopPostGameManager(gameCompletionData, 161_001, activeLobby.id)
+            let requestDelegate = PostGameRestDelegate()
+            raceToTopManager.requestHandler = requestDelegate
+            requestDelegate.postGameManager = raceToTopManager
+
             performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
         }
 
