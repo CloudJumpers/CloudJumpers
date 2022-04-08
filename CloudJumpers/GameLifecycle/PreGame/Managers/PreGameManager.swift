@@ -10,7 +10,7 @@ import Foundation
 typealias fetchTopLobbyCallback = () -> NetworkID
 
 protocol PreGameManager: AnyObject {
-    func fetchTopLobbyId() -> fetchTopLobbyCallback
+    func getEventHandlers() -> RemoteEventHandlers
 }
 
 extension PreGameManager {

@@ -24,10 +24,10 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  inChargeID: NetworkID?, channel: NetworkID? = nil ) {
+                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        eventManager = EventManager(channel: channel)
+        eventManager = EventManager(handlers: handlers)
         contactResolver = ContactResolver(to: eventManager)
         self.rules = rules
         systems = []

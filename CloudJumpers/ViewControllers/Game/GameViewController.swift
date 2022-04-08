@@ -9,6 +9,7 @@ class GameViewController: UIViewController {
     private var isMovingToPostGame = false
 
     var lobby: GameLobby?
+    var handlers: RemoteEventHandlers?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +28,29 @@ class GameViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         gameEngine = nil
+        handlers = nil
         scene = nil
         joystick = nil
     }
 
     private func setUpSynchronizedStart() {
-        lobby?.synchronizer?.updateCallback(setUpGame)
+        guard let activeLobby = lobby else {
+            return
+        }
+
+        switch activeLobby.gameMode {
+        case .timeTrial:
+            handlers = TimeTrialPreGameManager(activeLobby.id, 161_001).getEventHandlers()
+            activeLobby.synchronizer?.updateCallback(setUpGame)
+        case .raceTop:
+            handlers = RaceToTopPreGameManager(activeLobby.id).getEventHandlers()
+            activeLobby.synchronizer?.updateCallback(setUpGame)
+        }
     }
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        guard let mode = lobby?.gameMode else {
+        guard let mode = lobby?.gameMode, let handlers = handlers else {
             return
         }
         let gameRules: GameRules
@@ -51,13 +64,13 @@ class GameViewController: UIViewController {
             rendersTo: self,
             rules: gameRules,
             inChargeID: lobby?.hostId,
-            channel: lobby?.id)
+            handlers: handlers
+        )
 
         setUpGameScene()
         setUpGameEngine()
         setUpInputControls()
         setUpSKViewAndPresent()
-
     }
 
     private func setUpGameScene() {

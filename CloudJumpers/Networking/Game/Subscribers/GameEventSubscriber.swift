@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol GameEventSubscriber {
+protocol GameEventSubscriber: AnyObject {
     var eventManager: EventManager? { get set }
 }
