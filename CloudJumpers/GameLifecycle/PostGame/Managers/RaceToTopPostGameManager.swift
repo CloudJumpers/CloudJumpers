@@ -12,7 +12,7 @@ class RaceToTopPostGameManager: PostGameManager {
     private let lobbyId: NetworkID
     private let seed: Int
 
-    weak var requestHandler: PostGameRequestDelegate?
+    private var requestHandler: PostGameRequestDelegate?
     var callback: PostGameCallback = nil
 
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
@@ -26,6 +26,8 @@ class RaceToTopPostGameManager: PostGameManager {
         self.completionData = completionData
         self.lobbyId = lobbyId
         self.seed = seed
+        self.requestHandler = PostGameRestDelegate()
+        self.requestHandler?.postGameManager = self
     }
 
     func submitForRanking() {

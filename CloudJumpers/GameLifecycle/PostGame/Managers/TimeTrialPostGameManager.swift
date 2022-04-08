@@ -12,11 +12,10 @@ class TimeTrialPostGameManager: PostGameManager {
     private let lobbyId: NetworkID
     private let seed: Int
 
-    weak var requestHandler: PostGameRequestDelegate?
+    private var requestHandler: PostGameRequestDelegate?
+    var callback: PostGameCallback = nil
 
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
-
-    var callback: PostGameCallback = nil
 
     private var endpoint: String {
         let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
@@ -27,6 +26,8 @@ class TimeTrialPostGameManager: PostGameManager {
         self.completionData = completionData
         self.seed = seed
         self.lobbyId = lobbyId
+        self.requestHandler = PostGameRestDelegate()
+        self.requestHandler?.postGameManager = self
     }
 
     func submitForRanking() {

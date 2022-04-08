@@ -11,7 +11,7 @@ import Foundation
 /// requesting for data for a PostGameManager to
 /// consume.
 class PostGameRestDelegate: PostGameRequestDelegate {
-    var postGameManager: PostGameManager?
+    weak var postGameManager: PostGameManager?
 
     private var pollTimer: Timer?
 
