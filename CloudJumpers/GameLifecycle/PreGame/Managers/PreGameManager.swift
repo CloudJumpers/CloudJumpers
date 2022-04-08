@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias fetchTopLobbyCallback = () -> NetworkID
-
 protocol PreGameManager: AnyObject {
     func getEventHandlers() -> RemoteEventHandlers
 }
