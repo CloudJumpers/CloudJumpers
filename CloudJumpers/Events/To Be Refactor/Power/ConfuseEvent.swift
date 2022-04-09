@@ -26,19 +26,18 @@ struct ConfuseEvent: Event {
         self.location = location
     }
 
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         let targets = playersWithinRange(in: entityManager)
         let effectEntity = createEffectAndAdd(into: &supplier)
-        entityManager.add(effectEntity)
+        target.add(effectEntity)
 
         targets.forEach { supplier.add(SwapMoveEffector(on: $0, watching: effectEntity)) }
     }
 
     private func createEffectAndAdd(into supplier: inout Supplier) -> Entity {
-        let effect = PowerUpEffect(.confuse, at: location)
-        supplier.add(RemoveEntityEvent(effect.id, after: Constants.powerUpEffectDuration))
-        supplier.add(BlinkEffectEvent(
-            on: effect.id,
+        let effect = PowerUpEffect(.confuse, at: location, intervalToRemove: Constants.powerUpEffectDuration)
+        supplier.add(BlinkEvent(
+            onEntityWith: effect.id,
             duration: Constants.powerUpEffectDuration / 10,
             numberOfLoop: 5))
 

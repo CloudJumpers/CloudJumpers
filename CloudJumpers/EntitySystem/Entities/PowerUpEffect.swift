@@ -12,16 +12,24 @@ class PowerUpEffect: Entity {
 
     private var position: CGPoint
     private var kind: PowerUpComponent.Kind
+    private let intervalToRemove: TimeInterval
 
-    init(_ kind: PowerUpComponent.Kind, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+
+    init(_ kind: PowerUpComponent.Kind,
+         at position: CGPoint,
+         intervalToRemove: TimeInterval,
+         with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.kind = kind
         self.position = position
+        self.intervalToRemove = intervalToRemove
     }
 
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let timedComponent = createTimedComponent()
+        let timedRemovalComponent = createRemoveComponent()
+        manager.addComponent(timedRemovalComponent, to: self)
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(timedComponent, to: self)
@@ -40,5 +48,9 @@ class PowerUpEffect: Entity {
 
     private func createTimedComponent() -> TimedComponent {
         TimedComponent()
+    }
+    
+    private func createRemoveComponent() -> TimedRemovalComponent {
+        TimedRemovalComponent(timeToRemove: intervalToRemove)
     }
 }
