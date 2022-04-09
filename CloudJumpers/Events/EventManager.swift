@@ -34,8 +34,8 @@ class EventManager {
         effectors.append(effector)
     }
 
-    func executeAll(in entityManager: EntityManager) {
-        validateEffectors(in: entityManager)
+    func executeAll(in target: EventModifiable) {
+        validateEffectors(in: target)
 
         var counter = events.count
         var deferredEvents: [Event] = []
@@ -45,11 +45,11 @@ class EventManager {
                 fatalError("EventManager.executeAll(in:) dequeued an empty EventQueue")
             }
 
-            if event.shouldExecute(in: entityManager) {
+            if event.shouldExecute(in: target) {
                 event = transformEvent(event)
 
                 var supplier = Supplier()
-                event.execute(in: entityManager, thenSuppliesInto: &supplier)
+                event.execute(in: target, thenSuppliesInto: &supplier)
                 let newEventsCount = supply(from: supplier)
 
                 counter += newEventsCount
@@ -107,8 +107,8 @@ class EventManager {
         return supplier.events.count
     }
 
-    private func validateEffectors(in entityManager: EntityManager) {
-        effectors.removeAll { $0.shouldDetach(in: entityManager) }
+    private func validateEffectors(in target: EventModifiable) {
+        effectors.removeAll { $0.shouldDetach(in: target) }
     }
 
     private func transformEvent(_ event: Event) -> Event {
