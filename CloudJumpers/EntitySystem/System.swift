@@ -8,8 +8,13 @@
 import CoreGraphics
 
 protocol System: AnyObject {
-    var manager: EntityManager? { get set }
+    var active: Bool { get set }
 
     init(for manager: EntityManager)
-    func update(within time: CGFloat)
+    func shouldUpdate(within time: CGFloat, in entityManager: EntityManager) -> Bool
+    func update(within time: CGFloat, in entityManager: EntityManager)
+}
+
+extension System {
+    func shouldUpdate(within time: CGFloat, in entityManager: EntityManager) -> Bool { true }
 }
