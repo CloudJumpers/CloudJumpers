@@ -8,26 +8,34 @@
 import Foundation
 
 class EntityManager {
-    typealias EntitiesMap = [EntityID: Entity]
-    typealias ComponentsMap = [ComponentID: Component]
-    typealias EntitiesComponentsMap = [EntityID: Set<ComponentID>]
+    typealias EntityMap = [EntityID: Entity]
+    typealias ComponentMap = [ComponentID: Component]
+    typealias EntityComponentMap = [EntityID: Set<ComponentID>]
 
-    private var entities: EntitiesMap
-    private var components: ComponentsMap
-    private var entitiesComponents: EntitiesComponentsMap
+    private var entities: EntityMap
+    private var components: ComponentMap
+    private var entitiesComponents: EntityComponentMap
+    private var systemManager: SystemManager
+    private var eventManager: EventManager
+
     var subscriber: GameEventSubscriber?
     var publisher: GameEventPublisher?
 
     init() {
-        entities = [:]
-        components = [:]
-        entitiesComponents = [:]
+        entities = EntityMap()
+        components = ComponentMap()
+        entitiesComponents = EntityComponentMap()
+        systemManager = SystemManager()
+        eventManager = EventManager()
     }
 
-    var iterableEntities: EntitiesMap.Values {
-        entities.values
+    // MARK: - Lifecycle Methods
+    func update(within time: TimeInterval) {
+        systemManager.update(within: time, in: self)
+        eventManager.executeAll(in: self)
     }
 
+    // MARK: - Entity Modifiers
     func add(_ entity: Entity) {
         entities[entity.id] = entity
         setUpAndAdd(entity)
@@ -50,6 +58,7 @@ class EntityManager {
         entities[entityID]
     }
 
+    // MARK: - Component Modifiers
     func component<T: Component>(ofType type: T.Type, of entity: Entity) -> T? {
         guard let componentIds = entitiesComponents[entity.id] else {
             return nil
@@ -110,7 +119,7 @@ class EntityManager {
     }
 }
 
-// MARK: - EntityID and ComponentID Generation
+// MARK: - EntityID and ComponentID Generators
 extension EntityManager {
     static var newEntityID: EntityID {
         UUID().uuidString
@@ -134,4 +143,19 @@ extension EntityManager: EventModifiable {
 
 // MARK: - EventDispatcher
 extension EntityManager: EventDispatcher {
+}
+
+// MARK: - Simulatable
+extension EntityManager: Simulatable {
+    func entitiesToRender() -> [Entity] {
+        Array(entities.values)
+    }
+
+    func handleContact(between entityAID: EntityID, and entityBID: EntityID) {
+        guard let entityA = entity(with: entityAID),
+              let entityB = entity(with: entityBID)
+        else { fatalError("An unassociated EntityID was present in EntityManager") }
+
+        entityA.collides(with: entityB)
+    }
 }
