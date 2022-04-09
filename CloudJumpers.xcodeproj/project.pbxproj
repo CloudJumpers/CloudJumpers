@@ -219,7 +219,7 @@
 		A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */; };
 		A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */; };
 		A1D786812801ED0200C5CE49 /* RuleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786802801ED0200C5CE49 /* RuleSystem.swift */; };
-		A1D786832801EE0100C5CE49 /* PlayerStateSynchonizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786822801EE0100C5CE49 /* PlayerStateSynchonizer.swift */; };
+		A1D786832801EE0100C5CE49 /* PlayerStateSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786822801EE0100C5CE49 /* PlayerStateSynchronizer.swift */; };
 		A1D786852801EE1A00C5CE49 /* PlayerTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786842801EE1A00C5CE49 /* PlayerTag.swift */; };
 		A1D786872801FABB00C5CE49 /* AnimateSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786862801FABB00C5CE49 /* AnimateSystem.swift */; };
 		A1D786892801FF6700C5CE49 /* RemoveOutOfBoundTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */; };
@@ -462,7 +462,7 @@
 		A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnSystem.swift; sourceTree = "<group>"; };
 		A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSpawnSystem.swift; sourceTree = "<group>"; };
 		A1D786802801ED0200C5CE49 /* RuleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleSystem.swift; sourceTree = "<group>"; };
-		A1D786822801EE0100C5CE49 /* PlayerStateSynchonizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateSynchonizer.swift; sourceTree = "<group>"; };
+		A1D786822801EE0100C5CE49 /* PlayerStateSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateSynchronizer.swift; sourceTree = "<group>"; };
 		A1D786842801EE1A00C5CE49 /* PlayerTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTag.swift; sourceTree = "<group>"; };
 		A1D786862801FABB00C5CE49 /* AnimateSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSystem.swift; sourceTree = "<group>"; };
 		A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveOutOfBoundTag.swift; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 				A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */,
 				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
 				A1D786802801ED0200C5CE49 /* RuleSystem.swift */,
-				A1D786822801EE0100C5CE49 /* PlayerStateSynchonizer.swift */,
+				A1D786822801EE0100C5CE49 /* PlayerStateSynchronizer.swift */,
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
 				A1D7868C2802074100C5CE49 /* EffectSystem.swift */,
 			);
@@ -1491,7 +1491,7 @@
 				A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */,
 				93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */,
 				1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */,
-				A1D786832801EE0100C5CE49 /* PlayerStateSynchonizer.swift in Sources */,
+				A1D786832801EE0100C5CE49 /* PlayerStateSynchronizer.swift in Sources */,
 				1AAB1E0D27FF0EDD00378382 /* Collidable.swift in Sources */,
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,

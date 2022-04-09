@@ -10,9 +10,9 @@ import CoreGraphics
 
 struct JumpEvent: Event {
     var timestamp: TimeInterval
-    
+
     var entityID: EntityID
-    
+
     let jumpImpulse: CGVector
 
     init(onEntityWith id: EntityID, by impulse: CGVector = Constants.jumpImpulse) {
@@ -26,7 +26,7 @@ struct JumpEvent: Event {
         self.timestamp = timestamp
         jumpImpulse = impulse
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let physicsSystem = target.system(ofType: PhysicsSystem.self) else {
             return

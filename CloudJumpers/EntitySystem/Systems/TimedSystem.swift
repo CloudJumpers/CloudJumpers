@@ -8,8 +8,8 @@
 import SpriteKit
 
 class TimedSystem: System {
-    var active: Bool = true
-    
+    var active = true
+
     unowned var manager: EntityManager?
 
     required init(for manager: EntityManager) {

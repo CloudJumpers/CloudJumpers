@@ -13,7 +13,7 @@ struct MoveEvent: Event {
     let entityID: EntityID
 
     let displacement: CGVector
-    
+
     init(onEntityWith id: EntityID, by displacement: CGVector) {
         timestamp = EventManager.timestamp
         entityID = id
@@ -25,13 +25,12 @@ struct MoveEvent: Event {
         self.timestamp = timestamp
         self.displacement = displacement
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let positionSystem = target.system(ofType: PositionSystem.self) else {
             return
         }
         positionSystem.movePosition(for: entityID, by: displacement)
     }
-    
-    
+
 }

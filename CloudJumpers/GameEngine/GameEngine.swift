@@ -197,8 +197,6 @@ class GameEngine {
 
     }
 
-
-
     // MARK: Temporary time update method
     private func updateTime() {
         guard let timer = timer,
@@ -249,7 +247,7 @@ extension GameEngine: InputResponder {
         else {
             return
         }
-        
+
         let playerMoveEvent = MoveEvent(on: entity, by: displacement)
             .then(do: SoundEvent(onEntityWith: entity.id, soundName: .walking))
 

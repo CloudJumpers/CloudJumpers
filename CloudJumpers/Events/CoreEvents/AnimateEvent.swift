@@ -9,9 +9,9 @@ import Foundation
 
 struct AnimateEvent: Event {
     var timestamp: TimeInterval
-    
+
     var entityID: EntityID
-    
+
     private let kind: TextureFrame
 
     init(onEntityWith id: EntityID, to kind: TextureFrame) {
@@ -20,13 +20,11 @@ struct AnimateEvent: Event {
         self.kind = kind
     }
 
-    
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let animateSystem = target.system(ofType: AnimateSystem.self) else {
             return
         }
         animateSystem.changeAnimation(for: entityID, to: kind)
     }
-    
-    
+
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // MARK: Adopt from previous remove event
 class TimedRemovalComponent: Component {
     let timeToRemove: TimeInterval

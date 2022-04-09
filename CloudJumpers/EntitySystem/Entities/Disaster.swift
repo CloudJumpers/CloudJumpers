@@ -29,7 +29,7 @@ class Disaster: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(removeOutOfBoundTag, to: self)
-        
+
     }
 
     private func createSpriteComponent() -> SpriteComponent {

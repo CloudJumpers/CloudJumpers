@@ -8,19 +8,17 @@
 import Foundation
 import CoreGraphics
 
+class DisasterSpawnSystem: System {
+    var active = true
 
-class DisasterSpawnSystem : System {
-    var active: Bool = true
-    
     unowned var manager: EntityManager?
 
     required init(for manager: EntityManager) {
         self.manager = manager
     }
 
-    
     func update(within time: CGFloat) {
-        let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y) 
+        let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y)
         let disasterId = EntityManager.newEntityID
         let localDisasterStart = DisasterStartEvent(
              position: eventInfo.position,

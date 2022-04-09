@@ -9,14 +9,14 @@ import Foundation
 import CoreGraphics
 
 class PhysicsSystem: System {
-    var active: Bool = true
-    
+    var active = true
+
     unowned var manager: EntityManager?
 
     required init(for manager: EntityManager) {
         self.manager = manager
     }
-    
+
     func update(within time: CGFloat) {
         guard let physicsComponents = manager?.components(ofType: PhysicsComponent.self) else {
             return
@@ -25,8 +25,8 @@ class PhysicsSystem: System {
             component.impulse = CGVector.zero
         }
     }
-    
-    func applyImpulse(for id: EntityID,  impulse: CGVector) {
+
+    func applyImpulse(for id: EntityID, impulse: CGVector) {
         guard let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: id) else {
             return
         }

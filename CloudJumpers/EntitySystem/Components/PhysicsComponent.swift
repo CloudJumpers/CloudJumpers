@@ -14,7 +14,7 @@ class PhysicsComponent: Component {
     var allowsRotation = false
     var restitution: CGFloat = 0
     var impulse = CGVector.zero
-    
+
     // TODO: PhysicsCollision, PhysicsContactTest
     var categoryBitMask: PhysicsCategory = .max
     var collisionBitMask: PhysicsCategory = .max

@@ -65,8 +65,7 @@ class Renderer {
 
         node.position = positionComponent.position
     }
-    
-    
+
     // MARK: Update based on component
     private func updatePosition(entity: Entity) {
         guard let node = entityNode[entity.id],
@@ -75,21 +74,21 @@ class Renderer {
 
         node.position = positionComponent.position
     }
-    
+
     private func updatePhysics(entity: Entity) {
         guard let node = entityNode[entity.id],
               let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity)
         else { return }
-        
+
         node.physicsBody?.applyImpulse(physicsComponent.impulse)
     }
-    
+
     private func updateAnimation(entity: Entity) {
         guard let node = entityNode[entity.id],
               let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
               let animation = animationComponent.textures
         else { return }
-        
+
         node.animate(with: animation, interval: 0.1)
     }
 

@@ -10,11 +10,11 @@ import CoreGraphics
 
 struct RepositionEvent: Event {
     var timestamp: TimeInterval
-    
+
     var entityID: EntityID
-    
+
     let newPosition: CGPoint
-    
+
     init(onEntityWith id: EntityID, to newPosition: CGPoint) {
         timestamp = EventManager.timestamp
         entityID = id
@@ -26,13 +26,12 @@ struct RepositionEvent: Event {
         self.timestamp = timestamp
         self.newPosition = newPosition
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let positionSystem = target.system(ofType: PositionSystem.self) else {
             return
         }
         positionSystem.changePosition(for: entityID, to: newPosition)
     }
-    
-    
+
 }

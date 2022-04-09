@@ -8,25 +8,23 @@
 import Foundation
 import CoreGraphics
 
-class AnimateSystem : System {
-    var active: Bool = true
-    
+class AnimateSystem: System {
+    var active = true
+
     unowned var manager: EntityManager?
 
     required init(for manager: EntityManager) {
         self.manager = manager
     }
-    
+
     func update(within time: CGFloat) {
-        return
-    }
-    
-    func changeAnimation(for id: EntityID,  to kind: TextureFrame) {
+        }
+
+    func changeAnimation(for id: EntityID, to kind: TextureFrame) {
         guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: id) else {
             return
         }
         animationComponent.textures = [kind]
     }
-    
-    
+
 }

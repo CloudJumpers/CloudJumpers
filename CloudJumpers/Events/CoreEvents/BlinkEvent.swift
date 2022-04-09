@@ -9,7 +9,7 @@ import Foundation
 
 struct BlinkEvent: Event {
     var timestamp: TimeInterval
-    
+
     var entityID: EntityID
 
     private var duration: Double
@@ -21,10 +21,8 @@ struct BlinkEvent: Event {
         self.duration = duration
         self.numberOfLoop = numberOfLoop
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
-    }
-    
-    
+        }
+
 }

@@ -15,8 +15,8 @@ class DisasterPrompt: Entity {
 
     init(_ kind: DisasterComponent.Kind,
          at position: CGPoint,
-         with id: EntityID = EntityManager.newEntityID,
-         intervalToRemove: TimeInterval
+         intervalToRemove: TimeInterval,
+         with id: EntityID = EntityManager.newEntityID
     ) {
 
         self.id = id
@@ -31,7 +31,7 @@ class DisasterPrompt: Entity {
 
         let timedComponent = createTimedComponent()
         manager.addComponent(timedComponent, to: self)
-        
+
         let timedRemovalComponent = createRemoveComponent()
         manager.addComponent(timedRemovalComponent, to: self)
     }
@@ -52,7 +52,7 @@ class DisasterPrompt: Entity {
     private func createTimedComponent() -> TimedComponent {
         TimedComponent()
     }
-    
+
     private func createRemoveComponent() -> TimedRemovalComponent {
         TimedRemovalComponent(timeToRemove: intervalToRemove)
     }
