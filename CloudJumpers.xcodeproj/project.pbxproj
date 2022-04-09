@@ -225,6 +225,7 @@
 		A1D786892801FF6700C5CE49 /* RemoveOutOfBoundTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */; };
 		A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */; };
 		A1D7868D2802074100C5CE49 /* EffectSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868C2802074100C5CE49 /* EffectSystem.swift */; };
+		A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868F280209D500C5CE49 /* ObtainEvent.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -468,6 +469,7 @@
 		A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveOutOfBoundTag.swift; sourceTree = "<group>"; };
 		A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedRemovalComponent.swift; sourceTree = "<group>"; };
 		A1D7868C2802074100C5CE49 /* EffectSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectSystem.swift; sourceTree = "<group>"; };
+		A1D7868F280209D500C5CE49 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1116,6 +1118,7 @@
 			children = (
 				A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */,
 				A1D7866F2801CDE300C5CE49 /* UpdatePlayerEvent.swift */,
+				A1D7868F280209D500C5CE49 /* ObtainEvent.swift */,
 			);
 			path = PlayerEvents;
 			sourceTree = "<group>";
@@ -1515,6 +1518,7 @@
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
+				A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */,
 				9385D9BE27F7349100593930 /* RestDelegate.swift in Sources */,
 				3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,

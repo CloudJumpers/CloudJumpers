@@ -8,6 +8,7 @@
 import Foundation
 import CoreGraphics
 
+// TODO: Use this instead of GameRules
 class RuleSystem: System {
     var active = true
 

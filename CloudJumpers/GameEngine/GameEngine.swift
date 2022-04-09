@@ -38,9 +38,6 @@ class GameEngine {
     func update(within time: CGFloat) {
         updateEntityManager(within: time)
         updateTime()
-        if rules.isSpawningDisaster {
-            generateDisaster()
-        }
     }
 
     func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, on channel: NetworkID?) {
@@ -145,23 +142,7 @@ class GameEngine {
     }
 
     private func syncToOtherDevices() {
-        guard let entity = associatedEntity,
-              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else {
-            return
-        }
-
-        // TODO: Change after new way of getting sprite position
-        let playerPosition = spriteComponent.node.position
-        let playerTexture = animationComponent.kind
-        let positionalUpdate = ExternalRepositionEvent(
-            positionX: playerPosition.x,
-            positionY: playerPosition.y,
-            texture: playerTexture.rawValue
-        )
-
-        eventManager.publish(positionalUpdate)
+        
     }
 
     // MARK: - Temporary methods to abstract

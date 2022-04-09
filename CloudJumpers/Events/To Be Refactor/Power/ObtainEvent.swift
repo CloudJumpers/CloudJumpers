@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ObtainEvent: Event {
+struct OldObtainEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
