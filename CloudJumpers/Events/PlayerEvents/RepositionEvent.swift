@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct RepositionEvent: Event {
+struct OldRepositionEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 

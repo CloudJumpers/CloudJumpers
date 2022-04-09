@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AnimateEvent: Event {
+struct OldAnimateEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 

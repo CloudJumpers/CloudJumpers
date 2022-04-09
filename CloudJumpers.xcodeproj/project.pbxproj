@@ -221,6 +221,9 @@
 		A1D7865D28018CC300C5CE49 /* RemoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */; };
 		A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866028018E2C00C5CE49 /* SoundEvent.swift */; };
 		A1D7866428018FED00C5CE49 /* MoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866328018FED00C5CE49 /* MoveEvent.swift */; };
+		A1D786662801922300C5CE49 /* JumpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786652801922300C5CE49 /* JumpEvent.swift */; };
+		A1D786682801931600C5CE49 /* RepositionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786672801931600C5CE49 /* RepositionEvent.swift */; };
+		A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786692801942500C5CE49 /* AnimateEvent.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -460,6 +463,9 @@
 		A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSystem.swift; sourceTree = "<group>"; };
 		A1D7866028018E2C00C5CE49 /* SoundEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEvent.swift; sourceTree = "<group>"; };
 		A1D7866328018FED00C5CE49 /* MoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveEvent.swift; sourceTree = "<group>"; };
+		A1D786652801922300C5CE49 /* JumpEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpEvent.swift; sourceTree = "<group>"; };
+		A1D786672801931600C5CE49 /* RepositionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositionEvent.swift; sourceTree = "<group>"; };
+		A1D786692801942500C5CE49 /* AnimateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEvent.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1132,10 +1138,10 @@
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				1AB6F2D027F98F57004BF6AF /* Effector.swift */,
 				1AB6F2D727F9A15F004BF6AF /* Supplier.swift */,
+				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 				A108AB4F27E5070E003157E8 /* EventManager.swift */,
 				1AAB1E222800327600378382 /* EventModifiable.swift */,
 				1A24DC1A28016BE900E48B64 /* EventDispatcher.swift */,
-				1A94D96E27EEB360001D8A86 /* AnimateEvent.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1185,6 +1191,9 @@
 			children = (
 				A1D7866028018E2C00C5CE49 /* SoundEvent.swift */,
 				A1D7866328018FED00C5CE49 /* MoveEvent.swift */,
+				A1D786652801922300C5CE49 /* JumpEvent.swift */,
+				A1D786672801931600C5CE49 /* RepositionEvent.swift */,
+				A1D786692801942500C5CE49 /* AnimateEvent.swift */,
 			);
 			path = CoreEvents;
 			sourceTree = "<group>";
@@ -1460,6 +1469,7 @@
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */,
 				3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */,
+				A1D786662801922300C5CE49 /* JumpEvent.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */,
 				A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */,
@@ -1557,6 +1567,7 @@
 				3EA7C86127F7F627009BCA63 /* BlinkEffectEvent.swift in Sources */,
 				3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
+				A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */,
 				1AAB1E2128002F0A00378382 /* SystemManager.swift in Sources */,
 				3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
@@ -1564,6 +1575,7 @@
 				936228E927F602F700BB05FE /* TimeTrialsManager.swift in Sources */,
 				936228EB27F6046200BB05FE /* PostGameConstants.swift in Sources */,
 				3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */,
+				A1D786682801931600C5CE49 /* RepositionEvent.swift in Sources */,
 				3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */,
 				936228DE27F5D4C200BB05FE /* IndividualRanking.swift in Sources */,
 				1AAB1E1727FF14A400378382 /* Floor+Collidable.swift in Sources */,

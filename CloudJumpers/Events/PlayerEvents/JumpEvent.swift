@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-struct JumpEvent: Event {
+struct OldJumpEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
     let jumpImpulse: CGVector
