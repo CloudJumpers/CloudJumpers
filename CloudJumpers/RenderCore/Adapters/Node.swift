@@ -49,9 +49,19 @@ class Node {
         nodeCore.addChild(node.nodeCore)
     }
 
-    func caption(with label: String) {
-        // TODO: Style this caption up
-        let captionNodeCore = SKLabelNode(text: label)
+    func caption(with label: String, maxLen: Int, color: UIColor = .black) {
+        var label = label
+        if label.count > maxLen {
+            let index = label.index(label.startIndex, offsetBy: maxLen)
+            label = label[..<index] + "..."
+        }
+
+        let captionNodeCore = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        captionNodeCore.text = label
+        captionNodeCore.fontSize = Constants.captionFontSize
+        captionNodeCore.position = Constants.captionRelativePosition
+        captionNodeCore.fontColor = color
+
         nodeCore.addChild(captionNodeCore)
         self.captionNodeCore = captionNodeCore
     }

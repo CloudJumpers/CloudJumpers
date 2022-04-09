@@ -112,7 +112,7 @@ struct Constants {
 
     static let disasterPromptLoopCount = 8
 
-    static let nameLabelFontSize = 20.0
-    static let nameLabelRelativePosition = CGPoint(x: 0.0, y: 35.0)
+    static let captionFontSize = 20.0
+    static let captionRelativePosition = CGPoint(x: 0.0, y: 35.0)
     static let playerDisplaynameSize = 5
 }
