@@ -38,11 +38,14 @@ struct RepositionEvent: Event {
         let displacement = CGVector(
             dx: nextPosition.x - spriteComponent.node.position.x,
             dy: nextPosition.y - spriteComponent.node.position.y
+
         )
-        if displacement.dx != 0 {
-            spriteComponent.node.xScale = abs(spriteComponent.node.xScale) * (displacement.dx / abs(displacement.dx) )
+
+        if abs(displacement.dx) >= 0.1 {
+            spriteComponent.node.xScale = (displacement.dx / abs(displacement.dx) )
+            spriteComponent.node.children.forEach({ $0.xScale = (displacement.dx / abs(displacement.dx) ) })
         }
-        spriteComponent.node.run(.move(by: displacement, duration: 0.1))
+        spriteComponent.node.run(.move(by: displacement, duration: 0.05))
         animationComponent.kind = kind
     }
 }

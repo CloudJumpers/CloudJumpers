@@ -126,6 +126,7 @@
 		3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */; };
 		3EA7C88B27F95970009BCA63 /* PowerUpCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */; };
 		3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */; };
+		3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */; };
@@ -356,6 +357,7 @@
 		3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEntityCommand.swift; sourceTree = "<group>"; };
 		3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpCollideEvent.swift; sourceTree = "<group>"; };
 		3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullJumpEffector.swift; sourceTree = "<group>"; };
+		3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -1172,6 +1174,7 @@
 			children = (
 				A1409A2A27ECB611000008E8 /* GameRules */,
 				1AC1605227F2F56D006E4018 /* GameEngine.swift */,
+				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 				9359ABB227E0465A00D85899 /* GameMode.swift */,
 				A108AB4B27E5033B003157E8 /* ContactResolver.swift */,
 				A1409A2D27ECB69B000008E8 /* GameMetaData.swift */,
@@ -1580,6 +1583,7 @@
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
 				931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */,
 				93360B8B27EC8AA700808295 /* GameEventCommand.swift in Sources */,
+				3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */,
 				1A94D96627EE0EF2001D8A86 /* JumpEvent.swift in Sources */,
 				1AAB1E1127FF124800378382 /* Player+Collidable.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,

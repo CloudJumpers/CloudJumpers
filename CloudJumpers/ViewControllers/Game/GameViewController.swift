@@ -77,11 +77,16 @@ class GameViewController: UIViewController {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
 
-        guard let userId = AuthService().getUserId(),
-              let allUsersSortedById = lobby?.orderedValidUsers.map({ $0.id })
+        let authService = AuthService()
+        guard let userId = authService.getUserId(),
+              let allUsersSortedById = lobby?.orderedValidUsers
         else {
             fatalError("Cannot find user")
         }
+
+        let userDisplayName = authService.getUserDisplayName()
+        let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
+        let allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
         let seed = 161_001
 
@@ -106,8 +111,8 @@ class GameViewController: UIViewController {
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,
             powerUpBlueprint: powerUpBlueprint,
-            playerId: userId,
-            allPlayersId: allUsersSortedById)
+            playerInfo: userInfo,
+            allPlayersInfo: allUsersInfo)
 
     }
 

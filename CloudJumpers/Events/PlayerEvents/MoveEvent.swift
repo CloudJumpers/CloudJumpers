@@ -37,8 +37,10 @@ struct MoveEvent: Event {
 
         if displacement.dx < 0 {
             spriteComponent.node.xScale = -abs(spriteComponent.node.xScale)
+            spriteComponent.node.children.forEach { $0.xScale = -abs(spriteComponent.node.xScale) }
         } else if displacement.dx > 0 {
             spriteComponent.node.xScale = abs(spriteComponent.node.xScale)
+            spriteComponent.node.children.forEach { $0.xScale = abs(spriteComponent.node.xScale) }
         }
 
         SoundManager.instance.play(.walking)

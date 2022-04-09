@@ -57,20 +57,21 @@ class RaceToTopManager: PostGameManager {
         }
 
         rankings.removeAll()
-        response.topLobbyPlayers.enumerated().forEach { index, item in
-            var columns = [PostGameColumnKey: String]()
-
+        response.topLobbyPlayers.forEach { item in
             let completionTimeString = String(format: "%.2f", item.completionTime)
 
-            columns[PostGameColumnKey(order: 1, description: "Name")] = item.userDisplayName
-            columns[PostGameColumnKey(order: 2, description: "Completion Time")] = completionTimeString
-            columns[PostGameColumnKey(order: 3, description: "Kills")] = "\(item.kills)"
-            columns[PostGameColumnKey(order: 4, description: "Deaths")] = "\(item.deaths)"
+            var rankingRow = IndividualRanking()
 
-            let rankingRow = IndividualRanking(
-                position: index + 1,
-                characteristics: columns
-            )
+            rankingRow.setPrimaryField(colName: "Position", value: item.position)
+            rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
+            rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
+            rankingRow.setPrimaryField(colName: "Kills", value: item.kills)
+            rankingRow.setPrimaryField(colName: "Deaths", value: item.deaths)
+
+            if completionData.playerId == item.userId {
+                rankingRow.setSupportingField(colName: PGKeys.isUserRow, value: true)
+            }
+
             rankings.append(rankingRow)
         }
 

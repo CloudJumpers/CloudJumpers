@@ -27,6 +27,7 @@ struct RespawnEvent: Event {
     }
 
     func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
+
         guard let entity = entityManager.entity(with: entityID),
               let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
         else { return }
