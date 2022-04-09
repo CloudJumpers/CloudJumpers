@@ -15,6 +15,8 @@ class EntityManager {
     private var entities: EntitiesMap
     private var components: ComponentsMap
     private var entitiesComponents: EntitiesComponentsMap
+    var subscriber: GameEventSubscriber?
+    var publisher: GameEventPublisher?
 
     init() {
         entities = [:]
@@ -128,4 +130,8 @@ extension EntityManager: EventModifiable {
     func system<T: System>(ofType type: T.Type) -> T? {
         systemManager.system(ofType: T.self)
     }
+}
+
+// MARK: - EventDispatcher
+extension EntityManager: EventDispatcher {
 }
