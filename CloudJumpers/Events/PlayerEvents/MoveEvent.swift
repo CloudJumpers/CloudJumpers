@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 import SpriteKit
 
-struct MoveEvent: Event {
+struct OldMoveEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -43,6 +43,5 @@ struct MoveEvent: Event {
             spriteComponent.node.children.forEach { $0.xScale = abs(spriteComponent.node.xScale) }
         }
 
-        SoundManager.instance.play(.walking)
     }
 }

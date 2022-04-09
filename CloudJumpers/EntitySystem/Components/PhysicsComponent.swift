@@ -13,6 +13,7 @@ class PhysicsComponent: Component {
     var affectedByGravity = false
     var allowsRotation = false
     var restitution: CGFloat = 0
+    var impulse = 0
 
     // TODO: PhysicsCollision, PhysicsContactTest
     var categoryBitMask: PhysicsCategory = .max

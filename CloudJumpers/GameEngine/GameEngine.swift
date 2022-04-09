@@ -270,8 +270,11 @@ extension GameEngine: InputResponder {
         else {
             return
         }
+        
+        let playerMoveEvent = MoveEvent(on: entity, by: displacement)
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .walking))
 
-        eventManager.add(MoveEvent(on: entity, by: displacement))
+        eventManager.add(playerMoveEvent)
 
         if physicsComponent.body.velocity == .zero {
             eventManager.add(AnimateEvent(on: entity, to: .walking))
@@ -282,8 +285,11 @@ extension GameEngine: InputResponder {
         guard let entity = associatedEntity else {
             return
         }
+        let playerJumpEvent = JumpEvent(on: entity)
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpCape))
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpFoot))
 
-        eventManager.add(JumpEvent(on: entity))
+        eventManager.add(playerJumpEvent)
         eventManager.add(AnimateEvent(on: entity, to: .jumping))
     }
 
