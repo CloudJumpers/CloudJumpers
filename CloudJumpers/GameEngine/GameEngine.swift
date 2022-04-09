@@ -9,9 +9,6 @@ import SpriteKit
 
 class GameEngine {
     let entityManager: EntityManager
-    let eventManager: EventManager
-    let contactResolver: ContactResolver
-    var systems: [System]
     var metaData: GameMetaData
     var inChargeID: NetworkID?
     let rules: GameRules
@@ -27,13 +24,10 @@ class GameEngine {
                   inChargeID: NetworkID?, channel: NetworkID? = nil ) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        eventManager = EventManager(channel: channel)
-        contactResolver = ContactResolver(to: eventManager)
+        setUpEventDispatcher(entityManager, on: channel)
+
         self.rules = rules
-        systems = []
         self.inChargeID = inChargeID
-        contactResolver.metaDataDelegate = self
-        setUpSystems(rendersTo: spriteSystemDelegate)
         setUpCrossDeviceSyncTimer()
     }
 
@@ -42,14 +36,27 @@ class GameEngine {
     }
 
     func update(within time: CGFloat) {
-        updateEvents()
+        updateEntityManager(within: time)
         updateTime()
-        updateSystems(within: time)
         if rules.isSpawningDisaster {
             generateDisaster()
         }
     }
 
+    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, on channel: NetworkID?) {
+        guard let channel = channel else {
+            return
+        }
+
+        eventDispatcher.subscriber = FirebaseSubscriber(channel)
+        eventDispatcher.publisher = FirebasePublisher(channel)
+    }
+
+    func updateEntityManager(within time: CGFloat) {
+        entityManager.update(within: time)
+    }
+
+    // TODO: This shouldn't touch PhysicsComponent anymore
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
@@ -141,7 +148,7 @@ class GameEngine {
             return
         }
 
-        // TO DO: Change after new way of getting sprite position
+        // TODO: Change after new way of getting sprite position
         let playerPosition = spriteComponent.node.position
         let playerTexture = animationComponent.texture
         let positionalUpdate = ExternalRepositionEvent(
@@ -153,20 +160,6 @@ class GameEngine {
         eventManager.publish(positionalUpdate)
     }
 
-    private func setUpSystems(rendersTo spriteSystemDelegate: SpriteSystemDelegate) {
-        let spriteSystem = SpriteSystem(for: entityManager)
-        spriteSystem.delegate = spriteSystemDelegate
-        spriteSystem.metaData = metaData
-        systems.append(spriteSystem)
-        systems.append(TimedSystem(for: entityManager))
-    }
-
-    private func updateSystems(within time: CGFloat) {
-        for system in systems {
-            system.update(within: time)
-        }
-    }
-
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
@@ -176,15 +169,16 @@ class GameEngine {
         self.timer = timer
     }
 
+    // TODO: This shouldn't happen here anymore
     private func updateEvents() {
-        // TO DO: Abstract this further if possible - @jusg
+        // TODO: Abstract this further if possible - @jusg
         let rulesEvents = rules.createGameEvents(with: metaData)
         rulesEvents.localEvents.forEach { eventManager.add($0) }
         rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
 
-    // TO DO: Refactor this with dynamic power up spawn- @jushg
+    // TODO: Refactor this with dynamic power up spawn- @jushg
     private func generatePowerUp(blueprint: Blueprint) {
         let powerUpPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
 
@@ -199,6 +193,7 @@ class GameEngine {
 
     }
 
+    // TODO: This should become a System
     private func generateDisaster() {
         if let inChargeID = inChargeID,
            metaData.playerId == inChargeID,
