@@ -9,9 +9,9 @@ protocol Effector {
     var entityID: EntityID { get }
 
     func apply(to event: Event) -> Event
-    func shouldDetach(in entityManager: EntityManager) -> Bool
+    func shouldDetach(in target: EventModifiable) -> Bool
 }
 
 extension Effector {
-    func shouldDetach(in entityManager: EntityManager) -> Bool { true }
+    func shouldDetach(in target: EventModifiable) -> Bool { true }
 }
