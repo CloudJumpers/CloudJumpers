@@ -1,5 +1,5 @@
 //
-//  AnimateEvent.swift
+//  BlinkEvent.swift
 //  CloudJumpers
 //
 //  Created by Trong Tan on 4/9/22.
@@ -7,19 +7,20 @@
 
 import Foundation
 
-struct AnimateEvent: Event {
+struct BlinkEvent: Event {
     var timestamp: TimeInterval
     
     var entityID: EntityID
-    
-    private let kind: TextureFrame
 
-    init(onEntityWith id: EntityID, to kind: TextureFrame) {
+    private var duration: Double
+    private var numberOfLoop: Int
+
+    init(onEntityWith id: EntityID, duration: Double, numberOfLoop: Int) {
         timestamp = EventManager.timestamp
-        entityID = id
-        self.kind = kind
+        self.entityID = id
+        self.duration = duration
+        self.numberOfLoop = numberOfLoop
     }
-
     
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         return

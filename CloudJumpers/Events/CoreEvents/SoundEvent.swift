@@ -23,6 +23,4 @@ struct SoundEvent: Event {
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         SoundManager.instance.play(soundName)
     }
-    
-    
 }
