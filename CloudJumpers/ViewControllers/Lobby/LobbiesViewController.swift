@@ -52,7 +52,7 @@ class LobbiesViewController: UIViewController {
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
                 let gameModeString = value[LobbyKeys.gameMode] as? String,
-                let gameMode = GameMode(rawValue: gameModeString),
+                let gameMode = OldGameMode(rawValue: gameModeString),
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
                 return
@@ -81,7 +81,7 @@ class LobbiesViewController: UIViewController {
                 let name = value[LobbyKeys.lobbyName] as? String,
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let gameModeString = value[LobbyKeys.gameMode] as? String,
-                let gameMode = GameMode(rawValue: gameModeString)
+                let gameMode = OldGameMode(rawValue: gameModeString)
             else {
                 return
             }
@@ -101,7 +101,7 @@ class LobbiesViewController: UIViewController {
         lobbyId: NetworkID,
         hostId: NetworkID,
         lobbyName: String,
-        gameMode: GameMode,
+        gameMode: OldGameMode,
         occupancy: Int
     ) {
         let newLobbyListing = LobbyListing(
@@ -123,7 +123,7 @@ class LobbiesViewController: UIViewController {
         lobbyId: NetworkID,
         newHostId: NetworkID,
         newName: String,
-        newGameMode: GameMode,
+        newGameMode: OldGameMode,
         newOccupancy: Int
     ) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
@@ -180,7 +180,7 @@ extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listing = lobbies[indexPath.item]
 
-        if listing.occupancy < listing.gameMode.getMaxPlayer() {
+        if listing.occupancy < listing.gameMode.maximumPlayers {
             moveToLobby(listing: listing)
         }
     }
@@ -212,7 +212,7 @@ extension LobbiesViewController: UICollectionViewDataSource {
         lobbyCell.setGameMode(mode: mode)
         lobbyCell.setOccupancy(num: occupancy, mode: mode)
 
-        if occupancy < mode.getMaxPlayer() {
+        if occupancy < mode.maximumPlayers {
             lobbyCell.backgroundColor = .green
         } else {
             lobbyCell.backgroundColor = .systemGray

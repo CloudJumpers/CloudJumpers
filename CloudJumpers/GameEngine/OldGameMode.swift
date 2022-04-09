@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GameMode: String, CaseIterable {
+enum OldGameMode: String, CaseIterable {
     case timeTrial = "Time Trial"
     case raceTop = "Race Top"
 
@@ -28,8 +28,4 @@ enum GameMode: String, CaseIterable {
             return 2
         }
     }
-}
-
-func urlSafeGameMode(mode: GameMode) -> String {
-    mode.rawValue.components(separatedBy: .whitespaces).joined()
 }

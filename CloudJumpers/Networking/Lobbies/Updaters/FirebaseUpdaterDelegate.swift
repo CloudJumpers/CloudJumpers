@@ -132,7 +132,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func changeLobbyGameMode(to gameMode: GameMode) {
+    func changeLobbyGameMode(to gameMode: OldGameMode) {
         guard let lobby = managedLobby else {
             return
         }

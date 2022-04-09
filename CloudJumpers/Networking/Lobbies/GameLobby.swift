@@ -17,7 +17,7 @@ enum LobbyState {
 class GameLobby: NetworkedLobby {
     let id: NetworkID
     private(set) var name: String
-    private(set) var gameMode: GameMode = .timeTrial
+    private(set) var gameMode: OldGameMode = .timeTrial
     private(set) var lobbyState: LobbyState?
 
     private(set) var hostId: NetworkID
@@ -93,7 +93,7 @@ class GameLobby: NetworkedLobby {
     /// Constructor for joining an externally created lobby
     init?(id: NetworkID,
           name: String,
-          gameMode: GameMode,
+          gameMode: OldGameMode,
           hostId: NetworkID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
           onLobbyDataChange: LobbyDataAvailableCallback? = nil,
@@ -152,7 +152,7 @@ class GameLobby: NetworkedLobby {
         onLobbyStateChange?(.gameCompleted)
     }
 
-    func onGameModeChange(_ newGameMode: GameMode) {
+    func onGameModeChange(_ newGameMode: OldGameMode) {
         gameMode = newGameMode
         onLobbyGameModeChange?(newGameMode.rawValue)
     }
@@ -235,7 +235,7 @@ class GameLobby: NetworkedLobby {
         updater?.toggleReady(userId: deviceUser.id)
     }
 
-    func changeGameMode(mode: GameMode) {
+    func changeGameMode(mode: OldGameMode) {
         guard userIsHost else {
             return
         }

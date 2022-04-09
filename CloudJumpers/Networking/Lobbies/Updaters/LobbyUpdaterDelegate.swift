@@ -13,7 +13,7 @@ protocol LobbyUpdaterDelegate: AnyObject {
     func exitLobby(userId: NetworkID, deleteLobby: Bool)
     func toggleReady(userId: NetworkID)
 
-    func changeLobbyGameMode(to gameMode: GameMode)
+    func changeLobbyGameMode(to gameMode: OldGameMode)
     func changeLobbyName(to name: String)
     func changeLobbyHost(to host: NetworkID)
 

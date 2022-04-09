@@ -47,7 +47,7 @@ class LobbyViewController: UIViewController {
         refreshGameModeMenu()
     }
 
-    func setActiveLobby(id: NetworkID, name: String, gameMode: GameMode, hostId: NetworkID) {
+    func setActiveLobby(id: NetworkID, name: String, gameMode: OldGameMode, hostId: NetworkID) {
         activeLobby = GameLobby(
             id: id,
             name: name,
@@ -147,7 +147,7 @@ class LobbyViewController: UIViewController {
     }
 
     private func changeLobbyGameMode(action: UIAction) {
-        guard let selectedGameMode = GameMode(rawValue: action.title) else {
+        guard let selectedGameMode = OldGameMode(rawValue: action.title) else {
             return
         }
 
@@ -161,7 +161,7 @@ class LobbyViewController: UIViewController {
 
         var gameModeOptions = [UIAction]()
 
-        GameMode.allCases.forEach {
+        OldGameMode.allCases.forEach {
             let maxSupportedPlayers = $0.getMaxPlayer()
 
             if maxSupportedPlayers >= lobby.numUsers {

@@ -9,17 +9,17 @@ import Foundation
 
 class TimeTrialPreGameManager: PreGameManager {
     private let lobbyId: NetworkID
-    private let seed: Int
+    private let endpointKey: String
+
     private weak var requestHandler: PreGameRequestDelegate?
 
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))"
-        return baseUrl + parameters
+        baseUrl + endpointKey
     }
 
-    init(_ lobbyId: NetworkID, _ seed: Int) {
+    init(_ endpointKey: String, _ lobbyId: NetworkID) {
+        self.endpointKey = endpointKey
         self.lobbyId = lobbyId
-        self.seed = seed
     }
 
     func getEventHandlers() -> RemoteEventHandlers {

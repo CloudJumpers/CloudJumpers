@@ -10,7 +10,7 @@ import Foundation
 class TimeTrialPostGameManager: PostGameManager {
     private let completionData: TimeTrialData
     private let lobbyId: NetworkID
-    private let seed: Int
+    private let endpointKey: String
 
     private var requestHandler: PostGameRequestDelegate?
     var callback: PostGameCallback = nil
@@ -18,13 +18,12 @@ class TimeTrialPostGameManager: PostGameManager {
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
 
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .timeTrial))/\(lobbyId)"
-        return baseUrl + parameters
+        baseUrl + endpointKey
     }
 
-    init(_ completionData: TimeTrialData, _ seed: Int, _ lobbyId: NetworkID) {
+    init(_ completionData: TimeTrialData, _ endpointKey: String, _ lobbyId: NetworkID) {
         self.completionData = completionData
-        self.seed = seed
+        self.endpointKey = endpointKey
         self.lobbyId = lobbyId
         self.requestHandler = PostGameRestDelegate()
         self.requestHandler?.postGameManager = self
