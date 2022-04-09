@@ -7,7 +7,7 @@
 
 typealias EntityID = String
 
-protocol Entity: AnyObject {
+protocol Entity: AnyObject, Collidable {
     var id: EntityID { get }
 
     func setUpAndAdd(to manager: EntityManager)
