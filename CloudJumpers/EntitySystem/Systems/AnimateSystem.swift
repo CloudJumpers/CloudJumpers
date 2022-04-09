@@ -1,16 +1,14 @@
 //
-//  RuleSystem.swift
+//  AnimateSystem.swift
 //  CloudJumpers
 //
 //  Created by Trong Tan on 4/10/22.
 //
 
-
-
 import Foundation
 import CoreGraphics
 
-class RuleSystem: System {
+class AnimateSystem : System {
     var active: Bool = true
     
     unowned var manager: EntityManager?
@@ -21,6 +19,13 @@ class RuleSystem: System {
     
     func update(within time: CGFloat) {
         return
+    }
+    
+    func changeAnimation(for id: EntityID,  to kind: TextureFrame) {
+        guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: id) else {
+            return
+        }
+        animationComponent.textures = [kind]
     }
     
     

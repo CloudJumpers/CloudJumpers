@@ -22,7 +22,10 @@ struct AnimateEvent: Event {
 
     
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
+        guard let animateSystem = target.system(ofType: AnimateSystem.self) else {
+            return
+        }
+        animateSystem.changeAnimation(for: entityID, to: kind)
     }
     
     

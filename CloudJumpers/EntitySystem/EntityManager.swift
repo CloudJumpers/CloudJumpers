@@ -78,6 +78,13 @@ class EntityManager {
 
         return nil
     }
+    
+    func component<T: Component>(ofType type: T.Type, of entityID: EntityID) -> T? {
+        guard let entity = entity(with: entityID) else {
+            return nil
+        }
+        return component(ofType: type, of: entity)
+    }
 
     func hasComponent<T: Component>(ofType type: T.Type, in entity: Entity) -> Bool {
         component(ofType: T.self, of: entity) != nil

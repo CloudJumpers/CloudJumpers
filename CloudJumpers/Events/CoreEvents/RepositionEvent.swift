@@ -28,7 +28,10 @@ struct RepositionEvent: Event {
     }
     
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
+        guard let positionSystem = target.system(ofType: PositionSystem.self) else {
+            return
+        }
+        positionSystem.changePosition(for: entityID, to: newPosition)
     }
     
     

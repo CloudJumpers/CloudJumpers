@@ -27,7 +27,10 @@ struct MoveEvent: Event {
     }
     
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
+        guard let positionSystem = target.system(ofType: PositionSystem.self) else {
+            return
+        }
+        positionSystem.movePosition(for: entityID, by: displacement)
     }
     
     

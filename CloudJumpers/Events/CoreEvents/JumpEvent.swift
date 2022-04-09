@@ -28,6 +28,9 @@ struct JumpEvent: Event {
     }
     
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        <#code#>
+        guard let physicsSystem = target.system(ofType: PhysicsSystem.self) else {
+            return
+        }
+        physicsSystem.applyImpulse(for: entityID, impulse: jumpImpulse)
     }
 }
