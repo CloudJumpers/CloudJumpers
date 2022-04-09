@@ -1,14 +1,15 @@
 //
-//  PositionSystem.swift
+//  PowerSpawnSystem.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/9/22.
+//  Created by Trong Tan on 4/10/22.
 //
 
 import Foundation
 import CoreGraphics
 
-class PositionSystem : System {
+
+class PowerSpawnSystem : System {
     var active: Bool = true
     
     unowned var manager: EntityManager?
@@ -18,11 +19,8 @@ class PositionSystem : System {
     }
 
     
-    func update(within time: CGFloat, in entityManager: EntityManager) {
+    func update(within time: CGFloat) {
         return
     }
     
-    func changePosition(for id: EntityID, to position: CGPoint) {
-        
-    }
 }

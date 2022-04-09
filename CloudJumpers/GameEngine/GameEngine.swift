@@ -197,28 +197,7 @@ class GameEngine {
 
     }
 
-    // TODO: This should become a System
-    private func generateDisaster() {
-        if let inChargeID = inChargeID,
-           metaData.playerId == inChargeID,
-           let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y) {
-            let disasterId = EntityManager.newEntityID
-            let localDisasterStart = DisasterStartEvent(
-                position: eventInfo.position,
-                velocity: eventInfo.velocity,
-                disasterType: eventInfo.type,
-                entityId: disasterId)
-            let remoteDisasterStart = ExternalDisasterEvent(
-                disasterPositionX: eventInfo.position.x,
-                disasterPositionY: eventInfo.position.y,
-                disasterVelocityX: eventInfo.velocity.dx,
-                disasterVelocityY: eventInfo.velocity.dy,
-                disasterType: eventInfo.type.rawValue,
-                disasterId: disasterId)
-            eventManager.add(localDisasterStart)
-            eventManager.publish(remoteDisasterStart)
-        }
-    }
+
 
     // MARK: Temporary time update method
     private func updateTime() {

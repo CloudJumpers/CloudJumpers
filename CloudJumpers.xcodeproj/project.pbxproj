@@ -213,7 +213,6 @@
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
 		A19A7A2D27F8DBD4007E1C11 /* DisasterPromptEffectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2C27F8DBD4007E1C11 /* DisasterPromptEffectEvent.swift */; };
 		A19A7A3027F8DFE2007E1C11 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2F27F8DFE2007E1C11 /* DisasterSpawnEvent.swift */; };
-		A19A7A3227F8DFF6007E1C11 /* PowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A3127F8DFF6007E1C11 /* PowerUpSpawnEvent.swift */; };
 		A19A7A3427F99D47007E1C11 /* DisasterGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A3327F99D47007E1C11 /* DisasterGenerator.swift */; };
 		A1BC45A927F73BE1000BF1A3 /* RespawnEffectEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BC45A827F73BE1000BF1A3 /* RespawnEffectEvent.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
@@ -230,6 +229,9 @@
 		A1D786772801D83700C5CE49 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786762801D83700C5CE49 /* PhysicsSystem.swift */; };
 		A1D786792801D91200C5CE49 /* RemoveTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786782801D91200C5CE49 /* RemoveTag.swift */; };
 		A1D7867B2801D92800C5CE49 /* RemoveOutOfBoundTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867A2801D92800C5CE49 /* RemoveOutOfBoundTag.swift */; };
+		A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */; };
+		A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */; };
+		A1D786812801ED0200C5CE49 /* RuleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786802801ED0200C5CE49 /* RuleSystem.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -461,7 +463,6 @@
 		A19A7A2A27F8D79D007E1C11 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		A19A7A2C27F8DBD4007E1C11 /* DisasterPromptEffectEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPromptEffectEvent.swift; sourceTree = "<group>"; };
 		A19A7A2F27F8DFE2007E1C11 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
-		A19A7A3127F8DFF6007E1C11 /* PowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A19A7A3327F99D47007E1C11 /* DisasterGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterGenerator.swift; sourceTree = "<group>"; };
 		A1BC45A827F73BE1000BF1A3 /* RespawnEffectEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEffectEvent.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -478,6 +479,9 @@
 		A1D786762801D83700C5CE49 /* PhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
 		A1D786782801D91200C5CE49 /* RemoveTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveTag.swift; sourceTree = "<group>"; };
 		A1D7867A2801D92800C5CE49 /* RemoveOutOfBoundTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveOutOfBoundTag.swift; sourceTree = "<group>"; };
+		A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnSystem.swift; sourceTree = "<group>"; };
+		A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSpawnSystem.swift; sourceTree = "<group>"; };
+		A1D786802801ED0200C5CE49 /* RuleSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleSystem.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -660,6 +664,9 @@
 				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
 				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
 				A1D786762801D83700C5CE49 /* PhysicsSystem.swift */,
+				A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */,
+				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
+				A1D786802801ED0200C5CE49 /* RuleSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1194,7 +1201,6 @@
 			isa = PBXGroup;
 			children = (
 				A19A7A2F27F8DFE2007E1C11 /* DisasterSpawnEvent.swift */,
-				A19A7A3127F8DFF6007E1C11 /* PowerUpSpawnEvent.swift */,
 			);
 			path = Spawn;
 			sourceTree = "<group>";
@@ -1591,7 +1597,6 @@
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
 				3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */,
-				A19A7A3227F8DFF6007E1C11 /* PowerUpSpawnEvent.swift in Sources */,
 				9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */,
 				3EA7C86127F7F627009BCA63 /* BlinkEffectEvent.swift in Sources */,
 				3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */,
@@ -1644,6 +1649,7 @@
 				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				A19A7A2527F8D451007E1C11 /* ExternalSpawnEvent.swift in Sources */,
+				A1D786812801ED0200C5CE49 /* RuleSystem.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
 				1AB6F2D327F99025004BF6AF /* NullMoveEffector.swift in Sources */,
 				934789BE27DF090900324DAF /* LobbyConstants.swift in Sources */,
@@ -1671,10 +1677,12 @@
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				A19A7A3027F8DFE2007E1C11 /* DisasterSpawnEvent.swift in Sources */,
 				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,
+				A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
 				A176387F27F4927E009EA7E7 /* RespawnEvent.swift in Sources */,
+				A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */,
 				1A94D96427EE0D4D001D8A86 /* MoveEvent.swift in Sources */,
 				9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */,
 				A1D7865D28018CC300C5CE49 /* RemoveSystem.swift in Sources */,
