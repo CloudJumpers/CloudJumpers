@@ -53,6 +53,11 @@ class EntityManager {
 
         remove(entity)
     }
+    
+    
+    func getEntities() -> [Entity] {
+        Array(entities.values)
+    }
 
     func entity(with entityID: EntityID) -> Entity? {
         entities[entityID]

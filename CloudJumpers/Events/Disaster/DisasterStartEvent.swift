@@ -40,16 +40,18 @@ struct DisasterStartEvent: Event {
         self.disasterType = disasterType
      }
 
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
-        let disasterPromptId = EntityManager.newEntityID
-        let disasterSpawnEvent = DisasterSpawnEvent(
-            position: position,
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
+        let disaster = Disaster(
+            disasterType,
+            at: position,
             velocity: velocity,
-            disasterType: disasterType,
-            entityId: entityID,
-            promptId: disasterPromptId)
-
-        supplier.add(DisasterPromptEffectEvent(onEntityWith: disasterPromptId, at: position, for: disasterType))
-        supplier.add(disasterSpawnEvent)
+            with: entityID)
+        let disasterPrompt = DisasterPrompt(
+            disasterType,
+            at: position,
+            with: entityID,
+            intervalToRemove: Constants.disasterPromptPeriod)
+        target.add(disaster)
+        target.add(disasterPrompt)
     }
 }
