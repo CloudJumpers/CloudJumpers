@@ -118,3 +118,14 @@ extension EntityManager {
         UUID().uuidString
     }
 }
+
+// MARK: - EventModifiable
+extension EntityManager: EventModifiable {
+    func add(_ event: Event) {
+        eventManager.add(event)
+    }
+
+    func system<T: System>(ofType type: T.Type) -> T? {
+        systemManager.system(ofType: T.self)
+    }
+}
