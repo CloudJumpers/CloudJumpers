@@ -6,12 +6,5 @@
 //
 
 class AnimationComponent: Component {
-    let texture: Textures
-    var kind: Textures.Kind
-
-    init(texture: Textures, kind: Textures.Kind) {
-        self.texture = texture
-        self.kind = kind
-        super.init()
-    }
+    var textures: [TextureFrame]?
 }

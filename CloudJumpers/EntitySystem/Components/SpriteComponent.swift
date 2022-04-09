@@ -8,29 +8,14 @@
 import SpriteKit
 
 class SpriteComponent: Component {
-    let node: SKNode
+    let texture: TextureFrame
+    let size: CGSize
+    let zPosition: SpriteZPosition
 
-    init(texture: SKTexture, size: CGSize, at position: CGPoint, forEntityWith entityID: EntityID) {
-        node = SKSpriteNode(texture: texture, size: size)
+    init(texture: TextureFrame, size: CGSize, zPosition: SpriteZPosition) {
+        self.texture = texture
+        self.size = size
+        self.zPosition = zPosition
         super.init()
-        node.position = position
-        node.entityID = entityID
-    }
-
-    init(imageNamed name: String, at position: CGPoint, forEntityWith entityID: EntityID) {
-        node = SKSpriteNode(imageNamed: name)
-        super.init()
-        node.position = position
-        node.entityID = entityID
-    }
-
-    convenience init(texture: SKTexture, at position: CGPoint, forEntityWith entityID: EntityID) {
-        self.init(texture: texture, size: texture.size(), at: position, forEntityWith: entityID)
-    }
-
-    init(node: SKNode, forEntityWith entityID: EntityID) {
-        self.node = node
-        super.init()
-        node.entityID = entityID
     }
 }
