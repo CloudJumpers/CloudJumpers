@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct UpdatePlayerEvent: Event {
+struct UpdateGuestStateEvent: Event {
     var timestamp: TimeInterval
 
     var entityID: EntityID

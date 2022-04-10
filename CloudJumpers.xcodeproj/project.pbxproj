@@ -211,7 +211,7 @@
 		A1D786682801931600C5CE49 /* RepositionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786672801931600C5CE49 /* RepositionEvent.swift */; };
 		A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786692801942500C5CE49 /* AnimateEvent.swift */; };
 		A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */; };
-		A1D786702801CDE300C5CE49 /* UpdatePlayerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866F2801CDE300C5CE49 /* UpdatePlayerEvent.swift */; };
+		A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */; };
 		A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */; };
 		A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786742801D34300C5CE49 /* PositionSystem.swift */; };
 		A1D786772801D83700C5CE49 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786762801D83700C5CE49 /* PhysicsSystem.swift */; };
@@ -455,7 +455,7 @@
 		A1D786672801931600C5CE49 /* RepositionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositionEvent.swift; sourceTree = "<group>"; };
 		A1D786692801942500C5CE49 /* AnimateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEvent.swift; sourceTree = "<group>"; };
 		A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEvent.swift; sourceTree = "<group>"; };
-		A1D7866F2801CDE300C5CE49 /* UpdatePlayerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePlayerEvent.swift; sourceTree = "<group>"; };
+		A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestStateEvent.swift; sourceTree = "<group>"; };
 		A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkEvent.swift; sourceTree = "<group>"; };
 		A1D786742801D34300C5CE49 /* PositionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSystem.swift; sourceTree = "<group>"; };
 		A1D786762801D83700C5CE49 /* PhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
@@ -1117,7 +1117,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */,
-				A1D7866F2801CDE300C5CE49 /* UpdatePlayerEvent.swift */,
+				A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */,
 				A1D7868F280209D500C5CE49 /* ObtainEvent.swift */,
 			);
 			path = PlayerEvents;
@@ -1604,7 +1604,7 @@
 				1AB6F2D127F98F57004BF6AF /* Effector.swift in Sources */,
 				1A24DC172800AA3E00E48B64 /* PhysicsBody.swift in Sources */,
 				1AAB1E232800327600378382 /* EventModifiable.swift in Sources */,
-				A1D786702801CDE300C5CE49 /* UpdatePlayerEvent.swift in Sources */,
+				A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */,
 				A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */,
 				9353464027F02DA400DC6F9E /* RepositionEventCommand.swift in Sources */,
 				A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */,
