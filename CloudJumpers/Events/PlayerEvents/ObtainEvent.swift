@@ -21,18 +21,11 @@ struct ObtainEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        guard let entity = target.entity(with: entityID),
-              target.entity(with: otherEntityID) != nil
+        guard target.entity(with: entityID) != nil,
+              target.entity(with: otherEntityID) != nil,
+              let inventorySystem = target.system(ofType: InventorySystem.self)
         else { return }
 
-        if entity is Player,
-           let inventorySystem = target.system(ofType: InventorySystem.self) {
-
-            inventorySystem.enqueueItem(for: entityID, with: otherEntityID)
-            return
-        }
-
-        // TODO: @This conflicts with powerUpActivate implementation
-        target.remove(entity)
+        inventorySystem.enqueueItem(for: entityID, with: otherEntityID)
     }
 }

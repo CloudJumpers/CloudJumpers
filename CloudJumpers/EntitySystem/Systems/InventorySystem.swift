@@ -18,14 +18,46 @@ class InventorySystem: System {
     }
 
     func update(within time: CGFloat) {
-        guard let manager = manager,
-              let entity = manager.getEntities().first(where: { manager.hasComponent(ofType: PlayerTag.self, in: $0) }),
-              let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
-              inventoryComponent.inventory.isUpdated else {
+        guard let manager = manager else {
             return
         }
+        
+        for entity in manager.getEntities() {
+            guard let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
+                  inventoryComponent.inventory.isUpdated else {
+                continue
+            }
+            inventoryComponent.inventory.isUpdated = false
+            
+            if manager.hasComponent(ofType: PlayerTag.self, in: entity) {
+                updatePlayerInventory(inventoryComponent)
+            } else {
+                updateGuestInventory(inventoryComponent)
+            }
+        }
+    }
 
-        inventoryComponent.inventory.isUpdated = false
+    func dequeueItem(for id: EntityID) -> EntityID? {
+        guard let entity = manager?.entity(with: id),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+        else { return nil }
+        return inventoryComponent.inventory.dequeue()
+
+    }
+
+    func enqueueItem(for id: EntityID, with powerUpId: EntityID) {
+        guard let entity = manager?.entity(with: id),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+        else { return }
+
+        inventoryComponent.inventory.enqueue(powerUpId)
+    }
+
+    private func updatePlayerInventory(_ inventoryComponent: InventoryComponent) {
+        guard let manager = manager else {
+            return
+        }
+        
         var position = Constants.initialPowerUpQueuePosition
         var displayCount = 0
 
@@ -49,21 +81,17 @@ class InventorySystem: System {
             position.x += Constants.powerUpQueueXInterval
         }
     }
-
-    func dequeueItem(for id: EntityID) -> EntityID? {
-        guard let entity = manager?.entity(with: id),
-              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
-        else { return nil }
-        return inventoryComponent.inventory.dequeue()
-
+    
+    private func updateGuestInventory(_ inventoryComponent: InventoryComponent) {
+        guard let manager = manager else {
+            return
+        }
+        
+        for entityID in inventoryComponent.inventory.iterable {
+            guard let entity = manager.entity(with: entityID)
+            else { continue }
+            
+            // TODO: Hide PowerUp from scene
+        }
     }
-
-    func enqueueItem(for id: EntityID, with powerUpId: EntityID) {
-        guard let entity = manager?.entity(with: id),
-              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
-        else { return }
-
-        inventoryComponent.inventory.enqueue(powerUpId)
-    }
-
 }
