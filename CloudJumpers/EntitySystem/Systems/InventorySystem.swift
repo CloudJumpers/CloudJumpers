@@ -21,14 +21,14 @@ class InventorySystem: System {
         guard let manager = manager else {
             return
         }
-        
+
         for entity in manager.getEntities() {
             guard let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
                   inventoryComponent.inventory.isUpdated else {
                 continue
             }
             inventoryComponent.inventory.isUpdated = false
-            
+
             if manager.hasComponent(ofType: PlayerTag.self, in: entity) {
                 updatePlayerInventory(inventoryComponent)
             } else {
@@ -47,9 +47,13 @@ class InventorySystem: System {
 
     func enqueueItem(for id: EntityID, with powerUpId: EntityID) {
         guard let entity = manager?.entity(with: id),
-              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+              let powerUpEntity = manager?.entity(with: powerUpId),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
+              let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: powerUpEntity),
+              ownerComponent.ownerEntityId != nil
         else { return }
 
+        ownerComponent.ownerEntityId = id
         inventoryComponent.inventory.enqueue(powerUpId)
     }
 
@@ -57,7 +61,7 @@ class InventorySystem: System {
         guard let manager = manager else {
             return
         }
-        
+
         var position = Constants.initialPowerUpQueuePosition
         var displayCount = 0
 
@@ -81,16 +85,16 @@ class InventorySystem: System {
             position.x += Constants.powerUpQueueXInterval
         }
     }
-    
+
     private func updateGuestInventory(_ inventoryComponent: InventoryComponent) {
         guard let manager = manager else {
             return
         }
-        
+
         for entityID in inventoryComponent.inventory.iterable {
             guard let entity = manager.entity(with: entityID)
             else { continue }
-            
+
             // TODO: Hide PowerUp from scene
         }
     }

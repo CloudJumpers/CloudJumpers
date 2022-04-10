@@ -1,5 +1,5 @@
 //
-//  ExternalPowerUpStartEvent.swift
+//  ExternalPowerUpActivateEvent.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 3/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExternalPowerUpStartEvent: RemoteEvent {
+struct ExternalPowerUpActivateEvent: RemoteEvent {
     var activatePowerUpPositionX: Double
     var activatePowerUpPositionY: Double
     var activatePowerUpId: EntityID

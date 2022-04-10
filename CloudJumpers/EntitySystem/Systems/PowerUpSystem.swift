@@ -17,29 +17,35 @@ class PowerUpSystem: System {
         self.manager = manager
     }
 
-    func update(within time: CGFloat) {
-        }
+    func update(within time: CGFloat) { }
 
     func activatePowerUp(_ powerUpID: EntityID, at location: CGPoint) {
-        guard let powerUpComponent = manager?.component(ofType: PowerUpComponent.self, of: powerUpID) else {
-            return
-        }
+        guard let manager = manager,
+              let entity = manager.entity(with: powerUpID),
+              let powerUp = entity as? PowerUp,
+              let playerTag = manager.components(ofType: PlayerTag.self).first,
+              let player = playerTag.entity as? Player
+        else { return }
 
         let effect = PowerUpEffect(
-            powerUpComponent.kind,
+            powerUp.kind,
             at: location,
             intervalToRemove: Constants.powerUpEffectDuration)
 
-        manager?.add(effect)
-        if isPlayerWithinRange(location: location) {
-            // TODO: Add send effect
+        manager.add(effect)
+
+        if isPlayerWithinRange(player: player, location: location) {
+            let effectors = powerUp.activate(on: player, watching: effect)
+            for effector in effectors {
+                manager.add(effector)
+            }
         }
+        
+        manager.remove(powerUp)
     }
 
-    private func isPlayerWithinRange(location: CGPoint) -> Bool {
-        guard let playerTag = manager?.components(ofType: PlayerTag.self).first,
-              let player = playerTag.entity,
-              let playerPositionComponent = manager?.component(ofType: PositionComponent.self, of: player)
+    private func isPlayerWithinRange(player: Player, location: CGPoint) -> Bool {
+        guard let playerPositionComponent = manager?.component(ofType: PositionComponent.self, of: player)
         else {
             return false
         }

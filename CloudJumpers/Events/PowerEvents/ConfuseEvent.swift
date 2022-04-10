@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SpriteKit
 
 struct ConfuseEvent: Event {
     var timestamp: TimeInterval

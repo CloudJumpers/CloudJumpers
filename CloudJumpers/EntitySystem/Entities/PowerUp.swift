@@ -5,20 +5,16 @@
 //  Created by Eric Bryan on 26/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
 
-class PowerUp: Entity {
-    let id: EntityID
+protocol PowerUp: Entity {
+    var position: CGPoint { get }
+    var kind: PowerUpComponent.Kind { get }
 
-    private let position: CGPoint
-    private let kind: PowerUpComponent.Kind
+    func activate(on entity: Entity, watching watchingEntity: Entity) -> [Effector]
+}
 
-    init(_ kind: PowerUpComponent.Kind, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
-        self.id = id
-        self.kind = kind
-        self.position = position
-    }
-
+extension PowerUp {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let physicsComponent = createPhysicsComponent(for: spriteComponent)
@@ -55,5 +51,4 @@ class PowerUp: Entity {
 
         return physicsComponent
     }
-
 }

@@ -147,6 +147,10 @@ extension EntityManager: EventModifiable {
         eventManager.add(event)
     }
 
+    func add(_ effector: Effector) {
+        eventManager.add(effector)
+    }
+
     func system<T: System>(ofType type: T.Type) -> T? {
         systemManager.system(ofType: T.self)
     }

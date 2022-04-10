@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SpriteKit
 
 struct FreezeEvent: Event {
     var timestamp: TimeInterval

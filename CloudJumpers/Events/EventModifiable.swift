@@ -8,6 +8,7 @@
 protocol EventModifiable: AnyObject {
     func add(_ entity: Entity)
     func add(_ event: Event)
+    func add(_ effector: Effector)
     func remove(_ entity: Entity)
     func entity(with entityID: EntityID) -> Entity?
     func system<T: System>(ofType type: T.Type) -> T?
