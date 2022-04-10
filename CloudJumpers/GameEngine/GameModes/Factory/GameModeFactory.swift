@@ -8,7 +8,7 @@
 import Foundation
 
 class GameModeFactory {
-    static let availableGameModes: [GameMode.Type] = [
+    private static let availableGameModes: [GameMode.Type] = [
         TimeTrial.self,
         RaceToTop.self
     ]
