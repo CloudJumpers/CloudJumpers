@@ -19,6 +19,7 @@ enum Textures: String, Codable, CaseIterable {
 
     // MARK: - Supported Texture Atlases
     case character1 = "Character1"
+    case shadowCharacter1 = "ShadowCharacter1"
 
     // MARK: - Accessors
     static var allIdle: [SKTexture] {
