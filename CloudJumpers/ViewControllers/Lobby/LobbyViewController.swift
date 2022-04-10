@@ -147,10 +147,7 @@ class LobbyViewController: UIViewController {
     }
 
     private func changeLobbyGameMode(action: UIAction) {
-        guard let selectedGameMode = OldGameMode(rawValue: action.title) else {
-            return
-        }
-
+        let selectedGameMode = GameModeFactory.createGameMode(name: action.title)
         activeLobby?.changeGameMode(mode: selectedGameMode)
     }
 
@@ -161,12 +158,8 @@ class LobbyViewController: UIViewController {
 
         var gameModeOptions = [UIAction]()
 
-        OldGameMode.allCases.forEach {
-            let maxSupportedPlayers = $0.getMaxPlayer()
-
-            if maxSupportedPlayers >= lobby.numUsers {
-                gameModeOptions.append(UIAction(title: $0.rawValue, handler: changeLobbyGameMode))
-            }
+        GameModeFactory.getCompatibleModeNames(lobby.numUsers).forEach {
+            gameModeOptions.append(UIAction(title: $0, handler: changeLobbyGameMode))
         }
 
         gameMode.menu = UIMenu(children: gameModeOptions)

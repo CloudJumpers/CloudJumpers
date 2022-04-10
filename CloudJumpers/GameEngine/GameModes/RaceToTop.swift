@@ -8,37 +8,33 @@
 import Foundation
 
 struct RaceToTop: GameMode {
-    let name = "RaceToTop"
+    let name = "Race To Top"
 
     var minimumPlayers: Int = 2
     var maximumPlayers: Int = 4
 
-    let lobbyPlayedIn: NetworkID
     let seed: Int = 161_001
-
-    private var endpointKey: String {
-        "\(seed)/\(urlSafeName)/\(lobbyPlayedIn)"
-    }
-
-    init(_ lobbyPlayedIn: NetworkID) {
-        self.lobbyPlayedIn = lobbyPlayedIn
-    }
 
     func getGameRules() -> GameRules {
         RaceTopGameRules()
     }
 
-    func createPreGameManager() -> PreGameManager {
-        RaceToTopPreGameManager(lobbyPlayedIn)
+    func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {
+        RaceToTopPreGameManager(lobbyId)
     }
 
-    func createPostGameManager(metaData: GameMetaData) -> PostGameManager {
+    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager {
         let completionData = RaceToTopData(
             playerId: metaData.playerId,
             playerName: metaData.playerName,
             completionTime: metaData.time
         )
 
-        return RaceToTopPostGameManager(completionData, endpointKey)
+        let endpoint = generateEndpoint(lobbyId)
+        return RaceToTopPostGameManager(completionData, endpoint)
+    }
+
+    private func generateEndpoint(_ lobbyId: NetworkID) -> String {
+        "\(seed)/\(urlSafeName)/\(lobbyId)"
     }
 }

@@ -132,13 +132,13 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func changeLobbyGameMode(to gameMode: OldGameMode) {
+    func changeLobbyGameMode(to gameMode: GameMode) {
         guard let lobby = managedLobby else {
             return
         }
 
         let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
-        lobbyGameModeReference.setValue(gameMode.rawValue)
+        lobbyGameModeReference.setValue(gameMode.name)
     }
 
     func changeLobbyName(to name: String) {

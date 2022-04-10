@@ -52,11 +52,12 @@ class LobbiesViewController: UIViewController {
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
                 let gameModeString = value[LobbyKeys.gameMode] as? String,
-                let gameMode = OldGameMode(rawValue: gameModeString),
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
                 return
             }
+
+            let gameMode = GameModeFactory.createGameMode(name: gameModeString)
 
             self.addLobbyListing(
                 lobbyId: snapshot.key,
@@ -80,11 +81,12 @@ class LobbiesViewController: UIViewController {
                 let occupancy = value[LobbyKeys.participants] as? NSDictionary,
                 let name = value[LobbyKeys.lobbyName] as? String,
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
-                let gameModeString = value[LobbyKeys.gameMode] as? String,
-                let gameMode = OldGameMode(rawValue: gameModeString)
+                let gameModeString = value[LobbyKeys.gameMode] as? String
             else {
                 return
             }
+
+            let gameMode = GameModeFactory.createGameMode(name: gameModeString)
 
             self.updateLobbyListing(
                 lobbyId: snapshot.key,

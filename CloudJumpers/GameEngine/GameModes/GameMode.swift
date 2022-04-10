@@ -14,12 +14,18 @@ protocol GameMode {
     var maximumPlayers: Int { get }
 
     func getGameRules() -> GameRules
-    func createPreGameManager() -> PreGameManager
-    func createPostGameManager(metaData: GameMetaData) -> PostGameManager
+    func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager
+    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager
+
+    init()
 }
 
 extension GameMode {
     var urlSafeName: String {
         name.components(separatedBy: .whitespaces).joined()
+    }
+
+    func doesMatch(_ name: String) -> Bool {
+        name == self.name
     }
 }

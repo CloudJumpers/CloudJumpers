@@ -69,7 +69,7 @@ class GameLobby: NetworkedLobby {
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
-        self.gameMode = TimeTrial(id)
+        self.gameMode = TimeTrial()
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
         self.onLobbyNameChange = onLobbyNameChange
@@ -236,7 +236,7 @@ class GameLobby: NetworkedLobby {
         updater?.toggleReady(userId: deviceUser.id)
     }
 
-    func changeGameMode(mode: OldGameMode) {
+    func changeGameMode(mode: GameMode) {
         guard userIsHost else {
             return
         }

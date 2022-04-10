@@ -38,7 +38,7 @@ class GameViewController: UIViewController {
             return
         }
 
-        let preGameManager = activeLobby.gameMode.createPreGameManager()
+        let preGameManager = activeLobby.gameMode.createPreGameManager(activeLobby.id)
         handlers = preGameManager.getEventHandlers()
         activeLobby.synchronizer?.updateCallback(setUpGame)
     }
@@ -165,7 +165,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = activeLobby.gameMode.createPostGameManager(metaData: metaData)
+        let postGameManager = activeLobby.gameMode.createPostGameManager(activeLobby.id, metaData: metaData)
         performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
