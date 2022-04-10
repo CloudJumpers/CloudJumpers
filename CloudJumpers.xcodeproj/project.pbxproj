@@ -115,12 +115,14 @@
 		3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */; };
 		3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */; };
 		3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */; };
-		3EA7C88B27F95970009BCA63 /* PowerUpCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */; };
 		3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */; };
 		3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */; };
 		3EA7C8A12802AC28009BCA63 /* PhysicsCollision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */; };
 		3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */; };
 		3EA7C8A92802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */; };
+		3EA7C8AC2802FF47009BCA63 /* PowerUpActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8AB2802FF47009BCA63 /* PowerUpActivateEvent.swift */; };
+		3EA7C8AE2803023C009BCA63 /* PowerUpSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */; };
+		3EA7C8B02803026F009BCA63 /* PowerUpPlayerCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */; };
@@ -191,8 +193,6 @@
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4B27E5033B003157E8 /* ContactResolver.swift */; };
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
-		A12D58CA2802B00800DA7EC6 /* PowerActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58C92802B00800DA7EC6 /* PowerActivateEvent.swift */; };
-		A12D58CC2802B4AD00DA7EC6 /* PowerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CB2802B4AD00DA7EC6 /* PowerSystem.swift */; };
 		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
@@ -356,12 +356,14 @@
 		3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEventCommand.swift; sourceTree = "<group>"; };
 		3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalObtainEntityEvent.swift; sourceTree = "<group>"; };
 		3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEntityCommand.swift; sourceTree = "<group>"; };
-		3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpCollideEvent.swift; sourceTree = "<group>"; };
 		3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullJumpEffector.swift; sourceTree = "<group>"; };
 		3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCollision.swift; sourceTree = "<group>"; };
 		3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsContactTest.swift; sourceTree = "<group>"; };
 		3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPlayerCollideEvent.swift; sourceTree = "<group>"; };
+		3EA7C8AB2802FF47009BCA63 /* PowerUpActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpActivateEvent.swift; sourceTree = "<group>"; };
+		3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSystem.swift; sourceTree = "<group>"; };
+		3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpPlayerCollideEvent.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
@@ -436,8 +438,6 @@
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A108AB4B27E5033B003157E8 /* ContactResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactResolver.swift; sourceTree = "<group>"; };
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
-		A12D58C92802B00800DA7EC6 /* PowerActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActivateEvent.swift; sourceTree = "<group>"; };
-		A12D58CB2802B4AD00DA7EC6 /* PowerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSystem.swift; sourceTree = "<group>"; };
 		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
@@ -662,7 +662,7 @@
 				A1D786822801EE0100C5CE49 /* PlayerStateSynchronizer.swift */,
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
-				A12D58CB2802B4AD00DA7EC6 /* PowerSystem.swift */,
+				3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1137,9 +1137,9 @@
 		A12D58CD2802BAAE00DA7EC6 /* PowerEvents */ = {
 			isa = PBXGroup;
 			children = (
-				3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */,
 				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
 				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
+				3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */,
 			);
 			path = PowerEvents;
 			sourceTree = "<group>";
@@ -1194,7 +1194,7 @@
 			isa = PBXGroup;
 			children = (
 				3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */,
-				A12D58C92802B00800DA7EC6 /* PowerActivateEvent.swift */,
+				3EA7C8AB2802FF47009BCA63 /* PowerUpActivateEvent.swift */,
 			);
 			path = ActivationEvents;
 			sourceTree = "<group>";
@@ -1480,7 +1480,6 @@
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
-				A12D58CA2802B00800DA7EC6 /* PowerActivateEvent.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
@@ -1514,7 +1513,6 @@
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
 				1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */,
 				1A13D77C27FD9BD700A28182 /* Node.swift in Sources */,
-				A12D58CC2802B4AD00DA7EC6 /* PowerSystem.swift in Sources */,
 				9385D9B127F727B700593930 /* RaceToTopManager.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */,
@@ -1528,7 +1526,6 @@
 				A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
-				3EA7C88B27F95970009BCA63 /* PowerUpCollideEvent.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */,
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
@@ -1560,6 +1557,7 @@
 				1AAB1E0F27FF0F6200378382 /* ContactHandler.swift in Sources */,
 				1AAB1E1D27FF161800378382 /* Disaster+Collidable.swift in Sources */,
 				1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */,
+				3EA7C8AE2803023C009BCA63 /* PowerUpSystem.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
@@ -1645,6 +1643,7 @@
 				A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */,
 				A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
+				3EA7C8B02803026F009BCA63 /* PowerUpPlayerCollideEvent.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
 				A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */,
@@ -1660,6 +1659,7 @@
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */,
 				931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */,
+				3EA7C8AC2802FF47009BCA63 /* PowerUpActivateEvent.swift in Sources */,
 				9356AB7A27EEFF9D008CDEC1 /* ExternalMoveEvent.swift in Sources */,
 				1AE9D8B127FED217002B0A1E /* TextureFrame.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,

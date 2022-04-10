@@ -1,14 +1,14 @@
 //
-//  PowerActivateEvent.swift
+//  PowerUpActivateEvent.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/10/22.
+//  Created by Eric Bryan on 10/4/22.
 //
 
 import Foundation
 import CoreGraphics
 
-class PowerActivateEvent: Event {
+class PowerUpActivateEvent: Event {
 
     let timestamp: TimeInterval
     let entityID: EntityID
@@ -23,11 +23,9 @@ class PowerActivateEvent: Event {
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let system = target.system(ofType: InventorySystem.self),
-              let powerUpID = system.dequeuePowerUp(for: entityID),
+              let powerUpID = system.dequeueItem(for: entityID),
               let powerUp = target.entity(with: powerUpID)
-        else {
-            return
-        }
+        else { return }
 
         target.remove(powerUp)
 

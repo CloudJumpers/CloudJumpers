@@ -30,10 +30,7 @@ class InventorySystem: System {
         var displayCount = 0
 
         for entityID in inventoryComponent.inventory.iterable {
-            guard let entity = manager.entity(with: entityID),
-                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity),
-                  let ownerComponent = manager.component(ofType: OwnerComponent.self, of: entity),
-                  ownerComponent.ownerEntityId != nil
+            guard let entity = manager.entity(with: entityID)
             else { continue }
 
             guard displayCount <= Constants.powerUpMaxNumDisplay else {
@@ -44,21 +41,29 @@ class InventorySystem: System {
 
             // TODO: Figure this out ???
 
-            spriteComponent.node.removeFromParent()
-
-            spriteComponent.node.position = position
-            spriteComponent.node.physicsBody = nil
+//            spriteComponent.node.removeFromParent()
+//            spriteComponent.node.position = position
+//            spriteComponent.node.physicsBody = nil
+//            delegate?.spriteSystem(self, addNode: spriteComponent.node, static: true)
 
             position.x += Constants.powerUpQueueXInterval
         }
     }
 
-    func dequeuePowerUp(for id: EntityID) -> EntityID? {
+    func dequeueItem(for id: EntityID) -> EntityID? {
         guard let entity = manager?.entity(with: id),
               let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
         else { return nil }
         return inventoryComponent.inventory.dequeue()
 
+    }
+
+    func enqueueItem(for id: EntityID, with powerUpId: EntityID) {
+        guard let entity = manager?.entity(with: id),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+        else { return }
+
+        inventoryComponent.inventory.enqueue(powerUpId)
     }
 
 }

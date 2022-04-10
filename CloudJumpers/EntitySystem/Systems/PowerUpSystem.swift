@@ -1,5 +1,5 @@
 //
-//  PowerSystem.swift
+//  PowerUpSystem.swift
 //  CloudJumpers
 //
 //  Created by Trong Tan on 4/10/22.
@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class PowerSystem: System {
+class PowerUpSystem: System {
     var active = true
 
     unowned var manager: EntityManager?
@@ -29,6 +29,7 @@ class PowerSystem: System {
             powerUpComponent.kind,
             at: location,
             intervalToRemove: Constants.powerUpEffectDuration)
+
         manager?.add(effect)
         if isPlayerWithinRange(location: location) {
             // TODO: Add send effect

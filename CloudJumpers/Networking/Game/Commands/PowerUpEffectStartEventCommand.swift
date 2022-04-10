@@ -37,7 +37,7 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
 
         let location = CGPoint(x: parameters.activatePowerUpPositionX, y: parameters.activatePowerUpPositionY)
 
-        let eventToProcess = PowerActivateEvent(by: source, location: location, at: parameters.timestamp)
+        let eventToProcess = PowerUpActivateEvent(by: source, location: location, at: parameters.timestamp)
 
         eventManager.add(eventToProcess)
         return true

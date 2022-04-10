@@ -21,7 +21,17 @@ struct ObtainEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        // TODO: Fix this after done with contact handler
+        guard let entity = target.entity(with: entityID),
+              target.entity(with: otherEntityID) != nil
+        else { return }
 
+        if entity is Player,
+           let inventorySystem = target.system(ofType: InventorySystem.self) {
+
+            inventorySystem.enqueueItem(for: entityID, with: otherEntityID)
+            return
+        }
+
+        target.remove(entity)
     }
 }

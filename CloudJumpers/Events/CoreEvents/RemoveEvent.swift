@@ -17,6 +17,11 @@ struct RemoveEvent: Event {
         self.entityID = id
     }
 
+    init(onEntityWith id: EntityID, timestamp: TimeInterval) {
+        self.entityID = id
+        self.timestamp = timestamp
+    }
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let entity = target.entity(with: entityID) else {
             return

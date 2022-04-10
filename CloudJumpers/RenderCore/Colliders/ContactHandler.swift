@@ -9,7 +9,7 @@ struct ContactHandler {
     static func between(_ player1: Player, _ player2: Player) -> Event? { nil }
 
     static func between(_ player: Player, _ powerUp: PowerUp) -> Event? {
-        PowerUpCollideEvent(on: player.id, powerUp: powerUp.id)
+        PowerUpPlayerCollideEvent(on: player.id, powerUp: powerUp.id)
     }
 
     static func between(_ player: Player, _ cloud: Cloud) -> Event? { nil }

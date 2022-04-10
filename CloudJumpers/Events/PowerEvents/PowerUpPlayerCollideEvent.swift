@@ -1,5 +1,5 @@
 //
-//  PowerUpCollideEvent.swift
+//  PowerUpPlayerCollideEvent.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 3/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PowerUpCollideEvent: Event {
+struct PowerUpPlayerCollideEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
