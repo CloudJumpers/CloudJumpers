@@ -5,40 +5,40 @@
 //  Created by Phillmont Muktar on 7/4/22.
 //
 
-extension Platform: Collidable -> Event? {
-    func collides(with collidable: Collidable) {
-        return collidable.collides(with: self)
+extension Platform: Collidable {
+    func collides(with collidable: Collidable) -> Event? {
+        collidable.collides(with: self)
     }
 
     func collides(with player: Player) -> Event? {
-        return ContactHandler.between(player, self)
+        ContactHandler.between(player, self)
     }
 
     func collides(with powerUp: PowerUp) -> Event? {
-        return ContactHandler.between(powerUp, self)
+        ContactHandler.between(powerUp, self)
     }
 
     func collides(with cloud: Cloud) -> Event? {
-        return ContactHandler.between(cloud, self)
+        ContactHandler.between(cloud, self)
     }
 
     func collides(with floor: Floor) -> Event? {
-        return ContactHandler.between(floor, self)
+        ContactHandler.between(floor, self)
     }
 
     func collides(with platform: Platform) -> Event? {
-        return ContactHandler.between(self, platform)
+        ContactHandler.between(self, platform)
     }
 
     func collides(with wall: Wall) -> Event? {
-        return ContactHandler.between(self, wall)
+        ContactHandler.between(self, wall)
     }
 
     func collides(with disaster: Disaster) -> Event? {
-        return ContactHandler.between(self, disaster)
+        ContactHandler.between(self, disaster)
     }
 
     func collides(with guest: Guest) -> Event? {
-        return ContactHandler.between(self, guest)
+        ContactHandler.between(self, guest)
     }
 }

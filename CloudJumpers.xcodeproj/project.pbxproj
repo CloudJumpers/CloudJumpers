@@ -120,7 +120,6 @@
 		3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */; };
 		3EA7C8A12802AC28009BCA63 /* PhysicsCollision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */; };
 		3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */; };
-		3EA7C8A72802C1D5009BCA63 /* DisasterPlatformCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A62802C1D5009BCA63 /* DisasterPlatformCollideEvent.swift */; };
 		3EA7C8A92802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
@@ -362,7 +361,6 @@
 		3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCollision.swift; sourceTree = "<group>"; };
 		3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsContactTest.swift; sourceTree = "<group>"; };
-		3EA7C8A62802C1D5009BCA63 /* DisasterPlatformCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPlatformCollideEvent.swift; sourceTree = "<group>"; };
 		3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPlayerCollideEvent.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -795,6 +793,14 @@
 			path = Colliders;
 			sourceTree = "<group>";
 		};
+		3EA7C8AA2802CD37009BCA63 /* DisasterEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
+			);
+			path = DisasterEvents;
+			sourceTree = "<group>";
+		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1131,6 +1137,7 @@
 		A12D58CD2802BAAE00DA7EC6 /* PowerEvents */ = {
 			isa = PBXGroup;
 			children = (
+				3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */,
 				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
 				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
 			);
@@ -1140,7 +1147,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				A1D7868E2802079200C5CE49 /* To Be Refactor */,
+				3EA7C8AA2802CD37009BCA63 /* DisasterEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
 				A1D7866228018FC400C5CE49 /* CoreEvents */,
 				A12D58CD2802BAAE00DA7EC6 /* PowerEvents */,
@@ -1181,16 +1188,6 @@
 				A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */,
 			);
 			path = CoreEvents;
-			sourceTree = "<group>";
-		};
-		A1D7868E2802079200C5CE49 /* To Be Refactor */ = {
-			isa = PBXGroup;
-			children = (
-				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
-				3EA7C8A62802C1D5009BCA63 /* DisasterPlatformCollideEvent.swift */,
-				3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */,
-			);
-			path = "To Be Refactor";
 			sourceTree = "<group>";
 		};
 		A1D7869A2802877E00C5CE49 /* ActivationEvents */ = {
@@ -1537,7 +1534,6 @@
 				1A94D93A27EB5090001D8A86 /* JumpButton.swift in Sources */,
 				1A94D95727ED8709001D8A86 /* TimedLabel.swift in Sources */,
 				3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */,
-				3EA7C8A72802C1D5009BCA63 /* DisasterPlatformCollideEvent.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
@@ -1622,7 +1618,6 @@
 				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */,
-				A19A7A2527F8D451007E1C11 /* ExternalSpawnEvent.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
 				1AB6F2D327F99025004BF6AF /* NullMoveEffector.swift in Sources */,
 				3EA7C8A92802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift in Sources */,

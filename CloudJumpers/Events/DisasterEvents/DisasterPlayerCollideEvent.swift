@@ -19,13 +19,9 @@ struct DisasterPlayerCollideEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        guard let disaster = target.entity(with: entityID),
-              let otherEntity = target.entity(with: otherEntityID)
-        else { return }
-
-        supplier.add(RemoveEntityEvent(disaster.id))
+        supplier.add(RemoveEvent(onEntityWith: entityID))
         supplier.add(RespawnEvent(onEntityWith: otherEntityID, newPosition: Constants.playerInitialPosition))
-        supplier.add(ExternalRemoveEvent(entityToRemoveId: disaster.id))
+        supplier.add(ExternalRemoveEvent(entityToRemoveId: entityID))
         supplier.add(ExternalRespawnEvent(
             positionX: Constants.playerInitialPosition.x,
             positionY: Constants.playerInitialPosition.y

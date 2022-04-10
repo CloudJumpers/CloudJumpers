@@ -7,38 +7,38 @@
 
 extension Player: Collidable {
     func collides(with collidable: Collidable) -> Event? {
-        return collidable.collides(with: self)
+        collidable.collides(with: self)
     }
 
     func collides(with player: Player) -> Event? {
-        return ContactHandler.between(self, player)
+        ContactHandler.between(self, player)
     }
 
     func collides(with powerUp: PowerUp) -> Event? {
-        return ContactHandler.between(self, powerUp)
+        ContactHandler.between(self, powerUp)
     }
 
     func collides(with cloud: Cloud) -> Event? {
-        return ContactHandler.between(self, cloud)
+        ContactHandler.between(self, cloud)
     }
 
     func collides(with floor: Floor) -> Event? {
-        return ContactHandler.between(self, floor)
+        ContactHandler.between(self, floor)
     }
 
     func collides(with platform: Platform) -> Event? {
-        return ContactHandler.between(self, platform)
+        ContactHandler.between(self, platform)
     }
 
     func collides(with wall: Wall) -> Event? {
-        return ContactHandler.between(self, wall)
+        ContactHandler.between(self, wall)
     }
 
     func collides(with disaster: Disaster) -> Event? {
-        return ContactHandler.between(self, disaster)
+        ContactHandler.between(self, disaster)
     }
 
     func collides(with guest: Guest) -> Event? {
-        return ContactHandler.between(self, guest)
+        ContactHandler.between(self, guest)
     }
 }

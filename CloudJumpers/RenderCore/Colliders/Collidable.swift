@@ -14,5 +14,5 @@ protocol Collidable {
     func collides(with platform: Platform) -> Event?
     func collides(with wall: Wall) -> Event?
     func collides(with disaster: Disaster) -> Event?
-    func collides(with guest: Guest) -> Event? 
+    func collides(with guest: Guest) -> Event?
 }
