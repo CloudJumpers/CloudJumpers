@@ -18,8 +18,7 @@ class LocationSystem: System {
     }
 
     func update(within time: CGFloat) {
-        return
-    }
+        }
 
     func addLocation(for id: EntityID, to standOnEntityID: EntityID) {
         guard let locationComponent = manager?.component(ofType: LocationComponent.self, of: id) else {
@@ -27,7 +26,7 @@ class LocationSystem: System {
         }
         locationComponent.standOnEntityID = standOnEntityID
     }
-    
+
     func removeLocation(for id: EntityID, to standOnEntityID: EntityID) {
         guard let locationComponent = manager?.component(ofType: LocationComponent.self, of: id),
               locationComponent.standOnEntityID == standOnEntityID
@@ -36,6 +35,5 @@ class LocationSystem: System {
         }
         locationComponent.standOnEntityID = nil
     }
-    
-    
+
 }
