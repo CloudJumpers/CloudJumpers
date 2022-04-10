@@ -1,12 +1,16 @@
 //
-//  DisasterHitEvent.swift
+//  DisasterPlatformCollideEvent.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 28/3/22.
 //
 import Foundation
 
-struct DisasterHitEvent: Event {
+struct DisasterPlatformCollideEvent: Event {
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
+        <#code#>
+    }
+    
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -24,15 +28,5 @@ struct DisasterHitEvent: Event {
         else { return }
 
         supplier.add(RemoveEntityEvent(disaster.id))
-
-        // TODO: Handle this in contact handler @ERIC
-        if otherEntity is Player {
-            supplier.add(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
-            supplier.add(ExternalRemoveEvent(entityToRemoveId: disaster.id))
-            supplier.add(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y
-            ))
-        }
     }
 }
