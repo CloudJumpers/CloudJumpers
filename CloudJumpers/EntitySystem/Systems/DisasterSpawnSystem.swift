@@ -39,7 +39,7 @@ class DisasterSpawnSystem: System {
 
         // TODO: Change this
         let disasterId = EntityManager.newEntityID
-        let localDisasterStart = DisasterStartEvent(
+        let localDisasterStart = DisasterActivateEvent(
              position: position,
              velocity: velocity,
              disasterType: disasterType,
@@ -51,5 +51,6 @@ class DisasterSpawnSystem: System {
              disasterVelocityY: velocity.dy,
              disasterType: disasterType.rawValue,
              disasterId: disasterId)
+
     }
 }

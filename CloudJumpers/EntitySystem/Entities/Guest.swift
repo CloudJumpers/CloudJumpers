@@ -60,8 +60,8 @@ class Guest: Entity {
 
         let labelNode = SKLabelNode()
         labelNode.text = displayname
-        labelNode.fontSize = Constants.nameLabelFontSize
-        labelNode.position = Constants.nameLabelRelativePosition
+        labelNode.fontSize = Constants.captionFontSize
+        labelNode.position = Constants.captionRelativePosition
         labelNode.fontColor = .black
 
         spriteComponent.node.addChild(labelNode)
