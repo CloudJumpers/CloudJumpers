@@ -33,7 +33,7 @@ struct RemoveEventCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RemoveEntityEvent(parameters.entityToRemoveId)
+        let eventToProcess = RemoveEvent(onEntityWith: parameters.entityToRemoveId)
         eventManager.add(eventToProcess)
         return true
     }

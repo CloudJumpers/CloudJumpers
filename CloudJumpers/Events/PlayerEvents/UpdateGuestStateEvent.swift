@@ -17,7 +17,7 @@ struct UpdateGuestStateEvent: Event {
     let kind: TextureFrame
 
     init(onEntityWith id: EntityID, position: CGPoint, kind: TextureFrame,
-         timestamp: TimeInterval = EventManager.timestamp) {
+         at timestamp: TimeInterval = EventManager.timestamp) {
 
         self.entityID = id
         self.position = position
