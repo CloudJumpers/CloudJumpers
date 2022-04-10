@@ -201,6 +201,8 @@
 		A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */; };
 		A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */; };
 		A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */; };
+		A16C8FC6280336C4001B2E7F /* LocationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C8FC5280336C4001B2E7F /* LocationSystem.swift */; };
+		A16C8FC828033B07001B2E7F /* LocationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C8FC728033B07001B2E7F /* LocationComponent.swift */; };
 		A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */; };
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
@@ -446,6 +448,8 @@
 		A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaDataDelegate.swift; sourceTree = "<group>"; };
 		A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEventCommand.swift; sourceTree = "<group>"; };
 		A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRespawnEvent.swift; sourceTree = "<group>"; };
+		A16C8FC5280336C4001B2E7F /* LocationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSystem.swift; sourceTree = "<group>"; };
+		A16C8FC728033B07001B2E7F /* LocationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationComponent.swift; sourceTree = "<group>"; };
 		A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTopGameRules.swift; sourceTree = "<group>"; };
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
@@ -626,6 +630,7 @@
 				1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */,
 				3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */,
 				A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */,
+				A16C8FC728033B07001B2E7F /* LocationComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -663,6 +668,7 @@
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
 				3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */,
+				A16C8FC5280336C4001B2E7F /* LocationSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1507,6 +1513,7 @@
 				1AE9D8AF27FED1F3002B0A1E /* SKTextureAtlas+Sorted.swift in Sources */,
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
+				A16C8FC6280336C4001B2E7F /* LocationSystem.swift in Sources */,
 				A1D786852801EE1A00C5CE49 /* PlayerTag.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */,
@@ -1643,6 +1650,7 @@
 				A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */,
 				A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
+				A16C8FC828033B07001B2E7F /* LocationComponent.swift in Sources */,
 				3EA7C8B02803026F009BCA63 /* PowerUpPlayerCollideEvent.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
