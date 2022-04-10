@@ -49,7 +49,6 @@ struct DisasterActivateEvent: Event {
         let disasterPrompt = DisasterPrompt(
             disasterType,
             at: position,
-            with: entityID,
             intervalToRemove: Constants.disasterPromptPeriod)
         target.add(disaster)
         target.add(disasterPrompt)

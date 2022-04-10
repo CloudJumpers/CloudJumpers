@@ -21,5 +21,6 @@ struct ObtainEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        }
+        // TODO: Fix this after done with contact handler
+    }
 }

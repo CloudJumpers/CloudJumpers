@@ -53,4 +53,12 @@ class InventorySystem: System {
         }
     }
 
+    func dequeuePowerUp(for id: EntityID) -> EntityID? {
+        guard let entity = manager?.entity(with: id),
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+        else { return nil }
+        return inventoryComponent.inventory.dequeue()
+
+    }
+
 }
