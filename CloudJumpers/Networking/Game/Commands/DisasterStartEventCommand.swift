@@ -35,13 +35,15 @@ struct DisasterStartEventCommand: GameEventCommand {
             nextCommand = RemoveEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
+        let position = CGPoint(x: parameters.disasterPositionX, y: parameters.disasterPositionY)
+        let velocity = CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY)
 
-        let eventToProcess = DisasterStartEvent(
-            position: CGPoint(x: parameters.disasterPositionX, y: parameters.disasterPositionY),
-            at: parameters.timestamp,
-            velocity: CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY),
+        let eventToProcess = DisasterActivateEvent(
+            position: position,
+            velocity: velocity,
             disasterType: disasterType,
-            entityId: parameters.disasterId)
+            entityId: parameters.disasterId,
+            at: parameters.timestamp)
         eventManager.add(eventToProcess)
         return true
     }

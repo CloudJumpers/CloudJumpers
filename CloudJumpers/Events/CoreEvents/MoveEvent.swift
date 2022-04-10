@@ -14,15 +14,9 @@ struct MoveEvent: Event {
 
     let displacement: CGVector
 
-    init(onEntityWith id: EntityID, by displacement: CGVector) {
-        timestamp = EventManager.timestamp
-        entityID = id
-        self.displacement = displacement
-    }
-
-    init(onEntityWith id: EntityID, at timestamp: TimeInterval, by displacement: CGVector) {
-        entityID = id
+    init(onEntityWith id: EntityID, by displacement: CGVector, at timestamp: TimeInterval = EventManager.timestamp) {
         self.timestamp = timestamp
+        entityID = id
         self.displacement = displacement
     }
 

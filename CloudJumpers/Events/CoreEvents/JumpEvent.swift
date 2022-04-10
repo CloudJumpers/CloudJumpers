@@ -15,15 +15,11 @@ struct JumpEvent: Event {
 
     let jumpImpulse: CGVector
 
-    init(onEntityWith id: EntityID, by impulse: CGVector = Constants.jumpImpulse) {
-        timestamp = EventManager.timestamp
-        entityID = id
-        jumpImpulse = impulse
-    }
-
-    init(onEntityWith id: EntityID, at timestamp: TimeInterval, by impulse: CGVector) {
-        entityID = id
+    init(onEntityWith id: EntityID,
+         by impulse: CGVector = Constants.jumpImpulse,
+         at timestamp: TimeInterval = EventManager.timestamp) {
         self.timestamp = timestamp
+        entityID = id
         jumpImpulse = impulse
     }
 

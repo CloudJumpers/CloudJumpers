@@ -10,7 +10,7 @@ import Foundation
 struct ExternalPowerUpStartEvent: RemoteEvent {
     var activatePowerUpPositionX: Double
     var activatePowerUpPositionY: Double
-    var activatePowerUpType: String
+    var activatePowerUpId: EntityID
     func createDispatchCommand() -> GameEventCommand? {
         guard let sourceId = getSourceId() else {
             return nil
