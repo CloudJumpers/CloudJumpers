@@ -34,7 +34,7 @@ class PowerActivateEvent: Event {
         supplier.add(ExternalPowerUpStartEvent(
             activatePowerUpPositionX: location.x,
             activatePowerUpPositionY: location.y,
-            activatePowerUpId: powerUpComponent.kind.name))
+            activatePowerUpId: powerUpID))
 
     }
 

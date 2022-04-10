@@ -191,6 +191,7 @@
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
 		A12D58CA2802B00800DA7EC6 /* PowerActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58C92802B00800DA7EC6 /* PowerActivateEvent.swift */; };
 		A12D58CC2802B4AD00DA7EC6 /* PowerSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CB2802B4AD00DA7EC6 /* PowerSystem.swift */; };
+		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
@@ -433,6 +434,7 @@
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A12D58C92802B00800DA7EC6 /* PowerActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerActivateEvent.swift; sourceTree = "<group>"; };
 		A12D58CB2802B4AD00DA7EC6 /* PowerSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSystem.swift; sourceTree = "<group>"; };
+		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
@@ -1168,6 +1170,7 @@
 				A1D786672801931600C5CE49 /* RepositionEvent.swift */,
 				A1D786692801942500C5CE49 /* AnimateEvent.swift */,
 				A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */,
+				A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */,
 			);
 			path = CoreEvents;
 			sourceTree = "<group>";
@@ -1632,6 +1635,7 @@
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,
 				A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */,
+				A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
