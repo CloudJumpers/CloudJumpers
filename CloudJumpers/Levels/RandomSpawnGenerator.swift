@@ -34,4 +34,8 @@ class RandomSpawnGenerator {
     static func getRandomDisasterType() -> DisasterComponent.Kind? {
         DisasterComponent.Kind.allCases.randomElement()
     }
+    
+    static func getRandomPowerType() -> PowerUpComponent.Kind? {
+        PowerUpComponent.Kind.allCases.randomElement()
+    }
 }

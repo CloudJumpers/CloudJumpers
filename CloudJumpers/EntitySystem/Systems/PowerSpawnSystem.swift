@@ -35,5 +35,9 @@ class PowerSpawnSystem: System {
         
         let velocity = RandomSpawnGenerator.getRandomVector(blueprint: blueprint)
         let position = RandomSpawnGenerator.getRandomPosition(blueprint: blueprint)
+        let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
+        let powerId = EntityManager.newEntityID
+        
+        // TODO: ADD event to spawn locally and remote
     }
 }

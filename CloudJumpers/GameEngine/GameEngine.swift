@@ -73,10 +73,6 @@ class GameEngine {
         setUpEnvironment(cloudPositions: cloudPositions)
         setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
         setUpSampleGame()
-
-        if rules.isSpawningPowerUp {
-            generatePowerUp(blueprint: powerUpBlueprint)
-        }
     }
 
     private func setUpEnvironment(cloudPositions: [CGPoint]) {
@@ -160,21 +156,7 @@ class GameEngine {
         rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
-
-    // TODO: Refactor this with dynamic power up spawn- @jushg
-    private func generatePowerUp(blueprint: Blueprint) {
-        let powerUpPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
-
-        for (index, position) in powerUpPositions.enumerated() {
-            guard let newPowerUp = generatePowerUp(at: position,
-                                                   type: index,
-                                                   id: generatePowerUpId(idx: index, position: position))
-           else { return }
-
-            entityManager.add(newPowerUp)
-        }
-
-    }
+    
 
     // MARK: Temporary time update method
     private func updateTime() {
@@ -183,16 +165,6 @@ class GameEngine {
         else { return }
 
         metaData.time = timedComponent.time
-    }
-
-    private func generatePowerUp(at position: CGPoint, type: Int, id: String) -> PowerUp? {
-        let powerUpTypeCount = PowerUpComponent.Kind.allCases.count
-        let powerUpType = PowerUpComponent.Kind.allCases[type % powerUpTypeCount]
-        return PowerUp(powerUpType, at: position, with: id)
-    }
-
-    private func generatePowerUpId(idx: Int, position: CGPoint) -> String {
-        "powerUp\(idx)\(position.x)\(position.y)"
     }
 }
 
