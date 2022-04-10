@@ -27,6 +27,7 @@ struct OldObtainEvent: Event {
               ownerComponent.ownerEntityId == nil
         else { return }
 
+        // TODO: Handle this in contact handler @ERIC
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer,
            let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity) {
             inventoryComponent.inventory.enqueue(otherEntityID)

@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct DisasterStartEvent: Event {
+struct DisasterActivateEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
