@@ -222,7 +222,6 @@
 		A1D786872801FABB00C5CE49 /* AnimateSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786862801FABB00C5CE49 /* AnimateSystem.swift */; };
 		A1D786892801FF6700C5CE49 /* RemoveOutOfBoundTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */; };
 		A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */; };
-		A1D7868D2802074100C5CE49 /* EffectSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868C2802074100C5CE49 /* EffectSystem.swift */; };
 		A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868F280209D500C5CE49 /* ObtainEvent.swift */; };
 		A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869128020D3700C5CE49 /* InventorySystem.swift */; };
 		A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */; };
@@ -467,7 +466,6 @@
 		A1D786862801FABB00C5CE49 /* AnimateSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateSystem.swift; sourceTree = "<group>"; };
 		A1D786882801FF6700C5CE49 /* RemoveOutOfBoundTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveOutOfBoundTag.swift; sourceTree = "<group>"; };
 		A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedRemovalComponent.swift; sourceTree = "<group>"; };
-		A1D7868C2802074100C5CE49 /* EffectSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectSystem.swift; sourceTree = "<group>"; };
 		A1D7868F280209D500C5CE49 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		A1D7869128020D3700C5CE49 /* InventorySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySystem.swift; sourceTree = "<group>"; };
 		A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSpawnGenerator.swift; sourceTree = "<group>"; };
@@ -659,7 +657,6 @@
 				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
 				A1D786822801EE0100C5CE49 /* PlayerStateSynchronizer.swift */,
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
-				A1D7868C2802074100C5CE49 /* EffectSystem.swift */,
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
 			);
 			path = Systems;
@@ -1546,7 +1543,6 @@
 				A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */,
 				935280CF27F62BBE002E3A1D /* PostGameRankingCell.swift in Sources */,
 				A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */,
-				A1D7868D2802074100C5CE49 /* EffectSystem.swift in Sources */,
 				1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */,
 				3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */,
 				1AC1606427F31E08006E4018 /* Sounds.swift in Sources */,

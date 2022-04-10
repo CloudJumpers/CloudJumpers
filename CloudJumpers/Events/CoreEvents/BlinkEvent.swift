@@ -23,6 +23,7 @@ struct BlinkEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        }
+        // TODO: Use to create blink effect on an entity
+    }
 
 }

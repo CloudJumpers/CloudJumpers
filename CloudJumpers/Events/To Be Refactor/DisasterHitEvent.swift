@@ -25,6 +25,7 @@ struct DisasterHitEvent: Event {
 
         supplier.add(RemoveEntityEvent(disaster.id))
 
+        // TODO: Handle this in contact handler @ERIC
         if otherEntity is Player {
             supplier.add(RespawnEvent(onEntityWith: otherEntityID, to: Constants.playerInitialPosition))
             supplier.add(ExternalRemoveEvent(entityToRemoveId: disaster.id))
