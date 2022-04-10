@@ -47,7 +47,7 @@ class LobbyViewController: UIViewController {
         refreshGameModeMenu()
     }
 
-    func setActiveLobby(id: NetworkID, name: String, gameMode: OldGameMode, hostId: NetworkID) {
+    func setActiveLobby(id: NetworkID, name: String, gameMode: GameMode, hostId: NetworkID) {
         activeLobby = GameLobby(
             id: id,
             name: name,
@@ -171,7 +171,7 @@ class LobbyViewController: UIViewController {
 
         gameMode.menu = UIMenu(children: gameModeOptions)
         gameMode.isEnabled = lobby.userIsHost
-        setLobbyGameMode(lobby.gameMode.rawValue)
+        setLobbyGameMode(lobby.gameMode.name)
     }
 }
 

@@ -101,7 +101,7 @@ class LobbiesViewController: UIViewController {
         lobbyId: NetworkID,
         hostId: NetworkID,
         lobbyName: String,
-        gameMode: OldGameMode,
+        gameMode: GameMode,
         occupancy: Int
     ) {
         let newLobbyListing = LobbyListing(
@@ -123,7 +123,7 @@ class LobbiesViewController: UIViewController {
         lobbyId: NetworkID,
         newHostId: NetworkID,
         newName: String,
-        newGameMode: OldGameMode,
+        newGameMode: GameMode,
         newOccupancy: Int
     ) {
         guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {

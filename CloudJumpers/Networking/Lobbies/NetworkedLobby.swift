@@ -10,7 +10,7 @@ import Foundation
 protocol NetworkedLobby: AnyObject {
     var id: NetworkID { get }
     var name: String { get }
-    var gameMode: OldGameMode { get }
+    var gameMode: GameMode { get }
 
     var hostId: NetworkID { get }
     var userIsHost: Bool { get }
@@ -21,7 +21,7 @@ protocol NetworkedLobby: AnyObject {
     func onUserAdd(_ user: LobbyUser)
     func onUserUpdate(_ user: LobbyUser)
     func onUserRemove(_ userId: NetworkID)
-    func onGameModeChange(_ newGameMode: OldGameMode)
+    func onGameModeChange(_ newGameMode: GameMode)
     func onNameChange(_ newName: String)
     func onHostChange(_ newHostId: NetworkID)
 

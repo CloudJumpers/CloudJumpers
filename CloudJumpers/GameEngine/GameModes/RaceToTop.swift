@@ -16,6 +16,10 @@ struct RaceToTop: GameMode {
     let lobbyPlayedIn: NetworkID
     let seed: Int = 161_001
 
+    private var endpointKey: String {
+        "\(seed)/\(urlSafeName)/\(lobbyPlayedIn)"
+    }
+
     init(_ lobbyPlayedIn: NetworkID) {
         self.lobbyPlayedIn = lobbyPlayedIn
     }
@@ -35,6 +39,6 @@ struct RaceToTop: GameMode {
             completionTime: metaData.time
         )
 
-        return RaceToTopPostGameManager(completionData, seed, lobbyPlayedIn)
+        return RaceToTopPostGameManager(completionData, endpointKey)
     }
 }

@@ -38,14 +38,9 @@ class GameViewController: UIViewController {
             return
         }
 
-        switch activeLobby.gameMode {
-        case .timeTrial:
-            handlers = TimeTrialPreGameManager(activeLobby.id, 161_001).getEventHandlers()
-            activeLobby.synchronizer?.updateCallback(setUpGame)
-        case .raceTop:
-            handlers = RaceToTopPreGameManager(activeLobby.id).getEventHandlers()
-            activeLobby.synchronizer?.updateCallback(setUpGame)
-        }
+        let preGameManager = activeLobby.gameMode.createPreGameManager()
+        handlers = preGameManager.getEventHandlers()
+        activeLobby.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {
@@ -53,13 +48,9 @@ class GameViewController: UIViewController {
         guard let mode = lobby?.gameMode, let handlers = handlers else {
             return
         }
-        let gameRules: GameRules
-        switch mode {
-        case .timeTrial:
-            gameRules = TimeTrialGameRules()
-        case .raceTop:
-            gameRules = RaceTopGameRules()
-        }
+
+        let gameRules = mode.getGameRules()
+
         gameEngine = GameEngine(
             rendersTo: self,
             rules: gameRules,
@@ -102,7 +93,7 @@ class GameViewController: UIViewController {
 
         var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
-        if lobby?.gameMode == .timeTrial {
+        if lobby?.gameMode.name == "TimeTrial" {
             allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "(shadow)"))
         }
 
@@ -167,33 +158,15 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
-            let deviceUserId = AuthService().getUserId()
+            let metaData = gameEngine?.metaData
         else {
             return
         }
 
         isMovingToPostGame = true
 
-        switch activeLobby.gameMode {
-        case .timeTrial:
-            let gameCompletionData = TimeTrialData(
-                playerId: activeLobby.hostId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let timeTrialManager = TimeTrialPostGameManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
-        case .raceTop:
-            let gameCompletionData = RaceToTopData(
-                playerId: deviceUserId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let raceToTopManager = RaceToTopPostGameManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
-        }
+        let postGameManager = activeLobby.gameMode.createPostGameManager(metaData: metaData)
+        performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
