@@ -32,6 +32,7 @@ struct ObtainEvent: Event {
             return
         }
 
+        // TODO: @This conflicts with powerUpActivate implementation
         target.remove(entity)
     }
 }

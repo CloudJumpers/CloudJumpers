@@ -39,7 +39,7 @@ class InventorySystem: System {
 
             displayCount += 1
 
-            // TODO: Figure this out ???
+            // TODO: Move the position of PowerUp inside inventory
 
 //            spriteComponent.node.removeFromParent()
 //            spriteComponent.node.position = position
