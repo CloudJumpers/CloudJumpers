@@ -40,7 +40,7 @@ class PowerUpSystem: System {
                 manager.add(effector)
             }
         }
-        
+
         manager.remove(powerUp)
     }
 
