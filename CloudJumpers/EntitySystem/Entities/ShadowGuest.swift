@@ -24,7 +24,7 @@ class ShadowGuest: Entity {
     ) {
         self.id = id
         self.texture = texture
-        self.name = "[shadow] \(name)"
+        self.name = name
         self.position = position
     }
 

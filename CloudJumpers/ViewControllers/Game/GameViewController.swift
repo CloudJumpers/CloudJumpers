@@ -103,7 +103,7 @@ class GameViewController: UIViewController {
         var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
         if lobby?.gameMode == .timeTrial {
-            allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Rank 1"))
+            allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
         }
 
         let seed = 161_001
