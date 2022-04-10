@@ -6,13 +6,13 @@
 //
 
 protocol Collidable {
-    func collides(with collidable: Collidable)
-    func collides(with player: Player)
-    func collides(with powerUp: PowerUp)
-    func collides(with cloud: Cloud)
-    func collides(with floor: Floor)
-    func collides(with platform: Platform)
-    func collides(with wall: Wall)
-    func collides(with disaster: Disaster)
-    func collides(with guest: Guest)
+    func collides(with collidable: Collidable) -> Event?
+    func collides(with player: Player) -> Event?
+    func collides(with powerUp: PowerUp) -> Event?
+    func collides(with cloud: Cloud) -> Event?
+    func collides(with floor: Floor) -> Event?
+    func collides(with platform: Platform) -> Event?
+    func collides(with wall: Wall) -> Event?
+    func collides(with disaster: Disaster) -> Event?
+    func collides(with guest: Guest) -> Event? 
 }
