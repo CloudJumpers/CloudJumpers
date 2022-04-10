@@ -28,7 +28,7 @@ class PlayerStateSynchronizer: System {
 
         // TODO: Change after new way of getting sprite position
         let playerPosition = positionComponent.position
-        let playerTexture = animationComponent.kind
+        let playerTexture = animationComponent.textures
         let positionalUpdate = ExternalRepositionEvent(
             positionX: playerPosition.x,
             positionY: playerPosition.y,

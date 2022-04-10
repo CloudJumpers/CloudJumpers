@@ -203,7 +203,6 @@
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
-		A19A7A3427F99D47007E1C11 /* DisasterGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A3327F99D47007E1C11 /* DisasterGenerator.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1D7865D28018CC300C5CE49 /* RemoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */; };
 		A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866028018E2C00C5CE49 /* SoundEvent.swift */; };
@@ -226,6 +225,7 @@
 		A1D7868D2802074100C5CE49 /* EffectSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868C2802074100C5CE49 /* EffectSystem.swift */; };
 		A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868F280209D500C5CE49 /* ObtainEvent.swift */; };
 		A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869128020D3700C5CE49 /* InventorySystem.swift */; };
+		A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -447,7 +447,6 @@
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
 		A19A7A2A27F8D79D007E1C11 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
-		A19A7A3327F99D47007E1C11 /* DisasterGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterGenerator.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSystem.swift; sourceTree = "<group>"; };
 		A1D7866028018E2C00C5CE49 /* SoundEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEvent.swift; sourceTree = "<group>"; };
@@ -470,6 +469,7 @@
 		A1D7868C2802074100C5CE49 /* EffectSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectSystem.swift; sourceTree = "<group>"; };
 		A1D7868F280209D500C5CE49 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		A1D7869128020D3700C5CE49 /* InventorySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySystem.swift; sourceTree = "<group>"; };
+		A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSpawnGenerator.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -688,7 +688,7 @@
 			children = (
 				1AC1603D27F19369006E4018 /* Blueprint.swift */,
 				1AC1603F27F19386006E4018 /* LevelGenerator.swift */,
-				A19A7A3327F99D47007E1C11 /* DisasterGenerator.swift */,
+				A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -1560,7 +1560,6 @@
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
-				A19A7A3427F99D47007E1C11 /* DisasterGenerator.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
@@ -1608,6 +1607,7 @@
 				A1D786702801CDE300C5CE49 /* UpdatePlayerEvent.swift in Sources */,
 				A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */,
 				9353464027F02DA400DC6F9E /* RepositionEventCommand.swift in Sources */,
+				A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */,
 				1AE9D89F27FE0287002B0A1E /* Renderer.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				3E81C0E827EF3FDF00184C55 /* ActivatePowerUpEvent.swift in Sources */,

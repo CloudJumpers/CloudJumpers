@@ -133,7 +133,8 @@ class GameEngine {
         }
 
     }
-
+    
+    // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
             withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
@@ -141,9 +142,6 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
-    private func syncToOtherDevices() {
-        
-    }
 
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?

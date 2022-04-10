@@ -32,8 +32,8 @@ class InventorySystem: System {
 
         for entityID in inventoryComponent.inventory.iterable {
             guard let entity = manager.entity(with: entityID),
-                  let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity),
-                  let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: entity),
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity),
+                  let ownerComponent = manager.component(ofType: OwnerComponent.self, of: entity),
                   ownerComponent.ownerEntityId != nil
             else { continue }
 
