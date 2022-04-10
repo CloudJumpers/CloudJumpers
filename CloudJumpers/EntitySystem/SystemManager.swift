@@ -18,8 +18,8 @@ class SystemManager {
     }
 
     func update(within time: TimeInterval, in entityManager: EntityManager) {
-        for system in systems.values where system.shouldUpdate(within: time, in: entityManager) {
-            system.update(within: time, in: entityManager)
+        for system in systems.values where shouldUpdate(system, within: time) {
+            system.update(within: time)
         }
     }
 
@@ -31,6 +31,10 @@ class SystemManager {
     private func register(_ system: System) {
         let identifier = String(describing: system.self)
         systems[identifier] = system
+    }
+
+    private func shouldUpdate(_ system: System, within time: TimeInterval) -> Bool {
+        system.active && system.shouldUpdate(within: time)
     }
 
     private func setUpSystems() {
