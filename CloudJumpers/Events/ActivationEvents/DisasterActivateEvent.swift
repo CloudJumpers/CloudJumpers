@@ -16,24 +16,10 @@ struct DisasterActivateEvent: Event {
     private var velocity: CGVector
     private var disasterType: DisasterComponent.Kind
 
-    init(position: CGPoint,
-         velocity: CGVector,
-         disasterType: DisasterComponent.Kind,
-         entityId: EntityID) {
-        timestamp = EventManager.timestamp
-        entityID = entityId
-        self.position = position
-        self.velocity = velocity
-        self.disasterType = disasterType
-     }
-
-    init(position: CGPoint,
-         at timestamp: TimeInterval,
-         velocity: CGVector,
-         disasterType: DisasterComponent.Kind,
-         entityId: EntityID
-    ) {
-        entityID = entityId
+    init(position: CGPoint, velocity: CGVector,
+         disasterType: DisasterComponent.Kind, entityId: EntityID,
+         at timestamp: TimeInterval = EventManager.timestamp) {
+        self.entityID = entityId
         self.position = position
         self.timestamp = timestamp
         self.velocity = velocity

@@ -15,15 +15,9 @@ struct RepositionEvent: Event {
 
     let newPosition: CGPoint
 
-    init(onEntityWith id: EntityID, to newPosition: CGPoint) {
-        timestamp = EventManager.timestamp
-        entityID = id
-        self.newPosition = newPosition
-    }
-
-    init(onEntityWith id: EntityID, at timestamp: TimeInterval, to newPosition: CGPoint) {
-        entityID = id
+    init(onEntityWith id: EntityID, to newPosition: CGPoint, at timestamp: TimeInterval = EventManager.timestamp) {
         self.timestamp = timestamp
+        entityID = id
         self.newPosition = newPosition
     }
 

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct RemoveEvent: Event {
     var timestamp: TimeInterval
 

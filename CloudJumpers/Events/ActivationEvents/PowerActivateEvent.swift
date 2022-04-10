@@ -15,8 +15,8 @@ class PowerActivateEvent: Event {
 
     private let location: CGPoint
 
-    init(on entityID: EntityID, location: CGPoint) {
-        timestamp = EventManager.timestamp
+    init(by entityID: EntityID, location: CGPoint, at timestamp: TimeInterval = EventManager.timestamp) {
+        self.timestamp = timestamp
         self.entityID = entityID
         self.location = location
     }

@@ -15,8 +15,8 @@ struct RespawnEvent: Event {
 
     let newPosition: CGPoint
 
-    init(onEntityWith id: EntityID, newPosition: CGPoint) {
-        timestamp = EventManager.timestamp
+    init(onEntityWith id: EntityID, newPosition: CGPoint, timestamp: TimeInterval = EventManager.timestamp) {
+        self.timestamp = timestamp
         self.entityID = id
         self.newPosition = newPosition
     }
