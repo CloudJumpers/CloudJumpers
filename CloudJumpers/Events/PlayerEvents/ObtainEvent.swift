@@ -9,7 +9,6 @@ import Foundation
 
 struct ObtainEvent: Event {
 
-    
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -20,8 +19,7 @@ struct ObtainEvent: Event {
         self.entityID = entityID
         self.otherEntityID = otherEntityID
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
-    }
+        }
 }

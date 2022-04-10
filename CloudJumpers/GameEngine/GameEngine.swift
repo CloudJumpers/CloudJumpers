@@ -129,7 +129,7 @@ class GameEngine {
         }
 
     }
-    
+
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
@@ -137,7 +137,6 @@ class GameEngine {
             repeats: true
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
-
 
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
@@ -156,7 +155,6 @@ class GameEngine {
         rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
-    
 
     // MARK: Temporary time update method
     private func updateTime() {

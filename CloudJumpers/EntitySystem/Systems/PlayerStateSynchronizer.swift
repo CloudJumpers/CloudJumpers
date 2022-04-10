@@ -19,7 +19,7 @@ class PlayerStateSynchronizer: System {
 
     func update(within time: CGFloat) {
         guard let manager = manager,
-              let entity = manager.getEntities().first(where: {manager.hasComponent(ofType: PlayerTag.self, in: $0)}),
+              let entity = manager.getEntities().first(where: { manager.hasComponent(ofType: PlayerTag.self, in: $0) }),
               let animationComponent = manager.component(ofType: AnimationComponent.self, of: entity),
               let positionComponent = manager.component(ofType: PositionComponent.self, of: entity)
         else {

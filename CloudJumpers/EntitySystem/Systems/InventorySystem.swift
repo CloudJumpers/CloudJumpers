@@ -8,19 +8,18 @@
 import Foundation
 import CoreGraphics
 
-
 class InventorySystem: System {
     var active: Bool
-    
+
     unowned var manager: EntityManager?
 
     required init(for manager: EntityManager) {
         self.manager = manager
     }
-    
+
     func update(within time: CGFloat) {
         guard let manager = manager,
-              let entity = manager.getEntities().first(where: {manager.hasComponent(ofType: PlayerTag.self, in: $0)}),
+              let entity = manager.getEntities().first(where: { manager.hasComponent(ofType: PlayerTag.self, in: $0) }),
               let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
               inventoryComponent.inventory.isUpdated else {
             return
@@ -42,7 +41,7 @@ class InventorySystem: System {
             }
 
             displayCount += 1
-            
+
             // TODO: Figure this out ???
 
             spriteComponent.node.removeFromParent()
@@ -53,6 +52,5 @@ class InventorySystem: System {
             position.x += Constants.powerUpQueueXInterval
         }
     }
-    
-    
+
 }

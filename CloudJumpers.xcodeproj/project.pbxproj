@@ -42,7 +42,6 @@
 		1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96727EE12E3001D8A86 /* Heap.swift */; };
 		1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96A27EE1465001D8A86 /* PriorityQueue.swift */; };
 		1A94D97127EEEC36001D8A86 /* InventoryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */; };
-		1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D97227EEED61001D8A86 /* ObtainEvent.swift */; };
 		1AAB1E0D27FF0EDD00378382 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E0C27FF0EDD00378382 /* Collidable.swift */; };
 		1AAB1E0F27FF0F6200378382 /* ContactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */; };
 		1AAB1E1127FF124800378382 /* Player+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1027FF124800378382 /* Player+Collidable.swift */; };
@@ -280,7 +279,6 @@
 		1A94D96727EE12E3001D8A86 /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
 		1A94D96A27EE1465001D8A86 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
 		1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryComponent.swift; sourceTree = "<group>"; };
-		1A94D97227EEED61001D8A86 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		1AAB1E0C27FF0EDD00378382 /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
 		1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHandler.swift; sourceTree = "<group>"; };
 		1AAB1E1027FF124800378382 /* Player+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+Collidable.swift"; sourceTree = "<group>"; };
@@ -1157,7 +1155,6 @@
 			isa = PBXGroup;
 			children = (
 				3E81C0E727EF3FDF00184C55 /* ActivatePowerUpEvent.swift */,
-				1A94D97227EEED61001D8A86 /* ObtainEvent.swift */,
 				3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */,
 				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
 				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
@@ -1512,7 +1509,6 @@
 				1A13D77C27FD9BD700A28182 /* Node.swift in Sources */,
 				9385D9B127F727B700593930 /* RaceToTopManager.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
-				1A94D97327EEED61001D8A86 /* ObtainEvent.swift in Sources */,
 				A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */,
 				1AAB1E252800349700378382 /* Simulatable.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,

@@ -43,7 +43,6 @@ class SpriteSystem: System {
 
         pruneSprites(in: entitiesToPrune)
 
-
     }
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
@@ -84,7 +83,7 @@ class SpriteSystem: System {
     }
 
     private func updateInventory(of entityID: EntityID) {
-        
+
     }
 
     // MARK: - Rendering Lifecycle
