@@ -81,19 +81,22 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func exitLobby(userId: NetworkID, deleteLobby: Bool = false) {
+    func exitLobby(userId: NetworkID, deleteLobby: DeleteMode) {
         guard let lobby = managedLobby else {
             return
         }
 
-        if deleteLobby {
+        if deleteLobby != .None {
             let lobbyReference = getLobbyReference(lobbyId: lobby.id)
-//            let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
             lobbyReference.removeValue()
-            // Perform a deferred delete of channel.
-            // Provides some grace period for all updates across devices
-            // to reach the server first.
-//            channelReference.onDisconnectRemoveValue()
+
+            if deleteLobby == .All {
+                let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
+                // Perform a deferred delete of channel.
+                // Provides some grace period for all updates across devices
+                // to reach the server first.
+                channelReference.onDisconnectRemoveValue()
+            }
         } else {
             let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
             userReference.removeValue()
