@@ -27,6 +27,7 @@ struct PowerUpCollideEvent: Event {
               ownerComponent.ownerEntityId == nil
         else { return }
 
+        // TODO: Handle this in contact handler @ERIC
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer {
             let externalObtainEntityEvent = ExternalObtainEntityEvent(obtainedEntityID: powerUpEntityID)
             supplier.add(externalObtainEntityEvent)

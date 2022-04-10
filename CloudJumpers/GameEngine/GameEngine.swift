@@ -38,9 +38,6 @@ class GameEngine {
     func update(within time: CGFloat) {
         updateEntityManager(within: time)
         updateTime()
-        if rules.isSpawningDisaster {
-            generateDisaster()
-        }
     }
 
     func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, on channel: NetworkID?) {
@@ -76,10 +73,6 @@ class GameEngine {
         setUpEnvironment(cloudPositions: cloudPositions)
         setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
         setUpSampleGame()
-
-        if rules.isSpawningPowerUp {
-            generatePowerUp(blueprint: powerUpBlueprint)
-        }
     }
 
     private func setUpEnvironment(cloudPositions: [CGPoint]) {
@@ -136,7 +129,8 @@ class GameEngine {
         }
 
     }
-
+    
+    // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
             withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
@@ -144,25 +138,6 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
-    private func syncToOtherDevices() {
-        guard let entity = associatedEntity,
-              let animationComponent = entityManager.component(ofType: AnimationComponent.self, of: entity),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else {
-            return
-        }
-
-        // TODO: Change after new way of getting sprite position
-        let playerPosition = spriteComponent.node.position
-        let playerTexture = animationComponent.kind
-        let positionalUpdate = ExternalRepositionEvent(
-            positionX: playerPosition.x,
-            positionY: playerPosition.y,
-            texture: playerTexture.rawValue
-        )
-
-        eventManager.publish(positionalUpdate)
-    }
 
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
@@ -181,44 +156,7 @@ class GameEngine {
         rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
-
-    // TODO: Refactor this with dynamic power up spawn- @jushg
-    private func generatePowerUp(blueprint: Blueprint) {
-        let powerUpPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
-
-        for (index, position) in powerUpPositions.enumerated() {
-            guard let newPowerUp = generatePowerUp(at: position,
-                                                   type: index,
-                                                   id: generatePowerUpId(idx: index, position: position))
-           else { return }
-
-            entityManager.add(newPowerUp)
-        }
-
-    }
-
-    // TODO: This should become a System
-    private func generateDisaster() {
-        if let inChargeID = inChargeID,
-           metaData.playerId == inChargeID,
-           let eventInfo = DisasterGenerator.createRandomDisaster(within: metaData.highestPosition.y) {
-            let disasterId = EntityManager.newEntityID
-            let localDisasterStart = DisasterStartEvent(
-                position: eventInfo.position,
-                velocity: eventInfo.velocity,
-                disasterType: eventInfo.type,
-                entityId: disasterId)
-            let remoteDisasterStart = ExternalDisasterEvent(
-                disasterPositionX: eventInfo.position.x,
-                disasterPositionY: eventInfo.position.y,
-                disasterVelocityX: eventInfo.velocity.dx,
-                disasterVelocityY: eventInfo.velocity.dy,
-                disasterType: eventInfo.type.rawValue,
-                disasterId: disasterId)
-            eventManager.add(localDisasterStart)
-            eventManager.publish(remoteDisasterStart)
-        }
-    }
+    
 
     // MARK: Temporary time update method
     private func updateTime() {
@@ -227,16 +165,6 @@ class GameEngine {
         else { return }
 
         metaData.time = timedComponent.time
-    }
-
-    private func generatePowerUp(at position: CGPoint, type: Int, id: String) -> PowerUp? {
-        let powerUpTypeCount = PowerUpComponent.Kind.allCases.count
-        let powerUpType = PowerUpComponent.Kind.allCases[type % powerUpTypeCount]
-        return PowerUp(powerUpType, at: position, with: id)
-    }
-
-    private func generatePowerUpId(idx: Int, position: CGPoint) -> String {
-        "powerUp\(idx)\(position.x)\(position.y)"
     }
 }
 
@@ -271,7 +199,10 @@ extension GameEngine: InputResponder {
             return
         }
 
-        eventManager.add(MoveEvent(on: entity, by: displacement))
+        let playerMoveEvent = MoveEvent(on: entity, by: displacement)
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .walking))
+
+        eventManager.add(playerMoveEvent)
 
         if physicsComponent.body.velocity == .zero {
             eventManager.add(AnimateEvent(on: entity, to: .walking))
@@ -282,8 +213,11 @@ extension GameEngine: InputResponder {
         guard let entity = associatedEntity else {
             return
         }
+        let playerJumpEvent = JumpEvent(on: entity)
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpCape))
+            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpFoot))
 
-        eventManager.add(JumpEvent(on: entity))
+        eventManager.add(playerJumpEvent)
         eventManager.add(AnimateEvent(on: entity, to: .jumping))
     }
 

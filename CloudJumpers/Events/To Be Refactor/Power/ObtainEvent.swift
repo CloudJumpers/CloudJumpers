@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ObtainEvent: Event {
+struct OldObtainEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -27,6 +27,7 @@ struct ObtainEvent: Event {
               ownerComponent.ownerEntityId == nil
         else { return }
 
+        // TODO: Handle this in contact handler @ERIC
         if physicsComponent.body.categoryBitMask == Constants.bitmaskPlayer,
            let inventoryComponent = entityManager.component(ofType: InventoryComponent.self, of: entity) {
             inventoryComponent.inventory.enqueue(otherEntityID)

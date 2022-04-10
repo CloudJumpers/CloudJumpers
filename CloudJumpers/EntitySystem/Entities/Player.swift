@@ -39,6 +39,7 @@ class Player: Entity {
         manager.addComponent(InventoryComponent(), to: self)
 
         manager.addComponent(CameraAnchorTag(), to: self)
+        manager.addComponent(PlayerTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

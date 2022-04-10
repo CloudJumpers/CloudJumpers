@@ -54,6 +54,10 @@ class EntityManager {
         remove(entity)
     }
 
+    func getEntities() -> [Entity] {
+        Array(entities.values)
+    }
+
     func entity(with entityID: EntityID) -> Entity? {
         entities[entityID]
     }
@@ -77,6 +81,13 @@ class EntityManager {
         }
 
         return nil
+    }
+
+    func component<T: Component>(ofType type: T.Type, of entityID: EntityID) -> T? {
+        guard let entity = entity(with: entityID) else {
+            return nil
+        }
+        return component(ofType: type, of: entity)
     }
 
     func hasComponent<T: Component>(ofType type: T.Type, in entity: Entity) -> Bool {
