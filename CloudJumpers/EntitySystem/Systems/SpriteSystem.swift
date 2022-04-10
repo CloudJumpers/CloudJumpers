@@ -43,9 +43,7 @@ class SpriteSystem: System {
 
         pruneSprites(in: entitiesToPrune)
 
-        if let playerId = metaData?.playerId {
-            updateInventory(of: playerId)
-        }
+
     }
 
     private func updateNode(_ node: SKNode, with entity: Entity) {
@@ -86,37 +84,7 @@ class SpriteSystem: System {
     }
 
     private func updateInventory(of entityID: EntityID) {
-        guard let entity = manager?.entity(with: entityID),
-              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
-              inventoryComponent.inventory.isUpdated else {
-            return
-        }
-
-        inventoryComponent.inventory.isUpdated = false
-        var position = Constants.initialPowerUpQueuePosition
-        var displayCount = 0
-
-        for entityID in inventoryComponent.inventory.iterable {
-            guard let entity = manager?.entity(with: entityID),
-                  let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity),
-                  let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: entity),
-                  ownerComponent.ownerEntityId != nil
-            else { continue }
-
-            guard displayCount <= Constants.powerUpMaxNumDisplay else {
-                break
-            }
-
-            displayCount += 1
-
-            spriteComponent.node.removeFromParent()
-
-            spriteComponent.node.position = position
-            spriteComponent.node.physicsBody = nil
-
-            delegate?.spriteSystem(self, addNode: spriteComponent.node, static: true)
-            position.x += Constants.powerUpQueueXInterval
-        }
+        
     }
 
     // MARK: - Rendering Lifecycle

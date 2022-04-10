@@ -1,5 +1,5 @@
 //
-//  ConfuseEvent.swift
+//  FreezeEvent.swift
 //  CloudJumpers
 //
 //  Created by Phillmont Muktar on 3/4/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-struct ConfuseEvent: Event {
+struct FreezeEvent: Event {
     var timestamp: TimeInterval
     var entityID: EntityID
 
@@ -26,19 +26,19 @@ struct ConfuseEvent: Event {
         self.location = location
     }
 
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         let targets = playersWithinRange(in: entityManager)
         let effectEntity = createEffectAndAdd(into: &supplier)
-        entityManager.add(effectEntity)
+        target.add(effectEntity)
 
-        targets.forEach { supplier.add(SwapMoveEffector(on: $0, watching: effectEntity)) }
+        targets.forEach { supplier.add(NullMoveEffector(on: $0, watching: effectEntity)) }
+        targets.forEach { supplier.add(NullJumpEffector(on: $0, watching: effectEntity)) }
     }
 
     private func createEffectAndAdd(into supplier: inout Supplier) -> Entity {
-        let effect = PowerUpEffect(.confuse, at: location)
-        supplier.add(RemoveEntityEvent(effect.id, after: Constants.powerUpEffectDuration))
-        supplier.add(BlinkEffectEvent(
-            on: effect.id,
+        let effect = PowerUpEffect(.freeze, at: location, intervalToRemove: Constants.powerUpEffectDuration)
+        supplier.add(BlinkEvent(
+            onEntityWith: effect.id,
             duration: Constants.powerUpEffectDuration / 10,
             numberOfLoop: 5))
 

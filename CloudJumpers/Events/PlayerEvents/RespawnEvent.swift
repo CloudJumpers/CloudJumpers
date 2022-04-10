@@ -2,7 +2,7 @@
 //  RespawnEvent.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 3/30/22.
+//  Created by Trong Tan on 4/9/22.
 //
 
 import Foundation
@@ -10,31 +10,22 @@ import CoreGraphics
 
 struct RespawnEvent: Event {
     var timestamp: TimeInterval
-    var position: CGPoint
 
     var entityID: EntityID
 
-    init(onEntityWith id: EntityID, to position: CGPoint) {
+    let newPosition: CGPoint
+
+    init(onEntityWith id: EntityID, newPosition: CGPoint) {
+        timestamp = EventManager.timestamp
         self.entityID = id
-        self.timestamp = EventManager.timestamp
-        self.position = position
+        self.newPosition = newPosition
     }
 
-    init(onEntityWith id: EntityID, at timestamp: TimeInterval, to position: CGPoint) {
-        self.entityID = id
-        self.timestamp = timestamp
-        self.position = position
-    }
-
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
-
-        guard let entity = entityManager.entity(with: entityID),
-              let spriteComponent = entityManager.component(ofType: SpriteComponent.self, of: entity)
-        else { return }
-
-        spriteComponent.node.position = position
-        let effectEvent = RespawnEffectEvent(onEntityWith: entityID, at: spriteComponent.node.position)
-
-        supplier.add(effectEvent)
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
+        target.add(RepositionEvent(onEntityWith: entityID, to: newPosition))
+        target.add(BlinkEvent(
+            onEntityWith: entityID,
+            duration: Constants.respawnDuration,
+            numberOfLoop: Constants.respawnLoopCount))
     }
 }

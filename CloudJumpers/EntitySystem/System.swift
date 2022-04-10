@@ -11,10 +11,10 @@ protocol System: AnyObject {
     var active: Bool { get set }
 
     init(for manager: EntityManager)
-    func shouldUpdate(within time: CGFloat, in entityManager: EntityManager) -> Bool
-    func update(within time: CGFloat, in entityManager: EntityManager)
+    func shouldUpdate(within time: CGFloat) -> Bool
+    func update(within time: CGFloat)
 }
 
 extension System {
-    func shouldUpdate(within time: CGFloat, in entityManager: EntityManager) -> Bool { true }
+    func shouldUpdate(within time: CGFloat) -> Bool { true }
 }
