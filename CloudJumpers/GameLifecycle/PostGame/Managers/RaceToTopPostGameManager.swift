@@ -9,8 +9,7 @@ import Foundation
 
 class RaceToTopPostGameManager: PostGameManager {
     private let completionData: RaceToTopData
-    private let lobbyId: NetworkID
-    private let seed: Int
+    private let endpointKey: String
 
     private var requestHandler: PostGameRequestDelegate?
     var callback: PostGameCallback = nil
@@ -18,14 +17,12 @@ class RaceToTopPostGameManager: PostGameManager {
     private(set) var rankings: [IndividualRanking] = [IndividualRanking]()
 
     private var endpoint: String {
-        let parameters = "\(seed)/\(urlSafeGameMode(mode: .raceTop))/\(lobbyId)"
-        return baseUrl + parameters
+        baseUrl + endpointKey
     }
 
-    init(_ completionData: RaceToTopData, _ seed: Int, _ lobbyId: NetworkID) {
+    init(_ completionData: RaceToTopData, _ endpointKey: String) {
         self.completionData = completionData
-        self.lobbyId = lobbyId
-        self.seed = seed
+        self.endpointKey = endpointKey
         self.requestHandler = PostGameRestDelegate()
         self.requestHandler?.postGameManager = self
     }
