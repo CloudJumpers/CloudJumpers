@@ -21,12 +21,13 @@ class TimeTrialGameRules: GameRules {
     }
 
     func hasGameEnd() -> Bool {
-        guard let player = target?.components(ofType: PlayerTag.self).first?.entity,
-              let playerStandOnComponent = target?.component(ofType: StandOnComponent.self, of: player)
-        guard let playerLocationId = gameData.locationMapping[gameData.playerId]?.location else {
+        guard let target = target,
+              let player = target.components(ofType: PlayerTag.self).first?.entity,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
+        else {
             return false
         }
-        return playerLocationId == gameData.topPlatformId
+        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
     }
 
 }

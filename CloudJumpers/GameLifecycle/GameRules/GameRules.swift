@@ -9,7 +9,6 @@ import Foundation
 
 protocol GameRules {
     func update()
-
     func hasGameEnd() -> Bool
 }
 extension GameRules {
