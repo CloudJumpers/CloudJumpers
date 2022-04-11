@@ -8,9 +8,6 @@
 import Foundation
 
 class RaceTopGameRules: GameRules {
-    var isSpawningPowerUp = true
-
-    var isSpawningDisaster = true
 
     func createGameEvents(with gameData: GameMetaData) -> (localEvents: [Event], remoteEvents: [RemoteEvent]) {
         var localEvents = [Event]()
