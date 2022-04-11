@@ -1,11 +1,11 @@
 //
-//  PostGameConstants.swift
+//  LifecycleConstants.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 31/3/22.
 //
 
-enum PostGameConstants {
+enum LifecycleConstants {
     static let pollInterval: Double = 2.0
 
     // interface

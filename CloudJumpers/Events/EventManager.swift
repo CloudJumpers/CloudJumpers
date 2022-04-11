@@ -16,10 +16,13 @@ class EventManager {
     private var gameEventSubscriber: GameEventSubscriber?
     private var gameEventPublisher: GameEventPublisher?
 
-    init(channel: NetworkID?) {
-        events = EventQueue(sort: Self.priority(_:_:))
-        effectors = []
-        subscribe(to: channel)
+    init(handlers: RemoteEventHandlers) {
+        self.events = EventQueue(sort: Self.priority(_:_:))
+        self.effectors = []
+
+        self.gameEventPublisher = handlers.publisher
+        self.gameEventSubscriber = handlers.subscriber
+        gameEventSubscriber?.eventManager = self
     }
 
     static var timestamp: TimeInterval {
@@ -72,16 +75,6 @@ class EventManager {
         }
 
         publisher.publishGameEventCommand(command)
-    }
-
-    private func subscribe(to channel: NetworkID?) {
-        guard let channel = channel else {
-            return
-        }
-
-        gameEventSubscriber = FirebaseSubscriber(channel)
-        gameEventPublisher = FirebasePublisher(channel)
-        gameEventSubscriber?.eventManager = self
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {
