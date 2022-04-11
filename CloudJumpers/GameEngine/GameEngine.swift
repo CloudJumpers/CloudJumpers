@@ -140,6 +140,10 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
+    private func syncToOtherDevices () {
+        entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
+    }
+
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
 
