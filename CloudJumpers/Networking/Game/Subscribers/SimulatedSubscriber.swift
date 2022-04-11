@@ -7,5 +7,5 @@
 
 import Foundation
 
-protocol SimulatedSubscriber: GameEventPublisher {
+protocol SimulatedSubscriber: GameEventSubscriber {
 }

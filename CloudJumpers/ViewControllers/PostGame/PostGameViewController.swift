@@ -58,7 +58,7 @@ extension PostGameViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: PostGameConstants.rankingCellIdentifier,
+            withIdentifier: LifecycleConstants.rankingCellIdentifier,
             for: indexPath
         )
 

@@ -1,15 +1,15 @@
 //
-//  Player.swift
+//  ShadowGuest.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 23/3/22.
+//  Created by Sujay R Subramanian on 10/4/22.
 //
 
 import Foundation
 import CoreGraphics
 import SpriteKit
 
-class Player: Entity {
+class ShadowGuest: Entity {
     let id: EntityID
 
     private(set) var position: CGPoint
@@ -36,10 +36,6 @@ class Player: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
-        manager.addComponent(InventoryComponent(), to: self)
-
-        manager.addComponent(CameraAnchorTag(), to: self)
-        manager.addComponent(PlayerTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -49,7 +45,7 @@ class Player: Entity {
             at: position,
             forEntityWith: id)
 
-        spriteComponent.node.zPosition = SpriteZPosition.player.rawValue
+        spriteComponent.node.zPosition = SpriteZPosition.shadowGuest.rawValue
         createNameLabel(for: spriteComponent)
 
         return spriteComponent
@@ -62,24 +58,26 @@ class Player: Entity {
             displayname = displayname[..<index] + "..."
         }
 
-        let labelNode = SKLabelNode(fontNamed: "AvenirNext-Bold")
+        let labelNode = SKLabelNode()
         labelNode.text = displayname
         labelNode.fontSize = Constants.nameLabelFontSize
         labelNode.position = Constants.nameLabelRelativePosition
-        labelNode.fontColor = .red
+        labelNode.fontColor = .black
 
         spriteComponent.node.addChild(labelNode)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = true
+        let shadowGuestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
+        Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp ^
+        Constants.bitmaskCloud
+        physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false
         physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlayer
-        physicsComponent.body.collisionBitMask = .max ^ Constants.bitmaskGuest ^
-            Constants.bitmaskShadowGuest ^ Constants.bitmaskPowerUp
-        physicsComponent.body.contactTestBitMask = .max ^ Constants.bitmaskGuest
+        physicsComponent.body.categoryBitMask = Constants.bitmaskShadowGuest
+        physicsComponent.body.collisionBitMask = shadowGuestCollisionBitmask
+        physicsComponent.body.contactTestBitMask = shadowGuestCollisionBitmask
         return physicsComponent
     }
 

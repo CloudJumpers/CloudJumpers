@@ -21,11 +21,13 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  inChargeID: NetworkID?, channel: NetworkID? = nil ) {
+                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         setUpEventDispatcher(entityManager, on: channel)
 
+        eventManager = EventManager(handlers: handlers)
+        contactResolver = ContactResolver(to: eventManager)
         self.rules = rules
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
@@ -118,6 +120,12 @@ class GameEngine {
                     name: name,
                     with: id)
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else if id == GameConstants.shadowPlayerID {
+                character = ShadowGuest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .shadowCharacter1,
+                    name: name,
+                    with: id)
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],

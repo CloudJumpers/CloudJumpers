@@ -41,4 +41,11 @@ class RequestMaker {
             }
         }
     }
+
+    static func stringToURL(_ endpoint: String) -> URL {
+        guard let url = URL(string: endpoint) else {
+            fatalError("stringToURL failed for \(endpoint)")
+        }
+        return url
+    }
 }
