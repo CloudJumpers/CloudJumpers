@@ -10,4 +10,7 @@ import Foundation
 enum GameModeConstants {
     static let timeTrials = "Time Trials"
     static let raceToTop = "Race To Top"
+    static let kingOfTheHill = "King of the Hill"
+
+    static let kothDurationSeconds = 120.0
 }

@@ -173,6 +173,11 @@
 		93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */; };
 		93ADD1C828047F67004E0E87 /* ShadowCharacter1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */; };
 		93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */; };
+		93ADD1CC28048E6F004E0E87 /* KingOfTheHill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1CB28048E6F004E0E87 /* KingOfTheHill.swift */; };
+		93ADD1CE28049B9B004E0E87 /* KingOfTheHillGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1CD28049B9B004E0E87 /* KingOfTheHillGameRules.swift */; };
+		93ADD1D028049D03004E0E87 /* KingOfTheHillPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1CF28049D03004E0E87 /* KingOfTheHillPreGameManager.swift */; };
+		93ADD1D228049D77004E0E87 /* KingOfTheHillPostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D128049D77004E0E87 /* KingOfTheHillPostGameManager.swift */; };
+		93ADD1D428049DA1004E0E87 /* KingOfTheHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D328049DA1004E0E87 /* KingOfTheHillData.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
@@ -394,6 +399,11 @@
 		93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
 		93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShadowCharacter1.atlas; sourceTree = "<group>"; };
 		93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeConstants.swift; sourceTree = "<group>"; };
+		93ADD1CB28048E6F004E0E87 /* KingOfTheHill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHill.swift; sourceTree = "<group>"; };
+		93ADD1CD28049B9B004E0E87 /* KingOfTheHillGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillGameRules.swift; sourceTree = "<group>"; };
+		93ADD1CF28049D03004E0E87 /* KingOfTheHillPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillPreGameManager.swift; sourceTree = "<group>"; };
+		93ADD1D128049D77004E0E87 /* KingOfTheHillPostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillPostGameManager.swift; sourceTree = "<group>"; };
+		93ADD1D328049DA1004E0E87 /* KingOfTheHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillData.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
@@ -868,6 +878,7 @@
 			children = (
 				93C93AD727F744C4001246F2 /* TimeTrialData.swift */,
 				9385D9B227F727E200593930 /* RaceToTopData.swift */,
+				93ADD1D328049DA1004E0E87 /* KingOfTheHillData.swift */,
 				936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */,
 			);
 			path = LocalCompletionData;
@@ -879,6 +890,7 @@
 				936228D927F5CF9B00BB05FE /* PostGameManager.swift */,
 				936228E827F602F700BB05FE /* TimeTrialPostGameManager.swift */,
 				9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */,
+				93ADD1D128049D77004E0E87 /* KingOfTheHillPostGameManager.swift */,
 				9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */,
 				9385D9BD27F7349100593930 /* PostGameRestDelegate.swift */,
 			);
@@ -901,6 +913,7 @@
 				9336792A28029C6400BB4484 /* Factory */,
 				93681BEA280209650097EBD1 /* TimeTrial.swift */,
 				93681BEC280211500097EBD1 /* RaceToTop.swift */,
+				93ADD1CB28048E6F004E0E87 /* KingOfTheHill.swift */,
 				93ADD1C328047EAF004E0E87 /* GameMode.swift */,
 			);
 			path = GameModes;
@@ -987,6 +1000,7 @@
 				9396E95128002FA10090A8C9 /* PreGameManager.swift */,
 				9396E954280030DA0090A8C9 /* TimeTrialPreGameManager.swift */,
 				9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */,
+				93ADD1CF28049D03004E0E87 /* KingOfTheHillPreGameManager.swift */,
 				9396E956280031F30090A8C9 /* PreGameRequestDelegate.swift */,
 				9396E958280032190090A8C9 /* PreGameRestDelegate.swift */,
 			);
@@ -1112,6 +1126,7 @@
 				A1409A2B27ECB633000008E8 /* GameRules.swift */,
 				A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */,
 				A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */,
+				93ADD1CD28049B9B004E0E87 /* KingOfTheHillGameRules.swift */,
 			);
 			path = GameRules;
 			sourceTree = "<group>";
@@ -1425,6 +1440,7 @@
 				93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
+				93ADD1CE28049B9B004E0E87 /* KingOfTheHillGameRules.swift in Sources */,
 				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				A108AB4C27E5033B003157E8 /* ContactResolver.swift in Sources */,
@@ -1440,6 +1456,7 @@
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
 				A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */,
+				93ADD1CC28048E6F004E0E87 /* KingOfTheHill.swift in Sources */,
 				93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */,
 				1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */,
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
@@ -1450,6 +1467,7 @@
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
+				93ADD1D028049D03004E0E87 /* KingOfTheHillPreGameManager.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
 				93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */,
 				1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */,
@@ -1511,6 +1529,7 @@
 				3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
 				3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */,
+				93ADD1D428049DA1004E0E87 /* KingOfTheHillData.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
 				931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */,
 				936228E927F602F700BB05FE /* TimeTrialPostGameManager.swift in Sources */,
@@ -1570,6 +1589,7 @@
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				A19A7A3027F8DFE2007E1C11 /* DisasterSpawnEvent.swift in Sources */,
+				93ADD1D228049D77004E0E87 /* KingOfTheHillPostGameManager.swift in Sources */,
 				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
