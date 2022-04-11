@@ -19,7 +19,7 @@ class RaceTopGameRules: GameRules {
         if isPlayerRespawn(with: gameData) {
             localEvents.append(RespawnEvent(
                 onEntityWith: gameData.playerId,
-                to: gameData.playerStartingPosition)
+                newPosition: gameData.playerStartingPosition)
             )
 
             remoteEvents.append(ExternalRespawnEvent(

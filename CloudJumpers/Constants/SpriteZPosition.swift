@@ -10,6 +10,7 @@ import CoreGraphics
 enum SpriteZPosition: CGFloat {
     case platform
     case guest
+    case shadowGuest
     case player
     case background
     case powerUpEffect

@@ -30,17 +30,17 @@ class ContactResolver {
             metaDataDelegate?.metaData(changePlayerLocation: idB, location: idA)
         }
 
-        if isPlayerObtainingPowerUp(nodeA: nodeA, nodeB: nodeB) {
-            eventManager?.add(PowerUpCollideEvent(on: idA, powerUp: idB))
-        } else if isPlayerObtainingPowerUp(nodeA: nodeB, nodeB: nodeA) {
-            eventManager?.add(PowerUpCollideEvent(on: idB, powerUp: idA))
-        }
-
-        if isDisasterHitting(nodeA: nodeA) {
-            eventManager?.add(DisasterHitEvent(from: idA, on: idB))
-        } else if isDisasterHitting(nodeA: nodeB) {
-            eventManager?.add(DisasterHitEvent(from: idB, on: idA))
-        }
+//        if isPlayerObtainingPowerUp(nodeA: nodeA, nodeB: nodeB) {
+//            eventManager?.add(PowerUpPlayerCollideEvent(on: idA, powerUp: idB))
+//        } else if isPlayerObtainingPowerUp(nodeA: nodeB, nodeB: nodeA) {
+//            eventManager?.add(PowerUpPlayerCollideEvent(on: idB, powerUp: idA))
+//        }
+//
+//        if isDisasterHitting(nodeA: nodeA) {
+//            eventManager?.add(DisasterHitEvent(from: idA, on: idB))
+//        } else if isDisasterHitting(nodeA: nodeB) {
+//            eventManager?.add(DisasterHitEvent(from: idB, on: idA))
+//        }
     }
 
     func resolveEndContact(contact: SKPhysicsContact) {

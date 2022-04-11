@@ -14,7 +14,6 @@ class PowerUpEffect: Entity {
     private var kind: PowerUpComponent.Kind
     private let intervalToRemove: TimeInterval
 
-
     init(_ kind: PowerUpComponent.Kind,
          at position: CGPoint,
          intervalToRemove: TimeInterval,
@@ -49,7 +48,7 @@ class PowerUpEffect: Entity {
     private func createTimedComponent() -> TimedComponent {
         TimedComponent()
     }
-    
+
     private func createRemoveComponent() -> TimedRemovalComponent {
         TimedRemovalComponent(timeToRemove: intervalToRemove)
     }

@@ -17,8 +17,8 @@ class PhysicsComponent: Component {
 
     // TODO: PhysicsCollision, PhysicsContactTest
     var categoryBitMask: PhysicsCategory = .max
-    var collisionBitMask: PhysicsCategory = .max
-    var contactTestBitMask: PhysicsCategory = .max
+    var collisionBitMask: PhysicsCollision = .max
+    var contactTestBitMask: PhysicsContactTest = .max
 
     init(rectangleOf size: CGSize) {
         self.size = size

@@ -167,6 +167,8 @@ extension EntityManager: Simulatable {
               let entityB = entity(with: entityBID)
         else { fatalError("An unassociated EntityID was present in EntityManager") }
 
-        entityA.collides(with: entityB)
+        if let event = entityA.collides(with: entityB) {
+            eventManager.add(event)
+        }
     }
 }

@@ -53,7 +53,7 @@ class Wall: Entity {
         physicsComponent.body.restitution = 0
         physicsComponent.body.categoryBitMask = Constants.bitmaskWall
         physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer
+        physicsComponent.body.contactTestBitMask = 0
 
         return physicsComponent
     }

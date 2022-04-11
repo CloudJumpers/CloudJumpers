@@ -37,7 +37,7 @@ struct MoveEventCommand: GameEventCommand {
         }
 
         let displacement = CGVector(dx: parameters.displacementX, dy: parameters.displacementY)
-        let event = MoveEvent(onEntityWith: source, at: parameters.timestamp, by: displacement)
+        let event = MoveEvent(onEntityWith: source, by: displacement, at: parameters.timestamp)
         eventManager.add(event)
 
         return true

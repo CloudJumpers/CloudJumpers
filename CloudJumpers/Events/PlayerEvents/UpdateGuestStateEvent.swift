@@ -16,11 +16,13 @@ struct UpdateGuestStateEvent: Event {
     let position: CGPoint
     let kind: TextureFrame
 
-    init(onEntityWith id: EntityID, position: CGPoint, kind: TextureFrame) {
-        timestamp = EventManager.timestamp
+    init(onEntityWith id: EntityID, position: CGPoint, kind: TextureFrame,
+         at timestamp: TimeInterval = EventManager.timestamp) {
+
         self.entityID = id
         self.position = position
         self.kind = kind
+        self.timestamp = timestamp
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {

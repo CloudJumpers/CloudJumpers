@@ -9,19 +9,23 @@ import Foundation
 
 struct ObtainEvent: Event {
 
-    
     let timestamp: TimeInterval
     let entityID: EntityID
 
     private let otherEntityID: EntityID
 
-    init(on entityID: EntityID, obtains otherEntityID: EntityID) {
-        timestamp = EventManager.timestamp
+    init(on entityID: EntityID, obtains otherEntityID: EntityID, timestamp: TimeInterval = EventManager.timestamp) {
         self.entityID = entityID
         self.otherEntityID = otherEntityID
+        self.timestamp = timestamp
     }
-    
+
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        return
+        guard target.entity(with: entityID) != nil,
+              target.entity(with: otherEntityID) != nil,
+              let inventorySystem = target.system(ofType: InventorySystem.self)
+        else { return }
+
+        inventorySystem.enqueueItem(for: entityID, with: otherEntityID)
     }
 }

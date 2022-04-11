@@ -29,25 +29,15 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalPowerUpStartEvent.self, from: jsonData),
-              let powerUpType = PowerUpComponent.Kind(rawValue: parameters.activatePowerUpType) else {
+        guard let parameters = try? decoder.decode(ExternalPowerUpStartEvent.self, from: jsonData)
+        else {
             nextCommand = ObtainEntityCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        var eventToProcess: Event
-        switch powerUpType {
-        case .freeze:
-            eventToProcess = FreezeEvent(by: source,
-                                         at: CGPoint(x: parameters.activatePowerUpPositionX,
-                                                     y: parameters.activatePowerUpPositionY),
-                                         timestamp: parameters.timestamp)
-        case .confuse:
-            eventToProcess = ConfuseEvent(by: source,
-                                          at: CGPoint(x: parameters.activatePowerUpPositionX,
-                                                      y: parameters.activatePowerUpPositionY),
-                                          timestamp: parameters.timestamp)
-        }
+        let location = CGPoint(x: parameters.activatePowerUpPositionX, y: parameters.activatePowerUpPositionY)
+
+        let eventToProcess = PowerUpActivateEvent(by: source, location: location, at: parameters.timestamp)
 
         eventManager.add(eventToProcess)
         return true

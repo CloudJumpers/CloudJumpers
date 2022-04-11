@@ -36,6 +36,7 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(InventoryComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -60,8 +61,8 @@ class Guest: Entity {
 
         let labelNode = SKLabelNode()
         labelNode.text = displayname
-        labelNode.fontSize = Constants.nameLabelFontSize
-        labelNode.position = Constants.nameLabelRelativePosition
+        labelNode.fontSize = Constants.captionFontSize
+        labelNode.position = Constants.captionRelativePosition
         labelNode.fontColor = .black
 
         spriteComponent.node.addChild(labelNode)
@@ -69,7 +70,7 @@ class Guest: Entity {
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        let guestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^
+        let guestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
         Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp
         physicsComponent.body.affectedByGravity = false
         physicsComponent.body.allowsRotation = false

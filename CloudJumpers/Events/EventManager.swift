@@ -14,8 +14,8 @@ class EventManager {
     private var effectors: [Effector]
 
     init() {
-        events = EventQueue(sort: Self.priority(_:_:))
-        effectors = []
+        self.events = EventQueue(sort: Self.priority(_:_:))
+        self.effectors = []
     }
 
     static var timestamp: TimeInterval {

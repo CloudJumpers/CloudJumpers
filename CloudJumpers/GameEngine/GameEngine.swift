@@ -21,10 +21,10 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  inChargeID: NetworkID?, channel: NetworkID? = nil ) {
+                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        setUpEventDispatcher(entityManager, on: channel)
+        setUpEventDispatcher(entityManager, handlers: handlers)
 
         self.rules = rules
         self.inChargeID = inChargeID
@@ -40,13 +40,9 @@ class GameEngine {
         updateTime()
     }
 
-    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, on channel: NetworkID?) {
-        guard let channel = channel else {
-            return
-        }
-
-        eventDispatcher.subscriber = FirebaseSubscriber(channel)
-        eventDispatcher.publisher = FirebasePublisher(channel)
+    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, handlers: RemoteEventHandlers) {
+        eventDispatcher.subscriber = handlers.subscriber
+        eventDispatcher.publisher = handlers.publisher
     }
 
     func updateEntityManager(within time: CGFloat) {
@@ -118,6 +114,12 @@ class GameEngine {
                     name: name,
                     with: id)
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else if id == GameConstants.shadowPlayerID {
+                character = ShadowGuest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .shadowCharacter1,
+                    name: name,
+                    with: id)
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],
@@ -129,7 +131,7 @@ class GameEngine {
         }
 
     }
-    
+
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
@@ -138,6 +140,9 @@ class GameEngine {
         ) { [weak self] _ in self?.syncToOtherDevices() }
     }
 
+    private func syncToOtherDevices () {
+        entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
+    }
 
     // MARK: - Temporary methods to abstract
     private var timer: TimedLabel?
@@ -156,7 +161,6 @@ class GameEngine {
         rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
-    
 
     // MARK: Temporary time update method
     private func updateTime() {
@@ -226,6 +230,6 @@ extension GameEngine: InputResponder {
             return
         }
 
-        eventManager.add(ActivatePowerUpEvent(in: entity, location: location))
+        eventManager.add(PowerUpActivateEvent(in: entity, location: location))
     }
 }

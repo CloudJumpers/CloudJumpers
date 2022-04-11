@@ -11,19 +11,19 @@ enum Events: Int {
     case move
     case jump
     case animate
-    case powerUpCollide
+    case powerUpPlayerCollide
     case obtain
-    case removeEntity
+    case remove
     case removeUnboundEntity
-    case activatePowerUp
+    case powerUpActivate
     case confuse
     case freeze
     case powerUpEffectStart
     case reposition
     case respawn
-    case disasterHit
+    case disasterPlayerCollide
     case blinkEffect
-    case disasterStart
+    case disasterPrompt
     case respawnEffect
     case disasterPromptEffect
     case disasterSpawn
@@ -34,15 +34,15 @@ enum Events: Int {
         String(describing: MoveEvent.self): .move,
         String(describing: JumpEvent.self): .jump,
         String(describing: AnimateEvent.self): .animate,
-        String(describing: PowerUpCollideEvent.self): .powerUpCollide,
+        String(describing: PowerUpPlayerCollideEvent.self): .powerUpPlayerCollide,
         String(describing: ObtainEvent.self): .obtain,
-        String(describing: RemoveEntityEvent.self): .removeEntity,
-        String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
+        String(describing: RemoveEvent.self): .remove,
+        String(describing: PowerUpActivateEvent.self): .powerUpActivate,
         String(describing: RepositionEvent.self): .reposition,
         String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
-        String(describing: DisasterHitEvent.self): .disasterHit,
+        String(describing: DisasterPlayerCollideEvent.self): .disasterPlayerCollide,
         String(describing: BlinkEffectEvent.self): .blinkEffect,
-        String(describing: DisasterStartEvent.self): .disasterStart,
+        String(describing: DisasterPrompt.self): .disasterPrompt,
         String(describing: RespawnEvent.self): .respawn,
         String(describing: RespawnEffectEvent.self): .respawnEffect,
         String(describing: DisasterPromptEffectEvent.self): .disasterPromptEffect,
