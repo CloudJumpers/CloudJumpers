@@ -228,7 +228,7 @@ class GameLobby: NetworkedLobby {
         let deleteMode: DeleteMode
 
         if isOnlyUser {
-            deleteMode = (gameMode.name == "Time Trial") ? .LobbyOnly : .All
+            deleteMode = (gameMode.name == GameModeConstants.timeTrials) ? .LobbyOnly : .All
         } else {
             deleteMode = .None
         }

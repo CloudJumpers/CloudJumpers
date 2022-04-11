@@ -8,7 +8,7 @@
 import Foundation
 
 struct RaceToTop: GameMode {
-    let name = "Race To Top"
+    let name = GameModeConstants.raceToTop
 
     var minimumPlayers: Int = 2
     var maximumPlayers: Int = 4

@@ -8,7 +8,7 @@
 import Foundation
 
 struct TimeTrial: GameMode {
-    let name = "Time Trial"
+    let name = GameModeConstants.timeTrials
 
     let minimumPlayers: Int = 1
     let maximumPlayers: Int = 1

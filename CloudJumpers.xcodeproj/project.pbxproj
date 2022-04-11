@@ -172,6 +172,7 @@
 		93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C328047EAF004E0E87 /* GameMode.swift */; };
 		93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */; };
 		93ADD1C828047F67004E0E87 /* ShadowCharacter1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */; };
+		93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
@@ -392,6 +393,7 @@
 		93ADD1C328047EAF004E0E87 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
 		93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShadowCharacter1.atlas; sourceTree = "<group>"; };
+		93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeConstants.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
@@ -895,6 +897,7 @@
 		93681BE7280208A00097EBD1 /* GameModes */ = {
 			isa = PBXGroup;
 			children = (
+				93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */,
 				9336792A28029C6400BB4484 /* Factory */,
 				93681BEA280209650097EBD1 /* TimeTrial.swift */,
 				93681BEC280211500097EBD1 /* RaceToTop.swift */,
@@ -1445,6 +1448,7 @@
 				935280CD27F6295E002E3A1D /* PostGameViewController.swift in Sources */,
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
+				93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
 				93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */,
