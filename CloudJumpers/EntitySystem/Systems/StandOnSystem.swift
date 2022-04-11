@@ -20,7 +20,7 @@ class StandOnSystem: System {
     func update(within time: CGFloat) {
         }
 
-    func addLocation(for id: EntityID, to standOnEntityID: EntityID, at timestamp: TimeInterval) {
+    func changeStandOnEntity(for id: EntityID, to standOnEntityID: EntityID?, at timestamp: TimeInterval) {
         guard let standOnComponent = manager?.component(ofType: StandOnComponent.self, of: id) else {
             return
         }
@@ -28,14 +28,4 @@ class StandOnSystem: System {
         standOnComponent.timestamp = timestamp
 
     }
-
-    func removeLocation(for id: EntityID, to standOnEntityID: EntityID) {
-        guard let standOnComponent = manager?.component(ofType: StandOnComponent.self, of: id),
-              standOnComponent.standOnEntityID == standOnEntityID
-        else {
-            return
-        }
-        standOnComponent.standOnEntityID = nil
-    }
-
 }

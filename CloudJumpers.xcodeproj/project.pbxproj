@@ -244,6 +244,7 @@
 		A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */; };
 		A1D8555C280491BF000C4CA7 /* RuleModifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8555B280491BF000C4CA7 /* RuleModifiable.swift */; };
 		A1D8555E2804A32C000C4CA7 /* TopPlatformTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8555D2804A32C000C4CA7 /* TopPlatformTag.swift */; };
+		A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */; };
 		A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */; };
 		A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBB84527D884290077AB96 /* CGVector+Extension.swift */; };
 		DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B041A15B790934EA628A8C5 /* Pods_CloudJumpers.framework */; };
@@ -506,6 +507,7 @@
 		A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSpawnGenerator.swift; sourceTree = "<group>"; };
 		A1D8555B280491BF000C4CA7 /* RuleModifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleModifiable.swift; sourceTree = "<group>"; };
 		A1D8555D2804A32C000C4CA7 /* TopPlatformTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlatformTag.swift; sourceTree = "<group>"; };
+		A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStandOnLocationEvent.swift; sourceTree = "<group>"; };
 		A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		A1DBB84527D884290077AB96 /* CGVector+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extension.swift"; sourceTree = "<group>"; };
 		BC34B1A3B6845348C7EA0DB0 /* Pods-CloudJumpersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -830,14 +832,6 @@
 				1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */,
 			);
 			path = Colliders;
-			sourceTree = "<group>";
-		};
-		3EA7C8AA2802CD37009BCA63 /* DisasterEvents */ = {
-			isa = PBXGroup;
-			children = (
-				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
-			);
-			path = DisasterEvents;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -1230,7 +1224,6 @@
 			children = (
 				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
 				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
-				3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */,
 			);
 			path = PowerEvents;
 			sourceTree = "<group>";
@@ -1238,7 +1231,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				3EA7C8AA2802CD37009BCA63 /* DisasterEvents */,
+				A1D8555F2804A988000C4CA7 /* ContactEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
 				A1D7866228018FC400C5CE49 /* CoreEvents */,
 				A12D58CD2802BAAE00DA7EC6 /* PowerEvents */,
@@ -1289,6 +1282,16 @@
 				3EA7C8AB2802FF47009BCA63 /* PowerUpActivateEvent.swift */,
 			);
 			path = ActivationEvents;
+			sourceTree = "<group>";
+		};
+		A1D8555F2804A988000C4CA7 /* ContactEvents */ = {
+			isa = PBXGroup;
+			children = (
+				A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */,
+				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
+				3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */,
+			);
+			path = ContactEvents;
 			sourceTree = "<group>";
 		};
 		A1DBB82827D884200077AB96 /* GameEngine */ = {
@@ -1664,6 +1667,7 @@
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
+				A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
 				3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */,
 				9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */,
