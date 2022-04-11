@@ -11,22 +11,15 @@ class GameEngine {
     let entityManager: EntityManager
     var metaData: GameMetaData
     var inChargeID: NetworkID?
-    let rules: GameRules
-
-    var hasGameEnd: Bool {
-        rules.hasGameEnd(with: metaData)
-    }
 
     private var crossDeviceSyncTimer: Timer?
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
-                  rules: GameRules,
                   inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         setUpEventDispatcher(entityManager, handlers: handlers)
 
-        self.rules = rules
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
     }
@@ -155,10 +148,6 @@ class GameEngine {
 
     // TODO: This shouldn't happen here anymore
     private func updateEvents() {
-        // TODO: Abstract this further if possible - @jusg
-        let rulesEvents = rules.createGameEvents(with: metaData)
-        rulesEvents.localEvents.forEach { eventManager.add($0) }
-        rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
 

@@ -12,8 +12,8 @@ class RaceTopGameRules: GameRules {
     func setTarget(_ target: RuleModifiable) {
         self.target = target
     }
-    
-    var player : Entity? {
+
+    var player: Entity? {
         target?.components(ofType: PlayerTag.self).first?.entity
     }
 
@@ -37,7 +37,7 @@ class RaceTopGameRules: GameRules {
         else {
             return false
         }
-        
+
         for component in allStandOnComponent where component.entity?.id != player.id {
             if component.standOnEntityID == playerStandOnComponent.standOnEntityID &&
                 component.timestamp > playerStandOnComponent.timestamp {
