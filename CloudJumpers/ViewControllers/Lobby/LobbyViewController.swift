@@ -37,7 +37,7 @@ class LobbyViewController: UIViewController {
             setActiveLobby(
                 id: listing.lobbyId,
                 name: listing.lobbyName,
-                gameMode: listing.gameMode,
+                config: listing.config,
                 hostId: listing.hostId
             )
         } else {
@@ -47,11 +47,11 @@ class LobbyViewController: UIViewController {
         refreshGameModeMenu()
     }
 
-    func setActiveLobby(id: NetworkID, name: String, gameMode: GameMode, hostId: NetworkID) {
+    func setActiveLobby(id: NetworkID, name: String, config: PreGameConfig, hostId: NetworkID) {
         activeLobby = GameLobby(
             id: id,
             name: name,
-            gameMode: gameMode,
+            gameConfig: config,
             hostId: hostId,
             onLobbyStateChange: handleLobbyUpdate,
             onLobbyDataChange: handleLobbyDataChange,
@@ -164,7 +164,7 @@ class LobbyViewController: UIViewController {
 
         gameMode.menu = UIMenu(children: gameModeOptions)
         gameMode.isEnabled = lobby.userIsHost
-        setLobbyGameMode(lobby.gameMode.name)
+        setLobbyGameMode(lobby.gameConfig.name)
     }
 }
 

@@ -38,18 +38,18 @@ class GameViewController: UIViewController {
             return
         }
 
-        let preGameManager = activeLobby.gameMode.createPreGameManager(activeLobby.id)
+        let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
         handlers = preGameManager.getEventHandlers()
         activeLobby.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        guard let mode = lobby?.gameMode, let handlers = handlers else {
+        guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
             return
         }
 
-        let gameRules = mode.getGameRules()
+        let gameRules = config.getGameRules()
 
         gameEngine = GameEngine(
             rendersTo: self,
@@ -93,7 +93,7 @@ class GameViewController: UIViewController {
 
         var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
-        if lobby?.gameMode.name == GameModeConstants.timeTrials {
+        if lobby?.gameConfig.name == GameModeConstants.timeTrials {
             allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
         }
 
@@ -158,6 +158,7 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
+            let gameConfig = activeLobby.gameConfig as? PostGameConfig,
             let metaData = gameEngine?.metaData
         else {
             return
@@ -165,7 +166,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = activeLobby.gameMode.createPostGameManager(activeLobby.id, metaData: metaData)
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
         performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()

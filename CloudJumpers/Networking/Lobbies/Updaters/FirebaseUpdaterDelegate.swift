@@ -22,7 +22,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         lobbyReference.setValue([
             LobbyKeys.hostId: hostId,
             LobbyKeys.lobbyName: lobby.name,
-            LobbyKeys.gameMode: lobby.gameMode.name,
+            LobbyKeys.gameMode: lobby.gameConfig.name,
             LobbyKeys.participants: [
                 lobby.hostId: [
                     LobbyKeys.participantReady: false,
@@ -53,7 +53,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - user is not (somehow) in the lobby already
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            if currentData.childrenCount >= lobby.gameMode.maximumPlayers {
+            if currentData.childrenCount >= lobby.gameConfig.maximumPlayers {
                 return TransactionResult.abort()
             }
 

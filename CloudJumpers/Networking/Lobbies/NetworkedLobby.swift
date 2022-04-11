@@ -10,7 +10,7 @@ import Foundation
 protocol NetworkedLobby: AnyObject {
     var id: NetworkID { get }
     var name: String { get }
-    var gameMode: GameMode { get }
+    var gameConfig: PreGameConfig { get }
 
     var hostId: NetworkID { get }
     var userIsHost: Bool { get }
