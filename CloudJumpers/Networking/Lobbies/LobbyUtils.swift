@@ -17,6 +17,24 @@ class LobbyUtils {
     }
 
     static func generateLobbyName() -> String {
-        "Cloud Jumpers"
+        // feel free to edit
+        let availableNames = [
+            "Cloud Jumpers",
+            "Ascension",
+            "Anti-Gravity",
+            "Leap of Faith",
+            "Stargazers",
+            "Bird's Eye View",
+            "Sky High",
+            "Cloud Nine",
+            "Horizon",
+            "No Parachutes Allowed"
+        ]
+
+        guard let choice = availableNames.randomElement() else {
+            fatalError("Missing options for lobby name")
+        }
+
+        return choice
     }
 }
