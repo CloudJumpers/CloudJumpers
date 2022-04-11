@@ -110,8 +110,6 @@
 		93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */; };
 		93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9E27EC9CDA00808295 /* GameEventPublisher.swift */; };
 		93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */; };
-		9336792C28029C7000BB4484 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336792B28029C7000BB4484 /* GameModeFactory.swift */; };
-		9336792E28029DD800BB4484 /* GameModeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9336792D28029DD800BB4484 /* GameModeConstants.swift */; };
 		9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624D27E502DE00063BE9 /* NetworkCallback.swift */; };
 		9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9344624F27E5935000063BE9 /* LobbyUserCell.swift */; };
 		9344625227E5975300063BE9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9344625127E5975300063BE9 /* GoogleService-Info.plist */; };
@@ -149,7 +147,6 @@
 		936228E627F5FFDC00BB05FE /* LocalCompletionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */; };
 		936228E927F602F700BB05FE /* TimeTrialPostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228E827F602F700BB05FE /* TimeTrialPostGameManager.swift */; };
 		936228EB27F6046200BB05FE /* LifecycleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936228EA27F6046200BB05FE /* LifecycleConstants.swift */; };
-		93681BE9280208BC0097EBD1 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93681BE8280208BC0097EBD1 /* GameMode.swift */; };
 		93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93681BEA280209650097EBD1 /* TimeTrial.swift */; };
 		93681BED280211500097EBD1 /* RaceToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93681BEC280211500097EBD1 /* RaceToTop.swift */; };
 		9385D9B127F727B700593930 /* RaceToTopPostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */; };
@@ -171,6 +168,10 @@
 		9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95C280037420090A8C9 /* FirebaseEmulator.swift */; };
 		9396E95F280039A10090A8C9 /* RemoteEventHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */; };
 		9396E9612800482C0090A8C9 /* RaceToTopPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */; };
+		93ADD1C228047E8C004E0E87 /* ShadowGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */; };
+		93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C328047EAF004E0E87 /* GameMode.swift */; };
+		93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */; };
+		93ADD1C828047F67004E0E87 /* ShadowCharacter1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
@@ -328,8 +329,6 @@
 		93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventSubscriber.swift; sourceTree = "<group>"; };
 		93360B9E27EC9CDA00808295 /* GameEventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventPublisher.swift; sourceTree = "<group>"; };
 		93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseSubscriber.swift; sourceTree = "<group>"; };
-		9336792B28029C7000BB4484 /* GameModeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
-		9336792D28029DD800BB4484 /* GameModeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeConstants.swift; sourceTree = "<group>"; };
 		9344624D27E502DE00063BE9 /* NetworkCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCallback.swift; sourceTree = "<group>"; };
 		9344624F27E5935000063BE9 /* LobbyUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyUserCell.swift; sourceTree = "<group>"; };
 		9344625127E5975300063BE9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -367,7 +366,6 @@
 		936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCompletionData.swift; sourceTree = "<group>"; };
 		936228E827F602F700BB05FE /* TimeTrialPostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialPostGameManager.swift; sourceTree = "<group>"; };
 		936228EA27F6046200BB05FE /* LifecycleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleConstants.swift; sourceTree = "<group>"; };
-		93681BE8280208BC0097EBD1 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		93681BEA280209650097EBD1 /* TimeTrial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrial.swift; sourceTree = "<group>"; };
 		93681BEC280211500097EBD1 /* RaceToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTop.swift; sourceTree = "<group>"; };
 		9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopPostGameManager.swift; sourceTree = "<group>"; };
@@ -390,6 +388,10 @@
 		9396E95C280037420090A8C9 /* FirebaseEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEmulator.swift; sourceTree = "<group>"; };
 		9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventHandlers.swift; sourceTree = "<group>"; };
 		9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopPreGameManager.swift; sourceTree = "<group>"; };
+		93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowGuest.swift; sourceTree = "<group>"; };
+		93ADD1C328047EAF004E0E87 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
+		93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
+		93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShadowCharacter1.atlas; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 		1A91C91B27E099E700D755BE /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */,
 				1A94D94127ECB808001D8A86 /* Character1.atlas */,
 				1A91C92227E099F400D755BE /* Buttons.atlas */,
 				1A91C91F27E099F400D755BE /* Clouds.atlas */,
@@ -572,6 +575,7 @@
 		1A94D94B27ED8709001D8A86 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */,
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
 				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
 				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
@@ -732,7 +736,7 @@
 		9336792A28029C6400BB4484 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
-				9336792B28029C7000BB4484 /* GameModeFactory.swift */,
+				93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -892,10 +896,9 @@
 			isa = PBXGroup;
 			children = (
 				9336792A28029C6400BB4484 /* Factory */,
-				93681BE8280208BC0097EBD1 /* GameMode.swift */,
 				93681BEA280209650097EBD1 /* TimeTrial.swift */,
 				93681BEC280211500097EBD1 /* RaceToTop.swift */,
-				9336792D28029DD800BB4484 /* GameModeConstants.swift */,
+				93ADD1C328047EAF004E0E87 /* GameMode.swift */,
 			);
 			path = GameModes;
 			sourceTree = "<group>";
@@ -1259,6 +1262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93ADD1C828047F67004E0E87 /* ShadowCharacter1.atlas in Resources */,
 				1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */,
 				1AC1607827F4404A006E4018 /* jump-foot.wav in Resources */,
 				1AC1607927F4404A006E4018 /* respawned.wav in Resources */,
@@ -1440,7 +1444,6 @@
 				A1BC45A927F73BE1000BF1A3 /* RespawnEffectEvent.swift in Sources */,
 				935280CD27F6295E002E3A1D /* PostGameViewController.swift in Sources */,
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
-				9336792E28029DD800BB4484 /* GameModeConstants.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
@@ -1500,7 +1503,6 @@
 				3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */,
 				A19A7A3227F8DFF6007E1C11 /* PowerUpSpawnEvent.swift in Sources */,
 				9385D9B627F72DB800593930 /* RequestMaker.swift in Sources */,
-				9336792C28029C7000BB4484 /* GameModeFactory.swift in Sources */,
 				3EA7C86127F7F627009BCA63 /* BlinkEffectEvent.swift in Sources */,
 				3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
@@ -1517,11 +1519,13 @@
 				9356AB6927EEF4E0008CDEC1 /* LobbySynchronizer.swift in Sources */,
 				9396E957280031F30090A8C9 /* PreGameRequestDelegate.swift in Sources */,
 				1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */,
+				93ADD1C228047E8C004E0E87 /* ShadowGuest.swift in Sources */,
 				1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */,
 				1A8EC1A927F74EC4009EDFDF /* RemoveUnboundEntityEvent.swift in Sources */,
+				93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */,
 				1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */,
 				9385D9B327F727E200593930 /* RaceToTopData.swift in Sources */,
 				1AC1605327F2F56D006E4018 /* GameEngine.swift in Sources */,
@@ -1549,7 +1553,6 @@
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
-				93681BE9280208BC0097EBD1 /* GameMode.swift in Sources */,
 				9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */,
 				A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */,
 				1ADEDD9B27F6177000C3AFD3 /* RemoveEntityEvent.swift in Sources */,
@@ -1581,6 +1584,7 @@
 				9356AB7A27EEFF9D008CDEC1 /* ExternalMoveEvent.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
 				9356AB6E27EEF719008CDEC1 /* RemoteEvent.swift in Sources */,
+				93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */,
 				1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */,
 				1AB6F2D827F9A15F004BF6AF /* Supplier.swift in Sources */,
 				1AC1605F27F31DEE006E4018 /* SoundManager.swift in Sources */,
@@ -1751,7 +1755,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7P48M42CKD;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1765,7 +1769,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpersrssujay2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1782,7 +1786,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7P48M42CKD;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

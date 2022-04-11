@@ -225,7 +225,15 @@ class GameLobby: NetworkedLobby {
             return
         }
 
-        updater?.exitLobby(userId: userId, deleteLobby: isOnlyUser)
+        let deleteMode: DeleteMode
+
+        if isOnlyUser {
+            deleteMode = (gameMode.name == "Time Trial") ? .LobbyOnly : .All
+        } else {
+            deleteMode = .None
+        }
+
+        updater?.exitLobby(userId: userId, deleteLobby: deleteMode)
     }
 
     func toggleDeviceUserReadyStatus() {

@@ -118,6 +118,12 @@ class GameEngine {
                     name: name,
                     with: id)
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else if id == GameConstants.shadowPlayerID {
+                character = ShadowGuest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .shadowCharacter1,
+                    name: name,
+                    with: id)
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],
