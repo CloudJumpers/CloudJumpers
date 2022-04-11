@@ -13,16 +13,9 @@ class EventManager {
     private var events: EventQueue
     private var effectors: [Effector]
 
-    private var gameEventSubscriber: GameEventSubscriber?
-    private var gameEventPublisher: GameEventPublisher?
-
-    init(handlers: RemoteEventHandlers) {
+    init() {
         self.events = EventQueue(sort: Self.priority(_:_:))
         self.effectors = []
-
-        self.gameEventPublisher = handlers.publisher
-        self.gameEventSubscriber = handlers.subscriber
-        gameEventSubscriber?.eventManager = self
     }
 
     static var timestamp: TimeInterval {
@@ -64,17 +57,6 @@ class EventManager {
         }
 
         deferredEvents.forEach(add(_:))
-    }
-
-    func publish(_ remoteEvent: RemoteEvent) {
-        guard
-            let command = remoteEvent.createDispatchCommand(),
-            let publisher = gameEventPublisher
-        else {
-            return
-        }
-
-        publisher.publishGameEventCommand(command)
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {

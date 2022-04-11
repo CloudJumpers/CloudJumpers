@@ -24,10 +24,8 @@ class GameEngine {
                   inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        setUpEventDispatcher(entityManager, on: channel)
+        setUpEventDispatcher(entityManager, handlers: handlers)
 
-        eventManager = EventManager(handlers: handlers)
-        contactResolver = ContactResolver(to: eventManager)
         self.rules = rules
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
@@ -42,13 +40,9 @@ class GameEngine {
         updateTime()
     }
 
-    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, on channel: NetworkID?) {
-        guard let channel = channel else {
-            return
-        }
-
-        eventDispatcher.subscriber = FirebaseSubscriber(channel)
-        eventDispatcher.publisher = FirebasePublisher(channel)
+    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, handlers: RemoteEventHandlers) {
+        eventDispatcher.subscriber = handlers.subscriber
+        eventDispatcher.publisher = handlers.publisher
     }
 
     func updateEntityManager(within time: CGFloat) {
