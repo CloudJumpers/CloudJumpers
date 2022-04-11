@@ -80,8 +80,6 @@ class GameEngine {
         entityManager.add(leftWall)
         entityManager.add(rightWall)
         entityManager.add(floor)
-        metaData.topPlatformId = topPlatform.id
-        metaData.highestPosition = highestPosition
 
         cloudPositions.forEach { position in
             if position != highestPosition {
@@ -106,7 +104,6 @@ class GameEngine {
                     texture: .character1,
                     name: name,
                     with: id)
-                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
             } else if id == GameConstants.shadowPlayerID {
                 character = ShadowGuest(
                     at: Constants.playerInitialPositions[index],
