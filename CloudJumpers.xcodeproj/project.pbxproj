@@ -111,7 +111,7 @@
 		3EA7C86B27F87EA3009BCA63 /* DisasterActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
 		3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */; };
-		3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */; };
+		3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */; };
 		3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */; };
 		3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */; };
 		3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */; };
@@ -370,7 +370,7 @@
 		3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterActivateEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
 		3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEventCommand.swift; sourceTree = "<group>"; };
-		3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpStartEvent.swift; sourceTree = "<group>"; };
+		3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpActivateEvent.swift; sourceTree = "<group>"; };
 		3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectStartEventCommand.swift; sourceTree = "<group>"; };
 		3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalObtainEntityEvent.swift; sourceTree = "<group>"; };
 		3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEntityCommand.swift; sourceTree = "<group>"; };
@@ -972,7 +972,7 @@
 				A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */,
 				3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */,
 				A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */,
-				3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift */,
+				3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */,
 				3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */,
 			);
 			path = Online;
@@ -1722,7 +1722,7 @@
 				1AE9D89F27FE0287002B0A1E /* Renderer.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
 				A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */,
-				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpStartEvent.swift in Sources */,
+				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,

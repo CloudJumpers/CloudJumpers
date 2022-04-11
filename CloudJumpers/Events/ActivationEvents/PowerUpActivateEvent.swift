@@ -28,12 +28,6 @@ class PowerUpActivateEvent: Event {
         else { return }
 
         target.remove(powerUp)
-
-        supplier.add(ExternalPowerUpStartEvent(
-            activatePowerUpPositionX: location.x,
-            activatePowerUpPositionY: location.y,
-            activatePowerUpId: powerUpID))
-
     }
 
 }

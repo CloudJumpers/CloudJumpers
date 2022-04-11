@@ -219,6 +219,10 @@ extension GameEngine: InputResponder {
             return
         }
 
-        eventManager.add(PowerUpActivateEvent(in: entity, location: location))
+        entityManager.add(PowerUpActivateEvent(by: entity.id, location: location))
+
+        entityManager.dispatch(ExternalPowerUpActivateEvent(
+            activatePowerUpPositionX: location.x,
+            activatePowerUpPositionY: location.y))
     }
 }

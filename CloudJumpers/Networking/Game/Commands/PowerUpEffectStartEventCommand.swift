@@ -14,7 +14,7 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalPowerUpStartEvent) {
+    init(sourceId: NetworkID, event: ExternalPowerUpActivateEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,7 +29,7 @@ struct PowerUpEffectStartEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalPowerUpStartEvent.self, from: jsonData)
+        guard let parameters = try? decoder.decode(ExternalPowerUpActivateEvent.self, from: jsonData)
         else {
             nextCommand = ObtainEntityCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false

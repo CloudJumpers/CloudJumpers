@@ -14,7 +14,6 @@ enum Events: Int {
     case powerUpPlayerCollide
     case obtain
     case remove
-    case removeUnboundEntity
     case powerUpActivate
     case confuse
     case freeze
@@ -23,10 +22,10 @@ enum Events: Int {
     case respawn
     case disasterPlayerCollide
     case blinkEffect
-    case disasterPrompt
-    case respawnEffect
-    case disasterPromptEffect
-    case disasterSpawn
+    case disasterActivate
+    case changeLocation
+    case sound
+    case updateState
 
     private static let events: [String: Events] = [
         String(describing: BiEvent.self): .bi,
@@ -39,14 +38,13 @@ enum Events: Int {
         String(describing: RemoveEvent.self): .remove,
         String(describing: PowerUpActivateEvent.self): .powerUpActivate,
         String(describing: RepositionEvent.self): .reposition,
-        String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
         String(describing: DisasterPlayerCollideEvent.self): .disasterPlayerCollide,
-        String(describing: BlinkEffectEvent.self): .blinkEffect,
-        String(describing: DisasterPrompt.self): .disasterPrompt,
+        String(describing: BlinkEvent.self): .blinkEffect,
+        String(describing: DisasterActivateEvent.self): .disasterActivate,
         String(describing: RespawnEvent.self): .respawn,
-        String(describing: RespawnEffectEvent.self): .respawnEffect,
-        String(describing: DisasterPromptEffectEvent.self): .disasterPromptEffect,
-        String(describing: DisasterSpawnEvent.self): .disasterSpawn,
+        String(describing: ChangeStandOnLocationEvent.self): .changeLocation,
+        String(describing: SoundEvent.self): .sound,
+        String(describing: UpdateGuestStateEvent.self): .updateState,
         String(describing: ConfuseEvent.self): .confuse,
         String(describing: FreezeEvent.self): .freeze
     ]
