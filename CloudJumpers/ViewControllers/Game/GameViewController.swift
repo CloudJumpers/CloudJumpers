@@ -5,6 +5,7 @@ class GameViewController: UIViewController {
     private var gameEngine: GameEngine?
     private var scene: GameScene?
     private var joystick: Joystick?
+    private var gameRules: GameRules?
 
     private var isMovingToPostGame = false
 
@@ -38,14 +39,9 @@ class GameViewController: UIViewController {
             return
         }
 
-        switch activeLobby.gameMode {
-        case .timeTrial:
-            handlers = TimeTrialPreGameManager(activeLobby.id, 161_001).getEventHandlers()
-            activeLobby.synchronizer?.updateCallback(setUpGame)
-        case .raceTop:
-            handlers = RaceToTopPreGameManager(activeLobby.id).getEventHandlers()
-            activeLobby.synchronizer?.updateCallback(setUpGame)
-        }
+        let preGameManager = activeLobby.gameMode.createPreGameManager(activeLobby.id)
+        handlers = preGameManager.getEventHandlers()
+        activeLobby.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {
@@ -53,16 +49,11 @@ class GameViewController: UIViewController {
         guard let mode = lobby?.gameMode, let handlers = handlers else {
             return
         }
-        let gameRules: GameRules
-        switch mode {
-        case .timeTrial:
-            gameRules = TimeTrialGameRules()
-        case .raceTop:
-            gameRules = RaceTopGameRules()
-        }
+
+        self.gameRules = mode.getGameRules()
+
         gameEngine = GameEngine(
             rendersTo: self,
-            rules: gameRules,
             inChargeID: lobby?.hostId,
             handlers: handlers
         )
@@ -102,7 +93,7 @@ class GameViewController: UIViewController {
 
         var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
 
-        if lobby?.gameMode == .timeTrial {
+        if lobby?.gameMode.name == GameModeConstants.timeTrials {
             allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
         }
 
@@ -167,33 +158,15 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
-            let deviceUserId = AuthService().getUserId()
+            let metaData = gameEngine?.metaData
         else {
             return
         }
 
         isMovingToPostGame = true
 
-        switch activeLobby.gameMode {
-        case .timeTrial:
-            let gameCompletionData = TimeTrialData(
-                playerId: activeLobby.hostId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let timeTrialManager = TimeTrialPostGameManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
-        case .raceTop:
-            let gameCompletionData = RaceToTopData(
-                playerId: deviceUserId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let raceToTopManager = RaceToTopPostGameManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
-        }
+        let postGameManager = activeLobby.gameMode.createPostGameManager(activeLobby.id, metaData: metaData)
+        performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
@@ -217,13 +190,15 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        guard let gameEngine = gameEngine else {
+        guard let gameEngine = gameEngine,
+              let gameRules = gameRules
+        else {
             return
         }
         gameEngine.update(within: interval)
         gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
 
-        if gameEngine.hasGameEnd {
+        if gameRules.hasGameEnd() {
             // TO DO: maybe not expose meta data
             transitionToEndGame(playerEndTime: gameEngine.metaData.time)
         }

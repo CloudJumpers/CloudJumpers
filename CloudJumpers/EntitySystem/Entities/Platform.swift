@@ -23,6 +23,7 @@ class Platform: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(TopPlatformTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

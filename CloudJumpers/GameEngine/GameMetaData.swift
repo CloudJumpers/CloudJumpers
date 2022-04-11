@@ -10,8 +10,5 @@ import Foundation
 class GameMetaData {
     var time = Double.zero
     var playerId = EntityID()
-    var playerStartingPosition = Constants.playerInitialPosition
-    var locationMapping = [EntityID: (location:EntityID, time: TimeInterval)]()
-    var highestPosition = Constants.defaultPosition
-    var topPlatformId = EntityID()
+    var playerName = AuthService().getUserDisplayName()
 }

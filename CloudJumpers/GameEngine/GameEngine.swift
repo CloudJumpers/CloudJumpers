@@ -11,22 +11,15 @@ class GameEngine {
     let entityManager: EntityManager
     var metaData: GameMetaData
     var inChargeID: NetworkID?
-    let rules: GameRules
-
-    var hasGameEnd: Bool {
-        rules.hasGameEnd(with: metaData)
-    }
 
     private var crossDeviceSyncTimer: Timer?
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
-                  rules: GameRules,
                   inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         setUpEventDispatcher(entityManager, handlers: handlers)
 
-        self.rules = rules
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
     }
@@ -87,8 +80,6 @@ class GameEngine {
         entityManager.add(leftWall)
         entityManager.add(rightWall)
         entityManager.add(floor)
-        metaData.topPlatformId = topPlatform.id
-        metaData.highestPosition = highestPosition
 
         cloudPositions.forEach { position in
             if position != highestPosition {
@@ -113,7 +104,6 @@ class GameEngine {
                     texture: .character1,
                     name: name,
                     with: id)
-                metaData.playerStartingPosition = Constants.playerInitialPositions[index]
             } else if id == GameConstants.shadowPlayerID {
                 character = ShadowGuest(
                     at: Constants.playerInitialPositions[index],
@@ -155,10 +145,6 @@ class GameEngine {
 
     // TODO: This shouldn't happen here anymore
     private func updateEvents() {
-        // TODO: Abstract this further if possible - @jusg
-        let rulesEvents = rules.createGameEvents(with: metaData)
-        rulesEvents.localEvents.forEach { eventManager.add($0) }
-        rulesEvents.remoteEvents.forEach { eventManager.publish($0) }
         eventManager.executeAll(in: entityManager)
     }
 
@@ -230,6 +216,10 @@ extension GameEngine: InputResponder {
             return
         }
 
-        eventManager.add(PowerUpActivateEvent(in: entity, location: location))
+        entityManager.add(PowerUpActivateEvent(by: entity.id, location: location))
+
+        entityManager.dispatch(ExternalPowerUpActivateEvent(
+            activatePowerUpPositionX: location.x,
+            activatePowerUpPositionY: location.y))
     }
 }

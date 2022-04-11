@@ -12,11 +12,15 @@ struct ContactHandler {
         PowerUpPlayerCollideEvent(on: player.id, powerUp: powerUp.id)
     }
 
-    static func between(_ player: Player, _ cloud: Cloud) -> Event? { nil }
+    static func between(_ player: Player, _ cloud: Cloud) -> Event? {
+        ChangeStandOnLocationEvent(on: player.id, standOnEntityID: cloud.id)
+    }
 
     static func between(_ player: Player, _ floor: Floor) -> Event? { nil }
 
-    static func between(_ player: Player, _ platform: Platform) -> Event? { nil }
+    static func between(_ player: Player, _ platform: Platform) -> Event? {
+        ChangeStandOnLocationEvent(on: player.id, standOnEntityID: platform.id)
+ }
 
     static func between(_ player: Player, _ wall: Wall) -> Event? { nil }
 
@@ -52,7 +56,9 @@ struct ContactHandler {
         RemoveEvent(onEntityWith: disaster.id)
     }
 
-    static func between(_ cloud: Cloud, _ guest: Guest) -> Event? { nil }
+    static func between(_ cloud: Cloud, _ guest: Guest) -> Event? {
+        ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: cloud.id)
+    }
 
     static func between(_ floor1: Floor, _ floor2: Floor) -> Event? { nil }
 
@@ -74,7 +80,9 @@ struct ContactHandler {
         RemoveEvent(onEntityWith: disaster.id)
     }
 
-    static func between(_ platform: Platform, _ guest: Guest) -> Event? { nil }
+    static func between(_ platform: Platform, _ guest: Guest) -> Event? {
+        ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: platform.id)
+ }
 
     static func between(_ wall1: Wall, _ wall2: Wall) -> Event? { nil }
 

@@ -10,7 +10,7 @@ import CoreGraphics
 
 class DisasterSpawnSystem: System {
 
-    var active = true
+    var active = false
 
     unowned var manager: EntityManager?
 
@@ -51,6 +51,7 @@ class DisasterSpawnSystem: System {
              disasterVelocityY: velocity.dy,
              disasterType: disasterType.rawValue,
              disasterId: disasterId)
-
+        manager?.dispatch(remoteDisasterStart)
+        manager?.add(localDisasterStart)
     }
 }

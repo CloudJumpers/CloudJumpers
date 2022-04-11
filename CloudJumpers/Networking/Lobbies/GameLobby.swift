@@ -17,7 +17,7 @@ enum LobbyState {
 class GameLobby: NetworkedLobby {
     let id: NetworkID
     private(set) var name: String
-    private(set) var gameMode: GameMode = .timeTrial
+    private(set) var gameMode: GameMode
     private(set) var lobbyState: LobbyState?
 
     private(set) var hostId: NetworkID
@@ -55,8 +55,8 @@ class GameLobby: NetworkedLobby {
     }
 
     private var isLobbyFinalized: Bool {
-        let minPlayersNeeded = gameMode.getMinPlayer()
-        let maxPlayersAllowed = gameMode.getMaxPlayer()
+        let minPlayersNeeded = gameMode.minimumPlayers
+        let maxPlayersAllowed = gameMode.maximumPlayers
         return (minPlayersNeeded ... maxPlayersAllowed).contains(users.count) && users.allSatisfy({ $0.isReady })
     }
 
@@ -69,6 +69,7 @@ class GameLobby: NetworkedLobby {
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
+        self.gameMode = TimeTrial()
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
         self.onLobbyNameChange = onLobbyNameChange
@@ -154,7 +155,7 @@ class GameLobby: NetworkedLobby {
 
     func onGameModeChange(_ newGameMode: GameMode) {
         gameMode = newGameMode
-        onLobbyGameModeChange?(newGameMode.rawValue)
+        onLobbyGameModeChange?(newGameMode.name)
     }
 
     func onNameChange(_ newName: String) {
@@ -227,7 +228,7 @@ class GameLobby: NetworkedLobby {
         let deleteMode: DeleteMode
 
         if isOnlyUser {
-            deleteMode = (gameMode == .timeTrial) ? .LobbyOnly : .All
+            deleteMode = (gameMode.name == GameModeConstants.timeTrials) ? .LobbyOnly : .All
         } else {
             deleteMode = .None
         }

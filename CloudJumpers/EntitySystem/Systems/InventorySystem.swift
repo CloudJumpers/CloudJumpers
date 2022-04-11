@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 class InventorySystem: System {
-    var active: Bool
+    var active = true
 
     unowned var manager: EntityManager?
 

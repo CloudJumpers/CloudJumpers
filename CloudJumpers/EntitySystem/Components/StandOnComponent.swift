@@ -7,6 +7,7 @@
 
 import Foundation
 
-class LocationComponent: Component {
+class StandOnComponent: Component {
     var standOnEntityID: EntityID?
+    var timestamp: TimeInterval = .zero
 }
