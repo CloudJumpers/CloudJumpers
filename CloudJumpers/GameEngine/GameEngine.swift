@@ -24,8 +24,8 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  isHost: @escaping () -> Bool, channel: NetworkID? = nil,
-                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
+                  isHost: @escaping () -> Bool,
+                  handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
         eventManager = EventManager(handlers: handlers)

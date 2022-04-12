@@ -55,7 +55,6 @@ class GameViewController: UIViewController {
             rendersTo: self,
             rules: gameRules,
             isHost: { self.lobby?.userIsHost ?? false },
-            channel: lobby?.id),
             handlers: handlers
         )
 
