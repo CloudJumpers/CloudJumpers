@@ -27,6 +27,30 @@ class RaceTopGameRules: GameRules {
         target?.add(timer)
     }
 
+    func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        for (index, info) in allPlayersInfo.enumerated() {
+            let id = info.playerId
+            let name = info.displayName
+            let character: Entity
+
+            if id == playerInfo.playerId {
+                character = Player(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    name: name,
+                    with: id)
+            } else {
+                character = Guest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    name: name,
+                    with: id)
+            }
+            target?.add(character)
+        }
+
+    }
+
     func update() {
         guard let player = player else {
             return

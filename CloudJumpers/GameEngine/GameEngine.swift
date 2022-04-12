@@ -55,14 +55,8 @@ class GameEngine {
         }
     }
 
-    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
-                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
-        setUpEnvironment(cloudPositions: cloudPositions)
-        setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
-    }
-
-    private func setUpEnvironment(cloudPositions: [CGPoint]) {
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
@@ -87,39 +81,6 @@ class GameEngine {
         }
 
     }
-
-    private func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        metaData.playerId = playerInfo.playerId
-
-        for (index, info) in allPlayersInfo.enumerated() {
-            let id = info.playerId
-            let name = info.displayName
-            let character: Entity
-
-            if id == playerInfo.playerId {
-                character = Player(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .character1,
-                    name: name,
-                    with: id)
-            } else if id == GameConstants.shadowPlayerID {
-                character = ShadowGuest(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .shadowCharacter1,
-                    name: name,
-                    with: id)
-            } else {
-                character = Guest(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .character1,
-                    name: name,
-                    with: id)
-            }
-            entityManager.add(character)
-        }
-
-    }
-
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
