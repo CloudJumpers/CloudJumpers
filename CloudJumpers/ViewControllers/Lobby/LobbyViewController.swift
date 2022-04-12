@@ -55,18 +55,14 @@ class LobbyViewController: UIViewController {
             gameConfig: config,
             hostId: hostId,
             onLobbyStateChange: handleLobbyUpdate,
-            onLobbyDataChange: handleLobbyDataChange,
-            onLobbyNameChange: setLobbyName,
-            onLobbyGameModeChange: setLobbyGameMode
+            onLobbyDataChange: handleLobbyDataChange
         )
     }
 
     func setActiveLobby() {
         activeLobby = GameLobby(
             onLobbyStateChange: handleLobbyUpdate,
-            onLobbyDataChange: handleLobbyDataChange,
-            onLobbyNameChange: setLobbyName,
-            onLobbyGameModeChange: setLobbyGameMode
+            onLobbyDataChange: handleLobbyDataChange
         )
     }
 
@@ -119,10 +115,6 @@ class LobbyViewController: UIViewController {
     }
 
     private func handleLobbyDataChange() {
-        lobbyUsersView.reloadData()
-        refreshGameModeMenu()
-        refreshGameSeed()
-
         guard
             let lobby = activeLobby,
             let deviceUser = lobby.users.first(where: { $0.id == AuthService().getUserId() })
@@ -130,15 +122,28 @@ class LobbyViewController: UIViewController {
             return
         }
 
+        lobbyUsersView.reloadData()
+        refreshGameModeMenu()
+        refreshGameSeed()
+        refreshLobbyName()
+
         leaveButton.isEnabled = !deviceUser.isReady
         gameMode.isEnabled = !deviceUser.isReady && lobby.userIsHost
     }
 
-    private func setLobbyName(_ name: String) {
-        lobbyName.text = name
+    private func refreshLobbyName() {
+        lobbyName.text = activeLobby?.name ?? lobbyName.text
     }
 
-    private func setLobbyGameMode(_ mode: String) {
+    private func refreshGameSeed() {
+        gameSeed.text = activeLobby?.gameConfig.seed.description ?? gameSeed.text
+    }
+
+    private func refreshLobbyGameMode() {
+        guard let mode = activeLobby?.gameConfig.name else {
+            return
+        }
+
         gameMode.menu?.children.forEach { action in
             guard let action = action as? UIAction, action.title == mode else {
                 return
@@ -165,16 +170,7 @@ class LobbyViewController: UIViewController {
         }
 
         gameMode.menu = UIMenu(children: gameModeOptions)
-        gameMode.isEnabled = lobby.userIsHost
-        setLobbyGameMode(lobby.gameConfig.name)
-    }
-
-    private func refreshGameSeed() {
-        guard let config = activeLobby?.gameConfig else {
-            return
-        }
-
-        gameSeed.text = "\(config.seed)"
+        refreshLobbyGameMode()
     }
 }
 

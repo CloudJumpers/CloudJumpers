@@ -28,9 +28,7 @@ class GameLobby: NetworkedLobby {
     var synchronizer: LobbySynchronizer?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
-    var onLobbyDataChange: LobbyDataAvailableCallback?
-    var onLobbyNameChange: LobbyMetadataCallback?
-    var onLobbyGameModeChange: LobbyMetadataCallback?
+    var onLobbyDataChange: LobbyDataCallback?
 
     var numUsers: Int {
         users.count
@@ -63,17 +61,13 @@ class GameLobby: NetworkedLobby {
     /// Constructor for creating a lobby hosted by the device user
     init?(
         onLobbyStateChange: LobbyLifecycleCallback? = nil,
-        onLobbyDataChange: LobbyDataAvailableCallback? = nil,
-        onLobbyNameChange: LobbyMetadataCallback? = nil,
-        onLobbyGameModeChange: LobbyMetadataCallback? = nil
+        onLobbyDataChange: LobbyDataCallback? = nil
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
         self.gameConfig = TimeTrial()
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
-        self.onLobbyNameChange = onLobbyNameChange
-        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -97,9 +91,7 @@ class GameLobby: NetworkedLobby {
           gameConfig: PreGameConfig,
           hostId: NetworkID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
-          onLobbyDataChange: LobbyDataAvailableCallback? = nil,
-          onLobbyNameChange: LobbyMetadataCallback? = nil,
-          onLobbyGameModeChange: LobbyMetadataCallback? = nil
+          onLobbyDataChange: LobbyDataCallback? = nil
     ) {
         self.id = id
         self.name = name
@@ -107,8 +99,6 @@ class GameLobby: NetworkedLobby {
         self.hostId = hostId
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
-        self.onLobbyNameChange = onLobbyNameChange
-        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -155,12 +145,12 @@ class GameLobby: NetworkedLobby {
 
     func onGameModeChange(_ newGameMode: GameMode) {
         gameConfig = newGameMode
-        onLobbyGameModeChange?(newGameMode.name)
+        onLobbyDataChange?()
     }
 
     func onNameChange(_ newName: String) {
         name = newName
-        onLobbyNameChange?(newName)
+        onLobbyDataChange?()
     }
 
     // MARK: - External actions
