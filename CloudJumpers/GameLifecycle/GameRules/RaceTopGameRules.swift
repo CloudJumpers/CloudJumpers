@@ -9,12 +9,46 @@ import Foundation
 
 class RaceTopGameRules: GameRules {
     private unowned var target: RuleModifiable?
+
+    private var timer: TimedLabel?
+
     func setTarget(_ target: RuleModifiable) {
         self.target = target
     }
 
     var player: Entity? {
         target?.components(ofType: PlayerTag.self).first?.entity
+    }
+
+    func setUpForRule() {
+
+        // Set game specific entity
+        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        target?.add(timer)
+    }
+
+    func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        for (index, info) in allPlayersInfo.enumerated() {
+            let id = info.playerId
+            let name = info.displayName
+            let character: Entity
+
+            if id == playerInfo.playerId {
+                character = Player(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    name: name,
+                    with: id)
+            } else {
+                character = Guest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .character1,
+                    name: name,
+                    with: id)
+            }
+            target?.add(character)
+        }
+
     }
 
     func update() {
@@ -26,6 +60,7 @@ class RaceTopGameRules: GameRules {
             target?.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
+            target?.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
         }
 
     }
@@ -55,6 +90,14 @@ class RaceTopGameRules: GameRules {
             return false
         }
         return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+    }
+
+    func fetchLocalCompletionData() {
+        guard let timer = timer,
+              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
+        else { return }
+
+        // TODO: Return time for completion
     }
 
 }

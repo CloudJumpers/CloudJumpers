@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
             return
         }
 
-        let gameRules = config.getGameRules()
+        self.gameRules = config.getGameRules()
 
         gameEngine = GameEngine(
             rendersTo: self,
@@ -110,11 +110,9 @@ class GameViewController: UIViewController {
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
 
-        gameEngine.setUpGame(
-            cloudBlueprint: cloudBlueprint,
-            powerUpBlueprint: powerUpBlueprint,
-            playerInfo: userInfo,
-            allPlayersInfo: allUsersInfo)
+        gameEngine.setUpGame(cloudBlueprint: cloudBlueprint)
+        gameRules?.setUpForRule()
+        gameRules?.setUpPlayers(userInfo, allPlayersInfo: allUsersInfo)
 
     }
 
