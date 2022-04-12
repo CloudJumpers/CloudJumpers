@@ -76,7 +76,8 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         guard let scene = scene,
-              let gameEngine = gameEngine
+              let gameEngine = gameEngine,
+              let seed = lobby?.gameConfig.seed
         else {
             fatalError("GameScene was not set up or GameEngine was not prepared")
         }
@@ -96,8 +97,6 @@ class GameViewController: UIViewController {
         if lobby?.gameConfig.name == GameModeConstants.timeTrials {
             allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
         }
-
-        let seed = 161_001
 
         let cloudBlueprint = Blueprint(
             worldSize: scene.size,
