@@ -115,7 +115,7 @@ class LobbyViewController: UIViewController {
             let newInput = gameSeed.text,
             let newSeed = Int(newInput)
         else {
-            gameSeed.text = "\(lobby.gameConfig.seed)"
+            refreshGameSeed()
             return
         }
 
@@ -154,7 +154,11 @@ class LobbyViewController: UIViewController {
     }
 
     private func refreshGameSeed() {
-        gameSeed.text = activeLobby?.gameConfig.seed.description ?? gameSeed.text
+        guard let lobby = activeLobby else {
+            return
+        }
+
+        gameSeed.text = lobby.gameConfig.seed.description
     }
 
     private func refreshLobbyGameMode() {
