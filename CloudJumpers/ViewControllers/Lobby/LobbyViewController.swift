@@ -29,6 +29,8 @@ class LobbyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        print("LV DID APPEAR \(activeListing) \(activeLobby)")
+
         guard isMovingToParent else {
             // If we are returning from a child VC (game session or postgame), exit back to all lobbies menu
             moveToLobbies()
@@ -47,6 +49,10 @@ class LobbyViewController: UIViewController {
         }
 
         refreshGameModeMenu()
+    }
+
+    deinit {
+        print("LV DEINIT")
     }
 
     func setActiveLobby(id: NetworkID, name: String, config: PreGameConfig, hostId: NetworkID) {
