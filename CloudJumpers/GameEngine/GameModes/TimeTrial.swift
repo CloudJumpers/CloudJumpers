@@ -13,14 +13,31 @@ struct TimeTrial: GameMode {
     let minimumPlayers: Int = 1
     let maximumPlayers: Int = 1
 
-    let seed: Int = 161_001
+    private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
+
+    private var players = [PlayerInfo]()
 
     func getGameRules() -> GameRules {
         TimeTrialGameRules()
     }
 
+    mutating func setSeed(_ seed: Int) {
+        self.seed = seed
+    }
+
+    mutating func setPlayers(_ players: [PlayerInfo]) {
+        self.players = players
+
+        let shadowPlayer = PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1")
+        self.players.append(shadowPlayer)
+    }
+
+    func getIdOrderedPlayers() -> [PlayerInfo] {
+        players
+    }
+
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {
-        let endpoint = generateEndpointPath(lobbyId)
+        let endpoint = generateCommonEndpointPath()
         return TimeTrialPreGameManager(endpoint, lobbyId)
     }
 
@@ -33,6 +50,10 @@ struct TimeTrial: GameMode {
 
         let endpoint = generateEndpointPath(lobbyId)
         return TimeTrialPostGameManager(completionData, endpoint, lobbyId)
+    }
+
+    private func generateCommonEndpointPath() -> String {
+        "\(seed)/\(urlSafeName)"
     }
 
     private func generateEndpointPath(_ lobbyId: NetworkID) -> String {

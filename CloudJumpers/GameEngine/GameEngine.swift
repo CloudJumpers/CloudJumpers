@@ -30,7 +30,6 @@ class GameEngine {
 
     func update(within time: CGFloat) {
         updateEntityManager(within: time)
-        updateTime()
     }
 
     func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, handlers: RemoteEventHandlers) {
@@ -56,15 +55,8 @@ class GameEngine {
         }
     }
 
-    func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
-                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+    func setUpGame(cloudBlueprint: Blueprint) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
-        setUpEnvironment(cloudPositions: cloudPositions)
-        setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
-        setUpSampleGame()
-    }
-
-    private func setUpEnvironment(cloudPositions: [CGPoint]) {
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
@@ -89,39 +81,6 @@ class GameEngine {
         }
 
     }
-
-    private func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        metaData.playerId = playerInfo.playerId
-
-        for (index, info) in allPlayersInfo.enumerated() {
-            let id = info.playerId
-            let name = info.displayName
-            let character: Entity
-
-            if id == playerInfo.playerId {
-                character = Player(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .character1,
-                    name: name,
-                    with: id)
-            } else if id == GameConstants.shadowPlayerID {
-                character = ShadowGuest(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .shadowCharacter1,
-                    name: name,
-                    with: id)
-            } else {
-                character = Guest(
-                    at: Constants.playerInitialPositions[index],
-                    texture: .character1,
-                    name: name,
-                    with: id)
-            }
-            entityManager.add(character)
-        }
-
-    }
-
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
@@ -134,38 +93,9 @@ class GameEngine {
         entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
     }
 
-    // MARK: - Temporary methods to abstract
-    private var timer: TimedLabel?
-
-    private func setUpSampleGame() {
-        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        entityManager.add(timer)
-        self.timer = timer
-    }
-
     // TODO: This shouldn't happen here anymore
     private func updateEvents() {
         eventManager.executeAll(in: entityManager)
-    }
-
-    // MARK: Temporary time update method
-    private func updateTime() {
-        guard let timer = timer,
-              let timedComponent = entityManager.component(ofType: TimedComponent.self, of: timer)
-        else { return }
-
-        metaData.time = timedComponent.time
-    }
-}
-
-// MARK: - GameMetaDataDelegate
-extension GameEngine: GameMetaDataDelegate {
-    func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
-        if let location = location {
-            metaData.locationMapping[player] = (location, metaData.time)
-        } else {
-            metaData.locationMapping.removeValue(forKey: player)
-        }
     }
 }
 

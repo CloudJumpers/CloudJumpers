@@ -194,6 +194,9 @@
 		93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */; };
 		93ADD1C828047F67004E0E87 /* ShadowCharacter1.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */; };
 		93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */; };
+		93ADD1D62804A797004E0E87 /* PreGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D52804A797004E0E87 /* PreGameConfig.swift */; };
+		93ADD1D82804A9DB004E0E87 /* PostGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D72804A9DB004E0E87 /* PostGameConfig.swift */; };
+		93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D92804AC64004E0E87 /* InGameConfig.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
@@ -210,7 +213,6 @@
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
 		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
-		A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */; };
 		A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */; };
 		A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */; };
 		A16C8FC6280336C4001B2E7F /* StandOnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */; };
@@ -455,6 +457,9 @@
 		93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
 		93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = ShadowCharacter1.atlas; sourceTree = "<group>"; };
 		93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeConstants.swift; sourceTree = "<group>"; };
+		93ADD1D52804A797004E0E87 /* PreGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameConfig.swift; sourceTree = "<group>"; };
+		93ADD1D72804A9DB004E0E87 /* PostGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameConfig.swift; sourceTree = "<group>"; };
+		93ADD1D92804AC64004E0E87 /* InGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameConfig.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
@@ -472,7 +477,6 @@
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
-		A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaDataDelegate.swift; sourceTree = "<group>"; };
 		A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEventCommand.swift; sourceTree = "<group>"; };
 		A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRespawnEvent.swift; sourceTree = "<group>"; };
 		A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandOnSystem.swift; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 			isa = PBXGroup;
 			children = (
 				93ADD1C9280480C7004E0E87 /* GameModeConstants.swift */,
+				93ADD1D92804AC64004E0E87 /* InGameConfig.swift */,
 				9336792A28029C6400BB4484 /* Factory */,
 				93681BEA280209650097EBD1 /* TimeTrial.swift */,
 				93681BEC280211500097EBD1 /* RaceToTop.swift */,
@@ -1114,6 +1119,7 @@
 			children = (
 				936228E227F5FFAB00BB05FE /* LocalCompletionData */,
 				936228E727F602D700BB05FE /* Managers */,
+				93ADD1D72804A9DB004E0E87 /* PostGameConfig.swift */,
 			);
 			path = PostGame;
 			sourceTree = "<group>";
@@ -1122,6 +1128,7 @@
 			isa = PBXGroup;
 			children = (
 				9396E953280030630090A8C9 /* Managers */,
+				93ADD1D52804A797004E0E87 /* PreGameConfig.swift */,
 			);
 			path = PreGame;
 			sourceTree = "<group>";
@@ -1299,7 +1306,6 @@
 				1AC1605227F2F56D006E4018 /* GameEngine.swift */,
 				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 				A1409A2D27ECB69B000008E8 /* GameMetaData.swift */,
-				A1409A3127ECBA59000008E8 /* GameMetaDataDelegate.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -1572,7 +1578,6 @@
 				93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
-				A1409A3227ECBA59000008E8 /* GameMetaDataDelegate.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
@@ -1585,6 +1590,7 @@
 				9385D9C027F740E800593930 /* RaceToTopResponse.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
+				93ADD1D62804A797004E0E87 /* PreGameConfig.swift in Sources */,
 				1AE9D8A127FE99F1002B0A1E /* Texture.swift in Sources */,
 				A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */,
 				93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */,
@@ -1693,6 +1699,7 @@
 				1AE9D8AA27FED0FD002B0A1E /* Buttons.swift in Sources */,
 				1AE9D8A627FEBB40002B0A1E /* HUD.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
+				93ADD1D82804A9DB004E0E87 /* PostGameConfig.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				A1D786892801FF6700C5CE49 /* RemoveOutOfBoundTag.swift in Sources */,
 				93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */,
@@ -1762,6 +1769,7 @@
 				A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */,
 				1A24DC192800B0BA00E48B64 /* PositionComponent.swift in Sources */,
 				93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */,
+				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */,

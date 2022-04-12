@@ -22,7 +22,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         lobbyReference.setValue([
             LobbyKeys.hostId: hostId,
             LobbyKeys.lobbyName: lobby.name,
-            LobbyKeys.gameMode: lobby.gameMode.name,
+            LobbyKeys.gameSeed: lobby.gameConfig.seed,
+            LobbyKeys.gameMode: lobby.gameConfig.name,
             LobbyKeys.participants: [
                 lobby.hostId: [
                     LobbyKeys.participantReady: false,
@@ -53,7 +54,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - user is not (somehow) in the lobby already
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            if currentData.childrenCount >= lobby.gameMode.maximumPlayers {
+            if currentData.childrenCount >= lobby.gameConfig.maximumPlayers {
                 return TransactionResult.abort()
             }
 
@@ -142,6 +143,15 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
         lobbyGameModeReference.setValue(gameMode.name)
+    }
+
+    func changeLobbyGameSeed(to gameSeed: Int) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyGameSeedReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameSeed)
+        lobbyGameSeedReference.setValue(gameSeed)
     }
 
     func changeLobbyName(to name: String) {
