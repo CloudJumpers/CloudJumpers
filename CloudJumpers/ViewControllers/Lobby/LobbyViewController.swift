@@ -11,6 +11,7 @@ class LobbyViewController: UIViewController {
     @IBOutlet private var lobbyUsersView: UITableView!
     @IBOutlet private var lobbyName: UILabel!
     @IBOutlet private var gameMode: UIButton!
+    @IBOutlet private var gameSeed: UITextField!
     @IBOutlet private var readyButton: UIButton!
     @IBOutlet private var leaveButton: UIButton!
 
@@ -120,6 +121,7 @@ class LobbyViewController: UIViewController {
     private func handleLobbyDataChange() {
         lobbyUsersView.reloadData()
         refreshGameModeMenu()
+        refreshGameSeed()
 
         guard
             let lobby = activeLobby,
@@ -165,6 +167,14 @@ class LobbyViewController: UIViewController {
         gameMode.menu = UIMenu(children: gameModeOptions)
         gameMode.isEnabled = lobby.userIsHost
         setLobbyGameMode(lobby.gameConfig.name)
+    }
+
+    private func refreshGameSeed() {
+        guard let config = activeLobby?.gameConfig else {
+            return
+        }
+
+        gameSeed.text = "\(config.seed)"
     }
 }
 
