@@ -39,14 +39,14 @@ class GameViewController: UIViewController {
             return
         }
 
-        let preGameManager = activeLobby.gameMode.createPreGameManager(activeLobby.id)
+        let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
         handlers = preGameManager.getEventHandlers()
         activeLobby.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        guard let mode = lobby?.gameMode, let handlers = handlers else {
+        guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
             return
         }
 
@@ -76,28 +76,21 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         guard let scene = scene,
-              let gameEngine = gameEngine
+              let gameEngine = gameEngine,
+              let config = lobby?.gameConfig as? InGameConfig
         else {
-            fatalError("GameScene was not set up or GameEngine was not prepared")
+            fatalError("GameScene, GameEngine, or configurated has not been initialized")
         }
 
         let authService = AuthService()
-        guard let userId = authService.getUserId(),
-              let allUsersSortedById = lobby?.orderedValidUsers
-        else {
+        guard let userId = authService.getUserId() else {
             fatalError("Cannot find user")
         }
 
         let userDisplayName = authService.getUserDisplayName()
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
 
-        var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
-
-        if lobby?.gameMode.name == GameModeConstants.timeTrials {
-            allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
-        }
-
-        let seed = 161_001
+        let allUsersInfo = config.getIdOrderedPlayers()
 
         let cloudBlueprint = Blueprint(
             worldSize: scene.size,
@@ -106,7 +99,7 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
             firstPlatformPosition: Constants.playerInitialPosition,
-            seed: seed
+            seed: config.seed
         )
 
         let powerUpBlueprint = Blueprint(
@@ -115,7 +108,7 @@ class GameViewController: UIViewController {
             tolerance: CGVector(dx: 400, dy: 800),
             xToleranceRange: 0.5...1.0,
             yToleranceRange: 0.5...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
+            firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
 
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,
@@ -158,6 +151,7 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
+            let gameConfig = activeLobby.gameConfig as? PostGameConfig,
             let metaData = gameEngine?.metaData
         else {
             return
@@ -165,7 +159,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = activeLobby.gameMode.createPostGameManager(activeLobby.id, metaData: metaData)
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
         performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
