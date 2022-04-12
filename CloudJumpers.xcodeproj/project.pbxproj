@@ -101,6 +101,7 @@
 		3EA7C88B27F95970009BCA63 /* PowerUpCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C88A27F95970009BCA63 /* PowerUpCollideEvent.swift */; };
 		3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */; };
 		3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */; };
+		930ADBD42805962200FC552E /* EndPlatform.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 930ADBD32805962100FC552E /* EndPlatform.atlas */; };
 		931D130327ECA023002C7AF3 /* GameKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130227ECA023002C7AF3 /* GameKeys.swift */; };
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */; };
@@ -324,6 +325,7 @@
 		3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfo.swift; sourceTree = "<group>"; };
 		4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CloudJumpersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D995EF18AD45C5960F62EDB /* Pods-CloudJumpersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpersTests.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpersTests/Pods-CloudJumpersTests.release.xcconfig"; sourceTree = "<group>"; };
+		930ADBD32805962100FC552E /* EndPlatform.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = EndPlatform.atlas; sourceTree = "<group>"; };
 		931D130227ECA023002C7AF3 /* GameKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKeys.swift; sourceTree = "<group>"; };
 		931D130427ECB022002C7AF3 /* DefaultCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCommand.swift; sourceTree = "<group>"; };
 		931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePublisher.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 		1A91C91B27E099E700D755BE /* Textures */ = {
 			isa = PBXGroup;
 			children = (
+				930ADBD32805962100FC552E /* EndPlatform.atlas */,
 				93ADD1C728047F67004E0E87 /* ShadowCharacter1.atlas */,
 				1A94D94127ECB808001D8A86 /* Character1.atlas */,
 				1A91C92227E099F400D755BE /* Buttons.atlas */,
@@ -1284,6 +1287,7 @@
 				1AC1606D27F43B15006E4018 /* end-lose.wav in Resources */,
 				3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */,
 				1AC1607727F4404A006E4018 /* walking.wav in Resources */,
+				930ADBD42805962200FC552E /* EndPlatform.atlas in Resources */,
 				1AC1607627F4404A006E4018 /* jump-cape.wav in Resources */,
 				1A91C92927E099F400D755BE /* Buttons.atlas in Resources */,
 				1AC1606F27F43B15006E4018 /* ui-bgm.wav in Resources */,

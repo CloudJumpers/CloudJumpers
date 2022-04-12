@@ -240,14 +240,17 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RM6-KP-A1F">
                                         <rect key="frame" x="0.0" y="0.0" width="780" height="537"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="New Lobby"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="New Lobby">
+                                            <backgroundConfiguration key="background"/>
+                                            <fontDescription key="titleFontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="24"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="createNewLobby:" destination="2IY-Rh-Zla" eventType="touchUpInside" id="2Me-h6-WPe"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-4e-VmL">
+                                    <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ahd-4e-VmL">
                                         <rect key="frame" x="0.0" y="537" width="780" height="509"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JLm-e3-XPJ">
                                             <size key="itemSize" width="337" height="111"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -255,14 +258,14 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="com.cs3217.cloudjumpers.lobbycell" id="VH1-1y-wE4" customClass="LobbyCell" customModule="CloudJumpers" customModuleProvider="target">
+                                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="com.cs3217.cloudjumpers.lobbycell" id="VH1-1y-wE4" customClass="LobbyCell" customModule="CloudJumpers" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="337" height="111"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K2C-Xt-sYE">
                                                     <rect key="frame" x="0.0" y="0.0" width="337" height="111"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNo-mQ-k15">
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNo-mQ-k15">
                                                             <rect key="frame" x="20" y="0.0" width="297" height="111"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="5fd-nO-IWI">
@@ -276,14 +279,14 @@
                                                                             </constraints>
                                                                         </view>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLc-VK-bF1">
-                                                                            <rect key="frame" x="0.0" y="27" width="240" height="20.5"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <rect key="frame" x="0.0" y="25.5" width="240" height="23.5"/>
+                                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVi-Yq-15y">
-                                                                            <rect key="frame" x="0.0" y="64" width="240" height="20.5"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <rect key="frame" x="0.0" y="62.5" width="240" height="23.5"/>
+                                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -298,7 +301,7 @@
                                                                 </stackView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CC-as-WSK">
                                                                     <rect key="frame" x="240" y="0.0" width="57" height="111"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -336,10 +339,12 @@
                     <navigationItem key="navigationItem" id="ysX-Ud-B4D">
                         <barButtonItem key="rightBarButtonItem" style="done" id="Rok-e8-c2E">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="5Vl-D7-MOL">
-                                <rect key="frame" x="708" y="8" width="92" height="34.5"/>
+                                <rect key="frame" x="707.5" y="5.5" width="92.5" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Sign out"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign out">
+                                    <fontDescription key="titleFontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="signUserOut" destination="2IY-Rh-Zla" eventType="touchUpInside" id="eK6-NP-W7V"/>
                                 </connections>
@@ -367,26 +372,26 @@
                                 <rect key="frame" x="0.0" y="74" width="820" height="1032"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-az-ZI5">
-                                        <rect key="frame" x="0.0" y="0.0" width="820" height="110"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="170"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Cloud Jumpers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-eb-lhJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="820" height="30"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-eb-lhJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="820" height="50"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MAJ-kE-1wH">
-                                                <rect key="frame" x="0.0" y="40" width="820" height="30"/>
+                                                <rect key="frame" x="0.0" y="60" width="820" height="50"/>
                                                 <menu key="menu" id="81y-aa-GWk">
                                                     <children>
-                                                        <command title="Time Trial" id="Fef-4Z-GWu"/>
+                                                        <command title="Game Mode" id="Fef-4Z-GWu"/>
                                                         <command title="Item 2" id="VeQ-et-0je"/>
                                                     </children>
                                                 </menu>
                                                 <state key="normal" title="Game Mode"/>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a game seed..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-UQ-dsV">
-                                                <rect key="frame" x="0.0" y="80" width="820" height="30"/>
+                                                <rect key="frame" x="0.0" y="120" width="820" height="50"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -396,7 +401,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-jv-S6e">
-                                        <rect key="frame" x="0.0" y="160" width="820" height="374"/>
+                                        <rect key="frame" x="0.0" y="220" width="820" height="374"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -485,17 +490,17 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-fp-gLg">
-                                        <rect key="frame" x="0.0" y="584" width="820" height="448"/>
+                                        <rect key="frame" x="0.0" y="644" width="820" height="388"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-hO-Yuq">
-                                                <rect key="frame" x="0.0" y="199" width="0.0" height="50"/>
+                                                <rect key="frame" x="0.0" y="169" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="dpm-5g-E4C"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzR-Ye-Sn6">
-                                                <rect key="frame" x="173.5" y="200.5" width="150" height="47"/>
+                                                <rect key="frame" x="173.5" y="170.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="DbT-T2-OLM"/>
                                                 </constraints>
@@ -506,7 +511,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEb-ek-1jl">
-                                                <rect key="frame" x="496.5" y="200.5" width="150" height="47"/>
+                                                <rect key="frame" x="496.5" y="170.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="1dO-Ih-Gl6"/>
                                                 </constraints>
@@ -518,7 +523,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-NK-l0f">
-                                                <rect key="frame" x="820" y="199" width="0.0" height="50"/>
+                                                <rect key="frame" x="820" y="169" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="FI2-Lp-oBD"/>
