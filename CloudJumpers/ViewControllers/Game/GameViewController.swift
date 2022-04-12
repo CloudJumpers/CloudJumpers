@@ -110,8 +110,8 @@ class GameViewController: UIViewController {
             yToleranceRange: 0.5...1.0,
             firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
 
-        gameEngine.setUpGame(cloudBlueprint: cloudBlueprint, powerUpBlueprint: powerUpBlueprint)
-
+        gameEngine.setUpGame(cloudBlueprint: cloudBlueprint)
+        gameRules?.setUpForRule()
         gameRules?.setUpPlayers(userInfo, allPlayersInfo: allUsersInfo)
 
     }
