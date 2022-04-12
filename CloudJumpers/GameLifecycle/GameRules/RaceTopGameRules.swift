@@ -26,6 +26,7 @@ class RaceTopGameRules: GameRules {
             target?.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
+            target?.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
         }
 
     }

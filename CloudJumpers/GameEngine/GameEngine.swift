@@ -158,17 +158,6 @@ class GameEngine {
     }
 }
 
-// MARK: - GameMetaDataDelegate
-extension GameEngine: GameMetaDataDelegate {
-    func metaData(changePlayerLocation player: EntityID, location: EntityID?) {
-        if let location = location {
-            metaData.locationMapping[player] = (location, metaData.time)
-        } else {
-            metaData.locationMapping.removeValue(forKey: player)
-        }
-    }
-}
-
 // MARK: - InputResponder
 extension GameEngine: InputResponder {
     var associatedEntity: Entity? {

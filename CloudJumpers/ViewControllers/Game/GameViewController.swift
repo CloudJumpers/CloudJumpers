@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
             return
         }
 
-        self.gameRules = mode.getGameRules()
+        self.gameRules = config.getGameRules()
 
         gameEngine = GameEngine(
             rendersTo: self,
