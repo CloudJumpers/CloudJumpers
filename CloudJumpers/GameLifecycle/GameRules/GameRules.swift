@@ -10,6 +10,8 @@ import Foundation
 protocol GameRules {
     func update()
     func hasGameEnd() -> Bool
+
+    func fetchLocalCompletionData()
 }
 extension GameRules {
     func update() { }

@@ -9,12 +9,22 @@ import Foundation
 
 class RaceTopGameRules: GameRules {
     private unowned var target: RuleModifiable?
+
+    private var timer: TimedLabel?
+
     func setTarget(_ target: RuleModifiable) {
         self.target = target
     }
 
     var player: Entity? {
         target?.components(ofType: PlayerTag.self).first?.entity
+    }
+
+    func setUpForRule() {
+
+        // Set game specific entity
+        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        target?.add(timer)
     }
 
     func update() {
@@ -56,6 +66,14 @@ class RaceTopGameRules: GameRules {
             return false
         }
         return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+    }
+
+    func fetchLocalCompletionData() {
+        guard let timer = timer,
+              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
+        else { return }
+
+        // TODO: Return time for completion
     }
 
 }

@@ -30,7 +30,6 @@ class GameEngine {
 
     func update(within time: CGFloat) {
         updateEntityManager(within: time)
-        updateTime()
     }
 
     func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, handlers: RemoteEventHandlers) {
@@ -61,7 +60,6 @@ class GameEngine {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
         setUpEnvironment(cloudPositions: cloudPositions)
         setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
-        setUpSampleGame()
     }
 
     private func setUpEnvironment(cloudPositions: [CGPoint]) {
@@ -134,27 +132,9 @@ class GameEngine {
         entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
     }
 
-    // MARK: - Temporary methods to abstract
-    private var timer: TimedLabel?
-
-    private func setUpSampleGame() {
-        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
-        entityManager.add(timer)
-        self.timer = timer
-    }
-
     // TODO: This shouldn't happen here anymore
     private func updateEvents() {
         eventManager.executeAll(in: entityManager)
-    }
-
-    // MARK: Temporary time update method
-    private func updateTime() {
-        guard let timer = timer,
-              let timedComponent = entityManager.component(ofType: TimedComponent.self, of: timer)
-        else { return }
-
-        metaData.time = timedComponent.time
     }
 }
 

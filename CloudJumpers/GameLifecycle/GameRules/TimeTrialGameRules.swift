@@ -9,6 +9,8 @@ import Foundation
 class TimeTrialGameRules: GameRules {
 
     private unowned var target: RuleModifiable?
+    private var timer: TimedLabel?
+
     func setTarget(_ target: RuleModifiable) {
         self.target = target
     }
@@ -18,6 +20,10 @@ class TimeTrialGameRules: GameRules {
             target?.deactivateSystem(ofType: DisasterSpawnSystem.self)
         }
         target?.deactivateSystem(ofType: PowerSpawnSystem.self)
+
+        // Set game specific entity
+        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        target?.add(timer)
     }
 
     func hasGameEnd() -> Bool {
@@ -28,6 +34,14 @@ class TimeTrialGameRules: GameRules {
             return false
         }
         return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+    }
+
+    func fetchLocalCompletionData() {
+        guard let timer = timer,
+              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
+        else { return }
+
+        // TODO: Return time for completion
     }
 
 }
