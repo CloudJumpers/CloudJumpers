@@ -262,6 +262,9 @@ class GameLobby: NetworkedLobby {
         }
 
         if let currState = lobbyState, currState == .matchmaking {
+            let players = orderedValidUsers.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
+            gameConfig.setPlayers(players)
+
             lobbyState = .gameInProgress
             onLobbyStateChange?(.gameInProgress)
         }

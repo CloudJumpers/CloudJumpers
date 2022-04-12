@@ -77,26 +77,20 @@ class GameViewController: UIViewController {
     private func setUpGameEngine() {
         guard let scene = scene,
               let gameEngine = gameEngine,
-              let seed = lobby?.gameConfig.seed
+              let config = lobby?.gameConfig as? InGameConfig
         else {
-            fatalError("GameScene was not set up or GameEngine was not prepared")
+            fatalError("GameScene, GameEngine, or configurated has not been initialized")
         }
 
         let authService = AuthService()
-        guard let userId = authService.getUserId(),
-              let allUsersSortedById = lobby?.orderedValidUsers
-        else {
+        guard let userId = authService.getUserId() else {
             fatalError("Cannot find user")
         }
 
         let userDisplayName = authService.getUserDisplayName()
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
 
-        var allUsersInfo = allUsersSortedById.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
-
-        if lobby?.gameConfig.name == GameModeConstants.timeTrials {
-            allUsersInfo.append(PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1"))
-        }
+        let allUsersInfo = config.getIdOrderedPlayers()
 
         let cloudBlueprint = Blueprint(
             worldSize: scene.size,
@@ -105,7 +99,7 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
             firstPlatformPosition: Constants.playerInitialPosition,
-            seed: seed
+            seed: config.seed
         )
 
         let powerUpBlueprint = Blueprint(
@@ -114,7 +108,7 @@ class GameViewController: UIViewController {
             tolerance: CGVector(dx: 400, dy: 800),
             xToleranceRange: 0.5...1.0,
             yToleranceRange: 0.5...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
+            firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
 
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,

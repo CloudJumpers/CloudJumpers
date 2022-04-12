@@ -18,4 +18,5 @@ protocol PreGameConfig {
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager
 
     mutating func setSeed(_ seed: Int)
+    mutating func setPlayers(_ players: [PlayerInfo])
 }

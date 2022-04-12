@@ -13,4 +13,5 @@ protocol InGameConfig {
     var seed: Int { get }
 
     func getGameRules() -> GameRules
+    func getIdOrderedPlayers() -> [PlayerInfo]
 }
