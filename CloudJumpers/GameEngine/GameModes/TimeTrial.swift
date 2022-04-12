@@ -37,7 +37,7 @@ struct TimeTrial: GameMode {
     }
 
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {
-        let endpoint = generateNonIdentifyingEndpointPath()
+        let endpoint = generateCommonEndpointPath()
         return TimeTrialPreGameManager(endpoint, lobbyId)
     }
 
@@ -52,7 +52,7 @@ struct TimeTrial: GameMode {
         return TimeTrialPostGameManager(completionData, endpoint, lobbyId)
     }
 
-    private func generateNonIdentifyingEndpointPath() -> String {
+    private func generateCommonEndpointPath() -> String {
         "\(seed)/\(urlSafeName)"
     }
 
