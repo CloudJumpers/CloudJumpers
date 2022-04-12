@@ -8,6 +8,7 @@
 import Foundation
 
 struct RaceToTopResponse: Response {
+    let position: Int
     let userId: NetworkID
     let userDisplayName: String
     let completionTime: Double

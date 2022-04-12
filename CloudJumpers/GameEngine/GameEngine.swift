@@ -24,10 +24,11 @@ class GameEngine {
 
     required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
                   rules: GameRules,
-                  isHost: @escaping () -> Bool, channel: NetworkID? = nil ) {
+                  isHost: @escaping () -> Bool, channel: NetworkID? = nil,
+                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
         metaData = GameMetaData()
         entityManager = EntityManager()
-        eventManager = EventManager(channel: channel)
+        eventManager = EventManager(handlers: handlers)
         contactResolver = ContactResolver(to: eventManager)
         self.rules = rules
         systems = []
@@ -64,10 +65,10 @@ class GameEngine {
     }
 
     func setUpGame(cloudBlueprint: Blueprint, powerUpBlueprint: Blueprint,
-                   playerId: EntityID, allPlayersId: [EntityID]) {
+                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
         setUpEnvironment(cloudPositions: cloudPositions)
-        setUpPlayers(playerId, allPlayersId: allPlayersId)
+        setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
         setUpSampleGame()
 
         if rules.isSpawningPowerUp {
@@ -103,22 +104,32 @@ class GameEngine {
 
     }
 
-    private func setUpPlayers(_ playerId: EntityID, allPlayersId: [EntityID]) {
-        metaData.playerId = playerId
+    private func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        metaData.playerId = playerInfo.playerId
 
-        for (index, id) in allPlayersId.enumerated() {
+        for (index, info) in allPlayersInfo.enumerated() {
+            let id = info.playerId
+            let name = info.displayName
             let character: Entity
 
-            if id == playerId {
+            if id == playerInfo.playerId {
                 character = Player(
                     at: Constants.playerInitialPositions[index],
                     texture: .character1,
+                    name: name,
                     with: id)
                 metaData.playerStartingPosition = Constants.playerInitialPositions[index]
+            } else if id == GameConstants.shadowPlayerID {
+                character = ShadowGuest(
+                    at: Constants.playerInitialPositions[index],
+                    texture: .shadowCharacter1,
+                    name: name,
+                    with: id)
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],
                     texture: .character1,
+                    name: name,
                     with: id)
             }
             entityManager.add(character)
@@ -143,7 +154,7 @@ class GameEngine {
 
         // TO DO: Change after new way of getting sprite position
         let playerPosition = spriteComponent.node.position
-        let playerTexture = animationComponent.texture
+        let playerTexture = animationComponent.kind
         let positionalUpdate = ExternalRepositionEvent(
             positionX: playerPosition.x,
             positionY: playerPosition.y,

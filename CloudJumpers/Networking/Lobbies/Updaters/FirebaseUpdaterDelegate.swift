@@ -22,7 +22,8 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         lobbyReference.setValue([
             LobbyKeys.hostId: hostId,
             LobbyKeys.lobbyName: lobby.name,
-            LobbyKeys.gameMode: lobby.gameMode.rawValue,
+            LobbyKeys.gameSeed: lobby.gameConfig.seed,
+            LobbyKeys.gameMode: lobby.gameConfig.name,
             LobbyKeys.participants: [
                 lobby.hostId: [
                     LobbyKeys.participantReady: false,
@@ -53,7 +54,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         // - user is not (somehow) in the lobby already
         // - the maximum occupancy is not reached
         participantsReference.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
-            if currentData.childrenCount >= lobby.gameMode.getMaxPlayer() {
+            if currentData.childrenCount >= lobby.gameConfig.maximumPlayers {
                 return TransactionResult.abort()
             }
 
@@ -81,19 +82,22 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
     }
 
-    func exitLobby(userId: NetworkID, deleteLobby: Bool = false) {
+    func exitLobby(userId: NetworkID, deleteLobby: DeleteMode) {
         guard let lobby = managedLobby else {
             return
         }
 
-        if deleteLobby {
+        if deleteLobby != .None {
             let lobbyReference = getLobbyReference(lobbyId: lobby.id)
-            let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
             lobbyReference.removeValue()
-            // Perform a deferred delete of channel.
-            // Provides some grace period for all updates across devices
-            // to reach the server first.
-            channelReference.onDisconnectRemoveValue()
+
+            if deleteLobby == .All {
+                let channelReference = getLobbyChannelReference(lobbyId: lobby.id)
+                // Perform a deferred delete of channel.
+                // Provides some grace period for all updates across devices
+                // to reach the server first.
+                channelReference.onDisconnectRemoveValue()
+            }
         } else {
             let userReference = getLobbyUserReference(lobbyId: lobby.id, userId: userId)
             userReference.removeValue()
@@ -138,7 +142,16 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         }
 
         let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
-        lobbyGameModeReference.setValue(gameMode.rawValue)
+        lobbyGameModeReference.setValue(gameMode.name)
+    }
+
+    func changeLobbyGameSeed(to gameSeed: Int) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyGameSeedReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameSeed)
+        lobbyGameSeedReference.setValue(gameSeed)
     }
 
     func changeLobbyName(to name: String) {

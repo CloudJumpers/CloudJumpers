@@ -8,6 +8,7 @@
 import Foundation
 
 struct TimeTrialResponse: Response {
+    let position: Int
     let userId: NetworkID
     let lobbyId: NetworkID
     let userDisplayName: String

@@ -64,6 +64,7 @@ struct Constants {
     static let bitmaskWall = UInt32(0x1 << 5)
     static let bitmaskFloor = UInt32(0x1 << 6)
     static let bitmaskGuest = UInt32(0x1 << 7)
+    static let bitmaskShadowGuest = UInt32(0x1 << 8)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
@@ -111,4 +112,8 @@ struct Constants {
     static let disasterPromptDuration = disasterPromptPeriod / Double(disasterPromptLoopCount * 2)
 
     static let disasterPromptLoopCount = 8
+
+    static let nameLabelFontSize = 20.0
+    static let nameLabelRelativePosition = CGPoint(x: 0.0, y: 35.0)
+    static let playerDisplaynameSize = 5
 }

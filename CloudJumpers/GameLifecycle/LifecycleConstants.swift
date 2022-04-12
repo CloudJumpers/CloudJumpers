@@ -1,11 +1,11 @@
 //
-//  PostGameConstants.swift
+//  LifecycleConstants.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 31/3/22.
 //
 
-enum PostGameConstants {
+enum LifecycleConstants {
     static let pollInterval: Double = 2.0
 
     // interface
@@ -17,4 +17,8 @@ enum PostGameConstants {
     static let ipAddress = "54.169.132.128"
     static let portNum = ":8080"
     static let commonPath = "/api/highscores/v1/"
+}
+
+enum PGKeys {
+    static let isUserRow = "isUserRow"
 }

@@ -50,12 +50,15 @@ class PostGameViewController: UIViewController {
 
 extension PostGameViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        postGameManager?.rankingsTable.count ?? Int.zero
+        guard postGameManager?.fieldNames != nil, let dataRows = postGameManager?.rankings.count else {
+            return Int.zero
+        }
+        return 1 + dataRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: PostGameConstants.rankingCellIdentifier,
+            withIdentifier: LifecycleConstants.rankingCellIdentifier,
             for: indexPath
         )
 
@@ -63,8 +66,15 @@ extension PostGameViewController: UITableViewDataSource {
             return cell
         }
 
-        let rowValues = manager.rankingsTable[indexPath.row]
-        rankingCell.setRow(values: rowValues)
+        if indexPath.row == Int.zero, let first = manager.rankings.first {
+            rankingCell.setRow(values: first.columnNames)
+            rankingCell.unhighlight()
+            return rankingCell
+        }
+
+        let ranking = manager.rankings[indexPath.row - 1]
+        ranking.supportingFields.contains(key: PGKeys.isUserRow) ? rankingCell.highlight() : rankingCell.unhighlight()
+        rankingCell.setRow(values: ranking.values)
         return rankingCell
     }
 }

@@ -12,7 +12,7 @@ protocol AuthManager {
 
     func logoutUser()
 
-    func createUser(email: String, password: String, name: String?) async -> Bool
+    func createUser(email: String, password: String, name: String) async -> Bool
 
     func deleteCurrentUser() async -> Bool
 

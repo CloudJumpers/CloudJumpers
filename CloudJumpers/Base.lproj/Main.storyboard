@@ -367,7 +367,7 @@
                                 <rect key="frame" x="0.0" y="74" width="820" height="1032"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-az-ZI5">
-                                        <rect key="frame" x="0.0" y="0.0" width="820" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Cloud Jumpers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xse-eb-lhJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="820" height="30"/>
@@ -385,10 +385,18 @@
                                                 </menu>
                                                 <state key="normal" title="Game Mode"/>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a game seed..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-UQ-dsV">
+                                                <rect key="frame" x="0.0" y="80" width="820" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onSeedChange" destination="N2h-Lp-5b5" eventType="editingDidEnd" id="7ho-3P-vJE"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ECZ-jv-S6e">
-                                        <rect key="frame" x="0.0" y="120" width="820" height="374"/>
+                                        <rect key="frame" x="0.0" y="160" width="820" height="374"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
@@ -477,17 +485,17 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-fp-gLg">
-                                        <rect key="frame" x="0.0" y="544" width="820" height="488"/>
+                                        <rect key="frame" x="0.0" y="584" width="820" height="448"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UlG-hO-Yuq">
-                                                <rect key="frame" x="0.0" y="219" width="0.0" height="50"/>
+                                                <rect key="frame" x="0.0" y="199" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="dpm-5g-E4C"/>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VzR-Ye-Sn6">
-                                                <rect key="frame" x="173.5" y="220.5" width="150" height="47"/>
+                                                <rect key="frame" x="173.5" y="200.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="DbT-T2-OLM"/>
                                                 </constraints>
@@ -498,7 +506,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEb-ek-1jl">
-                                                <rect key="frame" x="496.5" y="220.5" width="150" height="47"/>
+                                                <rect key="frame" x="496.5" y="200.5" width="150" height="47"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="1dO-Ih-Gl6"/>
                                                 </constraints>
@@ -510,7 +518,7 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-NK-l0f">
-                                                <rect key="frame" x="820" y="219" width="0.0" height="50"/>
+                                                <rect key="frame" x="820" y="199" width="0.0" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" id="FI2-Lp-oBD"/>
@@ -537,6 +545,7 @@
                     <navigationItem key="navigationItem" id="2Tv-t8-7GD"/>
                     <connections>
                         <outlet property="gameMode" destination="MAJ-kE-1wH" id="Ara-dT-iiy"/>
+                        <outlet property="gameSeed" destination="UxG-UQ-dsV" id="ZJI-hS-QAs"/>
                         <outlet property="leaveButton" destination="NEb-ek-1jl" id="FhR-ia-fQn"/>
                         <outlet property="lobbyName" destination="Xse-eb-lhJ" id="3SV-dx-BTe"/>
                         <outlet property="lobbyUsersView" destination="ECZ-jv-S6e" id="2eU-Qt-hUn"/>
@@ -564,25 +573,26 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="com.cs3217.cloudjumpers.rankingcell" id="spZ-gi-BgD" customClass="PostGameRankingCell" customModule="CloudJumpers" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="780" height="40.5"/>
+                                                <rect key="frame" x="0.0" y="44.5" width="780" height="22.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="spZ-gi-BgD" id="1se-Yb-7ue">
-                                                    <rect key="frame" x="0.0" y="0.0" width="780" height="40.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="780" height="22.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Uet-Ud-JqK">
-                                                            <rect key="frame" x="20" y="20" width="740" height="0.5"/>
+                                                            <rect key="frame" x="16" y="11" width="748" height="0.5"/>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="Uet-Ud-JqK" secondAttribute="trailing" constant="20" id="KoS-sK-spF"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Uet-Ud-JqK" secondAttribute="bottom" constant="20" id="Y1G-Rl-QGB"/>
-                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="top" secondItem="1se-Yb-7ue" secondAttribute="top" constant="20" id="bmk-pb-vw8"/>
-                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="leading" secondItem="1se-Yb-7ue" secondAttribute="leading" constant="20" id="dbF-Nr-yl7"/>
+                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="top" secondItem="1se-Yb-7ue" secondAttribute="topMargin" id="L49-9i-RRy"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Uet-Ud-JqK" secondAttribute="bottom" id="avJ-zY-aFJ"/>
+                                                        <constraint firstItem="Uet-Ud-JqK" firstAttribute="leading" secondItem="1se-Yb-7ue" secondAttribute="leadingMargin" id="gi6-NU-9D5"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Uet-Ud-JqK" secondAttribute="trailing" id="oKL-Ra-Mnx"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="row" destination="Uet-Ud-JqK" id="A02-BH-MTF"/>
+                                                    <outlet property="rowHolder" destination="1se-Yb-7ue" id="goL-1Q-OS0"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

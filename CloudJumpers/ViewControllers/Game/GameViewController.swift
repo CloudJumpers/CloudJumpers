@@ -9,6 +9,7 @@ class GameViewController: UIViewController {
     private var isMovingToPostGame = false
 
     var lobby: GameLobby?
+    var handlers: RemoteEventHandlers?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,37 +28,41 @@ class GameViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         gameEngine = nil
+        handlers = nil
         scene = nil
         joystick = nil
     }
 
     private func setUpSynchronizedStart() {
-        lobby?.synchronizer?.updateCallback(setUpGame)
+        guard let activeLobby = lobby else {
+            return
+        }
+
+        let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
+        handlers = preGameManager.getEventHandlers()
+        activeLobby.synchronizer?.updateCallback(setUpGame)
     }
 
     private func setUpGame() {
         print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
-        guard let mode = lobby?.gameMode else {
+        guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
             return
         }
-        let gameRules: GameRules
-        switch mode {
-        case .timeTrial:
-            gameRules = TimeTrialGameRules()
-        case .raceTop:
-            gameRules = RaceTopGameRules()
-        }
+
+        let gameRules = config.getGameRules()
+
         gameEngine = GameEngine(
             rendersTo: self,
             rules: gameRules,
             isHost: { self.lobby?.userIsHost ?? false },
-            channel: lobby?.id)
+            channel: lobby?.id),
+            handlers: handlers
+        )
 
         setUpGameScene()
         setUpGameEngine()
         setUpInputControls()
         setUpSKViewAndPresent()
-
     }
 
     private func setUpGameScene() {
@@ -72,18 +77,21 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         guard let scene = scene,
-              let gameEngine = gameEngine
+              let gameEngine = gameEngine,
+              let config = lobby?.gameConfig as? InGameConfig
         else {
-            fatalError("GameScene was not set up or GameEngine was not prepared")
+            fatalError("GameScene, GameEngine, or configurated has not been initialized")
         }
 
-        guard let userId = AuthService().getUserId(),
-              let allUsersSortedById = lobby?.orderedValidUsers.map({ $0.id })
-        else {
+        let authService = AuthService()
+        guard let userId = authService.getUserId() else {
             fatalError("Cannot find user")
         }
 
-        let seed = 161_001
+        let userDisplayName = authService.getUserDisplayName()
+        let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
+
+        let allUsersInfo = config.getIdOrderedPlayers()
 
         let cloudBlueprint = Blueprint(
             worldSize: scene.size,
@@ -92,7 +100,7 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...1.0,
             firstPlatformPosition: Constants.playerInitialPosition,
-            seed: seed
+            seed: config.seed
         )
 
         let powerUpBlueprint = Blueprint(
@@ -101,13 +109,13 @@ class GameViewController: UIViewController {
             tolerance: CGVector(dx: 400, dy: 800),
             xToleranceRange: 0.5...1.0,
             yToleranceRange: 0.5...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition, seed: seed * 2)
+            firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
 
         gameEngine.setUpGame(
             cloudBlueprint: cloudBlueprint,
             powerUpBlueprint: powerUpBlueprint,
-            playerId: userId,
-            allPlayersId: allUsersSortedById)
+            playerInfo: userInfo,
+            allPlayersInfo: allUsersInfo)
 
     }
 
@@ -144,33 +152,16 @@ class GameViewController: UIViewController {
         guard
             !isMovingToPostGame,
             let activeLobby = lobby,
-            let deviceUserId = AuthService().getUserId()
+            let gameConfig = activeLobby.gameConfig as? PostGameConfig,
+            let metaData = gameEngine?.metaData
         else {
             return
         }
 
         isMovingToPostGame = true
 
-        switch activeLobby.gameMode {
-        case .timeTrial:
-            let gameCompletionData = TimeTrialData(
-                playerId: activeLobby.hostId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let timeTrialManager = TimeTrialsManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: timeTrialManager)
-        case .raceTop:
-            let gameCompletionData = RaceToTopData(
-                playerId: deviceUserId,
-                playerName: AuthService().getUserDisplayName(),
-                completionTime: playerEndTime
-            )
-
-            let raceToTopManager = RaceToTopManager(gameCompletionData, 161_001, activeLobby.id)
-            performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: raceToTopManager)
-        }
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
+        performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()

@@ -16,11 +16,11 @@ class LobbyCell: UICollectionViewCell {
         roomName.text = name
     }
 
-    func setGameMode(mode: GameMode) {
-        gameMode.text = mode.rawValue
+    func setSelectedGameMode(config: PreGameConfig) {
+        gameMode.text = config.name
     }
 
-    func setOccupancy(num: Int, mode: GameMode) {
-        occupancy.text = "\(num) / \(mode.getMaxPlayer() )"
+    func setOccupancy(num: Int, config: PreGameConfig) {
+        occupancy.text = "\(num) / \(config.maximumPlayers)"
     }
 }

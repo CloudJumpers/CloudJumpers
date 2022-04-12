@@ -49,14 +49,12 @@ class FirebaseListenerDelegate: ListenerDelegate {
         }
 
         lobbyRef.child(LobbyKeys.gameMode).observe(.value) { snapshot in
-            guard
-                let newGameModeString = snapshot.value as? String,
-                let newGameMode = GameMode(rawValue: newGameModeString)
-            else {
+            guard let name = snapshot.value as? String else {
                 self.managedLobby?.onLobbyConnectionClosed()
                 return
             }
 
+            let newGameMode = GameModeFactory.createGameMode(name: name)
             self.managedLobby?.onGameModeChange(newGameMode)
         }
 
@@ -67,6 +65,15 @@ class FirebaseListenerDelegate: ListenerDelegate {
             }
 
             self.managedLobby?.onHostChange(newHost)
+        }
+
+        lobbyRef.child(LobbyKeys.gameSeed).observe(.value) { snapshot in
+            guard let newSeed = snapshot.value as? Int else {
+                self.managedLobby?.onLobbyConnectionClosed()
+                return
+            }
+
+            self.managedLobby?.onGameSeedChange(newSeed)
         }
     }
 
