@@ -66,6 +66,15 @@ class FirebaseListenerDelegate: ListenerDelegate {
 
             self.managedLobby?.onHostChange(newHost)
         }
+
+        lobbyRef.child(LobbyKeys.gameSeed).observe(.value) { snapshot in
+            guard let newSeed = snapshot.value as? Int else {
+                self.managedLobby?.onLobbyConnectionClosed()
+                return
+            }
+
+            self.managedLobby?.onGameSeedChange(newSeed)
+        }
     }
 
     private func handleAddUpdate(snapshot: DataSnapshot) {
