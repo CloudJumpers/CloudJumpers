@@ -54,7 +54,7 @@ class GameViewController: UIViewController {
         gameEngine = GameEngine(
             rendersTo: self,
             rules: gameRules,
-            inChargeID: lobby?.hostId,
+            isHost: { self.lobby?.userIsHost ?? false },
             handlers: handlers
         )
 
