@@ -13,10 +13,14 @@ struct RaceToTop: GameMode {
     var minimumPlayers: Int = 2
     var maximumPlayers: Int = 4
 
-    let seed: Int = 161_001
+    private(set) var seed: Int = 161_001
 
     func getGameRules() -> GameRules {
         RaceTopGameRules()
+    }
+
+    mutating func setSeed(_ seed: Int) {
+        self.seed = seed
     }
 
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {

@@ -10,5 +10,7 @@ import Foundation
 protocol PostGameConfig {
     var name: String { get }
 
+    var seed: Int { get }
+
     func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager
 }

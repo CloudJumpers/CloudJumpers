@@ -10,5 +10,7 @@ import Foundation
 protocol InGameConfig {
     var name: String { get }
 
+    var seed: Int { get }
+
     func getGameRules() -> GameRules
 }

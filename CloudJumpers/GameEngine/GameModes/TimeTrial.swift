@@ -13,10 +13,14 @@ struct TimeTrial: GameMode {
     let minimumPlayers: Int = 1
     let maximumPlayers: Int = 1
 
-    let seed: Int = 161_001
+    private(set) var seed: Int = 161_001
 
     func getGameRules() -> GameRules {
         TimeTrialGameRules()
+    }
+
+    mutating func setSeed(_ seed: Int) {
+        self.seed = seed
     }
 
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {
