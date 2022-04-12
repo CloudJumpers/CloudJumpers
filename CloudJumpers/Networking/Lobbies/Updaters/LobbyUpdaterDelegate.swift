@@ -20,6 +20,7 @@ protocol LobbyUpdaterDelegate: AnyObject {
     func toggleReady(userId: NetworkID)
 
     func changeLobbyGameMode(to gameMode: GameMode)
+    func changeLobbyGameSeed(to gameSeed: Int)
     func changeLobbyName(to name: String)
     func changeLobbyHost(to host: NetworkID)
 

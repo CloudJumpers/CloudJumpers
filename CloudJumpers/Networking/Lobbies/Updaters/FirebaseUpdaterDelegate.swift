@@ -22,6 +22,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         lobbyReference.setValue([
             LobbyKeys.hostId: hostId,
             LobbyKeys.lobbyName: lobby.name,
+            LobbyKeys.gameSeed: lobby.gameConfig.seed,
             LobbyKeys.gameMode: lobby.gameConfig.name,
             LobbyKeys.participants: [
                 lobby.hostId: [
@@ -142,6 +143,15 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         let lobbyGameModeReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameMode)
         lobbyGameModeReference.setValue(gameMode.name)
+    }
+
+    func changeLobbyGameSeed(to gameSeed: Int) {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyGameSeedReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.gameSeed)
+        lobbyGameSeedReference.setValue(gameSeed)
     }
 
     func changeLobbyName(to name: String) {

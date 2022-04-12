@@ -13,7 +13,7 @@ struct RaceToTop: GameMode {
     var minimumPlayers: Int = 2
     var maximumPlayers: Int = 4
 
-    private(set) var seed: Int = 161_001
+    private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
 
     func getGameRules() -> GameRules {
         RaceTopGameRules()

@@ -13,7 +13,7 @@ struct TimeTrial: GameMode {
     let minimumPlayers: Int = 1
     let maximumPlayers: Int = 1
 
-    private(set) var seed: Int = 161_001
+    private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
 
     func getGameRules() -> GameRules {
         TimeTrialGameRules()

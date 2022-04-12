@@ -214,6 +214,11 @@ class GameLobby: NetworkedLobby {
         onLobbyDataChange?()
     }
 
+    func onGameSeedChange(_ newGameSeed: Int) {
+        gameConfig.setSeed(newGameSeed)
+        onLobbyDataChange?()
+    }
+
     // MARK: - Device actions
     /// This function can be called to remove the local user from the lobby.
     /// After calling this function, the object should no longer be used.
