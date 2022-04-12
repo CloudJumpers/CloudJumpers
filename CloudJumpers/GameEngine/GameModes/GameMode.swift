@@ -7,25 +7,16 @@
 
 import Foundation
 
-protocol GameMode {
-    var name: String { get }
-
-    var minimumPlayers: Int { get }
-    var maximumPlayers: Int { get }
-
-    func getGameRules() -> GameRules
-    func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager
-    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager
-
+protocol GameMode: PreGameConfig & InGameConfig & PostGameConfig {
     init()
 }
 
 extension GameMode {
-    var urlSafeName: String {
-        name.components(separatedBy: .whitespaces).joined()
-    }
-
     func doesMatch(_ name: String) -> Bool {
         name == self.name
+    }
+
+    var urlSafeName: String {
+        name.components(separatedBy: .whitespaces).joined()
     }
 }

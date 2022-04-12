@@ -17,7 +17,7 @@ enum LobbyState {
 class GameLobby: NetworkedLobby {
     let id: NetworkID
     private(set) var name: String
-    private(set) var gameMode: GameMode
+    private(set) var gameConfig: PreGameConfig
     private(set) var lobbyState: LobbyState?
 
     private(set) var hostId: NetworkID
@@ -28,9 +28,7 @@ class GameLobby: NetworkedLobby {
     var synchronizer: LobbySynchronizer?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
-    var onLobbyDataChange: LobbyDataAvailableCallback?
-    var onLobbyNameChange: LobbyMetadataCallback?
-    var onLobbyGameModeChange: LobbyMetadataCallback?
+    var onLobbyDataChange: LobbyDataCallback?
 
     var numUsers: Int {
         users.count
@@ -55,25 +53,21 @@ class GameLobby: NetworkedLobby {
     }
 
     private var isLobbyFinalized: Bool {
-        let minPlayersNeeded = gameMode.minimumPlayers
-        let maxPlayersAllowed = gameMode.maximumPlayers
+        let minPlayersNeeded = gameConfig.minimumPlayers
+        let maxPlayersAllowed = gameConfig.maximumPlayers
         return (minPlayersNeeded ... maxPlayersAllowed).contains(users.count) && users.allSatisfy({ $0.isReady })
     }
 
     /// Constructor for creating a lobby hosted by the device user
     init?(
         onLobbyStateChange: LobbyLifecycleCallback? = nil,
-        onLobbyDataChange: LobbyDataAvailableCallback? = nil,
-        onLobbyNameChange: LobbyMetadataCallback? = nil,
-        onLobbyGameModeChange: LobbyMetadataCallback? = nil
+        onLobbyDataChange: LobbyDataCallback? = nil
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
-        self.gameMode = TimeTrial()
+        self.gameConfig = GameModeFactory.createGameMode(name: GameModeConstants.timeTrials)
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
-        self.onLobbyNameChange = onLobbyNameChange
-        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -94,21 +88,17 @@ class GameLobby: NetworkedLobby {
     /// Constructor for joining an externally created lobby
     init?(id: NetworkID,
           name: String,
-          gameMode: GameMode,
+          gameConfig: PreGameConfig,
           hostId: NetworkID,
           onLobbyStateChange: LobbyLifecycleCallback? = nil,
-          onLobbyDataChange: LobbyDataAvailableCallback? = nil,
-          onLobbyNameChange: LobbyMetadataCallback? = nil,
-          onLobbyGameModeChange: LobbyMetadataCallback? = nil
+          onLobbyDataChange: LobbyDataCallback? = nil
     ) {
         self.id = id
         self.name = name
-        self.gameMode = gameMode
+        self.gameConfig = gameConfig
         self.hostId = hostId
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
-        self.onLobbyNameChange = onLobbyNameChange
-        self.onLobbyGameModeChange = onLobbyGameModeChange
 
         let auth = AuthService()
         let deviceUserDisplayName = auth.getUserDisplayName()
@@ -154,13 +144,15 @@ class GameLobby: NetworkedLobby {
     }
 
     func onGameModeChange(_ newGameMode: GameMode) {
-        gameMode = newGameMode
-        onLobbyGameModeChange?(newGameMode.name)
+        let prevSeed = gameConfig.seed
+        gameConfig = newGameMode
+        gameConfig.setSeed(prevSeed)
+        onLobbyDataChange?()
     }
 
     func onNameChange(_ newName: String) {
         name = newName
-        onLobbyNameChange?(newName)
+        onLobbyDataChange?()
     }
 
     // MARK: - External actions
@@ -214,6 +206,11 @@ class GameLobby: NetworkedLobby {
         onLobbyDataChange?()
     }
 
+    func onGameSeedChange(_ newGameSeed: Int) {
+        gameConfig.setSeed(newGameSeed)
+        onLobbyDataChange?()
+    }
+
     // MARK: - Device actions
     /// This function can be called to remove the local user from the lobby.
     /// After calling this function, the object should no longer be used.
@@ -228,7 +225,7 @@ class GameLobby: NetworkedLobby {
         let deleteMode: DeleteMode
 
         if isOnlyUser {
-            deleteMode = (gameMode.name == GameModeConstants.timeTrials) ? .LobbyOnly : .All
+            deleteMode = (gameConfig.name == GameModeConstants.timeTrials) ? .LobbyOnly : .All
         } else {
             deleteMode = .None
         }
@@ -252,6 +249,14 @@ class GameLobby: NetworkedLobby {
         updater?.changeLobbyGameMode(to: mode)
     }
 
+    func changeGameSeed(_ seed: Int) {
+        guard userIsHost else {
+            return
+        }
+
+        updater?.changeLobbyGameSeed(to: seed)
+    }
+
     private func processLobbyUpdate() {
         guard
             isLobbyFinalized,
@@ -267,6 +272,9 @@ class GameLobby: NetworkedLobby {
         }
 
         if let currState = lobbyState, currState == .matchmaking {
+            let players = orderedValidUsers.map({ PlayerInfo(playerId: $0.id, displayName: $0.displayName) })
+            gameConfig.setPlayers(players)
+
             lobbyState = .gameInProgress
             onLobbyStateChange?(.gameInProgress)
         }

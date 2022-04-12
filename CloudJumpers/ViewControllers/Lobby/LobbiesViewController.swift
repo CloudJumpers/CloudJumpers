@@ -110,7 +110,7 @@ class LobbiesViewController: UIViewController {
             lobbyId: lobbyId,
             hostId: hostId,
             lobbyName: lobbyName,
-            gameMode: gameMode,
+            config: gameMode,
             occupancy: occupancy
         )
 
@@ -136,7 +136,7 @@ class LobbiesViewController: UIViewController {
             lobbyId: lobbyId,
             hostId: newHostId,
             lobbyName: newName,
-            gameMode: newGameMode,
+            config: newGameMode,
             occupancy: newOccupancy
         )
     }
@@ -182,7 +182,7 @@ extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listing = lobbies[indexPath.item]
 
-        if listing.occupancy < listing.gameMode.maximumPlayers {
+        if listing.occupancy < listing.config.maximumPlayers {
             moveToLobby(listing: listing)
         }
     }
@@ -208,11 +208,11 @@ extension LobbiesViewController: UICollectionViewDataSource {
 
         let occupancy = lobbies[indexPath.item].occupancy
         let name = lobbies[indexPath.item].lobbyName
-        let mode = lobbies[indexPath.item].gameMode
+        let mode = lobbies[indexPath.item].config
 
         lobbyCell.setRoomName(name: name)
-        lobbyCell.setGameMode(mode: mode)
-        lobbyCell.setOccupancy(num: occupancy, mode: mode)
+        lobbyCell.setSelectedGameMode(config: mode)
+        lobbyCell.setOccupancy(num: occupancy, config: mode)
 
         if occupancy < mode.maximumPlayers {
             lobbyCell.backgroundColor = .green

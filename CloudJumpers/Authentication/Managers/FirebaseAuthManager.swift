@@ -28,18 +28,18 @@ class FirebaseAuthManager: AuthManager {
         }
     }
 
-    func createUser(email: String, password: String, name: String? = nil) async -> Bool {
+    func createUser(email: String, password: String, name: String) async -> Bool {
+        guard !name.isEmpty else {
+            return false
+        }
+
         do {
             try await authenticator.createUser(withEmail: email, password: password)
 
-            guard let displayName = name, let user = authenticator.currentUser else {
-                return true
-            }
+            let changeRequest = authenticator.currentUser?.createProfileChangeRequest()
+            changeRequest?.displayName = name
 
-            let changeRequest = user.createProfileChangeRequest()
-            changeRequest.displayName = displayName
-            try await changeRequest.commitChanges()
-
+            try await changeRequest?.commitChanges()
             return true
         } catch {
             return false
