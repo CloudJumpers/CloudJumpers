@@ -24,6 +24,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
             LobbyKeys.lobbyName: lobby.name,
             LobbyKeys.gameSeed: lobby.gameConfig.seed,
             LobbyKeys.gameMode: lobby.gameConfig.name,
+            LobbyKeys.isOpen: true,
             LobbyKeys.participants: [
                 lobby.hostId: [
                     LobbyKeys.participantReady: false,
@@ -161,6 +162,15 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
 
         let lobbyNameReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.lobbyName)
         lobbyNameReference.setValue(name)
+    }
+
+    func setAsClosed() {
+        guard let lobby = managedLobby else {
+            return
+        }
+
+        let lobbyIsOpenReference = getLobbyReference(lobbyId: lobby.id).child(LobbyKeys.isOpen)
+        lobbyIsOpenReference.setValue(false)
     }
 
     /// All remaining devices independently arrive at the same new host,

@@ -15,6 +15,7 @@ enum LobbyKeys {
     static let lobbyName = "name"
     static let gameSeed = "gameseed"
     static let gameMode = "gamemode"
+    static let isOpen = "isOpen"
     static let participants = "participants"
 
     // root/{lobbyid}/participants/{userid}/*

@@ -52,6 +52,7 @@ class LobbiesViewController: UIViewController {
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
                 let lobbyName = value[LobbyKeys.lobbyName] as? String,
                 let gameModeString = value[LobbyKeys.gameMode] as? String,
+                let isOpen = value[LobbyKeys.isOpen] as? Bool,
                 let participants = value[LobbyKeys.participants] as? NSDictionary
             else {
                 return
@@ -59,14 +60,11 @@ class LobbiesViewController: UIViewController {
 
             let gameMode = GameModeFactory.createGameMode(name: gameModeString)
 
-            self.addLobbyListing(
-                lobbyId: snapshot.key,
-                hostId: hostId,
-                lobbyName: lobbyName,
-                gameMode: gameMode,
-                occupancy: participants.count
-            )
+            let listing = LobbyListing(
+                lobbyId: snapshot.key, hostId: hostId, lobbyName: lobbyName,
+                config: gameMode, occupancy: participants.count, isOpen: isOpen)
 
+            self.addLobbyListing(listing)
             self.lobbiesCollectionView.reloadData()
         }
 
@@ -81,64 +79,42 @@ class LobbiesViewController: UIViewController {
                 let occupancy = value[LobbyKeys.participants] as? NSDictionary,
                 let name = value[LobbyKeys.lobbyName] as? String,
                 let hostId = value[LobbyKeys.hostId] as? NetworkID,
-                let gameModeString = value[LobbyKeys.gameMode] as? String
+                let gameModeString = value[LobbyKeys.gameMode] as? String,
+                let isOpen = value[LobbyKeys.isOpen] as? Bool
             else {
                 return
             }
 
             let gameMode = GameModeFactory.createGameMode(name: gameModeString)
 
-            self.updateLobbyListing(
+            let lobbyListing = LobbyListing(
                 lobbyId: snapshot.key,
-                newHostId: hostId,
-                newName: name,
-                newGameMode: gameMode,
-                newOccupancy: occupancy.count
+                hostId: hostId,
+                lobbyName: name,
+                config: gameMode,
+                occupancy: occupancy.count,
+                isOpen: isOpen
             )
+
+            self.updateLobbyListing(lobbyListing)
             self.lobbiesCollectionView.reloadData()
         }
     }
 
-    private func addLobbyListing(
-        lobbyId: NetworkID,
-        hostId: NetworkID,
-        lobbyName: String,
-        gameMode: GameMode,
-        occupancy: Int
-    ) {
-        let newLobbyListing = LobbyListing(
-            lobbyId: lobbyId,
-            hostId: hostId,
-            lobbyName: lobbyName,
-            config: gameMode,
-            occupancy: occupancy
-        )
-
-        lobbies.append(newLobbyListing)
+    private func addLobbyListing(_ listing: LobbyListing) {
+        lobbies.append(listing)
     }
 
     private func removeLobbyListing(lobbyId: NetworkID) {
         lobbies = lobbies.filter { $0.lobbyId != lobbyId }
     }
 
-    private func updateLobbyListing(
-        lobbyId: NetworkID,
-        newHostId: NetworkID,
-        newName: String,
-        newGameMode: GameMode,
-        newOccupancy: Int
-    ) {
-        guard let index = lobbies.firstIndex(where: { $0.lobbyId == lobbyId }) else {
+    private func updateLobbyListing(_ listing: LobbyListing) {
+        guard let index = lobbies.firstIndex(where: { $0.lobbyId == listing.lobbyId }) else {
             return
         }
 
-        lobbies[index] = LobbyListing(
-            lobbyId: lobbyId,
-            hostId: newHostId,
-            lobbyName: newName,
-            config: newGameMode,
-            occupancy: newOccupancy
-        )
+        lobbies[index] = listing
     }
 
     private func tearDownLobbiesListener() {
@@ -182,7 +158,7 @@ extension LobbiesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let listing = lobbies[indexPath.item]
 
-        if listing.occupancy < listing.config.maximumPlayers {
+        if listing.occupancy < listing.config.maximumPlayers && listing.isOpen {
             moveToLobby(listing: listing)
         }
     }
@@ -209,12 +185,13 @@ extension LobbiesViewController: UICollectionViewDataSource {
         let occupancy = lobbies[indexPath.item].occupancy
         let name = lobbies[indexPath.item].lobbyName
         let mode = lobbies[indexPath.item].config
+        let isOpen = lobbies[indexPath.item].isOpen
 
         lobbyCell.setRoomName(name: name)
         lobbyCell.setSelectedGameMode(config: mode)
         lobbyCell.setOccupancy(num: occupancy, config: mode)
 
-        if occupancy < mode.maximumPlayers {
+        if occupancy < mode.maximumPlayers && isOpen {
             lobbyCell.setBackground(color: .systemGreen)
         } else {
             lobbyCell.setBackground(color: .systemGray)
