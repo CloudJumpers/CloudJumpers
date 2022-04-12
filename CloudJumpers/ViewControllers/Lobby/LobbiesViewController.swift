@@ -215,9 +215,9 @@ extension LobbiesViewController: UICollectionViewDataSource {
         lobbyCell.setOccupancy(num: occupancy, config: mode)
 
         if occupancy < mode.maximumPlayers {
-            lobbyCell.backgroundColor = .green
+            lobbyCell.setBackground(color: .systemGreen)
         } else {
-            lobbyCell.backgroundColor = .systemGray
+            lobbyCell.setBackground(color: .systemGray)
         }
 
         return lobbyCell

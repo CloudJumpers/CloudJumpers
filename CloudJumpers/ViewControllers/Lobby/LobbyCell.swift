@@ -8,9 +8,15 @@
 import UIKit
 
 class LobbyCell: UICollectionViewCell {
+    @IBOutlet private var background: UIView!
     @IBOutlet private var roomName: UILabel!
     @IBOutlet private var gameMode: UILabel!
     @IBOutlet private var occupancy: UILabel!
+
+    func setBackground(color: UIColor) {
+        self.background.backgroundColor = color
+        layer.cornerRadius = 5.0
+    }
 
     func setRoomName(name: String) {
         roomName.text = name
