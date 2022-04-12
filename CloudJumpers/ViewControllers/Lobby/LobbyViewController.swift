@@ -21,6 +21,7 @@ class LobbyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lobbyUsersView.dataSource = self
+        gameSeed.delegate = self
         navigationItem.hidesBackButton = true
         overrideUserInterfaceStyle = .light
     }
@@ -105,6 +106,22 @@ class LobbyViewController: UIViewController {
         gameMode.isEnabled = false
     }
 
+    @IBAction private func onSeedChange() {
+        guard let lobby = activeLobby, lobby.userIsHost else {
+            return
+        }
+
+        guard
+            let newInput = gameSeed.text,
+            let newSeed = Int(newInput)
+        else {
+            gameSeed.text = "\(lobby.gameConfig.seed)"
+            return
+        }
+
+        activeLobby?.changeGameSeed(newSeed)
+    }
+
     // MARK: - Lobby management
     private func handleLobbyUpdate(_ state: LobbyState) {
         if state == .gameInProgress {
@@ -129,6 +146,7 @@ class LobbyViewController: UIViewController {
 
         leaveButton.isEnabled = !deviceUser.isReady
         gameMode.isEnabled = !deviceUser.isReady && lobby.userIsHost
+        gameSeed.isEnabled = !deviceUser.isReady && lobby.userIsHost
     }
 
     private func refreshLobbyName() {
@@ -199,5 +217,12 @@ extension LobbyViewController: UITableViewDataSource {
         lobbyUserCell.setIsReady(isReady: lobbyUser.isReady)
 
         return cell
+    }
+}
+
+extension LobbyViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -65,7 +65,7 @@ class GameLobby: NetworkedLobby {
     ) {
         self.id = LobbyUtils.generateLobbyId()
         self.name = LobbyUtils.generateLobbyName()
-        self.gameConfig = TimeTrial()
+        self.gameConfig = GameModeFactory.createGameMode(name: GameModeConstants.timeTrials)
         self.onLobbyStateChange = onLobbyStateChange
         self.onLobbyDataChange = onLobbyDataChange
 
@@ -144,7 +144,9 @@ class GameLobby: NetworkedLobby {
     }
 
     func onGameModeChange(_ newGameMode: GameMode) {
+        let prevSeed = gameConfig.seed
         gameConfig = newGameMode
+        gameConfig.setSeed(prevSeed)
         onLobbyDataChange?()
     }
 
@@ -245,6 +247,14 @@ class GameLobby: NetworkedLobby {
         }
 
         updater?.changeLobbyGameMode(to: mode)
+    }
+
+    func changeGameSeed(_ seed: Int) {
+        guard userIsHost else {
+            return
+        }
+
+        updater?.changeLobbyGameSeed(to: seed)
     }
 
     private func processLobbyUpdate() {

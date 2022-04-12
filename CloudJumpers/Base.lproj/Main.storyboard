@@ -385,10 +385,13 @@
                                                 </menu>
                                                 <state key="normal" title="Game Mode"/>
                                             </button>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a game seed..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-UQ-dsV">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a game seed..." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-UQ-dsV">
                                                 <rect key="frame" x="0.0" y="80" width="820" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="onSeedChange" destination="N2h-Lp-5b5" eventType="editingDidEnd" id="7ho-3P-vJE"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
