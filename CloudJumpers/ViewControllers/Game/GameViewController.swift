@@ -44,7 +44,6 @@ class GameViewController: UIViewController {
     }
 
     private func setUpGame() {
-        print("setUpGame called at: \(LobbyUtils.getUnixTimestampMillis())") // TODO: remove once confident it works
         guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
             return
         }
@@ -160,10 +159,12 @@ class GameViewController: UIViewController {
         isMovingToPostGame = true
 
         let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
-        performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
+        lobby = nil
+
+        performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

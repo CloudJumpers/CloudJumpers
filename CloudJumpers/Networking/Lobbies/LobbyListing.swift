@@ -13,4 +13,5 @@ struct LobbyListing {
     let lobbyName: String
     let config: PreGameConfig
     let occupancy: Int
+    let isOpen: Bool
 }

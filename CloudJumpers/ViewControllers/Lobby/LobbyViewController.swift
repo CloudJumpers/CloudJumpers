@@ -68,19 +68,11 @@ class LobbyViewController: UIViewController {
     }
 
     @IBAction private func moveToLobbies() {
-        guard
-            activeLobby != nil, // only run once
-            let viewControllers = navigationController?.viewControllers,
-            let lobbiesViewController = viewControllers.first(where: { $0 is LobbiesViewController })
-        else {
-            return
-        }
-
-        self.activeLobby?.removeDeviceUser()
-        self.activeLobby = nil
-        self.activeListing = nil
-
-        self.navigationController?.popToViewController(lobbiesViewController, animated: true)
+        activeLobby?.onLobbyDataChange = nil
+        activeLobby?.onLobbyStateChange = nil
+        activeLobby?.removeDeviceUser()
+        activeLobby = nil
+        performSegue(withIdentifier: SegueIdentifier.lobbyToLobbies, sender: self)
     }
 
     func moveToGame() {
