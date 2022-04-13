@@ -72,7 +72,7 @@ class LobbyViewController: UIViewController {
         activeLobby?.onLobbyStateChange = nil
         activeLobby?.removeDeviceUser()
         activeLobby = nil
-        performSegue(withIdentifier: SegueIdentifier.lobbyToLobbies, sender: nil)
+        performSegue(withIdentifier: SegueIdentifier.lobbyToLobbies, sender: self)
     }
 
     func moveToGame() {

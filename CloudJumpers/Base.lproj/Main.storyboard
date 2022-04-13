@@ -624,7 +624,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Lobbies"/>
                                         <connections>
-                                            <segue destination="xhn-QK-Nr6" kind="unwind" unwindAction="unwindToLobbies:" id="8QS-3y-ojr"/>
+                                            <action selector="buttonOnTap" destination="6sz-Vb-aS8" eventType="touchUpInside" id="bmo-tW-RQU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -643,6 +643,7 @@
                     <connections>
                         <outlet property="backToLobbiesButton" destination="ANX-16-ahe" id="HgF-LM-KLu"/>
                         <outlet property="rankingsTableView" destination="sKG-Bl-ISY" id="vL4-0K-cHp"/>
+                        <segue destination="xhn-QK-Nr6" kind="unwind" identifier="com.cs3217.cloudjumpers.postgametolobbies" unwindAction="unwindToLobbies:" id="Vhq-ht-Qls"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRF-k8-VL0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

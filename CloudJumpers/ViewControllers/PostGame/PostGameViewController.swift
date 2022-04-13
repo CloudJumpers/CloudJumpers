@@ -35,6 +35,10 @@ class PostGameViewController: UIViewController {
     private func updateRankingData() {
         rankingsTableView.reloadData()
     }
+
+    @IBAction private func buttonOnTap() {
+        performSegue(withIdentifier: SegueIdentifier.postGameToLobbies, sender: self)
+    }
 }
 
 extension PostGameViewController: UITableViewDataSource {
