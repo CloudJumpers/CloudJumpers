@@ -35,17 +35,6 @@ class PostGameViewController: UIViewController {
     private func updateRankingData() {
         rankingsTableView.reloadData()
     }
-
-    @IBAction private func buttonOnTap() {
-        guard
-            let viewControllers = navigationController?.viewControllers,
-            let lobbyViewController = viewControllers.first(where: { $0 is LobbiesViewController })
-        else {
-            return
-        }
-
-        navigationController?.popToViewController(lobbyViewController, animated: true)
-    }
 }
 
 extension PostGameViewController: UITableViewDataSource {

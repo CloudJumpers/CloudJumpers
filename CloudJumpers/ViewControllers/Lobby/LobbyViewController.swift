@@ -29,8 +29,6 @@ class LobbyViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        print("LV DID APPEAR \(activeListing) \(activeLobby)")
-
         guard isMovingToParent else {
             // If we are returning from a child VC (game session or postgame), exit back to all lobbies menu
             moveToLobbies()
@@ -48,11 +46,17 @@ class LobbyViewController: UIViewController {
             setActiveLobby()
         }
 
-        refreshGameModeMenu()
-    }
+        guard let lobby = activeLobby else {
+            return
+        }
 
-    deinit {
-        print("LV DEINIT")
+        activeLobby?.listener = FirebaseListenerDelegate(lobbyId: lobby.id)
+        activeLobby?.updater = FirebaseUpdaterDelegate()
+
+        activeLobby?.listener?.managedLobby = activeLobby
+        activeLobby?.updater?.managedLobby = activeLobby
+
+        refreshGameModeMenu()
     }
 
     func setActiveLobby(id: NetworkID, name: String, config: PreGameConfig, hostId: NetworkID) {
@@ -74,19 +78,11 @@ class LobbyViewController: UIViewController {
     }
 
     @IBAction private func moveToLobbies() {
-        guard
-            activeLobby != nil, // only run once
-            let viewControllers = navigationController?.viewControllers,
-            let lobbiesViewController = viewControllers.first(where: { $0 is LobbiesViewController })
-        else {
-            return
-        }
-
-        self.activeLobby?.removeDeviceUser()
-        self.activeLobby = nil
-        self.activeListing = nil
-
-        self.navigationController?.popToViewController(lobbiesViewController, animated: true)
+        activeLobby?.onLobbyDataChange = nil
+        activeLobby?.onLobbyStateChange = nil
+        activeLobby?.removeDeviceUser()
+        activeLobby = nil
+        performSegue(withIdentifier: SegueIdentifier.lobbyToLobbies, sender: nil)
     }
 
     func moveToGame() {
