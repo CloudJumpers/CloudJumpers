@@ -34,7 +34,7 @@ class LobbiesViewController: UIViewController {
     }
 
     @IBAction private func unwindToLobbies(_ unwindSegue: UIStoryboardSegue) {
-        print("UNWOUND FROM \(unwindSegue.source)")
+        // This view controller is used as an unwind destination
     }
 
     @IBAction private func signUserOut() {

@@ -46,16 +46,6 @@ class LobbyViewController: UIViewController {
             setActiveLobby()
         }
 
-        guard let lobby = activeLobby else {
-            return
-        }
-
-        activeLobby?.listener = FirebaseListenerDelegate(lobbyId: lobby.id)
-        activeLobby?.updater = FirebaseUpdaterDelegate()
-
-        activeLobby?.listener?.managedLobby = activeLobby
-        activeLobby?.updater?.managedLobby = activeLobby
-
         refreshGameModeMenu()
     }
 
