@@ -20,7 +20,11 @@ class ConfusePowerUp: PowerUp {
         self.position = position
     }
 
-    func activate(on entity: Entity, watching watchingEntity: Entity) -> [Effector] {
-        [ SwapMoveEffector(on: entity, watching: watchingEntity) ]
+    func activate(on entity: Entity, watching watchingEntity: Entity) -> Event? {
+        PowerUpHandler.activate(self, on: entity, watching: watchingEntity)
+    }
+    
+    func isAffectingLocation(location: CGPoint) -> Bool {
+        position.distance(to: location) <= Constants.powerUpTargetRange
     }
 }

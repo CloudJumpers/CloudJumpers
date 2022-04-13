@@ -53,6 +53,7 @@ struct Constants {
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let powerUpNodeSize = CGSize(width: 60.0, height: 60.0)
     static let powerUpMaxNumDisplay = 5
+    static let powerUpTargetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
     static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
 

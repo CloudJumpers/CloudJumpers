@@ -45,7 +45,6 @@
 		1AAB1E0D27FF0EDD00378382 /* Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E0C27FF0EDD00378382 /* Collidable.swift */; };
 		1AAB1E0F27FF0F6200378382 /* ContactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */; };
 		1AAB1E1127FF124800378382 /* Player+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1027FF124800378382 /* Player+Collidable.swift */; };
-		1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1227FF132F00378382 /* PowerUp+Collidable.swift */; };
 		1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */; };
 		1AAB1E1727FF14A400378382 /* Floor+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */; };
 		1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */; };
@@ -107,6 +106,8 @@
 		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
+		3E98D5C828066C9F00C1A644 /* PowerUpHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98D5C728066C9F00C1A644 /* PowerUpHandler.swift */; };
+		3E98D5CE28067BDC00C1A644 /* PowerUp+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98D5CD28067BDC00C1A644 /* PowerUp+Collidable.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
@@ -287,7 +288,6 @@
 		1AAB1E0C27FF0EDD00378382 /* Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collidable.swift; sourceTree = "<group>"; };
 		1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactHandler.swift; sourceTree = "<group>"; };
 		1AAB1E1027FF124800378382 /* Player+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+Collidable.swift"; sourceTree = "<group>"; };
-		1AAB1E1227FF132F00378382 /* PowerUp+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PowerUp+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cloud+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Floor+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Collidable.swift"; sourceTree = "<group>"; };
@@ -351,6 +351,8 @@
 		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
+		3E98D5C728066C9F00C1A644 /* PowerUpHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpHandler.swift; sourceTree = "<group>"; };
+		3E98D5CD28067BDC00C1A644 /* PowerUp+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PowerUp+Collidable.swift"; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterActivateEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
@@ -639,10 +641,8 @@
 		1A94D94B27ED8709001D8A86 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				3E98D5C628066C4F00C1A644 /* PowerUp */,
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
-				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
-				3EA7C8BB28031F24009BCA63 /* FreezePowerUp.swift */,
-				3EA7C8BD28031F2A009BCA63 /* ConfusePowerUp.swift */,
 				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				3E3E0BEE27F6D5C900BF526C /* Floor.swift */,
@@ -790,7 +790,7 @@
 				1AAB1E0C27FF0EDD00378382 /* Collidable.swift */,
 				1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */,
 				1AAB1E1027FF124800378382 /* Player+Collidable.swift */,
-				1AAB1E1227FF132F00378382 /* PowerUp+Collidable.swift */,
+				3E98D5CD28067BDC00C1A644 /* PowerUp+Collidable.swift */,
 				1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */,
 				1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */,
 				1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */,
@@ -799,6 +799,17 @@
 				1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */,
 			);
 			path = Colliders;
+			sourceTree = "<group>";
+		};
+		3E98D5C628066C4F00C1A644 /* PowerUp */ = {
+			isa = PBXGroup;
+			children = (
+				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
+				3EA7C8BB28031F24009BCA63 /* FreezePowerUp.swift */,
+				3E98D5C728066C9F00C1A644 /* PowerUpHandler.swift */,
+				3EA7C8BD28031F2A009BCA63 /* ConfusePowerUp.swift */,
+			);
+			path = PowerUp;
 			sourceTree = "<group>";
 		};
 		3EA7C8AA2802CD37009BCA63 /* DisasterEvents */ = {
@@ -1549,6 +1560,7 @@
 				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
 				3EA7C86B27F87EA3009BCA63 /* DisasterActivateEvent.swift in Sources */,
 				1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */,
+				3E98D5C828066C9F00C1A644 /* PowerUpHandler.swift in Sources */,
 				1A245D7627F6CDE2004FA29C /* PowerUpComponent.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
@@ -1643,7 +1655,6 @@
 				A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */,
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
 				1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */,
-				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				1ACE976E27E60D50005AA18B /* SpriteSystemDelegate.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
@@ -1674,6 +1685,7 @@
 				3EA7C8AC2802FF47009BCA63 /* PowerUpActivateEvent.swift in Sources */,
 				9356AB7A27EEFF9D008CDEC1 /* ExternalMoveEvent.swift in Sources */,
 				1AE9D8B127FED217002B0A1E /* TextureFrame.swift in Sources */,
+				3E98D5CE28067BDC00C1A644 /* PowerUp+Collidable.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
 				9356AB6E27EEF719008CDEC1 /* RemoteEvent.swift in Sources */,
 				1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */,

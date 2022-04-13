@@ -19,12 +19,12 @@ class PowerUpSystem: System {
 
     func update(within time: CGFloat) { }
 
-    func activatePowerUp(_ powerUpID: EntityID, at location: CGPoint) {
+    func activatePowerUp(_ powerUpID: EntityID, by activatorId: EntityID, at location: CGPoint) {
         guard let manager = manager,
-              let entity = manager.entity(with: powerUpID),
-              let powerUp = entity as? PowerUp,
+              let powerUp = manager.entity(with: powerUpID) as? PowerUp,
               let playerTag = manager.components(ofType: PlayerTag.self).first,
-              let player = playerTag.entity as? Player
+              let player = playerTag.entity as? Player,
+              let playerPositionComponent = manager.component(ofType: PositionComponent.self, of: player)
         else { return }
 
         let effect = PowerUpEffect(
@@ -34,25 +34,16 @@ class PowerUpSystem: System {
 
         manager.add(effect)
 
-        if isPlayerWithinRange(player: player, location: location) {
-            let effectors = powerUp.activate(on: player, watching: effect)
-            for effector in effectors {
-                manager.add(effector)
-            }
+        let playerLocation = playerPositionComponent.position
+        
+        if (powerUp.canAffectEntity(activatorEntityId: activatorId, targetEntityId: player.id) &&
+            powerUp.isAffectingLocation(location: playerLocation)),
+           let powerUpEvent = powerUp.activate(on: player, watching: effect) {
+            
+            manager.add(powerUpEvent)
         }
-
+        
         manager.remove(powerUp)
     }
 
-    private func isPlayerWithinRange(player: Player, location: CGPoint) -> Bool {
-        guard let playerPositionComponent = manager?.component(ofType: PositionComponent.self, of: player)
-        else {
-            return false
-        }
-
-        let targetPosition = playerPositionComponent.position
-        let targetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
-        return location.distance(to: targetPosition) <= targetRange
-
-    }
 }

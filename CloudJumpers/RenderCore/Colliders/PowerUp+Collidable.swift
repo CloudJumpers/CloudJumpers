@@ -2,10 +2,12 @@
 //  PowerUp+Collidable.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 7/4/22.
+//  Created by Eric Bryan on 13/4/22.
 //
 
-extension PowerUp: Collidable {
+import Foundation
+
+extension PowerUp {
     func collides(with collidable: Collidable) -> Event? {
         collidable.collides(with: self)
     }

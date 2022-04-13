@@ -23,11 +23,8 @@ class PowerUpActivateEvent: Event {
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let system = target.system(ofType: InventorySystem.self),
-              let powerUpID = system.dequeueItem(for: entityID),
-              let powerUp = target.entity(with: powerUpID)
+              let powerUpID = system.dequeueItem(for: entityID)
         else { return }
-
-        target.remove(powerUp)
 
         supplier.add(ExternalPowerUpActivateEvent(
             activatePowerUpPositionX: location.x,

@@ -28,7 +28,7 @@ struct PowerUpEffectStartEvent: Event {
               let powerUpSystem = target.system(ofType: PowerUpSystem.self)
         else { return }
 
-        powerUpSystem.activatePowerUp(powerUpId, at: location)
+        powerUpSystem.activatePowerUp(powerUpId, by: entityID, at: location)
 
     }
 }
