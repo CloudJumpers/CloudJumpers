@@ -12,9 +12,9 @@ protocol PowerUp: Entity {
     var kind: PowerUpComponent.Kind { get }
 
     func activate(on entity: Entity, watching watchingEntity: Entity) -> Event?
-    
+
     func isAffectingLocation(location: CGPoint) -> Bool
-    
+
     func canAffectEntity(activatorEntityId: EntityID, targetEntityId: EntityID) -> Bool
 }
 
@@ -22,7 +22,7 @@ extension PowerUp {
     func isAffectingLocation(location: CGPoint) -> Bool {
         false
     }
-    
+
     func canAffectEntity(activatorEntityId: EntityID, targetEntityId: EntityID) -> Bool {
         activatorEntityId != targetEntityId
     }

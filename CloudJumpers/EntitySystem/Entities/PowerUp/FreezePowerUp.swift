@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class FreezePowerUp: PowerUp {    
+class FreezePowerUp: PowerUp {
     let id: EntityID
 
     var position: CGPoint
@@ -23,7 +23,7 @@ class FreezePowerUp: PowerUp {
     func activate(on entity: Entity, watching watchingEntity: Entity) -> Event? {
         PowerUpHandler.activate(self, on: entity, watching: watchingEntity)
     }
-    
+
     func isAffectingLocation(location: CGPoint) -> Bool {
         position.distance(to: location) <= Constants.powerUpTargetRange
     }

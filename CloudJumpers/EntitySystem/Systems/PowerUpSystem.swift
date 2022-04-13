@@ -35,14 +35,14 @@ class PowerUpSystem: System {
         manager.add(effect)
 
         let playerLocation = playerPositionComponent.position
-        
+
         if (powerUp.canAffectEntity(activatorEntityId: activatorId, targetEntityId: player.id) &&
             powerUp.isAffectingLocation(location: playerLocation)),
            let powerUpEvent = powerUp.activate(on: player, watching: effect) {
-            
+
             manager.add(powerUpEvent)
         }
-        
+
         manager.remove(powerUp)
     }
 
