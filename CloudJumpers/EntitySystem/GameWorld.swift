@@ -78,8 +78,8 @@ extension GameWorld: Simulatable {
     }
 
     func handleContact(between entityAID: EntityID, and entityBID: EntityID) {
-        guard let entityA = entity(with: entityAID),
-              let entityB = entity(with: entityBID)
+        guard let entityA = entity(with: entityAID) as? Collidable,
+              let entityB = entity(with: entityBID) as? Collidable
         else { fatalError("An unassociated EntityID was present in EntityManager") }
 
         if let event = entityA.collides(with: entityB) {
