@@ -6,6 +6,9 @@
 //
 
 protocol Scene: AnyObject {
+    var updateDelegate: SceneUpdateDelegate? { get set }
+    var nodes: [Node] { get }
+
     func addChild(_ node: Node, static: Bool)
     func removeChild(_ node: Node)
     func bindCamera(to node: Node)
