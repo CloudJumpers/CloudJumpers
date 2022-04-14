@@ -7,8 +7,7 @@
 
 enum Characters: TextureSetName {
     case Character1
-    case Character2
-    case Character3
+    case ShadowCharacter1
 }
 
 // MARK: - TextureSet Specifications
