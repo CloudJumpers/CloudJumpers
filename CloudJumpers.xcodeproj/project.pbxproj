@@ -16,7 +16,6 @@
 		1A24DC1B28016BE900E48B64 /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC1A28016BE900E48B64 /* EventDispatcher.swift */; };
 		1A24DC1D2805905B00E48B64 /* GameWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC1C2805905B00E48B64 /* GameWorld.swift */; };
 		1A24DC212805951D00E48B64 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC202805951D00E48B64 /* Scene.swift */; };
-		1A24DC262805AD4B00E48B64 /* GameEngineUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC252805AD4B00E48B64 /* GameEngineUpdatable.swift */; };
 		1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */; };
 		1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */; };
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
@@ -65,6 +64,8 @@
 		1AB6F2D527F990E0004BF6AF /* SwapMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */; };
 		1AB6F2D827F9A15F004BF6AF /* Supplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D727F9A15F004BF6AF /* Supplier.swift */; };
 		1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */; };
+		1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */; };
+		1ABF39152807EDCC0035DBB9 /* SceneUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */; };
 		1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603D27F19369006E4018 /* Blueprint.swift */; };
 		1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603F27F19386006E4018 /* LevelGenerator.swift */; };
 		1AC1605327F2F56D006E4018 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605227F2F56D006E4018 /* GameManager.swift */; };
@@ -272,7 +273,6 @@
 		1A24DC1A28016BE900E48B64 /* EventDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDispatcher.swift; sourceTree = "<group>"; };
 		1A24DC1C2805905B00E48B64 /* GameWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWorld.swift; sourceTree = "<group>"; };
 		1A24DC202805951D00E48B64 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		1A24DC252805AD4B00E48B64 /* GameEngineUpdatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngineUpdatable.swift; sourceTree = "<group>"; };
 		1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudJumpers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +325,8 @@
 		1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMoveEffector.swift; sourceTree = "<group>"; };
 		1AB6F2D727F9A15F004BF6AF /* Supplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplier.swift; sourceTree = "<group>"; };
 		1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseEvent.swift; sourceTree = "<group>"; };
+		1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
+		1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdateDelegate.swift; sourceTree = "<group>"; };
 		1AC1603D27F19369006E4018 /* Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blueprint.swift; sourceTree = "<group>"; };
 		1AC1603F27F19386006E4018 /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
 		1AC1605227F2F56D006E4018 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				1AE9D8A427FEBADB002B0A1E /* Textures */,
 				1AE9D8B027FED217002B0A1E /* TextureFrame.swift */,
 				1AE9D8B227FED228002B0A1E /* TextureFrameable.swift */,
+				1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */,
 				1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */,
 				3E246B5627DE0EED00D51300 /* GameScene.sks */,
 				1AE9D89E27FE0287002B0A1E /* Renderer.swift */,
@@ -1309,9 +1312,9 @@
 			children = (
 				93681BE7280208A00097EBD1 /* GameModes */,
 				1AC1605227F2F56D006E4018 /* GameManager.swift */,
-				1A24DC252805AD4B00E48B64 /* GameEngineUpdatable.swift */,
 				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 				A1409A2D27ECB69B000008E8 /* GameMetaData.swift */,
+				1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */,
 			);
 			path = GameEngine;
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABF39152807EDCC0035DBB9 /* SceneUpdateDelegate.swift in Sources */,
 				1A94D97127EEEC36001D8A86 /* InventoryComponent.swift in Sources */,
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */,
@@ -1655,9 +1659,9 @@
 				1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */,
 				9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */,
 				3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */,
-				1A24DC262805AD4B00E48B64 /* GameEngineUpdatable.swift in Sources */,
 				1AC1606427F31E08006E4018 /* Sounds.swift in Sources */,
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
+				1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */,
 				935280D727F6B082002E3A1D /* Response.swift in Sources */,
 				9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */,
 				A108AB5027E5070E003157E8 /* EventManager.swift in Sources */,
