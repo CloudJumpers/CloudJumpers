@@ -51,5 +51,7 @@ class DisasterSpawnSystem: System {
              disasterId: disasterId)
         manager?.dispatch(remoteDisasterStart)
         manager?.add(localDisasterStart)
+
+        // TODO: Dispatch only
     }
 }

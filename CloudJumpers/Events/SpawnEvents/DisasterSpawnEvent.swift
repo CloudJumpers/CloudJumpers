@@ -38,5 +38,8 @@ struct DisasterSpawnEvent: Event {
             intervalToRemove: Constants.disasterPromptPeriod)
         target.add(disaster)
         target.add(disasterPrompt)
+
+        // TODO: Create logic event to spawn disaster
+
     }
 }
