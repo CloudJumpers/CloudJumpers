@@ -12,6 +12,10 @@ class SpriteComponent: Component {
     let size: CGSize
     let zPosition: SpriteZPosition
 
+    var anchorPoint: CGPoint = .zero
+    var alpha: CGFloat = 1.0
+    var zRotation: CGFloat = .zero
+
     init(texture: TextureFrame, size: CGSize, zPosition: SpriteZPosition) {
         self.texture = texture
         self.size = size
