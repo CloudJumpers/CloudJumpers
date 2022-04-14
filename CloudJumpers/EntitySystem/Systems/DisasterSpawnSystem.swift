@@ -9,7 +9,6 @@ import Foundation
 import CoreGraphics
 
 class DisasterSpawnSystem: System {
-
     var active = false
 
     unowned var manager: EntityManager?
@@ -26,7 +25,6 @@ class DisasterSpawnSystem: System {
     }
 
     func update(within time: CGFloat) {
-
         guard RandomSpawnGenerator.isSpawning(successRate: 0.5),
               let blueprint = blueprint
         else {

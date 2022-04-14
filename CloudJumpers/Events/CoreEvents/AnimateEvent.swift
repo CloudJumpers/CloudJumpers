@@ -9,7 +9,6 @@ import Foundation
 
 struct AnimateEvent: Event {
     var timestamp: TimeInterval
-
     var entityID: EntityID
 
     private let kind: TextureFrame
