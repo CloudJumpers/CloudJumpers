@@ -14,14 +14,9 @@ class Guest: Entity {
 
     private(set) var position: CGPoint
     private let name: String
-    private let texture: Textures
+    private let texture: Characters
 
-    init(
-        at position: CGPoint,
-        texture: Textures,
-        name: String,
-        with id: EntityID = EntityManager.newEntityID
-    ) {
+    init(at position: CGPoint, texture: Characters, name: String, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.texture = texture
         self.name = name
@@ -40,32 +35,7 @@ class Guest: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(
-            texture: texture.idle,
-            size: Constants.playerSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.guest.rawValue
-        createNameLabel(for: spriteComponent)
-
-        return spriteComponent
-    }
-
-    private func createNameLabel(for spriteComponent: SpriteComponent) {
-        var displayname = name
-        if displayname.count > Constants.playerDisplaynameSize {
-            let index = displayname.index(displayname.startIndex, offsetBy: Constants.playerDisplaynameSize)
-            displayname = displayname[..<index] + "..."
-        }
-
-        let labelNode = SKLabelNode()
-        labelNode.text = displayname
-        labelNode.fontSize = Constants.captionFontSize
-        labelNode.position = Constants.captionRelativePosition
-        labelNode.fontColor = .black
-
-        spriteComponent.node.addChild(labelNode)
+        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .guest)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
