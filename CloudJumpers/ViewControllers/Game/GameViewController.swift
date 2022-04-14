@@ -5,7 +5,6 @@ class GameViewController: UIViewController {
     private var gameManager: GameManager?
     private var scene: GameScene?
     private var joystick: Joystick?
-    private var gameRules: GameRules?
 
     private var isMovingToPostGame = false
 
@@ -34,6 +33,17 @@ class GameViewController: UIViewController {
         joystick = nil
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard let dest = segue.destination as? PostGameViewController,
+              let manager = sender as? PostGameManager
+        else { return }
+
+        dest.postGameManager = manager
+        dest.postGameManager?.submitForRanking()
+    }
+
     private func setUpSynchronizedStart() {
         guard let activeLobby = lobby else {
             return
@@ -50,20 +60,20 @@ class GameViewController: UIViewController {
             return
         }
 
-        self.gameRules = config.getGameRules()
-
         gameManager = GameManager(
             rendersTo: scene,
             inChargeID: lobby?.hostId,
-            handlers: handlers
+            handlers: handlers,
+            rules: config.getGameRules()
         )
 
         setUpGameScene()
-        setUpGameEngine()
+        setUpGameManager()
         setUpInputControls()
         setUpSKViewAndPresent()
     }
 
+    // MARK: - Game Set-up Methods
     private func setUpGameScene() {
         guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
@@ -74,12 +84,10 @@ class GameViewController: UIViewController {
         self.scene = scene
     }
 
-    private func setUpGameEngine() {
+    private func setUpGameManager() {
         guard let scene = scene,
               let config = lobby?.gameConfig as? InGameConfig
-        else {
-            fatalError("GameScene, GameEngine, or configurated has not been initialized")
-        }
+        else { fatalError("GameScene, GameEngine, or configurated has not been initialized") }
 
         let authService = AuthService()
         guard let userId = authService.getUserId() else {
@@ -88,7 +96,6 @@ class GameViewController: UIViewController {
 
         let userDisplayName = authService.getUserDisplayName()
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
-
         let allUsersInfo = config.getIdOrderedPlayers()
 
         let cloudBlueprint = Blueprint(
@@ -101,22 +108,7 @@ class GameViewController: UIViewController {
             seed: config.seed
         )
 
-        gameManager?.setUpGame(cloudBlueprint: cloudBlueprint)
-        gameRules?.setUpForRule()
-        gameRules?.setUpPlayers(userInfo, allPlayersInfo: allUsersInfo)
-    }
-
-    private func setUpSKViewAndPresent() {
-        guard let scene = scene else {
-            fatalError("GameScene was not set up")
-        }
-        let skView = SKView(frame: view.frame)
-        skView.isMultipleTouchEnabled = true
-        skView.ignoresSiblingOrder = true
-        skView.showsNodeCount = true
-        skView.showsFPS = true
-        skView.presentScene(scene)
-        view = skView
+        gameManager?.setUpGame(with: cloudBlueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
 
     private func setUpInputControls() {
@@ -135,12 +127,24 @@ class GameViewController: UIViewController {
         self.joystick = joystick
     }
 
-    private func transitionToEndGame(playerEndTime: Double) {
-        guard
-            !isMovingToPostGame,
-            let activeLobby = lobby,
-            let gameConfig = activeLobby.gameConfig as? PostGameConfig,
-            let metaData = gameEngine?.metaData
+    // MARK: - Helper Methods
+    private func setUpSKViewAndPresent() {
+        guard let scene = scene else {
+            fatalError("GameScene was not set up")
+        }
+        let skView = SKView(frame: view.frame)
+        skView.isMultipleTouchEnabled = true
+        skView.ignoresSiblingOrder = true
+        skView.showsNodeCount = true
+        skView.showsFPS = true
+        skView.presentScene(scene)
+        view = skView
+    }
+
+    private func transitionToEndGame(with metaData: GameMetaData) {
+        guard !isMovingToPostGame,
+              let activeLobby = lobby,
+              let gameConfig = activeLobby.gameConfig as? PostGameConfig
         else { return }
 
         isMovingToPostGame = true
@@ -151,51 +155,19 @@ class GameViewController: UIViewController {
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-
-        guard
-            let dest = segue.destination as? PostGameViewController,
-            let manager = sender as? PostGameManager
-        else {
-            return
-        }
-
-        dest.postGameManager = manager
-        dest.postGameManager?.submitForRanking()
-    }
 }
 
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        guard let gameManager = gameManager,
-              let gameRules = gameRules
-        else { return }
-
-        gameManager.update(within: interval)
-        gameManager.updatePlayer(with: joystick?.displacement ?? .zero)
-
-        if gameRules.hasGameEnd() {
-            // TODO: maybe not expose meta data
-            transitionToEndGame(playerEndTime: gameManager.metaData.time)
-        }
+        gameManager?.update(within: interval)
+        gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
     }
+}
 
-    func scene(_ scene: GameScene, nodeFromNodeCore nodeCore: NodeCore) -> Node? {
-        gameManager?.node(from: nodeCore)
-    }
-
-    func scene(_ scene: GameScene, didBeginContactBetween nodeA: Node, and nodeB: Node) {
-        gameManager?.beginContact(between: nodeA, and: nodeB)
-    }
-
-    func scene(_ scene: GameScene, didEndContactBetween nodeA: Node, and nodeB: Node) {
-        gameManager?.endContact(between: nodeA, and: nodeB)
-    }
-
-    func sceneDidFinishUpdate(_ scene: GameScene) {
-        <#code#>
+// MARK: - GameManagerDelegate
+extension GameViewController: GameManagerDelegate {
+    func manager(_ manager: GameManager, didEndGameWith metaData: GameMetaData) {
+        transitionToEndGame(with: metaData)
     }
 }

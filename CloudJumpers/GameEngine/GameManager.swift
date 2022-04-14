@@ -8,17 +8,19 @@
 import SpriteKit
 
 class GameManager {
-    private var world: GameWorld
+    unowned var delegate: GameManagerDelegate?
 
-    var metaData: GameMetaData
+    private var world: GameWorld
+    private var metaData: GameMetaData
+    private var rules: GameRules
     var inChargeID: NetworkID?
 
     private var crossDeviceSyncTimer: Timer?
 
-    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
+    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
-
         metaData = GameMetaData()
+        self.rules = rules
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
     }
@@ -29,47 +31,66 @@ class GameManager {
 
     func update(within time: CGFloat) {
         world.update(within: time)
+        checkHasGameEnd()
     }
 
     // TODO: This shouldn't touch PhysicsComponent anymore
     func updatePlayer(with displacement: CGVector) {
         guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+              let physicsComponent = world.component(ofType: PhysicsComponent.self, of: entity)
         else {
             return
         }
         if displacement != .zero {
             inputMove(by: displacement)
         } else if physicsComponent.body.velocity == .zero {
-            eventManager.add( AnimateEvent(on: entity, to: .idle))
+            world.add(AnimateEvent(on: entity, to: .idle))
         }
     }
 
-    func setUpGame(cloudBlueprint: Blueprint) {
-        let cloudPositions = LevelGenerator.from(cloudBlueprint, seed: cloudBlueprint.seed)
+    func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        setUpEnvironment(with: blueprint)
+        rules.setUpForRule()
+        rules.setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
+    }
+
+    private func setUpEnvironment(with blueprint: Blueprint) {
+        let cloudPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
 
-        let topPlatform = Platform(at: highestPosition)
+        addPlatform(at: highestPosition)
 
         let wallHeight = (Constants.screenHeight / 2) + highestPosition.y + Constants.wallHeightFromPlatform
+        addWall(at: Constants.leftWallPosition, height: wallHeight)
+        addWall(at: Constants.rightWallPosition, height: wallHeight)
+        addFloor(at: Constants.floorPosition)
 
-        let leftWall = Wall(at: Constants.leftWallPosition, height: wallHeight)
-        let rightWall = Wall(at: Constants.rightWallPosition, height: wallHeight)
-        let floor = Floor(at: Constants.floorPosition)
-        entityManager.add(topPlatform)
-        entityManager.add(leftWall)
-        entityManager.add(rightWall)
-        entityManager.add(floor)
-
-        cloudPositions.forEach { position in
-            if position != highestPosition {
-                let newCloud = Cloud(at: position)
-                entityManager.add(newCloud)
-            }
+        // TODO: Extend LevelGenerator so that this condition need not happen
+        for cloudPosition in cloudPositions where cloudPosition != highestPosition {
+            world.add(Cloud(at: cloudPosition))
         }
     }
+
+    private func addPlatform(at position: CGPoint) {
+        world.add(Platform(at: position))
+    }
+
+    private func addFloor(at position: CGPoint) {
+        world.add(Floor(at: position))
+    }
+
+    private func addWall(at position: CGPoint, height: CGFloat) {
+        world.add(Wall(at: position, height: height))
+    }
+
+    private func checkHasGameEnd() {
+        if rules.hasGameEnd() {
+            delegate?.manager(self, didEndGameWith: metaData)
+        }
+    }
+
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
@@ -79,7 +100,7 @@ class GameManager {
     }
 
     private func syncToOtherDevices () {
-        entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
+        world.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
     }
 }
 
@@ -90,19 +111,20 @@ extension GameManager: InputResponder {
         set { metaData.playerId = newValue?.id ?? EntityID() }
     }
 
+    // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
         guard let entity = associatedEntity,
-              let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
+              let physicsComponent = world.component(ofType: PhysicsComponent.self, of: entity)
         else { return }
 
         let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
         let soundEvent = SoundEvent(.walking)
 
-        entityManager.add(moveEvent.then(do: soundEvent))
+        world.add(moveEvent.then(do: soundEvent))
 
         // TODO: Figure out how to abstract this
         if physicsComponent.body.velocity == .zero {
-            eventManager.add(AnimateEvent(on: entity, to: .walking))
+            world.add(AnimateEvent(on: entity, to: .walking))
         }
     }
 
@@ -117,8 +139,8 @@ extension GameManager: InputResponder {
         // TODO: Figure out how to integrate AnimateEvent into JumpEvent
         let animateEvent = AnimateEvent(onEntityWith: entity.id, to: .walking)
 
-        entityManager.add(jumpEvent.then(do: soundEvent))
-        entityManager.add(animateEvent)
+        world.add(jumpEvent.then(do: soundEvent))
+        world.add(animateEvent)
     }
 
     func activatePowerUp(at location: CGPoint) {
@@ -126,32 +148,10 @@ extension GameManager: InputResponder {
             return
         }
 
-        entityManager.add(PowerUpActivateEvent(by: entity.id, location: location))
+        world.add(PowerUpActivateEvent(by: entity.id, location: location))
 
-        entityManager.dispatch(ExternalPowerUpActivateEvent(
+        world.dispatch(ExternalPowerUpActivateEvent(
             activatePowerUpPositionX: location.x,
             activatePowerUpPositionY: location.y))
-    }
-}
-
-extension GameManager: GameEngineUpdatable {
-    func beginContact(between nodeA: Node, and nodeB: Node) {
-        <#code#>
-    }
-
-    func endContact(between nodeA: Node, and nodeB: Node) {
-        <#code#>
-    }
-
-    func node(from nodeCore: NodeCore) -> Node? {
-        <#code#>
-    }
-
-    func updatePositions(to positions: [CGPoint]) {
-        <#code#>
-    }
-
-    func updateVelocities(to velocities: [CGVector]) {
-        <#code#>
     }
 }
