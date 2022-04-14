@@ -11,13 +11,19 @@ class Disaster: Entity {
     private var position: CGPoint
     private var velocity: CGVector
     private let kind: DisasterComponent.Kind
+    private let texture: Miscellaneous
 
-    init(_ kind: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector,
-         with id: EntityID = EntityManager.newEntityID) {
-
+    init(
+        _ kind: DisasterComponent.Kind,
+        at position: CGPoint,
+        velocity: CGVector,
+        texture: Miscellaneous,
+        with id: EntityID = EntityManager.newEntityID
+    ) {
         self.id = id
         self.kind = kind
         self.position = position
+        self.texture = texture
         self.velocity = velocity
     }
 
@@ -29,20 +35,14 @@ class Disaster: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(removeOutOfBoundTag, to: self)
-
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let node = SKSpriteNode(
-            texture: SKTexture(imageNamed: "\(kind)"),
-            size: Constants.disasterNodeSize)
+        let spriteComponent = SpriteComponent(texture: texture.frame, size: Constants.disasterNodeSize, zPosition: .disaster)
+        spriteComponent.zRotation = Self.rotation(of: velocity)
+        spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
 
-        node.position = position
-        node.zRotation = getRotationAngle()
-        node.zPosition = SpriteZPosition.disaster.rawValue
-        node.anchorPoint = CGPoint(x: 0.5, y: 0)
-
-        return SpriteComponent(node: node, forEntityWith: id)
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
@@ -60,7 +60,7 @@ class Disaster: Entity {
         return physicsComponent
     }
 
-    private func getRotationAngle() -> CGFloat {
-        -atan(velocity.dx / velocity.dy)
+    private static func rotation(of vector: CGVector) -> CGFloat {
+        -atan(vector.dx / vector.dy)
     }
 }
