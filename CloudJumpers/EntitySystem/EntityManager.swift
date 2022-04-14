@@ -12,37 +12,28 @@ class EntityManager {
     typealias ComponentMap = [ComponentID: Component]
     typealias EntityComponentMap = [EntityID: Set<ComponentID>]
 
-    private var entities: EntityMap
-    private var components: ComponentMap
+    private var entitiesMap: EntityMap
+    private var componentsMap: ComponentMap
     private var entitiesComponents: EntityComponentMap
-    private var systemManager: SystemManager
-    private var eventManager: EventManager
-
-    var subscriber: GameEventSubscriber?
-    var publisher: GameEventPublisher?
 
     init() {
-        entities = EntityMap()
-        components = ComponentMap()
+        entitiesMap = EntityMap()
+        componentsMap = ComponentMap()
         entitiesComponents = EntityComponentMap()
-        systemManager = SystemManager()
-        eventManager = EventManager()
-    }
-
-    // MARK: - Lifecycle Methods
-    func update(within time: TimeInterval) {
-        systemManager.update(within: time, in: self)
-        eventManager.executeAll(in: self)
     }
 
     // MARK: - Entity Modifiers
+    var entities: [Entity] {
+        Array(entitiesMap.values)
+    }
+
     func add(_ entity: Entity) {
-        entities[entity.id] = entity
+        entitiesMap[entity.id] = entity
         setUpAndAdd(entity)
     }
 
     func remove(_ entity: Entity) {
-        entities[entity.id] = nil
+        entitiesMap[entity.id] = nil
         removeComponents(of: entity)
     }
 
@@ -54,12 +45,8 @@ class EntityManager {
         remove(entity)
     }
 
-    func getEntities() -> [Entity] {
-        Array(entities.values)
-    }
-
     func entity(with entityID: EntityID) -> Entity? {
-        entities[entityID]
+        entitiesMap[entityID]
     }
 
     // MARK: - Component Modifiers
@@ -69,7 +56,7 @@ class EntityManager {
         }
 
         for componentId in componentIds {
-            guard let component = components[componentId] else {
+            guard let component = componentsMap[componentId] else {
                 fatalError("Component ID does not have a matching Component")
             }
 
@@ -95,12 +82,12 @@ class EntityManager {
     }
 
     func components<T: Component>(ofType type: T.Type) -> [T] {
-        components.values.compactMap { $0 as? T }
+        componentsMap.values.compactMap { $0 as? T }
     }
 
     func addComponent(_ component: Component, to entity: Entity) {
         component.entity = entity
-        components[component.id] = component
+        componentsMap[component.id] = component
         entitiesComponents[entity.id]?.insert(component.id)
     }
 
@@ -109,10 +96,11 @@ class EntityManager {
             return
         }
 
-        components[component.id] = nil
+        componentsMap[component.id] = nil
         entitiesComponents[entity.id]?.remove(component.id)
     }
 
+    // MARK: - Helper Methods
     private func setUpAndAdd(_ entity: Entity) {
         entitiesComponents[entity.id] = []
         entity.setUpAndAdd(to: self)
@@ -121,12 +109,12 @@ class EntityManager {
     private func removeComponents(of entity: Entity) {
         if let componentIds = entitiesComponents[entity.id] {
             for componentId in componentIds {
-                components[componentId] = nil
+                componentsMap[componentId] = nil
             }
         }
 
         entitiesComponents[entity.id] = nil
-        entities[entity.id] = nil
+        entitiesMap[entity.id] = nil
     }
 }
 
@@ -138,37 +126,5 @@ extension EntityManager {
 
     static var newComponentID: ComponentID {
         UUID().uuidString
-    }
-}
-
-// MARK: - EventModifiable
-extension EntityManager: EventModifiable {
-    func add(_ event: Event) {
-        eventManager.add(event)
-    }
-
-    func system<T: System>(ofType type: T.Type) -> T? {
-        systemManager.system(ofType: T.self)
-    }
-}
-
-// MARK: - EventDispatcher
-extension EntityManager: EventDispatcher {
-}
-
-// MARK: - Simulatable
-extension EntityManager: Simulatable {
-    func entitiesToRender() -> [Entity] {
-        Array(entities.values)
-    }
-
-    func handleContact(between entityAID: EntityID, and entityBID: EntityID) {
-        guard let entityA = entity(with: entityAID),
-              let entityB = entity(with: entityBID)
-        else { fatalError("An unassociated EntityID was present in EntityManager") }
-
-        if let event = entityA.collides(with: entityB) {
-            eventManager.add(event)
-        }
     }
 }
