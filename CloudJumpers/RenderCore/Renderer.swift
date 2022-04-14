@@ -12,15 +12,17 @@ typealias EntityNodeMap = [EntityID: Node]
 
 class Renderer {
     private unowned var target: Simulatable?
+    private unowned var scene: Scene?
+
     private var renderedNodes: NodesMap
     private var entityNode: EntityNodeMap
-    private var scene: GameScene
 
-    init(from target: Simulatable, to scene: GameScene) {
+    init(from target: Simulatable, to scene: Scene?) {
         renderedNodes = NodesMap()
         entityNode = EntityNodeMap()
         self.target = target
         self.scene = scene
+        scene?.updateDelegate = self
     }
 
     func render() {
@@ -99,7 +101,7 @@ class Renderer {
 
         let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
         let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
-        scene.addChild(node, static: `static` ?? false)
+        scene?.addChild(node, static: `static` ?? false)
         bindCamera(to: node, with: entity)
     }
 
@@ -108,7 +110,7 @@ class Renderer {
             return
         }
 
-        scene.bindCamera(to: node)
+        scene?.bindCamera(to: node)
     }
 
     // MARK: - Post-rendering
@@ -134,6 +136,28 @@ class Renderer {
     }
 
     private func remove(node: Node) {
-        scene.removeChild(node)
+        scene?.removeChild(node)
+    }
+}
+
+// MARK: - SceneUpdateDelegate
+extension Renderer: SceneUpdateDelegate {
+    func scene(_ scene: Scene, didBeginContactBetween nodeA: Node, and nodeB: Node) {
+        guard let entityIDA = nodeA.name,
+              let entityIDB = nodeB.name
+        else { fatalError("A Node was not associated with an EntityID") }
+
+        target?.handleContact(between: entityIDA, and: entityIDB)
+    }
+
+    func scene(_ scene: Scene, didEndContactBetween nodeA: Node, and nodeB: Node) {
+        // TODO: Handle contact end here
+    }
+
+    func sceneDidFinishUpdate(_ scene: Scene) {
+        // TODO: Handle finish update here
+        let nodes = scene.nodes
+        let positions = nodes.map { $0.position }
+        let velocities = nodes.compactMap { $0.physicsBody?.velocity }
     }
 }
