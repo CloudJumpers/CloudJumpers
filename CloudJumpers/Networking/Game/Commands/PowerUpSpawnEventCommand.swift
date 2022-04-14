@@ -1,22 +1,22 @@
 //
-//  ObtainEntityCommand.swift
+//  PowerUpSpawnEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Eric Bryan on 3/4/22.
+//  Created by Trong Tan on 4/15/22.
 //
 
 import Foundation
 import CoreGraphics
 
-struct ObtainEntityCommand: GameEventCommand {
+struct PowerUpSpawnEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalObtainEntityEvent) {
+    init(sourceId: NetworkID, event: ExternalPowerUpSpawnEvent) {
         self.source = sourceId
-        self.isSourceRecipient = true
+        self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
     }
 
@@ -29,16 +29,18 @@ struct ObtainEntityCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalObtainEntityEvent.self, from: jsonData) else {
-            nextCommand = PowerUpSpawnEventCommand(source, payload)
+        guard let parameters = try? decoder.decode(ExternalPowerUpSpawnEvent.self, from: jsonData),
+              let type = PowerUpComponent.Kind(rawValue: parameters.powerUpType)
+        else {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
+        let position = CGPoint(x: parameters.powerSpawnPositionX, y: parameters.powerSpawnPositionY)
 
-        let eventToProcess = ObtainEvent(
-            on: source,
-            obtains: parameters.obtainedEntityID,
+        let eventToProcess = PowerUpSpawnEvent(
+            position: position,
+            type: type,
+            entityId: parameters.powerUpId,
             at: parameters.timestamp)
-
         eventManager.add(eventToProcess)
         return true
     }

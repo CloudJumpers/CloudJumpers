@@ -14,7 +14,7 @@ struct ObtainEvent: Event {
 
     private let otherEntityID: EntityID
 
-    init(on entityID: EntityID, obtains otherEntityID: EntityID, timestamp: TimeInterval = EventManager.timestamp) {
+    init(on entityID: EntityID, obtains otherEntityID: EntityID, at timestamp: TimeInterval = EventManager.timestamp) {
         self.entityID = entityID
         self.otherEntityID = otherEntityID
         self.timestamp = timestamp

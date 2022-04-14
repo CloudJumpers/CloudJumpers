@@ -221,6 +221,9 @@
 		A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */; };
 		A16C8FC6280336C4001B2E7F /* StandOnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */; };
 		A16C8FC828033B07001B2E7F /* StandOnComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16C8FC728033B07001B2E7F /* StandOnComponent.swift */; };
+		A175388628087EE800FC665F /* PowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175388528087EE800FC665F /* PowerUpSpawnEvent.swift */; };
+		A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */; };
+		A175388A2808804E00FC665F /* ExternalPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */; };
 		A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */; };
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
@@ -489,6 +492,9 @@
 		A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRespawnEvent.swift; sourceTree = "<group>"; };
 		A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandOnSystem.swift; sourceTree = "<group>"; };
 		A16C8FC728033B07001B2E7F /* StandOnComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandOnComponent.swift; sourceTree = "<group>"; };
+		A175388528087EE800FC665F /* PowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSpawnEvent.swift; sourceTree = "<group>"; };
+		A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
+		A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTopGameRules.swift; sourceTree = "<group>"; };
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
@@ -891,6 +897,7 @@
 				A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */,
 				3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */,
 				3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */,
+				A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -987,6 +994,7 @@
 				A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */,
 				3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */,
 				3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */,
+				A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1282,6 +1290,7 @@
 			isa = PBXGroup;
 			children = (
 				3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */,
+				A175388528087EE800FC665F /* PowerUpSpawnEvent.swift */,
 			);
 			path = SpawnEvents;
 			sourceTree = "<group>";
@@ -1594,6 +1603,7 @@
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				9396E9612800482C0090A8C9 /* RaceToTopPreGameManager.swift in Sources */,
 				93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */,
+				A175388628087EE800FC665F /* PowerUpSpawnEvent.swift in Sources */,
 				A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */,
 				93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */,
@@ -1631,6 +1641,7 @@
 				A16C8FC6280336C4001B2E7F /* StandOnSystem.swift in Sources */,
 				A1D786852801EE1A00C5CE49 /* PlayerTag.swift in Sources */,
 				1A94D95627ED8709001D8A86 /* TimedComponent.swift in Sources */,
+				A175388A2808804E00FC665F /* ExternalPowerUpSpawnEvent.swift in Sources */,
 				1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
 				93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */,
@@ -1769,6 +1780,7 @@
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
 				1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
+				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
 				931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */,
