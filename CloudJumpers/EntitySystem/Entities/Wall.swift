@@ -46,14 +46,13 @@ class Wall: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: wallSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskWall
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer
-        physicsComponent.body.contactTestBitMask = 0
+        let physicsComponent = PhysicsComponent(rectangleOf: wallSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = Constants.bitmaskWall
+        physicsComponent.collisionBitMask = Constants.bitmaskPlayer
+        physicsComponent.contactTestBitMask = 0
 
         return physicsComponent
     }

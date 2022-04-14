@@ -38,15 +38,14 @@ class Floor: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.floorSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskFloor
-        physicsComponent.body.collisionBitMask = Constants.bitmaskDisaster |
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.floorSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = Constants.bitmaskFloor
+        physicsComponent.collisionBitMask = Constants.bitmaskDisaster |
         Constants.bitmaskPlayer
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskDisaster
+        physicsComponent.contactTestBitMask = Constants.bitmaskDisaster
 
         return physicsComponent
     }

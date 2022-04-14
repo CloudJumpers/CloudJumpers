@@ -46,19 +46,18 @@ class Disaster: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize,
-                                                for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.mass = Constants.disasterMass
-        physicsComponent.body.velocity = self.velocity
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskDisaster
-        physicsComponent.body.linearDamping = 0.0
-        physicsComponent.body.collisionBitMask =
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize)
+
+        physicsComponent.affectedByGravity = false
+        physicsComponent.mass = Constants.disasterMass
+        physicsComponent.velocity = velocity
+        physicsComponent.allowsRotation = false
+        physicsComponent.categoryBitMask = Constants.bitmaskDisaster
+        physicsComponent.linearDamping = 0.0
+        physicsComponent.collisionBitMask =
         Constants.bitmaskCloud | Constants.bitmaskPlayer |
         Constants.bitmaskPlatform | Constants.bitmaskFloor
-        physicsComponent.body.contactTestBitMask =
+        physicsComponent.contactTestBitMask =
         Constants.bitmaskCloud | Constants.bitmaskPlayer |
         Constants.bitmaskPlatform | Constants.bitmaskFloor
 

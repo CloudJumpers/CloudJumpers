@@ -40,14 +40,13 @@ class Cloud: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer |
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = Constants.bitmaskCloud
+        physicsComponent.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.contactTestBitMask = Constants.bitmaskPlayer |
         Constants.bitmaskDisaster | Constants.bitmaskGuest
 
         return physicsComponent

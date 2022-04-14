@@ -41,14 +41,13 @@ class Platform: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.platformPhysicsSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlatform
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.platformPhysicsSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = Constants.bitmaskPlatform
+        physicsComponent.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
 
         return physicsComponent
     }

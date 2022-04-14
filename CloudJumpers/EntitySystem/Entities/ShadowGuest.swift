@@ -68,16 +68,17 @@ class ShadowGuest: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        let shadowGuestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
-        Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp ^
-        Constants.bitmaskCloud
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskShadowGuest
-        physicsComponent.body.collisionBitMask = shadowGuestCollisionBitmask
-        physicsComponent.body.contactTestBitMask = shadowGuestCollisionBitmask
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
+        let shadowGuestCollisionBitmask =
+            .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
+            Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp ^
+            Constants.bitmaskCloud
+
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.categoryBitMask = Constants.bitmaskGuest
+        physicsComponent.collisionBitMask = shadowGuestCollisionBitmask
+        physicsComponent.contactTestBitMask = shadowGuestCollisionBitmask
         return physicsComponent
     }
 
