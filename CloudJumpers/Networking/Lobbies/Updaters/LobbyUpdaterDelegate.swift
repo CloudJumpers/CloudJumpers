@@ -24,6 +24,7 @@ protocol LobbyUpdaterDelegate: AnyObject {
     func changeLobbyName(to name: String)
     func changeLobbyHost(to host: NetworkID)
 
+    func setAsClosed()
     func setOnDisconnectRemove()
     func clearOnDisconnectRemove()
 }

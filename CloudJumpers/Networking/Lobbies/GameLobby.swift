@@ -276,6 +276,7 @@ class GameLobby: NetworkedLobby {
             gameConfig.setPlayers(players)
 
             lobbyState = .gameInProgress
+            updater?.setAsClosed()
             onLobbyStateChange?(.gameInProgress)
         }
     }

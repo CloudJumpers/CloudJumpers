@@ -28,7 +28,7 @@ class Platform: Entity {
 
     private func createSpriteComponent() -> SpriteComponent {
         // TODO: Abstract out Clouds texture atlas
-        let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
+        let texture = SKTextureAtlas(named: "EndPlatform").textureNamed("cloud-1")
         let spriteComponent = SpriteComponent(
             texture: texture,
             size: Constants.platformNodeSize,

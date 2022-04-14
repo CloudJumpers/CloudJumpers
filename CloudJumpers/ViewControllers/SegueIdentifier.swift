@@ -16,8 +16,11 @@ enum SegueIdentifier {
     static let loginToSignup = "com.cs3217.cloudjumpers.entersignupfromlogin"
 
     static let lobbiesToLobby = "com.cs3217.cloudjumpers.lobbiestolobby"
+    static let lobbyToLobbies = "com.cs3217.cloudjumpers.lobbytolobbies"
 
     static let lobbyToGame = "com.cs3217.cloudjumpers.lobbytogame"
 
     static let gameToPostGame = "com.cs3217.cloudjumpers.gametopostgame"
+
+    static let postGameToLobbies = "com.cs3217.cloudjumpers.postgametolobbies"
 }

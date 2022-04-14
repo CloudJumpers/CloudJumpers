@@ -68,19 +68,11 @@ class LobbyViewController: UIViewController {
     }
 
     @IBAction private func moveToLobbies() {
-        guard
-            activeLobby != nil, // only run once
-            let viewControllers = navigationController?.viewControllers,
-            let lobbiesViewController = viewControllers.first(where: { $0 is LobbiesViewController })
-        else {
-            return
-        }
-
-        self.activeLobby?.removeDeviceUser()
-        self.activeLobby = nil
-        self.activeListing = nil
-
-        self.navigationController?.popToViewController(lobbiesViewController, animated: true)
+        activeLobby?.onLobbyDataChange = nil
+        activeLobby?.onLobbyStateChange = nil
+        activeLobby?.removeDeviceUser()
+        activeLobby = nil
+        performSegue(withIdentifier: SegueIdentifier.lobbyToLobbies, sender: self)
     }
 
     func moveToGame() {
@@ -115,7 +107,7 @@ class LobbyViewController: UIViewController {
             let newInput = gameSeed.text,
             let newSeed = Int(newInput)
         else {
-            gameSeed.text = "\(lobby.gameConfig.seed)"
+            refreshGameSeed()
             return
         }
 
@@ -154,7 +146,11 @@ class LobbyViewController: UIViewController {
     }
 
     private func refreshGameSeed() {
-        gameSeed.text = activeLobby?.gameConfig.seed.description ?? gameSeed.text
+        guard let lobby = activeLobby else {
+            return
+        }
+
+        gameSeed.text = lobby.gameConfig.seed.description
     }
 
     private func refreshLobbyGameMode() {

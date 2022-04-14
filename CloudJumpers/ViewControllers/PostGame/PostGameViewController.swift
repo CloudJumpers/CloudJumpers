@@ -37,14 +37,7 @@ class PostGameViewController: UIViewController {
     }
 
     @IBAction private func buttonOnTap() {
-        guard
-            let viewControllers = navigationController?.viewControllers,
-            let lobbyViewController = viewControllers.first(where: { $0 is LobbyViewController })
-        else {
-            return
-        }
-
-        navigationController?.popToViewController(lobbyViewController, animated: true)
+        performSegue(withIdentifier: SegueIdentifier.postGameToLobbies, sender: self)
     }
 }
 
