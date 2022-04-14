@@ -7,19 +7,18 @@
 
 import SpriteKit
 
-class GameEngine {
-    let entityManager: EntityManager
+class GameManager {
+    private var world: GameWorld
+
     var metaData: GameMetaData
     var inChargeID: NetworkID?
 
     private var crossDeviceSyncTimer: Timer?
 
-    required init(rendersTo spriteSystemDelegate: SpriteSystemDelegate,
-                  inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
-        metaData = GameMetaData()
-        entityManager = EntityManager()
-        setUpEventDispatcher(entityManager, handlers: handlers)
+    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers) {
+        world = GameWorld(rendersTo: scene, subscribesTo: handlers)
 
+        metaData = GameMetaData()
         self.inChargeID = inChargeID
         setUpCrossDeviceSyncTimer()
     }
@@ -29,16 +28,7 @@ class GameEngine {
     }
 
     func update(within time: CGFloat) {
-        updateEntityManager(within: time)
-    }
-
-    func setUpEventDispatcher(_ eventDispatcher: EventDispatcher, handlers: RemoteEventHandlers) {
-        eventDispatcher.subscriber = handlers.subscriber
-        eventDispatcher.publisher = handlers.publisher
-    }
-
-    func updateEntityManager(within time: CGFloat) {
-        entityManager.update(within: time)
+        world.update(within: time)
     }
 
     // TODO: This shouldn't touch PhysicsComponent anymore
@@ -79,7 +69,6 @@ class GameEngine {
                 entityManager.add(newCloud)
             }
         }
-
     }
     // TODO: Bring this into PlayerStateSynchronizer
     private func setUpCrossDeviceSyncTimer() {
@@ -92,38 +81,26 @@ class GameEngine {
     private func syncToOtherDevices () {
         entityManager.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
     }
-
-    // TODO: This shouldn't happen here anymore
-    private func updateEvents() {
-        eventManager.executeAll(in: entityManager)
-    }
 }
 
 // MARK: - InputResponder
-extension GameEngine: InputResponder {
+extension GameManager: InputResponder {
     var associatedEntity: Entity? {
-        get {
-            entityManager.entity(with: metaData.playerId)
-        }
-        set {
-            if let newId = newValue?.id {
-                metaData.playerId = newId
-            }
-        }
+        get { world.entity(with: metaData.playerId) }
+        set { metaData.playerId = newValue?.id ?? EntityID() }
     }
 
     func inputMove(by displacement: CGVector) {
         guard let entity = associatedEntity,
               let physicsComponent = entityManager.component(ofType: PhysicsComponent.self, of: entity)
-        else {
-            return
-        }
+        else { return }
 
-        let playerMoveEvent = MoveEvent(on: entity, by: displacement)
-            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .walking))
+        let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
+        let soundEvent = SoundEvent(.walking)
 
-        eventManager.add(playerMoveEvent)
+        entityManager.add(moveEvent.then(do: soundEvent))
 
+        // TODO: Figure out how to abstract this
         if physicsComponent.body.velocity == .zero {
             eventManager.add(AnimateEvent(on: entity, to: .walking))
         }
@@ -133,12 +110,15 @@ extension GameEngine: InputResponder {
         guard let entity = associatedEntity else {
             return
         }
-        let playerJumpEvent = JumpEvent(on: entity)
-            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpCape))
-            .then(do: SoundEvent(onEntityWith: entity.id, soundName: .jumpFoot))
 
-        eventManager.add(playerJumpEvent)
-        eventManager.add(AnimateEvent(on: entity, to: .jumping))
+        let jumpEvent = JumpEvent(onEntityWith: entity.id)
+        let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
+
+        // TODO: Figure out how to integrate AnimateEvent into JumpEvent
+        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: .walking)
+
+        entityManager.add(jumpEvent.then(do: soundEvent))
+        entityManager.add(animateEvent)
     }
 
     func activatePowerUp(at location: CGPoint) {
@@ -151,5 +131,27 @@ extension GameEngine: InputResponder {
         entityManager.dispatch(ExternalPowerUpActivateEvent(
             activatePowerUpPositionX: location.x,
             activatePowerUpPositionY: location.y))
+    }
+}
+
+extension GameManager: GameEngineUpdatable {
+    func beginContact(between nodeA: Node, and nodeB: Node) {
+        <#code#>
+    }
+
+    func endContact(between nodeA: Node, and nodeB: Node) {
+        <#code#>
+    }
+
+    func node(from nodeCore: NodeCore) -> Node? {
+        <#code#>
+    }
+
+    func updatePositions(to positions: [CGPoint]) {
+        <#code#>
+    }
+
+    func updateVelocities(to velocities: [CGVector]) {
+        <#code#>
     }
 }

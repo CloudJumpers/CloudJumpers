@@ -2,7 +2,7 @@ import Combine
 import SpriteKit
 
 class GameViewController: UIViewController {
-    private var gameEngine: GameEngine?
+    private var gameManager: GameManager?
     private var scene: GameScene?
     private var joystick: Joystick?
     private var gameRules: GameRules?
@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        gameEngine = nil
+        gameManager = nil
         handlers = nil
         scene = nil
         joystick = nil
@@ -52,8 +52,8 @@ class GameViewController: UIViewController {
 
         self.gameRules = config.getGameRules()
 
-        gameEngine = GameEngine(
-            rendersTo: self,
+        gameManager = GameManager(
+            rendersTo: scene,
             inChargeID: lobby?.hostId,
             handlers: handlers
         )
@@ -76,7 +76,6 @@ class GameViewController: UIViewController {
 
     private func setUpGameEngine() {
         guard let scene = scene,
-              let gameEngine = gameEngine,
               let config = lobby?.gameConfig as? InGameConfig
         else {
             fatalError("GameScene, GameEngine, or configurated has not been initialized")
@@ -102,18 +101,9 @@ class GameViewController: UIViewController {
             seed: config.seed
         )
 
-        let powerUpBlueprint = Blueprint(
-            worldSize: scene.size,
-            platformSize: Constants.powerUpNodeSize,
-            tolerance: CGVector(dx: 400, dy: 800),
-            xToleranceRange: 0.5...1.0,
-            yToleranceRange: 0.5...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
-
-        gameEngine.setUpGame(cloudBlueprint: cloudBlueprint)
+        gameManager?.setUpGame(cloudBlueprint: cloudBlueprint)
         gameRules?.setUpForRule()
         gameRules?.setUpPlayers(userInfo, allPlayersInfo: allUsersInfo)
-
     }
 
     private func setUpSKViewAndPresent() {
@@ -130,13 +120,13 @@ class GameViewController: UIViewController {
     }
 
     private func setUpInputControls() {
-        guard let gameEngine = gameEngine else {
+        guard let responder = gameManager else {
             return
         }
 
-        let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
-        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
-        let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine)
+        let joystick = Joystick(at: Constants.joystickPosition, to: responder)
+        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: responder)
+        let gameArea = GameArea(at: Constants.gameAreaPosition, to: responder)
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
@@ -151,9 +141,7 @@ class GameViewController: UIViewController {
             let activeLobby = lobby,
             let gameConfig = activeLobby.gameConfig as? PostGameConfig,
             let metaData = gameEngine?.metaData
-        else {
-            return
-        }
+        else { return }
 
         isMovingToPostGame = true
 
@@ -182,41 +170,32 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        guard let gameEngine = gameEngine,
+        guard let gameManager = gameManager,
               let gameRules = gameRules
-        else {
-            return
-        }
-        gameEngine.update(within: interval)
-        gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
+        else { return }
+
+        gameManager.update(within: interval)
+        gameManager.updatePlayer(with: joystick?.displacement ?? .zero)
 
         if gameRules.hasGameEnd() {
-            // TO DO: maybe not expose meta data
-            transitionToEndGame(playerEndTime: gameEngine.metaData.time)
+            // TODO: maybe not expose meta data
+            transitionToEndGame(playerEndTime: gameManager.metaData.time)
         }
-
     }
 
-    func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact) {
-        gameEngine?.contactResolver.resolveBeginContact(contact: contact)
+    func scene(_ scene: GameScene, nodeFromNodeCore nodeCore: NodeCore) -> Node? {
+        gameManager?.node(from: nodeCore)
     }
 
-    func scene(_ scene: GameScene, didEndContact contact: SKPhysicsContact) {
-        gameEngine?.contactResolver.resolveEndContact(contact: contact)
-    }
-}
-
-// MARK: - SpriteSystemDelegate
-extension GameViewController: SpriteSystemDelegate {
-    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode, static: Bool) {
-        scene?.addChild(node, static: `static`)
+    func scene(_ scene: GameScene, didBeginContactBetween nodeA: Node, and nodeB: Node) {
+        gameManager?.beginContact(between: nodeA, and: nodeB)
     }
 
-    func spriteSystem(_ system: SpriteSystem, removeNode node: SKNode) {
-        scene?.removeChild(node)
+    func scene(_ scene: GameScene, didEndContactBetween nodeA: Node, and nodeB: Node) {
+        gameManager?.endContact(between: nodeA, and: nodeB)
     }
 
-    func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
-        scene?.cameraAnchorNode = node
+    func sceneDidFinishUpdate(_ scene: GameScene) {
+        <#code#>
     }
 }
