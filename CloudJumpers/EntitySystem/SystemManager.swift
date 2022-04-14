@@ -10,14 +10,16 @@ import Foundation
 class SystemManager {
     private typealias SystemMap = [String: System]
 
+    private unowned var entityManager: EntityManager?
     private var systems: SystemMap
 
-    init() {
+    init(for entityManager: EntityManager) {
+        self.entityManager = entityManager
         systems = SystemMap()
         setUpSystems()
     }
 
-    func update(within time: TimeInterval, in entityManager: EntityManager) {
+    func update(within time: TimeInterval) {
         for system in systems.values where shouldUpdate(system, within: time) {
             system.update(within: time)
         }
