@@ -87,3 +87,24 @@ extension GameWorld: Simulatable {
         }
     }
 }
+
+extension GameWorld: RuleModifiable {
+    func components<T>(ofType type: T.Type) -> [T] where T: Component {
+        entityManager.components(ofType: type)
+    }
+
+    func activateSystem<T>(ofType type: T.Type) where T: System {
+        guard let system = systemManager.system(ofType: type) else {
+            return
+        }
+        system.active = true
+    }
+
+    func deactivateSystem<T>(ofType type: T.Type) where T: System {
+        guard let system = systemManager.system(ofType: type) else {
+            return
+        }
+        system.active = false
+    }
+
+}
