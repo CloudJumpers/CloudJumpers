@@ -12,10 +12,14 @@ typealias PhysicsBitMask = UInt32
 class PhysicsComponent: Component {
     let size: CGSize
 
+    var mass: CGFloat?
+    var velocity: CGVector = .zero
+    var isDynamic = true
     var affectedByGravity = false
     var allowsRotation = false
-    var restitution: CGFloat = 0
-    var impulse = CGVector.zero
+    var restitution: CGFloat = .zero
+    var impulse: CGVector = .zero
+    var linearDamping: CGFloat = 0.1
 
     var categoryBitMask: PhysicsBitMask = PhysicsCategory.max
     var collisionBitMask: PhysicsBitMask = PhysicsCollision.max
