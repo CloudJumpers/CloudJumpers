@@ -15,10 +15,9 @@ class PhysicsComponent: Component {
     var restitution: CGFloat = 0
     var impulse = CGVector.zero
 
-    // TODO: PhysicsCollision, PhysicsContactTest
-    var categoryBitMask: PhysicsCategory = .max
-    var collisionBitMask: PhysicsCollision = .max
-    var contactTestBitMask: PhysicsContactTest = .max
+    var categoryBitMask = PhysicsCategory.max
+    var collisionBitMask = PhysicsCollision.max
+    var contactTestBitMask = PhysicsContactTest.max
 
     init(rectangleOf size: CGSize) {
         self.size = size
