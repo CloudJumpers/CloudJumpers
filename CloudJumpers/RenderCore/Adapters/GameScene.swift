@@ -8,6 +8,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
+    unowned var updateDelegate: SceneUpdateDelegate?
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
@@ -57,7 +58,7 @@ class GameScene: SKScene {
     }
 
     override func didFinishUpdate() {
-        sceneDelegate?.scene(self, didUpdateBecome: children.map { $0.position })
+        updateDelegate?.sceneDidFinishUpdate(self)
     }
 
     /// `static = true` adds a child that is always positioned relative to the camera's viewport.
@@ -101,22 +102,22 @@ class GameScene: SKScene {
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let (nodeA, nodeB) = contactNodes(of: contact)
-        sceneDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
+        updateDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
     }
 
     func didEnd(_ contact: SKPhysicsContact) {
         let (nodeA, nodeB) = contactNodes(of: contact)
-        sceneDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
+        updateDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
     }
 
     private func contactNodes(of contact: SKPhysicsContact) -> (nodeA: Node, nodeB: Node) {
         guard let skNodeA = contact.bodyA.node,
               let skNodeB = contact.bodyB.node
-        else { fatalError("One SKPhysicsBody has a missing SKNode") }
+        else { fatalError("A SKPhysicsBody has a missing SKNode") }
 
-        guard let nodeA = renderer?.node(of: skNodeA),
-              let nodeB = renderer?.node(of: skNodeB)
-        else { fatalError("GameScene has a missing reference to Renderer") }
+        guard let nodeA = updateDelegate?.node(of: skNodeA),
+              let nodeB = updateDelegate?.node(of: skNodeB)
+        else { fatalError("A NodeCore was not associated with any Nodes in Renderer") }
 
         return (nodeA, nodeB)
     }
@@ -124,6 +125,14 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Scene
 extension GameScene: Scene {
+    var nodes: [Node] {
+        guard let updateDelegate = updateDelegate else {
+            fatalError("No SceneUpdateDelegate was associated with this GameScene")
+        }
+
+        return children.compactMap(updateDelegate.node(of:))
+    }
+
     func addChild(_ node: Node, static: Bool = false) {
         addChild(node.nodeCore, static: `static`)
     }

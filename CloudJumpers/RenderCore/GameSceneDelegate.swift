@@ -14,11 +14,6 @@ protocol GameSceneDelegate: AnyObject {
     func scene(_ scene: GameScene, didBeginTouchAt location: CGPoint)
     func scene(_ scene: GameScene, didMoveTouchAt location: CGPoint)
     func scene(_ scene: GameScene, didEndTouchAt location: CGPoint)
-
-    func scene(_ scene: GameScene, didBeginContactBetween nodeA: Node, and nodeB: Node)
-    func scene(_ scene: GameScene, didEndContactBetween nodeA: Node, and nodeB: Node)
-
-    func scene(_ scene: GameScene, didUpdateBecome positions: [CGPoint])
 }
 
 extension GameSceneDelegate {
@@ -27,9 +22,4 @@ extension GameSceneDelegate {
     func scene(_ scene: GameScene, didBeginTouchAt location: CGPoint) { }
     func scene(_ scene: GameScene, didMoveTouchAt location: CGPoint) { }
     func scene(_ scene: GameScene, didEndTouchAt location: CGPoint) { }
-
-    func scene(_ scene: GameScene, didBeginContactBetween nodeA: Node, and nodeB: Node) { }
-    func scene(_ scene: GameScene, didEndContactBetween nodeA: Node, and nodeB: Node) { }
-
-    func scene(_ scene: GameScene, didUpdateBecome positions: [CGPoint]) { }
 }
