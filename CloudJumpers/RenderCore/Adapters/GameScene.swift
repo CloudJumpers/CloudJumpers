@@ -8,7 +8,6 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    unowned var renderer: Renderer?
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
@@ -62,24 +61,20 @@ class GameScene: SKScene {
     }
 
     /// `static = true` adds a child that is always positioned relative to the camera's viewport.
-    func addChild(_ node: Node, static: Bool = false) {
+    func addChild(_ node: NodeCore, static: Bool = false) {
         if `static` {
-            cameraNode?.addChild(node.nodeCore)
+            cameraNode?.addChild(node)
         } else {
-            super.addChild(node.nodeCore)
+            super.addChild(node)
         }
     }
 
-    func removeChild(_ node: Node) {
-        node.nodeCore.removeFromParent()
+    func removeChild(_ node: NodeCore) {
+        node.removeFromParent()
 
-        if cameraAnchorNode == node.nodeCore {
+        if cameraAnchorNode == node {
             cameraAnchorNode = nil
         }
-    }
-
-    func bindCamera(to node: Node) {
-        cameraAnchorNode = node.nodeCore
     }
 
     private func panCameraToAnchorNode() {
@@ -124,5 +119,20 @@ extension GameScene: SKPhysicsContactDelegate {
         else { fatalError("GameScene has a missing reference to Renderer") }
 
         return (nodeA, nodeB)
+    }
+}
+
+// MARK: - Scene
+extension GameScene: Scene {
+    func addChild(_ node: Node, static: Bool = false) {
+        addChild(node.nodeCore, static: `static`)
+    }
+
+    func removeChild(_ node: Node) {
+        removeChild(node.nodeCore)
+    }
+
+    func bindCamera(to node: Node) {
+        cameraAnchorNode = node.nodeCore
     }
 }
