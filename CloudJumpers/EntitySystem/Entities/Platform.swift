@@ -11,9 +11,11 @@ class Platform: Entity {
     let id: EntityID
 
     private let position: CGPoint
+    private let texture: Clouds
 
-    init(at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, texture: Clouds, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
+        self.texture = texture
         self.position = position
     }
 
@@ -27,17 +29,7 @@ class Platform: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        // TODO: Abstract out Clouds texture atlas
-        let texture = SKTextureAtlas(named: "EndPlatform").textureNamed("cloud-1")
-        let spriteComponent = SpriteComponent(
-            texture: texture,
-            size: Constants.platformNodeSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: Constants.platformNodeSize, zPosition: .platform)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
