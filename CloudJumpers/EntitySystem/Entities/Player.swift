@@ -64,8 +64,8 @@ class Player: Entity {
 
         let labelNode = SKLabelNode(fontNamed: "AvenirNext-Bold")
         labelNode.text = displayname
-        labelNode.fontSize = Constants.nameLabelFontSize
-        labelNode.position = Constants.nameLabelRelativePosition
+        labelNode.fontSize = Constants.captionFontSize
+        labelNode.position = Constants.captionRelativePosition
         labelNode.fontColor = .red
 
         spriteComponent.node.addChild(labelNode)
@@ -75,11 +75,9 @@ class Player: Entity {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
         physicsComponent.affectedByGravity = true
         physicsComponent.allowsRotation = false
-        physicsComponent.categoryBitMask = Constants.bitmaskPlayer
-        physicsComponent.collisionBitMask =
-            .max ^ Constants.bitmaskGuest ^
-            Constants.bitmaskShadowGuest ^ Constants.bitmaskPowerUp
-        physicsComponent.contactTestBitMask = .max ^ Constants.bitmaskGuest
+        physicsComponent.categoryBitMask = PhysicsCategory.player
+        physicsComponent.collisionBitMask = PhysicsCollision.player
+        physicsComponent.contactTestBitMask = PhysicsContactTest.player
         return physicsComponent
     }
 

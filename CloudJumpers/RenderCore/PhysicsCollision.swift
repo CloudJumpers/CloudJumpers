@@ -9,10 +9,16 @@ import Foundation
 
 struct PhysicsCollision {
     static let none: PhysicsBitMask = 0
-    static let player: PhysicsBitMask = 0xFFFFFF77
-    static let platform: PhysicsBitMask = 0x00000011
-    static let disaster: PhysicsBitMask = 0x00000047
-    static let wall: PhysicsBitMask = 0x00000001
-    static let guest: PhysicsBitMask = 0x00000060
+    static let player: PhysicsBitMask = PhysicsCategory.max ^ PhysicsCategory.guest ^
+                                        PhysicsCategory.shadowGuest ^ PhysicsCategory.powerUp
+    static let cloud: PhysicsBitMask = PhysicsCategory.disaster | PhysicsCategory.player
+    static let platform: PhysicsBitMask = PhysicsCategory.player | PhysicsContactTest.disaster
+    static let powerUp: PhysicsBitMask = PhysicsCategory.none
+    static let disaster: PhysicsBitMask = PhysicsCategory.cloud | PhysicsCategory.player |
+                                          PhysicsCategory.platform | PhysicsCategory.floor
+    static let wall: PhysicsBitMask = PhysicsCategory.player
+    static let floor: PhysicsBitMask = PhysicsCategory.disaster | PhysicsCategory.player
+    static let guest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor
+    static let shadowGuest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor
     static let max: PhysicsBitMask = 0xFFFFFFFF
 }

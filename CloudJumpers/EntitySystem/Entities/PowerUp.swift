@@ -48,9 +48,9 @@ class PowerUp: Entity {
 
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
-        physicsComponent.categoryBitMask = Constants.bitmaskPowerUp
-        physicsComponent.collisionBitMask = 0
-        physicsComponent.contactTestBitMask = Constants.bitmaskPlayer
+        physicsComponent.categoryBitMask = PhysicsCategory.powerUp
+        physicsComponent.collisionBitMask = PhysicsCollision.powerUp
+        physicsComponent.contactTestBitMask = PhysicsContactTest.powerUp
 
         return physicsComponent
     }

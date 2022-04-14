@@ -42,10 +42,9 @@ class Floor: Entity {
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false
-        physicsComponent.categoryBitMask = Constants.bitmaskFloor
-        physicsComponent.collisionBitMask = Constants.bitmaskDisaster |
-        Constants.bitmaskPlayer
-        physicsComponent.contactTestBitMask = Constants.bitmaskDisaster
+        physicsComponent.categoryBitMask = PhysicsCategory.floor
+        physicsComponent.collisionBitMask = PhysicsCollision.floor
+        physicsComponent.contactTestBitMask = PhysicsContactTest.floor
 
         return physicsComponent
     }

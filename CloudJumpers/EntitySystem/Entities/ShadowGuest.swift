@@ -60,8 +60,8 @@ class ShadowGuest: Entity {
 
         let labelNode = SKLabelNode()
         labelNode.text = displayname
-        labelNode.fontSize = Constants.nameLabelFontSize
-        labelNode.position = Constants.nameLabelRelativePosition
+        labelNode.fontSize = Constants.captionFontSize
+        labelNode.position = Constants.captionRelativePosition
         labelNode.fontColor = .black
 
         spriteComponent.node.addChild(labelNode)
@@ -69,16 +69,12 @@ class ShadowGuest: Entity {
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
         let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
-        let shadowGuestCollisionBitmask =
-            .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
-            Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp ^
-            Constants.bitmaskCloud
 
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
-        physicsComponent.categoryBitMask = Constants.bitmaskGuest
-        physicsComponent.collisionBitMask = shadowGuestCollisionBitmask
-        physicsComponent.contactTestBitMask = shadowGuestCollisionBitmask
+        physicsComponent.categoryBitMask = PhysicsCategory.shadowGuest
+        physicsComponent.collisionBitMask = PhysicsCollision.shadowGuest
+        physicsComponent.contactTestBitMask = PhysicsContactTest.shadowGuest
         return physicsComponent
     }
 

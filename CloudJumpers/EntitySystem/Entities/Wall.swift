@@ -50,9 +50,9 @@ class Wall: Entity {
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false
-        physicsComponent.categoryBitMask = Constants.bitmaskWall
-        physicsComponent.collisionBitMask = Constants.bitmaskPlayer
-        physicsComponent.contactTestBitMask = 0
+        physicsComponent.categoryBitMask = PhysicsCategory.wall
+        physicsComponent.collisionBitMask = PhysicsCollision.wall
+        physicsComponent.contactTestBitMask = PhysicsContactTest.wall
 
         return physicsComponent
     }

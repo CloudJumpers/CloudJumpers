@@ -45,9 +45,9 @@ class Platform: Entity {
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false
-        physicsComponent.categoryBitMask = Constants.bitmaskPlatform
-        physicsComponent.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        physicsComponent.categoryBitMask = PhysicsCategory.platform
+        physicsComponent.collisionBitMask = PhysicsCollision.platform
+        physicsComponent.contactTestBitMask = PhysicsContactTest.platform
 
         return physicsComponent
     }

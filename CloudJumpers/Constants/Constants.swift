@@ -56,16 +56,6 @@ struct Constants {
     static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
 
-    static let bitmaskPlayer = UInt32(0x1 << 0)
-    static let bitmaskCloud = UInt32(0x1 << 1)
-    static let bitmaskPlatform = UInt32(0x1 << 2)
-    static let bitmaskPowerUp = UInt32(0x1 << 3)
-    static let bitmaskDisaster = UInt32(0x1 << 4)
-    static let bitmaskWall = UInt32(0x1 << 5)
-    static let bitmaskFloor = UInt32(0x1 << 6)
-    static let bitmaskGuest = UInt32(0x1 << 7)
-    static let bitmaskShadowGuest = UInt32(0x1 << 8)
-
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
 

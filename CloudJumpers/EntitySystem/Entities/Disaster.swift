@@ -52,14 +52,10 @@ class Disaster: Entity {
         physicsComponent.mass = Constants.disasterMass
         physicsComponent.velocity = velocity
         physicsComponent.allowsRotation = false
-        physicsComponent.categoryBitMask = Constants.bitmaskDisaster
+        physicsComponent.categoryBitMask = PhysicsCategory.disaster
         physicsComponent.linearDamping = 0.0
-        physicsComponent.collisionBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer |
-        Constants.bitmaskPlatform | Constants.bitmaskFloor
-        physicsComponent.contactTestBitMask =
-        Constants.bitmaskCloud | Constants.bitmaskPlayer |
-        Constants.bitmaskPlatform | Constants.bitmaskFloor
+        physicsComponent.collisionBitMask = PhysicsCollision.disaster
+        physicsComponent.contactTestBitMask = PhysicsContactTest.disaster
 
         return physicsComponent
     }
