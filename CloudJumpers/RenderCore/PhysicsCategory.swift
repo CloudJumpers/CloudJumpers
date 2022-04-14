@@ -7,15 +7,15 @@
 
 import Foundation
 
-enum PhysicsCategory: UInt32 {
-    case none = 0
-    case player = 0x00000001
-    case cloud = 0x00000002
-    case platform = 0x00000004
-    case powerUp = 0x00000008
-    case disaster = 0x00000010
-    case wall = 0x00000020
-    case floor = 0x00000040
-    case guest = 0x00000080
-    case max = 0xFFFFFFFF
+struct PhysicsCategory {
+    static let none: PhysicsBitMask = 0
+    static let player: PhysicsBitMask = 0x00000001
+    static let cloud: PhysicsBitMask = 0x00000002
+    static let platform: PhysicsBitMask = 0x00000004
+    static let powerUp: PhysicsBitMask = 0x00000008
+    static let disaster: PhysicsBitMask = 0x00000010
+    static let wall: PhysicsBitMask = 0x00000020
+    static let floor: PhysicsBitMask = 0x00000040
+    static let guest: PhysicsBitMask = 0x00000080
+    static let max: PhysicsBitMask = 0xFFFFFFFF
 }

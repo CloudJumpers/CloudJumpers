@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum PhysicsContactTest: UInt32 {
-    case none = 0
-    case player = 0xFFFFFF7F
-    case cloud = 0x00000091
-    case platform = 0x00000011
-    case powerUp = 0x00000001
-    case disaster = 0x00000047
-    case floor = 0x00000010
-    case guest = 0x00000062
-    case max = 0xFFFFFFFF
+struct PhysicsContactTest {
+    static let none: PhysicsBitMask = 0
+    static let player: PhysicsBitMask = 0xFFFFFF7F
+    static let cloud: PhysicsBitMask = 0x00000091
+    static let platform: PhysicsBitMask = 0x00000011
+    static let powerUp: PhysicsBitMask = 0x00000001
+    static let disaster: PhysicsBitMask = 0x00000047
+    static let floor: PhysicsBitMask = 0x00000010
+    static let guest: PhysicsBitMask = 0x00000062
+    static let max: PhysicsBitMask = 0xFFFFFFFF
 }

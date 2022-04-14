@@ -7,12 +7,12 @@
 
 import Foundation
 
-enum PhysicsCollision: UInt32 {
-    case none = 0
-    case player = 0xFFFFFF77
-    case platform = 0x00000011
-    case disaster = 0x00000047
-    case wall = 0x00000001
-    case guest = 0x00000060
-    case max = 0xFFFFFFFF
+struct PhysicsCollision {
+    static let none: PhysicsBitMask = 0
+    static let player: PhysicsBitMask = 0xFFFFFF77
+    static let platform: PhysicsBitMask = 0x00000011
+    static let disaster: PhysicsBitMask = 0x00000047
+    static let wall: PhysicsBitMask = 0x00000001
+    static let guest: PhysicsBitMask = 0x00000060
+    static let max: PhysicsBitMask = 0xFFFFFFFF
 }

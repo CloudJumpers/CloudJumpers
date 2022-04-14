@@ -7,6 +7,8 @@
 
 import CoreGraphics
 
+typealias PhysicsBitMask = UInt32
+
 class PhysicsComponent: Component {
     let size: CGSize
 
@@ -15,9 +17,9 @@ class PhysicsComponent: Component {
     var restitution: CGFloat = 0
     var impulse = CGVector.zero
 
-    var categoryBitMask = PhysicsCategory.max
-    var collisionBitMask = PhysicsCollision.max
-    var contactTestBitMask = PhysicsContactTest.max
+    var categoryBitMask: PhysicsBitMask = PhysicsCategory.max
+    var collisionBitMask: PhysicsBitMask = PhysicsCollision.max
+    var contactTestBitMask: PhysicsBitMask = PhysicsContactTest.max
 
     init(rectangleOf size: CGSize) {
         self.size = size
