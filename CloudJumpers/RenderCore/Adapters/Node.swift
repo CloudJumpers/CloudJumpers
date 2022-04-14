@@ -17,7 +17,7 @@ class Node {
 
     var physicsBody: PhysicsBody? {
         didSet {
-            nodeCore.physicsBody = physicsBody?.bodyCore
+            nodeCore.physicsBody = physicsBody?.coreBody
         }
     }
 

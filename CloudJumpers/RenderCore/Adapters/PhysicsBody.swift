@@ -10,43 +10,48 @@ import SpriteKit
 typealias PhysicsBodyCore = SKPhysicsBody
 
 class PhysicsBody {
-    let bodyCore: PhysicsBodyCore
+    let coreBody: PhysicsBodyCore
 
     init(rectangleOf size: CGSize, center: CGPoint = .zero) {
-        bodyCore = SKPhysicsBody(rectangleOf: size, center: center)
+        coreBody = SKPhysicsBody(rectangleOf: size, center: center)
+    }
+
+    var velocity: CGVector {
+        get { coreBody.velocity }
+        set { coreBody.velocity = newValue }
     }
 
     var affectedByGravity: Bool {
-        get { bodyCore.affectedByGravity }
-        set { bodyCore.affectedByGravity = newValue }
+        get { coreBody.affectedByGravity }
+        set { coreBody.affectedByGravity = newValue }
     }
 
     var allowsRotation: Bool {
-        get { bodyCore.allowsRotation }
-        set { bodyCore.allowsRotation = newValue }
+        get { coreBody.allowsRotation }
+        set { coreBody.allowsRotation = newValue }
     }
 
     var restitution: CGFloat {
-        get { bodyCore.restitution }
-        set { bodyCore.restitution = newValue }
+        get { coreBody.restitution }
+        set { coreBody.restitution = newValue }
     }
 
     var categoryBitMask: UInt32 {
-        get { bodyCore.categoryBitMask }
-        set { bodyCore.categoryBitMask = newValue }
+        get { coreBody.categoryBitMask }
+        set { coreBody.categoryBitMask = newValue }
     }
 
     var collisionBitMask: UInt32 {
-        get { bodyCore.collisionBitMask }
-        set { bodyCore.collisionBitMask = newValue }
+        get { coreBody.collisionBitMask }
+        set { coreBody.collisionBitMask = newValue }
     }
 
     var contactTestBitMask: UInt32 {
-        get { bodyCore.contactTestBitMask }
-        set { bodyCore.contactTestBitMask = newValue }
+        get { coreBody.contactTestBitMask }
+        set { coreBody.contactTestBitMask = newValue }
     }
 
     func applyImpulse(_ impulse: CGVector) {
-        bodyCore.applyImpulse(impulse)
+        coreBody.applyImpulse(impulse)
     }
 }
