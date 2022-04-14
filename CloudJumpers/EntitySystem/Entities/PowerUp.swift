@@ -12,10 +12,17 @@ class PowerUp: Entity {
 
     private let position: CGPoint
     private let kind: PowerUpComponent.Kind
+    private let texture: Miscellaneous
 
-    init(_ kind: PowerUpComponent.Kind, at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(
+        _ kind: PowerUpComponent.Kind,
+        texture: Miscellaneous,
+        at position: CGPoint,
+        with id: EntityID = EntityManager.newEntityID
+    ) {
         self.id = id
         self.kind = kind
+        self.texture = texture
         self.position = position
     }
 
@@ -30,15 +37,7 @@ class PowerUp: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: kind.name),
-            size: Constants.powerUpNodeSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.powerUp.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: Constants.powerUpNodeSize, zPosition: .powerUp)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
