@@ -10,9 +10,11 @@ class Floor: Entity {
     let id: EntityID
 
     private let position: CGPoint
+    private let texture: Miscellaneous
 
-    init(at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, texture: Miscellaneous, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
+        self.texture = texture
         self.position = position
     }
 
@@ -25,16 +27,7 @@ class Floor: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: "floor"),
-            size: Constants.floorSize,
-            at: position,
-            forEntityWith: id
-        )
-
-        spriteComponent.node.zPosition = SpriteZPosition.floor.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: Constants.floorSize, zPosition: .floor)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
