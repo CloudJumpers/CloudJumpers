@@ -6,16 +6,5 @@
 //
 
 protocol EventDispatcher: AnyObject {
-    var subscriber: GameEventSubscriber? { get set }
-    var publisher: GameEventPublisher? { get set }
-}
-
-extension EventDispatcher {
-    func dispatch(_ remoteEvent: RemoteEvent) {
-        guard let command = remoteEvent.createDispatchCommand() else {
-            return
-        }
-
-        publisher?.publishGameEventCommand(command)
-    }
+    func dispatch(_ remoteEvent: RemoteEvent)
 }
