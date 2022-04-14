@@ -38,7 +38,7 @@ struct DisasterStartEventCommand: GameEventCommand {
         let position = CGPoint(x: parameters.disasterPositionX, y: parameters.disasterPositionY)
         let velocity = CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY)
 
-        let eventToProcess = DisasterActivateEvent(
+        let eventToProcess = DisasterSpawnEvent(
             position: position,
             velocity: velocity,
             disasterType: disasterType,

@@ -111,7 +111,7 @@
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
-		3EA7C86B27F87EA3009BCA63 /* DisasterActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */; };
+		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
 		3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */; };
 		3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */; };
@@ -375,7 +375,7 @@
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
-		3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterActivateEvent.swift; sourceTree = "<group>"; };
+		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
 		3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterStartEventCommand.swift; sourceTree = "<group>"; };
 		3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpActivateEvent.swift; sourceTree = "<group>"; };
@@ -1247,6 +1247,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
 				A1D7866228018FC400C5CE49 /* CoreEvents */,
@@ -1277,6 +1278,14 @@
 			path = GameRules;
 			sourceTree = "<group>";
 		};
+		A175388428087E6F00FC665F /* SpawnEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */,
+			);
+			path = SpawnEvents;
+			sourceTree = "<group>";
+		};
 		A1D7866228018FC400C5CE49 /* CoreEvents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1294,7 +1303,6 @@
 		A1D7869A2802877E00C5CE49 /* ActivationEvents */ = {
 			isa = PBXGroup;
 			children = (
-				3EA7C86A27F87EA3009BCA63 /* DisasterActivateEvent.swift */,
 				3EA7C8AB2802FF47009BCA63 /* PowerUpActivateEvent.swift */,
 			);
 			path = ActivationEvents;
@@ -1651,7 +1659,7 @@
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
 				9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */,
 				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
-				3EA7C86B27F87EA3009BCA63 /* DisasterActivateEvent.swift in Sources */,
+				3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */,
 				1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */,
 				1A245D7627F6CDE2004FA29C /* PowerUpComponent.swift in Sources */,
 				9396E95F280039A10090A8C9 /* RemoteEventHandlers.swift in Sources */,
