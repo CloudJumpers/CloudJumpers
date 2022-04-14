@@ -8,6 +8,7 @@
 enum Clouds: TextureName {
     case cloud1
     case cloud2
+    case platform
 }
 
 // MARK: - TextureFrameable
