@@ -11,16 +11,17 @@ class Wall: Entity {
 
     private let position: CGPoint
     private let height: CGFloat
+    private let texture: Miscellaneous
 
     var wallSize: CGSize {
         CGSize(width: Constants.wallWidth, height: height)
     }
 
-    init(at position: CGPoint, height: CGFloat,
-         with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, height: CGFloat, texture: Miscellaneous, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.position = position
         self.height = height
+        self.texture = texture
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -32,17 +33,7 @@ class Wall: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        // TODO: Abstract out Clouds texture atlas
-        let spriteComponent = SpriteComponent(
-            texture: SKTexture(imageNamed: "wall"),
-            size: wallSize,
-            at: position,
-            forEntityWith: id
-        )
-
-        spriteComponent.node.zPosition = SpriteZPosition.wall.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: wallSize, zPosition: .wall)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
