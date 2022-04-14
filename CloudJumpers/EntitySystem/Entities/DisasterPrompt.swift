@@ -29,31 +29,19 @@ class DisasterPrompt: Entity {
         let spriteComponent = createSpriteComponent()
         manager.addComponent(spriteComponent, to: self)
 
-        let timedComponent = createTimedComponent()
-        manager.addComponent(timedComponent, to: self)
-
-        let timedRemovalComponent = createRemoveComponent()
-        manager.addComponent(timedRemovalComponent, to: self)
+        manager.addComponent(TimedComponent(), to: self)
+        manager.addComponent(TimedRemovalComponent(timeToRemove: intervalToRemove), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let node = SKSpriteNode(
-            texture: SKTexture(imageNamed: "\(kind)Prompt"),
-            size: Constants.disasterPromptSize)
+        let spriteComponent = SpriteComponent(
+            texture: Miscellaneous.meteorPrompt.frame,
+            size: Constants.disasterPromptSize,
+            zPosition: .disaster)
 
-        node.position = position
-        node.zPosition = SpriteZPosition.disaster.rawValue
-        node.alpha = 0
-        node.anchorPoint = CGPoint(x: 0.5, y: 0)
+        spriteComponent.alpha = 0.0
+        spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
 
-        return SpriteComponent(node: node, forEntityWith: id)
-    }
-
-    private func createTimedComponent() -> TimedComponent {
-        TimedComponent()
-    }
-
-    private func createRemoveComponent() -> TimedRemovalComponent {
-        TimedRemovalComponent(timeToRemove: intervalToRemove)
+        return spriteComponent
     }
 }
