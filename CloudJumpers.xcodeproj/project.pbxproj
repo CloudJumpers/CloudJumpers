@@ -688,6 +688,7 @@
 			children = (
 				93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */,
 				1A94D94F27ED8709001D8A86 /* Player.swift */,
+				A19A7A2A27F8D79D007E1C11 /* Guest.swift */,
 				3E81C0E227EF36FE00184C55 /* PowerUp.swift */,
 				3E81C0E927EF439700184C55 /* PowerUpEffect.swift */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
@@ -697,7 +698,6 @@
 				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
 				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
-				A19A7A2A27F8D79D007E1C11 /* Guest.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
