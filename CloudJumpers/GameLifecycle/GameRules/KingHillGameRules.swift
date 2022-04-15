@@ -1,14 +1,15 @@
 //
-//  RaceTopGameRules.swift
+//  KingHillGameRules.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 3/30/22.
+//  Created by Trong Tan on 4/15/22.
 //
 
 import Foundation
+
 import CoreGraphics
 
-class RaceTopGameRules: GameRules {
+class KingHillGameRules: GameRules {
     private unowned var target: RuleModifiable?
 
     private var timer: StaticLabel?
@@ -25,6 +26,8 @@ class RaceTopGameRules: GameRules {
         guard let target = target else {
             return
         }
+        
+        // TODO: Create count down timer
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
 
     }
@@ -70,6 +73,7 @@ class RaceTopGameRules: GameRules {
         // TODO: Add timer update here
     }
 
+    // TODO: Change this
     func hasGameEnd() -> Bool {
         guard let target = target,
               let player = player,

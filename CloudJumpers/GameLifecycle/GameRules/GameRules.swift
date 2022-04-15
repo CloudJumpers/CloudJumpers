@@ -40,6 +40,15 @@ extension GameRules {
         return false
     }
 
+    func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
+        let timer = StaticLabel(
+            at: Constants.timerPosition,
+            size: Constants.timerSize,
+            initialValue: String(initialValue))
+        target.addComponent(TimedComponent(time: initialValue), to: timer)
+        target.add(timer)
+    }
+
     func updateLabelWithValue(_ value: String, label: StaticLabel, target: RuleModifiable) {
         guard let labelComponent = target.component(ofType: LabelComponent.self, of: label) else {
             return

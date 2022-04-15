@@ -25,18 +25,15 @@ class TimeTrialGameRules: GameRules {
     }
 
     func setUpForRule() {
-        if isPlayingWithShadow {
-            target?.deactivateSystem(ofType: DisasterSpawnSystem.self)
+        guard let target = target else {
+            return
         }
-        target?.deactivateSystem(ofType: PowerSpawnSystem.self)
 
-        // Set game specific entity
-        let timer = StaticLabel(
-            at: Constants.timerPosition,
-            size: Constants.timerSize,
-            initialValue: String(Constants.timerInitial))
-        self.timer = timer
-        target?.add(timer)
+        if isPlayingWithShadow {
+            target.deactivateSystem(ofType: DisasterSpawnSystem.self)
+        }
+        target.deactivateSystem(ofType: PowerSpawnSystem.self)
+        self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -64,6 +61,7 @@ class TimeTrialGameRules: GameRules {
 
     func update(within time: CGFloat) {
         // TODO: Update timer here
+        
     }
 
     func hasGameEnd() -> Bool {

@@ -90,6 +90,9 @@ extension GameWorld: Simulatable {
 
 // MARK: - RuleModifiable
 extension GameWorld: RuleModifiable {
+    func addComponent(_ component: Component, to entity: Entity) {
+        entityManager.addComponent(component, to: entity)
+    }
     func hasComponent<T>(ofType type: T.Type, in entityWithID: EntityID) -> Bool where T: Component {
         guard let entity = entity(with: entityWithID) else {
             return false
