@@ -18,13 +18,13 @@ class AnimateSystem: System {
     }
 
     func update(within time: CGFloat) {
-        }
-
-    func changeAnimation(for id: EntityID, to kind: TextureFrame) {
-        guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: id) else {
-            return
-        }
-        animationComponent.textures = [kind]
     }
 
+    func animate(entityWith id: EntityID, to key: AnimationKey) {
+        guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: id),
+              let animation = animationComponent.animations[key]
+        else { return }
+
+        animationComponent.activeAnimation = (key, animation)
+    }
 }

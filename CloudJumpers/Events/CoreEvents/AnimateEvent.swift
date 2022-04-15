@@ -11,19 +11,19 @@ struct AnimateEvent: Event {
     var timestamp: TimeInterval
     var entityID: EntityID
 
-    private let kind: TextureFrame
+    private let key: AnimationKey
 
-    init(onEntityWith id: EntityID, to kind: TextureFrame) {
+    init(onEntityWith id: EntityID, to key: AnimationKey) {
         timestamp = EventManager.timestamp
         entityID = id
-        self.kind = kind
+        self.key = key
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         guard let animateSystem = target.system(ofType: AnimateSystem.self) else {
             return
         }
-        animateSystem.changeAnimation(for: entityID, to: kind)
-    }
 
+        animateSystem.animate(entityWith: entityID, to: key)
+    }
 }
