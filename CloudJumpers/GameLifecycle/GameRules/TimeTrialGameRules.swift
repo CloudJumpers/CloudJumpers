@@ -6,8 +6,8 @@
 //
 
 import Foundation
-class TimeTrialGameRules: GameRules {
 
+class TimeTrialGameRules: GameRules {
     private unowned var target: RuleModifiable?
     private var timer: TimedLabel?
     private var isPlayingWithShadow = true
@@ -38,13 +38,13 @@ class TimeTrialGameRules: GameRules {
             if id == playerInfo.playerId {
                 character = Player(
                     at: Constants.playerInitialPositions[index],
-                    texture: .character1,
+                    texture: .Character1,
                     name: name,
                     with: id)
             } else if id == GameConstants.shadowPlayerID {
                 character = ShadowGuest(
                     at: Constants.playerInitialPositions[index],
-                    texture: .shadowCharacter1,
+                    texture: .ShadowCharacter1,
                     name: name,
                     with: id)
             }

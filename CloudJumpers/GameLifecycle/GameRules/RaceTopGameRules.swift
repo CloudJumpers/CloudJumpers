@@ -36,13 +36,13 @@ class RaceTopGameRules: GameRules {
             if id == playerInfo.playerId {
                 character = Player(
                     at: Constants.playerInitialPositions[index],
-                    texture: .character1,
+                    texture: .Character1,
                     name: name,
                     with: id)
             } else {
                 character = Guest(
                     at: Constants.playerInitialPositions[index],
-                    texture: .character1,
+                    texture: .Character1,
                     name: name,
                     with: id)
             }
