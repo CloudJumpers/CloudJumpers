@@ -16,4 +16,8 @@ struct TextureFrame {
         self.name = name
         self.setName = setName
     }
+
+    var asFrames: [TextureFrame] {
+        [self]
+    }
 }

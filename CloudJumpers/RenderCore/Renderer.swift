@@ -88,10 +88,10 @@ class Renderer {
     private func updateAnimation(entity: Entity) {
         guard let node = entityNode[entity.id],
               let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
-              let animation = animationComponent.textures
+              let animation = animationComponent.activeAnimation
         else { return }
 
-        node.animate(with: animation, interval: 0.1)
+        node.animate(with: animation.frames, interval: 0.1)
     }
 
     private func create(entity: Entity) {
