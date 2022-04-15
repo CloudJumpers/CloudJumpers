@@ -17,7 +17,6 @@ protocol GameRules {
 
     func fetchLocalCompletionData()
 
-    func createRuleSpecificEntity() -> [Entity]
 }
 extension GameRules {
     func update() { }

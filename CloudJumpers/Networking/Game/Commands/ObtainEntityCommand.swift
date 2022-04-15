@@ -30,10 +30,14 @@ struct ObtainEntityCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard let parameters = try? decoder.decode(ExternalObtainEntityEvent.self, from: jsonData) else {
+            nextCommand = PowerUpSpawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = ObtainEvent(on: source, obtains: parameters.obtainedEntityID)
+        let eventToProcess = ObtainEvent(
+            on: source,
+            obtains: parameters.obtainedEntityID,
+            at: parameters.timestamp)
 
         eventManager.add(eventToProcess)
         return true

@@ -20,8 +20,9 @@ class GameManager {
     init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
-        self.rules = rules
         self.inChargeID = inChargeID
+        self.rules = rules
+        self.rules.setTarget(world)
         setUpCrossDeviceSyncTimer()
     }
 

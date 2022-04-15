@@ -40,7 +40,7 @@ enum Events: Int {
         String(describing: RepositionEvent.self): .reposition,
         String(describing: DisasterPlayerCollideEvent.self): .disasterPlayerCollide,
         String(describing: BlinkEvent.self): .blinkEffect,
-        String(describing: DisasterActivateEvent.self): .disasterActivate,
+        String(describing: DisasterSpawnEvent.self): .disasterActivate,
         String(describing: RespawnEvent.self): .respawn,
         String(describing: ChangeStandOnLocationEvent.self): .changeLocation,
         String(describing: SoundEvent.self): .sound,

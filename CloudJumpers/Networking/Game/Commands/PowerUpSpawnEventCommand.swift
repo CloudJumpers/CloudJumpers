@@ -1,20 +1,20 @@
 //
-//  DisasterStartEventCommand.swift
+//  PowerUpSpawnEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Eric Bryan on 2/4/22.
+//  Created by Trong Tan on 4/15/22.
 //
 
 import Foundation
 import CoreGraphics
 
-struct DisasterStartEventCommand: GameEventCommand {
+struct PowerUpSpawnEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalDisasterEvent) {
+    init(sourceId: NetworkID, event: ExternalPowerUpSpawnEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -29,20 +29,17 @@ struct DisasterStartEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalDisasterEvent.self, from: jsonData),
-              let disasterType = DisasterComponent.Kind(rawValue: parameters.disasterType)
+        guard let parameters = try? decoder.decode(ExternalPowerUpSpawnEvent.self, from: jsonData),
+              let type = PowerUpComponent.Kind(rawValue: parameters.powerUpType)
         else {
-            nextCommand = RemoveEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
-        let position = CGPoint(x: parameters.disasterPositionX, y: parameters.disasterPositionY)
-        let velocity = CGVector(dx: parameters.disasterVelocityX, dy: parameters.disasterVelocityY)
+        let position = CGPoint(x: parameters.powerSpawnPositionX, y: parameters.powerSpawnPositionY)
 
-        let eventToProcess = DisasterSpawnEvent(
+        let eventToProcess = PowerUpSpawnEvent(
             position: position,
-            velocity: velocity,
-            disasterType: disasterType,
-            entityId: parameters.disasterId,
+            type: type,
+            entityId: parameters.powerUpId,
             at: parameters.timestamp)
         eventManager.add(eventToProcess)
         return true

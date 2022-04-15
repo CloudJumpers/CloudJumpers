@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-struct DisasterActivateEvent: Event {
+struct DisasterSpawnEvent: Event {
     let timestamp: TimeInterval
     let entityID: EntityID
 
@@ -32,5 +32,8 @@ struct DisasterActivateEvent: Event {
 
         target.add(disaster)
         target.add(disasterPrompt)
+
+        // TODO: Create logic event to spawn disaster
+
     }
 }
