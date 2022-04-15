@@ -22,7 +22,7 @@ class InventorySystem: System {
             return
         }
 
-        for entity in manager.getEntities() {
+        for entity in manager.entities {
             guard let inventoryComponent = manager.component(ofType: InventoryComponent.self, of: entity),
                   inventoryComponent.inventory.isUpdated else {
                 continue

@@ -23,7 +23,7 @@ class RemoveSystem: System {
             return
         }
 
-        for entity in manager.getEntities() {
+        for entity in manager.entities {
             updateRemoveWithTime(entity: entity)
             updateRemoveOutOfBound(entity: entity)
         }
