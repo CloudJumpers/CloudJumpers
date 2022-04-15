@@ -15,6 +15,7 @@ struct SoundEvent: Event {
 
     init(_ soundName: Sounds) {
         timestamp = EventManager.timestamp
+        entityID = EntityID()
         self.soundName = soundName
     }
 
