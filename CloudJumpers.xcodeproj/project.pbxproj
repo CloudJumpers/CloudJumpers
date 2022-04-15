@@ -111,6 +111,10 @@
 		3E3632E42809646700FAD7A8 /* ConfuseComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632E32809646700FAD7A8 /* ConfuseComponent.swift */; };
 		3E3632EA2809739300FAD7A8 /* PowerUpEffectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632E92809739300FAD7A8 /* PowerUpEffectFactory.swift */; };
 		3E3632F028097BA500FAD7A8 /* PowerUpEffectComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632EF28097BA500FAD7A8 /* PowerUpEffectComponent.swift */; };
+		3E3632F22809903900FAD7A8 /* SlowmoSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632F12809903900FAD7A8 /* SlowmoSystem.swift */; };
+		3E3632F4280990F700FAD7A8 /* SlowmoComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632F3280990F700FAD7A8 /* SlowmoComponent.swift */; };
+		3E3632F62809922000FAD7A8 /* SlowMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632F52809922000FAD7A8 /* SlowMoveEffector.swift */; };
+		3E3632F82809922B00FAD7A8 /* SlowJumpEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632F72809922B00FAD7A8 /* SlowJumpEffector.swift */; };
 		3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BEE27F6D5C900BF526C /* Floor.swift */; };
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
@@ -387,6 +391,10 @@
 		3E3632E32809646700FAD7A8 /* ConfuseComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseComponent.swift; sourceTree = "<group>"; };
 		3E3632E92809739300FAD7A8 /* PowerUpEffectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectFactory.swift; sourceTree = "<group>"; };
 		3E3632EF28097BA500FAD7A8 /* PowerUpEffectComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectComponent.swift; sourceTree = "<group>"; };
+		3E3632F12809903900FAD7A8 /* SlowmoSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowmoSystem.swift; sourceTree = "<group>"; };
+		3E3632F3280990F700FAD7A8 /* SlowmoComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowmoComponent.swift; sourceTree = "<group>"; };
+		3E3632F52809922000FAD7A8 /* SlowMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowMoveEffector.swift; sourceTree = "<group>"; };
+		3E3632F72809922B00FAD7A8 /* SlowJumpEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowJumpEffector.swift; sourceTree = "<group>"; };
 		3E3E0BEE27F6D5C900BF526C /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		3E3E0BF027F6D61200BF526C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
@@ -696,6 +704,7 @@
 				3E3632EF28097BA500FAD7A8 /* PowerUpEffectComponent.swift */,
 				3E3632D7280961E800FAD7A8 /* FreezeComponent.swift */,
 				3E3632E32809646700FAD7A8 /* ConfuseComponent.swift */,
+				3E3632F3280990F700FAD7A8 /* SlowmoComponent.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
 				1A24DC182800B0BA00E48B64 /* PositionComponent.swift */,
 				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
@@ -736,6 +745,7 @@
 				1A94D95127ED8709001D8A86 /* SpriteSystem.swift */,
 				3E3632D9280961F300FAD7A8 /* FreezeSystem.swift */,
 				3E3632E12809643E00FAD7A8 /* ConfuseSystem.swift */,
+				3E3632F12809903900FAD7A8 /* SlowmoSystem.swift */,
 				1A94D95227ED8709001D8A86 /* TimedSystem.swift */,
 				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
 				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
@@ -767,6 +777,8 @@
 				1AB6F2D227F99025004BF6AF /* NullMoveEffector.swift */,
 				3EA7C89027FAF5C1009BCA63 /* NullJumpEffector.swift */,
 				1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */,
+				3E3632F52809922000FAD7A8 /* SlowMoveEffector.swift */,
+				3E3632F72809922B00FAD7A8 /* SlowJumpEffector.swift */,
 			);
 			path = Effectors;
 			sourceTree = "<group>";
@@ -1718,9 +1730,11 @@
 				9396E95F280039A10090A8C9 /* RemoteEventHandlers.swift in Sources */,
 				3E246B4927DDAB3100D51300 /* Constants.swift in Sources */,
 				934789B827DF06BC00324DAF /* LobbyListing.swift in Sources */,
+				3E3632F82809922B00FAD7A8 /* SlowJumpEffector.swift in Sources */,
 				A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */,
 				3E3632E42809646700FAD7A8 /* ConfuseComponent.swift in Sources */,
 				935280CF27F62BBE002E3A1D /* PostGameRankingCell.swift in Sources */,
+				3E3632F4280990F700FAD7A8 /* SlowmoComponent.swift in Sources */,
 				A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */,
 				1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */,
 				9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */,
@@ -1741,6 +1755,7 @@
 				3EA7C8AE2803023C009BCA63 /* PowerUpSystem.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
 				9396E959280032190090A8C9 /* PreGameRestDelegate.swift in Sources */,
+				3E3632F22809903900FAD7A8 /* SlowmoSystem.swift in Sources */,
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				A1D8555C280491BF000C4CA7 /* RuleModifiable.swift in Sources */,
 				3E3632D8280961E800FAD7A8 /* FreezeComponent.swift in Sources */,
@@ -1833,6 +1848,7 @@
 				3E3632F028097BA500FAD7A8 /* PowerUpEffectComponent.swift in Sources */,
 				931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
+				3E3632F62809922000FAD7A8 /* SlowMoveEffector.swift in Sources */,
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
 				3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */,

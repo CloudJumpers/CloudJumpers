@@ -8,8 +8,10 @@
 enum Miscellaneous: TextureName {
     case confuse
     case freeze
+    case slow
     case confuseEffect
     case freezeEffect
+    case slowEffect
     case meteor
     case meteorPrompt
     case wall
