@@ -27,10 +27,19 @@ class PhysicsSystem: System {
         }
     }
 
-    func applyImpulse(for id: EntityID, impulse: CGVector) {
-        guard let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: id) else {
+    func applyImpulse(on entityID: EntityID, impulse: CGVector) {
+        guard let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: entityID) else {
             return
         }
+
         physicsComponent.impulse += impulse
+    }
+
+    func isMoving(_ entityID: EntityID) -> Bool {
+        guard let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: entityID) else {
+            return false
+        }
+
+        return physicsComponent.velocity != .zero
     }
 }

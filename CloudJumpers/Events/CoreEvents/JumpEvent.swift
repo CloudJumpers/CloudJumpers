@@ -27,6 +27,7 @@ struct JumpEvent: Event {
         guard let physicsSystem = target.system(ofType: PhysicsSystem.self) else {
             return
         }
-        physicsSystem.applyImpulse(for: entityID, impulse: jumpImpulse)
+
+        physicsSystem.applyImpulse(on: entityID, impulse: jumpImpulse)
     }
 }
