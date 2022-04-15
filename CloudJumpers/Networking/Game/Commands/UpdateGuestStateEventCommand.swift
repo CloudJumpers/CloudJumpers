@@ -8,13 +8,13 @@
 import Foundation
 import CoreGraphics
 
-struct RepositionEventCommand: GameEventCommand {
+struct UpdateGuestStateEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalRepositionEvent) {
+    init(sourceId: NetworkID, event: ExternalUpdateGuestStateEvent) {
         self.source = sourceId
         self.isSourceRecipient = false
         self.payload = CJNetworkEncoder.toJsonString(event)
@@ -30,19 +30,19 @@ struct RepositionEventCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard
-            let parameters = try? decoder.decode(ExternalRepositionEvent.self, from: jsonData),
+            let parameters = try? decoder.decode(ExternalUpdateGuestStateEvent.self, from: jsonData),
             let movementKind = Textures.Kind(rawValue: parameters.texture)
         else {
             nextCommand = RespawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = RepositionEvent(
+        let position = CGPoint(x: parameters.positionX, y: parameters.positionY)
+        let eventToProcess = UpdateGuestStateEvent(
             onEntityWith: source,
-            at: parameters.timestamp,
-            to: CGPoint(x: parameters.positionX, y: parameters.positionY),
-            as: movementKind
-        )
+            position: position,
+            kind: movementKind,
+            at: parameters.timestamp)
 
         eventManager.add(eventToProcess)
         return true

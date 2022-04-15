@@ -158,8 +158,8 @@
 		935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935280D027F63238002E3A1D /* PostGameColumnKey.swift */; };
 		935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935280D427F6B073002E3A1D /* TimeTrialResponse.swift */; };
 		935280D727F6B082002E3A1D /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935280D627F6B082002E3A1D /* Response.swift */; };
-		9353463E27F02D5400DC6F9E /* ExternalRepositionEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353463D27F02D5400DC6F9E /* ExternalRepositionEvent.swift */; };
-		9353464027F02DA400DC6F9E /* RepositionEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353463F27F02DA400DC6F9E /* RepositionEventCommand.swift */; };
+		9353463E27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353463D27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift */; };
+		9353464027F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353463F27F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift */; };
 		9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353464527F04DDD00DC6F9E /* GameConstants.swift */; };
 		9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0C27E6E45600B26E63 /* LandingViewController.swift */; };
 		9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */; };
@@ -428,8 +428,8 @@
 		935280D027F63238002E3A1D /* PostGameColumnKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameColumnKey.swift; sourceTree = "<group>"; };
 		935280D427F6B073002E3A1D /* TimeTrialResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialResponse.swift; sourceTree = "<group>"; };
 		935280D627F6B082002E3A1D /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		9353463D27F02D5400DC6F9E /* ExternalRepositionEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRepositionEvent.swift; sourceTree = "<group>"; };
-		9353463F27F02DA400DC6F9E /* RepositionEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositionEventCommand.swift; sourceTree = "<group>"; };
+		9353463D27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalUpdateGuestStateEvent.swift; sourceTree = "<group>"; };
+		9353463F27F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestStateEventCommand.swift; sourceTree = "<group>"; };
 		9353464527F04DDD00DC6F9E /* GameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameConstants.swift; sourceTree = "<group>"; };
 		9353AE0C27E6E45600B26E63 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		9353AE0E27E6F5D800B26E63 /* SegueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueIdentifier.swift; sourceTree = "<group>"; };
@@ -894,7 +894,7 @@
 				93360B8A27EC8AA700808295 /* GameEventCommand.swift */,
 				931D130427ECB022002C7AF3 /* DefaultCommand.swift */,
 				93360B9227EC919100808295 /* MoveEventCommand.swift */,
-				9353463F27F02DA400DC6F9E /* RepositionEventCommand.swift */,
+				9353463F27F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift */,
 				A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */,
 				3EA7C87027F8827A009BCA63 /* DisasterStartEventCommand.swift */,
 				A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */,
@@ -991,7 +991,7 @@
 			children = (
 				9356AB6D27EEF719008CDEC1 /* RemoteEvent.swift */,
 				9356AB7927EEFF9D008CDEC1 /* ExternalMoveEvent.swift */,
-				9353463D27F02D5400DC6F9E /* ExternalRepositionEvent.swift */,
+				9353463D27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift */,
 				A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */,
 				3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */,
 				A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */,
@@ -1749,7 +1749,7 @@
 				934789BA27DF06E300324DAF /* LobbyUser.swift in Sources */,
 				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
 				1A94D95B27ED8709001D8A86 /* SpriteSystem.swift in Sources */,
-				9353463E27F02D5400DC6F9E /* ExternalRepositionEvent.swift in Sources */,
+				9353463E27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */,
 				1AE9D8A827FEBB49002B0A1E /* Characters.swift in Sources */,
@@ -1758,7 +1758,7 @@
 				1AAB1E232800327600378382 /* EventModifiable.swift in Sources */,
 				A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */,
 				A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */,
-				9353464027F02DA400DC6F9E /* RepositionEventCommand.swift in Sources */,
+				9353464027F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift in Sources */,
 				A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */,
 				1A71C5F02808666C008131C3 /* Miscellaneous.swift in Sources */,
 				1AE9D89F27FE0287002B0A1E /* Renderer.swift in Sources */,

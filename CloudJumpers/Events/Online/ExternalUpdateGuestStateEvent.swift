@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExternalRepositionEvent: RemoteEvent {
+struct ExternalUpdateGuestStateEvent: RemoteEvent {
     var positionX: Double
     var positionY: Double
     var texture: String
@@ -17,6 +17,6 @@ struct ExternalRepositionEvent: RemoteEvent {
             return nil
         }
 
-        return RepositionEventCommand(sourceId: sourceId, event: self)
+        return UpdateGuestStateEventCommand(sourceId: sourceId, event: self)
     }
 }

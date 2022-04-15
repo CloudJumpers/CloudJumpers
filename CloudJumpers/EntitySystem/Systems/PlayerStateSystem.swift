@@ -27,7 +27,7 @@ class PlayerStateSystem: System {
         // TODO: Change after new way of getting sprite texture
         let playerPosition = positionComponent.position
         let playerTexture = animationComponent.textures
-        let positionalUpdate = ExternalRepositionEvent(
+        let positionalUpdate = ExternalUpdateGuestStateEvent(
             positionX: playerPosition.x,
             positionY: playerPosition.y,
             texture: playerTexture.rawValue
