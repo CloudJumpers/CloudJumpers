@@ -15,7 +15,7 @@ class DisasterPrompt: Entity {
 
     init(_ kind: DisasterComponent.Kind,
          at position: CGPoint,
-         intervalToRemove: TimeInterval,
+         removeAfter intervalToRemove: TimeInterval,
          with id: EntityID = EntityManager.newEntityID
     ) {
 

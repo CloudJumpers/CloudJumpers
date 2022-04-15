@@ -26,11 +26,10 @@ class ShadowGuest: Entity {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let physicsComponent = createPhysicsComponent(for: spriteComponent)
-        let animationComponent = createAnimationComponent()
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
-        manager.addComponent(animationComponent, to: self)
+        manager.addComponent(AnimationComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -46,9 +45,5 @@ class ShadowGuest: Entity {
         physicsComponent.collisionBitMask = PhysicsCollision.shadowGuest
         physicsComponent.contactTestBitMask = PhysicsContactTest.shadowGuest
         return physicsComponent
-    }
-
-    private func createAnimationComponent() -> AnimationComponent {
-        AnimationComponent(texture: texture, kind: .idle)
     }
 }

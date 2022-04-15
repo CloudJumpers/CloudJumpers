@@ -28,7 +28,8 @@ class PowerUpSystem: System {
         let effect = PowerUpEffect(
             powerUpComponent.kind,
             at: location,
-            intervalToRemove: Constants.powerUpEffectDuration)
+            texture: <#T##Miscellaneous#>,
+            removeAfter: Constants.powerUpEffectDuration)
 
         manager?.add(effect)
         if isPlayerWithinRange(location: location) {

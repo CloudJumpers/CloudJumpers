@@ -27,15 +27,9 @@ struct DisasterActivateEvent: Event {
      }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        let disaster = Disaster(
-            disasterType,
-            at: position,
-            velocity: velocity,
-            with: entityID)
-        let disasterPrompt = DisasterPrompt(
-            disasterType,
-            at: position,
-            intervalToRemove: Constants.disasterPromptPeriod)
+        let disaster = Disaster(disasterType, at: position, velocity: velocity, texture: .meteor, with: entityID)
+        let disasterPrompt = DisasterPrompt(disasterType, at: position, removeAfter: Constants.disasterPromptPeriod)
+
         target.add(disaster)
         target.add(disasterPrompt)
     }
