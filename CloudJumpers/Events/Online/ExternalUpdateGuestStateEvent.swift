@@ -10,7 +10,7 @@ import Foundation
 struct ExternalUpdateGuestStateEvent: RemoteEvent {
     var positionX: Double
     var positionY: Double
-    var texture: String
+    var animationKey: AnimationKey
 
     func createDispatchCommand() -> GameEventCommand? {
         guard let sourceId = getSourceId() else {

@@ -45,21 +45,21 @@ class PlayerStateSystem: System {
 
     func uploadLocalPlayerState() {
         guard let playerEntity = manager?.components(ofType: PlayerTag.self).first?.entity,
+              let positionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity),
               let animationComponent = manager?.component(ofType: AnimationComponent.self, of: playerEntity),
-              let positionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity)
-        else {
-            return
-        }
+              let animation = animationComponent.activeAnimation
+        else { return }
+
         // TODO: Change after new way of getting sprite texture
         let playerPosition = positionComponent.position
-        let playerTexture = animationComponent.textures
+        let playerTexture = animation.key
+
         let positionalUpdate = ExternalUpdateGuestStateEvent(
             positionX: playerPosition.x,
             positionY: playerPosition.y,
-            texture: playerTexture.rawValue
+            animationKey: playerTexture
         )
 
-        manager?.dispatch(positionalUpdate)
+        dispatcher?.dispatch(positionalUpdate)
     }
-
 }

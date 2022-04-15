@@ -29,10 +29,7 @@ struct UpdateGuestStateEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard
-            let parameters = try? decoder.decode(ExternalUpdateGuestStateEvent.self, from: jsonData),
-            let movementKind = Textures.Kind(rawValue: parameters.texture)
-        else {
+        guard let parameters = try? decoder.decode(ExternalUpdateGuestStateEvent.self, from: jsonData) else {
             nextCommand = RespawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
@@ -41,7 +38,7 @@ struct UpdateGuestStateEventCommand: GameEventCommand {
         let eventToProcess = UpdateGuestStateEvent(
             onEntityWith: source,
             position: position,
-            kind: movementKind,
+            animationWith: parameters.animationKey,
             at: parameters.timestamp)
 
         eventManager.add(eventToProcess)

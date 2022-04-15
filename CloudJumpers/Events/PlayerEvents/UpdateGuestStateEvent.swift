@@ -10,23 +10,25 @@ import CoreGraphics
 
 struct UpdateGuestStateEvent: Event {
     var timestamp: TimeInterval
-
     var entityID: EntityID
 
     let position: CGPoint
-    let kind: TextureFrame
+    let key: AnimationKey
 
-    init(onEntityWith id: EntityID, position: CGPoint, kind: TextureFrame,
-         at timestamp: TimeInterval = EventManager.timestamp) {
+    init(
+        onEntityWith id: EntityID,
+        position: CGPoint,
+        animationWith key: AnimationKey,
+        at timestamp: TimeInterval = EventManager.timestamp) {
 
-        self.entityID = id
+        entityID = id
         self.position = position
-        self.kind = kind
+        self.key = key
         self.timestamp = timestamp
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         target.add(RepositionEvent(onEntityWith: entityID, to: position))
-        target.add(AnimateEvent(onEntityWith: entityID, to: kind))
+        target.add(AnimateEvent(onEntityWith: entityID, to: key))
     }
 }
