@@ -10,7 +10,9 @@ import CoreGraphics
 typealias PhysicsBitMask = UInt32
 
 class PhysicsComponent: Component {
-    let size: CGSize
+    let shape: Shape
+    var size: CGSize?
+    var radius: CGFloat?
 
     var mass: CGFloat?
     var velocity: CGVector = .zero
@@ -26,7 +28,23 @@ class PhysicsComponent: Component {
     var contactTestBitMask: PhysicsBitMask = PhysicsContactTest.max
 
     init(rectangleOf size: CGSize) {
+        shape = .rectangle
         self.size = size
         super.init()
+    }
+
+    // TODO: Figure out a better way to handle different shapes without enum/switch
+    init(circleOf radius: CGFloat) {
+        shape = .circle
+        self.radius = radius
+        super.init()
+    }
+}
+
+// MARK: - PhysicsComponent.Shape
+extension PhysicsComponent {
+    enum Shape: Int {
+        case rectangle
+        case circle
     }
 }
