@@ -38,11 +38,7 @@ class DisasterSpawnSystem: System {
 
         // TODO: Change this
         let disasterId = EntityManager.newEntityID
-        let localDisasterStart = DisasterSpawnEvent(
-             position: position,
-             velocity: velocity,
-             disasterType: disasterType,
-             entityId: disasterId)
+
         let remoteDisasterStart = ExternalDisasterEvent(
              disasterPositionX: position.x,
              disasterPositionY: position.y,
@@ -50,9 +46,19 @@ class DisasterSpawnSystem: System {
              disasterVelocityY: velocity.dy,
              disasterType: disasterType.rawValue,
              disasterId: disasterId)
-        manager?.add(localDisasterStart)
+
         dispatcher?.dispatch(remoteDisasterStart)
 
+        spawn(disasterType, at: position, velocity: velocity, with: disasterId)
+
         // TODO: Dispatch only
+    }
+
+    func spawn(_ type: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector, with entityID: EntityID) {
+        let disaster = Disaster(type, at: position, velocity: velocity, texture: .meteor, with: entityID)
+        let disasterPrompt = DisasterPrompt(type, at: position, removeAfter: Constants.disasterPromptPeriod)
+
+        manager?.add(disaster)
+        manager?.add(disasterPrompt)
     }
 }

@@ -27,11 +27,11 @@ struct DisasterSpawnEvent: Event {
      }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        let disaster = Disaster(disasterType, at: position, velocity: velocity, texture: .meteor, with: entityID)
-        let disasterPrompt = DisasterPrompt(disasterType, at: position, removeAfter: Constants.disasterPromptPeriod)
+        guard let disasterSpawnSystem = target.system(ofType: DisasterSpawnSystem.self) else {
+            return
+        }
 
-        target.add(disaster)
-        target.add(disasterPrompt)
+        disasterSpawnSystem.spawn(disasterType, at: position, velocity: velocity, with: entityID)
 
         // TODO: Create logic event to spawn disaster
 
