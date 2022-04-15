@@ -54,9 +54,10 @@ class TeleportSystem: System {
 
         cloudPositions = cloudPositions.sorted(by: { $0.y < $1.y })
 
-        for cloudPosition in cloudPositions where cloudPosition.y > currentLocation.y {
-            return cloudPosition
+        for idx in 0..<cloudPositions.count - 1 where cloudPositions[idx].y > currentLocation.y {
+            return cloudPositions[idx + 1]
         }
+
         return cloudPositions.last ?? CGPoint.zero
     }
 
