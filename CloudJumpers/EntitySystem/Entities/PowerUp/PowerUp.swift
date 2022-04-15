@@ -16,13 +16,12 @@ class PowerUp: Entity {
 
     init(
         _ kind: PowerUpComponent.Kind,
-        texture: Miscellaneous,
         at position: CGPoint,
         with id: EntityID = EntityManager.newEntityID
     ) {
         self.id = id
         self.kind = kind
-        self.texture = texture
+        self.texture = Miscellaneous(rawValue: kind.rawValue) ?? .freeze
         self.position = position
     }
 

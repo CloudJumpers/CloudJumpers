@@ -18,36 +18,18 @@ class PowerUpSystem: System {
     }
 
     func update(within time: CGFloat) {
-        }
+    }
 
-    func activatePowerUp(_ powerUpID: EntityID, at location: CGPoint) {
+    func activatePowerUp(_ powerUpID: EntityID, activatorId: EntityID, at location: CGPoint) {
         guard let powerUpComponent = manager?.component(ofType: PowerUpComponent.self, of: powerUpID) else {
             return
         }
 
-        let effect = PowerUpEffect(
-            powerUpComponent.kind,
-            at: location,
-            texture: <#T##Miscellaneous#>,
-            removeAfter: Constants.powerUpEffectDuration)
+//        let effect = PowerUpEffectFactory.createPowerUpEffect(type: powerUpComponent.kind, at: location, activatorId: activatorId)
+        let effect = PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration,
+                                   activatorId: activatorId, texture: <#T##Miscellaneous#>, powerUpComponent: <#T##PowerUpEffectComponent#>)
 
         manager?.add(effect)
-        if isPlayerWithinRange(location: location) {
-            // TODO: Add send effect
-        }
-    }
-
-    private func isPlayerWithinRange(location: CGPoint) -> Bool {
-        guard let playerTag = manager?.components(ofType: PlayerTag.self).first,
-              let player = playerTag.entity,
-              let playerPositionComponent = manager?.component(ofType: PositionComponent.self, of: player)
-        else {
-            return false
-        }
-
-        let targetPosition = playerPositionComponent.position
-        let targetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
-        return location.distance(to: targetPosition) <= targetRange
-
+        manager?.remove(withID: powerUpID)
     }
 }
