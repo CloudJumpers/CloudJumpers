@@ -7,6 +7,7 @@
 
 import SpriteKit
 
+// TODO: Deprecated this as it is no longer used
 class TimedLabel: Entity {
     let id: EntityID
 

@@ -11,7 +11,7 @@ import CoreGraphics
 class RaceTopGameRules: GameRules {
     private unowned var target: RuleModifiable?
 
-    private var timer: TimedLabel?
+    private var timer: StaticLabel?
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
@@ -24,7 +24,11 @@ class RaceTopGameRules: GameRules {
     func setUpForRule() {
 
         // Set game specific entity
-        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        let timer = StaticLabel(
+            at: Constants.timerPosition,
+            size: Constants.timerSize,
+            initialValue: String(Constants.timerInitial))
+        self.timer = timer
         target?.add(timer)
     }
 
@@ -53,34 +57,20 @@ class RaceTopGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        guard let player = player else {
+        guard let player = player,
+              let target = target
+        else {
             return
         }
-        if isPlayerRespawn() {
-            target?.add(RespawnEvent(onEntityWith: player.id, newPosition: Constants.playerInitialPosition))
-            target?.dispatch(ExternalRespawnEvent(
+        if isPlayerRespawn(target: target) {
+            target.add(RespawnEvent(onEntityWith: player.id, newPosition: Constants.playerInitialPosition))
+            target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
-            target?.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
+            target.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
         }
 
-    }
-
-    private func isPlayerRespawn() -> Bool {
-        guard let player = player,
-              let playerStandOnComponent = target?.component(ofType: StandOnComponent.self, of: player),
-              let allStandOnComponent = target?.components(ofType: StandOnComponent.self)
-        else {
-            return false
-        }
-
-        for component in allStandOnComponent where component.entity?.id != player.id {
-            if component.standOnEntityID == playerStandOnComponent.standOnEntityID &&
-                component.timestamp > playerStandOnComponent.timestamp {
-                return true
-            }
-        }
-        return false
+        // TODO: Add timer update here
     }
 
     func hasGameEnd() -> Bool {

@@ -10,9 +10,9 @@ import Foundation
 import SpriteKit
 
 class LabelComponent: Component {
-    let displayValue: String
-    let size: CGSize
-    let position: CGPoint
+    var displayValue: String
+    var size: CGSize
+    var position: CGPoint
 
     var alpha: CGFloat = 1.0
 

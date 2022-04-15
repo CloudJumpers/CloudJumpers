@@ -11,7 +11,13 @@ import CoreGraphics
 class TimeTrialGameRules: GameRules {
 
     private unowned var target: RuleModifiable?
-    private var timer: TimedLabel?
+    private var timer: StaticLabel?
+
+    var player: Entity? {
+        target?.components(ofType: PlayerTag.self).first?.entity
+    }
+
+    // TODO: Pass this in from outside
     private var isPlayingWithShadow = true
 
     func setTarget(_ target: RuleModifiable) {
@@ -25,8 +31,10 @@ class TimeTrialGameRules: GameRules {
         target?.deactivateSystem(ofType: PowerSpawnSystem.self)
 
         // Set game specific entity
-
-        let timer = TimedLabel(at: Constants.timerPosition, initial: Constants.timerInitial)
+        let timer = StaticLabel(
+            at: Constants.timerPosition,
+            size: Constants.timerSize,
+            initialValue: String(Constants.timerInitial))
         self.timer = timer
         target?.add(timer)
     }
@@ -43,7 +51,7 @@ class TimeTrialGameRules: GameRules {
                     texture: .Character1,
                     name: name,
                     with: id)
-            } else if id == GameConstants.shadowPlayerID {
+            } else if id == GameConstants.shadowPlayerID && isPlayingWithShadow {
                 character = ShadowGuest(
                     at: Constants.playerInitialPositions[index],
                     texture: .ShadowCharacter1,
