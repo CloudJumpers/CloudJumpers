@@ -25,7 +25,7 @@ struct RepositionEvent: Event {
         guard let positionSystem = target.system(ofType: PositionSystem.self) else {
             return
         }
-        positionSystem.changePosition(for: entityID, to: newPosition)
-    }
 
+        positionSystem.move(entityWith: entityID, to: newPosition)
+    }
 }

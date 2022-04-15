@@ -24,7 +24,7 @@ struct MoveEvent: Event {
         guard let positionSystem = target.system(ofType: PositionSystem.self) else {
             return
         }
-        positionSystem.movePosition(for: entityID, by: displacement)
-    }
 
+        positionSystem.move(entityWith: entityID, by: displacement)
+    }
 }
