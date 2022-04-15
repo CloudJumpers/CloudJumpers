@@ -13,6 +13,7 @@ class PowerSpawnSystem: System {
     var active = false
 
     unowned var manager: EntityManager?
+    unowned var dispatcher: EventDispatcher?
 
     var blueprint: Blueprint?
 

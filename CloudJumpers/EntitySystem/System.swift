@@ -10,6 +10,7 @@ import CoreGraphics
 protocol System: AnyObject {
     var active: Bool { get set }
     var manager: EntityManager? { get set }
+    var dispatcher: EventDispatcher? { get set }
 
     init(for manager: EntityManager)
     func shouldUpdate(within time: CGFloat) -> Bool

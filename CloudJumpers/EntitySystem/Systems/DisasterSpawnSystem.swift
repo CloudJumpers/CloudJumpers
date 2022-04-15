@@ -12,6 +12,7 @@ class DisasterSpawnSystem: System {
     var active = false
 
     unowned var manager: EntityManager?
+    unowned var dispatcher: EventDispatcher?
 
     var blueprint: Blueprint?
 
@@ -49,8 +50,8 @@ class DisasterSpawnSystem: System {
              disasterVelocityY: velocity.dy,
              disasterType: disasterType.rawValue,
              disasterId: disasterId)
-        manager?.dispatch(remoteDisasterStart)
         manager?.add(localDisasterStart)
+        dispatcher?.dispatch(remoteDisasterStart)
 
         // TODO: Dispatch only
     }

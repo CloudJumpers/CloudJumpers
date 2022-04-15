@@ -12,6 +12,7 @@ class PlayerStateSystem: System {
     var active = true
 
     unowned var manager: EntityManager?
+    unowned var dispatcher: EventDispatcher?
 
     private var crossDeviceSyncTimer: Timer?
 
