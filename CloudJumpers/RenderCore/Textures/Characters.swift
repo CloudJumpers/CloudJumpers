@@ -10,13 +10,17 @@ enum Characters: TextureSetName {
     case ShadowCharacter1
 }
 
-// MARK: - TextureSet Specifications
+// MARK: - Character Animations
+typealias CharacterFrames = Characters.Frames
+
 extension Characters {
     enum Frames: TextureName {
         case idle
         case walking
         case jumping
         case prejump
+
+        var key: TextureName { rawValue }
     }
 }
 

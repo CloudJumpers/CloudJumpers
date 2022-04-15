@@ -26,10 +26,11 @@ class Guest: Entity {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let physicsComponent = createPhysicsComponent(for: spriteComponent)
+        let animationComponent = createAnimationComponent()
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
-        manager.addComponent(AnimationComponent(), to: self)
+        manager.addComponent(animationComponent, to: self)
         manager.addComponent(InventoryComponent(), to: self)
     }
 
@@ -47,5 +48,14 @@ class Guest: Entity {
         physicsComponent.contactTestBitMask = PhysicsContactTest.guest
 
         return physicsComponent
+    }
+
+    private func createAnimationComponent() -> AnimationComponent {
+        let animationComponent = AnimationComponent()
+        animationComponent.animations[CharacterFrames.idle.key] = texture.idle.asFrames
+        animationComponent.animations[CharacterFrames.jumping.key] = texture.jumping
+        animationComponent.animations[CharacterFrames.walking.key] = texture.walking
+        animationComponent.animations[CharacterFrames.prejump.key] = texture.prejumping
+        return animationComponent
     }
 }
