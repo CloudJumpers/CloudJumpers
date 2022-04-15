@@ -7,4 +7,5 @@
 
 protocol EventDispatcher: AnyObject {
     func dispatch(_ remoteEvent: RemoteEvent)
+    func add(_ effector: Effector)
 }

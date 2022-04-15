@@ -10,6 +10,8 @@ import Foundation
 class EventManager {
     private typealias EventQueue = PriorityQueue<Event>
 
+    unowned var dispatcher: EventDispatcher?
+
     private var events: EventQueue
     private var effectors: [Effector]
 
@@ -77,8 +79,12 @@ class EventManager {
 
     private func supply(from supplier: Supplier) -> Int {
         supplier.events.forEach(add(_:))
-        supplier.remoteEvents.forEach(publish(_:))
         supplier.effectors.forEach(add(_:))
+
+        if let dispatcher = dispatcher {
+            supplier.remoteEvents.forEach(dispatcher.dispatch(_:))
+        }
+
         return supplier.events.count
     }
 

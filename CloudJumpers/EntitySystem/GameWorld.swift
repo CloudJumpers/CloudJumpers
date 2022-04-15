@@ -18,8 +18,9 @@ class GameWorld {
         entityManager = EntityManager()
         systemManager = SystemManager(for: entityManager)
         eventManager = EventManager()
-        renderer = Renderer(from: self, to: scene)
         remoteEventHandlers = handlers
+        renderer = Renderer(from: self, to: scene)
+        eventManager.dispatcher = self
     }
 
     func update(within time: TimeInterval) {
@@ -60,6 +61,10 @@ extension GameWorld: EventDispatcher {
         }
 
         remoteEventHandlers.publisher.publishGameEventCommand(command)
+    }
+
+    func add(_ effector: Effector) {
+        eventManager.add(effector)
     }
 }
 
