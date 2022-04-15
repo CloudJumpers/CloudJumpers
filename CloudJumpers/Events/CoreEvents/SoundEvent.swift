@@ -8,15 +8,13 @@
 import Foundation
 
 struct SoundEvent: Event {
-    var timestamp: TimeInterval
-
     var entityID: EntityID
 
+    var timestamp: TimeInterval
     var soundName: Sounds
 
-    init(onEntityWith id: EntityID, soundName: Sounds) {
+    init(_ soundName: Sounds) {
         timestamp = EventManager.timestamp
-        self.entityID = id
         self.soundName = soundName
     }
 
