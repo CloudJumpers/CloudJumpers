@@ -31,15 +31,16 @@ class GameManager {
 
     // TODO: This shouldn't touch PhysicsComponent anymore
     func updatePlayer(with displacement: CGVector) {
-        guard let entity = associatedEntity,
-              let physicsComponent = world.component(ofType: PhysicsComponent.self, of: entity)
-        else {
+        guard let entity = associatedEntity else {
             return
         }
+
         if displacement != .zero {
             inputMove(by: displacement)
-        } else if physicsComponent.body.velocity == .zero {
-            world.add(AnimateEvent(on: entity, to: .idle))
+        } else {
+            // TODO: Figure out how to do without WhenStationaryEvent
+            let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.idle.key)
+            world.add(WhenStationaryEvent(entity.id, do: animateEvent))
         }
     }
 
@@ -96,19 +97,18 @@ extension GameManager: InputResponder {
 
     // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity,
-              let physicsComponent = world.component(ofType: PhysicsComponent.self, of: entity)
-        else { return }
+        guard let entity = associatedEntity else {
+            return
+        }
 
         let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
         let soundEvent = SoundEvent(.walking)
 
         world.add(moveEvent.then(do: soundEvent))
 
-        // TODO: Figure out how to abstract this
-        if physicsComponent.body.velocity == .zero {
-            world.add(AnimateEvent(on: entity, to: .walking))
-        }
+        // TODO: Figure out how to do without WhenStationaryEvent
+        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.walking.key)
+        world.add(WhenStationaryEvent(entity.id, do: animateEvent))
     }
 
     func inputJump() {
@@ -120,7 +120,7 @@ extension GameManager: InputResponder {
         let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
 
         // TODO: Figure out how to integrate AnimateEvent into JumpEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: .walking)
+        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.jumping.key)
 
         world.add(jumpEvent.then(do: soundEvent))
         world.add(animateEvent)
