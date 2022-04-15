@@ -57,7 +57,7 @@ class TeleportSystem: System {
         for cloudPosition in cloudPositions where cloudPosition.y > currentLocation.y {
             return cloudPosition
         }
-        return CGPoint.zero
+        return cloudPositions.last ?? CGPoint.zero
     }
 
     private func isAffectingLocation(location: CGPoint, teleportComponent: TeleportComponent) -> Bool {
