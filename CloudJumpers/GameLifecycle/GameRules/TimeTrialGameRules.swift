@@ -61,7 +61,7 @@ class TimeTrialGameRules: GameRules {
 
     func update(within time: CGFloat) {
         // TODO: Update timer here
-        
+
     }
 
     func hasGameEnd() -> Bool {

@@ -26,7 +26,7 @@ class KingHillGameRules: GameRules {
         guard let target = target else {
             return
         }
-        
+
         // TODO: Create count down timer
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
 
