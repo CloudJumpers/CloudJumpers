@@ -28,12 +28,14 @@ class TeleportSystem: System {
 
             let activatorId = component.activatorId
             let playerLocation = playerPositionComponent.position
-            let nextPosition = getNextCloudPosition(currentLocation: playerLocation) + Constants.teleportCloudGapY
 
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
                 isAffectingLocation(location: playerLocation, teleportComponent: component) {
+                let nextPosition = getNextCloudPosition(currentLocation: playerLocation) + Constants.teleportCloudGapY
 
                 playerPositionComponent.position = nextPosition
+
+                // TODO: Add remote event to reposition this player
             }
         }
     }
