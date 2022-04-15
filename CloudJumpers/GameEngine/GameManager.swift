@@ -69,20 +69,20 @@ class GameManager {
 
         // TODO: Extend LevelGenerator so that this condition need not happen
         for cloudPosition in cloudPositions where cloudPosition != highestPosition {
-            world.add(Cloud(at: cloudPosition))
+            world.add(Cloud(at: cloudPosition, texture: .cloud1))
         }
     }
 
     private func addPlatform(at position: CGPoint) {
-        world.add(Platform(at: position))
+        world.add(Platform(at: position, texture: .platform))
     }
 
     private func addFloor(at position: CGPoint) {
-        world.add(Floor(at: position))
+        world.add(Floor(at: position, texture: .floor))
     }
 
     private func addWall(at position: CGPoint, height: CGFloat) {
-        world.add(Wall(at: position, height: height))
+        world.add(Wall(at: position, height: height, texture: .wall))
     }
 
     private func checkHasGameEnd() {

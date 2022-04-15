@@ -38,7 +38,11 @@ class Disaster: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(texture: texture.frame, size: Constants.disasterNodeSize, zPosition: .disaster)
+        let spriteComponent = SpriteComponent(
+            texture: texture.frame,
+            size: Constants.disasterNodeSize,
+            zPosition: .disaster)
+
         spriteComponent.zRotation = Self.rotation(of: velocity)
         spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
 
