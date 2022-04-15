@@ -170,6 +170,7 @@
 		9396E95F280039A10090A8C9 /* RemoteEventHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */; };
 		9396E9612800482C0090A8C9 /* RaceToTopPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */; };
 		939AFA032809BBD000852B8B /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA022809BBD000852B8B /* Achievement.swift */; };
+		939AFA052809D95600852B8B /* AchievementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA042809D95600852B8B /* AchievementManager.swift */; };
 		93ADD1C228047E8C004E0E87 /* ShadowGuest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */; };
 		93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C328047EAF004E0E87 /* GameMode.swift */; };
 		93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */; };
@@ -396,6 +397,7 @@
 		9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventHandlers.swift; sourceTree = "<group>"; };
 		9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopPreGameManager.swift; sourceTree = "<group>"; };
 		939AFA022809BBD000852B8B /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
+		939AFA042809D95600852B8B /* AchievementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementManager.swift; sourceTree = "<group>"; };
 		93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowGuest.swift; sourceTree = "<group>"; };
 		93ADD1C328047EAF004E0E87 /* GameMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMode.swift; sourceTree = "<group>"; };
 		93ADD1C528047EC6004E0E87 /* GameModeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModeFactory.swift; sourceTree = "<group>"; };
@@ -1012,6 +1014,7 @@
 			isa = PBXGroup;
 			children = (
 				939AFA022809BBD000852B8B /* Achievement.swift */,
+				939AFA042809D95600852B8B /* AchievementManager.swift */,
 			);
 			path = Achievements;
 			sourceTree = "<group>";
@@ -1581,6 +1584,7 @@
 				93360B8B27EC8AA700808295 /* GameEventCommand.swift in Sources */,
 				3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */,
 				1A94D96627EE0EF2001D8A86 /* JumpEvent.swift in Sources */,
+				939AFA052809D95600852B8B /* AchievementManager.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
