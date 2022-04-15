@@ -25,9 +25,8 @@ class PowerUpSystem: System {
             return
         }
 
-//        let effect = PowerUpEffectFactory.createPowerUpEffect(type: powerUpComponent.kind, at: location, activatorId: activatorId)
-        let effect = PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration,
-                                   activatorId: activatorId, texture: <#T##Miscellaneous#>, powerUpComponent: <#T##PowerUpEffectComponent#>)
+        let effect = PowerUpEffectFactory.createPowerUpEffect(type: powerUpComponent.kind,
+                                                              at: location, activatorId: activatorId)
 
         manager?.add(effect)
         manager?.remove(withID: powerUpID)
