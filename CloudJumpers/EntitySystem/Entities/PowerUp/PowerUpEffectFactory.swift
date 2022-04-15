@@ -21,6 +21,14 @@ class PowerUpEffectFactory {
             return PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration, activatorId: activatorId,
                                  texture: .confuseEffect,
                                  powerUpComponent: ConfuseComponent(position: location, activatorId: activatorId))
+        case .slowmo:
+            return PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration, activatorId: activatorId,
+                                 texture: .slowmoEffect,
+                                 powerUpComponent: SlowmoComponent(position: location, activatorId: activatorId))
+        case .teleport:
+            return PowerUpEffect(at: location, removeAfter: Constants.teleportEffectDuration, activatorId: activatorId,
+                                 texture: .teleportEffect,
+                                 powerUpComponent: TeleportComponent(position: location, activatorId: activatorId))
         }
     }
 }

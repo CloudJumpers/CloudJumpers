@@ -107,4 +107,7 @@ struct Constants {
     static let captionFontSize = 20.0
     static let captionRelativePosition = CGPoint(x: 0.0, y: 35.0)
     static let playerDisplaynameSize = 5
+
+    static let teleportCloudGapY = CGVector(dx: 0.0, dy: 25.0)
+    static let teleportEffectDuration = 0.05
 }

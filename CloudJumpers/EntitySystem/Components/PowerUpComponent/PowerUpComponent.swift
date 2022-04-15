@@ -9,7 +9,8 @@ class PowerUpComponent: Component {
     enum Kind: String, CaseIterable {
         case freeze
         case confuse
-        case slow
+        case slowmo
+        case teleport
 
         var name: String { rawValue }
     }
