@@ -15,19 +15,12 @@ class GameManager {
     private var rules: GameRules
     var inChargeID: NetworkID?
 
-    private var crossDeviceSyncTimer: Timer?
-
     init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
         self.inChargeID = inChargeID
         self.rules = rules
         self.rules.setTarget(world)
-        setUpCrossDeviceSyncTimer()
-    }
-
-    deinit {
-        crossDeviceSyncTimer?.invalidate()
     }
 
     func update(within time: CGFloat) {
@@ -90,18 +83,6 @@ class GameManager {
         if rules.hasGameEnd() {
             delegate?.manager(self, didEndGameWith: metaData)
         }
-    }
-
-    // TODO: Bring this into PlayerStateSynchronizer
-    private func setUpCrossDeviceSyncTimer() {
-        crossDeviceSyncTimer = Timer.scheduledTimer(
-            withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
-            repeats: true
-        ) { [weak self] _ in self?.syncToOtherDevices() }
-    }
-
-    private func syncToOtherDevices () {
-        world.system(ofType: PlayerStateSystem.self)?.uploadLocalPlayerState()
     }
 }
 
