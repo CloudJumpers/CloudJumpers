@@ -229,6 +229,8 @@
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
+		A1AE31D828092EF500FABC0E /* StaticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE31D728092EF500FABC0E /* StaticLabel.swift */; };
+		A1AE31DA28092FF200FABC0E /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE31D928092FF200FABC0E /* LabelComponent.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
 		A1D7865D28018CC300C5CE49 /* RemoveSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */; };
 		A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866028018E2C00C5CE49 /* SoundEvent.swift */; };
@@ -501,6 +503,8 @@
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
 		A19A7A2A27F8D79D007E1C11 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		A1AE31D728092EF500FABC0E /* StaticLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticLabel.swift; sourceTree = "<group>"; };
+		A1AE31D928092FF200FABC0E /* LabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveSystem.swift; sourceTree = "<group>"; };
 		A1D7866028018E2C00C5CE49 /* SoundEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEvent.swift; sourceTree = "<group>"; };
@@ -685,6 +689,7 @@
 				3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */,
 				A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */,
 				A16C8FC728033B07001B2E7F /* StandOnComponent.swift */,
+				A1AE31D928092FF200FABC0E /* LabelComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -704,6 +709,7 @@
 				1A94D94C27ED8709001D8A86 /* TimedLabel.swift */,
 				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
+				A1AE31D728092EF500FABC0E /* StaticLabel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1633,6 +1639,7 @@
 				A1D786832801EE0100C5CE49 /* PlayerStateSystem.swift in Sources */,
 				1A24DC212805951D00E48B64 /* Scene.swift in Sources */,
 				1AAB1E0D27FF0EDD00378382 /* Collidable.swift in Sources */,
+				A1AE31DA28092FF200FABC0E /* LabelComponent.swift in Sources */,
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,
 				A1D7866428018FED00C5CE49 /* MoveEvent.swift in Sources */,
@@ -1706,6 +1713,7 @@
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
+				A1AE31D828092EF500FABC0E /* StaticLabel.swift in Sources */,
 				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
