@@ -13,7 +13,11 @@ class PhysicsBody {
     let coreBody: PhysicsBodyCore
 
     init(rectangleOf size: CGSize, center: CGPoint = .zero) {
-        coreBody = SKPhysicsBody(rectangleOf: size, center: center)
+        coreBody = PhysicsBodyCore(rectangleOf: size, center: center)
+    }
+
+    init(circleOf radius: CGFloat, center: CGPoint = .zero) {
+        coreBody = PhysicsBodyCore(circleOfRadius: radius, center: center)
     }
 
     var velocity: CGVector {
