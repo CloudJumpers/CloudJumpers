@@ -9,7 +9,6 @@ import Foundation
 import CoreGraphics
 
 protocol GameRules {
-
     var player: Entity? { get }
     func setTarget(_ target: RuleModifiable)
     func setUpForRule()
@@ -18,10 +17,9 @@ protocol GameRules {
     func hasGameEnd() -> Bool
 
     func fetchLocalCompletionData()
-
 }
 
-// MARK: Helper functions
+// MARK: - Helper functions
 extension GameRules {
     func isPlayerRespawn(target: RuleModifiable) -> Bool {
         guard let player = player,
@@ -45,8 +43,11 @@ extension GameRules {
             at: Constants.timerPosition,
             size: Constants.timerSize,
             initialValue: String(initialValue))
+
         target.addComponent(TimedComponent(time: initialValue), to: timer)
         target.add(timer)
+
+        return timer
     }
 
     func updateLabelWithValue(_ value: String, label: StaticLabel, target: RuleModifiable) {
