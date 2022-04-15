@@ -63,9 +63,7 @@ class GameViewController: UIViewController {
             rendersTo: scene,
             inChargeID: lobby?.hostId,
             handlers: handlers,
-            rules: config.getGameRules(),
-            isHost: { self.lobby?.userIsHost ?? false },
-        )
+            rules: config.getGameRules())
 
         setUpGameScene()
         setUpGameManager()
