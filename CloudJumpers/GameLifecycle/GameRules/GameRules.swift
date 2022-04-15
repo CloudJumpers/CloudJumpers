@@ -12,12 +12,12 @@ protocol GameRules {
     func setTarget(_ target: RuleModifiable)
     func setUpForRule()
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo])
-    func update()
+    func update(within time: CGFloat)
     func hasGameEnd() -> Bool
 
     func fetchLocalCompletionData()
 
 }
 extension GameRules {
-    func update() { }
+
 }

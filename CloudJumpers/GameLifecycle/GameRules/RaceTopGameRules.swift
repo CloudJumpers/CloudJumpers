@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class RaceTopGameRules: GameRules {
     private unowned var target: RuleModifiable?
@@ -51,7 +52,7 @@ class RaceTopGameRules: GameRules {
 
     }
 
-    func update() {
+    func update(within time: CGFloat) {
         guard let player = player else {
             return
         }

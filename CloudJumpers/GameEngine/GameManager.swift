@@ -25,6 +25,7 @@ class GameManager {
 
     func update(within time: CGFloat) {
         world.update(within: time)
+        rules.update(within: time)
         checkHasGameEnd()
     }
 

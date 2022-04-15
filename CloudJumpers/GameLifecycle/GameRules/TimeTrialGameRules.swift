@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class TimeTrialGameRules: GameRules {
+
     private unowned var target: RuleModifiable?
     private var timer: TimedLabel?
     private var isPlayingWithShadow = true
@@ -50,7 +52,10 @@ class TimeTrialGameRules: GameRules {
             }
             target?.add(character)
         }
+    }
 
+    func update(within time: CGFloat) {
+        // TODO: Update timer here
     }
 
     func hasGameEnd() -> Bool {
