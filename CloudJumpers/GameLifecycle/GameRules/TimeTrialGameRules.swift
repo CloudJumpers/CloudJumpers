@@ -40,22 +40,20 @@ class TimeTrialGameRules: GameRules {
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId
             let name = info.displayName
-            let character: Entity
 
             if id == playerInfo.playerId {
-                character = Player(
+                target?.add(Player(
                     at: Constants.playerInitialPositions[index],
                     texture: .Character1,
                     name: name,
-                    with: id)
+                    with: id))
             } else if id == GameConstants.shadowPlayerID && isPlayingWithShadow {
-                character = ShadowGuest(
+                target?.add(ShadowGuest(
                     at: Constants.playerInitialPositions[index],
                     texture: .ShadowCharacter1,
                     name: name,
-                    with: id)
+                    with: id))
             }
-            target?.add(character)
         }
     }
 
