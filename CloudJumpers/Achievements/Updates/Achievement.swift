@@ -34,9 +34,7 @@ extension Achievement {
 
     func recoverGenericKey(_ specificKey: String) -> String {
         let parts = specificKey.components(separatedBy: "\(title) ")
-
         assert(parts.first == title)
-        assert(parts.count == 2)
 
         guard let key = parts.last else {
             fatalError("Expected key to exist")

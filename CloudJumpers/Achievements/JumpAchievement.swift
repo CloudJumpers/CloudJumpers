@@ -34,7 +34,7 @@ class JumpAchievement: Achievement {
             return Double.zero
         }
 
-        return max(1.0, Double(jumps) / Double(requiredJumps))
+        return min(1.0, Double(jumps) / Double(requiredJumps))
     }
 
     var isUnlocked: Bool {
