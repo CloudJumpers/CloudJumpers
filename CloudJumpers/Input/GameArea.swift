@@ -21,12 +21,22 @@ class GameArea: SKSpriteNode {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        scene?.touchesBegan(touches, with: event)
+
         guard let touch = touches.first,
               isValidTouch(touch)
         else { return }
 
         let location = touch.location(in: self)
         responder?.activatePowerUp(at: location)
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        scene?.touchesMoved(touches, with: event)
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        scene?.touchesEnded(touches, with: event)
     }
 
     private func isValidTouch(_ touch: UITouch) -> Bool {
