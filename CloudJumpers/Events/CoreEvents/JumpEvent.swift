@@ -29,7 +29,7 @@ struct JumpEvent: Event {
 
     private func jump(in target: EventModifiable) {
         guard let physicsSystem = target.system(ofType: PhysicsSystem.self),
-              physicsSystem.isJumping(entityID)
+              !physicsSystem.isJumping(entityID)
         else { return }
 
         physicsSystem.applyImpulse(on: entityID, impulse: jumpImpulse)

@@ -49,7 +49,7 @@ class PhysicsSystem: System {
             return false
         }
 
-        return physicsComponent.velocity.dy.isZero
+        return !physicsComponent.velocity.dy.isZero
     }
 
     func sync(with entityVelocityMap: EntityVelocityMap) {
