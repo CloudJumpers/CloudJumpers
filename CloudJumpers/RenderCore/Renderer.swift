@@ -9,6 +9,8 @@ import SpriteKit
 
 typealias NodesMap = [NodeCore: Node]
 typealias EntityNodeMap = [EntityID: Node]
+typealias EntityPositionMap = [EntityID: CGPoint]
+typealias EntityVelocityMap = [EntityID: CGVector]
 
 class Renderer {
     private unowned var target: Simulatable?
@@ -62,6 +64,7 @@ class Renderer {
 
     private func update(entity: Entity) {
         updatePosition(entity: entity)
+        updatePhysics(entity: entity)
     }
 
     // MARK: Update based on component
@@ -204,9 +207,44 @@ extension Renderer: SceneUpdateDelegate {
     }
 
     func sceneDidFinishUpdate(_ scene: Scene) {
-        // TODO: Handle finish update here
         let nodes = scene.nodes
-        let positions = nodes.map { $0.position }
-        let velocities = nodes.compactMap { $0.physicsBody?.velocity }
+
+        let entityPositionMap = entityPositionMap(from: nodes)
+        target?.syncPositions(with: entityPositionMap)
+
+        let entityVelocityMap = entityVelocityMap(from: nodes)
+        target?.syncVelocities(with: entityVelocityMap)
+    }
+
+    private func entityPositionMap(from nodes: [Node]) -> EntityPositionMap {
+        var entityPositionMap = EntityPositionMap()
+
+        for node in nodes {
+            guard let entityID = node.name else {
+                fatalError("Node \(String(describing: node)) does not have an EntityID")
+            }
+
+            entityPositionMap[entityID] = node.position
+        }
+
+        return entityPositionMap
+    }
+
+    private func entityVelocityMap(from nodes: [Node]) -> EntityVelocityMap {
+        var entityVelocityMap = EntityVelocityMap()
+
+        for node in nodes {
+            guard let entityID = node.name else {
+                fatalError("Node \(String(describing: node)) does not have an EntityID")
+            }
+
+            guard let physicsBody = node.physicsBody else {
+                continue
+            }
+
+            entityVelocityMap[entityID] = physicsBody.velocity
+        }
+
+        return entityVelocityMap
     }
 }

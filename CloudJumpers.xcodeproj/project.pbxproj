@@ -103,7 +103,6 @@
 		3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B4727DDAB1300D51300 /* GameViewController.swift */; };
 		3E246B4927DDAB3100D51300 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E58412A27DBABF4005B2EB9 /* Constants.swift */; };
 		3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E246B5227DE05E500D51300 /* SpriteZPosition.swift */; };
-		3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3E246B5627DE0EED00D51300 /* GameScene.sks */; };
 		3E3632D8280961E800FAD7A8 /* FreezeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632D7280961E800FAD7A8 /* FreezeComponent.swift */; };
 		3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632D9280961F300FAD7A8 /* FreezeSystem.swift */; };
 		3E3632E22809643E00FAD7A8 /* ConfuseSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632E12809643E00FAD7A8 /* ConfuseSystem.swift */; };
@@ -384,7 +383,6 @@
 		3DCCCC2BCEC733834AB6F8B8 /* Pods-CloudJumpers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.release.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.release.xcconfig"; sourceTree = "<group>"; };
 		3E246B4727DDAB1300D51300 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		3E246B5227DE05E500D51300 /* SpriteZPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteZPosition.swift; sourceTree = "<group>"; };
-		3E246B5627DE0EED00D51300 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		3E3632D7280961E800FAD7A8 /* FreezeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeComponent.swift; sourceTree = "<group>"; };
 		3E3632D9280961F300FAD7A8 /* FreezeSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeSystem.swift; sourceTree = "<group>"; };
 		3E3632E12809643E00FAD7A8 /* ConfuseSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseSystem.swift; sourceTree = "<group>"; };
@@ -589,7 +587,6 @@
 				1AE9D8B227FED228002B0A1E /* TextureFrameable.swift */,
 				1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */,
 				1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */,
-				3E246B5627DE0EED00D51300 /* GameScene.sks */,
 				1AE9D89E27FE0287002B0A1E /* Renderer.swift */,
 				1A24DC202805951D00E48B64 /* Scene.swift */,
 				1AAB1E242800349700378382 /* Simulatable.swift */,
@@ -1522,7 +1519,6 @@
 				1A94D94227ECB808001D8A86 /* Character1.atlas in Resources */,
 				1AC1606D27F43B15006E4018 /* end-lose.wav in Resources */,
 				1A71C5EE280865A7008131C3 /* Miscellaneous.atlas in Resources */,
-				3E246B5727DE0EED00D51300 /* GameScene.sks in Resources */,
 				1AC1607727F4404A006E4018 /* walking.wav in Resources */,
 				1AC1607627F4404A006E4018 /* jump-cape.wav in Resources */,
 				1A91C92927E099F400D755BE /* Buttons.atlas in Resources */,

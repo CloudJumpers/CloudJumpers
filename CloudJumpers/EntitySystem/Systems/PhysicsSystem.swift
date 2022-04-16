@@ -42,4 +42,14 @@ class PhysicsSystem: System {
 
         return physicsComponent.velocity != .zero
     }
+
+    func sync(with entityVelocityMap: EntityVelocityMap) {
+        for (entityID, velocity) in entityVelocityMap {
+            guard let entity = manager?.entity(with: entityID),
+                  let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: entity)
+            else { continue }
+
+            physicsComponent.velocity = velocity
+        }
+    }
 }

@@ -36,4 +36,14 @@ class PositionSystem: System {
 
         positionComponent.position += displacement
     }
+
+    func sync(with entityPositionMap: EntityPositionMap) {
+        for (entityID, position) in entityPositionMap {
+            guard let entity = manager?.entity(with: entityID),
+                  let positionComponent = manager?.component(ofType: PositionComponent.self, of: entity)
+            else { continue }
+
+            positionComponent.position = position
+        }
+    }
 }

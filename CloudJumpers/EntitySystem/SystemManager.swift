@@ -40,6 +40,12 @@ class SystemManager {
     }
 
     private func setUpSystems() {
+        guard let entityManager = entityManager else {
+            fatalError("EntityManager not registered in SystemManager")
+        }
+
         // TODO: Set up systems here
+        register(PositionSystem(for: entityManager))
+        register(PhysicsSystem(for: entityManager))
     }
 }

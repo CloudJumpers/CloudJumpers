@@ -91,6 +91,22 @@ extension GameWorld: Simulatable {
             eventManager.add(event)
         }
     }
+
+    func syncPositions(with entityPositionMap: EntityPositionMap) {
+        guard let positionSystem = system(ofType: PositionSystem.self) else {
+            return
+        }
+
+        positionSystem.sync(with: entityPositionMap)
+    }
+
+    func syncVelocities(with entityVelocityMap: EntityVelocityMap) {
+        guard let physicsSystem = system(ofType: PhysicsSystem.self) else {
+            return
+        }
+
+        physicsSystem.sync(with: entityVelocityMap)
+    }
 }
 
 // MARK: - RuleModifiable
@@ -98,6 +114,7 @@ extension GameWorld: RuleModifiable {
     func addComponent(_ component: Component, to entity: Entity) {
         entityManager.addComponent(component, to: entity)
     }
+
     func hasComponent<T>(ofType type: T.Type, in entityWithID: EntityID) -> Bool where T: Component {
         guard let entity = entity(with: entityWithID) else {
             return false
