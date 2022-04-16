@@ -96,7 +96,7 @@ class GameViewController: UIViewController {
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
         let allUsersInfo = config.getIdOrderedPlayers()
 
-        let cloudBlueprint = Blueprint(
+        let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
             tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
@@ -106,7 +106,7 @@ class GameViewController: UIViewController {
             seed: config.seed
         )
 
-        gameManager?.setUpGame(with: cloudBlueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
+        gameManager?.setUpGame(with: blueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
 
     private func setUpInputControls() {
