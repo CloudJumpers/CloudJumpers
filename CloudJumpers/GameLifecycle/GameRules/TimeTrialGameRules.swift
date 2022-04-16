@@ -13,10 +13,7 @@ class TimeTrialGameRules: GameRules {
     private unowned var target: RuleModifiable?
     private var timer: StaticLabel?
 
-    var player: Entity? {
-        target?.components(ofType: PlayerTag.self).first?.entity
-    }
-
+    var playerInfo: PlayerInfo?
     private var isPlayingWithShadow: Bool
 
     init(isPlayingWithShadow: Bool) {
@@ -35,9 +32,11 @@ class TimeTrialGameRules: GameRules {
 
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        self.playerInfo = playerInfo
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId
             let name = info.displayName
@@ -71,19 +70,22 @@ class TimeTrialGameRules: GameRules {
 
     func hasGameEnd() -> Bool {
         guard let target = target,
-              let player = target.components(ofType: PlayerTag.self).first?.entity,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
+              let playerID = playerInfo?.playerId,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
         else {
             return false
         }
         return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
     }
 
-    func fetchLocalCompletionData() {
+    func fetchLocalCompletionData() -> LocalCompletionData {
         guard let timer = timer,
-              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
-        else { return }
-
-        // TODO: Return time for completion
+              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer),
+              let playerInfo = playerInfo
+        else { fatalError("Cannot get timer data") }
+        return TimeTrialData(
+            playerId: playerInfo.playerId,
+            playerName: playerInfo.displayName,
+            completionTime: timedComponent.time)
     }
 }

@@ -12,14 +12,13 @@ import CoreGraphics
 class KingHillGameRules: GameRules {
     private unowned var target: RuleModifiable?
 
-    private var timer: StaticLabel?
+    private var countDownTimer: StaticLabel?
+    private var scoreLabel: StaticLabel?
+
+    var playerInfo: PlayerInfo?
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
-    }
-
-    var player: Entity? {
-        target?.components(ofType: PlayerTag.self).first?.entity
     }
 
     func setUpForRule() {
@@ -27,8 +26,7 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        // TODO: Create count down timer
-        self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        // TODO: Create count down timer and score label
 
     }
 
@@ -62,17 +60,17 @@ class KingHillGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        guard let player = player,
+        guard let playerID = playerInfo?.playerId,
               let target = target
         else {
             return
         }
-        if isPlayerRespawn(target: target) {
-            target.add(RespawnEvent(onEntityWith: player.id, newPosition: Constants.playerInitialPosition))
+        if isPlayerRespawning(target: target) {
+            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
             target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
-            target.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
+            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
         // TODO: Add timer update here
@@ -80,21 +78,19 @@ class KingHillGameRules: GameRules {
 
     // TODO: Change this
     func hasGameEnd() -> Bool {
-        guard let target = target,
-              let player = player,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
-        else {
-            return false
-        }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+        false
     }
 
-    func fetchLocalCompletionData() {
-        guard let timer = timer,
-              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
-        else { return }
+    // TODO: Update score
 
-        // TODO: Return time for completion
+    func fetchLocalCompletionData() -> LocalCompletionData {
+        guard let playerInfo = playerInfo
+        else { fatalError("Cannot get timer data") }
+
+        return KingHillData(
+            playerId: playerInfo.playerId,
+            playerName: playerInfo.displayName,
+            completionScore: .zero)
     }
 
 }

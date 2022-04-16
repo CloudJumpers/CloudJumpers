@@ -49,5 +49,6 @@ class SystemManager {
         register(PhysicsSystem(for: entityManager))
         register(PlayerStateSystem(for: entityManager))
         register(AnimateSystem(for: entityManager))
+        register(StandOnSystem(for: entityManager))
     }
 }
