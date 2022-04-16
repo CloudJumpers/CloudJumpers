@@ -95,6 +95,12 @@ extension GameWorld: Simulatable {
 
 // MARK: - RuleModifiable
 extension GameWorld: RuleModifiable {
+    func component<T: Component>(ofType type: T.Type, of entityWithID: EntityID) -> T? {
+        guard let entity = entity(with: entityWithID) else {
+            return nil
+        }
+        return entityManager.component(ofType: T.self, of: entity)
+    }
     func addComponent(_ component: Component, to entity: Entity) {
         entityManager.addComponent(component, to: entity)
     }
@@ -122,5 +128,14 @@ extension GameWorld: RuleModifiable {
         }
         system.active = false
     }
+}
 
+// MARK: - MetricsProvider
+extension GameWorld: MetricsProvider {
+    func getMetricsUpdate() -> [String: Int] {
+        guard let system = systemManager.system(ofType: MetricsSystem.self) else {
+             return [:]
+        }
+        return system.fetchMetrics()
+    }
 }

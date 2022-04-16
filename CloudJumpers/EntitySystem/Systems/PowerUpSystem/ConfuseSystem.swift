@@ -30,8 +30,10 @@ class ConfuseSystem: System {
             let activatorId = component.activatorId
             let playerLocation = positionComponent.position
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
-                isAffectingLocation(location: playerLocation, confuseComponent: component) {
-                // TODO: supposedly add ConfuseEvent here
+                isAffectingLocation(location: playerLocation, confuseComponent: component),
+               let effectEntity = component.entity {
+
+                dispatcher?.add(SwapMoveEffector(on: playerEntity, watching: effectEntity))
             }
         }
     }

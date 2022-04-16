@@ -14,43 +14,26 @@ class PlayerStateSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    private var crossDeviceSyncTimer: Timer?
+    private var updateCounter: Int = .zero
 
     required init(for manager: EntityManager) {
         self.manager = manager
-        setUpCrossDeviceSyncTimer()
-    }
-
-    deinit {
-        crossDeviceSyncTimer?.invalidate()
     }
 
     func update(within time: CGFloat) {
-        guard let playerEntity = manager?.components(ofType: PlayerTag.self).first?.entity,
-              let animationComponent = manager?.component(ofType: AnimationComponent.self, of: playerEntity),
-              let positionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity),
-              let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: playerEntity)
-        else {
-            return
+        updateCounter = (updateCounter + 1) % GameConstants.positionalUpdateIntervalTicks
+        if updateCounter == .zero {
+            uploadLocalPlayerState()
         }
-
-    }
-
-    private func setUpCrossDeviceSyncTimer() {
-        crossDeviceSyncTimer = Timer.scheduledTimer(
-            withTimeInterval: GameConstants.positionalUpdateIntervalSeconds,
-            repeats: true
-        ) { [weak self] _ in self?.uploadLocalPlayerState() }
     }
 
     func uploadLocalPlayerState() {
-        guard let playerEntity = manager?.components(ofType: PlayerTag.self).first?.entity,
+        guard let playerEntity = getPlayerEntity(),
               let positionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity),
               let animationComponent = manager?.component(ofType: AnimationComponent.self, of: playerEntity),
               let animation = animationComponent.activeAnimation
         else { return }
 
-        // TODO: Change after new way of getting sprite texture
         let playerPosition = positionComponent.position
         let playerTexture = animation.key
 
@@ -61,5 +44,9 @@ class PlayerStateSystem: System {
         )
 
         dispatcher?.dispatch(positionalUpdate)
+    }
+
+    func getPlayerEntity() -> Entity? {
+        manager?.components(ofType: PlayerTag.self).first?.entity
     }
 }

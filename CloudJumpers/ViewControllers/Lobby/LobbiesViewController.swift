@@ -37,6 +37,10 @@ class LobbiesViewController: UIViewController {
         // This view controller is used as an unwind destination
     }
 
+    @IBAction private func showUserAchievements() {
+        moveToAchievements()
+    }
+
     @IBAction private func signUserOut() {
         let auth = AuthService()
         auth.logOut()
@@ -134,6 +138,13 @@ class LobbiesViewController: UIViewController {
         self.performSegue(
             withIdentifier: SegueIdentifier.lobbiesToLobby,
             sender: listing
+        )
+    }
+
+    private func moveToAchievements() {
+        self.performSegue(
+            withIdentifier: SegueIdentifier.lobbiesToAchievements,
+            sender: nil
         )
     }
 

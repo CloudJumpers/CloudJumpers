@@ -15,3 +15,20 @@ protocol InGameConfig {
     func getGameRules() -> GameRules
     func getIdOrderedPlayers() -> [PlayerInfo]
 }
+
+extension InGameConfig {
+    func getAchievementProcessor() -> AchievementProcessor {
+        guard let userId = AuthService().getUserId() else {
+            fatalError("UserId not retrievable in game")
+        }
+
+        let processor = AchievementProcessor()
+
+        AchievementFactory.createAchievements(
+            userId: userId,
+            onLoad: nil
+        ).forEach { processor.addAchievement($0) }
+
+        return processor
+    }
+}

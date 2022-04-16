@@ -11,15 +11,22 @@ class GameManager {
     unowned var delegate: GameManagerDelegate?
 
     private var world: GameWorld
-    private var metaData: GameMetaData
     private var rules: GameRules
+    private var achievementProcessor: AchievementProcessor
+
     private(set) var isHost = false
 
-    init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(
+        rendersTo scene: Scene?,
+        handlers: RemoteEventHandlers,
+        rules: GameRules,
+        achievementProcessor: AchievementProcessor
+    ) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
-        metaData = GameMetaData()
         self.rules = rules
+        self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
+        self.achievementProcessor.setTarget(world)
     }
 
     func update(within time: CGFloat) {
@@ -32,25 +39,9 @@ class GameManager {
         self.isHost = true
         rules.enableHostSystems()
     }
-
-    // TODO: This shouldn't touch PhysicsComponent anymore
-    func updatePlayer(with displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        if displacement != .zero {
-            inputMove(by: displacement)
-        } else {
-            // TODO: Figure out how to do without WhenStationaryEvent
-            let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.idle.key)
-            world.add(WhenStationaryEvent(entity.id, do: animateEvent))
-        }
-    }
-
-    func setUpGame(with blueprint: Blueprint, velocity: VelocityGenerationInfo,
-                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        setUpEnvironment(with: blueprint, velocity: velocity)
+    
+    func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        setUpEnvironment(with: blueprint)
         rules.setUpForRule()
         rules.setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
     }
@@ -90,7 +81,7 @@ class GameManager {
 
     private func checkHasGameEnd() {
         if rules.hasGameEnd() {
-            delegate?.manager(self, didEndGameWith: metaData)
+            delegate?.manager(self, didEndGameWith: rules.fetchLocalCompletionData())
         }
     }
 
@@ -98,51 +89,15 @@ class GameManager {
 
 // MARK: - InputResponder
 extension GameManager: InputResponder {
-    var associatedEntity: Entity? {
-        get { world.entity(with: metaData.playerId) }
-        set { metaData.playerId = newValue?.id ?? EntityID() }
-    }
-
-    // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
-        let soundEvent = SoundEvent(.walking)
-
-        world.add(moveEvent.then(do: soundEvent))
-
-        // TODO: Figure out how to do without WhenStationaryEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.walking.key)
-        world.add(WhenStationaryEvent(entity.id, do: animateEvent))
+        world.add(JoystickUpdateEvent(displacement: displacement))
     }
 
     func inputJump() {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let jumpEvent = JumpEvent(onEntityWith: entity.id)
-        let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
-
-        // TODO: Figure out how to integrate AnimateEvent into JumpEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.jumping.key)
-
-        world.add(jumpEvent.then(do: soundEvent))
-        world.add(animateEvent)
+        world.add(JumpButtonPressedEvent())
     }
 
     func activatePowerUp(at location: CGPoint) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        world.add(PowerUpActivateEvent(by: entity.id, location: location))
-
-        world.dispatch(ExternalPowerUpActivateEvent(
-            activatePowerUpPositionX: location.x,
-            activatePowerUpPositionY: location.y))
+        world.add(PowerUpLocationPressedEvent(location: location))
     }
 }

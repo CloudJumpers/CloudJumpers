@@ -37,13 +37,11 @@ struct RaceToTop: GameMode {
         RaceToTopPreGameManager(lobbyId)
     }
 
-    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager {
-        let completionData = RaceToTopData(
-            playerId: metaData.playerId,
-            playerName: metaData.playerName,
-            completionTime: metaData.time
-        )
+    func createPostGameManager(_ lobbyId: NetworkID, completionData: LocalCompletionData) -> PostGameManager {
 
+        guard let completionData = completionData as? RaceToTopData else {
+            fatalError("Can not finish Race to the Top game")
+        }
         let endpoint = generateEndpoint(lobbyId)
         return RaceToTopPostGameManager(completionData, endpoint)
     }

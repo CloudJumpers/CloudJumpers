@@ -62,7 +62,9 @@ class GameViewController: UIViewController {
         gameManager = GameManager(
             rendersTo: scene,
             handlers: handlers,
-            rules: config.getGameRules())
+            rules: config.getGameRules(),
+            achievementProcessor: config.getAchievementProcessor()
+        )
 
         setUpGameScene()
         setUpGameManager()
@@ -144,7 +146,7 @@ class GameViewController: UIViewController {
         view = skView
     }
 
-    private func transitionToEndGame(with metaData: GameMetaData) {
+    private func transitionToEndGame(with completionData: LocalCompletionData) {
         guard !isMovingToPostGame,
               let activeLobby = lobby,
               let gameConfig = activeLobby.gameConfig as? PostGameConfig
@@ -152,7 +154,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, completionData: completionData)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
@@ -171,7 +173,7 @@ extension GameViewController: GameSceneDelegate {
             return
         }
         gameManager.update(within: interval)
-        gameManager.updatePlayer(with: joystick?.displacement ?? .zero)
+        gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
         // Check if player is host for each update iteration, enable as needed
         // TODO: Bring this to a callback if possible to reduce the need to check everytime
@@ -183,7 +185,7 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameManagerDelegate
 extension GameViewController: GameManagerDelegate {
-    func manager(_ manager: GameManager, didEndGameWith metaData: GameMetaData) {
-        transitionToEndGame(with: metaData)
+    func manager(_ manager: GameManager, didEndGameWith completionData: LocalCompletionData) {
+        transitionToEndGame(with: completionData)
     }
 }

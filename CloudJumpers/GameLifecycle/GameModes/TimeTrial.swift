@@ -43,12 +43,10 @@ struct TimeTrial: GameMode {
         return TimeTrialPreGameManager(endpoint, lobbyId)
     }
 
-    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager {
-        let completionData = TimeTrialData(
-            playerId: metaData.playerId,
-            playerName: metaData.playerName,
-            completionTime: metaData.time
-        )
+    func createPostGameManager(_ lobbyId: NetworkID, completionData: LocalCompletionData) -> PostGameManager {
+        guard let completionData = completionData as? TimeTrialData else {
+            fatalError("Can not finish TimeTrial game")
+        }
 
         let endpoint = generateEndpointPath(lobbyId)
         return TimeTrialPostGameManager(completionData, endpoint, lobbyId)

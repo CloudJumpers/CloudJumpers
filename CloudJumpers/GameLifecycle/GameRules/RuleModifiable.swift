@@ -10,6 +10,7 @@ import Foundation
 protocol RuleModifiable: AnyObject {
     func components<T: Component>(ofType type: T.Type) -> [T]
     func component<T: Component>(ofType type: T.Type, of entity: Entity) -> T?
+    func component<T: Component>(ofType type: T.Type, of entityWithID: EntityID) -> T?
     func add(_ event: Event)
     func dispatch(_ remoteEvent: RemoteEvent)
     func add(_ entity: Entity)
