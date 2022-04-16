@@ -65,7 +65,7 @@ class LevelGenerator {
         let xMin = Float(-xMax)
 
         let yMax = Float(positionGenerationInfo.worldSize.height)
-        let yMin = Float(positionGenerationInfo.firstPlatformPosition.y)
+        let yMin = Float(-100.0)
 
         let positionX = random(in: xMin...xMax, using: &generator)
         let positionY = random(in: yMin...yMax, using: &generator)

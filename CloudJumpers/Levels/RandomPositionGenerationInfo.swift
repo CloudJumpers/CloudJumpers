@@ -10,6 +10,4 @@ import CoreGraphics
 
 struct RandomPositionGenerationInfo {
     let worldSize: CGSize
-    let positionXRange: ClosedRange<Float>
-    let firstPlatformPosition: CGPoint
 }

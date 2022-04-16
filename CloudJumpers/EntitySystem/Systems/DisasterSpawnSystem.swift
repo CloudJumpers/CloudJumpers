@@ -23,8 +23,9 @@ class DisasterSpawnSystem: System {
     }
 
     convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo,
-                     velocityGenerationInfo: RandomVelocityGenerationInfo) {
-        self.init(for: manager)
+                     velocityGenerationInfo: RandomVelocityGenerationInfo,
+                     dispatcherVia dispatcher: EventDispatcher? = nil) {
+        self.init(for: manager, dispatchesVia: dispatcher)
         self.positionGenerationInfo = positionGenerationInfo
         self.velocityGenerationInfo = velocityGenerationInfo
     }

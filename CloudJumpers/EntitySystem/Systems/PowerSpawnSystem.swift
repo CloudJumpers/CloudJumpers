@@ -22,13 +22,13 @@ class PowerSpawnSystem: System {
         self.dispatcher = dispatcher
     }
 
-    convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo) {
-        self.init(for: manager)
+    convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo,
+                     dispatcherVia dispatcher: EventDispatcher? = nil) {
+        self.init(for: manager, dispatchesVia: dispatcher)
         self.positionGenerationInfo = positionGenerationInfo
     }
 
     func update(within time: CGFloat) {
-
         guard RandomSpawnGenerator.isSpawning(successRate: 0.3),
               let positionGenerationInfo = positionGenerationInfo
         else {
