@@ -59,13 +59,14 @@ class GameViewController: UIViewController {
             return
         }
 
+        setUpGameScene()
+
         gameManager = GameManager(
             rendersTo: scene,
             inChargeID: lobby?.hostId,
             handlers: handlers,
             rules: config.getGameRules())
 
-        setUpGameScene()
         setUpGameManager()
         setUpInputControls()
         setUpSKViewAndPresent()
