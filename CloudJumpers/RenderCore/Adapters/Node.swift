@@ -11,10 +11,12 @@ typealias NodeCore = SKNode
 typealias SpriteNodeCore = SKSpriteNode
 
 class Node {
+    private static let animationKeyPrefix = "CJAnimate:"
     private var captionNodeCore: SKLabelNode?
 
     let nodeCore: NodeCore
     var name: String?
+    var activeAnimationKey: String = ""
 
     var physicsBody: PhysicsBody? {
         didSet {
@@ -46,9 +48,14 @@ class Node {
         set { nodeCore.zRotation = newValue }
     }
 
-    func scale(by scale: CGVector) {
-        nodeCore.xScale = scale.dx
-        nodeCore.yScale = scale.dy
+    var xScale: CGFloat {
+        get { nodeCore.xScale }
+        set { nodeCore.xScale = newValue }
+    }
+
+    var yScale: CGFloat {
+        get { nodeCore.yScale }
+        set { nodeCore.yScale = newValue }
     }
 
     func addChild(_ node: Node) {
@@ -80,12 +87,21 @@ class Node {
         nodeCore.run(.move(by: displacement, duration: duration))
     }
 
-    func animate(with textures: [TextureFrame], interval: TimeInterval) {
-        nodeCore.run(.animate(
+    func animateLoop(with textures: [TextureFrame], interval: TimeInterval, key: String = "") {
+        nodeCore.removeAction(forKey: animationKey(with: activeAnimationKey))
+
+        nodeCore.run(.repeatForever(.animate(
             with: Texture.textures(of: textures),
             timePerFrame: interval,
             resize: false,
-            restore: true))
+            restore: true)),
+        withKey: animationKey(with: key))
+
+        self.activeAnimationKey = key
+    }
+
+    private func animationKey(with key: String) -> String {
+        Self.animationKeyPrefix + key
     }
 }
 

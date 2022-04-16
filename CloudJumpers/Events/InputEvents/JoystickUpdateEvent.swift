@@ -41,7 +41,6 @@ struct JoystickUpdateEvent: Event {
             let walkingAnimateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.walking.key)
             let soundEvent = SoundEvent(.walking)
             supplier.add(walkingAnimateEvent.then(do: soundEvent))
-
         }
     }
 }

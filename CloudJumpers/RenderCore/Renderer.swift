@@ -65,6 +65,7 @@ class Renderer {
     private func update(entity: Entity) {
         updatePosition(entity: entity)
         updatePhysics(entity: entity)
+        updateAnimation(entity: entity)
     }
 
     // MARK: Update based on component
@@ -74,6 +75,7 @@ class Renderer {
         else { return }
 
         node.position = positionComponent.position
+        node.xScale = abs(node.xScale) * positionComponent.side.rawValue
     }
 
     private func updatePhysics(entity: Entity) {
@@ -89,10 +91,11 @@ class Renderer {
     private func updateAnimation(entity: Entity) {
         guard let node = entityNode[entity.id],
               let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
-              let animation = animationComponent.activeAnimation
+              let animation = animationComponent.activeAnimation,
+              node.activeAnimationKey != animation.key
         else { return }
 
-        node.animate(with: animation.frames, interval: 0.1)
+        node.animateLoop(with: animation.frames, interval: 0.1, key: animation.key)
     }
 
     private func create(entity: Entity) {
