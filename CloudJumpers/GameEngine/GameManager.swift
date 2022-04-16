@@ -13,12 +13,11 @@ class GameManager {
     private var world: GameWorld
     private var metaData: GameMetaData
     private var rules: GameRules
-    var inChargeID: NetworkID?
+    private(set) var isHost = false
 
-    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
-        self.inChargeID = inChargeID
         self.rules = rules
         self.rules.setTarget(world)
     }
@@ -29,6 +28,10 @@ class GameManager {
         checkHasGameEnd()
     }
 
+    func enableHostStatus() {
+        self.isHost = true
+        rules.enableHostSystems()
+    }
     func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         setUpEnvironment(with: blueprint)
         rules.setUpForRule()
@@ -71,6 +74,7 @@ class GameManager {
             delegate?.manager(self, didEndGameWith: metaData)
         }
     }
+
 }
 
 // MARK: - InputResponder

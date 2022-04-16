@@ -13,6 +13,7 @@ protocol GameRules {
     func setTarget(_ target: RuleModifiable)
     func setUpForRule()
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo])
+    func enableHostSystems()
     func update(within time: CGFloat)
     func hasGameEnd() -> Bool
 
