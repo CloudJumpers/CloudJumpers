@@ -19,9 +19,6 @@ class StandOnSystem: System {
         self.dispatcher = dispatcher
     }
 
-    func update(within time: CGFloat) {
-        }
-
     func changeStandOnEntity(for id: EntityID, to standOnEntityID: EntityID?, at timestamp: TimeInterval) {
         guard let standOnComponent = manager?.component(ofType: StandOnComponent.self, of: id) else {
             return
