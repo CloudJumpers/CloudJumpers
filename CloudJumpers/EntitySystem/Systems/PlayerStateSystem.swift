@@ -50,4 +50,17 @@ class PlayerStateSystem: System {
     func getPlayerEntity() -> Entity? {
         manager?.components(ofType: PlayerTag.self).first?.entity
     }
+    
+    func promoteToGod(for entityID: EntityID) {
+        guard let entity = manager?.entity(with: entityID) else {
+            return
+        }
+        manager?.addComponent(GodTag(), to: entity)
+    }
+    func demoteFromGod(for entityID: EntityID) {
+        guard let entity = manager?.entity(with: entityID) else {
+            return
+        }
+        manager?.removeComponent(ofType: GodTag.self, from: entity)
+    }
 }
