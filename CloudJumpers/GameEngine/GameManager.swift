@@ -64,6 +64,7 @@ class GameManager {
         addFloor(at: Constants.floorPosition)
 
         // TODO: Extend LevelGenerator so that this condition need not happen
+        // TODO: Add oscillation to Cloud, and possibly ExternalRepositionCloudEvent?
         for cloudPosition in cloudPositions where cloudPosition != highestPosition {
             world.add(Cloud(at: cloudPosition, texture: .cloud1))
         }
