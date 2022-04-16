@@ -33,6 +33,7 @@ class Guest: Entity {
         manager.addComponent(animationComponent, to: self)
         manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(InventoryComponent(), to: self)
+        manager.addComponent(StandOnComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
