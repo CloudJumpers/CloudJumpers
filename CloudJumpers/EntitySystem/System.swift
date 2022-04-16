@@ -19,4 +19,5 @@ protocol System: AnyObject {
 
 extension System {
     func shouldUpdate(within time: CGFloat) -> Bool { true }
+    func update(within time: CGFloat) { }
 }

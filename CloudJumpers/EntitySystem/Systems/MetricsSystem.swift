@@ -21,9 +21,6 @@ class MetricsSystem: System {
         self.counts = [:]
     }
 
-    func update(within time: CGFloat) {
-    }
-
     func fetchMetrics() -> [String: Int] {
         let snapshot = counts
         counts.removeAll()

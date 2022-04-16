@@ -19,9 +19,6 @@ class PowerUpSystem: System {
         self.dispatcher = dispatcher
     }
 
-    func update(within time: CGFloat) {
-    }
-
     func activatePowerUp(_ powerUpID: EntityID, activatorId: EntityID, at location: CGPoint) {
         guard let powerUpComponent = manager?.component(ofType: PowerUpComponent.self, of: powerUpID) else {
             return

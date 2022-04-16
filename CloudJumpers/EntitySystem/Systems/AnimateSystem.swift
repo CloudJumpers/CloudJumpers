@@ -19,9 +19,6 @@ class AnimateSystem: System {
         self.dispatcher = dispatcher
     }
 
-    func update(within time: CGFloat) {
-    }
-
     func animate(entityWith id: EntityID, to key: AnimationKey) {
         guard let animationComponent = manager?.component(ofType: AnimationComponent.self, of: id),
               let animation = animationComponent.animations[key]
