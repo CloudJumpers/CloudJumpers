@@ -30,8 +30,10 @@ class SlowmoSystem: System {
             let activatorId = component.activatorId
             let playerLocation = positionComponent.position
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
-                isAffectingLocation(location: playerLocation, slowmoComponent: component) {
-                // TODO: supposedly add SlowmoEvent here
+                isAffectingLocation(location: playerLocation, slowmoComponent: component),
+               let effectEntity = component.entity {
+                
+                dispatcher?.add(SlowMoveEffector(on: playerEntity, watching: effectEntity))
             }
         }
     }
