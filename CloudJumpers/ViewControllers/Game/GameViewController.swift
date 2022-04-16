@@ -74,12 +74,10 @@ class GameViewController: UIViewController {
 
     // MARK: - Game Set-up Methods
     private func setUpGameScene() {
-        guard let scene = GameScene(fileNamed: "GameScene") else {
-            fatalError("GameScene.sks was not found!")
-        }
-
+        let scene = GameScene(size: CGSize(width: 750, height: 1_000))
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
+        scene.backgroundColor = .white
         self.scene = scene
     }
 
