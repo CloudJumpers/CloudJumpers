@@ -15,10 +15,12 @@ struct TimeTrial: GameMode {
 
     private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
 
+    private(set) var isPlayingWithShadow = false
+
     private var players = [PlayerInfo]()
 
     func getGameRules() -> GameRules {
-        TimeTrialGameRules()
+        TimeTrialGameRules(isPlayingWithShadow: isPlayingWithShadow)
     }
 
     mutating func setSeed(_ seed: Int) {
