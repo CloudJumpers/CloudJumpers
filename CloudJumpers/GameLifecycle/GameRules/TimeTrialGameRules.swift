@@ -17,8 +17,8 @@ class TimeTrialGameRules: GameRules {
         target?.components(ofType: PlayerTag.self).first?.entity
     }
 
-    private var isPlayingWithShadow
-    
+    private var isPlayingWithShadow: Bool
+
     init(isPlayingWithShadow: Bool) {
         self.isPlayingWithShadow = isPlayingWithShadow
     }

@@ -14,8 +14,8 @@ struct TimeTrial: GameMode {
     let maximumPlayers: Int = 1
 
     private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
-    
-    private(set) var isPlayingWithShadow: Bool = false
+
+    private(set) var isPlayingWithShadow = false
 
     private var players = [PlayerInfo]()
 
