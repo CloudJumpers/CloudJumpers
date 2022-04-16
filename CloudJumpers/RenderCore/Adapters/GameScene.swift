@@ -8,7 +8,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    unowned var updateDelegate: SceneUpdateDelegate?
+    weak var updateDelegate: SceneUpdateDelegate?
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
