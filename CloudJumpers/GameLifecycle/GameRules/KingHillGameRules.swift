@@ -10,9 +10,11 @@ import Foundation
 import CoreGraphics
 
 class KingHillGameRules: GameRules {
+    private static let gameDuration = 120.0
+
     private unowned var target: RuleModifiable?
 
-    private var countDownTimer: StaticLabel?
+    private var timer: StaticLabel?
     private var scoreLabel: StaticLabel?
 
     var playerInfo: PlayerInfo?
@@ -26,8 +28,11 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        // TODO: Create count down timer and score label
-
+        // TODO: Create score label
+        // For this gameMode, we need a countdown timer.
+        // A count down timer can be implemented using a count up timer,
+        // through taking (finishTime - count up timer)
+        self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -61,7 +66,9 @@ class KingHillGameRules: GameRules {
 
     func update(within time: CGFloat) {
         guard let playerID = playerInfo?.playerId,
-              let target = target
+              let target = target,
+              let timer = timer,
+              let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
         else {
             return
         }
@@ -73,7 +80,8 @@ class KingHillGameRules: GameRules {
             target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
-        // TODO: Add timer update here
+        let countDownTime = KingHillGameRules.gameDuration - timedComponent.time
+        updateLabelWithValue(String(countDownTime), label: timer, target: target)
     }
 
     // TODO: Change this
