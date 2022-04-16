@@ -32,7 +32,7 @@ class TeleportSystem: System {
 
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
                 isAffectingLocation(location: playerLocation, teleportComponent: component) {
-                
+
                 // TODO: test for edge cases where players teleport to center of floor/wall/cloud
                 playerPositionComponent.position = component.position
             }
