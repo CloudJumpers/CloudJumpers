@@ -10,4 +10,5 @@ protocol Simulatable: AnyObject {
     func component<T: Component>(ofType type: T.Type, of entity: Entity) -> T?
     func hasComponent<T: Component>(ofType type: T.Type, in entity: Entity) -> Bool
     func handleContact(between entityAID: EntityID, and entityBID: EntityID)
+    func syncPositions(with entityPositionMap: EntityPositionMap)
 }

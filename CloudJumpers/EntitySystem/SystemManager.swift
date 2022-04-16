@@ -31,7 +31,7 @@ class SystemManager {
     }
 
     private func register(_ system: System) {
-        let identifier = String(describing: system.self)
+        let identifier = String(describing: type(of: system).self)
         systems[identifier] = system
     }
 
