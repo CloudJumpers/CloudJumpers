@@ -17,8 +17,11 @@ class TimeTrialGameRules: GameRules {
         target?.components(ofType: PlayerTag.self).first?.entity
     }
 
-    // TODO: Pass this in from outside
-    private var isPlayingWithShadow = true
+    private var isPlayingWithShadow: Bool
+
+    init(isPlayingWithShadow: Bool) {
+        self.isPlayingWithShadow = isPlayingWithShadow
+    }
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
@@ -28,10 +31,8 @@ class TimeTrialGameRules: GameRules {
         guard let target = target else {
             return
         }
+        target.deactivateSystem(ofType: DisasterSpawnSystem.self)
 
-        if isPlayingWithShadow {
-            target.deactivateSystem(ofType: DisasterSpawnSystem.self)
-        }
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
@@ -54,6 +55,12 @@ class TimeTrialGameRules: GameRules {
                     name: name,
                     with: id))
             }
+        }
+    }
+
+    func enableHostSystems() {
+        if !isPlayingWithShadow {
+            target?.activateSystem(ofType: DisasterSpawnSystem.self)
         }
     }
 
