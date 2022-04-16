@@ -61,11 +61,7 @@ class Renderer {
     }
 
     private func update(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
-        else { return }
-
-        node.position = positionComponent.position
+        updatePosition(entity: entity)
     }
 
     // MARK: Update based on component
@@ -103,11 +99,59 @@ class Renderer {
         node.position = positionComponent.position
         node.name = entity.id
 
+        if let physicsBody = createPhysicsBody(for: entity) {
+            node.physicsBody = physicsBody
+        }
+
         let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
         scene?.addChild(node, static: `static` ?? false)
         bindCamera(to: node, with: entity)
 
         cache(entity: entity, node: node)
+    }
+
+    private func createPhysicsBody(for entity: Entity) -> PhysicsBody? {
+        guard let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity) else {
+            return nil
+        }
+
+        let body = createPhysicsBody(with: physicsComponent)
+        if let body = body {
+            configurePhysicsBody(body, with: physicsComponent)
+        }
+
+        return body
+    }
+
+    private func createPhysicsBody(with physicsComponent: PhysicsComponent) -> PhysicsBody? {
+        switch physicsComponent.shape {
+        case .circle:
+            guard let radius = physicsComponent.radius else {
+                fatalError("Circle PhysicsComponent does not have a radius")
+            }
+
+            return PhysicsBody(circleOf: radius)
+
+        case .rectangle:
+            guard let size = physicsComponent.size else {
+                fatalError("Rectangle PhysicsComponent does not have a size")
+            }
+
+            return PhysicsBody(rectangleOf: size)
+        }
+    }
+
+    private func configurePhysicsBody(_ body: PhysicsBody, with physicsComponent: PhysicsComponent) {
+        body.mass = physicsComponent.mass ?? .zero
+        body.velocity = physicsComponent.velocity
+        body.isDynamic = physicsComponent.isDynamic
+        body.affectedByGravity = physicsComponent.affectedByGravity
+        body.allowsRotation = physicsComponent.allowsRotation
+        body.restitution = physicsComponent.restitution
+        body.linearDamping = physicsComponent.linearDamping
+        body.categoryBitMask = physicsComponent.categoryBitMask
+        body.collisionBitMask = physicsComponent.collisionBitMask
+        body.contactTestBitMask = physicsComponent.contactTestBitMask
     }
 
     private func bindCamera(to node: Node, with entity: Entity) {
