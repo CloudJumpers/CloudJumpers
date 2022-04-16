@@ -28,6 +28,14 @@ class PowerUpActivateEvent: Event {
         else { return }
 
         powerUpSystem.activatePowerUp(powerUpID, activatorId: entityID, at: location)
+        incrementMetric(in: target)
     }
 
+    private func incrementMetric(in target: EventModifiable) {
+        guard let metricsSystem = target.system(ofType: MetricsSystem.self) else {
+            return
+        }
+
+        metricsSystem.incrementMetric(String(describing: PowerUpActivateEvent.self))
+    }
 }

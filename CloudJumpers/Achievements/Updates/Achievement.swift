@@ -28,6 +28,10 @@ protocol Achievement: AnyObject {
 }
 
 extension Achievement {
+    var isUnlocked: Bool {
+        !progressRatio.isLess(than: 1.0)
+    }
+
     func getSpecificKey(_ key: String) -> String {
         "\(title) \(key)"
     }
