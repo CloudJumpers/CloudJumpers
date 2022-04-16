@@ -48,17 +48,20 @@ class GameManager {
         }
     }
 
-    func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        setUpEnvironment(with: blueprint)
+    func setUpGame(with blueprint: Blueprint, velocity: VelocityGenerationInfo,
+                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        setUpEnvironment(with: blueprint, velocity: velocity)
         rules.setUpForRule()
         rules.setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
     }
 
-    private func setUpEnvironment(with blueprint: Blueprint) {
+    private func setUpEnvironment(with blueprint: Blueprint, velocity: VelocityGenerationInfo) {
         let cloudPositions = LevelGenerator.positionFrom(blueprint)
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
+
+        let cloudVelocities = LevelGenerator.velocityFrom(velocity, size: cloudPositions.count)
 
         addPlatform(at: highestPosition)
 
@@ -68,9 +71,8 @@ class GameManager {
         addFloor(at: Constants.floorPosition)
 
         // TODO: Extend LevelGenerator so that this condition need not happen
-        // TODO: Add oscillation to Cloud, and possibly ExternalRepositionCloudEvent?
-        for cloudPosition in cloudPositions where cloudPosition != highestPosition {
-            world.add(Cloud(at: cloudPosition, texture: .cloud1))
+        for idx in 0..<cloudPositions.count where cloudPositions[idx] != highestPosition {
+            world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
     }
 

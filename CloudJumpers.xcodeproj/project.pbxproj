@@ -119,6 +119,7 @@
 		3E363302280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */; };
 		3E363304280A9AC400FAD7A8 /* HorizontalOscillationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */; };
 		3E363306280A9E3300FAD7A8 /* CloudWallCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363305280A9E3300FAD7A8 /* CloudWallCollideEvent.swift */; };
+		3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */; };
 		3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BEE27F6D5C900BF526C /* Floor.swift */; };
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
@@ -403,6 +404,7 @@
 		3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationComponent.swift; sourceTree = "<group>"; };
 		3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationSystem.swift; sourceTree = "<group>"; };
 		3E363305280A9E3300FAD7A8 /* CloudWallCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudWallCollideEvent.swift; sourceTree = "<group>"; };
+		3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityGenerationInfo.swift; sourceTree = "<group>"; };
 		3E3E0BEE27F6D5C900BF526C /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		3E3E0BF027F6D61200BF526C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
@@ -789,6 +791,7 @@
 			isa = PBXGroup;
 			children = (
 				1AC1603D27F19369006E4018 /* Blueprint.swift */,
+				3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */,
 				1AC1603F27F19386006E4018 /* LevelGenerator.swift */,
 				A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */,
 			);
@@ -1872,6 +1875,7 @@
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
 				1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */,
+				3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,

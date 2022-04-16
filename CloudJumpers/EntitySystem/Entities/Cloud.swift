@@ -14,16 +14,14 @@ class Cloud: Entity {
 
     private let position: CGPoint
     private let texture: Clouds
-    private let isOscillating: Bool
     private let horizontalVelocity: CGFloat
 
-    init(at position: CGPoint, texture: Clouds, isOscillating: Bool = false,
+    init(at position: CGPoint, texture: Clouds,
          horizontalVelocity: CGFloat = CGFloat.zero,
          with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.texture = texture
         self.position = position
-        self.isOscillating = isOscillating
         self.horizontalVelocity = horizontalVelocity
     }
 
@@ -34,7 +32,7 @@ class Cloud: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
 
-        if isOscillating {
+        if abs(horizontalVelocity) <= Constants.cloudMovingTolerance {
             manager.addComponent(HorizontalOscillationComponent(at: position,
                                                                 horizontalVelocity: horizontalVelocity),
                                  to: self)
