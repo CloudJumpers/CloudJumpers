@@ -50,7 +50,7 @@ class PlayerStateSystem: System {
     func getPlayerEntity() -> Entity? {
         manager?.components(ofType: PlayerTag.self).first?.entity
     }
-    
+
     func promoteToGod(for entityID: EntityID) {
         guard let entity = manager?.entity(with: entityID) else {
             return

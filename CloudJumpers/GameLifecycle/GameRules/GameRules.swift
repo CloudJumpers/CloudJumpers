@@ -35,6 +35,15 @@ extension GameRules {
         }
     }
 
+    func isPlayerOnTopPlatform(target: RuleModifiable) -> Bool {
+        guard let playerID = playerInfo?.playerId,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
+        else {
+            return false
+        }
+        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+    }
+
     func isPlayerRespawning(target: RuleModifiable) -> Bool {
         guard let playerID = playerInfo?.playerId,
               let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)

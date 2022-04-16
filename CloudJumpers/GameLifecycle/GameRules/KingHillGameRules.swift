@@ -71,7 +71,7 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        // TODO: Add promote to god if stand on top platform
+        updateGodStatus(target: target)
         updateTwoPlayerSameCloud(target: target)
         updateScore(target: target)
         updateCountDownTimer(target: target)
@@ -93,6 +93,17 @@ class KingHillGameRules: GameRules {
         let score = distanceToTop != 0 ? 1 / distanceToTop : 1
         playerScore += score
         updateLabelWithValue("\(playerScore)", label: scoreLabel, target: target)
+    }
+
+    private func updateGodStatus(target: RuleModifiable) {
+        guard let playerID = playerInfo?.playerId else {
+            return
+        }
+        if isPlayerOnTopPlatform(target: target) {
+            target.add(PromoteGodEvent(onEntityWith: playerID))
+        } else {
+            target.add(DemoteGodEvent(onEntityWith: playerID))
+        }
     }
 
     private func updateCountDownTimer(target: RuleModifiable) {
