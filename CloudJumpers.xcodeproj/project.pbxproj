@@ -226,6 +226,7 @@
 		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
 		A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */; };
+		A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
 		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
@@ -512,6 +513,7 @@
 		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUpdateEvent.swift; sourceTree = "<group>"; };
+		A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButtonPressedEvent.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
@@ -1347,6 +1349,7 @@
 			isa = PBXGroup;
 			children = (
 				A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */,
+				A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */,
 			);
 			path = InputEvents;
 			sourceTree = "<group>";
@@ -1772,6 +1775,7 @@
 				1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */,
 				935280D727F6B082002E3A1D /* Response.swift in Sources */,
 				9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */,
+				A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */,
 				A108AB5027E5070E003157E8 /* EventManager.swift in Sources */,
 				3EA7C8A12802AC28009BCA63 /* PhysicsCollision.swift in Sources */,
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,

@@ -86,18 +86,7 @@ extension GameManager: InputResponder {
     }
 
     func inputJump() {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let jumpEvent = JumpEvent(onEntityWith: entity.id)
-        let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
-
-        // TODO: Figure out how to integrate AnimateEvent into JumpEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.jumping.key)
-
-        world.add(jumpEvent.then(do: soundEvent))
-        world.add(animateEvent)
+        world.add(JumpButtonPressedEvent())
     }
 
     func activatePowerUp(at location: CGPoint) {
