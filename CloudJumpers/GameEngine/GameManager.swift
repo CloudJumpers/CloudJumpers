@@ -87,7 +87,7 @@ class GameManager {
 
     private func checkHasGameEnd() {
         if rules.hasGameEnd() {
-            delegate?.manager(self, didEndGameWith: metaData)
+            delegate?.manager(self, didEndGameWith: rules.fetchLocalCompletionData())
         }
     }
 
