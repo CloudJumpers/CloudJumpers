@@ -14,7 +14,7 @@ class HorizontalOscillationSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    required init(for manager: EntityManager) {
+    required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher?) {
         self.manager = manager
     }
 
