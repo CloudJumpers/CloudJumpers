@@ -37,6 +37,7 @@ class GameWorld {
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(AnimateSystem(for: entityManager))
         systemManager.register(StandOnSystem(for: entityManager))
+        systemManager.register(TimedSystem(for: entityManager))
     }
 }
 
