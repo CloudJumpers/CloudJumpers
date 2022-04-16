@@ -11,7 +11,6 @@ protocol Achievement: AnyObject {
     var title: String { get }
     var description: String { get }
 
-    var userId: NetworkID { get }
     var currentProgress: String? { get }
     var requiredProgress: String { get }
     var progressRatio: Double { get }
@@ -20,9 +19,9 @@ protocol Achievement: AnyObject {
     var metricKeys: [String] { get }
 
     var onLoad: AchievementOnLoad { get }
-    var dataDelegate: AchievementDataDelegate? { get }
-    func load(_ key: String, _ value: Any)
-    func update(_ key: String, _ value: Any)
+    var dataUpdater: AchievementDataDelegate? { get }
+    func load(_ key: String, _ value: Int)
+    func update(_ key: String, _ value: Int)
 
     init(_ userId: NetworkID, _ onLoad: AchievementOnLoad)
 }
@@ -34,8 +33,6 @@ extension Achievement {
 
     func recoverGenericKey(_ specificKey: String) -> String {
         let parts = specificKey.components(separatedBy: "\(title) ")
-        assert(parts.first == title)
-
         guard let key = parts.last else {
             fatalError("Expected key to exist")
         }
@@ -43,14 +40,14 @@ extension Achievement {
     }
 
     func fetchOnce(_ key: String) {
-        dataDelegate?.fetchAchievementData(getSpecificKey(key))
+        dataUpdater?.fetchAchievementData(getSpecificKey(key))
     }
 
-    func genericLoad(_ key: String, _ value: Any) {
+    func genericLoad(_ key: String, _ value: Int) {
         load(recoverGenericKey(key), value)
     }
 
-    func update(_ key: String, _ value: Any) {
-        dataDelegate?.updateAchievementData(getSpecificKey(key), value)
+    func genericIncrement(_ key: String, _ value: Int) {
+        dataUpdater?.incrementAchievementData(getSpecificKey(key), by: value)
     }
 }

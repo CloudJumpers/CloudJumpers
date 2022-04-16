@@ -60,12 +60,14 @@ extension AchievementsViewController: UICollectionViewDataSource {
         let isUnlocked = achievements[indexPath.item].isUnlocked
         let currProgress = achievements[indexPath.item].currentProgress
         let reqProgress = achievements[indexPath.item].requiredProgress
+        let progress = achievements[indexPath.item].progressRatio
 
         achievementCell.setTitle(title)
         achievementCell.setDescription(description)
         achievementCell.setUnlockStatus(isUnlocked)
         achievementCell.setCurrent(currProgress ?? "")
         achievementCell.setRequired(reqProgress)
+        achievementCell.setProgressBar(progress)
 
         return achievementCell
     }

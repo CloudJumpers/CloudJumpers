@@ -17,6 +17,8 @@ class PollingUpdateDelegate: AchievementUpdateDelegate {
             return
         }
 
+        self.provider = provider
+
         timer = Timer.scheduledTimer(
             withTimeInterval: AchievementConstants.maxUpdateInterval,
             repeats: true

@@ -8,14 +8,13 @@
 import Foundation
 
 class JumpAchievement: Achievement {
-    let userId: NetworkID
     let onLoad: AchievementOnLoad
 
     let title: String = "Jumps"
     let description: String = "Lifetime jumps made across games."
     let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
-    weak var dataDelegate: AchievementDataDelegate?
+    var dataUpdater: AchievementDataDelegate?
 
     private var userJumps: Int?
     private let requiredJumps = 1_000
@@ -46,17 +45,20 @@ class JumpAchievement: Achievement {
     }
 
     required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
-        self.userId = userId
         self.onLoad = onLoad
+        self.dataUpdater = FBAchievementDataDelegate(userId)
+        self.dataUpdater?.achievement = self
+
+        metricKeys.forEach { fetchOnce($0) }
     }
 
-    func load(_ key: String, _ value: Any) {
-        guard let jumps = value as? Int else {
-            return
-        }
-
+    func load(_ key: String, _ value: Int) {
         assert(metricKeys.first == key)
-        userJumps = jumps
+        userJumps = value
         onLoad?()
+    }
+
+    func update(_ key: String, _ value: Int) {
+        genericIncrement(key, value)
     }
 }

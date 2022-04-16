@@ -46,7 +46,7 @@ class AchievementCell: UICollectionViewCell {
         progressDesc.text = progressText.text
     }
 
-    private func setProgressBar(_ progress: Double) {
+    func setProgressBar(_ progress: Double) {
         progressBar.progress = Float(progress)
     }
 }

@@ -9,10 +9,9 @@ import Foundation
 import FirebaseDatabase
 
 class FBAchievementDataDelegate: AchievementDataDelegate {
-
     private let achievementReference: DatabaseReference
 
-    var achievement: Achievement?
+    weak var achievement: Achievement?
 
     required init(_ userId: NetworkID) {
         self.achievementReference = Database
@@ -23,7 +22,7 @@ class FBAchievementDataDelegate: AchievementDataDelegate {
 
     func fetchAchievementData(_ key: String) {
         achievementReference.child(key).observeSingleEvent(of: .value) { [weak self] snapshot in
-            guard let value = snapshot.value else {
+            guard let value = snapshot.value as? Int else {
                 return
             }
 
@@ -31,8 +30,8 @@ class FBAchievementDataDelegate: AchievementDataDelegate {
         }
     }
 
-    func updateAchievementData(_ key: String, _ value: Any) {
-        achievementReference.child(key).setValue(value)
+    func incrementAchievementData(_ key: String, by: Int) {
+        achievementReference.child(key).setValue(ServerValue.increment(NSNumber(value: by)))
     }
 
     deinit {

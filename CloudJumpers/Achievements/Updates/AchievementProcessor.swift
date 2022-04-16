@@ -19,7 +19,7 @@ class AchievementProcessor {
         achievement.metricKeys.forEach { removeKey($0, for: achievement) }
     }
 
-    func processMetrics(_ metrics: [String: Any]) {
+    func processMetrics(_ metrics: [String: Int]) {
         metrics.forEach { notifyForKey($0.key, $0.value) }
     }
 
@@ -38,7 +38,7 @@ class AchievementProcessor {
         keyObservers[key] = keyObservers[key]?.filter { $0 !== achievement }
     }
 
-    private func notifyForKey(_ key: String, _ value: Any) {
+    private func notifyForKey(_ key: String, _ value: Int) {
         keyObservers[key]?.forEach { $0.update(key, value) }
     }
 }

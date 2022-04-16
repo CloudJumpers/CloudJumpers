@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MetricsProvider: AnyObject {
-    func getMetricsUpdate() -> [String: Any]
+    func getMetricsUpdate() -> [String: Int]
 }

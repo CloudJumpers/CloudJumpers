@@ -12,5 +12,5 @@ protocol AchievementDataDelegate: AnyObject {
 
     init(_ userId: NetworkID)
     func fetchAchievementData(_ key: String)
-    func updateAchievementData(_ key: String, _ value: Any)
+    func incrementAchievementData(_ key: String, by: Int)
 }

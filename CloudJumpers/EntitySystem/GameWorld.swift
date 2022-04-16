@@ -126,9 +126,9 @@ extension GameWorld: RuleModifiable {
 
 // MARK: - MetricsProvider
 extension GameWorld: MetricsProvider {
-    func getMetricsUpdate() -> [String: Any] {
+    func getMetricsUpdate() -> [String: Int] {
         guard let system = systemManager.system(ofType: MetricsSystem.self) else {
-            return [:]
+             return [:]
         }
         return system.fetchMetrics()
     }
