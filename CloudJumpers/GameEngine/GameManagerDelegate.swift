@@ -6,5 +6,5 @@
 //
 
 protocol GameManagerDelegate: AnyObject {
-    func manager(_ manager: GameManager, didEndGameWith metaData: GameMetaData)
+    func manager(_ manager: GameManager, didEndGameWith completionData: LocalCompletionData)
 }

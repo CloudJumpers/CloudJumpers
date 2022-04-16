@@ -11,13 +11,11 @@ class GameManager {
     unowned var delegate: GameManagerDelegate?
 
     private var world: GameWorld
-    private var metaData: GameMetaData
     private var rules: GameRules
     private(set) var isHost = false
 
     init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
-        metaData = GameMetaData()
         self.rules = rules
         self.rules.setTarget(world)
     }
@@ -71,7 +69,7 @@ class GameManager {
 
     private func checkHasGameEnd() {
         if rules.hasGameEnd() {
-            delegate?.manager(self, didEndGameWith: metaData)
+            delegate?.manager(self, didEndGameWith: rules.fetchLocalCompletionData())
         }
     }
 
