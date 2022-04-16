@@ -12,5 +12,5 @@ protocol PostGameConfig {
 
     var seed: Int { get }
 
-    func createPostGameManager(_ lobbyId: NetworkID, metaData: GameMetaData) -> PostGameManager
+    func createPostGameManager(_ lobbyId: NetworkID, completionData: LocalCompletionData) -> PostGameManager
 }

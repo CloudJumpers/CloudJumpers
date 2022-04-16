@@ -146,7 +146,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, completionData: completionData)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
