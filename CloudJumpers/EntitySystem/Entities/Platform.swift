@@ -25,6 +25,7 @@ class Platform: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(TopPlatformTag(), to: self)
     }
 

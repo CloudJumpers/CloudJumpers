@@ -30,6 +30,7 @@ class Wall: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

@@ -31,6 +31,7 @@ class Player: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
 
         manager.addComponent(InventoryComponent(), to: self)
         manager.addComponent(CameraAnchorTag(), to: self)

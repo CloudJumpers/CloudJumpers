@@ -31,6 +31,7 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(InventoryComponent(), to: self)
     }
 
