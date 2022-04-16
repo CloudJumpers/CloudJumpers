@@ -56,15 +56,14 @@ class DisasterSpawnSystem: System {
         dispatcher?.dispatch(remoteDisasterStart)
 
         spawn(disasterType, at: position, velocity: velocity, with: disasterId)
-
-        // TODO: Dispatch only
     }
 
+    // TODO: If time permits, add disasterPrompt before disaster
     func spawn(_ type: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector, with entityID: EntityID) {
         let disaster = Disaster(type, at: position, velocity: velocity, texture: .meteor, with: entityID)
-        let disasterPrompt = DisasterPrompt(type, at: position, removeAfter: Constants.disasterPromptPeriod)
+//        let disasterPrompt = DisasterPrompt(type, at: position, removeAfter: Constants.disasterPromptPeriod)
 
         manager?.add(disaster)
-        manager?.add(disasterPrompt)
+//        manager?.add(disasterPrompt)
     }
 }

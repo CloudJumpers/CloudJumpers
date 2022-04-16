@@ -114,4 +114,8 @@ struct Constants {
     static let teleportEffectDuration = 0.05
 
     static let cloudMovingTolerance = 0.001
+
+    static let outOfBoundBufferX = 50.0
+    static let outOfBoundBufferY = 1_000.0
+    static let minOutOfBoundBufferY = -800.0
 }

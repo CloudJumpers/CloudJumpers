@@ -130,6 +130,7 @@
 		3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */; };
 		3E36330E280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */; };
 		3E363310280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */; };
+		3E363312280B50DD00FAD7A8 /* OutOfBoundRemovalSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363311280B50DD00FAD7A8 /* OutOfBoundRemovalSystem.swift */; };
 		3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BEE27F6D5C900BF526C /* Floor.swift */; };
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
@@ -442,6 +443,7 @@
 		3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityGenerationInfo.swift; sourceTree = "<group>"; };
 		3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPositionGenerationInfo.swift; sourceTree = "<group>"; };
 		3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomVelocityGenerationInfo.swift; sourceTree = "<group>"; };
+		3E363311280B50DD00FAD7A8 /* OutOfBoundRemovalSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutOfBoundRemovalSystem.swift; sourceTree = "<group>"; };
 		3E3E0BEE27F6D5C900BF526C /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		3E3E0BF027F6D61200BF526C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
@@ -821,6 +823,7 @@
 			children = (
 				3E3632F92809970B00FAD7A8 /* PowerUpSystem */,
 				1A94D95227ED8709001D8A86 /* TimedSystem.swift */,
+				3E363311280B50DD00FAD7A8 /* OutOfBoundRemovalSystem.swift */,
 				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
 				3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */,
 				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
@@ -2069,6 +2072,7 @@
 				9356AB7A27EEFF9D008CDEC1 /* ExternalMoveEvent.swift in Sources */,
 				1AE9D8B127FED217002B0A1E /* TextureFrame.swift in Sources */,
 				9353AE0D27E6E45600B26E63 /* LandingViewController.swift in Sources */,
+				3E363312280B50DD00FAD7A8 /* OutOfBoundRemovalSystem.swift in Sources */,
 				9356AB6E27EEF719008CDEC1 /* RemoteEvent.swift in Sources */,
 				93ADD1C628047EC6004E0E87 /* GameModeFactory.swift in Sources */,
 				1ADEDD9127F5906C00C3AFD3 /* CameraStaticTag.swift in Sources */,
@@ -2243,7 +2247,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XQSPBAFD9W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2274,7 +2278,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XQSPBAFD9W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

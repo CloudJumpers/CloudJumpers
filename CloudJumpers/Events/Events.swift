@@ -20,6 +20,7 @@ enum Events: Int {
     case powerUpActivate
     case confuse
     case freeze
+    case powerUpSpawn
     case powerUpEffectStart
     case reposition
     case respawn
@@ -36,6 +37,7 @@ enum Events: Int {
         String(describing: MoveEvent.self): .move,
         String(describing: JumpEvent.self): .jump,
         String(describing: AnimateEvent.self): .animate,
+        String(describing: PowerUpSpawnEvent.self): .powerUpSpawn,
         String(describing: PowerUpPlayerCollideEvent.self): .powerUpPlayerCollide,
         String(describing: ObtainEvent.self): .obtain,
         String(describing: RemoveEvent.self): .remove,

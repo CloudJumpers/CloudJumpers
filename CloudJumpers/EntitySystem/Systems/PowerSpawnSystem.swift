@@ -40,8 +40,12 @@ class PowerSpawnSystem: System {
         let powerId = EntityManager.newEntityID
 
         let powerUp = PowerUp(powerType, at: position, with: powerId)
-        manager?.add(powerUp)
 
-        // TODO: ADD event to spawn remotely
+        dispatcher?.dispatch(ExternalPowerUpSpawnEvent(powerSpawnPositionX: position.x,
+                                                       powerSpawnPositionY: position.y,
+                                                       powerUpType: powerType.rawValue,
+                                                       powerUpId: powerId))
+
+        manager?.add(powerUp)
     }
 }

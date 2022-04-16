@@ -39,7 +39,7 @@ class GameWorld {
             xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
             yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
             speedRange: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
-        
+
         systemManager.register(PositionSystem(for: entityManager))
         systemManager.register(PhysicsSystem(for: entityManager))
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
@@ -47,6 +47,7 @@ class GameWorld {
         systemManager.register(StandOnSystem(for: entityManager))
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
+        systemManager.register(OutOfBoundRemovalSystem(for: entityManager, boundSize: bound))
         systemManager.register(DisasterSpawnSystem(for: entityManager,
                                                    positionGenerationInfo: positionGenerationInfo,
                                                    velocityGenerationInfo: disasterVelocityGenerationInfo,
@@ -54,7 +55,7 @@ class GameWorld {
         systemManager.register(PowerSpawnSystem(for: entityManager,
                                                 positionGenerationInfo: positionGenerationInfo,
                                                 dispatcherVia: self))
-        
+
     }
 }
 
