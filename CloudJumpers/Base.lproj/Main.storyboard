@@ -684,44 +684,61 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="com.cs3217.cloudjumpers.achievementcell" id="QBu-Se-4he" customClass="AchievementCell" customModule="CloudJumpers" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="370" height="319.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="301.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="syU-Kj-oin" customClass="AchievementCell" customModule="CloudJumpers" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="370" height="319.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="220" height="301.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="jkY-Sp-kmO">
-                                                    <rect key="frame" x="10" y="10" width="350" height="299.5"/>
+                                                    <rect key="frame" x="10" y="10" width="200" height="281.5"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="27h-IM-bg3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="350" height="128"/>
-                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exd-1k-q32">
-                                                            <rect key="frame" x="0.0" y="158" width="350" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrP-Gr-G42">
+                                                            <rect key="frame" x="0.0" y="50.5" width="200" height="100"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuW-Hs-iY5">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="100"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="50" id="FrP-Ir-pYB"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="27h-IM-bg3">
+                                                                    <rect key="frame" x="50" y="0.0" width="100" height="100"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="100" id="8v8-p6-zi9"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="FOr-5L-vqk"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4X-To-y1f">
+                                                                    <rect key="frame" x="150" y="0.0" width="50" height="100"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                </view>
+                                                            </subviews>
+                                                        </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z88-1A-VmP">
-                                                            <rect key="frame" x="0.0" y="208.5" width="350" height="20.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="350" id="Mbs-4h-dPE"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="180.5" width="200" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qch-ia-rx6">
-                                                            <rect key="frame" x="0.0" y="259" width="350" height="40.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qch-ia-rx6">
+                                                            <rect key="frame" x="0.0" y="231" width="200" height="50.5"/>
                                                             <subviews>
                                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DU0-D6-ewd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="20"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="20" id="cdP-hd-9eb"/>
                                                                     </constraints>
                                                                 </progressView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhB-Ok-VvU">
-                                                                    <rect key="frame" x="0.0" y="20" width="350" height="20.5"/>
+                                                                    <rect key="frame" x="0.0" y="30" width="200" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -729,6 +746,9 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="200" id="Sz8-bG-iUb"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -741,6 +761,7 @@
                                         <connections>
                                             <outlet property="achievementDesc" destination="z88-1A-VmP" id="eJu-XE-Tro"/>
                                             <outlet property="achievementTitle" destination="Exd-1k-q32" id="0mZ-Gu-96z"/>
+                                            <outlet property="achievmentImage" destination="27h-IM-bg3" id="Nn9-9Y-y8O"/>
                                             <outlet property="progressBar" destination="DU0-D6-ewd" id="M9I-3b-njp"/>
                                             <outlet property="progressDesc" destination="bhB-Ok-VvU" id="4II-OA-xRf"/>
                                         </connections>

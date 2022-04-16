@@ -10,6 +10,7 @@ import Foundation
 protocol Achievement: AnyObject {
     var title: String { get }
     var description: String { get }
+    var imageName: String { get }
 
     var currentProgress: String? { get }
     var requiredProgress: String { get }

@@ -61,6 +61,7 @@ extension AchievementsViewController: UICollectionViewDataSource {
         let currProgress = achievements[indexPath.item].currentProgress
         let reqProgress = achievements[indexPath.item].requiredProgress
         let progress = achievements[indexPath.item].progressRatio
+        let imageName = achievements[indexPath.item].imageName
 
         achievementCell.setTitle(title)
         achievementCell.setDescription(description)
@@ -68,6 +69,7 @@ extension AchievementsViewController: UICollectionViewDataSource {
         achievementCell.setCurrent(currProgress ?? "")
         achievementCell.setRequired(reqProgress)
         achievementCell.setProgressBar(progress)
+        achievementCell.setImage(imageName)
 
         return achievementCell
     }

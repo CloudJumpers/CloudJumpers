@@ -19,6 +19,7 @@ private struct ProgressText {
 class AchievementCell: UICollectionViewCell {
     @IBOutlet private var achievementTitle: UILabel!
     @IBOutlet private var achievementDesc: UILabel!
+    @IBOutlet private var achievmentImage: UIImageView!
     @IBOutlet private var progressBar: UIProgressView!
     @IBOutlet private var progressDesc: UILabel!
 
@@ -30,6 +31,10 @@ class AchievementCell: UICollectionViewCell {
 
     func setDescription(_ description: String) {
         achievementDesc.text = description
+    }
+
+    func setImage(_ imageName: String) {
+        achievmentImage.image = Images(rawValue: imageName)?.image
     }
 
     func setUnlockStatus(_ isUnlocked: Bool) {

@@ -12,6 +12,7 @@ class JumpAchievement: Achievement {
 
     let title: String = "Jumps"
     let description: String = "Lifetime jumps made across games."
+    let imageName: String = Images.jumpingSprite.name
     let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
     var dataUpdater: AchievementDataDelegate?
