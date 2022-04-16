@@ -8,25 +8,38 @@
 import Foundation
 
 class GameWorld {
-    private var entityManager: EntityManager
-    private var systemManager: SystemManager
-    private var eventManager: EventManager
+    private let entityManager: EntityManager
+    private let systemManager: SystemManager
+    private let eventManager: EventManager
     private var renderer: Renderer?
     private var remoteEventHandlers: RemoteEventHandlers
 
     init(rendersTo scene: Scene?, subscribesTo handlers: RemoteEventHandlers) {
         entityManager = EntityManager()
-        systemManager = SystemManager(for: entityManager)
+        systemManager = SystemManager()
         eventManager = EventManager()
         remoteEventHandlers = handlers
         renderer = Renderer(from: self, to: scene)
+
         eventManager.dispatcher = self
+        handlers.subscriber.setEventManager(eventManager)
+        setUpSystems()
     }
 
     func update(within time: TimeInterval) {
         systemManager.update(within: time)
         eventManager.executeAll(in: self)
         renderer?.render()
+    }
+
+    private func setUpSystems() {
+        systemManager.register(PositionSystem(for: entityManager))
+        systemManager.register(PhysicsSystem(for: entityManager))
+        systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(AnimateSystem(for: entityManager))
+        systemManager.register(StandOnSystem(for: entityManager))
+        systemManager.register(TimedSystem(for: entityManager))
+        systemManager.register(MetricsSystem(for: entityManager))
     }
 }
 
@@ -85,11 +98,27 @@ extension GameWorld: Simulatable {
     func handleContact(between entityAID: EntityID, and entityBID: EntityID) {
         guard let entityA = entity(with: entityAID) as? Collidable,
               let entityB = entity(with: entityBID) as? Collidable
-        else { fatalError("An unassociated EntityID was present in EntityManager") }
+        else { return }
 
         if let event = entityA.collides(with: entityB) {
             eventManager.add(event)
         }
+    }
+
+    func syncPositions(with entityPositionMap: EntityPositionMap) {
+        guard let positionSystem = system(ofType: PositionSystem.self) else {
+            return
+        }
+
+        positionSystem.sync(with: entityPositionMap)
+    }
+
+    func syncVelocities(with entityVelocityMap: EntityVelocityMap) {
+        guard let physicsSystem = system(ofType: PhysicsSystem.self) else {
+            return
+        }
+
+        physicsSystem.sync(with: entityVelocityMap)
     }
 }
 
@@ -104,6 +133,7 @@ extension GameWorld: RuleModifiable {
     func addComponent(_ component: Component, to entity: Entity) {
         entityManager.addComponent(component, to: entity)
     }
+
     func hasComponent<T>(ofType type: T.Type, in entityWithID: EntityID) -> Bool where T: Component {
         guard let entity = entity(with: entityWithID) else {
             return false
@@ -136,6 +166,7 @@ extension GameWorld: MetricsProvider {
         guard let system = systemManager.system(ofType: MetricsSystem.self) else {
              return [:]
         }
+
         return system.fetchMetrics()
     }
 }

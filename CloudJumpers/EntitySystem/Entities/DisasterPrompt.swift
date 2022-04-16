@@ -28,6 +28,7 @@ class DisasterPrompt: Entity {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         manager.addComponent(spriteComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
 
         manager.addComponent(TimedComponent(), to: self)
         manager.addComponent(TimedRemovalComponent(timeToRemove: intervalToRemove), to: self)

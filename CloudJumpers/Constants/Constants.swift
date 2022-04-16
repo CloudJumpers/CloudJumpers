@@ -104,7 +104,9 @@ struct Constants {
 
     static let disasterPromptLoopCount = 8
 
-    static let captionFontSize = 20.0
+    static let captionFontName = "AvenirNextCondensed-DemiBold"
+    static let captionFontSize = 14.0
+    static let captionMaxLength = 10
     static let captionRelativePosition = CGPoint(x: 0.0, y: 35.0)
     static let playerDisplaynameSize = 5
 

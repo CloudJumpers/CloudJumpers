@@ -9,6 +9,8 @@ import SpriteKit
 
 typealias NodesMap = [NodeCore: Node]
 typealias EntityNodeMap = [EntityID: Node]
+typealias EntityPositionMap = [EntityID: CGPoint]
+typealias EntityVelocityMap = [EntityID: CGVector]
 
 class Renderer {
     private unowned var target: Simulatable?
@@ -16,13 +18,17 @@ class Renderer {
 
     private var renderedNodes: NodesMap
     private var entityNode: EntityNodeMap
+    private let pipeline: RenderPipeline
 
     init(from target: Simulatable, to scene: Scene?) {
         renderedNodes = NodesMap()
         entityNode = EntityNodeMap()
+        pipeline = RenderPipeline()
         self.target = target
         self.scene = scene
+
         scene?.updateDelegate = self
+        setUpPipeline()
     }
 
     func render() {
@@ -56,61 +62,35 @@ class Renderer {
         if entityNode.contains(key: entity.id) {
             update(entity: entity)
         } else {
-            create(entity: entity)
+            createAndCache(entity: entity)
         }
     }
 
     private func update(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
-        else { return }
+        guard let node = entityNode[entity.id] else {
+            fatalError("Node \(String(describing: node)) was updated before created/cached")
+        }
 
-        node.position = positionComponent.position
+        pipeline.render(entity, with: node)
     }
 
-    // MARK: Update based on component
-    private func updatePosition(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
-        else { return }
+    private func createAndCache(entity: Entity) {
+        guard let spriteUnit = pipeline.unit(ofType: SpriteUnit.self),
+              let physicsUnit = pipeline.unit(ofType: PhysicsUnit.self)
+        else { fatalError("SpriteUnit/PhysicsUnit was not registered") }
 
-        node.position = positionComponent.position
-    }
-
-    private func updatePhysics(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity)
-        else { return }
-
-        node.physicsBody?.applyImpulse(physicsComponent.impulse)
-    }
-
-    private func updateAnimation(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
-              let animation = animationComponent.activeAnimation
-        else { return }
-
-        node.animate(with: animation.frames, interval: 0.1)
-    }
-
-    private func create(entity: Entity) {
-        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity) else {
+        guard let node = spriteUnit.createSpriteNode(for: entity) else {
             return
         }
 
-        let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
-        let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
-        scene?.addChild(node, static: `static` ?? false)
+        if let physicsBody = physicsUnit.createPhysicsBody(for: entity) {
+            node.physicsBody = physicsBody
+        }
+
+        addNode(node, with: entity)
         bindCamera(to: node, with: entity)
-    }
 
-    private func bindCamera(to node: Node, with entity: Entity) {
-        guard target?.hasComponent(ofType: CameraAnchorTag.self, in: entity) ?? false else {
-            return
-        }
-
-        scene?.bindCamera(to: node)
+        cache(entity: entity, node: node)
     }
 
     // MARK: - Post-rendering
@@ -121,9 +101,10 @@ class Renderer {
         }
     }
 
+    // MARK: - Helper Methods
     private func cache(entity: Entity, node: Node) {
         entityNode[entity.id] = node
-        renderedNodes[node.nodeCore] = node
+        renderedNodes[node.coreNode] = node
     }
 
     private func uncache(node: Node) {
@@ -132,11 +113,30 @@ class Renderer {
         }
 
         entityNode[entityID] = nil
-        renderedNodes[node.nodeCore] = nil
+        renderedNodes[node.coreNode] = nil
+    }
+
+    private func addNode(_ node: Node, with entity: Entity) {
+        let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
+        scene?.addChild(node, static: `static` ?? false)
+    }
+
+    private func bindCamera(to node: Node, with entity: Entity) {
+        if target?.hasComponent(ofType: CameraAnchorTag.self, in: entity) ?? false {
+            scene?.bindCamera(to: node)
+        }
     }
 
     private func remove(node: Node) {
         scene?.removeChild(node)
+    }
+
+    private func setUpPipeline() {
+        pipeline.register(PositionUnit(on: target))
+        pipeline.register(PhysicsUnit(on: target))
+        pipeline.register(AnimationUnit(on: target))
+        pipeline.register(SpriteUnit(on: target))
+        pipeline.register(CameraUnit(on: target, watching: scene))
     }
 }
 
@@ -155,9 +155,44 @@ extension Renderer: SceneUpdateDelegate {
     }
 
     func sceneDidFinishUpdate(_ scene: Scene) {
-        // TODO: Handle finish update here
         let nodes = scene.nodes
-        let positions = nodes.map { $0.position }
-        let velocities = nodes.compactMap { $0.physicsBody?.velocity }
+
+        let entityPositionMap = entityPositionMap(from: nodes)
+        target?.syncPositions(with: entityPositionMap)
+
+        let entityVelocityMap = entityVelocityMap(from: nodes)
+        target?.syncVelocities(with: entityVelocityMap)
+    }
+
+    private func entityPositionMap(from nodes: [Node]) -> EntityPositionMap {
+        var entityPositionMap = EntityPositionMap()
+
+        for node in nodes {
+            guard let entityID = node.name else {
+                fatalError("Node \(String(describing: node)) does not have an EntityID")
+            }
+
+            entityPositionMap[entityID] = node.position
+        }
+
+        return entityPositionMap
+    }
+
+    private func entityVelocityMap(from nodes: [Node]) -> EntityVelocityMap {
+        var entityVelocityMap = EntityVelocityMap()
+
+        for node in nodes {
+            guard let entityID = node.name else {
+                fatalError("Node \(String(describing: node)) does not have an EntityID")
+            }
+
+            guard let physicsBody = node.physicsBody else {
+                continue
+            }
+
+            entityVelocityMap[entityID] = physicsBody.velocity
+        }
+
+        return entityVelocityMap
     }
 }

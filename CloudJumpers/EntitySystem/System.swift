@@ -12,11 +12,12 @@ protocol System: AnyObject {
     var manager: EntityManager? { get set }
     var dispatcher: EventDispatcher? { get set }
 
-    init(for manager: EntityManager)
+    init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher?)
     func shouldUpdate(within time: CGFloat) -> Bool
     func update(within time: CGFloat)
 }
 
 extension System {
     func shouldUpdate(within time: CGFloat) -> Bool { true }
+    func update(within time: CGFloat) { }
 }

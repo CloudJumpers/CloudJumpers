@@ -1,5 +1,5 @@
 //
-//  RepositionEventCommand.swift
+//  UpdateGuestStateEventCommand.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 27/3/22.

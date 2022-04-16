@@ -60,7 +60,9 @@ class RaceTopGameRules: GameRules {
 
     func update(within time: CGFloat) {
         guard let playerID = playerInfo?.playerId,
-              let target = target
+              let target = target,
+              let timer = timer,
+              let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
         else {
             return
         }
@@ -72,7 +74,7 @@ class RaceTopGameRules: GameRules {
             target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
-        // TODO: Add timer update here
+        updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

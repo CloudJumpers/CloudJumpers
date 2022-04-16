@@ -16,8 +16,9 @@ class DisasterSpawnSystem: System {
 
     var blueprint: Blueprint?
 
-    required init(for manager: EntityManager) {
+    required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
+        self.dispatcher = dispatcher
     }
 
     convenience init(for manager: EntityManager, blueprint: Blueprint) {

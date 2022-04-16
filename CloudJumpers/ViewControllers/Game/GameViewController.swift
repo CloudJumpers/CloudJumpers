@@ -59,6 +59,8 @@ class GameViewController: UIViewController {
             return
         }
 
+        setUpGameScene()
+
         gameManager = GameManager(
             rendersTo: scene,
             handlers: handlers,
@@ -66,7 +68,6 @@ class GameViewController: UIViewController {
             achievementProcessor: config.getAchievementProcessor()
         )
 
-        setUpGameScene()
         setUpGameManager()
         setUpInputControls()
         setUpSKViewAndPresent()
@@ -74,12 +75,10 @@ class GameViewController: UIViewController {
 
     // MARK: - Game Set-up Methods
     private func setUpGameScene() {
-        guard let scene = GameScene(fileNamed: "GameScene") else {
-            fatalError("GameScene.sks was not found!")
-        }
-
+        let scene = GameScene(size: CGSize(width: 750, height: 1_000))
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
+        scene.backgroundColor = .white
         self.scene = scene
     }
 
@@ -106,6 +105,7 @@ class GameViewController: UIViewController {
             firstPlatformPosition: Constants.playerInitialPosition,
             seed: config.seed
         )
+        gameManager?.delegate = self
 
         gameManager?.setUpGame(with: blueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }

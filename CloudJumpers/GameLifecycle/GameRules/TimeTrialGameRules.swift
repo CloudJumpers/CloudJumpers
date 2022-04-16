@@ -64,8 +64,14 @@ class TimeTrialGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        // TODO: Update timer here
+        guard let target = target,
+              let timer = timer,
+              let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
+        else {
+            return
+        }
 
+        updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

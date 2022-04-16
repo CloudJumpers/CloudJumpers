@@ -14,8 +14,9 @@ class PositionSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    required init(for manager: EntityManager) {
+    required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
+        self.dispatcher = dispatcher
     }
 
     func update(within time: CGFloat) {
@@ -35,5 +36,26 @@ class PositionSystem: System {
         }
 
         positionComponent.position += displacement
+    }
+
+    func changeSide(entityWith id: EntityID, by displacement: CGVector) {
+        guard let positionComponent = manager?.component(ofType: PositionComponent.self, of: id) else {
+            return
+        }
+        if displacement.dx > 0 {
+            positionComponent.side = .right
+        } else if displacement.dx < 0 {
+            positionComponent.side = .left
+        }
+    }
+
+    func sync(with entityPositionMap: EntityPositionMap) {
+        for (entityID, position) in entityPositionMap {
+            guard let entity = manager?.entity(with: entityID),
+                  let positionComponent = manager?.component(ofType: PositionComponent.self, of: entity)
+            else { continue }
+
+            positionComponent.position = position
+        }
     }
 }

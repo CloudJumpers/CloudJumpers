@@ -31,10 +31,18 @@ class ShadowGuest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .shadowGuest)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            zPosition: .shadowGuest)
+
+        spriteComponent.caption = name
+
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {

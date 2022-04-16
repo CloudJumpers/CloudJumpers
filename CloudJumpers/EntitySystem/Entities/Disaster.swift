@@ -30,11 +30,11 @@ class Disaster: Entity {
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         let physicsComponent = createPhysicsComponent(for: spriteComponent)
-        let removeOutOfBoundTag = RemoveOutOfBoundTag()
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
-        manager.addComponent(removeOutOfBoundTag, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
+        manager.addComponent(RemoveOutOfBoundTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

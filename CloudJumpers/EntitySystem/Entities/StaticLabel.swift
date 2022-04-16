@@ -24,6 +24,7 @@ class StaticLabel: Entity {
 
     func setUpAndAdd(to manager: EntityManager) {
         let labelComponent = createLabelComponent()
+        manager.addComponent(PositionComponent(at: position), to: self)
 
         manager.addComponent(labelComponent, to: self)
         manager.addComponent(CameraStaticTag(), to: self)
