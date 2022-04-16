@@ -17,8 +17,11 @@ class TimeTrialGameRules: GameRules {
         target?.components(ofType: PlayerTag.self).first?.entity
     }
 
-    // TODO: Pass this in from outside
-    private var isPlayingWithShadow = true
+    private var isPlayingWithShadow
+    
+    init(isPlayingWithShadow: Bool) {
+        self.isPlayingWithShadow = isPlayingWithShadow
+    }
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
