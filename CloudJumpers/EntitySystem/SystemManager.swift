@@ -10,13 +10,10 @@ import Foundation
 class SystemManager {
     private typealias SystemMap = [String: System]
 
-    private unowned var entityManager: EntityManager?
     private var systems: SystemMap
 
-    init(for entityManager: EntityManager) {
-        self.entityManager = entityManager
+    init() {
         systems = SystemMap()
-        setUpSystems()
     }
 
     func update(within time: TimeInterval) {
@@ -30,16 +27,12 @@ class SystemManager {
         return systems[identifier] as? T
     }
 
-    private func register(_ system: System) {
-        let identifier = String(describing: system.self)
+    func register(_ system: System) {
+        let identifier = String(describing: type(of: system).self)
         systems[identifier] = system
     }
 
     private func shouldUpdate(_ system: System, within time: TimeInterval) -> Bool {
         system.active && system.shouldUpdate(within: time)
-    }
-
-    private func setUpSystems() {
-        // TODO: Set up systems here
     }
 }

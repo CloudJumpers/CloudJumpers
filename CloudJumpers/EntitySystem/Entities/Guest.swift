@@ -31,11 +31,20 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(InventoryComponent(), to: self)
+        manager.addComponent(StandOnComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .guest)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            zPosition: .guest)
+
+        spriteComponent.caption = name
+
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {

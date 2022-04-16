@@ -20,6 +20,11 @@ class PhysicsBody {
         coreBody = PhysicsBodyCore(circleOfRadius: radius, center: center)
     }
 
+    var mass: CGFloat {
+        get { coreBody.mass }
+        set { coreBody.mass = newValue }
+    }
+
     var velocity: CGVector {
         get { coreBody.velocity }
         set { coreBody.velocity = newValue }
@@ -28,6 +33,16 @@ class PhysicsBody {
     var affectedByGravity: Bool {
         get { coreBody.affectedByGravity }
         set { coreBody.affectedByGravity = newValue }
+    }
+
+    var linearDamping: CGFloat {
+        get { coreBody.linearDamping }
+        set { coreBody.linearDamping = newValue }
+    }
+
+    var isDynamic: Bool {
+        get { coreBody.isDynamic }
+        set { coreBody.isDynamic = newValue }
     }
 
     var allowsRotation: Bool {

@@ -7,6 +7,12 @@
 
 import Foundation
 
-protocol GameEventSubscriber {
+protocol GameEventSubscriber: AnyObject {
     var eventManager: EventManager? { get set }
+}
+
+extension GameEventSubscriber {
+    func setEventManager(_ eventManager: EventManager) {
+        self.eventManager = eventManager
+    }
 }

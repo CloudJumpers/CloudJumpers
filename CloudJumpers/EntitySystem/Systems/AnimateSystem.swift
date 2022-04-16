@@ -14,11 +14,9 @@ class AnimateSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    required init(for manager: EntityManager) {
+    required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
-    }
-
-    func update(within time: CGFloat) {
+        self.dispatcher = dispatcher
     }
 
     func animate(entityWith id: EntityID, to key: AnimationKey) {

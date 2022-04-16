@@ -33,15 +33,14 @@ struct JoystickUpdateEvent: Event {
         supplier.add(moveEvent)
 
         // Update to idle or walking animation based on state
-        if !physicsSystem.isMoving(player.id) {
-            // TODO: Figure out how to do without WhenStationaryEvent
-            let idleAnimateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.idle.key)
-            supplier.add(idleAnimateEvent)
-        } else if displacement != .zero {
+        if displacement != .zero && !physicsSystem.isMoving(player.id) {
             let walkingAnimateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.walking.key)
             let soundEvent = SoundEvent(.walking)
             supplier.add(walkingAnimateEvent.then(do: soundEvent))
-
+        } else if !physicsSystem.isMoving(player.id) {
+            // TODO: Figure out how to do without WhenStationaryEvent
+            let idleAnimateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.idle.key)
+            supplier.add(idleAnimateEvent)
         }
     }
 }

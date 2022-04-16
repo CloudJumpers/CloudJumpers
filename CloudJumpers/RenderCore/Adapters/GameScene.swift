@@ -8,7 +8,7 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    unowned var updateDelegate: SceneUpdateDelegate?
+    weak var updateDelegate: SceneUpdateDelegate?
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
@@ -133,15 +133,49 @@ extension GameScene: Scene {
         return children.compactMap(updateDelegate.node(of:))
     }
 
+    func contains(_ node: Node) -> Bool {
+        children.contains(node.coreNode) || (cameraNode?.contains(node.coreNode) ?? false)
+    }
+
     func addChild(_ node: Node, static: Bool = false) {
-        addChild(node.nodeCore, static: `static`)
+        addChild(node.coreNode, static: `static`)
     }
 
     func removeChild(_ node: Node) {
-        removeChild(node.nodeCore)
+        removeChild(node.coreNode)
+    }
+
+    func isCameraBoundNode(_ node: Node) -> Bool {
+        guard let cameraAnchorNode = cameraAnchorNode else {
+            return false
+        }
+
+        return cameraAnchorNode == node.coreNode
     }
 
     func bindCamera(to node: Node) {
-        cameraAnchorNode = node.nodeCore
+        cameraAnchorNode = node.coreNode
+    }
+
+    func isStaticNode(_ node: Node) -> Bool {
+        cameraNode?.children.contains(node.coreNode) ?? false
+    }
+
+    func setStaticNode(_ node: Node) {
+        guard contains(node) else {
+            return
+        }
+
+        removeChild(node)
+        addChild(node, static: true)
+    }
+
+    func setUnstaticNode(_ node: Node) {
+        guard contains(node) else {
+            return
+        }
+
+        removeChild(node)
+        addChild(node, static: false)
     }
 }

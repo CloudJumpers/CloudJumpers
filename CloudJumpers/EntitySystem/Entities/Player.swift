@@ -31,6 +31,8 @@ class Player: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
+        manager.addComponent(StandOnComponent(), to: self)
 
         manager.addComponent(InventoryComponent(), to: self)
         manager.addComponent(CameraAnchorTag(), to: self)
@@ -38,7 +40,14 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .player)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            zPosition: .player)
+
+        spriteComponent.caption = name
+
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {

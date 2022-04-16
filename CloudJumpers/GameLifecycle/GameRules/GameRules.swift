@@ -46,8 +46,8 @@ extension GameRules {
             size: Constants.timerSize,
             initialValue: String(initialValue))
 
-        target.addComponent(TimedComponent(time: initialValue), to: timer)
         target.add(timer)
+        target.addComponent(TimedComponent(time: initialValue), to: timer)
 
         return timer
     }

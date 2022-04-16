@@ -20,6 +20,7 @@ class LobbyViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lobbyUsersView.delegate = self
         lobbyUsersView.dataSource = self
         gameSeed.delegate = self
         navigationItem.hidesBackButton = true
@@ -200,13 +201,10 @@ extension LobbyViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: LobbyConstants.LobbyUserCellIdentifier, for: indexPath)
 
-        guard
-            let lobbyUser = activeLobby?.orderedValidUsers[indexPath.row],
-            let lobbyUserCell = cell as? LobbyUserCell,
-            let lobbyHostId = activeLobby?.hostId
-        else {
-            return cell
-        }
+        guard let lobbyUser = activeLobby?.orderedValidUsers[indexPath.row],
+              let lobbyUserCell = cell as? LobbyUserCell,
+              let lobbyHostId = activeLobby?.hostId
+        else { return cell }
 
         lobbyUserCell.setIsHostLabelVisible(isVisible: lobbyUser.id == lobbyHostId)
         lobbyUserCell.setDisplayName(newDisplayName: lobbyUser.displayName)
@@ -216,9 +214,23 @@ extension LobbyViewController: UITableViewDataSource {
     }
 }
 
+extension LobbyViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        145.0
+    }
+}
+
 extension LobbyViewController: UITextFieldDelegate {
-    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string))
     }
 }

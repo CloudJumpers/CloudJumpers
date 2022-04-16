@@ -37,6 +37,7 @@ class Cloud: Entity {
                                                                 horizontalVelocity: horizontalVelocity),
                                  to: self)
         }
+        manager.addComponent(PositionComponent(at: position), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
