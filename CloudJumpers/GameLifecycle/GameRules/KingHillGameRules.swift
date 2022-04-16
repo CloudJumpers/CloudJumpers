@@ -56,6 +56,11 @@ class KingHillGameRules: GameRules {
 
     }
 
+    func enableHostSystems() {
+        target?.activateSystem(ofType: DisasterSpawnSystem.self)
+        target?.activateSystem(ofType: PowerSpawnSystem.self)
+    }
+
     func update(within time: CGFloat) {
         guard let player = player,
               let target = target

@@ -13,12 +13,11 @@ class GameManager {
     private var world: GameWorld
     private var metaData: GameMetaData
     private var rules: GameRules
-    var inChargeID: NetworkID?
+    private(set) var isHost = false
 
-    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
-        self.inChargeID = inChargeID
         self.rules = rules
         self.rules.setTarget(world)
     }
@@ -27,6 +26,11 @@ class GameManager {
         world.update(within: time)
         rules.update(within: time)
         checkHasGameEnd()
+    }
+
+    func enableHostStatus() {
+        self.isHost = true
+        rules.enableHostSystems()
     }
 
     // TODO: This shouldn't touch PhysicsComponent anymore
@@ -87,6 +91,7 @@ class GameManager {
             delegate?.manager(self, didEndGameWith: metaData)
         }
     }
+
 }
 
 // MARK: - InputResponder
