@@ -61,7 +61,6 @@ class GameViewController: UIViewController {
 
         gameManager = GameManager(
             rendersTo: scene,
-            inChargeID: lobby?.hostId,
             handlers: handlers,
             rules: config.getGameRules())
 
@@ -162,6 +161,8 @@ extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         gameManager?.update(within: interval)
         gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
+
+        // Check if player is host for each iteration
     }
 }
 

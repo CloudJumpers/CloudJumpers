@@ -13,12 +13,10 @@ class GameManager {
     private var world: GameWorld
     private var metaData: GameMetaData
     private var rules: GameRules
-    var inChargeID: NetworkID?
 
-    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
-        self.inChargeID = inChargeID
         self.rules = rules
         self.rules.setTarget(world)
     }
