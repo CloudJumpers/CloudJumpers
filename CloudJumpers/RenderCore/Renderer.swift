@@ -103,6 +103,8 @@ class Renderer {
         let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
         scene?.addChild(node, static: `static` ?? false)
         bindCamera(to: node, with: entity)
+
+        cache(entity: entity, node: node)
     }
 
     private func bindCamera(to node: Node, with entity: Entity) {
