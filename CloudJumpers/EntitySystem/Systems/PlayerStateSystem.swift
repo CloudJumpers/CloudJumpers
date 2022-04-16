@@ -21,10 +21,9 @@ class PlayerStateSystem: System {
     }
 
     func update(within time: CGFloat) {
-        updateCounter += 1
-        if updateCounter == 6 {
+        updateCounter = (updateCounter + 1) % GameConstants.positionalUpdateIntervalTicks
+        if updateCounter == .zero {
             uploadLocalPlayerState()
-            updateCounter = 0
         }
     }
 
