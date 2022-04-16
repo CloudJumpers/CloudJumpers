@@ -14,18 +14,17 @@ class GameManager {
     private var metaData: GameMetaData
     private var rules: GameRules
     private var achievementProcessor: AchievementProcessor
-    var inChargeID: NetworkID?
+
+    private(set) var isHost = false
 
     init(
         rendersTo scene: Scene?,
-        inChargeID: NetworkID?,
         handlers: RemoteEventHandlers,
         rules: GameRules,
         achievementProcessor: AchievementProcessor
     ) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
-        self.inChargeID = inChargeID
         self.rules = rules
         self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
@@ -38,21 +37,10 @@ class GameManager {
         checkHasGameEnd()
     }
 
-    // TODO: This shouldn't touch PhysicsComponent anymore
-    func updatePlayer(with displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        if displacement != .zero {
-            inputMove(by: displacement)
-        } else {
-            // TODO: Figure out how to do without WhenStationaryEvent
-            let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.idle.key)
-            world.add(WhenStationaryEvent(entity.id, do: animateEvent))
-        }
+    func enableHostStatus() {
+        self.isHost = true
+        rules.enableHostSystems()
     }
-
     func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         setUpEnvironment(with: blueprint)
         rules.setUpForRule()
@@ -95,55 +83,20 @@ class GameManager {
             delegate?.manager(self, didEndGameWith: metaData)
         }
     }
+
 }
 
 // MARK: - InputResponder
 extension GameManager: InputResponder {
-    var associatedEntity: Entity? {
-        get { world.entity(with: metaData.playerId) }
-        set { metaData.playerId = newValue?.id ?? EntityID() }
-    }
-
-    // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
-        let soundEvent = SoundEvent(.walking)
-
-        world.add(moveEvent.then(do: soundEvent))
-
-        // TODO: Figure out how to do without WhenStationaryEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.walking.key)
-        world.add(WhenStationaryEvent(entity.id, do: animateEvent))
+        world.add(JoystickUpdateEvent(displacement: displacement))
     }
 
     func inputJump() {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let jumpEvent = JumpEvent(onEntityWith: entity.id)
-        let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
-
-        // TODO: Figure out how to integrate AnimateEvent into JumpEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.jumping.key)
-
-        world.add(jumpEvent.then(do: soundEvent))
-        world.add(animateEvent)
+        world.add(JumpButtonPressedEvent())
     }
 
     func activatePowerUp(at location: CGPoint) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        world.add(PowerUpActivateEvent(by: entity.id, location: location))
-
-        world.dispatch(ExternalPowerUpActivateEvent(
-            activatePowerUpPositionX: location.x,
-            activatePowerUpPositionY: location.y))
+        world.add(PowerUpLocationPressedEvent(location: location))
     }
 }

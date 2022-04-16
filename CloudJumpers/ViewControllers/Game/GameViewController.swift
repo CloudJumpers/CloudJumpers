@@ -61,7 +61,6 @@ class GameViewController: UIViewController {
 
         gameManager = GameManager(
             rendersTo: scene,
-            inChargeID: lobby?.hostId,
             handlers: handlers,
             rules: config.getGameRules(),
             achievementProcessor: config.getAchievementProcessor()
@@ -98,7 +97,7 @@ class GameViewController: UIViewController {
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
         let allUsersInfo = config.getIdOrderedPlayers()
 
-        let cloudBlueprint = Blueprint(
+        let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
             tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
@@ -108,7 +107,7 @@ class GameViewController: UIViewController {
             seed: config.seed
         )
 
-        gameManager?.setUpGame(with: cloudBlueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
+        gameManager?.setUpGame(with: blueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
 
     private func setUpInputControls() {
@@ -162,8 +161,19 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        gameManager?.update(within: interval)
-        gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
+        guard let lobby = lobby,
+              let gameManager = gameManager
+        else {
+            return
+        }
+        gameManager.update(within: interval)
+        gameManager.inputMove(by: joystick?.displacement ?? .zero)
+
+        // Check if player is host for each update iteration, enable as needed
+        // TODO: Bring this to a callback if possible to reduce the need to check everytime
+        if lobby.userIsHost && !gameManager.isHost {
+            gameManager.enableHostStatus()
+        }
     }
 }
 

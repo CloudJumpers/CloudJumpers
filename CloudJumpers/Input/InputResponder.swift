@@ -8,8 +8,6 @@
 import SpriteKit
 
 protocol InputResponder: AnyObject {
-    var associatedEntity: Entity? { get set }
-
     func inputMove(by displacement: CGVector)
     func inputJump()
     func inputPause()

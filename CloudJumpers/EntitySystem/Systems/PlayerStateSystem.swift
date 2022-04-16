@@ -26,15 +26,7 @@ class PlayerStateSystem: System {
     }
 
     func update(within time: CGFloat) {
-        guard let playerEntity = manager?.components(ofType: PlayerTag.self).first?.entity,
-              let animationComponent = manager?.component(ofType: AnimationComponent.self, of: playerEntity),
-              let positionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity),
-              let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: playerEntity)
-        else {
-            return
         }
-
-    }
 
     private func setUpCrossDeviceSyncTimer() {
         crossDeviceSyncTimer = Timer.scheduledTimer(
@@ -61,5 +53,10 @@ class PlayerStateSystem: System {
         )
 
         dispatcher?.dispatch(positionalUpdate)
+    }
+
+    func getPlayerEntity() -> Entity? {
+        manager?.components(ofType: PlayerTag.self).first?.entity
+
     }
 }
