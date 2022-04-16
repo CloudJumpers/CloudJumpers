@@ -10,6 +10,7 @@ import UIKit
 enum Images: String {
     case innerStick
     case outerStick
+    case jumpingSprite
 
     var name: String {
         rawValue

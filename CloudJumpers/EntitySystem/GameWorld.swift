@@ -38,6 +38,7 @@ class GameWorld {
         systemManager.register(AnimateSystem(for: entityManager))
         systemManager.register(StandOnSystem(for: entityManager))
         systemManager.register(TimedSystem(for: entityManager))
+        systemManager.register(MetricsSystem(for: entityManager))
     }
 }
 
@@ -155,5 +156,16 @@ extension GameWorld: RuleModifiable {
             return
         }
         system.active = false
+    }
+}
+
+// MARK: - MetricsProvider
+extension GameWorld: MetricsProvider {
+    func getMetricsUpdate() -> [String: Int] {
+        guard let system = systemManager.system(ofType: MetricsSystem.self) else {
+             return [:]
+        }
+
+        return system.fetchMetrics()
     }
 }

@@ -33,34 +33,11 @@ class TeleportSystem: System {
 
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
                 isAffectingLocation(location: playerLocation, teleportComponent: component) {
-                let nextPosition = getNextCloudPosition(currentLocation: playerLocation) + Constants.teleportCloudGapY
 
-                playerPositionComponent.position = nextPosition
-
-                // TODO: Add remote event to reposition this player
+                // TODO: test for edge cases where players teleport to center of floor/wall/cloud
+                playerPositionComponent.position = component.position
             }
         }
-    }
-
-    private func getNextCloudPosition(currentLocation: CGPoint) -> CGPoint {
-        guard let manager = manager else {
-            return CGPoint.zero
-        }
-
-        var cloudPositions: [CGPoint] = []
-        for entity in manager.entities where entity is Cloud || entity is Platform {
-            if let positionComponent = manager.component(ofType: PositionComponent.self, of: entity) {
-                cloudPositions.append(positionComponent.position)
-            }
-        }
-
-        cloudPositions = cloudPositions.sorted(by: { $0.y < $1.y })
-
-        for idx in 0..<cloudPositions.count - 1 where cloudPositions[idx].y > currentLocation.y {
-            return cloudPositions[idx + 1]
-        }
-
-        return cloudPositions.last ?? CGPoint.zero
     }
 
     private func isAffectingLocation(location: CGPoint, teleportComponent: TeleportComponent) -> Bool {

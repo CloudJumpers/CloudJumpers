@@ -12,12 +12,21 @@ class GameManager {
 
     private var world: GameWorld
     private var rules: GameRules
+    private var achievementProcessor: AchievementProcessor
+
     private(set) var isHost = false
 
-    init(rendersTo scene: Scene?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(
+        rendersTo scene: Scene?,
+        handlers: RemoteEventHandlers,
+        rules: GameRules,
+        achievementProcessor: AchievementProcessor
+    ) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         self.rules = rules
+        self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
+        self.achievementProcessor.setTarget(world)
     }
 
     func update(within time: CGFloat) {

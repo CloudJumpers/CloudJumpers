@@ -31,8 +31,11 @@ class FreezeSystem: System {
             let activatorId = component.activatorId
             let playerLocation = positionComponent.position
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
-                isAffectingLocation(location: playerLocation, freezeComponent: component) {
-                // TODO: supposedly add FreezeEvent here
+                isAffectingLocation(location: playerLocation, freezeComponent: component),
+               let effectEntity = component.entity {
+
+                dispatcher?.add(NullMoveEffector(on: playerEntity, watching: effectEntity))
+                dispatcher?.add(NullJumpEffector(on: playerEntity, watching: effectEntity))
             }
         }
     }
