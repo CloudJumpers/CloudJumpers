@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 protocol GameRules {
-    var player: Entity? { get }
+    var playerInfo: PlayerInfo? { get set }
     func setTarget(_ target: RuleModifiable)
     func setUpForRule()
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo])
@@ -22,15 +22,16 @@ protocol GameRules {
 
 // MARK: - Helper functions
 extension GameRules {
-    func isPlayerRespawn(target: RuleModifiable) -> Bool {
-        guard let player = player,
-              let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: player)
+
+    func isPlayerRespawning(target: RuleModifiable) -> Bool {
+        guard let playerID = playerInfo?.playerId,
+              let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)
         else {
             return false
         }
         let allStandOnComponent = target.components(ofType: StandOnComponent.self)
 
-        for component in allStandOnComponent where component.entity?.id != player.id {
+        for component in allStandOnComponent where component.entity?.id != playerID {
             if component.standOnEntityID == playerStandOnComponent.standOnEntityID &&
                 component.timestamp > playerStandOnComponent.timestamp {
                 return true

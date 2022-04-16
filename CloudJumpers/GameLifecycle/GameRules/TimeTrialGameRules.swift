@@ -13,10 +13,7 @@ class TimeTrialGameRules: GameRules {
     private unowned var target: RuleModifiable?
     private var timer: StaticLabel?
 
-    var player: Entity? {
-        target?.components(ofType: PlayerTag.self).first?.entity
-    }
-
+    var playerInfo: PlayerInfo?
     private var isPlayingWithShadow: Bool
 
     init(isPlayingWithShadow: Bool) {
@@ -38,6 +35,7 @@ class TimeTrialGameRules: GameRules {
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        self.playerInfo = playerInfo
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId
             let name = info.displayName
@@ -71,8 +69,8 @@ class TimeTrialGameRules: GameRules {
 
     func hasGameEnd() -> Bool {
         guard let target = target,
-              let player = target.components(ofType: PlayerTag.self).first?.entity,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
+              let playerID = playerInfo?.playerId,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
         else {
             return false
         }

@@ -18,9 +18,7 @@ class RaceTopGameRules: GameRules {
         self.target = target
     }
 
-    var player: Entity? {
-        target?.components(ofType: PlayerTag.self).first?.entity
-    }
+    var playerInfo: PlayerInfo?
 
     func setUpForRule() {
         guard let target = target else {
@@ -30,6 +28,8 @@ class RaceTopGameRules: GameRules {
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        self.playerInfo = playerInfo
+
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId
             let name = info.displayName
@@ -59,17 +59,17 @@ class RaceTopGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        guard let player = player,
+        guard let playerID = playerInfo?.playerId,
               let target = target
         else {
             return
         }
-        if isPlayerRespawn(target: target) {
-            target.add(RespawnEvent(onEntityWith: player.id, newPosition: Constants.playerInitialPosition))
+        if isPlayerRespawning(target: target) {
+            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
             target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
-            target.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
+            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
         // TODO: Add timer update here
@@ -77,8 +77,8 @@ class RaceTopGameRules: GameRules {
 
     func hasGameEnd() -> Bool {
         guard let target = target,
-              let player = player,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
+              let playerID = playerInfo?.playerId,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
         else {
             return false
         }

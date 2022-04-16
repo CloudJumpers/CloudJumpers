@@ -13,13 +13,10 @@ class KingHillGameRules: GameRules {
     private unowned var target: RuleModifiable?
 
     private var timer: StaticLabel?
+    var playerInfo: PlayerInfo?
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
-    }
-
-    var player: Entity? {
-        target?.components(ofType: PlayerTag.self).first?.entity
     }
 
     func setUpForRule() {
@@ -62,17 +59,17 @@ class KingHillGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        guard let player = player,
+        guard let playerID = playerInfo?.playerId,
               let target = target
         else {
             return
         }
-        if isPlayerRespawn(target: target) {
-            target.add(RespawnEvent(onEntityWith: player.id, newPosition: Constants.playerInitialPosition))
+        if isPlayerRespawning(target: target) {
+            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
             target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
                 positionY: Constants.playerInitialPosition.y))
-            target.add(ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil))
+            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
         // TODO: Add timer update here
@@ -80,13 +77,7 @@ class KingHillGameRules: GameRules {
 
     // TODO: Change this
     func hasGameEnd() -> Bool {
-        guard let target = target,
-              let player = player,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: player)?.standOnEntityID
-        else {
-            return false
-        }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+        false
     }
 
     func fetchLocalCompletionData() {
@@ -95,6 +86,7 @@ class KingHillGameRules: GameRules {
         else { return }
 
         // TODO: Return time for completion
+
     }
 
 }
