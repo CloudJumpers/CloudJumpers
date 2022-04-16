@@ -133,6 +133,10 @@ extension GameScene: Scene {
         return children.compactMap(updateDelegate.node(of:))
     }
 
+    func contains(_ node: Node) -> Bool {
+        children.contains(node.nodeCore) || (cameraNode?.contains(node.nodeCore) ?? false)
+    }
+
     func addChild(_ node: Node, static: Bool = false) {
         addChild(node.nodeCore, static: `static`)
     }
@@ -141,7 +145,37 @@ extension GameScene: Scene {
         removeChild(node.nodeCore)
     }
 
+    func isCameraBoundNode(_ node: Node) -> Bool {
+        guard let cameraAnchorNode = cameraAnchorNode else {
+            return false
+        }
+
+        return cameraAnchorNode == node.nodeCore
+    }
+
     func bindCamera(to node: Node) {
         cameraAnchorNode = node.nodeCore
+    }
+
+    func isStaticNode(_ node: Node) -> Bool {
+        cameraNode?.children.contains(node.nodeCore) ?? false
+    }
+
+    func setStaticNode(_ node: Node) {
+        guard contains(node) else {
+            return
+        }
+
+        removeChild(node)
+        addChild(node, static: true)
+    }
+
+    func setUnstaticNode(_ node: Node) {
+        guard contains(node) else {
+            return
+        }
+
+        removeChild(node)
+        addChild(node, static: false)
     }
 }

@@ -64,7 +64,8 @@ class InventorySystem: System {
         var displayCount = 0
 
         for entityID in inventoryComponent.inventory.iterable {
-            guard let entity = manager.entity(with: entityID)
+            guard let entity = manager.entity(with: entityID),
+                  let positionComponent = manager.component(ofType: PositionComponent.self, of: entity)
             else { continue }
 
             guard displayCount <= Constants.powerUpMaxNumDisplay else {
@@ -73,12 +74,8 @@ class InventorySystem: System {
 
             displayCount += 1
 
-            // TODO: Move the position of PowerUp inside inventory
-
-//            spriteComponent.node.removeFromParent()
-//            spriteComponent.node.position = position
-//            spriteComponent.node.physicsBody = nil
-//            delegate?.spriteSystem(self, addNode: spriteComponent.node, static: true)
+            positionComponent.position = position
+            manager.addComponent(CameraStaticTag(), to: entity)
 
             position.x += Constants.powerUpQueueXInterval
         }
@@ -90,10 +87,11 @@ class InventorySystem: System {
         }
 
         for entityID in inventoryComponent.inventory.iterable {
-            guard let entity = manager.entity(with: entityID)
+            guard let entity = manager.entity(with: entityID),
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else { continue }
 
-            // TODO: Hide PowerUp from scene
+            spriteComponent.alpha = 0
         }
     }
 }

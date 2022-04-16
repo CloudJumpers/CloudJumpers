@@ -29,6 +29,7 @@
 		1A7FFD1F280AEF0000FE3415 /* AnimationUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD1E280AEF0000FE3415 /* AnimationUnit.swift */; };
 		1A7FFD21280AEF5200FE3415 /* SpriteUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */; };
 		1A7FFD23280AF28E00FE3415 /* RenderPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD22280AF28E00FE3415 /* RenderPipeline.swift */; };
+		1A7FFD25280AFC1E00FE3415 /* CameraUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */; };
 		1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C92627E099F400D755BE /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91F27E099F400D755BE /* Clouds.atlas */; };
@@ -314,6 +315,7 @@
 		1A7FFD1E280AEF0000FE3415 /* AnimationUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationUnit.swift; sourceTree = "<group>"; };
 		1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteUnit.swift; sourceTree = "<group>"; };
 		1A7FFD22280AF28E00FE3415 /* RenderPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipeline.swift; sourceTree = "<group>"; };
+		1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUnit.swift; sourceTree = "<group>"; };
 		1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Random.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 				1A7FFD1C280AEE7A00FE3415 /* PhysicsUnit.swift */,
 				1A7FFD1E280AEF0000FE3415 /* AnimationUnit.swift */,
 				1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */,
+				1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */,
 			);
 			path = Units;
 			sourceTree = "<group>";
@@ -1909,6 +1912,7 @@
 				3E3632F028097BA500FAD7A8 /* PowerUpEffectComponent.swift in Sources */,
 				931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,
+				1A7FFD25280AFC1E00FE3415 /* CameraUnit.swift in Sources */,
 				3E3632F62809922000FAD7A8 /* SlowMoveEffector.swift in Sources */,
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
