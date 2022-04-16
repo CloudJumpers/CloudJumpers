@@ -55,7 +55,7 @@ class GameManager {
     }
 
     private func setUpEnvironment(with blueprint: Blueprint) {
-        let cloudPositions = LevelGenerator.from(blueprint, seed: blueprint.seed)
+        let cloudPositions = LevelGenerator.positionFrom(blueprint)
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }

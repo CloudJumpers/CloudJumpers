@@ -9,8 +9,8 @@ import CoreGraphics
 import GameplayKit
 
 class LevelGenerator {
-    static func from(_ blueprint: Blueprint, seed: Int) -> [CGPoint] {
-        var generator = SeedGenerator(seed: seed)
+    static func positionFrom(_ blueprint: Blueprint) -> [CGPoint] {
+        var generator = SeedGenerator(seed: blueprint.seed)
         var positions: [CGPoint] = []
 
         let xMax = blueprint.worldSize.width / 2 - blueprint.platformSize.width
