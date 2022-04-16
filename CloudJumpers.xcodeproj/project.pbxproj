@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11BCE701FED842995CC620D0 /* Pods_CloudJumpersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4384FF4C783FF4777E3F4673 /* Pods_CloudJumpersTests.framework */; };
-		1A13D77C27FD9BD700A28182 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13D77B27FD9BD700A28182 /* Node.swift */; };
+		1A13D77C27FD9BD700A28182 /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A13D77B27FD9BD700A28182 /* SpriteNode.swift */; };
 		1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A245D7327F6B668004FA29C /* Dictionary+Create.swift */; };
 		1A245D7627F6CDE2004FA29C /* PowerUpComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */; };
 		1A24DC172800AA3E00E48B64 /* PhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC162800AA3E00E48B64 /* PhysicsBody.swift */; };
@@ -30,6 +30,8 @@
 		1A7FFD21280AEF5200FE3415 /* SpriteUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */; };
 		1A7FFD23280AF28E00FE3415 /* RenderPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD22280AF28E00FE3415 /* RenderPipeline.swift */; };
 		1A7FFD25280AFC1E00FE3415 /* CameraUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */; };
+		1A7FFD27280B09B300FE3415 /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD26280B09B300FE3415 /* LabelNode.swift */; };
+		1A7FFD29280B09C600FE3415 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD28280B09C600FE3415 /* Node.swift */; };
 		1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C92627E099F400D755BE /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91F27E099F400D755BE /* Clouds.atlas */; };
@@ -306,7 +308,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1A13D77B27FD9BD700A28182 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		1A13D77B27FD9BD700A28182 /* SpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
 		1A245D7327F6B668004FA29C /* Dictionary+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Create.swift"; sourceTree = "<group>"; };
 		1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpComponent.swift; sourceTree = "<group>"; };
 		1A24DC162800AA3E00E48B64 /* PhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsBody.swift; sourceTree = "<group>"; };
@@ -330,6 +332,8 @@
 		1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpriteUnit.swift; sourceTree = "<group>"; };
 		1A7FFD22280AF28E00FE3415 /* RenderPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderPipeline.swift; sourceTree = "<group>"; };
 		1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUnit.swift; sourceTree = "<group>"; };
+		1A7FFD26280B09B300FE3415 /* LabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNode.swift; sourceTree = "<group>"; };
+		1A7FFD28280B09C600FE3415 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Random.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
@@ -921,7 +925,9 @@
 		1AE9D8AD27FED195002B0A1E /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
-				1A13D77B27FD9BD700A28182 /* Node.swift */,
+				1A7FFD28280B09C600FE3415 /* Node.swift */,
+				1A13D77B27FD9BD700A28182 /* SpriteNode.swift */,
+				1A7FFD26280B09B300FE3415 /* LabelNode.swift */,
 				1A24DC162800AA3E00E48B64 /* PhysicsBody.swift */,
 				1AE9D8A027FE99F1002B0A1E /* Texture.swift */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
@@ -1794,6 +1800,7 @@
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */,
 				A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */,
+				1A7FFD27280B09B300FE3415 /* LabelNode.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				939AFA032809BBD000852B8B /* Achievement.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
@@ -1839,7 +1846,7 @@
 				93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */,
 				1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */,
 				9385D9B127F727B700593930 /* RaceToTopPostGameManager.swift in Sources */,
-				1A13D77C27FD9BD700A28182 /* Node.swift in Sources */,
+				1A13D77C27FD9BD700A28182 /* SpriteNode.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				939AFA0B2809E5A900852B8B /* JumpAchievement.swift in Sources */,
 				A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */,
@@ -1848,6 +1855,7 @@
 				9353AE0F27E6F5D800B26E63 /* SegueIdentifier.swift in Sources */,
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
 				9385D9BE27F7349100593930 /* PostGameRestDelegate.swift in Sources */,
+				1A7FFD29280B09C600FE3415 /* Node.swift in Sources */,
 				A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */,
 				3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */,
 				A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */,
