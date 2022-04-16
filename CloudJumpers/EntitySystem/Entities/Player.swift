@@ -40,7 +40,14 @@ class Player: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .player)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            zPosition: .player)
+
+        spriteComponent.caption = name
+
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {

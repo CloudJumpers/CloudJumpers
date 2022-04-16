@@ -37,7 +37,14 @@ class Guest: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .guest)
+        let spriteComponent = SpriteComponent(
+            texture: texture.idle,
+            size: Constants.playerSize,
+            zPosition: .guest)
+
+        spriteComponent.caption = name
+
+        return spriteComponent
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
