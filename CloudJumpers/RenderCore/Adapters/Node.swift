@@ -8,6 +8,7 @@
 import SpriteKit
 
 typealias NodeCore = SKNode
+typealias SpriteNodeCore = SKSpriteNode
 
 class Node {
     private var captionNodeCore: SKLabelNode?
@@ -22,7 +23,7 @@ class Node {
     }
 
     init(texture: TextureFrame, size: CGSize) {
-        nodeCore = SKSpriteNode(texture: Texture.texture(of: texture), size: size)
+        nodeCore = SpriteNodeCore(texture: Texture.texture(of: texture), size: size)
     }
 
     var position: CGPoint {
@@ -38,6 +39,11 @@ class Node {
     var alpha: CGFloat {
         get { nodeCore.alpha }
         set { nodeCore.alpha = newValue }
+    }
+
+    var zRotation: CGFloat {
+        get { nodeCore.zRotation }
+        set { nodeCore.zRotation = newValue }
     }
 
     func scale(by scale: CGVector) {

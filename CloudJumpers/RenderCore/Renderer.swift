@@ -115,6 +115,13 @@ class Renderer {
         cache(entity: entity, node: node)
     }
 
+    private func configureSpriteNode(_ node: Node, with spriteComponent: SpriteComponent) {
+        node.zPosition = spriteComponent.zPosition.rawValue
+        node.alpha = spriteComponent.alpha
+        node.zRotation = spriteComponent.zRotation
+        // TODO: Add node.anchorPoint = spriteComponent.anchorPoint here
+    }
+
     private func createPhysicsBody(for entity: Entity) -> PhysicsBody? {
         guard let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity) else {
             return nil
