@@ -226,6 +226,7 @@
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
 		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
+		A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C47280AACC200EA3FBA /* KingHillData.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
 		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
@@ -512,6 +513,7 @@
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A13B8C47280AACC200EA3FBA /* KingHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingHillData.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
@@ -1104,6 +1106,7 @@
 			children = (
 				93C93AD727F744C4001246F2 /* TimeTrialData.swift */,
 				9385D9B227F727E200593930 /* RaceToTopData.swift */,
+				A13B8C47280AACC200EA3FBA /* KingHillData.swift */,
 				936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */,
 			);
 			path = LocalCompletionData;
@@ -1680,6 +1683,7 @@
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */,
+				A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,

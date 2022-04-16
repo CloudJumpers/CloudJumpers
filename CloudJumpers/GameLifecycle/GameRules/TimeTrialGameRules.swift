@@ -32,6 +32,7 @@ class TimeTrialGameRules: GameRules {
 
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -77,11 +78,14 @@ class TimeTrialGameRules: GameRules {
         return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
     }
 
-    func fetchLocalCompletionData() {
+    func fetchLocalCompletionData() -> LocalCompletionData {
         guard let timer = timer,
-              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
-        else { return }
-
-        // TODO: Return time for completion
+              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer),
+              let playerInfo = playerInfo
+        else { fatalError("Cannot get timer data") }
+        return TimeTrialData(
+            playerId: playerInfo.playerId,
+            playerName: playerInfo.displayName,
+            completionTime: timedComponent.time)
     }
 }

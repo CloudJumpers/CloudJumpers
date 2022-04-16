@@ -12,7 +12,9 @@ import CoreGraphics
 class KingHillGameRules: GameRules {
     private unowned var target: RuleModifiable?
 
-    private var timer: StaticLabel?
+    private var countDownTimer: StaticLabel?
+    private var scoreLabel: StaticLabel?
+
     var playerInfo: PlayerInfo?
 
     func setTarget(_ target: RuleModifiable) {
@@ -24,8 +26,7 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        // TODO: Create count down timer
-        self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        // TODO: Create count down timer and score label
 
     }
 
@@ -80,13 +81,16 @@ class KingHillGameRules: GameRules {
         false
     }
 
-    func fetchLocalCompletionData() {
-        guard let timer = timer,
-              let timedComponent = target?.component(ofType: TimedComponent.self, of: timer)
-        else { return }
+    // TODO: Update score
 
-        // TODO: Return time for completion
+    func fetchLocalCompletionData() -> LocalCompletionData {
+        guard let playerInfo = playerInfo
+        else { fatalError("Cannot get timer data") }
 
+        return KingHillData(
+            playerId: playerInfo.playerId,
+            playerName: playerInfo.displayName,
+            completionScore: .zero)
     }
 
 }

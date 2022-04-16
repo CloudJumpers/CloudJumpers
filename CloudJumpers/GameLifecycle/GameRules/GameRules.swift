@@ -17,7 +17,7 @@ protocol GameRules {
     func update(within time: CGFloat)
     func hasGameEnd() -> Bool
 
-    func fetchLocalCompletionData()
+    func fetchLocalCompletionData() -> LocalCompletionData
 }
 
 // MARK: - Helper functions
