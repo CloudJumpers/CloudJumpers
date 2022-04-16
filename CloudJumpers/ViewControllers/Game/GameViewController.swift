@@ -165,7 +165,7 @@ extension GameViewController: GameSceneDelegate {
             return
         }
         gameManager.update(within: interval)
-        gameManager.updatePlayer(with: joystick?.displacement ?? .zero)
+        gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
         // Check if player is host for each update iteration, enable as needed
         // TODO: Bring this to a callback if possible to reduce the need to check everytime

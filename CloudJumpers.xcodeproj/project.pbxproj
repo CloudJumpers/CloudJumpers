@@ -23,7 +23,6 @@
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
 		1A71C5EE280865A7008131C3 /* Miscellaneous.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A71C5ED280865A7008131C3 /* Miscellaneous.atlas */; };
 		1A71C5F02808666C008131C3 /* Miscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C5EF2808666C008131C3 /* Miscellaneous.swift */; };
-		1A7FFD112809FF0900FE3415 /* WhenStationaryEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD102809FF0900FE3415 /* WhenStationaryEvent.swift */; };
 		1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */; };
 		1A91C91827E0969500D755BE /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A91C91727E0969500D755BE /* Images.swift */; };
 		1A91C92627E099F400D755BE /* Clouds.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A91C91F27E099F400D755BE /* Clouds.atlas */; };
@@ -226,6 +225,9 @@
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
 		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
+		A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */; };
+		A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */; };
+		A13B8C44280A952100EA3FBA /* PowerUpLocationPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */; };
 		A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C47280AACC200EA3FBA /* KingHillData.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
@@ -302,7 +304,6 @@
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A71C5ED280865A7008131C3 /* Miscellaneous.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Miscellaneous.atlas; sourceTree = "<group>"; };
 		1A71C5EF2808666C008131C3 /* Miscellaneous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Miscellaneous.swift; sourceTree = "<group>"; };
-		1A7FFD102809FF0900FE3415 /* WhenStationaryEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenStationaryEvent.swift; sourceTree = "<group>"; };
 		1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Random.swift"; sourceTree = "<group>"; };
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
@@ -513,6 +514,9 @@
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUpdateEvent.swift; sourceTree = "<group>"; };
+		A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButtonPressedEvent.swift; sourceTree = "<group>"; };
+		A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpLocationPressedEvent.swift; sourceTree = "<group>"; };
 		A13B8C47280AACC200EA3FBA /* KingHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingHillData.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
@@ -1310,7 +1314,6 @@
 				A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */,
 				A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */,
 				A1D7868F280209D500C5CE49 /* ObtainEvent.swift */,
-				1A7FFD102809FF0900FE3415 /* WhenStationaryEvent.swift */,
 			);
 			path = PlayerEvents;
 			sourceTree = "<group>";
@@ -1327,6 +1330,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
@@ -1345,6 +1349,16 @@
 				1A24DC1A28016BE900E48B64 /* EventDispatcher.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		A13B8C3E280A875A00EA3FBA /* InputEvents */ = {
+			isa = PBXGroup;
+			children = (
+				A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */,
+				A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */,
+				A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */,
+			);
+			path = InputEvents;
 			sourceTree = "<group>";
 		};
 		A1409A2A27ECB611000008E8 /* GameRules */ = {
@@ -1691,6 +1705,7 @@
 				3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */,
+				A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */,
 				935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
 				9385D9C027F740E800593930 /* RaceToTopResponse.swift in Sources */,
@@ -1735,7 +1750,6 @@
 				A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */,
 				3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */,
 				A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */,
-				1A7FFD112809FF0900FE3415 /* WhenStationaryEvent.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
@@ -1768,6 +1782,7 @@
 				1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */,
 				935280D727F6B082002E3A1D /* Response.swift in Sources */,
 				9344624E27E502DE00063BE9 /* NetworkCallback.swift in Sources */,
+				A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */,
 				A108AB5027E5070E003157E8 /* EventManager.swift in Sources */,
 				3EA7C8A12802AC28009BCA63 /* PhysicsCollision.swift in Sources */,
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
@@ -1859,6 +1874,7 @@
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
+				A13B8C44280A952100EA3FBA /* PowerUpLocationPressedEvent.swift in Sources */,
 				9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */,
 				A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */,
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
