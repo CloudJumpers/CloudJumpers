@@ -18,13 +18,17 @@ class Renderer {
 
     private var renderedNodes: NodesMap
     private var entityNode: EntityNodeMap
+    private let pipeline: RenderPipeline
 
     init(from target: Simulatable, to scene: Scene?) {
         renderedNodes = NodesMap()
         entityNode = EntityNodeMap()
+        pipeline = RenderPipeline()
         self.target = target
         self.scene = scene
+
         scene?.updateDelegate = self
+        setUpPipeline()
     }
 
     func render() {
@@ -58,126 +62,35 @@ class Renderer {
         if entityNode.contains(key: entity.id) {
             update(entity: entity)
         } else {
-            create(entity: entity)
+            createAndCache(entity: entity)
         }
     }
 
     private func update(entity: Entity) {
-        updatePosition(entity: entity)
-        updatePhysics(entity: entity)
-        updateAnimation(entity: entity)
-    }
-
-    // MARK: Update based on component
-    private func updatePosition(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
-        else { return }
-
-        node.position = positionComponent.position
-        node.xScale = abs(node.xScale) * positionComponent.side.rawValue
-    }
-
-    private func updatePhysics(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity)
-        else { return }
-
-        if !physicsComponent.impulse.isZero {
-            node.physicsBody?.applyImpulse(physicsComponent.impulse)
-        }
-    }
-
-    private func updateAnimation(entity: Entity) {
-        guard let node = entityNode[entity.id],
-              let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
-              let animation = animationComponent.activeAnimation,
-              node.activeAnimationKey != animation.key
-        else { return }
-
-        node.animateLoop(with: animation.frames, interval: 0.1, key: animation.key)
-    }
-
-    private func create(entity: Entity) {
-        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
-              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
-        else { return }
-
-        let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
-        node.position = positionComponent.position
-        node.name = entity.id
-
-        if let physicsBody = createPhysicsBody(for: entity) {
-            node.physicsBody = physicsBody
+        guard let node = entityNode[entity.id] else {
+            fatalError("Node \(String(describing: node)) was updated before created/cached")
         }
 
-        let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
-        scene?.addChild(node, static: `static` ?? false)
-        bindCamera(to: node, with: entity)
-
-        cache(entity: entity, node: node)
+        pipeline.render(entity, with: node)
     }
 
-    private func configureSpriteNode(_ node: Node, with spriteComponent: SpriteComponent) {
-        node.zPosition = spriteComponent.zPosition.rawValue
-        node.alpha = spriteComponent.alpha
-        node.zRotation = spriteComponent.zRotation
-        // TODO: Add node.anchorPoint = spriteComponent.anchorPoint here
-    }
+    private func createAndCache(entity: Entity) {
+        guard let spriteUnit = pipeline.unit(ofType: SpriteUnit.self),
+              let physicsUnit = pipeline.unit(ofType: PhysicsUnit.self)
+        else { fatalError("SpriteUnit/PhysicsUnit was not registered") }
 
-    private func createPhysicsBody(for entity: Entity) -> PhysicsBody? {
-        guard let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity) else {
-            return nil
-        }
-
-        let body = createPhysicsBody(with: physicsComponent)
-        if let body = body {
-            configurePhysicsBody(body, with: physicsComponent)
-        }
-
-        return body
-    }
-
-    private func createPhysicsBody(with physicsComponent: PhysicsComponent) -> PhysicsBody? {
-        switch physicsComponent.shape {
-        case .circle:
-            guard let radius = physicsComponent.radius else {
-                fatalError("Circle PhysicsComponent does not have a radius")
-            }
-
-            return PhysicsBody(circleOf: radius)
-
-        case .rectangle:
-            guard let size = physicsComponent.size else {
-                fatalError("Rectangle PhysicsComponent does not have a size")
-            }
-
-            return PhysicsBody(rectangleOf: size)
-        }
-    }
-
-    private func configurePhysicsBody(_ body: PhysicsBody, with physicsComponent: PhysicsComponent) {
-        if let mass = physicsComponent.mass {
-            body.mass = mass
-        }
-
-        body.velocity = physicsComponent.velocity
-        body.isDynamic = physicsComponent.isDynamic
-        body.affectedByGravity = physicsComponent.affectedByGravity
-        body.allowsRotation = physicsComponent.allowsRotation
-        body.restitution = physicsComponent.restitution
-        body.linearDamping = physicsComponent.linearDamping
-        body.categoryBitMask = physicsComponent.categoryBitMask
-        body.collisionBitMask = physicsComponent.collisionBitMask
-        body.contactTestBitMask = physicsComponent.contactTestBitMask
-    }
-
-    private func bindCamera(to node: Node, with entity: Entity) {
-        guard target?.hasComponent(ofType: CameraAnchorTag.self, in: entity) ?? false else {
+        guard let node = spriteUnit.createSpriteNode(for: entity) else {
             return
         }
 
-        scene?.bindCamera(to: node)
+        if let physicsBody = physicsUnit.createPhysicsBody(for: entity) {
+            node.physicsBody = physicsBody
+        }
+
+        addNode(node, with: entity)
+        bindCamera(to: node, with: entity)
+
+        cache(entity: entity, node: node)
     }
 
     // MARK: - Post-rendering
@@ -188,6 +101,7 @@ class Renderer {
         }
     }
 
+    // MARK: - Helper Methods
     private func cache(entity: Entity, node: Node) {
         entityNode[entity.id] = node
         renderedNodes[node.nodeCore] = node
@@ -202,8 +116,26 @@ class Renderer {
         renderedNodes[node.nodeCore] = nil
     }
 
+    private func addNode(_ node: Node, with entity: Entity) {
+        let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
+        scene?.addChild(node, static: `static` ?? false)
+    }
+
+    private func bindCamera(to node: Node, with entity: Entity) {
+        if target?.hasComponent(ofType: CameraAnchorTag.self, in: entity) ?? false {
+            scene?.bindCamera(to: node)
+        }
+    }
+
     private func remove(node: Node) {
         scene?.removeChild(node)
+    }
+
+    private func setUpPipeline() {
+        pipeline.register(PositionUnit(on: target))
+        pipeline.register(PhysicsUnit(on: target))
+        pipeline.register(AnimationUnit(on: target))
+        pipeline.register(SpriteUnit(on: target))
     }
 }
 
