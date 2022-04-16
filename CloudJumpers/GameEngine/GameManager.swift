@@ -75,12 +75,6 @@ class GameManager {
 
 // MARK: - InputResponder
 extension GameManager: InputResponder {
-    var associatedEntity: Entity? {
-        get { world.entity(with: metaData.playerId) }
-        set { metaData.playerId = newValue?.id ?? EntityID() }
-    }
-
-    // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
         world.add(JoystickUpdateEvent(displacement: displacement))
     }
@@ -90,14 +84,6 @@ extension GameManager: InputResponder {
     }
 
     func activatePowerUp(at location: CGPoint) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        world.add(PowerUpActivateEvent(by: entity.id, location: location))
-
-        world.dispatch(ExternalPowerUpActivateEvent(
-            activatePowerUpPositionX: location.x,
-            activatePowerUpPositionY: location.y))
+        world.add(PowerUpLocationPressedEvent(location: location))
     }
 }

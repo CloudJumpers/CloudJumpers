@@ -24,6 +24,7 @@ struct JumpButtonPressedEvent: Event {
         else {
             return
         }
+        // TODO: Consider put code for jump event here as jump is for character only
         let jumpEvent = JumpEvent(onEntityWith: player.id)
         let soundEvent = SoundEvent(.jumpCape).then(do: SoundEvent(.jumpFoot))
 
