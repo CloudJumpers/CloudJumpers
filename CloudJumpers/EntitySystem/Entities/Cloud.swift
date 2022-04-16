@@ -7,16 +7,22 @@
 
 import SpriteKit
 
+// TODO: cloud may oscille differently on different devices, to be checked
+// TODO: player may not move when standing on top of moving cloud, to be checked
 class Cloud: Entity {
     let id: EntityID
 
     private let position: CGPoint
     private let texture: Clouds
+    private let horizontalVelocity: CGFloat
 
-    init(at position: CGPoint, texture: Clouds, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, texture: Clouds,
+         horizontalVelocity: CGFloat = CGFloat.zero,
+         with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.texture = texture
         self.position = position
+        self.horizontalVelocity = horizontalVelocity
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -25,6 +31,12 @@ class Cloud: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+
+        if abs(horizontalVelocity) <= Constants.cloudMovingTolerance {
+            manager.addComponent(HorizontalOscillationComponent(at: position,
+                                                                horizontalVelocity: horizontalVelocity),
+                                 to: self)
+        }
         manager.addComponent(PositionComponent(at: position), to: self)
     }
 

@@ -9,8 +9,8 @@ import CoreGraphics
 import GameplayKit
 
 class LevelGenerator {
-    static func from(_ blueprint: Blueprint, seed: Int) -> [CGPoint] {
-        var generator = SeedGenerator(seed: seed)
+    static func positionFrom(_ blueprint: Blueprint) -> [CGPoint] {
+        var generator = SeedGenerator(seed: blueprint.seed)
         var positions: [CGPoint] = []
 
         let xMax = blueprint.worldSize.width / 2 - blueprint.platformSize.width
@@ -37,6 +37,24 @@ class LevelGenerator {
         }
 
         return positions
+    }
+
+    static func velocityFrom(_ velocityGenerationInfo: VelocityGenerationInfo, size: Int) -> [CGFloat] {
+        var generator = SeedGenerator(seed: velocityGenerationInfo.seed)
+        var velocities: [CGFloat] = []
+
+        while velocities.count < size {
+            let shouldMove = random(in: 0.0...1.0, using: &generator) >= 0.5
+
+            if shouldMove {
+                velocities.append(0.0)
+            } else {
+                let randomSpeed = random(in: velocityGenerationInfo.velocityRange, using: &generator)
+                velocities.append(randomSpeed)
+            }
+        }
+
+        return velocities
     }
 
     private static func random(in range: ClosedRange<Float>, using generator: inout SeedGenerator) -> CGFloat {

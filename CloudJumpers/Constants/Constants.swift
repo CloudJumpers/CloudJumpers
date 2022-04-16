@@ -112,4 +112,6 @@ struct Constants {
 
     static let teleportCloudGapY = CGVector(dx: 0.0, dy: 25.0)
     static let teleportEffectDuration = 0.05
+
+    static let cloudMovingTolerance = 0.001
 }
