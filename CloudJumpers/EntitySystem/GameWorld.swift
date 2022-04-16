@@ -122,5 +122,11 @@ extension GameWorld: RuleModifiable {
         }
         system.active = false
     }
+}
 
+// MARK: - MetricsProvider
+extension GameWorld: MetricsProvider {
+    func getMetricsUpdate() -> [String: Any] {
+        [:]
+    }
 }
