@@ -8,6 +8,6 @@
 import Foundation
 
 enum GameConstants {
-    static let positionalUpdateIntervalSeconds = 0.1
+    static let positionalUpdateIntervalTicks = 6
     static let shadowPlayerID = "shadow1234567890"
 }
