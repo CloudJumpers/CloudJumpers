@@ -8,25 +8,35 @@
 import Foundation
 
 class GameWorld {
-    private var entityManager: EntityManager
-    private var systemManager: SystemManager
-    private var eventManager: EventManager
+    private let entityManager: EntityManager
+    private let systemManager: SystemManager
+    private let eventManager: EventManager
     private var renderer: Renderer?
     private var remoteEventHandlers: RemoteEventHandlers
 
     init(rendersTo scene: Scene?, subscribesTo handlers: RemoteEventHandlers) {
         entityManager = EntityManager()
-        systemManager = SystemManager(for: entityManager)
+        systemManager = SystemManager()
         eventManager = EventManager()
         remoteEventHandlers = handlers
         renderer = Renderer(from: self, to: scene)
+
         eventManager.dispatcher = self
+        setUpSystems()
     }
 
     func update(within time: TimeInterval) {
         systemManager.update(within: time)
         eventManager.executeAll(in: self)
         renderer?.render()
+    }
+
+    private func setUpSystems() {
+        systemManager.register(PositionSystem(for: entityManager))
+        systemManager.register(PhysicsSystem(for: entityManager))
+        systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(AnimateSystem(for: entityManager))
+        systemManager.register(StandOnSystem(for: entityManager))
     }
 }
 
@@ -145,5 +155,4 @@ extension GameWorld: RuleModifiable {
         }
         system.active = false
     }
-
 }
