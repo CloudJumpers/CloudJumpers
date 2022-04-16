@@ -11,9 +11,11 @@ class Platform: Entity {
     let id: EntityID
 
     private let position: CGPoint
+    private let texture: Clouds
 
-    init(at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, texture: Clouds, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
+        self.texture = texture
         self.position = position
     }
 
@@ -23,31 +25,21 @@ class Platform: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(TopPlatformTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        // TODO: Abstract out Clouds texture atlas
-        let texture = SKTextureAtlas(named: "EndPlatform").textureNamed("cloud-1")
-        let spriteComponent = SpriteComponent(
-            texture: texture,
-            size: Constants.platformNodeSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: Constants.platformNodeSize, zPosition: .platform)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.platformPhysicsSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskPlatform
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.platformPhysicsSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = PhysicsCategory.platform
+        physicsComponent.collisionBitMask = PhysicsCollision.platform
+        physicsComponent.contactTestBitMask = PhysicsContactTest.platform
 
         return physicsComponent
     }

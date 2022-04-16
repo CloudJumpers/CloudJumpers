@@ -5,30 +5,46 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
+
+typealias PhysicsBitMask = UInt32
 
 class PhysicsComponent: Component {
-    let body: SKPhysicsBody
+    let shape: Shape
+    var size: CGSize?
+    var radius: CGFloat?
 
-    init(rectangleOf size: CGSize, for spriteComponent: SpriteComponent) {
-        body = SKPhysicsBody(rectangleOf: size)
+    var mass: CGFloat?
+    var velocity: CGVector = .zero
+    var isDynamic = true
+    var affectedByGravity = false
+    var allowsRotation = false
+    var restitution: CGFloat = .zero
+    var impulse: CGVector = .zero
+    var linearDamping: CGFloat = 0.1
+
+    var categoryBitMask: PhysicsBitMask = PhysicsCategory.max
+    var collisionBitMask: PhysicsBitMask = PhysicsCollision.max
+    var contactTestBitMask: PhysicsBitMask = PhysicsContactTest.max
+
+    init(rectangleOf size: CGSize) {
+        shape = .rectangle
+        self.size = size
         super.init()
-        spriteComponent.node.physicsBody = body
     }
 
-    init(circleOf radius: CGFloat, for spriteComponent: SpriteComponent) {
-        body = SKPhysicsBody(circleOfRadius: radius)
+    // TODO: Figure out a better way to handle different shapes without enum/switch
+    init(circleOf radius: CGFloat) {
+        shape = .circle
+        self.radius = radius
         super.init()
-        spriteComponent.node.physicsBody = body
     }
+}
 
-    init(texture: SKTexture, size: CGSize, for spriteComponent: SpriteComponent) {
-        body = SKPhysicsBody(texture: texture, size: size)
-        super.init()
-        spriteComponent.node.physicsBody = body
-    }
-
-    convenience init(texture: SKTexture, for spriteComponent: SpriteComponent) {
-        self.init(texture: texture, size: texture.size(), for: spriteComponent)
+// MARK: - PhysicsComponent.Shape
+extension PhysicsComponent {
+    enum Shape: Int {
+        case rectangle
+        case circle
     }
 }

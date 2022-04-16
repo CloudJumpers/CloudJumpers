@@ -8,7 +8,10 @@
 import SpriteKit
 
 class TimedSystem: System {
+    var active = true
+
     unowned var manager: EntityManager?
+    unowned var dispatcher: EventDispatcher?
 
     required init(for manager: EntityManager) {
         self.manager = manager

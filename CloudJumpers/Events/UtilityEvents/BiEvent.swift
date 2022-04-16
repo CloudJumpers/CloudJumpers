@@ -21,12 +21,12 @@ struct BiEvent: Event {
         self.event2 = event2
     }
 
-    func shouldExecute(in entityManager: EntityManager) -> Bool {
-        event1.shouldExecute(in: entityManager)
+    func shouldExecute(in target: EventModifiable) -> Bool {
+        event1.shouldExecute(in: target)
     }
 
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
-        event1.execute(in: entityManager, thenSuppliesInto: &supplier)
-        event2.execute(in: entityManager, thenSuppliesInto: &supplier)
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
+        event1.execute(in: target, thenSuppliesInto: &supplier)
+        event2.execute(in: target, thenSuppliesInto: &supplier)
     }
 }

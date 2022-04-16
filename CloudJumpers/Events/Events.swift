@@ -11,22 +11,21 @@ enum Events: Int {
     case move
     case jump
     case animate
-    case powerUpCollide
+    case powerUpPlayerCollide
     case obtain
-    case removeEntity
-    case removeUnboundEntity
-    case activatePowerUp
+    case remove
+    case powerUpActivate
     case confuse
     case freeze
     case powerUpEffectStart
     case reposition
     case respawn
-    case disasterHit
+    case disasterPlayerCollide
     case blinkEffect
-    case disasterStart
-    case respawnEffect
-    case disasterPromptEffect
-    case disasterSpawn
+    case disasterActivate
+    case changeLocation
+    case sound
+    case updateState
 
     private static let events: [String: Events] = [
         String(describing: BiEvent.self): .bi,
@@ -34,19 +33,18 @@ enum Events: Int {
         String(describing: MoveEvent.self): .move,
         String(describing: JumpEvent.self): .jump,
         String(describing: AnimateEvent.self): .animate,
-        String(describing: PowerUpCollideEvent.self): .powerUpCollide,
+        String(describing: PowerUpPlayerCollideEvent.self): .powerUpPlayerCollide,
         String(describing: ObtainEvent.self): .obtain,
-        String(describing: RemoveEntityEvent.self): .removeEntity,
-        String(describing: ActivatePowerUpEvent.self): .activatePowerUp,
+        String(describing: RemoveEvent.self): .remove,
+        String(describing: PowerUpActivateEvent.self): .powerUpActivate,
         String(describing: RepositionEvent.self): .reposition,
-        String(describing: RemoveUnboundEntityEvent.self): .removeUnboundEntity,
-        String(describing: DisasterHitEvent.self): .disasterHit,
-        String(describing: BlinkEffectEvent.self): .blinkEffect,
-        String(describing: DisasterStartEvent.self): .disasterStart,
+        String(describing: DisasterPlayerCollideEvent.self): .disasterPlayerCollide,
+        String(describing: BlinkEvent.self): .blinkEffect,
+        String(describing: DisasterSpawnEvent.self): .disasterActivate,
         String(describing: RespawnEvent.self): .respawn,
-        String(describing: RespawnEffectEvent.self): .respawnEffect,
-        String(describing: DisasterPromptEffectEvent.self): .disasterPromptEffect,
-        String(describing: DisasterSpawnEvent.self): .disasterSpawn,
+        String(describing: ChangeStandOnLocationEvent.self): .changeLocation,
+        String(describing: SoundEvent.self): .sound,
+        String(describing: UpdateGuestStateEvent.self): .updateState,
         String(describing: ConfuseEvent.self): .confuse,
         String(describing: FreezeEvent.self): .freeze
     ]

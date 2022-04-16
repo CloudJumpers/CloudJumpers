@@ -14,14 +14,9 @@ class Guest: Entity {
 
     private(set) var position: CGPoint
     private let name: String
-    private let texture: Textures
+    private let texture: Characters
 
-    init(
-        at position: CGPoint,
-        texture: Textures,
-        name: String,
-        with id: EntityID = EntityManager.newEntityID
-    ) {
+    init(at position: CGPoint, texture: Characters, name: String, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.texture = texture
         self.name = name
@@ -36,51 +31,31 @@ class Guest: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(animationComponent, to: self)
+        manager.addComponent(InventoryComponent(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let spriteComponent = SpriteComponent(
-            texture: texture.idle,
-            size: Constants.playerSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.guest.rawValue
-        createNameLabel(for: spriteComponent)
-
-        return spriteComponent
-    }
-
-    private func createNameLabel(for spriteComponent: SpriteComponent) {
-        var displayname = name
-        if displayname.count > Constants.playerDisplaynameSize {
-            let index = displayname.index(displayname.startIndex, offsetBy: Constants.playerDisplaynameSize)
-            displayname = displayname[..<index] + "..."
-        }
-
-        let labelNode = SKLabelNode()
-        labelNode.text = displayname
-        labelNode.fontSize = Constants.nameLabelFontSize
-        labelNode.position = Constants.nameLabelRelativePosition
-        labelNode.fontColor = .black
-
-        spriteComponent.node.addChild(labelNode)
+        SpriteComponent(texture: texture.idle, size: Constants.playerSize, zPosition: .guest)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize, for: spriteComponent)
-        let guestCollisionBitmask = .max ^ Constants.bitmaskPlayer ^ Constants.bitmaskShadowGuest ^
-        Constants.bitmaskGuest ^ Constants.bitmaskPlatform ^ Constants.bitmaskDisaster ^ Constants.bitmaskPowerUp
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskGuest
-        physicsComponent.body.collisionBitMask = guestCollisionBitmask ^ Constants.bitmaskCloud
-        physicsComponent.body.contactTestBitMask = guestCollisionBitmask
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
+
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.categoryBitMask = PhysicsCategory.guest
+        physicsComponent.collisionBitMask = PhysicsCollision.guest
+        physicsComponent.contactTestBitMask = PhysicsContactTest.guest
+
         return physicsComponent
     }
 
     private func createAnimationComponent() -> AnimationComponent {
-        AnimationComponent(texture: texture, kind: .idle)
+        let animationComponent = AnimationComponent()
+        animationComponent.animations[CharacterFrames.idle.key] = texture.idle.asFrames
+        animationComponent.animations[CharacterFrames.jumping.key] = texture.jumping
+        animationComponent.animations[CharacterFrames.walking.key] = texture.walking
+        animationComponent.animations[CharacterFrames.prejump.key] = texture.prejumping
+        return animationComponent
     }
 }

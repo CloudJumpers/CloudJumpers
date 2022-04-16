@@ -53,18 +53,9 @@ struct Constants {
     static let platformPhysicsSize = CGSize(width: 200.0, height: 1.0)
     static let powerUpNodeSize = CGSize(width: 60.0, height: 60.0)
     static let powerUpMaxNumDisplay = 5
+    static let powerUpTargetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
     static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
-
-    static let bitmaskPlayer = UInt32(0x1 << 0)
-    static let bitmaskCloud = UInt32(0x1 << 1)
-    static let bitmaskPlatform = UInt32(0x1 << 2)
-    static let bitmaskPowerUp = UInt32(0x1 << 3)
-    static let bitmaskDisaster = UInt32(0x1 << 4)
-    static let bitmaskWall = UInt32(0x1 << 5)
-    static let bitmaskFloor = UInt32(0x1 << 6)
-    static let bitmaskGuest = UInt32(0x1 << 7)
-    static let bitmaskShadowGuest = UInt32(0x1 << 8)
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
@@ -113,7 +104,10 @@ struct Constants {
 
     static let disasterPromptLoopCount = 8
 
-    static let nameLabelFontSize = 20.0
-    static let nameLabelRelativePosition = CGPoint(x: 0.0, y: 35.0)
+    static let captionFontSize = 20.0
+    static let captionRelativePosition = CGPoint(x: 0.0, y: 35.0)
     static let playerDisplaynameSize = 5
+
+    static let teleportCloudGapY = CGVector(dx: 0.0, dy: 25.0)
+    static let teleportEffectDuration = 0.05
 }

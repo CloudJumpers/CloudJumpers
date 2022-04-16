@@ -10,19 +10,14 @@ import Foundation
 class EventManager {
     private typealias EventQueue = PriorityQueue<Event>
 
+    unowned var dispatcher: EventDispatcher?
+
     private var events: EventQueue
     private var effectors: [Effector]
 
-    private var gameEventSubscriber: GameEventSubscriber?
-    private var gameEventPublisher: GameEventPublisher?
-
-    init(handlers: RemoteEventHandlers) {
+    init() {
         self.events = EventQueue(sort: Self.priority(_:_:))
         self.effectors = []
-
-        self.gameEventPublisher = handlers.publisher
-        self.gameEventSubscriber = handlers.subscriber
-        gameEventSubscriber?.eventManager = self
     }
 
     static var timestamp: TimeInterval {
@@ -37,8 +32,8 @@ class EventManager {
         effectors.append(effector)
     }
 
-    func executeAll(in entityManager: EntityManager) {
-        validateEffectors(in: entityManager)
+    func executeAll(in target: EventModifiable) {
+        validateEffectors(in: target)
 
         var counter = events.count
         var deferredEvents: [Event] = []
@@ -48,11 +43,11 @@ class EventManager {
                 fatalError("EventManager.executeAll(in:) dequeued an empty EventQueue")
             }
 
-            if event.shouldExecute(in: entityManager) {
+            if event.shouldExecute(in: target) {
                 event = transformEvent(event)
 
                 var supplier = Supplier()
-                event.execute(in: entityManager, thenSuppliesInto: &supplier)
+                event.execute(in: target, thenSuppliesInto: &supplier)
                 let newEventsCount = supply(from: supplier)
 
                 counter += newEventsCount
@@ -64,17 +59,6 @@ class EventManager {
         }
 
         deferredEvents.forEach(add(_:))
-    }
-
-    func publish(_ remoteEvent: RemoteEvent) {
-        guard
-            let command = remoteEvent.createDispatchCommand(),
-            let publisher = gameEventPublisher
-        else {
-            return
-        }
-
-        publisher.publishGameEventCommand(command)
     }
 
     private static func priority(_ event1: Event, _ event2: Event) -> Bool {
@@ -95,13 +79,17 @@ class EventManager {
 
     private func supply(from supplier: Supplier) -> Int {
         supplier.events.forEach(add(_:))
-        supplier.remoteEvents.forEach(publish(_:))
         supplier.effectors.forEach(add(_:))
+
+        if let dispatcher = dispatcher {
+            supplier.remoteEvents.forEach(dispatcher.dispatch(_:))
+        }
+
         return supplier.events.count
     }
 
-    private func validateEffectors(in entityManager: EntityManager) {
-        effectors.removeAll { $0.shouldDetach(in: entityManager) }
+    private func validateEffectors(in target: EventModifiable) {
+        effectors.removeAll { $0.shouldDetach(in: target) }
     }
 
     private func transformEvent(_ event: Event) -> Event {

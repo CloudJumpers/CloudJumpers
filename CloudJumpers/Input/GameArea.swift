@@ -13,9 +13,10 @@ class GameArea: SKSpriteNode {
     init(at position: CGPoint, to responder: InputResponder) {
         self.responder = responder
         super.init(
-            texture: SKTexture(imageNamed: Images.background.name),
+            texture: SKTexture(),
             color: .red,
             size: Constants.gameAreaSize)
+
         configureNode(at: position)
     }
 

@@ -5,13 +5,15 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-class AnimationComponent: Component {
-    let texture: Textures
-    var kind: Textures.Kind
+typealias AnimationKey = String
+typealias AnimationFrames = [TextureFrame]
+typealias Animation = (key: AnimationKey, frames: AnimationFrames)
 
-    init(texture: Textures, kind: Textures.Kind) {
-        self.texture = texture
-        self.kind = kind
-        super.init()
+class AnimationComponent: Component {
+    var animations: [AnimationKey: AnimationFrames]
+    var activeAnimation: Animation?
+
+    override init() {
+        animations = [:]
     }
 }

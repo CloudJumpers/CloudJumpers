@@ -26,7 +26,7 @@ struct SwapMoveEffector: Effector {
             dx: -event.displacement.dx,
             dy: -event.displacement.dy)
 
-        return MoveEvent(onEntityWith: event.entityID, at: event.timestamp, by: swappedDisplacement)
+        return MoveEvent(onEntityWith: event.entityID, by: swappedDisplacement, at: event.timestamp)
     }
 
     func shouldDetach(in entityManager: EntityManager) -> Bool {

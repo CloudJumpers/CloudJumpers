@@ -11,37 +11,37 @@ class DisasterPrompt: Entity {
     let id: EntityID
     private var position: CGPoint
     private let kind: DisasterComponent.Kind
+    private let intervalToRemove: TimeInterval
 
-    init(_ kind: DisasterComponent.Kind, at position: CGPoint,
-         with id: EntityID = EntityManager.newEntityID) {
+    init(_ kind: DisasterComponent.Kind,
+         at position: CGPoint,
+         removeAfter intervalToRemove: TimeInterval,
+         with id: EntityID = EntityManager.newEntityID
+    ) {
 
         self.id = id
         self.kind = kind
         self.position = position
+        self.intervalToRemove = intervalToRemove
     }
 
     func setUpAndAdd(to manager: EntityManager) {
         let spriteComponent = createSpriteComponent()
         manager.addComponent(spriteComponent, to: self)
 
-        let timedComponent = createTimedComponent()
-        manager.addComponent(timedComponent, to: self)
+        manager.addComponent(TimedComponent(), to: self)
+        manager.addComponent(TimedRemovalComponent(timeToRemove: intervalToRemove), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        let node = SKSpriteNode(
-            texture: SKTexture(imageNamed: "\(kind)Prompt"),
-            size: Constants.disasterPromptSize)
+        let spriteComponent = SpriteComponent(
+            texture: Miscellaneous.meteorPrompt.frame,
+            size: Constants.disasterPromptSize,
+            zPosition: .disaster)
 
-        node.position = position
-        node.zPosition = SpriteZPosition.disaster.rawValue
-        node.alpha = 0
-        node.anchorPoint = CGPoint(x: 0.5, y: 0)
+        spriteComponent.alpha = 0.0
+        spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
 
-        return SpriteComponent(node: node, forEntityWith: id)
-    }
-
-    private func createTimedComponent() -> TimedComponent {
-        TimedComponent()
+        return spriteComponent
     }
 }
