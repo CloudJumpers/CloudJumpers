@@ -161,7 +161,7 @@ class GameViewController: UIViewController {
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         gameManager?.update(within: interval)
-        gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
+        gameManager?.inputMove(by: joystick?.displacement ?? .zero)
     }
 }
 

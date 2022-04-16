@@ -29,21 +29,6 @@ class GameManager {
         checkHasGameEnd()
     }
 
-    // TODO: This shouldn't touch PhysicsComponent anymore
-    func updatePlayer(with displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        if displacement != .zero {
-            inputMove(by: displacement)
-        } else {
-            // TODO: Figure out how to do without WhenStationaryEvent
-            let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.idle.key)
-            world.add(WhenStationaryEvent(entity.id, do: animateEvent))
-        }
-    }
-
     func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         setUpEnvironment(with: blueprint)
         rules.setUpForRule()
@@ -97,18 +82,7 @@ extension GameManager: InputResponder {
 
     // TODO: This shouldn't touch Components
     func inputMove(by displacement: CGVector) {
-        guard let entity = associatedEntity else {
-            return
-        }
-
-        let moveEvent = MoveEvent(onEntityWith: entity.id, by: displacement)
-        let soundEvent = SoundEvent(.walking)
-
-        world.add(moveEvent.then(do: soundEvent))
-
-        // TODO: Figure out how to do without WhenStationaryEvent
-        let animateEvent = AnimateEvent(onEntityWith: entity.id, to: CharacterFrames.walking.key)
-        world.add(WhenStationaryEvent(entity.id, do: animateEvent))
+        world.add(JoystickUpdateEvent(displacement: displacement))
     }
 
     func inputJump() {
