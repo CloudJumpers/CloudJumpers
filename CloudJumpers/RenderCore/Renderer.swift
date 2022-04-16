@@ -95,12 +95,15 @@ class Renderer {
     }
 
     private func create(entity: Entity) {
-        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
+        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
+              let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
+        else { return }
+
+        let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
+        node.position = positionComponent.position
+        node.name = entity.id
 
         let `static` = target?.hasComponent(ofType: CameraStaticTag.self, in: entity)
-        let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
         scene?.addChild(node, static: `static` ?? false)
         bindCamera(to: node, with: entity)
 
