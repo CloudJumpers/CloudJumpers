@@ -38,7 +38,7 @@ class AchievementCell: UICollectionViewCell {
     }
 
     func setUnlockStatus(_ isUnlocked: Bool) {
-        self.layer.opacity = isUnlocked ? 1.0 : 0.5
+        achievmentImage.layer.opacity = isUnlocked ? 1.0 : 0.25
     }
 
     func setRequired(_ required: String) {
