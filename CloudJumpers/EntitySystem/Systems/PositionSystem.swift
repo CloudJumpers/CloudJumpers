@@ -37,6 +37,17 @@ class PositionSystem: System {
         positionComponent.position += displacement
     }
 
+    func changeSide(entityWith id: EntityID, by displacement: CGVector) {
+        guard let positionComponent = manager?.component(ofType: PositionComponent.self, of: id) else {
+            return
+        }
+        if displacement.dx > 0 {
+            positionComponent.side = .right
+        } else if displacement.dx < 0 {
+            positionComponent.side = .left
+        }
+    }
+
     func sync(with entityPositionMap: EntityPositionMap) {
         for (entityID, position) in entityPositionMap {
             guard let entity = manager?.entity(with: entityID),

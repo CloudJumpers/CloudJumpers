@@ -26,5 +26,6 @@ struct MoveEvent: Event {
         }
 
         positionSystem.move(entityWith: entityID, by: displacement)
+        positionSystem.changeSide(entityWith: entityID, by: displacement)
     }
 }
