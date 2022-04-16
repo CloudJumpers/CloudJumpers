@@ -34,7 +34,7 @@ class KingHillGameRules: GameRules {
             at: Constants.scoreLabelPosition,
             size: Constants.scoreLabelSize,
             initialValue: "\(playerScore)")
-        self.timer = setUpTimer(initialValue: currentGameDuration, to: target)
+        self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
