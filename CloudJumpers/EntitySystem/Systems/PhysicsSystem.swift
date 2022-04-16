@@ -40,7 +40,15 @@ class PhysicsSystem: System {
             return false
         }
 
-        return physicsComponent.velocity != .zero
+        return !physicsComponent.velocity.isZero
+    }
+
+    func isJumping(_ entityID: EntityID) -> Bool {
+        guard let physicsComponent = manager?.component(ofType: PhysicsComponent.self, of: entityID) else {
+            return false
+        }
+
+        return physicsComponent.velocity.dy.isZero
     }
 
     func sync(with entityVelocityMap: EntityVelocityMap) {
