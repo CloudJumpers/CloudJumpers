@@ -14,6 +14,9 @@ enum Events: Int {
     case powerUpPlayerCollide
     case obtain
     case remove
+    case joystickUpdate
+    case powerUpLocationPressed
+    case jumpButtonPressed
     case powerUpActivate
     case confuse
     case freeze
@@ -46,7 +49,10 @@ enum Events: Int {
         String(describing: SoundEvent.self): .sound,
         String(describing: UpdateGuestStateEvent.self): .updateState,
         String(describing: ConfuseEvent.self): .confuse,
-        String(describing: FreezeEvent.self): .freeze
+        String(describing: FreezeEvent.self): .freeze,
+        String(describing: JoystickUpdateEvent.self): .joystickUpdate,
+        String(describing: PowerUpLocationPressedEvent.self): .powerUpLocationPressed,
+        String(describing: JumpButtonPressedEvent.self): .jumpButtonPressed
     ]
 
     static func rank(of event: Event) -> Int? {
