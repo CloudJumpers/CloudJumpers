@@ -2,7 +2,7 @@ import Combine
 import SpriteKit
 
 class GameViewController: UIViewController {
-    private var gameEngine: GameEngine?
+    private var gameManager: GameManager?
     private var scene: GameScene?
     private var joystick: Joystick?
 
@@ -27,10 +27,21 @@ class GameViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        gameEngine = nil
+        gameManager = nil
         handlers = nil
         scene = nil
         joystick = nil
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        guard let dest = segue.destination as? PostGameViewController,
+              let manager = sender as? PostGameManager
+        else { return }
+
+        dest.postGameManager = manager
+        dest.postGameManager?.submitForRanking()
     }
 
     private func setUpSynchronizedStart() {
@@ -48,21 +59,19 @@ class GameViewController: UIViewController {
             return
         }
 
-        let gameRules = config.getGameRules()
-
-        gameEngine = GameEngine(
-            rendersTo: self,
-            rules: gameRules,
-            isHost: { self.lobby?.userIsHost ?? false },
-            handlers: handlers
-        )
+        gameManager = GameManager(
+            rendersTo: scene,
+            inChargeID: lobby?.hostId,
+            handlers: handlers,
+            rules: config.getGameRules())
 
         setUpGameScene()
-        setUpGameEngine()
+        setUpGameManager()
         setUpInputControls()
         setUpSKViewAndPresent()
     }
 
+    // MARK: - Game Set-up Methods
     private func setUpGameScene() {
         guard let scene = GameScene(fileNamed: "GameScene") else {
             fatalError("GameScene.sks was not found!")
@@ -73,13 +82,10 @@ class GameViewController: UIViewController {
         self.scene = scene
     }
 
-    private func setUpGameEngine() {
+    private func setUpGameManager() {
         guard let scene = scene,
-              let gameEngine = gameEngine,
               let config = lobby?.gameConfig as? InGameConfig
-        else {
-            fatalError("GameScene, GameEngine, or configurated has not been initialized")
-        }
+        else { fatalError("GameScene, GameEngine, or configurated has not been initialized") }
 
         let authService = AuthService()
         guard let userId = authService.getUserId() else {
@@ -88,7 +94,6 @@ class GameViewController: UIViewController {
 
         let userDisplayName = authService.getUserDisplayName()
         let userInfo = PlayerInfo(playerId: userId, displayName: userDisplayName)
-
         let allUsersInfo = config.getIdOrderedPlayers()
 
         let cloudBlueprint = Blueprint(
@@ -101,22 +106,26 @@ class GameViewController: UIViewController {
             seed: config.seed
         )
 
-        let powerUpBlueprint = Blueprint(
-            worldSize: scene.size,
-            platformSize: Constants.powerUpNodeSize,
-            tolerance: CGVector(dx: 400, dy: 800),
-            xToleranceRange: 0.5...1.0,
-            yToleranceRange: 0.5...1.0,
-            firstPlatformPosition: Constants.playerInitialPosition, seed: config.seed * 2)
-
-        gameEngine.setUpGame(
-            cloudBlueprint: cloudBlueprint,
-            powerUpBlueprint: powerUpBlueprint,
-            playerInfo: userInfo,
-            allPlayersInfo: allUsersInfo)
-
+        gameManager?.setUpGame(with: cloudBlueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
 
+    private func setUpInputControls() {
+        guard let responder = gameManager else {
+            return
+        }
+
+        let joystick = Joystick(at: Constants.joystickPosition, to: responder)
+        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: responder)
+        let gameArea = GameArea(at: Constants.gameAreaPosition, to: responder)
+
+        scene?.addChild(joystick, static: true)
+        scene?.addChild(jumpButton, static: true)
+        scene?.addChild(gameArea, static: false)
+
+        self.joystick = joystick
+    }
+
+    // MARK: - Helper Methods
     private func setUpSKViewAndPresent() {
         guard let scene = scene else {
             fatalError("GameScene was not set up")
@@ -130,31 +139,11 @@ class GameViewController: UIViewController {
         view = skView
     }
 
-    private func setUpInputControls() {
-        guard let gameEngine = gameEngine else {
-            return
-        }
-
-        let joystick = Joystick(at: Constants.joystickPosition, to: gameEngine)
-        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: gameEngine)
-        let gameArea = GameArea(at: Constants.gameAreaPosition, to: gameEngine)
-
-        scene?.addChild(joystick, static: true)
-        scene?.addChild(jumpButton, static: true)
-        scene?.addChild(gameArea, static: false)
-
-        self.joystick = joystick
-    }
-
-    private func transitionToEndGame(playerEndTime: Double) {
-        guard
-            !isMovingToPostGame,
-            let activeLobby = lobby,
-            let gameConfig = activeLobby.gameConfig as? PostGameConfig,
-            let metaData = gameEngine?.metaData
-        else {
-            return
-        }
+    private func transitionToEndGame(with metaData: GameMetaData) {
+        guard !isMovingToPostGame,
+              let activeLobby = lobby,
+              let gameConfig = activeLobby.gameConfig as? PostGameConfig
+        else { return }
 
         isMovingToPostGame = true
 
@@ -166,58 +155,19 @@ class GameViewController: UIViewController {
 
         performSegue(withIdentifier: SegueIdentifier.gameToPostGame, sender: postGameManager)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-
-        guard
-            let dest = segue.destination as? PostGameViewController,
-            let manager = sender as? PostGameManager
-        else {
-            return
-        }
-
-        dest.postGameManager = manager
-        dest.postGameManager?.submitForRanking()
-    }
 }
 
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        guard let gameEngine = gameEngine else {
-            return
-        }
-        gameEngine.update(within: interval)
-        gameEngine.updatePlayer(with: joystick?.displacement ?? .zero)
-
-        if gameEngine.hasGameEnd {
-            // TO DO: maybe not expose meta data
-            transitionToEndGame(playerEndTime: gameEngine.metaData.time)
-        }
-
-    }
-
-    func scene(_ scene: GameScene, didBeginContact contact: SKPhysicsContact) {
-        gameEngine?.contactResolver.resolveBeginContact(contact: contact)
-    }
-
-    func scene(_ scene: GameScene, didEndContact contact: SKPhysicsContact) {
-        gameEngine?.contactResolver.resolveEndContact(contact: contact)
+        gameManager?.update(within: interval)
+        gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
     }
 }
 
-// MARK: - SpriteSystemDelegate
-extension GameViewController: SpriteSystemDelegate {
-    func spriteSystem(_ system: SpriteSystem, addNode node: SKNode, static: Bool) {
-        scene?.addChild(node, static: `static`)
-    }
-
-    func spriteSystem(_ system: SpriteSystem, removeNode node: SKNode) {
-        scene?.removeChild(node)
-    }
-
-    func spriteSystem(_ system: SpriteSystem, bindCameraTo node: SKNode) {
-        scene?.cameraAnchorNode = node
+// MARK: - GameManagerDelegate
+extension GameViewController: GameManagerDelegate {
+    func manager(_ manager: GameManager, didEndGameWith metaData: GameMetaData) {
+        transitionToEndGame(with: metaData)
     }
 }

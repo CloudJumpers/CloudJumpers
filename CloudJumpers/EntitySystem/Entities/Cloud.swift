@@ -11,9 +11,11 @@ class Cloud: Entity {
     let id: EntityID
 
     private let position: CGPoint
+    private let texture: Clouds
 
-    init(at position: CGPoint, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, texture: Clouds, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
+        self.texture = texture
         self.position = position
     }
 
@@ -26,29 +28,17 @@ class Cloud: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        // TODO: Abstract out Clouds texture atlas
-        let texture = SKTextureAtlas(named: "Clouds").textureNamed("cloud-1")
-        let spriteComponent = SpriteComponent(
-            texture: texture,
-            size: Constants.cloudNodeSize,
-            at: position,
-            forEntityWith: id)
-
-        spriteComponent.node.zPosition = SpriteZPosition.platform.rawValue
-
-        return spriteComponent
+        SpriteComponent(texture: texture.frame, size: Constants.cloudNodeSize, zPosition: .platform)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize, for: spriteComponent)
-        physicsComponent.body.affectedByGravity = false
-        physicsComponent.body.allowsRotation = false
-        physicsComponent.body.isDynamic = false
-        physicsComponent.body.restitution = 0
-        physicsComponent.body.categoryBitMask = Constants.bitmaskCloud
-        physicsComponent.body.collisionBitMask = Constants.bitmaskPlayer | Constants.bitmaskDisaster
-        physicsComponent.body.contactTestBitMask = Constants.bitmaskPlayer |
-        Constants.bitmaskDisaster | Constants.bitmaskGuest
+        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize)
+        physicsComponent.affectedByGravity = false
+        physicsComponent.allowsRotation = false
+        physicsComponent.isDynamic = false
+        physicsComponent.categoryBitMask = PhysicsCategory.cloud
+        physicsComponent.collisionBitMask = PhysicsCollision.cloud
+        physicsComponent.contactTestBitMask = PhysicsContactTest.cloud
 
         return physicsComponent
     }

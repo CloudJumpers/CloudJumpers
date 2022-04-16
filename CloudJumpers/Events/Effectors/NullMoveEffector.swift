@@ -20,7 +20,7 @@ struct NullMoveEffector: Effector {
             return event
         }
 
-        return MoveEvent(onEntityWith: event.entityID, at: event.timestamp, by: .zero)
+        return MoveEvent(onEntityWith: event.entityID, by: .zero, at: event.timestamp)
     }
 
     func shouldDetach(in entityManager: EntityManager) -> Bool {

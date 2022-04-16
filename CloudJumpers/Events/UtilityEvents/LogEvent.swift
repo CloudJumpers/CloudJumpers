@@ -19,7 +19,7 @@ struct LogEvent: Event {
         self.message = message
     }
 
-    func execute(in entityManager: EntityManager, thenSuppliesInto supplier: inout Supplier) {
+    func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         print(message)
     }
 }

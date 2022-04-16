@@ -32,12 +32,12 @@ struct MoveEventCommand: GameEventCommand {
         let decoder = JSONDecoder()
 
         guard let parameters = try? decoder.decode(ExternalMoveEvent.self, from: jsonData) else {
-            nextCommand = RepositionEventCommand(source, payload)
+            nextCommand = UpdateGuestStateEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
         let displacement = CGVector(dx: parameters.displacementX, dy: parameters.displacementY)
-        let event = MoveEvent(onEntityWith: source, at: parameters.timestamp, by: displacement)
+        let event = MoveEvent(onEntityWith: source, by: displacement, at: parameters.timestamp)
         eventManager.add(event)
 
         return true

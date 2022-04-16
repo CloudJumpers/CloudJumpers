@@ -20,7 +20,7 @@ struct NullJumpEffector: Effector {
             return event
         }
 
-        return JumpEvent(onEntityWith: event.entityID, at: event.timestamp, by: .zero)
+        return JumpEvent(onEntityWith: event.entityID, by: .zero, at: event.timestamp)
     }
 
     func shouldDetach(in entityManager: EntityManager) -> Bool {
