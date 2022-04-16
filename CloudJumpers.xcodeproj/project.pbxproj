@@ -190,6 +190,7 @@
 		936257B7280A9F2B00C4DFC0 /* MetricsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936257B6280A9F2A00C4DFC0 /* MetricsProvider.swift */; };
 		936257BA280AA18E00C4DFC0 /* AchievementUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936257B9280AA18E00C4DFC0 /* AchievementUpdateDelegate.swift */; };
 		936257BC280AA4A500C4DFC0 /* PollingUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936257BB280AA4A500C4DFC0 /* PollingUpdateDelegate.swift */; };
+		936257BE280AAE7300C4DFC0 /* MetricsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */; };
 		93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93681BEA280209650097EBD1 /* TimeTrial.swift */; };
 		93681BED280211500097EBD1 /* RaceToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93681BEC280211500097EBD1 /* RaceToTop.swift */; };
 		9385D9B127F727B700593930 /* RaceToTopPostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */; };
@@ -487,6 +488,7 @@
 		936257B6280A9F2A00C4DFC0 /* MetricsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsProvider.swift; sourceTree = "<group>"; };
 		936257B9280AA18E00C4DFC0 /* AchievementUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementUpdateDelegate.swift; sourceTree = "<group>"; };
 		936257BB280AA4A500C4DFC0 /* PollingUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingUpdateDelegate.swift; sourceTree = "<group>"; };
+		936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsSystem.swift; sourceTree = "<group>"; };
 		93681BEA280209650097EBD1 /* TimeTrial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrial.swift; sourceTree = "<group>"; };
 		93681BEC280211500097EBD1 /* RaceToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTop.swift; sourceTree = "<group>"; };
 		9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopPostGameManager.swift; sourceTree = "<group>"; };
@@ -778,6 +780,7 @@
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
 				A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */,
+				936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1936,6 +1939,7 @@
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
+				936257BE280AAE7300C4DFC0 /* MetricsSystem.swift in Sources */,
 				9385D9B827F72E8300593930 /* RESTConstants.swift in Sources */,
 				A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */,
 				93602440280A76EC004A7394 /* AchievementCell.swift in Sources */,

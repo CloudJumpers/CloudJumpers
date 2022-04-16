@@ -13,7 +13,7 @@ class JumpAchievement: Achievement {
 
     let title: String = "Jumps"
     let description: String = "Lifetime jumps made across games."
-    let metricKeys: [String] = ["jump"]
+    let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
     weak var dataDelegate: AchievementDataDelegate?
 

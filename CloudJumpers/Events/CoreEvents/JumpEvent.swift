@@ -24,10 +24,14 @@ struct JumpEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        guard let physicsSystem = target.system(ofType: PhysicsSystem.self) else {
+        guard
+            let physicsSystem = target.system(ofType: PhysicsSystem.self),
+            let metricsSystem = target.system(ofType: MetricsSystem.self)
+        else {
             return
         }
 
         physicsSystem.applyImpulse(on: entityID, impulse: jumpImpulse)
+        metricsSystem.incrementMetric(String(describing: self))
     }
 }
