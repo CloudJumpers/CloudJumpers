@@ -40,6 +40,6 @@ struct JumpEvent: Event {
             return
         }
 
-        metricsSystem.incrementMetric(String(describing: self))
+        metricsSystem.incrementMetric(String(describing: JumpEvent.self))
     }
 }
