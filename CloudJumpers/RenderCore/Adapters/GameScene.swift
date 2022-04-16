@@ -12,10 +12,9 @@ class GameScene: SKScene {
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
-    private var cameraNode: SKCameraNode?
+    private var cameraNode: Camera?
     private var cameraAnchorNode: SKNode?
 
-    var cameraMinY: CGFloat?
 
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -83,7 +82,7 @@ class GameScene: SKScene {
             return
         }
 
-        cameraNode?.position.y = max(cameraMinY ?? 0, cameraAnchorNode.position.y)
+        cameraNode?.position.y = cameraAnchorNode.position.y
     }
 
     private func setUpPhysicsWorld() {
@@ -91,7 +90,7 @@ class GameScene: SKScene {
     }
 
     private func setUpCamera() {
-        let skCameraNode = SKCameraNode()
+        let skCameraNode = Camera(minY: frame.minY, maxY: frame.maxY)
         cameraNode = skCameraNode
         camera = skCameraNode
         addChild(skCameraNode)
