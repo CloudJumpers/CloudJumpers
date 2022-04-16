@@ -227,8 +227,8 @@
 		A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */; };
 		A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */; };
 		A13B8C44280A952100EA3FBA /* PowerUpLocationPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */; };
+		A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C47280AACC200EA3FBA /* KingHillData.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
-		A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2D27ECB69B000008E8 /* GameMetaData.swift */; };
 		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
 		A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */; };
 		A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */; };
@@ -514,8 +514,8 @@
 		A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUpdateEvent.swift; sourceTree = "<group>"; };
 		A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButtonPressedEvent.swift; sourceTree = "<group>"; };
 		A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpLocationPressedEvent.swift; sourceTree = "<group>"; };
+		A13B8C47280AACC200EA3FBA /* KingHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingHillData.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
-		A1409A2D27ECB69B000008E8 /* GameMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMetaData.swift; sourceTree = "<group>"; };
 		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
 		A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEventCommand.swift; sourceTree = "<group>"; };
 		A14A57C827F7F18100A25DBA /* ExternalRespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRespawnEvent.swift; sourceTree = "<group>"; };
@@ -1105,6 +1105,7 @@
 			children = (
 				93C93AD727F744C4001246F2 /* TimeTrialData.swift */,
 				9385D9B227F727E200593930 /* RaceToTopData.swift */,
+				A13B8C47280AACC200EA3FBA /* KingHillData.swift */,
 				936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */,
 			);
 			path = LocalCompletionData;
@@ -1413,7 +1414,6 @@
 			children = (
 				1AC1605227F2F56D006E4018 /* GameManager.swift */,
 				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
-				A1409A2D27ECB69B000008E8 /* GameMetaData.swift */,
 				1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */,
 			);
 			path = GameEngine;
@@ -1676,7 +1676,6 @@
 				1ABF39152807EDCC0035DBB9 /* SceneUpdateDelegate.swift in Sources */,
 				1A94D97127EEEC36001D8A86 /* InventoryComponent.swift in Sources */,
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
-				A1409A2E27ECB69B000008E8 /* GameMetaData.swift in Sources */,
 				3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */,
 				A1D786662801922300C5CE49 /* JumpEvent.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
@@ -1690,6 +1689,7 @@
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */,
+				A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,

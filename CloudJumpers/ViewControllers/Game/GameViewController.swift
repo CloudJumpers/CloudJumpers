@@ -137,7 +137,7 @@ class GameViewController: UIViewController {
         view = skView
     }
 
-    private func transitionToEndGame(with metaData: GameMetaData) {
+    private func transitionToEndGame(with completionData: LocalCompletionData) {
         guard !isMovingToPostGame,
               let activeLobby = lobby,
               let gameConfig = activeLobby.gameConfig as? PostGameConfig
@@ -145,7 +145,7 @@ class GameViewController: UIViewController {
 
         isMovingToPostGame = true
 
-        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, metaData: metaData)
+        let postGameManager = gameConfig.createPostGameManager(activeLobby.id, completionData: completionData)
 
         lobby?.onGameCompleted()
         lobby?.removeDeviceUser()
@@ -176,7 +176,7 @@ extension GameViewController: GameSceneDelegate {
 
 // MARK: - GameManagerDelegate
 extension GameViewController: GameManagerDelegate {
-    func manager(_ manager: GameManager, didEndGameWith metaData: GameMetaData) {
-        transitionToEndGame(with: metaData)
+    func manager(_ manager: GameManager, didEndGameWith completionData: LocalCompletionData) {
+        transitionToEndGame(with: completionData)
     }
 }
