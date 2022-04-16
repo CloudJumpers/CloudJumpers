@@ -2,116 +2,76 @@
 //  Node.swift
 //  CloudJumpers
 //
-//  Created by Phillmont Muktar on 6/4/22.
+//  Created by Phillmont Muktar on 16/4/22.
 //
 
 import SpriteKit
 
 typealias NodeCore = SKNode
-typealias SpriteNodeCore = SKSpriteNode
 
 class Node {
-    private static let animationKeyPrefix = "CJAnimate:"
-    private var captionNodeCore: SKLabelNode?
-
-    let nodeCore: NodeCore
+    var coreNode: NodeCore
     var name: String?
-    var activeAnimationKey: String = ""
 
-    var physicsBody: PhysicsBody? {
-        didSet {
-            nodeCore.physicsBody = physicsBody?.coreBody
-        }
-    }
-
-    init(texture: TextureFrame, size: CGSize) {
-        nodeCore = SpriteNodeCore(texture: Texture.texture(of: texture), size: size)
+    init() {
+        coreNode = NodeCore()
     }
 
     var position: CGPoint {
-        get { nodeCore.position }
-        set { nodeCore.position = newValue }
+        get { coreNode.position }
+        set { coreNode.position = newValue }
     }
 
     var zPosition: CGFloat {
-        get { nodeCore.zPosition }
-        set { nodeCore.zPosition = newValue }
+        get { coreNode.zPosition }
+        set { coreNode.zPosition = newValue }
     }
 
     var alpha: CGFloat {
-        get { nodeCore.alpha }
-        set { nodeCore.alpha = newValue }
+        get { coreNode.alpha }
+        set { coreNode.alpha = newValue }
     }
 
     var zRotation: CGFloat {
-        get { nodeCore.zRotation }
-        set { nodeCore.zRotation = newValue }
+        get { coreNode.zRotation }
+        set { coreNode.zRotation = newValue }
     }
 
     var xScale: CGFloat {
-        get { nodeCore.xScale }
-        set { nodeCore.xScale = newValue }
+        get { coreNode.xScale }
+        set { coreNode.xScale = newValue }
     }
 
     var yScale: CGFloat {
-        get { nodeCore.yScale }
-        set { nodeCore.yScale = newValue }
+        get { coreNode.yScale }
+        set { coreNode.yScale = newValue }
+    }
+
+    var physicsBody: PhysicsBody? {
+        didSet {
+            coreNode.physicsBody = physicsBody?.coreBody
+        }
     }
 
     func addChild(_ node: Node) {
-        nodeCore.addChild(node.nodeCore)
-    }
-
-    func caption(with label: String, maxLen: Int, color: UIColor = .black) {
-        var label = label
-        if label.count > maxLen {
-            let index = label.index(label.startIndex, offsetBy: maxLen)
-            label = label[..<index] + "..."
-        }
-
-        let captionNodeCore = SKLabelNode(fontNamed: "AvenirNext-Bold")
-        captionNodeCore.text = label
-        captionNodeCore.fontSize = Constants.captionFontSize
-        captionNodeCore.position = Constants.captionRelativePosition
-        captionNodeCore.fontColor = color
-
-        nodeCore.addChild(captionNodeCore)
-        self.captionNodeCore = captionNodeCore
+        coreNode.addChild(node.coreNode)
     }
 
     func move(to position: CGPoint, within duration: TimeInterval) {
-        nodeCore.run(.move(to: position, duration: duration))
+        coreNode.run(.move(to: position, duration: duration))
     }
 
     func move(by displacement: CGVector, within duration: TimeInterval) {
-        nodeCore.run(.move(by: displacement, duration: duration))
-    }
-
-    func animateLoop(with textures: [TextureFrame], interval: TimeInterval, key: String = "") {
-        nodeCore.removeAction(forKey: animationKey(with: activeAnimationKey))
-
-        nodeCore.run(.repeatForever(.animate(
-            with: Texture.textures(of: textures),
-            timePerFrame: interval,
-            resize: false,
-            restore: true)),
-        withKey: animationKey(with: key))
-
-        self.activeAnimationKey = key
-    }
-
-    private func animationKey(with key: String) -> String {
-        Self.animationKeyPrefix + key
+        coreNode.run(.move(by: displacement, duration: duration))
     }
 }
 
-// MARK: - Hashable
 extension Node: Hashable {
     static func == (lhs: Node, rhs: Node) -> Bool {
-        lhs.nodeCore == rhs.nodeCore
+        lhs.coreNode == rhs.coreNode
     }
 
     func hash(into hasher: inout Hasher) {
-        hasher.combine(nodeCore)
+        hasher.combine(coreNode)
     }
 }

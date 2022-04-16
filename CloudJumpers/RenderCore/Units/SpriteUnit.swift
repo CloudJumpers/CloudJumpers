@@ -12,12 +12,12 @@ class SpriteUnit: RenderUnit {
         self.target = target
     }
 
-    func createSpriteNode(for entity: Entity) -> Node? {
+    func createSpriteNode(for entity: Entity) -> SpriteNode? {
         guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
               let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
         else { return nil }
 
-        let node = Node(texture: spriteComponent.texture, size: spriteComponent.size)
+        let node = SpriteNode(texture: spriteComponent.texture, size: spriteComponent.size)
         node.position = positionComponent.position
         node.name = entity.id
 
@@ -25,7 +25,7 @@ class SpriteUnit: RenderUnit {
         return node
     }
 
-    private static func configureSpriteNode(_ node: Node, with spriteComponent: SpriteComponent) {
+    private static func configureSpriteNode(_ node: SpriteNode, with spriteComponent: SpriteComponent) {
         node.zPosition = spriteComponent.zPosition.rawValue
         node.alpha = spriteComponent.alpha
         node.zRotation = spriteComponent.zRotation

@@ -15,9 +15,10 @@ class AnimationUnit: RenderUnit {
     func transform(_ entity: Entity, with node: Node) {
         guard let animationComponent = target?.component(ofType: AnimationComponent.self, of: entity),
               let animation = animationComponent.activeAnimation,
-              node.activeAnimationKey != animation.key
+              let spriteNode = node as? SpriteNode,
+              spriteNode.activeAnimationKey != animation.key
         else { return }
 
-        node.animateLoop(with: animation.frames, interval: 0.1, key: animation.key)
+        spriteNode.animateLoop(with: animation.frames, interval: 0.1, key: animation.key)
     }
 }

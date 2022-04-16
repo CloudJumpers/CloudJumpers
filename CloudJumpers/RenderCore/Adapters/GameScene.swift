@@ -134,15 +134,15 @@ extension GameScene: Scene {
     }
 
     func contains(_ node: Node) -> Bool {
-        children.contains(node.nodeCore) || (cameraNode?.contains(node.nodeCore) ?? false)
+        children.contains(node.coreNode) || (cameraNode?.contains(node.coreNode) ?? false)
     }
 
     func addChild(_ node: Node, static: Bool = false) {
-        addChild(node.nodeCore, static: `static`)
+        addChild(node.coreNode, static: `static`)
     }
 
     func removeChild(_ node: Node) {
-        removeChild(node.nodeCore)
+        removeChild(node.coreNode)
     }
 
     func isCameraBoundNode(_ node: Node) -> Bool {
@@ -150,15 +150,15 @@ extension GameScene: Scene {
             return false
         }
 
-        return cameraAnchorNode == node.nodeCore
+        return cameraAnchorNode == node.coreNode
     }
 
     func bindCamera(to node: Node) {
-        cameraAnchorNode = node.nodeCore
+        cameraAnchorNode = node.coreNode
     }
 
     func isStaticNode(_ node: Node) -> Bool {
-        cameraNode?.children.contains(node.nodeCore) ?? false
+        cameraNode?.children.contains(node.coreNode) ?? false
     }
 
     func setStaticNode(_ node: Node) {

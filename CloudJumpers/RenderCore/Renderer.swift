@@ -104,7 +104,7 @@ class Renderer {
     // MARK: - Helper Methods
     private func cache(entity: Entity, node: Node) {
         entityNode[entity.id] = node
-        renderedNodes[node.nodeCore] = node
+        renderedNodes[node.coreNode] = node
     }
 
     private func uncache(node: Node) {
@@ -113,7 +113,7 @@ class Renderer {
         }
 
         entityNode[entityID] = nil
-        renderedNodes[node.nodeCore] = nil
+        renderedNodes[node.coreNode] = nil
     }
 
     private func addNode(_ node: Node, with entity: Entity) {
