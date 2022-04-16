@@ -81,7 +81,9 @@ class Renderer {
               let physicsComponent = target?.component(ofType: PhysicsComponent.self, of: entity)
         else { return }
 
-        node.physicsBody?.applyImpulse(physicsComponent.impulse)
+        if !physicsComponent.impulse.isZero {
+            node.physicsBody?.applyImpulse(physicsComponent.impulse)
+        }
     }
 
     private func updateAnimation(entity: Entity) {
@@ -145,7 +147,10 @@ class Renderer {
     }
 
     private func configurePhysicsBody(_ body: PhysicsBody, with physicsComponent: PhysicsComponent) {
-        body.mass = physicsComponent.mass ?? .zero
+        if let mass = physicsComponent.mass {
+            body.mass = mass
+        }
+
         body.velocity = physicsComponent.velocity
         body.isDynamic = physicsComponent.isDynamic
         body.affectedByGravity = physicsComponent.affectedByGravity

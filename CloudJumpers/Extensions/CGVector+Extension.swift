@@ -63,4 +63,8 @@ extension CGVector {
         let point = CGPoint(x: self.dx, y: self.dy).applying(scaleFactor)
         return CGVector(dx: point.x, dy: point.y)
     }
+
+    var isZero: Bool {
+        dx.isZero && dy.isZero
+    }
 }
