@@ -22,6 +22,7 @@ class GameWorld {
         renderer = Renderer(from: self, to: scene)
 
         eventManager.dispatcher = self
+        handlers.subscriber.setEventManager(eventManager)
         setUpSystems()
     }
 
