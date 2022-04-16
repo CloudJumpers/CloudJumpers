@@ -29,6 +29,6 @@ class SpriteUnit: RenderUnit {
         node.zPosition = spriteComponent.zPosition.rawValue
         node.alpha = spriteComponent.alpha
         node.zRotation = spriteComponent.zRotation
-        // TODO: Add node.anchorPoint = spriteComponent.anchorPoint here
+        node.anchorPoint = spriteComponent.anchorPoint
     }
 }
