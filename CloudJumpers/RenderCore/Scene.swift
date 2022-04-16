@@ -8,6 +8,7 @@
 protocol Scene: AnyObject {
     var updateDelegate: SceneUpdateDelegate? { get set }
     var nodes: [Node] { get }
+    var scrollable: Bool { get set }
 
     func contains(_ node: Node) -> Bool
     func addChild(_ node: Node, static: Bool)
