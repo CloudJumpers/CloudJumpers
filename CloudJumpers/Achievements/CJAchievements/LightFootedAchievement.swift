@@ -7,11 +7,11 @@
 
 import Foundation
 
-class JumpAchievement: Achievement {
+class LightFootedAchievement: Achievement {
     let onLoad: AchievementOnLoad
 
-    let title: String = "Jumps"
-    let description: String = "Lifetime jumps made across games."
+    let title: String = "Light-footed"
+    let description: String = "1000 total jumps made across games."
     let imageName: String = Images.jumpingSprite.name
     let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
@@ -33,16 +33,7 @@ class JumpAchievement: Achievement {
         guard let jumps = userJumps else {
             return Double.zero
         }
-
         return min(1.0, Double(jumps) / Double(requiredJumps))
-    }
-
-    var isUnlocked: Bool {
-        guard let jumps = userJumps else {
-            return false
-        }
-
-        return jumps >= requiredJumps
     }
 
     required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
