@@ -12,7 +12,7 @@ class AchievementFactory {
         JumpAchievement.self
     ]
 
-    static func createAchievements(userId: NetworkID) -> [Achievement] {
-        availableAchievements.map { $0.init(userId: userId) }
+    static func createAchievements(userId: NetworkID, onLoad: AchievementOnLoad) -> [Achievement] {
+        availableAchievements.map { $0.init(userId, onLoad) }
     }
 }

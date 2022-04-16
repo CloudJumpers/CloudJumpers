@@ -9,6 +9,7 @@ import Foundation
 
 class JumpAchievement: Achievement {
     let userId: NetworkID
+    let onLoad: AchievementOnLoad
 
     let title: String = "Jumps"
     let description: String = "Lifetime jumps made across games."
@@ -28,6 +29,14 @@ class JumpAchievement: Achievement {
 
     var requiredProgress: String { String(requiredJumps) }
 
+    var progressRatio: Double {
+        guard let jumps = userJumps else {
+            return Double.zero
+        }
+
+        return max(1.0, Double(jumps) / Double(requiredJumps))
+    }
+
     var isUnlocked: Bool {
         guard let jumps = userJumps else {
             return false
@@ -36,8 +45,9 @@ class JumpAchievement: Achievement {
         return jumps >= requiredJumps
     }
 
-    required init(userId: NetworkID) {
+    required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
         self.userId = userId
+        self.onLoad = onLoad
     }
 
     func load(_ key: String, _ value: Any) {
@@ -47,5 +57,6 @@ class JumpAchievement: Achievement {
 
         assert(metricKeys.first == key)
         userJumps = jumps
+        onLoad?()
     }
 }

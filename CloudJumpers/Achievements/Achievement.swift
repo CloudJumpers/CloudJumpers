@@ -14,15 +14,17 @@ protocol Achievement: AnyObject {
     var userId: NetworkID { get }
     var currentProgress: String? { get }
     var requiredProgress: String { get }
+    var progressRatio: Double { get }
     var isUnlocked: Bool { get }
 
     var metricKeys: [String] { get }
 
+    var onLoad: AchievementOnLoad { get }
     var dataDelegate: AchievementDataDelegate? { get }
     func load(_ key: String, _ value: Any)
     func update(_ key: String, _ value: Any)
 
-    init(userId: NetworkID)
+    init(_ userId: NetworkID, _ onLoad: AchievementOnLoad)
 }
 
 extension Achievement {
