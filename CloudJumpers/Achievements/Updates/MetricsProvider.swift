@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol MetricsProvider {
+protocol MetricsProvider: AnyObject {
     func getMetricsUpdate() -> [String: Any]
 }

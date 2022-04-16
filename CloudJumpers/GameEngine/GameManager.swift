@@ -13,14 +13,23 @@ class GameManager {
     private var world: GameWorld
     private var metaData: GameMetaData
     private var rules: GameRules
+    private var achievementProcessor: AchievementProcessor
     var inChargeID: NetworkID?
 
-    init(rendersTo scene: Scene?, inChargeID: NetworkID?, handlers: RemoteEventHandlers, rules: GameRules) {
+    init(
+        rendersTo scene: Scene?,
+        inChargeID: NetworkID?,
+        handlers: RemoteEventHandlers,
+        rules: GameRules,
+        achievementProcessor: AchievementProcessor
+    ) {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         metaData = GameMetaData()
         self.inChargeID = inChargeID
         self.rules = rules
+        self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
+        self.achievementProcessor.setTarget(world)
     }
 
     func update(within time: CGFloat) {

@@ -10,5 +10,7 @@ import Foundation
 typealias AchievementOnLoad = (() -> Void)?
 
 enum AchievementConstants {
+    static let maxUpdateInterval: Double = 1.0
+
     static let cellReuseIdentifier = "com.cs3217.cloudjumpers.achievementcell"
 }

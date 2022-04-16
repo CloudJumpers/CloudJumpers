@@ -15,3 +15,9 @@ protocol InGameConfig {
     func getGameRules() -> GameRules
     func getIdOrderedPlayers() -> [PlayerInfo]
 }
+
+extension InGameConfig {
+    func getAchievementProcessor() -> AchievementProcessor {
+        AchievementProcessor()
+    }
+}

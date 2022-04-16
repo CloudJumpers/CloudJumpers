@@ -1,5 +1,5 @@
 //
-//  AchievementManager.swift
+//  AchievementProcessor.swift
 //  CloudJumpers
 //
 //  Created by Sujay R Subramanian on 16/4/22.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-class AchievementManager {
+class AchievementProcessor {
     private var keyObservers: [String: [Achievement]] = [:]
-    private var updateCheckTimer: Timer?
+    var updater: AchievementUpdateDelegate?
 
     func addAchievement(_ achievement: Achievement) {
         achievement.metricKeys.forEach { addKey($0, for: achievement) }
@@ -17,6 +17,17 @@ class AchievementManager {
 
     func removeAchievement(_ achievement: Achievement) {
         achievement.metricKeys.forEach { removeKey($0, for: achievement) }
+    }
+
+    func processMetrics(_ metrics: [String: Any]) {
+        metrics.forEach { notifyForKey($0.key, $0.value) }
+    }
+
+    func setTarget(_ metricsProvider: MetricsProvider) {
+        updater?.stopObservingMetrics()
+        updater = PollingUpdateDelegate()
+        updater?.manager = self
+        updater?.observeMetrics(from: metricsProvider)
     }
 
     private func addKey(_ key: String, for achievement: Achievement) {
@@ -29,9 +40,5 @@ class AchievementManager {
 
     private func notifyForKey(_ key: String, _ value: Any) {
         keyObservers[key]?.forEach { $0.update(key, value) }
-    }
-
-    private func processMetrics(_ metrics: [String: Any]) {
-        metrics.forEach { notifyForKey($0.key, $0.value) }
     }
 }
