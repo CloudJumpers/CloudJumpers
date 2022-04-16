@@ -22,6 +22,7 @@ class SpriteUnit: RenderUnit {
         node.name = entity.id
 
         Self.configureSpriteNode(node, with: spriteComponent)
+        configureCaption(for: entity, with: node)
         return node
     }
 
@@ -30,5 +31,14 @@ class SpriteUnit: RenderUnit {
         node.alpha = spriteComponent.alpha
         node.zRotation = spriteComponent.zRotation
         node.anchorPoint = spriteComponent.anchorPoint
+    }
+
+    private func configureCaption(for entity: Entity, with node: SpriteNode) {
+        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
+              let caption = spriteComponent.caption
+        else { return }
+
+        let isMainPlayer = target?.hasComponent(ofType: PlayerTag.self, in: entity) ?? false
+        node.caption(with: caption, color: isMainPlayer ? .red : .black)
     }
 }

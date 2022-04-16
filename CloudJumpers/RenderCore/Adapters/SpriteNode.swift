@@ -25,9 +25,28 @@ class SpriteNode: Node {
         set { coreSpriteNode.anchorPoint = newValue }
     }
 
-    func caption(with caption: String, maxLength: Int, color: UIColor = .black) {
-        let truncatedCaption = truncate(text: caption, maxLength: maxLength)
+    override var xScale: CGFloat {
+        get { super.xScale }
+
+        set {
+            super.xScale = newValue
+            captionNode?.xScale = newValue
+        }
+    }
+
+    override var yScale: CGFloat {
+        get { super.yScale }
+
+        set {
+            super.yScale = newValue
+            captionNode?.yScale = newValue
+        }
+    }
+
+    func caption(with caption: String, color: UIColor = .black) {
+        let truncatedCaption = caption.truncate(by: Constants.captionMaxLength)
         let captionNode = LabelNode(text: truncatedCaption)
+        captionNode.fontName = Constants.captionFontName
         captionNode.fontSize = Constants.captionFontSize
         captionNode.position = Constants.captionRelativePosition
         captionNode.fontColor = color
@@ -46,16 +65,6 @@ class SpriteNode: Node {
         withKey: animationKey(with: key))
 
         self.activeAnimationKey = key
-    }
-
-    private func truncate(text: String, maxLength: Int) -> String {
-        var text = text
-        if text.count > maxLength {
-            let index = text.index(text.startIndex, offsetBy: maxLength)
-            text = text[..<index] + "..."
-        }
-
-        return text
     }
 
     private func animationKey(with key: String) -> String {
