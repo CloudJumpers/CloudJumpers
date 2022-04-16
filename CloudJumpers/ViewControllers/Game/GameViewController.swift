@@ -103,6 +103,7 @@ class GameViewController: UIViewController {
             firstPlatformPosition: Constants.playerInitialPosition,
             seed: config.seed
         )
+        gameManager?.delegate = self
 
         gameManager?.setUpGame(with: blueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
