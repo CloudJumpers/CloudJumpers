@@ -9,7 +9,8 @@ import Foundation
 
 class AchievementFactory {
     private static let availableAchievements: [Achievement.Type] = [
-        JumpAchievement.self
+        LightFootedAchievement.self,
+        PowerUserAchievement.self
     ]
 
     static func createAchievements(userId: NetworkID, onLoad: AchievementOnLoad) -> [Achievement] {

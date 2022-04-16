@@ -227,7 +227,7 @@
 		939AFA032809BBD000852B8B /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA022809BBD000852B8B /* Achievement.swift */; };
 		939AFA052809D95600852B8B /* AchievementProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA042809D95600852B8B /* AchievementProcessor.swift */; };
 		939AFA082809E4CC00852B8B /* AchievementFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA072809E4CC00852B8B /* AchievementFactory.swift */; };
-		939AFA0B2809E5A900852B8B /* JumpAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA0A2809E5A900852B8B /* JumpAchievement.swift */; };
+		939AFA0B2809E5A900852B8B /* LightFootedAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA0A2809E5A900852B8B /* LightFootedAchievement.swift */; };
 		939AFA0D2809E86000852B8B /* AchievementDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA0C2809E86000852B8B /* AchievementDataDelegate.swift */; };
 		939AFA102809FB7000852B8B /* FBAchievementDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA0F2809FB7000852B8B /* FBAchievementDataDelegate.swift */; };
 		939AFA122809FC3600852B8B /* AchievementKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA112809FC3600852B8B /* AchievementKeys.swift */; };
@@ -244,6 +244,7 @@
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
+		93D7D6C3280B4AEC009CBB87 /* PowerUserAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */; };
 		93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */; };
 		93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486527FDA94500F6C188 /* EventualPublisher.swift */; };
 		93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486827FDB17200F6C188 /* RealtimePublisher.swift */; };
@@ -541,7 +542,7 @@
 		939AFA022809BBD000852B8B /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		939AFA042809D95600852B8B /* AchievementProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementProcessor.swift; sourceTree = "<group>"; };
 		939AFA072809E4CC00852B8B /* AchievementFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementFactory.swift; sourceTree = "<group>"; };
-		939AFA0A2809E5A900852B8B /* JumpAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpAchievement.swift; sourceTree = "<group>"; };
+		939AFA0A2809E5A900852B8B /* LightFootedAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightFootedAchievement.swift; sourceTree = "<group>"; };
 		939AFA0C2809E86000852B8B /* AchievementDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementDataDelegate.swift; sourceTree = "<group>"; };
 		939AFA0F2809FB7000852B8B /* FBAchievementDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAchievementDataDelegate.swift; sourceTree = "<group>"; };
 		939AFA112809FC3600852B8B /* AchievementKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementKeys.swift; sourceTree = "<group>"; };
@@ -558,6 +559,7 @@
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUserAchievement.swift; sourceTree = "<group>"; };
 		93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSubscriber.swift; sourceTree = "<group>"; };
 		93EF486527FDA94500F6C188 /* EventualPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventualPublisher.swift; sourceTree = "<group>"; };
 		93EF486827FDB17200F6C188 /* RealtimePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimePublisher.swift; sourceTree = "<group>"; };
@@ -1338,8 +1340,8 @@
 		939AFA012809BBC200852B8B /* Achievements */ = {
 			isa = PBXGroup;
 			children = (
+				93D7D6C4280B4AF6009CBB87 /* CJAchievements */,
 				936257B8280AA11900C4DFC0 /* Updates */,
-				939AFA0A2809E5A900852B8B /* JumpAchievement.swift */,
 				939AFA072809E4CC00852B8B /* AchievementFactory.swift */,
 				939AFA0C2809E86000852B8B /* AchievementDataDelegate.swift */,
 				93602443280A7EC1004A7394 /* AchievementConstants.swift */,
@@ -1392,6 +1394,15 @@
 				93D4E18227DA23FF0054F45B /* TestUtils.swift */,
 			);
 			path = TestUtils;
+			sourceTree = "<group>";
+		};
+		93D7D6C4280B4AF6009CBB87 /* CJAchievements */ = {
+			isa = PBXGroup;
+			children = (
+				93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */,
+				939AFA0A2809E5A900852B8B /* LightFootedAchievement.swift */,
+			);
+			path = CJAchievements;
 			sourceTree = "<group>";
 		};
 		93EF486427FDA93400F6C188 /* Publishers */ = {
@@ -1864,7 +1875,7 @@
 				9385D9B127F727B700593930 /* RaceToTopPostGameManager.swift in Sources */,
 				1A13D77C27FD9BD700A28182 /* SpriteNode.swift in Sources */,
 				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
-				939AFA0B2809E5A900852B8B /* JumpAchievement.swift in Sources */,
+				939AFA0B2809E5A900852B8B /* LightFootedAchievement.swift in Sources */,
 				A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */,
 				1AAB1E252800349700378382 /* Simulatable.swift in Sources */,
 				938B022327E0954D003D84CF /* LobbyUpdaterDelegate.swift in Sources */,
@@ -1907,6 +1918,7 @@
 				1AC1606427F31E08006E4018 /* Sounds.swift in Sources */,
 				3E3632FD2809974100FAD7A8 /* TeleportComponent.swift in Sources */,
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
+				93D7D6C3280B4AEC009CBB87 /* PowerUserAchievement.swift in Sources */,
 				936257BC280AA4A500C4DFC0 /* PollingUpdateDelegate.swift in Sources */,
 				1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */,
 				935280D727F6B082002E3A1D /* Response.swift in Sources */,
