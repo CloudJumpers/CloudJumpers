@@ -159,10 +159,19 @@ class GameViewController: UIViewController {
 // MARK: - GameSceneDelegate
 extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
-        gameManager?.update(within: interval)
-        gameManager?.updatePlayer(with: joystick?.displacement ?? .zero)
+        guard let lobby = lobby,
+              let gameManager = gameManager
+        else {
+            return
+        }
+        gameManager.update(within: interval)
+        gameManager.updatePlayer(with: joystick?.displacement ?? .zero)
 
-        // Check if player is host for each iteration
+        // Check if player is host for each update iteration, enable as needed
+        // TODO: Bring this to a callback if possible to reduce the need to check everytime
+        if lobby.userIsHost && !gameManager.isHost {
+            gameManager.enableHostStatus()
+        }
     }
 }
 

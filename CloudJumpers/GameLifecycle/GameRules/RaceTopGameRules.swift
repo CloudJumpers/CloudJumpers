@@ -9,6 +9,7 @@ import Foundation
 import CoreGraphics
 
 class RaceTopGameRules: GameRules {
+
     private unowned var target: RuleModifiable?
 
     private var timer: StaticLabel?
@@ -26,7 +27,6 @@ class RaceTopGameRules: GameRules {
             return
         }
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
-
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -51,6 +51,11 @@ class RaceTopGameRules: GameRules {
             target?.add(character)
         }
 
+    }
+
+    func enableHostSystems() {
+        target?.activateSystem(ofType: DisasterSpawnSystem.self)
+        target?.activateSystem(ofType: PowerSpawnSystem.self)
     }
 
     func update(within time: CGFloat) {

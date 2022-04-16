@@ -28,10 +28,8 @@ class TimeTrialGameRules: GameRules {
         guard let target = target else {
             return
         }
+        target.deactivateSystem(ofType: DisasterSpawnSystem.self)
 
-        if isPlayingWithShadow {
-            target.deactivateSystem(ofType: DisasterSpawnSystem.self)
-        }
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
@@ -54,6 +52,12 @@ class TimeTrialGameRules: GameRules {
                     name: name,
                     with: id))
             }
+        }
+    }
+
+    func enableHostSystems() {
+        if !isPlayingWithShadow {
+            target?.activateSystem(ofType: DisasterSpawnSystem.self)
         }
     }
 
