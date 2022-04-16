@@ -10,11 +10,12 @@ import Foundation
 struct PhysicsContactTest {
     static let none: PhysicsBitMask = 0
     static let player: PhysicsBitMask = PhysicsCategory.max ^ PhysicsCategory.guest
-    static let cloud: PhysicsBitMask = PhysicsCategory.disaster | PhysicsCategory.player | PhysicsCategory.guest
+    static let cloud: PhysicsBitMask = PhysicsCategory.disaster | PhysicsCategory.player |
+    PhysicsCategory.guest | PhysicsCategory.wall
     static let platform: PhysicsBitMask = PhysicsCategory.disaster | PhysicsCategory.player
     static let powerUp: PhysicsBitMask = PhysicsCategory.player
     static let disaster: PhysicsBitMask = PhysicsCategory.disaster
-    static let wall: PhysicsBitMask = PhysicsCategory.none
+    static let wall: PhysicsBitMask = PhysicsCategory.cloud
     static let floor: PhysicsBitMask = PhysicsCategory.cloud | PhysicsCategory.player |
                                        PhysicsCategory.platform | PhysicsCategory.floor
     static let guest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor | PhysicsCategory.cloud

@@ -107,7 +107,13 @@ class GameViewController: UIViewController {
         )
         gameManager?.delegate = self
 
-        gameManager?.setUpGame(with: blueprint, playerInfo: userInfo, allPlayersInfo: allUsersInfo)
+        let velocityInfo = VelocityGenerationInfo(
+            velocityRange: -100.0...100.0,
+            seed: config.seed
+        )
+
+        gameManager?.setUpGame(with: blueprint, velocity: velocityInfo,
+                               playerInfo: userInfo, allPlayersInfo: allUsersInfo)
     }
 
     private func setUpInputControls() {
