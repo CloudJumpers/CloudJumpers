@@ -39,9 +39,10 @@ class GameManager {
         self.isHost = true
         rules.enableHostSystems()
     }
-    
-    func setUpGame(with blueprint: Blueprint, playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        setUpEnvironment(with: blueprint)
+
+    func setUpGame(with blueprint: Blueprint, velocity: VelocityGenerationInfo,
+                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        setUpEnvironment(with: blueprint, velocity: velocity)
         rules.setUpForRule()
         rules.setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
     }
