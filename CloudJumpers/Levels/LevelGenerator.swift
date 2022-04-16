@@ -57,8 +57,39 @@ class LevelGenerator {
         return velocities
     }
 
+    static func getRandomPosition(_ positionGenerationInfo: RandomPositionGenerationInfo) -> CGPoint {
+        let randomSeed = getRandomSeed()
+        var generator = SeedGenerator(seed: randomSeed)
+
+        let xMax = Float(positionGenerationInfo.worldSize.width / 2)
+        let xMin = Float(-xMax)
+
+        let yMax = Float(positionGenerationInfo.worldSize.height)
+        let yMin = Float(positionGenerationInfo.firstPlatformPosition.y)
+
+        let positionX = random(in: xMin...xMax, using: &generator)
+        let positionY = random(in: yMin...yMax, using: &generator)
+
+        return CGPoint(x: positionX, y: positionY)
+    }
+
+    static func getRandomVelocity(_ velocityGenerationInfo: RandomVelocityGenerationInfo) -> CGVector {
+        let randomSeed = getRandomSeed()
+        var generator = SeedGenerator(seed: randomSeed)
+
+        let xVelocity = random(in: velocityGenerationInfo.xRange, using: &generator)
+        let yVelocity = random(in: velocityGenerationInfo.yRange, using: &generator)
+        let speed = random(in: velocityGenerationInfo.speedRange, using: &generator)
+
+        return CGVector(dx: speed * xVelocity, dy: speed * yVelocity)
+    }
+
     private static func random(in range: ClosedRange<Float>, using generator: inout SeedGenerator) -> CGFloat {
         CGFloat(Float.random(in: range, using: &generator))
+    }
+
+    private static func getRandomSeed() -> Int {
+        Int.random(in: 1..<1_000_000_000)
     }
 }
 

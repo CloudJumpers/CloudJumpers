@@ -15,27 +15,27 @@ class PowerSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    var blueprint: Blueprint?
+    var positionGenerationInfo: RandomPositionGenerationInfo?
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
         self.dispatcher = dispatcher
     }
 
-    convenience init(for manager: EntityManager, blueprint: Blueprint) {
+    convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo) {
         self.init(for: manager)
-        self.blueprint = blueprint
+        self.positionGenerationInfo = positionGenerationInfo
     }
 
     func update(within time: CGFloat) {
 
         guard RandomSpawnGenerator.isSpawning(successRate: 0.3),
-              let blueprint = blueprint
+              let positionGenerationInfo = positionGenerationInfo
         else {
             return
         }
 
-        let position = RandomSpawnGenerator.getRandomPosition(blueprint: blueprint)
+        let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)
         let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
         let powerId = EntityManager.newEntityID
 
