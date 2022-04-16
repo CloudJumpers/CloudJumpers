@@ -59,21 +59,13 @@ class RaceTopGameRules: GameRules {
     }
 
     func update(within time: CGFloat) {
-        guard let playerID = playerInfo?.playerId,
-              let target = target,
+        guard let target = target,
               let timer = timer,
               let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
         else {
             return
         }
-        if isPlayerRespawning(target: target) {
-            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
-            target.dispatch(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y))
-            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
-        }
-
+        updateTwoPlayerSameCloud(target: target)
         updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
     }
 

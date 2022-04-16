@@ -30,10 +30,6 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        // TODO: Create score label
-        // For this gameMode, we need a countdown timer.
-        // A count down timer can be implemented using a count up timer,
-        // through taking (finishTime - count up timer)
         self.scoreLabel = StaticLabel(
             at: Constants.scoreLabelPosition,
             size: Constants.scoreLabelSize,
@@ -74,7 +70,7 @@ class KingHillGameRules: GameRules {
         guard let target = target else {
             return
         }
-        
+
         // TODO: Add promote to god if stand on top platform
         updateTwoPlayerSameCloud(target: target)
         updateScore(target: target)
@@ -90,13 +86,14 @@ class KingHillGameRules: GameRules {
         else {
             return
         }
-        if isPlayerRespawning(target: target) {
-            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
-            target.dispatch(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y))
-            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
-        }
+
+        // TODO: Check correctness of this
+        let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
+
+        let score = distanceToTop != 0 ? 1 / distanceToTop : 1
+        playerScore += score
+        updateLabelWithValue("\(playerScore)", label: scoreLabel, target: target)
+    }
 
     private func updateCountDownTimer(target: RuleModifiable) {
         guard let timer = timer,
@@ -111,7 +108,6 @@ class KingHillGameRules: GameRules {
     func hasGameEnd() -> Bool {
         currentGameDuration.isLess(than: 0)
     }
-
 
     func fetchLocalCompletionData() -> LocalCompletionData {
         guard let playerInfo = playerInfo
