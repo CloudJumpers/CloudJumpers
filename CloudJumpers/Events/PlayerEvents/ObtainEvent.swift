@@ -28,12 +28,4 @@ struct ObtainEvent: Event {
 
         inventorySystem.enqueueItem(for: entityID, with: otherEntityID)
     }
-
-    private func incrementMetric(in target: EventModifiable) {
-        guard let metricsSystem = target.system(ofType: MetricsSystem.self) else {
-            return
-        }
-
-        metricsSystem.incrementMetric(String(describing: ObtainEvent.self))
-    }
 }
