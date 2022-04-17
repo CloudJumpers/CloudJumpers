@@ -140,7 +140,6 @@
 		3E61A10F280C148800BD8470 /* TeleportEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */; };
 		3E61A111280C14C600BD8470 /* PowerUpEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A110280C14C600BD8470 /* PowerUpEffectCreator.swift */; };
 		3E61A113280C19CF00BD8470 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A112280C19CF00BD8470 /* PowerUpEffect.swift */; };
-		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
@@ -458,7 +457,6 @@
 		3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportEffectCreator.swift; sourceTree = "<group>"; };
 		3E61A110280C14C600BD8470 /* PowerUpEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectCreator.swift; sourceTree = "<group>"; };
 		3E61A112280C19CF00BD8470 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
-		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
@@ -2283,7 +2281,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumperss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2314,7 +2312,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumperss;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
