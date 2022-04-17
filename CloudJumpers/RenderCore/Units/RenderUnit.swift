@@ -10,8 +10,10 @@ protocol RenderUnit {
 
     init(on target: Simulatable?)
     func transform(_ entity: Entity, with node: Node)
+    func createNode(for entity: Entity) -> Node?
 }
 
 extension RenderUnit {
     func transform(_ entity: Entity, with node: Node) { }
+    func createNode(for entity: Entity) -> Node? { nil }
 }

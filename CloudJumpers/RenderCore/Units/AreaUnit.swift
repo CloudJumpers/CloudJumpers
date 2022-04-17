@@ -26,4 +26,12 @@ class AreaUnit: RenderUnit {
         scene?.scrollable = areaComponent.scrollable
         scene?.isBlank = areaComponent.isBlank
     }
+
+    func createNode(for entity: Entity) -> Node? {
+        guard target?.hasComponent(ofType: AreaComponent.self, in: entity) ?? false else {
+            return nil
+        }
+
+        return Node(name: entity.id)
+    }
 }
