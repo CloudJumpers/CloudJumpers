@@ -13,7 +13,7 @@ struct RaceToTop: GameMode {
     let minimumPlayers = 2
     let maximumPlayers = 4
 
-    private(set) var seed = 161_001 // Int.random(in: (Int.min ... Int.max))
+    private(set) var seed = Int.random(in: (Int.zero ... Int.max))
 
     private var players = [PlayerInfo]()
 
