@@ -65,16 +65,19 @@ class InventorySystem: System {
 
         for entityID in inventoryComponent.inventory.iterable {
             guard let entity = manager.entity(with: entityID),
-                  let positionComponent = manager.component(ofType: PositionComponent.self, of: entity)
+                  let positionComponent = manager.component(ofType: PositionComponent.self, of: entity),
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else { continue }
 
             guard displayCount <= Constants.powerUpMaxNumDisplay else {
-                break
+                spriteComponent.alpha = 0
+                continue
             }
 
             displayCount += 1
 
             positionComponent.position = position
+            spriteComponent.alpha = 1
             manager.addComponent(CameraStaticTag(), to: entity)
 
             position.x += Constants.powerUpQueueXInterval
