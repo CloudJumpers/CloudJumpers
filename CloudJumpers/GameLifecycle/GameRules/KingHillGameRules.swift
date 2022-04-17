@@ -33,15 +33,7 @@ class KingHillGameRules: GameRules {
         // A count down timer can be implemented using a count up timer,
         // through taking (finishTime - count up timer)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
-    }
-
-    func enableSystems() {
-        target?.activateSystem(ofType: PowerUpSystem.self)
-        target?.activateSystem(ofType: FreezeSystem.self)
-        target?.activateSystem(ofType: ConfuseSystem.self)
-        target?.activateSystem(ofType: SlowmoSystem.self)
-        target?.activateSystem(ofType: TeleportSystem.self)
-        target?.activateSystem(ofType: EffectorDetachSystem.self)
+        enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
