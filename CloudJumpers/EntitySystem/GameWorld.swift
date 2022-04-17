@@ -48,6 +48,7 @@ class GameWorld {
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(InventorySystem(for: entityManager))
+        systemManager.register(HorizontalOscillationSystem(for: entityManager, boundSize: bound))
         systemManager.register(RemoveSystem(for: entityManager, boundSize: bound))
         systemManager.register(DisasterSpawnSystem(for: entityManager,
                                                    positionGenerationInfo: positionGenerationInfo,
@@ -189,6 +190,14 @@ extension GameWorld: MetricsProvider {
              return [:]
         }
 
-        return system.fetchMetrics()
+        return system.fetchDeltaMetrics()
+    }
+
+    func getMetricsSnapshot() -> [String: Int] {
+        guard let system = systemManager.system(ofType: MetricsSystem.self) else {
+             return [:]
+        }
+
+        return system.fetchPersistentMetrics()
     }
 }

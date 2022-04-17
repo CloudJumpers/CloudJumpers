@@ -50,9 +50,7 @@ struct ContactHandler {
 
     static func between(_ cloud: Cloud, _ platform: Platform) -> Event? { nil }
 
-    static func between(_ cloud: Cloud, _ wall: Wall) -> Event? {
-        CloudWallCollideEvent(cloud: cloud.id, wall: wall.id)
-    }
+    static func between(_ cloud: Cloud, _ wall: Wall) -> Event? { nil }
 
     static func between(_ cloud: Cloud, _ disaster: Disaster) -> Event? {
         RemoveEvent(onEntityWith: disaster.id)

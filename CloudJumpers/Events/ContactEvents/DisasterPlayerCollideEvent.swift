@@ -20,11 +20,14 @@ struct DisasterPlayerCollideEvent: Event {
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
         supplier.add(RemoveEvent(onEntityWith: entityID))
-        supplier.add(RespawnEvent(onEntityWith: otherEntityID, newPosition: Constants.playerInitialPosition))
+        supplier.add(RespawnEvent(
+            onEntityWith: otherEntityID,
+            killedBy: entityID,
+            newPosition: Constants.playerInitialPosition))
         supplier.add(ExternalRemoveEvent(entityToRemoveId: entityID))
         supplier.add(ExternalRespawnEvent(
             positionX: Constants.playerInitialPosition.x,
-            positionY: Constants.playerInitialPosition.y
-        ))
+            positionY: Constants.playerInitialPosition.y,
+            killedBy: entityID))
     }
 }

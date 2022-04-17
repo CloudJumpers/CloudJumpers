@@ -32,21 +32,21 @@ extension GameRules {
         target.activateSystem(ofType: EffectorDetachSystem.self)
     }
 
-    func isPlayerRespawning(target: RuleModifiable) -> Bool {
+    func isPlayerRespawning(target: RuleModifiable) -> (Bool, killedBy: EntityID?) {
         guard let playerID = playerInfo?.playerId,
               let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)
         else {
-            return false
+            return (false, nil)
         }
         let allStandOnComponent = target.components(ofType: StandOnComponent.self)
 
         for component in allStandOnComponent where component.entity?.id != playerID {
             if component.standOnEntityID == playerStandOnComponent.standOnEntityID &&
                 component.timestamp > playerStandOnComponent.timestamp {
-                return true
+                return (true, component.entity?.id)
             }
         }
-        return false
+        return (false, nil)
     }
 
     func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
