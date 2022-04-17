@@ -7,8 +7,10 @@
 
 import Foundation
 
-struct KingHillData: LocalCompletionData {
+struct KingOfTheHillData: LocalCompletionData {
     let playerId: NetworkID
     let playerName: String
     let completionScore: Double
+    let kills: Int
+    let deaths: Int
 }

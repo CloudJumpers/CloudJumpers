@@ -70,17 +70,14 @@ class TimeTrialGameRules: GameRules {
             return
         }
 
-        updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
+        updateLabelWithValue(String(format: "%.1f", timedComponent.time), label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {
-        guard let target = target,
-              let playerID = playerInfo?.playerId,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
-        else {
+        guard let target = target else {
             return false
         }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+        return isPlayerOnTopPlatform(target: target)
     }
 
     func fetchLocalCompletionData() -> LocalCompletionData {

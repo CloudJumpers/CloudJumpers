@@ -1,14 +1,14 @@
 //
-//  RaceToTopManager.swift
+//  KingOfTheHillPostGameManager.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 1/4/22.
+//  Created by Sujay R Subramanian on 17/4/22.
 //
 
 import Foundation
 
-class RaceToTopPostGameManager: PostGameManager {
-    private let completionData: RaceToTopData
+class KingOfTheHillPostGameManager: PostGameManager {
+    private let completionData: KingOfTheHillData
     private let endpointKey: String
 
     private var requestHandler: PostGameRequestDelegate?
@@ -20,7 +20,7 @@ class RaceToTopPostGameManager: PostGameManager {
         baseUrl + endpointKey
     }
 
-    init(_ completionData: RaceToTopData, _ endpointKey: String) {
+    init(_ completionData: KingOfTheHillData, _ endpointKey: String) {
         self.completionData = completionData
         self.endpointKey = endpointKey
         self.requestHandler = PostGameRestDelegate()
@@ -31,7 +31,7 @@ class RaceToTopPostGameManager: PostGameManager {
         var data = [String: Any]()
         data["userId"] = completionData.playerId
         data["userDisplayName"] = completionData.playerName
-        data["completionTime"] = completionData.completionTime
+        data["score"] = completionData.completionScore
         data["kills"] = completionData.kills
         data["deaths"] = completionData.deaths
 
@@ -49,19 +49,17 @@ class RaceToTopPostGameManager: PostGameManager {
     private func handleRankingsResponse(_ data: Data) {
         let decoder = JSONDecoder()
 
-        guard let response = try? decoder.decode(RaceToTopResponses.self, from: data) else {
+        guard let response = try? decoder.decode(KingOfTheHillResponses.self, from: data) else {
             return
         }
 
         rankings.removeAll()
         response.topLobbyPlayers.forEach { item in
-            let completionTimeString = String(format: "%.2f", item.completionTime)
-
             var rankingRow = IndividualRanking()
 
             rankingRow.setPrimaryField(colName: "Position", value: item.position)
             rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
-            rankingRow.setPrimaryField(colName: "Completion Time", value: completionTimeString)
+            rankingRow.setPrimaryField(colName: "Score", value: item.score)
             rankingRow.setPrimaryField(colName: "Kills", value: item.kills)
             rankingRow.setPrimaryField(colName: "Deaths", value: item.deaths)
 

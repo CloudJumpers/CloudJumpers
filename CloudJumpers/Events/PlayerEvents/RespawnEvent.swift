@@ -28,6 +28,9 @@ struct RespawnEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
+
+        // If is god then remove from godhood
+        target.add(DemoteGodEvent(onEntityWith: entityID))
         target.add(RepositionEvent(onEntityWith: entityID, to: newPosition))
         target.add(BlinkEvent(
             onEntityWith: entityID,

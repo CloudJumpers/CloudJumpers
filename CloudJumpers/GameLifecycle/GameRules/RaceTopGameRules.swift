@@ -51,50 +51,29 @@ class RaceTopGameRules: GameRules {
             }
             target?.add(character)
         }
-
     }
-
     func enableHostSystems() {
         target?.activateSystem(ofType: DisasterSpawnSystem.self)
         target?.activateSystem(ofType: PowerSpawnSystem.self)
     }
 
     func update(within time: CGFloat) {
-        guard let playerID = playerInfo?.playerId,
-              let target = target,
+        guard let target = target,
               let timer = timer,
               let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
         else {
             return
         }
 
-        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
-
-        if isRespawning, let killedBy = killedBy {
-            target.add(RespawnEvent(
-                onEntityWith: playerID,
-                killedBy: killedBy,
-                newPosition: Constants.playerInitialPosition))
-
-            target.dispatch(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y,
-                killedBy: killedBy))
-
-            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
-        }
-
-        updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
+        updateTwoPlayerSameCloud(target: target)
+        updateLabelWithValue(String(format: "%.1f", timedComponent.time), label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {
-        guard let target = target,
-              let playerID = playerInfo?.playerId,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
-        else {
+        guard let target = target else {
             return false
         }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+        return isPlayerOnTopPlatform(target: target)
     }
 
     func fetchLocalCompletionData() -> LocalCompletionData {

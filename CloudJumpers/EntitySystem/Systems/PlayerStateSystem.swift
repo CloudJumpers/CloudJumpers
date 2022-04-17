@@ -50,4 +50,27 @@ class PlayerStateSystem: System {
     func getPlayerEntity() -> Entity? {
         manager?.components(ofType: PlayerTag.self).first?.entity
     }
+
+    func enableScrollableForPlayer(for entityID: EntityID) {
+        guard let manager = manager,
+              let entity = manager.entity(with: entityID),
+              manager.hasComponent(ofType: PlayerTag.self, in: entity),
+              let areaComponent = manager.components(ofType: AreaComponent.self).first
+        else {
+            return
+        }
+        areaComponent.scrollable = true
+
+    }
+    func disableScrollableForPlayer(for entityID: EntityID) {
+        guard let manager = manager,
+              let entity = manager.entity(with: entityID),
+              manager.hasComponent(ofType: PlayerTag.self, in: entity),
+              let areaComponent = manager.components(ofType: AreaComponent.self).first
+        else {
+            return
+        }
+
+        areaComponent.scrollable = false
+    }
 }

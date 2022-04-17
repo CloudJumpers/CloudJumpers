@@ -46,6 +46,9 @@ struct Constants {
     static let timerSize = CGSize(width: 36, height: 36)
     static let timerInitial: Double = 0.0
 
+    static let scoreLabelPosition = CGPoint(x: -250, y: 410)
+    static let scoreLabelSize = CGSize(width: 36, height: 36)
+
     // Temporary Constant
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)

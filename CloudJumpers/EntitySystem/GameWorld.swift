@@ -63,6 +63,7 @@ class GameWorld {
         systemManager.register(SlowmoSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(TeleportSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(EffectorDetachSystem(for: entityManager))
+        systemManager.register(GodPowerSpawnSystem(for: entityManager, dispatchesVia: self))
     }
 }
 

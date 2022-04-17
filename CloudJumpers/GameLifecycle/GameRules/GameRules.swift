@@ -22,6 +22,35 @@ protocol GameRules {
 
 // MARK: - Helper functions
 extension GameRules {
+    func updateTwoPlayerSameCloud(target: RuleModifiable) {
+        guard let playerID = playerInfo?.playerId else {
+            return
+        }
+        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
+
+        if isRespawning, let killedBy = killedBy {
+            target.add(RespawnEvent(
+                onEntityWith: playerID,
+                killedBy: killedBy,
+                newPosition: Constants.playerInitialPosition))
+
+            target.dispatch(ExternalRespawnEvent(
+                positionX: Constants.playerInitialPosition.x,
+                positionY: Constants.playerInitialPosition.y,
+                killedBy: killedBy))
+
+            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
+        }
+    }
+
+    func isPlayerOnTopPlatform(target: RuleModifiable) -> Bool {
+        guard let playerID = playerInfo?.playerId,
+              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
+        else {
+            return false
+        }
+        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+    }
 
     func enablePowerUpFunction(target: RuleModifiable) {
         target.activateSystem(ofType: PowerUpSystem.self)

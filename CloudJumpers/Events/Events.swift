@@ -29,6 +29,8 @@ enum Events: Int {
     case respawn
     case disasterPlayerCollide
     case sound
+    case promoteGod
+    case demoteGod
 
     private static let events: [String: Events] = [
         BiEvent.type: .bi,
@@ -53,7 +55,9 @@ enum Events: Int {
         FreezeEvent.type: .freeze,
         JoystickUpdateEvent.type: .joystickUpdate,
         PowerUpLocationPressedEvent.type: .powerUpLocationPressed,
-        JumpButtonPressedEvent.type: .jumpButtonPressed
+        JumpButtonPressedEvent.type: .jumpButtonPressed,
+        PromoteGodEvent.type: .promoteGod,
+        DemoteGodEvent.type: .demoteGod
     ]
 
     static func rank(of event: Event) -> Int? {
