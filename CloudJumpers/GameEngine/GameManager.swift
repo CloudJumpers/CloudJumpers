@@ -66,6 +66,8 @@ class GameManager {
         for idx in 0..<cloudPositions.count where cloudPositions[idx] != highestPosition {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
+
+        world.add(Area(size: blueprint.worldSize))
     }
 
     private func addPlatform(at position: CGPoint) {

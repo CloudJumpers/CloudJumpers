@@ -53,7 +53,7 @@ extension GameRules {
         let timer = StaticLabel(
             at: Constants.timerPosition,
             size: Constants.timerSize,
-            initialValue: String(initialValue))
+            text: String(initialValue))
 
         target.add(timer)
         target.addComponent(TimedComponent(time: initialValue), to: timer)
@@ -65,6 +65,6 @@ extension GameRules {
         guard let labelComponent = target.component(ofType: LabelComponent.self, of: label) else {
             return
         }
-        labelComponent.displayValue = value
+        labelComponent.text = value
     }
 }

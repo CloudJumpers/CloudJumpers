@@ -17,15 +17,39 @@ class GameScene: SKScene {
 
     var scrollable = false
 
+    var isBlank = false {
+        didSet { isBlank ? blankScreen() : unblankScreen() }
+    }
+
     var touchBeganLocation: CGPoint?
     var previousTouchStoppedCameraInertia = false
 
+    // MARK: - Scene Lifecycle
     override func sceneDidLoad() {
         super.sceneDidLoad()
+        backgroundColor = .white
         setUpPhysicsWorld()
         setUpCamera()
     }
 
+    override func update(_ currentTime: TimeInterval) {
+        guard lastUpdateTime != -1 else {
+            lastUpdateTime = currentTime
+            return
+        }
+
+        let deltaTime = currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
+
+        sceneDelegate?.scene(self, updateWithin: deltaTime)
+        panCameraToAnchorNode()
+    }
+
+    override func didFinishUpdate() {
+        updateDelegate?.sceneDidFinishUpdate(self)
+    }
+
+    // MARK: - Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
         sceneDelegate?.scene(self, didBeginTouchesAt: touchLocations)
@@ -62,23 +86,6 @@ class GameScene: SKScene {
         previousTouchStoppedCameraInertia = false
     }
 
-    override func update(_ currentTime: TimeInterval) {
-        guard lastUpdateTime != -1 else {
-            lastUpdateTime = currentTime
-            return
-        }
-
-        let deltaTime = currentTime - lastUpdateTime
-        lastUpdateTime = currentTime
-
-        sceneDelegate?.scene(self, updateWithin: deltaTime)
-        panCameraToAnchorNode()
-    }
-
-    override func didFinishUpdate() {
-        updateDelegate?.sceneDidFinishUpdate(self)
-    }
-
     /// `static = true` adds a child that is always positioned relative to the camera's viewport.
     func addChild(_ node: NodeCore, static: Bool = false) {
         if `static` {
@@ -96,6 +103,7 @@ class GameScene: SKScene {
         }
     }
 
+    // MARK: - Set-up Methods
     private func setUpPhysicsWorld() {
         physicsWorld.contactDelegate = self
     }
@@ -116,6 +124,7 @@ class GameScene: SKScene {
         sceneDelegate?.scene(self, didCompletedTouchAt: location)
     }
 
+    // MARK: - Camera
     private func panCameraToAnchorNode() {
         guard let cameraAnchorNode = cameraAnchorNode,
               !scrollable
@@ -153,6 +162,17 @@ class GameScene: SKScene {
 
         cameraNode?.easeWithInertia(by: lastPosition.y - location.y)
         cameraNode?.lastPosition = nil
+    }
+
+    // MARK: - Scene Blanking
+    private func blankScreen() {
+        alpha = 0
+        backgroundColor = .black
+    }
+
+    private func unblankScreen() {
+        alpha = 1
+        backgroundColor = .white
     }
 }
 
