@@ -65,22 +65,6 @@ class RaceTopGameRules: GameRules {
             return
         }
 
-        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
-
-        if isRespawning, let killedBy = killedBy {
-            target.add(RespawnEvent(
-                onEntityWith: playerID,
-                killedBy: killedBy,
-                newPosition: Constants.playerInitialPosition))
-
-            target.dispatch(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y,
-                killedBy: killedBy))
-
-            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
-        }
-
         updateTwoPlayerSameCloud(target: target)
         updateLabelWithValue(String(timedComponent.time), label: timer, target: target)
     }
