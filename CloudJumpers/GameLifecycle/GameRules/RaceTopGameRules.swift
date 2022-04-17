@@ -25,6 +25,7 @@ class RaceTopGameRules: GameRules {
             return
         }
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -51,15 +52,6 @@ class RaceTopGameRules: GameRules {
             target?.add(character)
         }
 
-    }
-
-    func enableSystems() {
-        target?.activateSystem(ofType: PowerUpSystem.self)
-        target?.activateSystem(ofType: FreezeSystem.self)
-        target?.activateSystem(ofType: ConfuseSystem.self)
-        target?.activateSystem(ofType: SlowmoSystem.self)
-        target?.activateSystem(ofType: TeleportSystem.self)
-        target?.activateSystem(ofType: EffectorDetachSystem.self)
     }
 
     func enableHostSystems() {

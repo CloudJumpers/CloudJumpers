@@ -27,7 +27,6 @@ class GameManager {
         self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
         self.achievementProcessor.setTarget(world)
-        self.rules.enableSystems()
     }
 
     func update(within time: CGFloat) {

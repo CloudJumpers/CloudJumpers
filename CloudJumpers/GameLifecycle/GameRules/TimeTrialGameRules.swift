@@ -23,8 +23,6 @@ class TimeTrialGameRules: GameRules {
         self.target = target
     }
 
-    func enableSystems() {}
-
     func setUpForRule() {
         guard let target = target else {
             return

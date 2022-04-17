@@ -13,7 +13,6 @@ protocol GameRules {
     func setTarget(_ target: RuleModifiable)
     func setUpForRule()
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo])
-    func enableSystems()
     func enableHostSystems()
     func update(within time: CGFloat)
     func hasGameEnd() -> Bool
@@ -23,6 +22,15 @@ protocol GameRules {
 
 // MARK: - Helper functions
 extension GameRules {
+
+    func enablePowerUpFunction(target: RuleModifiable) {
+        target.activateSystem(ofType: PowerUpSystem.self)
+        target.activateSystem(ofType: FreezeSystem.self)
+        target.activateSystem(ofType: ConfuseSystem.self)
+        target.activateSystem(ofType: SlowmoSystem.self)
+        target.activateSystem(ofType: TeleportSystem.self)
+        target.activateSystem(ofType: EffectorDetachSystem.self)
+    }
 
     func isPlayerRespawning(target: RuleModifiable) -> Bool {
         guard let playerID = playerInfo?.playerId,
