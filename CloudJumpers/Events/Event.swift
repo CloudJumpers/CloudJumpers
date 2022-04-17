@@ -21,4 +21,8 @@ extension Event {
     func then(do event: Event) -> Event {
         BiEvent(self, event)
     }
+
+    static var type: String {
+        String(describing: Self.self)
+    }
 }
