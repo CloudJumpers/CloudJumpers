@@ -13,11 +13,6 @@ class TimeTrialGameRules: GameRules {
     private var timer: StaticLabel?
 
     var playerInfo: PlayerInfo?
-    private var isPlayingWithShadow: Bool
-
-    init(isPlayingWithShadow: Bool) {
-        self.isPlayingWithShadow = isPlayingWithShadow
-    }
 
     func setTarget(_ target: RuleModifiable) {
         self.target = target
@@ -46,7 +41,7 @@ class TimeTrialGameRules: GameRules {
                     texture: .Character1,
                     name: name,
                     with: id))
-            } else if id == GameConstants.shadowPlayerID && isPlayingWithShadow {
+            } else if id == GameConstants.shadowPlayerID {
                 target?.add(ShadowGuest(
                     at: Constants.playerInitialPositions[index],
                     texture: .ShadowCharacter1,
@@ -57,10 +52,7 @@ class TimeTrialGameRules: GameRules {
     }
 
     func enableHostSystems() {
-        if !isPlayingWithShadow {
-            target?.activateSystem(ofType: DisasterSpawnSystem.self)
         }
-    }
 
     func update(within time: CGFloat) {
         guard let target = target,
