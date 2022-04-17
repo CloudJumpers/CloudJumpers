@@ -189,6 +189,6 @@ extension GameWorld: MetricsProvider {
              return [:]
         }
 
-        return system.fetchMetrics()
+        return system.fetchDeltaMetrics()
     }
 }

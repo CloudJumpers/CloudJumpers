@@ -67,11 +67,20 @@ class RaceTopGameRules: GameRules {
         else {
             return
         }
-        if isPlayerRespawning(target: target) {
-            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
+
+        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
+
+        if isRespawning, let killedBy = killedBy {
+            target.add(RespawnEvent(
+                onEntityWith: playerID,
+                killedBy: killedBy,
+                newPosition: Constants.playerInitialPosition))
+
             target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y))
+                positionY: Constants.playerInitialPosition.y,
+                killedBy: killedBy))
+
             target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
