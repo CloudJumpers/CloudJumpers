@@ -66,7 +66,7 @@ extension AchievementsViewController: UICollectionViewDataSource {
         achievementCell.setTitle(title)
         achievementCell.setDescription(description)
         achievementCell.setUnlockStatus(isUnlocked)
-        achievementCell.setCurrent(currProgress ?? "")
+        achievementCell.setCurrent(currProgress)
         achievementCell.setRequired(reqProgress)
         achievementCell.setProgressBar(progress)
         achievementCell.setImage(imageName)

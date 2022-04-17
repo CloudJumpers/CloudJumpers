@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 class TeleportSystem: System {
-    var active = true
+    var active = false
 
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?

@@ -26,8 +26,16 @@ class PositionSystem: System {
         guard let positionComponent = manager?.component(ofType: PositionComponent.self, of: id) else {
             return
         }
-
         positionComponent.position = position
+    }
+
+    func moveAndChangeSide(entityWith id: EntityID, to position: CGPoint) {
+        guard let positionComponent = manager?.component(ofType: PositionComponent.self, of: id) else {
+            return
+        }
+        let displacement: CGVector = position - positionComponent.position
+        move(entityWith: id, by: displacement)
+        changeSide(entityWith: id, by: displacement)
     }
 
     func move(entityWith id: EntityID, by displacement: CGVector) {

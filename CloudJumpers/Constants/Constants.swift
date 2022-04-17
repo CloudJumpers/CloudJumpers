@@ -59,6 +59,7 @@ struct Constants {
     static let powerUpTargetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
     static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
+    static let powerUpRemoveTime = 7.0
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"
@@ -84,15 +85,15 @@ struct Constants {
     static let disasterPromptPeriod = 4.0
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
     static let disasterMass = CGFloat(1_000_000)
-    static let disasterMinSpeed = 100.0
-    static let disasterMaxSpeed = 170.0
+    static let disasterMinSpeed = Float(100.0)
+    static let disasterMaxSpeed = Float(170.0)
     static let disasterMinYPosition = -100.0
     static let disasterGenerationProbability = 1
     static let disasterYPositionOffset = 100.0
-    static let disasterMinXDirection = -1.0
-    static let disasterMaxXDirection = 1.0
-    static let disasterMinYDirection = -1.0
-    static let disasterMaxYDirection = -0.1
+    static let disasterMinXDirection = Float(-1.0)
+    static let disasterMaxXDirection = Float(1.0)
+    static let disasterMinYDirection = Float(-1.0)
+    static let disasterMaxYDirection = Float(-0.1)
 
     static let defaultPosition = CGPoint(x: 0.0, y: 0.0)
     static let defaultVelocity = CGVector(dx: 0.0, dy: 0.0)
@@ -117,4 +118,8 @@ struct Constants {
     static let teleportEffectDuration = 0.05
 
     static let cloudMovingTolerance = 0.001
+
+    static let outOfBoundBufferX = 50.0
+    static let outOfBoundBufferY = 1_000.0
+    static let minOutOfBoundBufferY = -800.0
 }

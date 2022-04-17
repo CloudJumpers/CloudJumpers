@@ -11,12 +11,18 @@ import CoreGraphics
 class RemoveSystem: System {
     var active = true
 
+    private var boundSize: CGSize?
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
         self.dispatcher = dispatcher
+    }
+
+    convenience init(for manager: EntityManager, boundSize: CGSize, dispatchesVia dispatcher: EventDispatcher? = nil) {
+        self.init(for: manager, dispatchesVia: dispatcher)
+        self.boundSize = boundSize
     }
 
     // TODO: Should system be able to remove entities ?
@@ -39,22 +45,35 @@ class RemoveSystem: System {
               let timedRemoveComponent = manager.component(ofType: TimedRemovalComponent.self, of: entity),
               timedComponent.time >= timedRemoveComponent.timeToRemove
         else { return }
-
         manager.remove(entity)
 
     }
+
     func updateRemoveOutOfBound (entity: Entity) {
-        guard let manager = manager,
-              manager.hasComponent(ofType: RemoveOutOfBoundTag.self, in: entity),
-              let positionComponent = manager.component(ofType: PositionComponent.self, of: entity),
-              isPositionOutOfBound(positionComponent.position)
-        else { return }
+        guard let manager = manager else {
+            return
+        }
 
-        manager.remove(entity)
+        for positionComponent in manager.components(ofType: PositionComponent.self)
+        where isOutOfBound(position: positionComponent.position) {
+            if let entity = positionComponent.entity {
+                manager.remove(entity)
+            }
+        }
     }
 
-    private func isPositionOutOfBound(_ position: CGPoint) -> Bool {
-        position.x < Constants.minOutOfBoundX || position.x > Constants.maxOutOfBoundX
+    private func isOutOfBound(position: CGPoint) -> Bool {
+        guard let boundSize = boundSize else {
+            return false
+        }
+
+        let minX = -boundSize.width / 2 - Constants.outOfBoundBufferX
+        let maxX = boundSize.width / 2 + Constants.outOfBoundBufferX
+        let minY = Constants.minOutOfBoundBufferY
+        let maxY = boundSize.height + Constants.outOfBoundBufferY
+
+        return position.x < minX || position.x > maxX ||
+        position.y < minY || position.y > maxY
     }
 
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 class GameWorld {
     private let entityManager: EntityManager
@@ -23,7 +24,7 @@ class GameWorld {
 
         eventManager.dispatcher = self
         handlers.subscriber.setEventManager(eventManager)
-        setUpSystems()
+        setUpSystems(bound: scene?.size ?? .zero)
     }
 
     func update(within time: TimeInterval) {
@@ -32,7 +33,13 @@ class GameWorld {
         renderer?.render()
     }
 
-    private func setUpSystems() {
+    private func setUpSystems(bound: CGSize) {
+        let positionGenerationInfo = RandomPositionGenerationInfo(worldSize: bound)
+        let disasterVelocityGenerationInfo = RandomVelocityGenerationInfo(
+            xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
+            yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
+            speedRange: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
+
         systemManager.register(PositionSystem(for: entityManager))
         systemManager.register(PhysicsSystem(for: entityManager))
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
@@ -40,6 +47,21 @@ class GameWorld {
         systemManager.register(StandOnSystem(for: entityManager))
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
+        systemManager.register(InventorySystem(for: entityManager))
+        systemManager.register(RemoveSystem(for: entityManager, boundSize: bound))
+        systemManager.register(DisasterSpawnSystem(for: entityManager,
+                                                   positionGenerationInfo: positionGenerationInfo,
+                                                   velocityGenerationInfo: disasterVelocityGenerationInfo,
+                                                   dispatcherVia: self))
+        systemManager.register(PowerSpawnSystem(for: entityManager,
+                                                positionGenerationInfo: positionGenerationInfo,
+                                                dispatcherVia: self))
+        systemManager.register(PowerUpSystem(for: entityManager))
+        systemManager.register(FreezeSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(ConfuseSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(SlowmoSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(TeleportSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(EffectorDetachSystem(for: entityManager))
     }
 }
 
@@ -167,6 +189,14 @@ extension GameWorld: MetricsProvider {
              return [:]
         }
 
-        return system.fetchMetrics()
+        return system.fetchDeltaMetrics()
+    }
+
+    func getMetricsSnapshot() -> [String: Int] {
+        guard let system = systemManager.system(ofType: MetricsSystem.self) else {
+             return [:]
+        }
+
+        return system.fetchPersistentMetrics()
     }
 }

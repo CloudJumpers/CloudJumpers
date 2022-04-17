@@ -37,6 +37,7 @@ struct RespawnEventCommand: GameEventCommand {
         let position = CGPoint(x: parameters.positionX, y: parameters.positionY)
         let eventToProcess = RespawnEvent(
             onEntityWith: source,
+            killedBy: parameters.killedBy,
             newPosition: position,
             at: parameters.timestamp
         )

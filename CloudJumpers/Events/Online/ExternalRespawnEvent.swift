@@ -10,6 +10,7 @@ import Foundation
 struct ExternalRespawnEvent: RemoteEvent {
     var positionX: Double
     var positionY: Double
+    var killedBy: EntityID
 
     func createDispatchCommand() -> GameEventCommand? {
         guard let sourceId = getSourceId() else {

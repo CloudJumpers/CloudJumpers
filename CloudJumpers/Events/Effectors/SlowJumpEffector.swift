@@ -26,11 +26,11 @@ struct SlowJumpEffector: Effector {
         return JumpEvent(onEntityWith: event.entityID, by: Constants.jumpImpulse / 3, at: event.timestamp)
     }
 
-    func shouldDetach(in entityManager: EntityManager) -> Bool {
-        guard let timerComponent = entityManager.component(ofType: TimedComponent.self, of: effectEntity) else {
+    func shouldDetach(in target: EventModifiable) -> Bool {
+        guard let effectorDetachSystem = target.system(ofType: EffectorDetachSystem.self) else {
             return false
         }
 
-        return timerComponent.time >= Constants.powerUpEffectDuration
+        return effectorDetachSystem.shouldDetach(watchingEntity: effectEntity)
     }
 }

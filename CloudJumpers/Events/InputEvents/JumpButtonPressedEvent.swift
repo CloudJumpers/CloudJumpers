@@ -31,7 +31,8 @@ struct JumpButtonPressedEvent: Event {
         // TODO: Figure out how to integrate AnimateEvent into JumpEvent
         let animateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.jumping.key)
 
-        supplier.add(jumpEvent.then(do: soundEvent))
+        supplier.add(jumpEvent)
+        supplier.add(soundEvent)
         supplier.add(animateEvent)
     }
 }

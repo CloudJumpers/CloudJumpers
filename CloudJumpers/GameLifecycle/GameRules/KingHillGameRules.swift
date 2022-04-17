@@ -35,6 +35,7 @@ class KingHillGameRules: GameRules {
             size: Constants.scoreLabelSize,
             initialValue: "\(playerScore)")
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -86,6 +87,22 @@ class KingHillGameRules: GameRules {
         else {
             return
         }
+
+        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
+
+        if isRespawning, let killedBy = killedBy {
+            target.add(RespawnEvent(
+                onEntityWith: playerID,
+                killedBy: killedBy,
+                newPosition: Constants.playerInitialPosition)
+            )
+
+            target.dispatch(ExternalRespawnEvent(
+                positionX: Constants.playerInitialPosition.x,
+                positionY: Constants.playerInitialPosition.y,
+                killedBy: killedBy))
+
+            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
 
         // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
