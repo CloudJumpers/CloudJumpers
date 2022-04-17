@@ -9,7 +9,7 @@ import Foundation
 
 class PowerUserAchievement: Achievement {
     let title: String = "Power User"
-    let description: String = "Use 100 power ups"
+    let description: String = "Activate 100 power ups in multiplayer games."
     let imageName: String = Images.bolt.rawValue
     let metricKeys: [String] = [String(describing: PowerUpActivateEvent.self)]
 
@@ -18,7 +18,7 @@ class PowerUserAchievement: Achievement {
 
     var currentProgress: String {
         guard let used = powerUpsUsed else {
-            return String(Double.zero)
+            return String(Int.zero)
         }
         return String(used)
     }

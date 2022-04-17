@@ -9,7 +9,7 @@ import Foundation
 
 class LightFootedAchievement: Achievement {
     let title: String = "Light-footed"
-    let description: String = "1000 total jumps made across games."
+    let description: String = "1000 total jumps made in any game mode."
     let imageName: String = Images.jumpingSprite.name
     let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
@@ -21,7 +21,7 @@ class LightFootedAchievement: Achievement {
 
     var currentProgress: String {
         guard let jumps = userJumps else {
-            return String(Double.zero)
+            return String(Int.zero)
         }
         return String(jumps)
     }
