@@ -45,6 +45,8 @@ class RemoveSystem: System {
               let timedRemoveComponent = manager.component(ofType: TimedRemovalComponent.self, of: entity),
               timedComponent.time >= timedRemoveComponent.timeToRemove
         else { return }
+
+        cleanUpBeforeRemove(entity: entity)
         manager.remove(entity)
 
     }
@@ -60,6 +62,16 @@ class RemoveSystem: System {
                 manager.remove(entity)
             }
         }
+    }
+
+    func cleanUpBeforeRemove(entity: Entity) {
+        guard let manager = manager,
+              manager.component(ofType: BlackoutComponent.self, of: entity) != nil,
+              let areaComponent = manager.components(ofType: AreaComponent.self).first else {
+            return
+        }
+
+        areaComponent.isBlank = false
     }
 
     private func isOutOfBound(position: CGPoint) -> Bool {

@@ -11,6 +11,7 @@ class PowerUpComponent: Component {
         case confuse
         case slowmo
         case teleport
+        case blackout
 
         var name: String { rawValue }
     }

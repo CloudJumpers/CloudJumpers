@@ -1,14 +1,14 @@
 //
-//  TeleportSystem.swift
+//  BlackoutSystem.swift
 //  CloudJumpers
 //
-//  Created by Eric Bryan on 15/4/22.
+//  Created by Eric Bryan on 17/4/22.
 //
 
 import Foundation
 import CoreGraphics
 
-class TeleportSystem: System {
+class BlackoutSystem: System {
     var active = false
 
     unowned var manager: EntityManager?
@@ -20,30 +20,34 @@ class TeleportSystem: System {
     }
 
     func update(within time: CGFloat) {
-        guard let teleportComponents = manager?.components(ofType: TeleportComponent.self),
+        guard let blackoutComponents = manager?.components(ofType: BlackoutComponent.self),
               let playerEntity = manager?.components(ofType: PlayerTag.self).first?.entity,
               let playerPositionComponent = manager?.component(ofType: PositionComponent.self, of: playerEntity)
         else { return }
 
-        for component in teleportComponents where !component.isActivated {
+        for component in blackoutComponents where !component.isActivated {
             component.isActivated = true
 
             let activatorId = component.activatorId
             let playerLocation = playerPositionComponent.position
 
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
-                isAffectingLocation(location: playerLocation, teleportComponent: component) {
+                isAffectingLocation(location: playerLocation, blackoutComponent: component),
+               let areaComponent = manager?.components(ofType: AreaComponent.self).first,
+               let entity = component.entity,
+               let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity) {
 
-                playerPositionComponent.position = component.position
+                areaComponent.isBlank = true
+                spriteComponent.alpha = 0
             }
         }
     }
 
-    private func isAffectingLocation(location: CGPoint, teleportComponent: TeleportComponent) -> Bool {
+    private func isAffectingLocation(location: CGPoint, blackoutComponent: BlackoutComponent) -> Bool {
         true
     }
 
     private func canAffectEntity(activatorEntityId: EntityID, targetEntityId: EntityID) -> Bool {
-        activatorEntityId == targetEntityId
+        activatorEntityId != targetEntityId
     }
 }

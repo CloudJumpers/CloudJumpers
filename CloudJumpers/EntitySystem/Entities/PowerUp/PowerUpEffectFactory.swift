@@ -13,7 +13,8 @@ class PowerUpEffectFactory {
         FreezeEffectCreator.self,
         ConfuseEffectCreator.self,
         SlowmoEffectCreator.self,
-        TeleportEffectCreator.self
+        TeleportEffectCreator.self,
+        BlackoutEffectCreator.self
     ]
 
     static func createPowerUpEffect(type: PowerUpComponent.Kind,
