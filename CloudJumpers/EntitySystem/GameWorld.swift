@@ -189,6 +189,14 @@ extension GameWorld: MetricsProvider {
              return [:]
         }
 
-        return system.fetchMetrics()
+        return system.fetchDeltaMetrics()
+    }
+
+    func getMetricsSnapshot() -> [String: Int] {
+        guard let system = systemManager.system(ofType: MetricsSystem.self) else {
+             return [:]
+        }
+
+        return system.fetchPersistentMetrics()
     }
 }

@@ -11,4 +11,6 @@ struct RaceToTopData: LocalCompletionData {
     let playerId: NetworkID
     let playerName: String
     let completionTime: Double
+    let kills: Int
+    let deaths: Int
 }
