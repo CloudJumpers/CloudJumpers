@@ -95,7 +95,7 @@ class KingHillGameRules: GameRules {
 
         let score = distanceToTop != 0 ? 1 / distanceToTop : 1
         playerScore += score
-        updateLabelWithValue("\(playerScore)", label: scoreLabel, target: target)
+        updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
     }
 
     private func updateGodStatus(target: RuleModifiable) {
@@ -118,7 +118,7 @@ class KingHillGameRules: GameRules {
             return
         }
         currentGameDuration = KingHillGameRules.gameDuration - timedComponent.time
-        updateLabelWithValue(String(currentGameDuration), label: timer, target: target)
+        updateLabelWithValue(String(format: "%.1f", currentGameDuration), label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

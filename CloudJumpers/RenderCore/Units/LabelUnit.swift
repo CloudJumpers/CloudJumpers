@@ -21,12 +21,26 @@ class LabelUnit: RenderUnit {
         node.position = positionComponent.position
         node.name = entity.id
 
+        // TODO: Not hard-code this
+        node.fontSize = 30
+        node.fontColor = .black
+
         Self.configureLabelNode(node, with: labelComponent)
         return node
     }
 
     private static func configureLabelNode(_ node: LabelNode, with labelComponent: LabelComponent) {
         node.alpha = labelComponent.alpha
-        node.text = labelComponent.text
     }
+
+    func transform(_ entity: Entity, with node: Node) {
+        guard let labelComponent = target?.component(ofType: LabelComponent.self, of: entity),
+              let labelNode = node as? LabelNode
+        else {
+            return
+        }
+        labelNode.alpha = labelComponent.alpha
+        labelNode.text = labelComponent.text
+    }
+
 }
