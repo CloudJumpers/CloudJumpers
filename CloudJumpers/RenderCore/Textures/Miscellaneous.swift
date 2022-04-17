@@ -10,10 +10,12 @@ enum Miscellaneous: TextureName {
     case freeze
     case slowmo
     case teleport
+    case blackout
     case confuseEffect
     case freezeEffect
     case slowmoEffect
     case teleportEffect
+    case blackoutEffect
     case meteor
     case meteorPrompt
     case wall

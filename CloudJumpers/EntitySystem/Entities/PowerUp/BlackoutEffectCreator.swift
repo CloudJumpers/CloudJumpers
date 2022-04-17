@@ -12,7 +12,7 @@ class BlackoutEffectCreator: PowerUpEffectCreator {
     required init() {}
 
     func create(at location: CGPoint, activatorId: EntityID) -> Entity {
-        PowerUpEffect(at: location, removeAfter: Constants.teleportEffectDuration,
+        PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration,
                       activatorId: activatorId, texture: .teleportEffect,
                       powerUpComponent: BlackoutComponent(position: location, activatorId: activatorId))
     }
