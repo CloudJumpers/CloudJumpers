@@ -30,6 +30,8 @@ enum Events: Int {
     case changeLocation
     case sound
     case updateState
+    case promoteGod
+    case demoteGod
 
     private static let events: [String: Events] = [
         String(describing: BiEvent.self): .bi,
@@ -54,7 +56,10 @@ enum Events: Int {
         String(describing: FreezeEvent.self): .freeze,
         String(describing: JoystickUpdateEvent.self): .joystickUpdate,
         String(describing: PowerUpLocationPressedEvent.self): .powerUpLocationPressed,
-        String(describing: JumpButtonPressedEvent.self): .jumpButtonPressed
+        String(describing: JumpButtonPressedEvent.self): .jumpButtonPressed,
+        String(describing: PromoteGodEvent.self): .promoteGod,
+        String(describing: DemoteGodEvent.self): .demoteGod
+
     ]
 
     static func rank(of event: Event) -> Int? {

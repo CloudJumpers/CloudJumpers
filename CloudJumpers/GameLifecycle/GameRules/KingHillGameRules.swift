@@ -29,16 +29,19 @@ class KingHillGameRules: GameRules {
         guard let target = target else {
             return
         }
-
-        self.scoreLabel = StaticLabel(
+        let scoreLabel = StaticLabel(
             at: Constants.scoreLabelPosition,
             size: Constants.scoreLabelSize,
             initialValue: "\(playerScore)")
+
+        self.scoreLabel = scoreLabel
+        target.add(scoreLabel)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
         enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
+        self.playerInfo = playerInfo
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId
             let name = info.displayName
