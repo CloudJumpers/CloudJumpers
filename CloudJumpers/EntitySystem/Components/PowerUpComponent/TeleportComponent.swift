@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class TeleportComponent: Component, PowerUpEffectComponent {
+class TeleportComponent: Component {
     let position: CGPoint
     let activatorId: EntityID
     var isActivated = false

@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class FreezeComponent: Component, PowerUpEffectComponent {
+class FreezeComponent: Component {
     let position: CGPoint
     let activatorId: EntityID
     let radiusRange: CGFloat

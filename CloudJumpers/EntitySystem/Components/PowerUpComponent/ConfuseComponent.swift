@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class ConfuseComponent: Component, PowerUpEffectComponent {
+class ConfuseComponent: Component {
     let position: CGPoint
     let activatorId: EntityID
     let radiusRange: CGFloat

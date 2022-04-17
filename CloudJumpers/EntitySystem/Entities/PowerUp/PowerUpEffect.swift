@@ -2,7 +2,7 @@
 //  PowerUpEffect.swift
 //  CloudJumpers
 //
-//  Created by Eric Bryan on 26/3/22.
+//  Created by Eric Bryan on 17/4/22.
 //
 
 import Foundation
@@ -15,14 +15,14 @@ class PowerUpEffect: Entity {
     private let texture: Miscellaneous
     private let intervalToRemove: TimeInterval
     private let activatorId: EntityID
-    private let powerUpComponent: PowerUpEffectComponent
+    private let powerUpComponent: Component
 
     init(
         at position: CGPoint,
         removeAfter intervalToRemove: TimeInterval,
         activatorId: EntityID,
         texture: Miscellaneous,
-        powerUpComponent: PowerUpEffectComponent,
+        powerUpComponent: Component,
         with id: EntityID = EntityManager.newEntityID
     ) {
         self.id = id
