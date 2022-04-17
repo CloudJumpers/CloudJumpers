@@ -52,15 +52,23 @@ class PlayerStateSystem: System {
     }
 
     func promoteToGod(for entityID: EntityID) {
-        guard let entity = manager?.entity(with: entityID) else {
+        guard let manager = manager,
+              let entity = manager.entity(with: entityID),
+              manager.hasComponent(ofType: PlayerTag.self, in: entity)
+        else {
             return
         }
-        manager?.addComponent(GodTag(), to: entity)
+        
+        // TODO: Add in world toggle
     }
     func demoteFromGod(for entityID: EntityID) {
-        guard let entity = manager?.entity(with: entityID) else {
+        guard let manager = manager,
+              let entity = manager.entity(with: entityID),
+              manager.hasComponent(ofType: PlayerTag.self, in: entity)
+        else {
             return
         }
-        manager?.removeComponent(ofType: GodTag.self, from: entity)
+        
+        // TODO: Add in world toggle
     }
 }

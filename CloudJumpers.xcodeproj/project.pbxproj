@@ -284,7 +284,6 @@
 		A1AE31D828092EF500FABC0E /* StaticLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE31D728092EF500FABC0E /* StaticLabel.swift */; };
 		A1AE31DA28092FF200FABC0E /* LabelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE31D928092FF200FABC0E /* LabelComponent.swift */; };
 		A1AE31DC28093A2F00FABC0E /* KingHillGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE31DB28093A2F00FABC0E /* KingHillGameRules.swift */; };
-		A1C0014F280B570D004D5059 /* GodTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C0014E280B570D004D5059 /* GodTag.swift */; };
 		A1C00151280B575E004D5059 /* PromoteGodEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C00150280B575E004D5059 /* PromoteGodEvent.swift */; };
 		A1C00153280B5906004D5059 /* DemoteGodEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C00152280B5906004D5059 /* DemoteGodEvent.swift */; };
 		A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4686C27D9059600C9FB0E /* GameScene.swift */; };
@@ -613,7 +612,6 @@
 		A1AE31D728092EF500FABC0E /* StaticLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticLabel.swift; sourceTree = "<group>"; };
 		A1AE31D928092FF200FABC0E /* LabelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelComponent.swift; sourceTree = "<group>"; };
 		A1AE31DB28093A2F00FABC0E /* KingHillGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingHillGameRules.swift; sourceTree = "<group>"; };
-		A1C0014E280B570D004D5059 /* GodTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodTag.swift; sourceTree = "<group>"; };
 		A1C00150280B575E004D5059 /* PromoteGodEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoteGodEvent.swift; sourceTree = "<group>"; };
 		A1C00152280B5906004D5059 /* DemoteGodEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoteGodEvent.swift; sourceTree = "<group>"; };
 		A1D4686C27D9059600C9FB0E /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -949,7 +947,6 @@
 				1ADEDD9027F5906C00C3AFD3 /* CameraStaticTag.swift */,
 				A1D786842801EE1A00C5CE49 /* PlayerTag.swift */,
 				A1D8555D2804A32C000C4CA7 /* TopPlatformTag.swift */,
-				A1C0014E280B570D004D5059 /* GodTag.swift */,
 			);
 			path = Tags;
 			sourceTree = "<group>";
@@ -1900,7 +1897,6 @@
 				A1D7866428018FED00C5CE49 /* MoveEvent.swift in Sources */,
 				A1AE31DC28093A2F00FABC0E /* KingHillGameRules.swift in Sources */,
 				3E61A10F280C148800BD8470 /* TeleportEffectCreator.swift in Sources */,
-				A1C0014F280B570D004D5059 /* GodTag.swift in Sources */,
 				935280CD27F6295E002E3A1D /* PostGameViewController.swift in Sources */,
 				1AE9D8AF27FED1F3002B0A1E /* SKTextureAtlas+Sorted.swift in Sources */,
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
