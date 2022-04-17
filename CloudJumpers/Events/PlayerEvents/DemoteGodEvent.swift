@@ -21,6 +21,6 @@ struct DemoteGodEvent: Event {
         guard let playerSystem = target.system(ofType: PlayerStateSystem.self) else {
             return
         }
-        playerSystem.demoteFromGod(for: entityID)
+        playerSystem.disableScrollableForPlayer(for: entityID)
     }
 }

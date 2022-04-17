@@ -51,24 +51,26 @@ class PlayerStateSystem: System {
         manager?.components(ofType: PlayerTag.self).first?.entity
     }
 
-    func promoteToGod(for entityID: EntityID) {
+    func enableScrollableForPlayer(for entityID: EntityID) {
         guard let manager = manager,
               let entity = manager.entity(with: entityID),
-              manager.hasComponent(ofType: PlayerTag.self, in: entity)
+              manager.hasComponent(ofType: PlayerTag.self, in: entity),
+              let areaComponent = manager.components(ofType: AreaComponent.self).first
         else {
             return
         }
+        areaComponent.scrollable = true
 
-        // TODO: Add in world toggle
     }
-    func demoteFromGod(for entityID: EntityID) {
+    func disableScrollableForPlayer(for entityID: EntityID) {
         guard let manager = manager,
               let entity = manager.entity(with: entityID),
-              manager.hasComponent(ofType: PlayerTag.self, in: entity)
+              manager.hasComponent(ofType: PlayerTag.self, in: entity),
+              let areaComponent = manager.components(ofType: AreaComponent.self).first
         else {
             return
         }
 
-        // TODO: Add in world toggle
+        areaComponent.scrollable = false
     }
 }

@@ -21,6 +21,6 @@ struct PromoteGodEvent: Event {
         guard let playerSystem = target.system(ofType: PlayerStateSystem.self) else {
             return
         }
-        playerSystem.promoteToGod(for: entityID)
+        playerSystem.enableScrollableForPlayer(for: entityID)
     }
 }
