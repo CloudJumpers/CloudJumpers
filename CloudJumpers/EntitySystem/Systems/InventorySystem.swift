@@ -68,7 +68,7 @@ class InventorySystem: System {
                   let positionComponent = manager.component(ofType: PositionComponent.self, of: entity),
                   let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else { continue }
-            
+
             removeTimerComponent(from: entity)
 
             guard displayCount <= Constants.powerUpMaxNumDisplay else {
@@ -101,12 +101,12 @@ class InventorySystem: System {
 
         }
     }
-    
+
     private func removeTimerComponent(from entity: Entity) {
         guard let manager = manager else {
             return
         }
-        
+
         manager.removeComponent(ofType: TimedComponent.self, from: entity)
         manager.removeComponent(ofType: TimedRemovalComponent.self, from: entity)
     }
