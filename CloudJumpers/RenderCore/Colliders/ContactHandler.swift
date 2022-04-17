@@ -72,7 +72,7 @@ struct ContactHandler {
 
     static func between(_ platform: Platform, _ guest: Guest) -> Event? {
         ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: platform.id)
- }
+    }
 
     static func between(_ disaster1: Disaster, _ disaster2: Disaster) -> Event? { nil }
 

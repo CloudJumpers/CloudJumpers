@@ -37,4 +37,36 @@ extension Guest: Collidable {
     func collides(with guest: Guest) -> Event? {
         ContactHandler.between(self, guest)
     }
+
+    func separates(from collidable: Collidable) -> Event? {
+        collidable.separates(from: self)
+    }
+
+    func separates(from player: Player) -> Event? {
+        SeparationHandler.between(player, self)
+    }
+
+    func separates(from powerUp: PowerUp) -> Event? {
+        SeparationHandler.between(powerUp, self)
+    }
+
+    func separates(from cloud: Cloud) -> Event? {
+        SeparationHandler.between(cloud, self)
+    }
+
+    func separates(from floor: Floor) -> Event? {
+        SeparationHandler.between(floor, self)
+    }
+
+    func separates(from platform: Platform) -> Event? {
+        SeparationHandler.between(platform, self)
+    }
+
+    func separates(from disaster: Disaster) -> Event? {
+        SeparationHandler.between(disaster, self)
+    }
+
+    func separates(from guest: Guest) -> Event? {
+        SeparationHandler.between(self, guest)
+    }
 }

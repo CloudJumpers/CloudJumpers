@@ -37,4 +37,36 @@ extension PowerUp: Collidable {
     func collides(with guest: Guest) -> Event? {
         ContactHandler.between(self, guest)
     }
+
+    func separates(from collidable: Collidable) -> Event? {
+        collidable.separates(from: self)
+    }
+
+    func separates(from player: Player) -> Event? {
+        SeparationHandler.between(player, self)
+    }
+
+    func separates(from powerUp: PowerUp) -> Event? {
+        SeparationHandler.between(self, powerUp)
+    }
+
+    func separates(from cloud: Cloud) -> Event? {
+        SeparationHandler.between(self, cloud)
+    }
+
+    func separates(from floor: Floor) -> Event? {
+        SeparationHandler.between(self, floor)
+    }
+
+    func separates(from platform: Platform) -> Event? {
+        SeparationHandler.between(self, platform)
+    }
+
+    func separates(from disaster: Disaster) -> Event? {
+        SeparationHandler.between(self, disaster)
+    }
+
+    func separates(from guest: Guest) -> Event? {
+        SeparationHandler.between(self, guest)
+    }
 }
