@@ -26,6 +26,6 @@ struct RepositionEvent: Event {
             return
         }
 
-        positionSystem.move(entityWith: entityID, to: newPosition)
+        positionSystem.moveAndChangeSide(entityWith: entityID, to: newPosition)
     }
 }
