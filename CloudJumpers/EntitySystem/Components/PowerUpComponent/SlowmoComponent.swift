@@ -8,7 +8,7 @@
 import Foundation
 import CoreGraphics
 
-class SlowmoComponent: Component, PowerUpEffectComponent {
+class SlowmoComponent: Component {
     let position: CGPoint
     let activatorId: EntityID
     let radiusRange: CGFloat
