@@ -120,12 +120,20 @@ extension GameWorld: Simulatable {
 
     func handleContact(between entityAID: EntityID, and entityBID: EntityID) {
         guard let entityA = entity(with: entityAID) as? Collidable,
-              let entityB = entity(with: entityBID) as? Collidable
+              let entityB = entity(with: entityBID) as? Collidable,
+              let contactEvent = entityA.collides(with: entityB)
         else { return }
 
-        if let event = entityA.collides(with: entityB) {
-            eventManager.add(event)
-        }
+        eventManager.add(contactEvent)
+    }
+
+    func handleSeparation(between entityAID: EntityID, and entityBID: EntityID) {
+        guard let entityA = entity(with: entityAID) as? Collidable,
+              let entityB = entity(with: entityBID) as? Collidable,
+              let separationEvent = entityA.separates(from: entityB)
+        else { return }
+
+        eventManager.add(separationEvent)
     }
 
     func syncPositions(with entityPositionMap: EntityPositionMap) {

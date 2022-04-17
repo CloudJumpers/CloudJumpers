@@ -150,7 +150,11 @@ extension Renderer: SceneUpdateDelegate {
     }
 
     func scene(_ scene: Scene, didEndContactBetween nodeA: Node, and nodeB: Node) {
-        // TODO: Handle contact end here
+        guard let entityIDA = nodeA.name,
+              let entityIDB = nodeB.name
+        else { fatalError("A Node was not associated with an EntityID") }
+
+        target?.handleSeparation(between: entityIDA, and: entityIDB)
     }
 
     func sceneDidFinishUpdate(_ scene: Scene) {
