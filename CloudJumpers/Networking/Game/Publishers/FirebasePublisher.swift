@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebasePublisher: RealtimePublisher {
+class FirebasePublisher: GameEventPublisher {
     private let gameReference: DatabaseReference
 
     init(_ channelId: NetworkID) {

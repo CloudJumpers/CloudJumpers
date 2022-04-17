@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseEmulator: SimulatedSubscriber {
+class FirebaseEmulator: GameEventSubscriber {
     private var storedCommands: [(timeDeltaSeconds: Double, command: GameEventCommand)]
     private var hasReleaseStarted: Bool
 

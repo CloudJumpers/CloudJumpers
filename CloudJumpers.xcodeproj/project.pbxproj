@@ -259,10 +259,6 @@
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
 		93D4E18327DA23FF0054F45B /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E18227DA23FF0054F45B /* TestUtils.swift */; };
 		93D7D6C3280B4AEC009CBB87 /* PowerUserAchievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */; };
-		93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */; };
-		93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486527FDA94500F6C188 /* EventualPublisher.swift */; };
-		93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486827FDB17200F6C188 /* RealtimePublisher.swift */; };
-		93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */; };
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
 		A10ADC5C280C140D00382B0F /* GodPowerSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */; };
@@ -590,10 +586,6 @@
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
 		93D4E18227DA23FF0054F45B /* TestUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUserAchievement.swift; sourceTree = "<group>"; };
-		93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSubscriber.swift; sourceTree = "<group>"; };
-		93EF486527FDA94500F6C188 /* EventualPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventualPublisher.swift; sourceTree = "<group>"; };
-		93EF486827FDB17200F6C188 /* RealtimePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimePublisher.swift; sourceTree = "<group>"; };
-		93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeSubscriber.swift; sourceTree = "<group>"; };
 		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
@@ -1456,8 +1448,6 @@
 			isa = PBXGroup;
 			children = (
 				93360B9E27EC9CDA00808295 /* GameEventPublisher.swift */,
-				93EF486527FDA94500F6C188 /* EventualPublisher.swift */,
-				93EF486827FDB17200F6C188 /* RealtimePublisher.swift */,
 				931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */,
 			);
 			path = Publishers;
@@ -1466,8 +1456,6 @@
 		93EF486727FDAA7600F6C188 /* Subscribers */ = {
 			isa = PBXGroup;
 			children = (
-				93EF486027FDA7FF00F6C188 /* SimulatedSubscriber.swift */,
-				93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */,
 				93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */,
 				93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */,
 				9396E95C280037420090A8C9 /* FirebaseEmulator.swift */,
@@ -1864,7 +1852,6 @@
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				3E61A10B280C146700BD8470 /* ConfuseEffectCreator.swift in Sources */,
 				9396E9612800482C0090A8C9 /* RaceToTopPreGameManager.swift in Sources */,
-				93EF486627FDA94500F6C188 /* EventualPublisher.swift in Sources */,
 				1A7FFD21280AEF5200FE3415 /* SpriteUnit.swift in Sources */,
 				A175388628087EE800FC665F /* PowerUpSpawnEvent.swift in Sources */,
 				A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */,
@@ -2042,7 +2029,6 @@
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
 				93ADD1D82804A9DB004E0E87 /* PostGameConfig.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
-				93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */,
 				93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */,
 				1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */,
 				1A24DC1B28016BE900E48B64 /* EventDispatcher.swift in Sources */,
@@ -2124,14 +2110,12 @@
 				A14A57C927F7F18100A25DBA /* ExternalRespawnEvent.swift in Sources */,
 				1A24DC192800B0BA00E48B64 /* PositionComponent.swift in Sources */,
 				3E3632FB2809972900FAD7A8 /* TeleportSystem.swift in Sources */,
-				93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */,
 				933486C5280BC37700D6DC0F /* KingOfTheHill.swift in Sources */,
 				933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */,
 				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				1A24DC1D2805905B00E48B64 /* GameWorld.swift in Sources */,
-				93EF486127FDA7FF00F6C188 /* SimulatedSubscriber.swift in Sources */,
 				931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */,
 				3EA7C8AC2802FF47009BCA63 /* PowerUpActivateEvent.swift in Sources */,
 				9356AB7A27EEFF9D008CDEC1 /* ExternalMoveEvent.swift in Sources */,
