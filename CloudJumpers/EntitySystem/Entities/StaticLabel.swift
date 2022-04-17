@@ -13,24 +13,18 @@ class StaticLabel: Entity {
 
     private var position: CGPoint
     private var size: CGSize
-    private var initialValue: String
+    private var text: String
 
-    init(at position: CGPoint, size: CGSize, initialValue: String, with id: EntityID = EntityManager.newEntityID) {
+    init(at position: CGPoint, size: CGSize, text: String, with id: EntityID = EntityManager.newEntityID) {
         self.id = id
         self.position = position
         self.size = size
-        self.initialValue = initialValue
+        self.text = text
     }
 
     func setUpAndAdd(to manager: EntityManager) {
-        let labelComponent = createLabelComponent()
         manager.addComponent(PositionComponent(at: position), to: self)
-
-        manager.addComponent(labelComponent, to: self)
+        manager.addComponent(LabelComponent(text: text, size: size), to: self)
         manager.addComponent(CameraStaticTag(), to: self)
-    }
-
-    private func createLabelComponent() -> LabelComponent {
-        LabelComponent(displayValue: initialValue, size: size, position: position)
     }
 }
