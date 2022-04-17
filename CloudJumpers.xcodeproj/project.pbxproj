@@ -126,7 +126,6 @@
 		3E3632FD2809974100FAD7A8 /* TeleportComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */; };
 		3E363302280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */; };
 		3E363304280A9AC400FAD7A8 /* HorizontalOscillationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */; };
-		3E363306280A9E3300FAD7A8 /* CloudWallCollideEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363305280A9E3300FAD7A8 /* CloudWallCollideEvent.swift */; };
 		3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */; };
 		3E36330E280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */; };
 		3E363310280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */; };
@@ -439,7 +438,6 @@
 		3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportComponent.swift; sourceTree = "<group>"; };
 		3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationComponent.swift; sourceTree = "<group>"; };
 		3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationSystem.swift; sourceTree = "<group>"; };
-		3E363305280A9E3300FAD7A8 /* CloudWallCollideEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudWallCollideEvent.swift; sourceTree = "<group>"; };
 		3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityGenerationInfo.swift; sourceTree = "<group>"; };
 		3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPositionGenerationInfo.swift; sourceTree = "<group>"; };
 		3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomVelocityGenerationInfo.swift; sourceTree = "<group>"; };
@@ -1544,7 +1542,6 @@
 			children = (
 				A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */,
 				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
-				3E363305280A9E3300FAD7A8 /* CloudWallCollideEvent.swift */,
 				3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */,
 			);
 			path = ContactEvents;
@@ -1840,7 +1837,6 @@
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */,
 				3E61A0FD280BB98900BD8470 /* EffectorDetachSystem.swift in Sources */,
-				3E363306280A9E3300FAD7A8 /* CloudWallCollideEvent.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */,
 				1A7FFD19280AECC900FE3415 /* PositionUnit.swift in Sources */,

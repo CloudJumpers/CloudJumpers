@@ -46,8 +46,8 @@ class LevelGenerator {
         while velocities.count < size {
             let shouldMove = random(in: 0.0...1.0, using: &generator) >= 0.5
 
-            if shouldMove {
-                velocities.append(0.0)
+            if !shouldMove {
+                velocities.append(.zero)
             } else {
                 let randomSpeed = random(in: velocityGenerationInfo.velocityRange, using: &generator)
                 velocities.append(randomSpeed)
