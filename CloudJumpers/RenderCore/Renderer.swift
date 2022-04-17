@@ -137,6 +137,7 @@ class Renderer {
         pipeline.register(AnimationUnit(on: target))
         pipeline.register(SpriteUnit(on: target))
         pipeline.register(CameraUnit(on: target, watching: scene))
+        pipeline.register(AreaUnit(on: target, representing: scene))
     }
 }
 
