@@ -8,32 +8,28 @@
 import Foundation
 
 class LightFootedAchievement: Achievement {
-    let onLoad: AchievementOnLoad
-
     let title: String = "Light-footed"
     let description: String = "1000 total jumps made across games."
     let imageName: String = Images.jumpingSprite.name
     let metricKeys: [String] = [String(describing: JumpEvent.self)]
 
+    let onLoad: AchievementOnLoad
     var dataUpdater: AchievementDataDelegate?
 
     private var userJumps: Int?
     private let requiredJumps = 1_000
 
-    var currentProgress: String? {
-        if let jumps = userJumps {
-            return String(jumps)
+    var currentProgress: String {
+        guard let jumps = userJumps else {
+            return String(Double.zero)
         }
-        return nil
+        return String(jumps)
     }
 
     var requiredProgress: String { String(requiredJumps) }
 
     var progressRatio: Double {
-        guard let jumps = userJumps else {
-            return Double.zero
-        }
-        return min(1.0, Double(jumps) / Double(requiredJumps))
+        getProgressRatio(current: userJumps, required: requiredJumps)
     }
 
     required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
@@ -41,7 +37,7 @@ class LightFootedAchievement: Achievement {
         self.dataUpdater = FBAchievementDataDelegate(userId)
         self.dataUpdater?.achievement = self
 
-        metricKeys.forEach { fetchOnce($0) }
+        fetchValuesOnce()
     }
 
     func load(_ key: String, _ value: Int) {

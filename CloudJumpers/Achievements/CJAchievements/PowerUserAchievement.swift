@@ -16,26 +16,31 @@ class PowerUserAchievement: Achievement {
     private var powerUpsUsed: Int?
     private let required = 100
 
-    var currentProgress: String? {
-        if let powerUpsUsed = powerUpsUsed {
-            return String(powerUpsUsed)
+    var currentProgress: String {
+        guard let used = powerUpsUsed else {
+            return String(Double.zero)
         }
-        return nil
+        return String(used)
     }
+
+    var onLoad: AchievementOnLoad
+    var dataUpdater: AchievementDataDelegate?
 
     var requiredProgress: String {
         String(required)
     }
 
     var progressRatio: Double {
-        guard let used = powerUpsUsed else {
-            return Double.zero
-        }
-        return min(1.0, Double(used) / Double(required))
+        getProgressRatio(current: powerUpsUsed, required: required)
     }
 
-    var onLoad: AchievementOnLoad
-    var dataUpdater: AchievementDataDelegate?
+    required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
+        self.onLoad = onLoad
+        self.dataUpdater = FBAchievementDataDelegate(userId)
+        self.dataUpdater?.achievement = self
+
+        fetchValuesOnce()
+    }
 
     func load(_ key: String, _ value: Int) {
         assert(metricKeys.first == key)
@@ -45,13 +50,5 @@ class PowerUserAchievement: Achievement {
 
     func update(_ key: String, _ value: Int) {
         genericIncrement(key, value)
-    }
-
-    required init(_ userId: NetworkID, _ onLoad: AchievementOnLoad) {
-        self.onLoad = onLoad
-        self.dataUpdater = FBAchievementDataDelegate(userId)
-        self.dataUpdater?.achievement = self
-
-        metricKeys.forEach { fetchOnce($0) }
     }
 }

@@ -1227,7 +1227,6 @@
 			children = (
 				939AFA042809D95600852B8B /* AchievementProcessor.swift */,
 				936257B9280AA18E00C4DFC0 /* AchievementUpdateDelegate.swift */,
-				939AFA022809BBD000852B8B /* Achievement.swift */,
 				936257B6280A9F2A00C4DFC0 /* MetricsProvider.swift */,
 				936257BB280AA4A500C4DFC0 /* PollingUpdateDelegate.swift */,
 			);
@@ -1399,6 +1398,7 @@
 		93D7D6C4280B4AF6009CBB87 /* CJAchievements */ = {
 			isa = PBXGroup;
 			children = (
+				939AFA022809BBD000852B8B /* Achievement.swift */,
 				93D7D6C2280B4AEC009CBB87 /* PowerUserAchievement.swift */,
 				939AFA0A2809E5A900852B8B /* LightFootedAchievement.swift */,
 			);
