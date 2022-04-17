@@ -24,6 +24,7 @@ class LabelUnit: RenderUnit {
         // TODO: Not hard-code this
         node.fontSize = 30
         node.fontColor = .black
+        node.zPosition = SpriteZPosition.label.rawValue
 
         Self.configureLabelNode(node, with: labelComponent)
         return node

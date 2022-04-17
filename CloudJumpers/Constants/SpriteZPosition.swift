@@ -21,5 +21,5 @@ enum SpriteZPosition: CGFloat {
     case outerStick
     case innerStick
     case button
-    case timer
+    case label
 }
