@@ -9,7 +9,6 @@ import Foundation
 import CoreGraphics
 
 class TimeTrialGameRules: GameRules {
-
     private unowned var target: RuleModifiable?
     private var timer: StaticLabel?
 
@@ -23,6 +22,8 @@ class TimeTrialGameRules: GameRules {
     func setTarget(_ target: RuleModifiable) {
         self.target = target
     }
+
+    func enableSystems() {}
 
     func setUpForRule() {
         guard let target = target else {

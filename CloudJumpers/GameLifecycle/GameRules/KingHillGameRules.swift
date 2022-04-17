@@ -35,6 +35,15 @@ class KingHillGameRules: GameRules {
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
     }
 
+    func enableSystems() {
+        target?.activateSystem(ofType: PowerUpSystem.self)
+        target?.activateSystem(ofType: FreezeSystem.self)
+        target?.activateSystem(ofType: ConfuseSystem.self)
+        target?.activateSystem(ofType: SlowmoSystem.self)
+        target?.activateSystem(ofType: TeleportSystem.self)
+        target?.activateSystem(ofType: EffectorDetachSystem.self)
+    }
+
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
         for (index, info) in allPlayersInfo.enumerated() {
             let id = info.playerId

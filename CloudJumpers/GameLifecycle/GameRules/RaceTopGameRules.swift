@@ -53,6 +53,15 @@ class RaceTopGameRules: GameRules {
 
     }
 
+    func enableSystems() {
+        target?.activateSystem(ofType: PowerUpSystem.self)
+        target?.activateSystem(ofType: FreezeSystem.self)
+        target?.activateSystem(ofType: ConfuseSystem.self)
+        target?.activateSystem(ofType: SlowmoSystem.self)
+        target?.activateSystem(ofType: TeleportSystem.self)
+        target?.activateSystem(ofType: EffectorDetachSystem.self)
+    }
+
     func enableHostSystems() {
         target?.activateSystem(ofType: DisasterSpawnSystem.self)
         target?.activateSystem(ofType: PowerSpawnSystem.self)

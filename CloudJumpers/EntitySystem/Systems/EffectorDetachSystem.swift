@@ -8,9 +8,8 @@
 import Foundation
 import CoreGraphics
 
-// TODO: Implement this
 class EffectorDetachSystem: System {
-    var active = true
+    var active = false
 
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?

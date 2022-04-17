@@ -27,6 +27,7 @@ class GameManager {
         self.achievementProcessor = achievementProcessor
         self.rules.setTarget(world)
         self.achievementProcessor.setTarget(world)
+        self.rules.enableSystems()
     }
 
     func update(within time: CGFloat) {
@@ -66,8 +67,6 @@ class GameManager {
         for idx in 0..<cloudPositions.count where cloudPositions[idx] != highestPosition {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
-        world.add(PowerUp(.freeze, at: CGPoint(x: -200.0, y: -200.0), with: "1"))
-        world.add(PowerUp(.freeze, at: CGPoint(x: -300.0, y: -200.0), with: "2"))
     }
 
     private func addPlatform(at position: CGPoint) {
