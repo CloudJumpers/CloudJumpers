@@ -12,10 +12,13 @@ class GameScene: SKScene {
     unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
-    private var cameraNode: SKCameraNode?
+    private var cameraNode: Camera?
     private var cameraAnchorNode: SKNode?
 
-    var cameraMinY: CGFloat?
+    var scrollable = false
+
+    var touchBeganLocation: CGPoint?
+    var previousTouchStoppedCameraInertia = false
 
     override func sceneDidLoad() {
         super.sceneDidLoad()
@@ -24,24 +27,39 @@ class GameScene: SKScene {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: cameraNode ?? self)
-            sceneDelegate?.scene(self, didBeginTouchAt: location)
+        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        sceneDelegate?.scene(self, didBeginTouchesAt: touchLocations)
+
+        guard let location = touchLocations.first else {
+            return
         }
+
+        prepareCameraToPan(at: location)
+        touchBeganLocation = location
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: cameraNode ?? self)
-            sceneDelegate?.scene(self, didMoveTouchAt: location)
+        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        sceneDelegate?.scene(self, didMoveTouchesAt: touchLocations)
+
+        guard let location = touchLocations.first else {
+            return
         }
+
+        moveCameraToTouch(at: location)
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: cameraNode ?? self)
-            sceneDelegate?.scene(self, didEndTouchAt: location)
+        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        sceneDelegate?.scene(self, didEndTouchesAt: touchLocations)
+
+        guard let location = touchLocations.first else {
+            return
         }
+
+        endCameraPanning(at: location)
+        delegateCompletedTouch(at: location)
+        previousTouchStoppedCameraInertia = false
     }
 
     override func update(_ currentTime: TimeInterval) {
@@ -78,23 +96,63 @@ class GameScene: SKScene {
         }
     }
 
-    private func panCameraToAnchorNode() {
-        guard let cameraAnchorNode = cameraAnchorNode else {
-            return
-        }
-
-        cameraNode?.position.y = max(cameraMinY ?? 0, cameraAnchorNode.position.y)
-    }
-
     private func setUpPhysicsWorld() {
         physicsWorld.contactDelegate = self
     }
 
     private func setUpCamera() {
-        let skCameraNode = SKCameraNode()
+        let skCameraNode = Camera(minY: frame.minY, maxY: frame.maxY)
         cameraNode = skCameraNode
         camera = skCameraNode
         addChild(skCameraNode)
+    }
+
+    private func delegateCompletedTouch(at location: CGPoint) {
+        guard let touchBeganLocation = touchBeganLocation,
+              touchBeganLocation == location,
+              !previousTouchStoppedCameraInertia
+        else { return }
+
+        sceneDelegate?.scene(self, didCompletedTouchAt: location)
+    }
+
+    private func panCameraToAnchorNode() {
+        guard let cameraAnchorNode = cameraAnchorNode,
+              !scrollable
+        else { return }
+
+        cameraNode?.position.y = cameraAnchorNode.position.y
+    }
+
+    private func prepareCameraToPan(at location: CGPoint) {
+        guard scrollable else {
+            return
+        }
+
+        if cameraNode?.isInertialPanning ?? false {
+            previousTouchStoppedCameraInertia = true
+        }
+
+        cameraNode?.stopInertia()
+        cameraNode?.lastPosition = location
+    }
+
+    private func moveCameraToTouch(at location: CGPoint) {
+        guard scrollable,
+              let lastPosition = cameraNode?.lastPosition
+        else { return }
+
+        cameraNode?.panVertically(by: lastPosition.y - location.y)
+        cameraNode?.lastPosition = location
+    }
+
+    private func endCameraPanning(at location: CGPoint) {
+        guard scrollable,
+              let lastPosition = cameraNode?.lastPosition
+        else { return }
+
+        cameraNode?.easeWithInertia(by: lastPosition.y - location.y)
+        cameraNode?.lastPosition = nil
     }
 }
 

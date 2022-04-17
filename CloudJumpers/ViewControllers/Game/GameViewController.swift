@@ -123,11 +123,9 @@ class GameViewController: UIViewController {
 
         let joystick = Joystick(at: Constants.joystickPosition, to: responder)
         let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: responder)
-        let gameArea = GameArea(at: Constants.gameAreaPosition, to: responder)
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
-        scene?.addChild(gameArea, static: false)
 
         self.joystick = joystick
     }
@@ -169,9 +167,8 @@ extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         guard let lobby = lobby,
               let gameManager = gameManager
-        else {
-            return
-        }
+        else { return }
+
         gameManager.update(within: interval)
         gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
@@ -180,6 +177,10 @@ extension GameViewController: GameSceneDelegate {
         if lobby.userIsHost && !gameManager.isHost {
             gameManager.enableHostStatus()
         }
+    }
+
+    func scene(_ scene: GameScene, didCompletedTouchAt location: CGPoint) {
+        gameManager?.activatePowerUp(at: location)
     }
 }
 

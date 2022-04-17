@@ -17,6 +17,7 @@
 		1A24DC1D2805905B00E48B64 /* GameWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC1C2805905B00E48B64 /* GameWorld.swift */; };
 		1A24DC212805951D00E48B64 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A24DC202805951D00E48B64 /* Scene.swift */; };
 		1A4C4DE7280B1CD8000BD549 /* String+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C4DE6280B1CD8000BD549 /* String+Truncate.swift */; };
+		1A4C4DE9280B3C2F000BD549 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4C4DE8280B3C2F000BD549 /* Camera.swift */; };
 		1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */; };
 		1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */; };
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
@@ -134,7 +135,6 @@
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
 		3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */; };
 		3E61A0FD280BB98900BD8470 /* EffectorDetachSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */; };
-		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
@@ -324,6 +324,7 @@
 		1A24DC1C2805905B00E48B64 /* GameWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWorld.swift; sourceTree = "<group>"; };
 		1A24DC202805951D00E48B64 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		1A4C4DE6280B1CD8000BD549 /* String+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Truncate.swift"; sourceTree = "<group>"; };
+		1A4C4DE8280B3C2F000BD549 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudJumpers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -447,7 +448,6 @@
 		3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterComponent.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectorDetachSystem.swift; sourceTree = "<group>"; };
-		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
@@ -771,7 +771,6 @@
 				1A94D93727EB4AB9001D8A86 /* InputResponder.swift */,
 				1A94D93527EB41E0001D8A86 /* Joystick.swift */,
 				1A94D93927EB5090001D8A86 /* JumpButton.swift */,
-				3E81C0E027EF359300184C55 /* GameArea.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -951,6 +950,7 @@
 				1A24DC162800AA3E00E48B64 /* PhysicsBody.swift */,
 				1AE9D8A027FE99F1002B0A1E /* Texture.swift */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
+				1A4C4DE8280B3C2F000BD549 /* Camera.swift */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -1892,6 +1892,7 @@
 				A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */,
 				3E363304280A9AC400FAD7A8 /* HorizontalOscillationSystem.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
+				1A4C4DE9280B3C2F000BD549 /* Camera.swift in Sources */,
 				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */,
@@ -1947,7 +1948,6 @@
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				A1AE31D828092EF500FABC0E /* StaticLabel.swift in Sources */,
-				3E81C0E127EF359300184C55 /* GameArea.swift in Sources */,
 				A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */,
 				1A94D95827ED8709001D8A86 /* Cloud.swift in Sources */,
 				3EA7C88927F95826009BCA63 /* ObtainEntityCommand.swift in Sources */,
