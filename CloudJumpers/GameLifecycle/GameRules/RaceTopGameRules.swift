@@ -100,12 +100,17 @@ class RaceTopGameRules: GameRules {
     func fetchLocalCompletionData() -> LocalCompletionData {
         guard let timer = timer,
               let timedComponent = target?.component(ofType: TimedComponent.self, of: timer),
+              let metricsProvider = target as? MetricsProvider,
               let playerInfo = playerInfo
-        else { fatalError("Cannot get timer data") }
+        else { fatalError("Cannot get game data") }
+        let metrics = metricsProvider.getMetricsSnapshot()
+
         return RaceToTopData(
             playerId: playerInfo.playerId,
             playerName: playerInfo.displayName,
-            completionTime: timedComponent.time)
+            completionTime: timedComponent.time,
+            kills: metrics[String(describing: ExternalRespawnEvent.self)] ?? 0,
+            deaths: metrics[String(describing: RespawnEvent.self)] ?? 0
+        )
     }
-
 }
