@@ -257,6 +257,7 @@
 		93EF486C27FDD09700F6C188 /* RealtimeSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EF486B27FDD09700F6C188 /* RealtimeSubscriber.swift */; };
 		93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F28EEC27DE8120008CE30C /* SignUpViewController.swift */; };
 		A108AB5027E5070E003157E8 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A108AB4F27E5070E003157E8 /* EventManager.swift */; };
+		A10ADC5C280C140D00382B0F /* GodPowerSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */; };
 		A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */; };
 		A1347AB127DA6BE00011CF40 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1347AB027DA6BE00011CF40 /* Event.swift */; };
 		A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */; };
@@ -581,6 +582,7 @@
 		93F28EEC27DE8120008CE30C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		983CF9D4AF287067931D5ADA /* Pods-CloudJumpers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CloudJumpers.debug.xcconfig"; path = "Target Support Files/Pods-CloudJumpers/Pods-CloudJumpers.debug.xcconfig"; sourceTree = "<group>"; };
 		A108AB4F27E5070E003157E8 /* EventManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
+		A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerSpawnSystem.swift; sourceTree = "<group>"; };
 		A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEvent.swift; sourceTree = "<group>"; };
 		A1347AB027DA6BE00011CF40 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUpdateEvent.swift; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
 				A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */,
 				936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */,
+				A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1911,6 +1914,7 @@
 				A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */,
 				1A4C4DE7280B1CD8000BD549 /* String+Truncate.swift in Sources */,
 				9385D9BE27F7349100593930 /* PostGameRestDelegate.swift in Sources */,
+				A10ADC5C280C140D00382B0F /* GodPowerSpawnSystem.swift in Sources */,
 				1A7FFD29280B09C600FE3415 /* Node.swift in Sources */,
 				A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */,
 				3EA7C87127F8827A009BCA63 /* DisasterStartEventCommand.swift in Sources */,
