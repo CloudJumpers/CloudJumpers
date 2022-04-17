@@ -12,7 +12,7 @@ protocol Achievement: AnyObject {
     var description: String { get }
     var imageName: String { get }
 
-    var currentProgress: String? { get }
+    var currentProgress: String { get }
     var requiredProgress: String { get }
     var progressRatio: Double { get }
     var isUnlocked: Bool { get }
@@ -28,11 +28,15 @@ protocol Achievement: AnyObject {
 }
 
 extension Achievement {
-    func getSpecificKey(_ key: String) -> String {
+    var isUnlocked: Bool {
+        !progressRatio.isLess(than: 1.0)
+    }
+
+    func getTitledKey(_ key: String) -> String {
         "\(title) \(key)"
     }
 
-    func recoverGenericKey(_ specificKey: String) -> String {
+    func getUntitledKey(_ specificKey: String) -> String {
         let parts = specificKey.components(separatedBy: "\(title) ")
         guard let key = parts.last else {
             fatalError("Expected key to exist")
@@ -40,15 +44,31 @@ extension Achievement {
         return key
     }
 
-    func fetchOnce(_ key: String) {
-        dataUpdater?.fetchAchievementData(getSpecificKey(key))
+    func fetchValuesOnce() {
+        metricKeys.forEach { dataUpdater?.fetchAchievementData(getTitledKey($0)) }
     }
 
     func genericLoad(_ key: String, _ value: Int) {
-        load(recoverGenericKey(key), value)
+        load(getUntitledKey(key), value)
     }
 
     func genericIncrement(_ key: String, _ value: Int) {
-        dataUpdater?.incrementAchievementData(getSpecificKey(key), by: value)
+        dataUpdater?.incrementAchievementData(getTitledKey(key), by: value)
+    }
+
+    func getProgressRatio(current: Double?, required: Double) -> Double {
+        guard let current = current else {
+            return Double.zero
+        }
+
+        return min(1.0, current / required)
+    }
+
+    func getProgressRatio(current: Int?, required: Int) -> Double {
+        guard let curr = current else {
+            return Double.zero
+        }
+
+        return getProgressRatio(current: Double(curr), required: Double(required))
     }
 }

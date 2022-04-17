@@ -5,9 +5,12 @@
 //  Created by Phillmont Muktar on 12/4/22.
 //
 
+import CoreGraphics
+
 protocol Scene: AnyObject {
     var updateDelegate: SceneUpdateDelegate? { get set }
     var nodes: [Node] { get }
+    var size: CGSize { get }
     var scrollable: Bool { get set }
 
     func contains(_ node: Node) -> Bool

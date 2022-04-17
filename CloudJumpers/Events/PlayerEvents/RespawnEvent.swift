@@ -12,12 +12,18 @@ struct RespawnEvent: Event {
     var timestamp: TimeInterval
 
     var entityID: EntityID
+    var killedBy: EntityID
 
     let newPosition: CGPoint
 
-    init(onEntityWith id: EntityID, newPosition: CGPoint, at timestamp: TimeInterval = EventManager.timestamp) {
+    init(
+        onEntityWith id: EntityID,
+        killedBy: EntityID,
+        newPosition: CGPoint,
+        at timestamp: TimeInterval = EventManager.timestamp) {
         self.timestamp = timestamp
         self.entityID = id
+        self.killedBy = killedBy
         self.newPosition = newPosition
     }
 
@@ -27,5 +33,11 @@ struct RespawnEvent: Event {
             onEntityWith: entityID,
             duration: Constants.respawnDuration,
             numberOfLoop: Constants.respawnLoopCount))
+    }
+
+    private func handleRespawnMetrics(in target: EventModifiable) {
+        guard let metricsSystem = target.system(ofType: MetricsSystem.self)
+        else { return }
+        metricsSystem.handleRespawn(entityID, killedBy)
     }
 }

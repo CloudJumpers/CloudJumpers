@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 class SlowmoSystem: System {
-    var active = true
+    var active = false
 
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
@@ -35,6 +35,7 @@ class SlowmoSystem: System {
                let effectEntity = component.entity {
 
                 dispatcher?.add(SlowMoveEffector(on: playerEntity, watching: effectEntity))
+                dispatcher?.add(SlowJumpEffector(on: playerEntity, watching: effectEntity))
             }
         }
     }

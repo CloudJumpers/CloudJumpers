@@ -26,6 +26,14 @@ class SpriteUnit: RenderUnit {
         return node
     }
 
+    func transform(_ entity: Entity, with node: Node) {
+        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity) else {
+            return
+        }
+
+        node.alpha = spriteComponent.alpha
+    }
+
     private static func configureSpriteNode(_ node: SpriteNode, with spriteComponent: SpriteComponent) {
         node.zPosition = spriteComponent.zPosition.rawValue
         node.alpha = spriteComponent.alpha

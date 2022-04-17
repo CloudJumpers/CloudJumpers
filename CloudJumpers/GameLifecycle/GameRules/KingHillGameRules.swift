@@ -33,6 +33,7 @@ class KingHillGameRules: GameRules {
         // A count down timer can be implemented using a count up timer,
         // through taking (finishTime - count up timer)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -72,11 +73,21 @@ class KingHillGameRules: GameRules {
         else {
             return
         }
-        if isPlayerRespawning(target: target) {
-            target.add(RespawnEvent(onEntityWith: playerID, newPosition: Constants.playerInitialPosition))
+
+        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
+
+        if isRespawning, let killedBy = killedBy {
+            target.add(RespawnEvent(
+                onEntityWith: playerID,
+                killedBy: killedBy,
+                newPosition: Constants.playerInitialPosition)
+            )
+
             target.dispatch(ExternalRespawnEvent(
                 positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y))
+                positionY: Constants.playerInitialPosition.y,
+                killedBy: killedBy))
+
             target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
         }
 
