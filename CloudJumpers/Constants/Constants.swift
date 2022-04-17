@@ -56,6 +56,7 @@ struct Constants {
     static let powerUpTargetRange = (Constants.powerUpEffectSize.width + Constants.playerSize.width) / 2
     static let initialPowerUpQueuePosition = CGPoint(x: -140.0, y: -420.0)
     static let powerUpQueueXInterval = 80.0
+    static let powerUpRemoveTime = 7.0
 
     static let testLevelName = "TestLevelOne"
     static let prodLevelName = "LevelOne"

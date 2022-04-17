@@ -69,6 +69,9 @@ class InventorySystem: System {
                   let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else { continue }
 
+            manager.removeComponent(ofType: TimedComponent.self, from: entity)
+            manager.removeComponent(ofType: TimedRemovalComponent.self, from: entity)
+
             guard displayCount <= Constants.powerUpMaxNumDisplay else {
                 spriteComponent.alpha = 0
                 continue
@@ -94,7 +97,10 @@ class InventorySystem: System {
                   let spriteComponent = manager.component(ofType: SpriteComponent.self, of: entity)
             else { continue }
 
+            manager.removeComponent(ofType: TimedComponent.self, from: entity)
+            manager.removeComponent(ofType: TimedRemovalComponent.self, from: entity)
             spriteComponent.alpha = 0
+
         }
     }
 }
