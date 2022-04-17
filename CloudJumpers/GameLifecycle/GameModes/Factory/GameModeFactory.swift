@@ -10,7 +10,8 @@ import Foundation
 class GameModeFactory {
     private static let availableGameModes: [GameMode.Type] = [
         TimeTrial.self,
-        RaceToTop.self
+        RaceToTop.self,
+        KingOfTheHill.self
     ]
 
     static func createGameMode(name: String) -> GameMode {

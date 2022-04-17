@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct RemoteEventHandlers {
+class RemoteEventHandlers {
     let publisher: GameEventPublisher
     let subscriber: GameEventSubscriber
+
+    init(publisher: GameEventPublisher, subscriber: GameEventSubscriber) {
+        self.publisher = publisher
+        self.subscriber = subscriber
+    }
 }
