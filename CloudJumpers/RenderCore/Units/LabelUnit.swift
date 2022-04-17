@@ -27,5 +27,6 @@ class LabelUnit: RenderUnit {
 
     private static func configureLabelNode(_ node: LabelNode, with labelComponent: LabelComponent) {
         node.alpha = labelComponent.alpha
+        node.text = labelComponent.text
     }
 }

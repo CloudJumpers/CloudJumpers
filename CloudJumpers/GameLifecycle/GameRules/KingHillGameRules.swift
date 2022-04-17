@@ -32,7 +32,7 @@ class KingHillGameRules: GameRules {
         let scoreLabel = StaticLabel(
             at: Constants.scoreLabelPosition,
             size: Constants.scoreLabelSize,
-            initialValue: "\(playerScore)")
+            text: "\(playerScore)")
 
         self.scoreLabel = scoreLabel
         target.add(scoreLabel)
