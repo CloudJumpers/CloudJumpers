@@ -58,7 +58,7 @@ class PlayerStateSystem: System {
         else {
             return
         }
-        
+
         // TODO: Add in world toggle
     }
     func demoteFromGod(for entityID: EntityID) {
@@ -68,7 +68,7 @@ class PlayerStateSystem: System {
         else {
             return
         }
-        
+
         // TODO: Add in world toggle
     }
 }
