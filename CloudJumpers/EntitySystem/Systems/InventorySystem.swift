@@ -49,9 +49,12 @@ class InventorySystem: System {
 
     func enqueueItem(for id: EntityID, with powerUpId: EntityID) {
         guard let entity = manager?.entity(with: id),
-              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity)
+              let inventoryComponent = manager?.component(ofType: InventoryComponent.self, of: entity),
+              let ownerComponent = manager?.component(ofType: OwnerComponent.self, of: powerUpId),
+              ownerComponent.ownerEntityId == nil
         else { return }
 
+        ownerComponent.ownerEntityId = id
         inventoryComponent.inventory.enqueue(powerUpId)
     }
 
