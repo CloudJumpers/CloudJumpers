@@ -97,6 +97,7 @@
 		1AD5D44C280C0C2C0071ACE1 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44B280C0C2C0071ACE1 /* Area.swift */; };
 		1AD5D44E280C0C700071ACE1 /* AreaComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44D280C0C700071ACE1 /* AreaComponent.swift */; };
 		1AD5D450280C0E200071ACE1 /* AreaUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */; };
+		1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D453280C27E60071ACE1 /* LabelUnit.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
@@ -411,6 +412,7 @@
 		1AD5D44B280C0C2C0071ACE1 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		1AD5D44D280C0C700071ACE1 /* AreaComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaComponent.swift; sourceTree = "<group>"; };
 		1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUnit.swift; sourceTree = "<group>"; };
+		1AD5D453280C27E60071ACE1 /* LabelUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelUnit.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 				1A7FFD1C280AEE7A00FE3415 /* PhysicsUnit.swift */,
 				1A7FFD1E280AEF0000FE3415 /* AnimationUnit.swift */,
 				1A7FFD20280AEF5200FE3415 /* SpriteUnit.swift */,
+				1AD5D453280C27E60071ACE1 /* LabelUnit.swift */,
 				1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */,
 			);
 			path = Units;
@@ -1930,6 +1933,7 @@
 				9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */,
 				3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */,
 				1AC1606427F31E08006E4018 /* Sounds.swift in Sources */,
+				1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */,
 				3E3632FD2809974100FAD7A8 /* TeleportComponent.swift in Sources */,
 				934789BC27DF07E800324DAF /* LobbyUtils.swift in Sources */,
 				93D7D6C3280B4AEC009CBB87 /* PowerUserAchievement.swift in Sources */,
