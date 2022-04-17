@@ -12,11 +12,15 @@ struct SeparationHandler {
 
     static func between(_ player: Player, _ powerUp: PowerUp) -> Event? { nil }
 
-    static func between(_ player: Player, _ cloud: Cloud) -> Event? { nil }
+    static func between(_ player: Player, _ cloud: Cloud) -> Event? {
+        ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil)
+    }
 
     static func between(_ player: Player, _ floor: Floor) -> Event? { nil }
 
-    static func between(_ player: Player, _ platform: Platform) -> Event? { nil }
+    static func between(_ player: Player, _ platform: Platform) -> Event? {
+        ChangeStandOnLocationEvent(on: player.id, standOnEntityID: nil)
+    }
 
     static func between(_ player: Player, _ disaster: Disaster) -> Event? { nil }
 
@@ -42,7 +46,9 @@ struct SeparationHandler {
 
     static func between(_ cloud: Cloud, _ disaster: Disaster) -> Event? { nil }
 
-    static func between(_ cloud: Cloud, _ guest: Guest) -> Event? { nil }
+    static func between(_ cloud: Cloud, _ guest: Guest) -> Event? {
+        ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: nil)
+    }
 
     static func between(_ floor1: Floor, _ floor2: Floor) -> Event? { nil }
 
@@ -56,7 +62,9 @@ struct SeparationHandler {
 
     static func between(_ platform: Platform, _ disaster: Disaster) -> Event? { nil }
 
-    static func between(_ platform: Platform, _ guest: Guest) -> Event? { nil }
+    static func between(_ platform: Platform, _ guest: Guest) -> Event? {
+        ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: nil)
+    }
 
     static func between(_ disaster1: Disaster, _ disaster2: Disaster) -> Event? { nil }
 
