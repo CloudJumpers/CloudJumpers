@@ -124,7 +124,7 @@ class KingHillGameRules: GameRules {
         guard let playerInfo = playerInfo
         else { fatalError("Cannot get player data") }
 
-        return KingHillData(
+        return KingOfTheHillData(
             playerId: playerInfo.playerId,
             playerName: playerInfo.displayName,
             completionScore: playerScore)

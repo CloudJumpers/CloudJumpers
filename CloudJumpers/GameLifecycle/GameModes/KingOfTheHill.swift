@@ -1,24 +1,24 @@
 //
-//  RaceToTop.swift
+//  KingOfTheHill.swift
 //  CloudJumpers
 //
-//  Created by Sujay R Subramanian on 10/4/22.
+//  Created by Sujay R Subramanian on 17/4/22.
 //
 
 import Foundation
 
-struct RaceToTop: GameMode {
-    let name = GameModeConstants.raceToTop
+struct KingOfTheHill: GameMode {
+    let name = GameModeConstants.kingOfTheHill
 
     let minimumPlayers = 2
     let maximumPlayers = 4
 
-    private(set) var seed = 161_001 // Int.random(in: (Int.min ... Int.max))
+    private(set) var seed = Int.random(in: (Int.min ... Int.max))
 
     private var players = [PlayerInfo]()
 
     func getGameRules() -> GameRules {
-        RaceTopGameRules()
+        KingHillGameRules()
     }
 
     mutating func setSeed(_ seed: Int) {
@@ -34,16 +34,16 @@ struct RaceToTop: GameMode {
     }
 
     func createPreGameManager(_ lobbyId: NetworkID) -> PreGameManager {
-        RaceToTopPreGameManager(lobbyId)
+        KingOfTheHillPreGameManager(lobbyId)
     }
 
     func createPostGameManager(_ lobbyId: NetworkID, completionData: LocalCompletionData) -> PostGameManager {
-        guard let completionData = completionData as? RaceToTopData else {
-            fatalError("Could not finish Race to the Top game")
+        guard let completionData = completionData as? KingOfTheHillData else {
+            fatalError("Could not finish king of the hill game")
         }
 
         let endpoint = generateEndpoint(lobbyId)
-        return RaceToTopPostGameManager(completionData, endpoint)
+        return KingOfTheHillPostGameManager(completionData, endpoint)
     }
 
     private func generateEndpoint(_ lobbyId: NetworkID) -> String {

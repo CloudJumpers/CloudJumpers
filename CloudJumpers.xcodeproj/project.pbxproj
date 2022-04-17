@@ -155,6 +155,10 @@
 		931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130427ECB022002C7AF3 /* DefaultCommand.swift */; };
 		931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */; };
 		931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931D130A27ECBC50002C7AF3 /* CJNetworkEncoder.swift */; };
+		933486C5280BC37700D6DC0F /* KingOfTheHill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933486C4280BC37700D6DC0F /* KingOfTheHill.swift */; };
+		933486C7280BC46900D6DC0F /* KingOfTheHillPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933486C6280BC46900D6DC0F /* KingOfTheHillPreGameManager.swift */; };
+		933486C9280BC76E00D6DC0F /* KingOfTheHillPostGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933486C8280BC76E00D6DC0F /* KingOfTheHillPostGameManager.swift */; };
+		933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933486CA280BC84B00D6DC0F /* KingOfTheHillResponse.swift */; };
 		93360B8B27EC8AA700808295 /* GameEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B8A27EC8AA700808295 /* GameEventCommand.swift */; };
 		93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9227EC919100808295 /* MoveEventCommand.swift */; };
 		93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */; };
@@ -256,7 +260,7 @@
 		A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */; };
 		A13B8C42280A8DC000EA3FBA /* JumpButtonPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */; };
 		A13B8C44280A952100EA3FBA /* PowerUpLocationPressedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */; };
-		A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C47280AACC200EA3FBA /* KingHillData.swift */; };
+		A13B8C48280AACC200EA3FBA /* KingOfTheHillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13B8C47280AACC200EA3FBA /* KingOfTheHillData.swift */; };
 		A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2B27ECB633000008E8 /* GameRules.swift */; };
 		A1409A3027ECB877000008E8 /* TimeTrialGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */; };
 		A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */; };
@@ -472,6 +476,10 @@
 		931D130427ECB022002C7AF3 /* DefaultCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCommand.swift; sourceTree = "<group>"; };
 		931D130627ECB50A002C7AF3 /* FirebasePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePublisher.swift; sourceTree = "<group>"; };
 		931D130A27ECBC50002C7AF3 /* CJNetworkEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkEncoder.swift; sourceTree = "<group>"; };
+		933486C4280BC37700D6DC0F /* KingOfTheHill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHill.swift; sourceTree = "<group>"; };
+		933486C6280BC46900D6DC0F /* KingOfTheHillPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillPreGameManager.swift; sourceTree = "<group>"; };
+		933486C8280BC76E00D6DC0F /* KingOfTheHillPostGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillPostGameManager.swift; sourceTree = "<group>"; };
+		933486CA280BC84B00D6DC0F /* KingOfTheHillResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillResponse.swift; sourceTree = "<group>"; };
 		93360B8A27EC8AA700808295 /* GameEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventCommand.swift; sourceTree = "<group>"; };
 		93360B9227EC919100808295 /* MoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveEventCommand.swift; sourceTree = "<group>"; };
 		93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventSubscriber.swift; sourceTree = "<group>"; };
@@ -575,7 +583,7 @@
 		A13B8C3F280A877700EA3FBA /* JoystickUpdateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickUpdateEvent.swift; sourceTree = "<group>"; };
 		A13B8C41280A8DC000EA3FBA /* JumpButtonPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButtonPressedEvent.swift; sourceTree = "<group>"; };
 		A13B8C43280A952100EA3FBA /* PowerUpLocationPressedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpLocationPressedEvent.swift; sourceTree = "<group>"; };
-		A13B8C47280AACC200EA3FBA /* KingHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingHillData.swift; sourceTree = "<group>"; };
+		A13B8C47280AACC200EA3FBA /* KingOfTheHillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingOfTheHillData.swift; sourceTree = "<group>"; };
 		A1409A2B27ECB633000008E8 /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		A1409A2F27ECB877000008E8 /* TimeTrialGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialGameRules.swift; sourceTree = "<group>"; };
 		A14A57C627F7F11100A25DBA /* RespawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEventCommand.swift; sourceTree = "<group>"; };
@@ -1127,6 +1135,7 @@
 				935280D627F6B082002E3A1D /* Response.swift */,
 				935280D427F6B073002E3A1D /* TimeTrialResponse.swift */,
 				9385D9BF27F740E800593930 /* RaceToTopResponse.swift */,
+				933486CA280BC84B00D6DC0F /* KingOfTheHillResponse.swift */,
 			);
 			path = ResponseData;
 			sourceTree = "<group>";
@@ -1202,7 +1211,7 @@
 			children = (
 				93C93AD727F744C4001246F2 /* TimeTrialData.swift */,
 				9385D9B227F727E200593930 /* RaceToTopData.swift */,
-				A13B8C47280AACC200EA3FBA /* KingHillData.swift */,
+				A13B8C47280AACC200EA3FBA /* KingOfTheHillData.swift */,
 				936228E527F5FFDC00BB05FE /* LocalCompletionData.swift */,
 			);
 			path = LocalCompletionData;
@@ -1214,6 +1223,7 @@
 				936228D927F5CF9B00BB05FE /* PostGameManager.swift */,
 				936228E827F602F700BB05FE /* TimeTrialPostGameManager.swift */,
 				9385D9B027F727B700593930 /* RaceToTopPostGameManager.swift */,
+				933486C8280BC76E00D6DC0F /* KingOfTheHillPostGameManager.swift */,
 				9385D9BB27F733E000593930 /* PostGameRequestDelegate.swift */,
 				9385D9BD27F7349100593930 /* PostGameRestDelegate.swift */,
 			);
@@ -1249,6 +1259,7 @@
 				9336792A28029C6400BB4484 /* Factory */,
 				93681BEA280209650097EBD1 /* TimeTrial.swift */,
 				93681BEC280211500097EBD1 /* RaceToTop.swift */,
+				933486C4280BC37700D6DC0F /* KingOfTheHill.swift */,
 				93ADD1C328047EAF004E0E87 /* GameMode.swift */,
 			);
 			path = GameModes;
@@ -1338,6 +1349,7 @@
 				9396E95128002FA10090A8C9 /* PreGameManager.swift */,
 				9396E954280030DA0090A8C9 /* TimeTrialPreGameManager.swift */,
 				9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */,
+				933486C6280BC46900D6DC0F /* KingOfTheHillPreGameManager.swift */,
 				9396E956280031F30090A8C9 /* PreGameRequestDelegate.swift */,
 				9396E958280032190090A8C9 /* PreGameRestDelegate.swift */,
 			);
@@ -1829,12 +1841,13 @@
 				A175388628087EE800FC665F /* PowerUpSpawnEvent.swift in Sources */,
 				A1D7866128018E2C00C5CE49 /* SoundEvent.swift in Sources */,
 				93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */,
+				933486C7280BC46900D6DC0F /* KingOfTheHillPreGameManager.swift in Sources */,
 				93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */,
-				A13B8C48280AACC200EA3FBA /* KingHillData.swift in Sources */,
+				A13B8C48280AACC200EA3FBA /* KingOfTheHillData.swift in Sources */,
 				1A7FFD27280B09B300FE3415 /* LabelNode.swift in Sources */,
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				939AFA032809BBD000852B8B /* Achievement.swift in Sources */,
@@ -1855,6 +1868,7 @@
 				93ADD1D62804A797004E0E87 /* PreGameConfig.swift in Sources */,
 				93602444280A7EC1004A7394 /* AchievementConstants.swift in Sources */,
 				1AE9D8A127FE99F1002B0A1E /* Texture.swift in Sources */,
+				933486C9280BC76E00D6DC0F /* KingOfTheHillPostGameManager.swift in Sources */,
 				A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */,
 				93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */,
 				1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */,
@@ -2075,6 +2089,8 @@
 				1A24DC192800B0BA00E48B64 /* PositionComponent.swift in Sources */,
 				3E3632FB2809972900FAD7A8 /* TeleportSystem.swift in Sources */,
 				93EF486927FDB17200F6C188 /* RealtimePublisher.swift in Sources */,
+				933486C5280BC37700D6DC0F /* KingOfTheHill.swift in Sources */,
+				933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */,
 				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,

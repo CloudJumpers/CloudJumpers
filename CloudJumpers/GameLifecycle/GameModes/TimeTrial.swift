@@ -10,10 +10,10 @@ import Foundation
 struct TimeTrial: GameMode {
     let name = GameModeConstants.timeTrials
 
-    let minimumPlayers: Int = 1
-    let maximumPlayers: Int = 1
+    let minimumPlayers = 1
+    let maximumPlayers = 1
 
-    private(set) var seed: Int = 161_001 // Int.random(in: (Int.min ... Int.max))
+    private(set) var seed = 161_001 // Int.random(in: (Int.min ... Int.max))
 
     private(set) var isPlayingWithShadow = false
 
@@ -45,7 +45,7 @@ struct TimeTrial: GameMode {
 
     func createPostGameManager(_ lobbyId: NetworkID, completionData: LocalCompletionData) -> PostGameManager {
         guard let completionData = completionData as? TimeTrialData else {
-            fatalError("Can not finish TimeTrial game")
+            fatalError("Could not finish TimeTrial game")
         }
 
         let endpoint = generateEndpointPath(lobbyId)
