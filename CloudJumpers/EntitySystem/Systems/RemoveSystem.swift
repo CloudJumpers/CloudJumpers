@@ -39,7 +39,6 @@ class RemoveSystem: System {
               let timedRemoveComponent = manager.component(ofType: TimedRemovalComponent.self, of: entity),
               timedComponent.time >= timedRemoveComponent.timeToRemove
         else { return }
-
         manager.remove(entity)
 
     }

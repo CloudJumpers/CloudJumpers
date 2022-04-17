@@ -135,6 +135,7 @@
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
 		3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */; };
+		3E61A0FD280BB98900BD8470 /* EffectorDetachSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */; };
 		3E81C0E127EF359300184C55 /* GameArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E027EF359300184C55 /* GameArea.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3E81C0EA27EF439700184C55 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E927EF439700184C55 /* PowerUpEffect.swift */; };
@@ -449,6 +450,7 @@
 		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
 		3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterComponent.swift; sourceTree = "<group>"; };
 		3E58412A27DBABF4005B2EB9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectorDetachSystem.swift; sourceTree = "<group>"; };
 		3E81C0E027EF359300184C55 /* GameArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameArea.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3E81C0E927EF439700184C55 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
@@ -830,6 +832,7 @@
 				A1D786762801D83700C5CE49 /* PhysicsSystem.swift */,
 				A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */,
 				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
+				3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */,
 				A1D786822801EE0100C5CE49 /* PlayerStateSystem.swift */,
 				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
 				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
@@ -1831,6 +1834,7 @@
 				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */,
+				3E61A0FD280BB98900BD8470 /* EffectorDetachSystem.swift in Sources */,
 				3E363306280A9E3300FAD7A8 /* CloudWallCollideEvent.swift in Sources */,
 				1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */,
 				9385D9BC27F733E000593930 /* PostGameRequestDelegate.swift in Sources */,
@@ -2247,7 +2251,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XQSPBAFD9W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2261,7 +2265,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumperss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -2278,7 +2282,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = XQSPBAFD9W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2292,7 +2296,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumperss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

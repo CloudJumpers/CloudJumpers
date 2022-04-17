@@ -49,7 +49,7 @@ class GameWorld {
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(OutOfBoundRemovalSystem(for: entityManager, boundSize: bound))
         systemManager.register(InventorySystem(for: entityManager))
-        systemManager.register(PowerUpSystem(for: entityManager))
+        systemManager.register(RemoveSystem(for: entityManager))
         systemManager.register(DisasterSpawnSystem(for: entityManager,
                                                    positionGenerationInfo: positionGenerationInfo,
                                                    velocityGenerationInfo: disasterVelocityGenerationInfo,
@@ -57,7 +57,12 @@ class GameWorld {
         systemManager.register(PowerSpawnSystem(for: entityManager,
                                                 positionGenerationInfo: positionGenerationInfo,
                                                 dispatcherVia: self))
-
+        systemManager.register(PowerUpSystem(for: entityManager))
+        systemManager.register(FreezeSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(ConfuseSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(SlowmoSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(TeleportSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(EffectorDetachSystem(for: entityManager))
     }
 }
 
