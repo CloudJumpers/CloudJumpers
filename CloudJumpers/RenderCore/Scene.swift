@@ -12,6 +12,7 @@ protocol Scene: AnyObject {
     var nodes: [Node] { get }
     var size: CGSize { get }
     var scrollable: Bool { get set }
+    var isBlank: Bool { get set }
 
     func contains(_ node: Node) -> Bool
     func addChild(_ node: Node, static: Bool)

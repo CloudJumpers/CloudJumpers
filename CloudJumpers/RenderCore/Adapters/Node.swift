@@ -17,6 +17,11 @@ class Node {
         coreNode = NodeCore()
     }
 
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+
     var position: CGPoint {
         get { coreNode.position }
         set { coreNode.position = newValue }

@@ -12,7 +12,7 @@ class SpriteUnit: RenderUnit {
         self.target = target
     }
 
-    func createSpriteNode(for entity: Entity) -> SpriteNode? {
+    func createNode(for entity: Entity) -> Node? {
         guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
               let positionComponent = target?.component(ofType: PositionComponent.self, of: entity)
         else { return nil }
