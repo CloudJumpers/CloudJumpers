@@ -30,10 +30,6 @@ extension Platform: Collidable {
         ContactHandler.between(self, platform)
     }
 
-    func collides(with wall: Wall) -> Event? {
-        ContactHandler.between(self, wall)
-    }
-
     func collides(with disaster: Disaster) -> Event? {
         ContactHandler.between(self, disaster)
     }

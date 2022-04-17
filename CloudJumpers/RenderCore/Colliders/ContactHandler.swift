@@ -22,8 +22,6 @@ struct ContactHandler {
         ChangeStandOnLocationEvent(on: player.id, standOnEntityID: platform.id)
  }
 
-    static func between(_ player: Player, _ wall: Wall) -> Event? { nil }
-
     static func between(_ player: Player, _ disaster: Disaster) -> Event? {
         DisasterPlayerCollideEvent(from: disaster.id, on: player.id)
     }
@@ -38,8 +36,6 @@ struct ContactHandler {
 
     static func between(_ powerUp: PowerUp, _ platform: Platform) -> Event? { nil }
 
-    static func between(_ powerUp: PowerUp, _ wall: Wall) -> Event? { nil }
-
     static func between(_ powerUp: PowerUp, _ disaster: Disaster) -> Event? { nil }
 
     static func between(_ powerUp: PowerUp, _ guest: Guest) -> Event? { nil }
@@ -49,8 +45,6 @@ struct ContactHandler {
     static func between(_ cloud: Cloud, _ floor: Floor) -> Event? { nil }
 
     static func between(_ cloud: Cloud, _ platform: Platform) -> Event? { nil }
-
-    static func between(_ cloud: Cloud, _ wall: Wall) -> Event? { nil }
 
     static func between(_ cloud: Cloud, _ disaster: Disaster) -> Event? {
         RemoveEvent(onEntityWith: disaster.id)
@@ -64,8 +58,6 @@ struct ContactHandler {
 
     static func between(_ floor: Floor, _ platform: Platform) -> Event? { nil }
 
-    static func between(_ floor: Floor, _ wall: Wall) -> Event? { nil }
-
     static func between(_ floor: Floor, _ disaster: Disaster) -> Event? {
         RemoveEvent(onEntityWith: disaster.id)
     }
@@ -74,8 +66,6 @@ struct ContactHandler {
 
     static func between(_ platform1: Platform, _ platform2: Platform) -> Event? { nil }
 
-    static func between(_ platform: Platform, _ wall: Wall) -> Event? { nil }
-
     static func between(_ platform: Platform, _ disaster: Disaster) -> Event? {
         RemoveEvent(onEntityWith: disaster.id)
     }
@@ -83,12 +73,6 @@ struct ContactHandler {
     static func between(_ platform: Platform, _ guest: Guest) -> Event? {
         ChangeStandOnLocationEvent(on: guest.id, standOnEntityID: platform.id)
  }
-
-    static func between(_ wall1: Wall, _ wall2: Wall) -> Event? { nil }
-
-    static func between(_ wall: Wall, _ disaster: Disaster) -> Event? { nil }
-
-    static func between(_ wall: Wall, _ guest: Guest) -> Event? { nil }
 
     static func between(_ disaster1: Disaster, _ disaster2: Disaster) -> Event? { nil }
 

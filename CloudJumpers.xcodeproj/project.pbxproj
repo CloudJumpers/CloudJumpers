@@ -62,7 +62,6 @@
 		1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */; };
 		1AAB1E1727FF14A400378382 /* Floor+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */; };
 		1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */; };
-		1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */; };
 		1AAB1E1D27FF161800378382 /* Disaster+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */; };
 		1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */; };
 		1AAB1E2128002F0A00378382 /* SystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E2028002F0A00378382 /* SystemManager.swift */; };
@@ -373,7 +372,6 @@
 		1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cloud+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Floor+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Collidable.swift"; sourceTree = "<group>"; };
-		1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wall+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disaster+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Guest+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E2028002F0A00378382 /* SystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemManager.swift; sourceTree = "<group>"; };
@@ -965,7 +963,6 @@
 				1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */,
 				1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */,
 				1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */,
-				1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */,
 				1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */,
 				1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */,
 			);
@@ -2033,7 +2030,6 @@
 				93602440280A76EC004A7394 /* AchievementCell.swift in Sources */,
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
-				1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */,
 				3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
