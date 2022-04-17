@@ -121,13 +121,18 @@ class KingHillGameRules: GameRules {
     }
 
     func fetchLocalCompletionData() -> LocalCompletionData {
-        guard let playerInfo = playerInfo
+        guard let playerInfo = playerInfo,
+              let metricsProvider = target as? MetricsProvider
         else { fatalError("Cannot get player data") }
+        let metrics = metricsProvider.getMetricsSnapshot()
 
         return KingOfTheHillData(
             playerId: playerInfo.playerId,
             playerName: playerInfo.displayName,
-            completionScore: playerScore)
+            completionScore: playerScore,
+            kills: metrics[String(describing: ExternalRespawnEvent.self)] ?? 0,
+            deaths: metrics[String(describing: RespawnEvent.self)] ?? 0
+        )
     }
 
 }

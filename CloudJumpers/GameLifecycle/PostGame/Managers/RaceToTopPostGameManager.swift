@@ -32,8 +32,8 @@ class RaceToTopPostGameManager: PostGameManager {
         data["userId"] = completionData.playerId
         data["userDisplayName"] = completionData.playerName
         data["completionTime"] = completionData.completionTime
-        data["kills"] = Int.zero // TODO: get from game
-        data["deaths"] = Int.zero
+        data["kills"] = completionData.kills
+        data["deaths"] = completionData.deaths
 
         requestHandler?.submitLocalData(endpoint, data)
     }

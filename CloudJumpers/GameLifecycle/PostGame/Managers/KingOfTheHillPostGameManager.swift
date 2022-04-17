@@ -32,8 +32,8 @@ class KingOfTheHillPostGameManager: PostGameManager {
         data["userId"] = completionData.playerId
         data["userDisplayName"] = completionData.playerName
         data["score"] = completionData.completionScore
-        data["kills"] = Int.zero
-        data["deaths"] = Int.zero
+        data["kills"] = completionData.kills
+        data["deaths"] = completionData.deaths
 
         requestHandler?.submitLocalData(endpoint, data)
     }
