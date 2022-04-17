@@ -123,11 +123,9 @@ class GameViewController: UIViewController {
 
         let joystick = Joystick(at: Constants.joystickPosition, to: responder)
         let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: responder)
-        let gameArea = GameArea(at: Constants.gameAreaPosition, to: responder)
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
-        scene?.addChild(gameArea, static: false)
 
         self.joystick = joystick
     }
