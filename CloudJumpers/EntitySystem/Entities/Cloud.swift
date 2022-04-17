@@ -32,7 +32,7 @@ class Cloud: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
 
-        if abs(horizontalVelocity) <= Constants.cloudMovingTolerance {
+        if abs(horizontalVelocity) >= Constants.cloudMovingTolerance {
             manager.addComponent(HorizontalOscillationComponent(at: position,
                                                                 horizontalVelocity: horizontalVelocity),
                                  to: self)

@@ -48,6 +48,7 @@ class GameWorld {
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(InventorySystem(for: entityManager))
+        systemManager.register(HorizontalOscillationSystem(for: entityManager, boundSize: bound))
         systemManager.register(RemoveSystem(for: entityManager, boundSize: bound))
         systemManager.register(DisasterSpawnSystem(for: entityManager,
                                                    positionGenerationInfo: positionGenerationInfo,
