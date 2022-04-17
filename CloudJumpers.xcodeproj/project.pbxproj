@@ -62,7 +62,6 @@
 		1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */; };
 		1AAB1E1727FF14A400378382 /* Floor+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */; };
 		1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */; };
-		1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */; };
 		1AAB1E1D27FF161800378382 /* Disaster+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */; };
 		1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */; };
 		1AAB1E2128002F0A00378382 /* SystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E2028002F0A00378382 /* SystemManager.swift */; };
@@ -94,6 +93,7 @@
 		1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C427EB26BB005AA18B /* EntityManager.swift */; };
 		1ACE97CA27EB26BB005AA18B /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C527EB26BB005AA18B /* Entity.swift */; };
 		1ACE97CB27EB26BB005AA18B /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACE97C627EB26BB005AA18B /* System.swift */; };
+		1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
@@ -384,7 +384,6 @@
 		1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cloud+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Floor+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Platform+Collidable.swift"; sourceTree = "<group>"; };
-		1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Wall+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disaster+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Guest+Collidable.swift"; sourceTree = "<group>"; };
 		1AAB1E2028002F0A00378382 /* SystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemManager.swift; sourceTree = "<group>"; };
@@ -416,6 +415,7 @@
 		1ACE97C427EB26BB005AA18B /* EntityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityManager.swift; sourceTree = "<group>"; };
 		1ACE97C527EB26BB005AA18B /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
 		1ACE97C627EB26BB005AA18B /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparationHandler.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
@@ -982,12 +982,12 @@
 			children = (
 				1AAB1E0C27FF0EDD00378382 /* Collidable.swift */,
 				1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */,
+				1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */,
 				1AAB1E1027FF124800378382 /* Player+Collidable.swift */,
 				1AAB1E1227FF132F00378382 /* PowerUp+Collidable.swift */,
 				1AAB1E1427FF144700378382 /* Cloud+Collidable.swift */,
 				1AAB1E1627FF14A400378382 /* Floor+Collidable.swift */,
 				1AAB1E1827FF14B900378382 /* Platform+Collidable.swift */,
-				1AAB1E1A27FF159D00378382 /* Wall+Collidable.swift */,
 				1AAB1E1C27FF161800378382 /* Disaster+Collidable.swift */,
 				1AAB1E1E27FF166E00378382 /* Guest+Collidable.swift */,
 			);
@@ -2077,7 +2077,6 @@
 				93602440280A76EC004A7394 /* AchievementCell.swift in Sources */,
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
-				1AAB1E1B27FF159D00378382 /* Wall+Collidable.swift in Sources */,
 				3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
@@ -2098,6 +2097,7 @@
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
 				A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */,
+				1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */,
 				9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */,
 				A1D7865D28018CC300C5CE49 /* RemoveSystem.swift in Sources */,
 				1A7FFD1F280AEF0000FE3415 /* AnimationUnit.swift in Sources */,

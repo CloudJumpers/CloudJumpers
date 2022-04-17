@@ -14,55 +14,51 @@ enum Events: Int {
     case powerUpPlayerCollide
     case obtain
     case remove
+    case changeStandOnLocation
+    case updateGuestState
     case joystickUpdate
     case powerUpLocationPressed
     case jumpButtonPressed
     case powerUpActivate
+    case disasterActivate
+    case blink
     case confuse
     case freeze
     case powerUpSpawn
-    case powerUpEffectStart
     case reposition
     case respawn
     case disasterPlayerCollide
-    case blinkEffect
-    case disasterActivate
-    case changeLocation
     case sound
-    case updateState
     case promoteGod
     case demoteGod
 
     private static let events: [String: Events] = [
-        String(describing: BiEvent.self): .bi,
-        String(describing: LogEvent.self): .log,
-        String(describing: MoveEvent.self): .move,
-        String(describing: JumpEvent.self): .jump,
-        String(describing: AnimateEvent.self): .animate,
-        String(describing: PowerUpSpawnEvent.self): .powerUpSpawn,
-        String(describing: PowerUpPlayerCollideEvent.self): .powerUpPlayerCollide,
-        String(describing: ObtainEvent.self): .obtain,
-        String(describing: RemoveEvent.self): .remove,
-        String(describing: PowerUpActivateEvent.self): .powerUpActivate,
-        String(describing: RepositionEvent.self): .reposition,
-        String(describing: DisasterPlayerCollideEvent.self): .disasterPlayerCollide,
-        String(describing: BlinkEvent.self): .blinkEffect,
-        String(describing: DisasterSpawnEvent.self): .disasterActivate,
-        String(describing: RespawnEvent.self): .respawn,
-        String(describing: ChangeStandOnLocationEvent.self): .changeLocation,
-        String(describing: SoundEvent.self): .sound,
-        String(describing: UpdateGuestStateEvent.self): .updateState,
-        String(describing: ConfuseEvent.self): .confuse,
-        String(describing: FreezeEvent.self): .freeze,
-        String(describing: JoystickUpdateEvent.self): .joystickUpdate,
-        String(describing: PowerUpLocationPressedEvent.self): .powerUpLocationPressed,
-        String(describing: JumpButtonPressedEvent.self): .jumpButtonPressed,
-        String(describing: PromoteGodEvent.self): .promoteGod,
-        String(describing: DemoteGodEvent.self): .demoteGod
-
+        BiEvent.type: .bi,
+        LogEvent.type: .log,
+        MoveEvent.type: .move,
+        JumpEvent.type: .jump,
+        AnimateEvent.type: .animate,
+        PowerUpSpawnEvent.type: .powerUpSpawn,
+        PowerUpPlayerCollideEvent.type: .powerUpPlayerCollide,
+        ObtainEvent.type: .obtain,
+        RemoveEvent.type: .remove,
+        PowerUpActivateEvent.type: .powerUpActivate,
+        RepositionEvent.type: .reposition,
+        DisasterPlayerCollideEvent.type: .disasterPlayerCollide,
+        BlinkEvent.type: .blink,
+        DisasterSpawnEvent.type: .disasterActivate,
+        RespawnEvent.type: .respawn,
+        ChangeStandOnLocationEvent.type: .changeStandOnLocation,
+        SoundEvent.type: .sound,
+        UpdateGuestStateEvent.type: .updateGuestState,
+        ConfuseEvent.type: .confuse,
+        FreezeEvent.type: .freeze,
+        JoystickUpdateEvent.type: .joystickUpdate,
+        PowerUpLocationPressedEvent.type: .powerUpLocationPressed,
+        JumpButtonPressedEvent.type: .jumpButtonPressed
     ]
 
     static func rank(of event: Event) -> Int? {
-        events[String(describing: type(of: event))]?.rawValue
+        events[type(of: event).type]?.rawValue
     }
 }

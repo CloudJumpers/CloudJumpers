@@ -30,15 +30,43 @@ extension Floor: Collidable {
         ContactHandler.between(self, platform)
     }
 
-    func collides(with wall: Wall) -> Event? {
-        ContactHandler.between(self, wall)
-    }
-
     func collides(with disaster: Disaster) -> Event? {
         ContactHandler.between(self, disaster)
     }
 
     func collides(with guest: Guest) -> Event? {
         ContactHandler.between(self, guest)
+    }
+
+    func separates(from collidable: Collidable) -> Event? {
+        collidable.separates(from: self)
+    }
+
+    func separates(from player: Player) -> Event? {
+        SeparationHandler.between(player, self)
+    }
+
+    func separates(from powerUp: PowerUp) -> Event? {
+        SeparationHandler.between(powerUp, self)
+    }
+
+    func separates(from cloud: Cloud) -> Event? {
+        SeparationHandler.between(cloud, self)
+    }
+
+    func separates(from floor: Floor) -> Event? {
+        SeparationHandler.between(self, floor)
+    }
+
+    func separates(from platform: Platform) -> Event? {
+        SeparationHandler.between(self, platform)
+    }
+
+    func separates(from disaster: Disaster) -> Event? {
+        SeparationHandler.between(self, disaster)
+    }
+
+    func separates(from guest: Guest) -> Event? {
+        SeparationHandler.between(self, guest)
     }
 }
