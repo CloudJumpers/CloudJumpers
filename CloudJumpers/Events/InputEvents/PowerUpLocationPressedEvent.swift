@@ -26,6 +26,7 @@ struct PowerUpLocationPressedEvent: Event {
         else {
             return
         }
+
         supplier.add(PowerUpActivateEvent(by: player.id, location: location))
         supplier.add(ExternalPowerUpActivateEvent(
             activatePowerUpPositionX: location.x,

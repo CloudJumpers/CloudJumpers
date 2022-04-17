@@ -49,6 +49,7 @@ class GameWorld {
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(OutOfBoundRemovalSystem(for: entityManager, boundSize: bound))
         systemManager.register(InventorySystem(for: entityManager))
+        systemManager.register(PowerUpSystem(for: entityManager))
         systemManager.register(DisasterSpawnSystem(for: entityManager,
                                                    positionGenerationInfo: positionGenerationInfo,
                                                    velocityGenerationInfo: disasterVelocityGenerationInfo,
