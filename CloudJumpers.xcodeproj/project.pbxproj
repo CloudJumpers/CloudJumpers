@@ -144,6 +144,9 @@
 		3E61A10F280C148800BD8470 /* TeleportEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */; };
 		3E61A111280C14C600BD8470 /* PowerUpEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A110280C14C600BD8470 /* PowerUpEffectCreator.swift */; };
 		3E61A113280C19CF00BD8470 /* PowerUpEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A112280C19CF00BD8470 /* PowerUpEffect.swift */; };
+		3E61A115280C4E7100BD8470 /* BlackoutEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */; };
+		3E61A117280C4EB900BD8470 /* BlackoutComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */; };
+		3E61A119280C4EEC00BD8470 /* BlackoutSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
@@ -472,6 +475,9 @@
 		3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportEffectCreator.swift; sourceTree = "<group>"; };
 		3E61A110280C14C600BD8470 /* PowerUpEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffectCreator.swift; sourceTree = "<group>"; };
 		3E61A112280C19CF00BD8470 /* PowerUpEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpEffect.swift; sourceTree = "<group>"; };
+		3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutEffectCreator.swift; sourceTree = "<group>"; };
+		3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutComponent.swift; sourceTree = "<group>"; };
+		3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutSystem.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
@@ -1017,6 +1023,7 @@
 				3E61A10A280C146700BD8470 /* ConfuseEffectCreator.swift */,
 				3E61A10C280C147B00BD8470 /* SlowmoEffectCreator.swift */,
 				3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */,
+				3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */,
 			);
 			path = PowerUp;
 			sourceTree = "<group>";
@@ -1029,6 +1036,7 @@
 				3E3632F12809903900FAD7A8 /* SlowmoSystem.swift */,
 				3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */,
 				3E3632FA2809972900FAD7A8 /* TeleportSystem.swift */,
+				3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */,
 			);
 			path = PowerUpSystem;
 			sourceTree = "<group>";
@@ -1041,6 +1049,7 @@
 				3E3632D7280961E800FAD7A8 /* FreezeComponent.swift */,
 				1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */,
 				3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */,
+				3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */,
 			);
 			path = PowerUpComponent;
 			sourceTree = "<group>";
@@ -1956,6 +1965,7 @@
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
 				9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */,
 				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
+				3E61A115280C4E7100BD8470 /* BlackoutEffectCreator.swift in Sources */,
 				3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */,
 				3E363302280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift in Sources */,
 				1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */,
@@ -2052,6 +2062,7 @@
 				934789CA27DF6B5700324DAF /* LobbyCell.swift in Sources */,
 				9353463E27F02D5400DC6F9E /* ExternalUpdateGuestStateEvent.swift in Sources */,
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
+				3E61A117280C4EB900BD8470 /* BlackoutComponent.swift in Sources */,
 				A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */,
 				1AE9D8A827FEBB49002B0A1E /* Characters.swift in Sources */,
 				1AB6F2D127F98F57004BF6AF /* Effector.swift in Sources */,
@@ -2111,6 +2122,7 @@
 				3EA7C8B02803026F009BCA63 /* PowerUpPlayerCollideEvent.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
+				3E61A119280C4EEC00BD8470 /* BlackoutSystem.swift in Sources */,
 				A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */,
 				1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */,
 				9353464627F04DDD00DC6F9E /* GameConstants.swift in Sources */,
