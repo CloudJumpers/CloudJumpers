@@ -167,9 +167,8 @@ extension GameViewController: GameSceneDelegate {
     func scene(_ scene: GameScene, updateWithin interval: TimeInterval) {
         guard let lobby = lobby,
               let gameManager = gameManager
-        else {
-            return
-        }
+        else { return }
+
         gameManager.update(within: interval)
         gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
@@ -178,6 +177,10 @@ extension GameViewController: GameSceneDelegate {
         if lobby.userIsHost && !gameManager.isHost {
             gameManager.enableHostStatus()
         }
+    }
+
+    func scene(_ scene: GameScene, didCompletedTouchAt location: CGPoint) {
+        gameManager?.activatePowerUp(at: location)
     }
 }
 

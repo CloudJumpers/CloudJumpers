@@ -21,6 +21,10 @@ class Camera: SKCameraNode {
         setUpPhysicsBody()
     }
 
+    var isInertialPanning: Bool {
+        !(physicsBody?.velocity.isZero ?? true)
+    }
+
     func panVertically(to position: CGPoint) {
         self.position.y = position.y
     }
