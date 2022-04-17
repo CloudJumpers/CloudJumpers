@@ -51,7 +51,7 @@ class GameScene: SKScene {
 
     // MARK: - Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didBeginTouchesAt: touchLocations)
 
         guard let location = touchLocations.first else {
@@ -63,7 +63,7 @@ class GameScene: SKScene {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didMoveTouchesAt: touchLocations)
 
         guard let location = touchLocations.first else {
@@ -74,13 +74,14 @@ class GameScene: SKScene {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touchLocations = touches.map { $0.location(in: cameraNode ?? self) }
+        let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didEndTouchesAt: touchLocations)
 
         guard let location = touchLocations.first else {
             return
         }
 
+        print(location)
         endCameraPanning(at: location)
         delegateCompletedTouch(at: location)
         previousTouchStoppedCameraInertia = false

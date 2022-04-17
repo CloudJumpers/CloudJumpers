@@ -30,15 +30,16 @@ class BlackoutSystem: System {
 
             let activatorId = component.activatorId
             let playerLocation = playerPositionComponent.position
+            if let entity = component.entity,
+               let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity) {
+                spriteComponent.alpha = 0
+            }
 
             if canAffectEntity(activatorEntityId: activatorId, targetEntityId: playerEntity.id) &&
                 isAffectingLocation(location: playerLocation, blackoutComponent: component),
-               let areaComponent = manager?.components(ofType: AreaComponent.self).first,
-               let entity = component.entity,
-               let spriteComponent = manager?.component(ofType: SpriteComponent.self, of: entity) {
+               let areaComponent = manager?.components(ofType: AreaComponent.self).first {
 
                 areaComponent.isBlank = true
-                spriteComponent.alpha = 0
             }
         }
     }
