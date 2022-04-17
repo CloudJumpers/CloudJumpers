@@ -23,6 +23,7 @@ struct PowerUpPlayerCollideEvent: Event {
         guard target.entity(with: powerUpEntityID) != nil
         else { return }
 
+        print("obtain")
         let externalObtainEntityEvent = ExternalObtainEntityEvent(obtainedEntityID: powerUpEntityID)
         supplier.add(externalObtainEntityEvent)
     }
