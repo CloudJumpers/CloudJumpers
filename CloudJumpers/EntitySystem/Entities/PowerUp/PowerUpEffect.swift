@@ -39,6 +39,7 @@ class PowerUpEffect: Entity {
         manager.addComponent(TimedRemovalComponent(timeToRemove: intervalToRemove), to: self)
         manager.addComponent(TimedComponent(), to: self)
         manager.addComponent(powerUpComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

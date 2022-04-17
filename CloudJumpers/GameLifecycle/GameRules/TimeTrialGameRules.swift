@@ -9,7 +9,6 @@ import Foundation
 import CoreGraphics
 
 class TimeTrialGameRules: GameRules {
-
     private unowned var target: RuleModifiable?
     private var timer: StaticLabel?
 

@@ -25,6 +25,7 @@ class RaceTopGameRules: GameRules {
             return
         }
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
+        enablePowerUpFunction(target: target)
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {

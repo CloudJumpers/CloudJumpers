@@ -23,6 +23,15 @@ protocol GameRules {
 // MARK: - Helper functions
 extension GameRules {
 
+    func enablePowerUpFunction(target: RuleModifiable) {
+        target.activateSystem(ofType: PowerUpSystem.self)
+        target.activateSystem(ofType: FreezeSystem.self)
+        target.activateSystem(ofType: ConfuseSystem.self)
+        target.activateSystem(ofType: SlowmoSystem.self)
+        target.activateSystem(ofType: TeleportSystem.self)
+        target.activateSystem(ofType: EffectorDetachSystem.self)
+    }
+
     func isPlayerRespawning(target: RuleModifiable) -> Bool {
         guard let playerID = playerInfo?.playerId,
               let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)

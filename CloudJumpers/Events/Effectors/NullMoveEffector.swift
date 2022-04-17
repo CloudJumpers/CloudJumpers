@@ -23,11 +23,11 @@ struct NullMoveEffector: Effector {
         return MoveEvent(onEntityWith: event.entityID, by: .zero, at: event.timestamp)
     }
 
-    func shouldDetach(in entityManager: EntityManager) -> Bool {
-        guard let timerComponent = entityManager.component(ofType: TimedComponent.self, of: effectEntity) else {
+    func shouldDetach(in target: EventModifiable) -> Bool {
+        guard let effectorDetachSystem = target.system(ofType: EffectorDetachSystem.self) else {
             return false
         }
 
-        return timerComponent.time >= Constants.powerUpEffectDuration
+        return effectorDetachSystem.shouldDetach(watchingEntity: effectEntity)
     }
 }
