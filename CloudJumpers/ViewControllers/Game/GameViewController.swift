@@ -78,7 +78,6 @@ class GameViewController: UIViewController {
         let scene = GameScene(size: CGSize(width: 750, height: 1_000))
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
-        scene.backgroundColor = .white
         self.scene = scene
     }
 
