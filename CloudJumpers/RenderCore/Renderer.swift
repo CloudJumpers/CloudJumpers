@@ -75,15 +75,12 @@ class Renderer {
     }
 
     private func createAndCache(entity: Entity) {
-        guard let spriteUnit = pipeline.unit(ofType: SpriteUnit.self),
-              let physicsUnit = pipeline.unit(ofType: PhysicsUnit.self)
-        else { fatalError("SpriteUnit/PhysicsUnit was not registered") }
-
-        guard let node = spriteUnit.createSpriteNode(for: entity) else {
+        guard let node = pipeline.createNode(for: entity) else {
             return
         }
 
-        if let physicsBody = physicsUnit.createPhysicsBody(for: entity) {
+        if let physicsUnit = pipeline.unit(ofType: PhysicsUnit.self),
+           let physicsBody = physicsUnit.createPhysicsBody(for: entity) {
             node.physicsBody = physicsBody
         }
 

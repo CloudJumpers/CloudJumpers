@@ -14,6 +14,16 @@ class RenderPipeline {
         units = UnitMap()
     }
 
+    func createNode(for entity: Entity) -> Node? {
+        for unit in units.values {
+            if let node = unit.createNode(for: entity) {
+                return node
+            }
+        }
+
+        return nil
+    }
+
     func render(_ entity: Entity, with node: Node) {
         units.values.forEach { $0.transform(entity, with: node) }
     }
