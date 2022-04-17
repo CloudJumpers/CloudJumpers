@@ -93,7 +93,7 @@ class KingHillGameRules: GameRules {
         // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
 
-        let score = distanceToTop != 0 ? 1 / distanceToTop : 1
+        let score = distanceToTop.isZero ? 1 / distanceToTop : 1
         playerScore += score
         updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
     }
