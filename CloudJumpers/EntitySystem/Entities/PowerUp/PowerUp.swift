@@ -31,6 +31,7 @@ class PowerUp: Entity {
 
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
+        manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(OwnerComponent(), to: self)
         manager.addComponent(PowerUpComponent(kind), to: self)
     }
