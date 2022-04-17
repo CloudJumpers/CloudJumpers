@@ -8,7 +8,6 @@
 import Foundation
 import CoreGraphics
 
-// TODO: Implement this
 class PowerSpawnSystem: System {
     var active = false
 

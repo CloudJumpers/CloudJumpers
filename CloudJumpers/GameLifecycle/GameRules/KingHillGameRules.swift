@@ -101,8 +101,10 @@ class KingHillGameRules: GameRules {
         }
         if isPlayerOnTopPlatform(target: target) {
             target.add(PromoteGodEvent(onEntityWith: playerID))
+            target.activateSystem(ofType: GodPowerSpawnSystem.self)
         } else {
             target.add(DemoteGodEvent(onEntityWith: playerID))
+            target.deactivateSystem(ofType: GodPowerSpawnSystem.self)
         }
     }
 
