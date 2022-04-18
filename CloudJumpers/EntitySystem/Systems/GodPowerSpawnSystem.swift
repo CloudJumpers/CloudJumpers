@@ -28,7 +28,6 @@ class GodPowerSpawnSystem: System {
         let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
         let powerId = EntityManager.newEntityID
 
-        print("IS GODDD")
         dispatcher?.dispatch(ExternalGodPowerUpSpawnEvent(
             godPowerSpawnPositionX: .zero,
             godPowerSpawnPositionY: .zero,
