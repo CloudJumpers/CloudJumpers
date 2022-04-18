@@ -238,7 +238,7 @@
 		9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E954280030DA0090A8C9 /* TimeTrialPreGameManager.swift */; };
 		9396E957280031F30090A8C9 /* PreGameRequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E956280031F30090A8C9 /* PreGameRequestDelegate.swift */; };
 		9396E959280032190090A8C9 /* PreGameRestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E958280032190090A8C9 /* PreGameRestDelegate.swift */; };
-		9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95C280037420090A8C9 /* FirebaseEmulator.swift */; };
+		9396E95D280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95C280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift */; };
 		9396E95F280039A10090A8C9 /* RemoteEventHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */; };
 		9396E9612800482C0090A8C9 /* RaceToTopPreGameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */; };
 		939AFA032809BBD000852B8B /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939AFA022809BBD000852B8B /* Achievement.swift */; };
@@ -260,6 +260,7 @@
 		93C67D69280D2A39009E86D5 /* OpacityChangeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */; };
 		93C67D6B280D2D73009E86D5 /* OpacitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */; };
 		93C67D6F280D3C31009E86D5 /* DisastersToggleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D6E280D3C31009E86D5 /* DisastersToggleEvent.swift */; };
+		93C67D72280D3F31009E86D5 /* GameEventEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D71280D3F31009E86D5 /* GameEventEmulator.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
@@ -574,7 +575,7 @@
 		9396E954280030DA0090A8C9 /* TimeTrialPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTrialPreGameManager.swift; sourceTree = "<group>"; };
 		9396E956280031F30090A8C9 /* PreGameRequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameRequestDelegate.swift; sourceTree = "<group>"; };
 		9396E958280032190090A8C9 /* PreGameRestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameRestDelegate.swift; sourceTree = "<group>"; };
-		9396E95C280037420090A8C9 /* FirebaseEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEmulator.swift; sourceTree = "<group>"; };
+		9396E95C280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseShadowPlayerEmulator.swift; sourceTree = "<group>"; };
 		9396E95E280039A10090A8C9 /* RemoteEventHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteEventHandlers.swift; sourceTree = "<group>"; };
 		9396E9602800482C0090A8C9 /* RaceToTopPreGameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceToTopPreGameManager.swift; sourceTree = "<group>"; };
 		939AFA022809BBD000852B8B /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
@@ -596,6 +597,7 @@
 		93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityChangeEvent.swift; sourceTree = "<group>"; };
 		93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacitySystem.swift; sourceTree = "<group>"; };
 		93C67D6E280D3C31009E86D5 /* DisastersToggleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisastersToggleEvent.swift; sourceTree = "<group>"; };
+		93C67D71280D3F31009E86D5 /* GameEventEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventEmulator.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
@@ -1489,8 +1491,9 @@
 			isa = PBXGroup;
 			children = (
 				93360B9C27EC9CB100808295 /* GameEventSubscriber.swift */,
+				93C67D71280D3F31009E86D5 /* GameEventEmulator.swift */,
 				93360BA127EC9D4C00808295 /* FirebaseSubscriber.swift */,
-				9396E95C280037420090A8C9 /* FirebaseEmulator.swift */,
+				9396E95C280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift */,
 			);
 			path = Subscribers;
 			sourceTree = "<group>";
@@ -1995,8 +1998,9 @@
 				3E3632F4280990F700FAD7A8 /* SlowmoComponent.swift in Sources */,
 				A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */,
 				1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */,
-				9396E95D280037420090A8C9 /* FirebaseEmulator.swift in Sources */,
+				9396E95D280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift in Sources */,
 				3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */,
+				93C67D72280D3F31009E86D5 /* GameEventEmulator.swift in Sources */,
 				1AC1606427F31E08006E4018 /* Sounds.swift in Sources */,
 				1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */,
 				3E3632FD2809974100FAD7A8 /* TeleportComponent.swift in Sources */,

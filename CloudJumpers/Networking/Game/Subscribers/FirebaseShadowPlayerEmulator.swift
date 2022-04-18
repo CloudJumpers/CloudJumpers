@@ -8,27 +8,21 @@
 import Foundation
 import FirebaseDatabase
 
-class FirebaseEmulator: GameEventSubscriber {
-    private var storedCommands: [(timeDeltaSeconds: Double, command: GameEventCommand)]
-    private var hasReleaseStarted: Bool
+class FirebaseShadowPlayerEmulator: GameEventEmulator {
+    private var storedCommands: [(timeDeltaSeconds: Double, command: GameEventCommand)] = []
+    private(set) var hasReplayStarted = false
 
     private var gameReference: DatabaseReference?
     private var releaseTimer: Timer?
 
     weak var eventManager: EventManager? { didSet { self.startEventReplay() } }
 
-    init() {
-        self.storedCommands = []
-        self.hasReleaseStarted = false
-    }
-
     deinit {
         gameReference?.removeAllObservers()
     }
 
-    func initialize(_ channelId: NetworkID) {
-        self.gameReference = Database
-            .database()
+    func replayEventsFrom(_ channelId: NetworkID) {
+        self.gameReference = Database.database()
             .reference(withPath: GameKeys.root)
             .child(channelId)
 
@@ -36,14 +30,13 @@ class FirebaseEmulator: GameEventSubscriber {
     }
 
     private func startEventReplay() {
-        guard !storedCommands.isEmpty, eventManager != nil, !hasReleaseStarted else {
-            eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: .zero))
+        guard !storedCommands.isEmpty, eventManager != nil, !hasReplayStarted else {
+            onFetchUnknown()
             return
         }
 
-        hasReleaseStarted = true
-        eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: 1.0))
-        eventManager?.add(DisastersToggleEvent(false))
+        onFetchSuccess()
+        hasReplayStarted = true
         releaseNextEvent()
     }
 
@@ -56,23 +49,26 @@ class FirebaseEmulator: GameEventSubscriber {
             var prevTime: Double?
 
             for snap in snapshots {
-                guard
-                    let body = snap.value as? [String: Any],
-                    let payload = body[GameKeys.payload] as? String,
-                    let registeredAt = body[GameKeys.registeredAt] as? Double
+                guard let body = snap.value as? [String: Any],
+                      let payload = body[GameKeys.payload] as? String,
+                      let registeredAt = body[GameKeys.registeredAt] as? Double
                 else {
-                    return
+                    continue
                 }
 
                 let deltaMillis = registeredAt - (prevTime ?? (registeredAt - LifecycleConstants.pollInterval))
                 prevTime = registeredAt
+                self.createDeferredCommand(payload, after: deltaMillis)
 
-                let command = DefaultCommand(GameConstants.shadowPlayerID, payload)
-                self.storedCommands.append((timeDeltaSeconds: deltaMillis / 1_000, command: command))
             }
 
             self.startEventReplay()
         }
+    }
+
+    private func createDeferredCommand(_ payload: String, after deltaMillis: Double) {
+        let command = DefaultCommand(GameConstants.shadowPlayerID, payload)
+        self.storedCommands.append((timeDeltaSeconds: deltaMillis / 1_000, command: command))
     }
 
     private func releaseNextEvent() {
@@ -90,5 +86,14 @@ class FirebaseEmulator: GameEventSubscriber {
             assert(first.command.unpackIntoEventManager(manager))
             self?.releaseNextEvent()
         }
+    }
+
+    private func onFetchUnknown() {
+        eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: .zero))
+    }
+
+    private func onFetchSuccess() {
+        eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: 1.0))
+        eventManager?.add(DisastersToggleEvent(false))
     }
 }
