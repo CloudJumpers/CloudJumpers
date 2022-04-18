@@ -98,6 +98,7 @@
 		1AD5D450280C0E200071ACE1 /* AreaUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */; };
 		1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */; };
 		1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D453280C27E60071ACE1 /* LabelUnit.swift */; };
+		1AD5D46F280D44000071ACE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D46E280D44000071ACE1 /* HomeButton.swift */; };
 		1AD5D463280D32AC0071ACE1 /* HUDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D462280D32AC0071ACE1 /* HUDs.swift */; };
 		1AD5D465280D32CB0071ACE1 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D464280D32CB0071ACE1 /* HUD.swift */; };
 		1AD5D467280D338A0071ACE1 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D466280D338A0071ACE1 /* HUD.atlas */; };
@@ -436,6 +437,7 @@
 		1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUnit.swift; sourceTree = "<group>"; };
 		1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparationHandler.swift; sourceTree = "<group>"; };
 		1AD5D453280C27E60071ACE1 /* LabelUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelUnit.swift; sourceTree = "<group>"; };
+		1AD5D46E280D44000071ACE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		1AD5D462280D32AC0071ACE1 /* HUDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDs.swift; sourceTree = "<group>"; };
 		1AD5D464280D32CB0071ACE1 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		1AD5D466280D338A0071ACE1 /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
@@ -1018,6 +1020,7 @@
 				1AE9D8A027FE99F1002B0A1E /* Texture.swift */,
 				A1D4686C27D9059600C9FB0E /* GameScene.swift */,
 				1A4C4DE8280B3C2F000BD549 /* Camera.swift */,
+				1AD5D46E280D44000071ACE1 /* HomeButton.swift */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -2065,6 +2068,7 @@
 				931D130527ECB022002C7AF3 /* DefaultCommand.swift in Sources */,
 				936228E927F602F700BB05FE /* TimeTrialPostGameManager.swift in Sources */,
 				936228EB27F6046200BB05FE /* LifecycleConstants.swift in Sources */,
+				1AD5D46F280D44000071ACE1 /* HomeButton.swift in Sources */,
 				936257BA280AA18E00C4DFC0 /* AchievementUpdateDelegate.swift in Sources */,
 				3EA7C88127F95036009BCA63 /* PowerUpEffectStartEventCommand.swift in Sources */,
 				A1D786682801931600C5CE49 /* RepositionEvent.swift in Sources */,
