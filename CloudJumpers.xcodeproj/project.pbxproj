@@ -23,6 +23,11 @@
 		1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7527D85BC80033A29D /* Main.storyboard */; };
 		1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7827D85BCA0033A29D /* Assets.xcassets */; };
 		1A4E3D7C27D85BCA0033A29D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */; };
+		1A6BA22D280D603100F24393 /* 04b30.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA22B280D603100F24393 /* 04b30.ttf */; };
+		1A6BA22E280D603100F24393 /* 04b03.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A6BA22C280D603100F24393 /* 04b03.ttf */; };
+		1A6BA230280D606900F24393 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA22F280D606900F24393 /* Fonts.swift */; };
+		1A6BA232280D66E300F24393 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA231280D66E300F24393 /* Colors.swift */; };
+		1A6BA234280D693900F24393 /* UIColor+RGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6BA233280D693900F24393 /* UIColor+RGBA.swift */; };
 		1A71C5EE280865A7008131C3 /* Miscellaneous.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1A71C5ED280865A7008131C3 /* Miscellaneous.atlas */; };
 		1A71C5F02808666C008131C3 /* Miscellaneous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A71C5EF2808666C008131C3 /* Miscellaneous.swift */; };
 		1A7FFD19280AECC900FE3415 /* PositionUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7FFD18280AECC900FE3415 /* PositionUnit.swift */; };
@@ -290,7 +295,7 @@
 		A183D382280D306D007DAB4B /* GodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */; };
 		A183D384280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */; };
 		A183D386280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */; };
-		A183D38B280D459E007DAB4B /* Double+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D38A280D459E007DAB4B /* Double+Time.swift */; };
+		A183D38B280D459E007DAB4B /* TimeInterval+MMSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D38A280D459E007DAB4B /* TimeInterval+MMSS.swift */; };
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
@@ -356,6 +361,11 @@
 		1A4E3D7827D85BCA0033A29D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A4E3D7B27D85BCA0033A29D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A4E3D7D27D85BCA0033A29D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A6BA22B280D603100F24393 /* 04b30.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04b30.ttf; sourceTree = "<group>"; };
+		1A6BA22C280D603100F24393 /* 04b03.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 04b03.ttf; sourceTree = "<group>"; };
+		1A6BA22F280D606900F24393 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		1A6BA231280D66E300F24393 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1A6BA233280D693900F24393 /* UIColor+RGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGBA.swift"; sourceTree = "<group>"; };
 		1A71C5ED280865A7008131C3 /* Miscellaneous.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Miscellaneous.atlas; sourceTree = "<group>"; };
 		1A71C5EF2808666C008131C3 /* Miscellaneous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Miscellaneous.swift; sourceTree = "<group>"; };
 		1A7FFD18280AECC900FE3415 /* PositionUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionUnit.swift; sourceTree = "<group>"; };
@@ -630,7 +640,7 @@
 		A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalGodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
-		A183D38A280D459E007DAB4B /* Double+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Time.swift"; sourceTree = "<group>"; };
+		A183D38A280D459E007DAB4B /* TimeInterval+MMSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+MMSS.swift"; sourceTree = "<group>"; };
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
 		A19A7A2A27F8D79D007E1C11 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
@@ -785,7 +795,8 @@
 				1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */,
 				1AE9D8AE27FED1F3002B0A1E /* SKTextureAtlas+Sorted.swift */,
 				1A4C4DE6280B1CD8000BD549 /* String+Truncate.swift */,
-				A183D38A280D459E007DAB4B /* Double+Time.swift */,
+				A183D38A280D459E007DAB4B /* TimeInterval+MMSS.swift */,
+				1A6BA233280D693900F24393 /* UIColor+RGBA.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -793,11 +804,14 @@
 		1A91C91227E0962F00D755BE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1AD5D470280D5A130071ACE1 /* Fonts */,
 				1AC1606027F31DFD006E4018 /* Sounds */,
 				1A91C91B27E099E700D755BE /* Textures */,
 				1A4E3D7827D85BCA0033A29D /* Assets.xcassets */,
 				1A91C91727E0969500D755BE /* Images.swift */,
 				1AC1606327F31E08006E4018 /* Sounds.swift */,
+				1A6BA22F280D606900F24393 /* Fonts.swift */,
+				1A6BA231280D66E300F24393 /* Colors.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -973,6 +987,15 @@
 				1A94D95027ED8709001D8A86 /* Systems */,
 			);
 			path = EntitySystem;
+			sourceTree = "<group>";
+		};
+		1AD5D470280D5A130071ACE1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				1A6BA22C280D603100F24393 /* 04b03.ttf */,
+				1A6BA22B280D603100F24393 /* 04b30.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		1ADEDD8F27F58D1600C3AFD3 /* Tags */ = {
@@ -1738,6 +1761,7 @@
 				1AC1607927F4404A006E4018 /* respawned.wav in Resources */,
 				1AC1607127F43B15006E4018 /* ui-pause.wav in Resources */,
 				1AC1607027F43B15006E4018 /* end-win.wav in Resources */,
+				1A6BA22D280D603100F24393 /* 04b30.ttf in Resources */,
 				1A94D94227ECB808001D8A86 /* Character1.atlas in Resources */,
 				1AC1606D27F43B15006E4018 /* end-lose.wav in Resources */,
 				1A71C5EE280865A7008131C3 /* Miscellaneous.atlas in Resources */,
@@ -1745,6 +1769,7 @@
 				1AC1607627F4404A006E4018 /* jump-cape.wav in Resources */,
 				1A91C92927E099F400D755BE /* Buttons.atlas in Resources */,
 				1AC1606F27F43B15006E4018 /* ui-bgm.wav in Resources */,
+				1A6BA22E280D603100F24393 /* 04b03.ttf in Resources */,
 				1A91C92627E099F400D755BE /* Clouds.atlas in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
 				1AD5D467280D338A0071ACE1 /* HUD.atlas in Resources */,
@@ -1916,6 +1941,7 @@
 				A13B8C40280A877700EA3FBA /* JoystickUpdateEvent.swift in Sources */,
 				935280D127F63238002E3A1D /* PostGameColumnKey.swift in Sources */,
 				1ACE97C927EB26BB005AA18B /* EntityManager.swift in Sources */,
+				1A6BA230280D606900F24393 /* Fonts.swift in Sources */,
 				9385D9C027F740E800593930 /* RaceToTopResponse.swift in Sources */,
 				9356F4E427DE20B2007F4D89 /* AuthManager.swift in Sources */,
 				1A94D93627EB41E0001D8A86 /* Joystick.swift in Sources */,
@@ -2032,6 +2058,7 @@
 				3E3632D8280961E800FAD7A8 /* FreezeComponent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
+				1A6BA232280D66E300F24393 /* Colors.swift in Sources */,
 				1ACE97C827EB26BB005AA18B /* Component.swift in Sources */,
 				A1AE31D828092EF500FABC0E /* StaticLabel.swift in Sources */,
 				A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */,
@@ -2137,6 +2164,7 @@
 				3E3632F62809922000FAD7A8 /* SlowMoveEffector.swift in Sources */,
 				1A94D96227EE02FD001D8A86 /* Events.swift in Sources */,
 				1A94D95427ED8709001D8A86 /* AnimationComponent.swift in Sources */,
+				1A6BA234280D693900F24393 /* UIColor+RGBA.swift in Sources */,
 				A1D7867F2801E62600C5CE49 /* PowerSpawnSystem.swift in Sources */,
 				A12D58CF2802BD3200DA7EC6 /* RemoveEvent.swift in Sources */,
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
@@ -2160,7 +2188,7 @@
 				1A24DC192800B0BA00E48B64 /* PositionComponent.swift in Sources */,
 				3E3632FB2809972900FAD7A8 /* TeleportSystem.swift in Sources */,
 				933486C5280BC37700D6DC0F /* KingOfTheHill.swift in Sources */,
-				A183D38B280D459E007DAB4B /* Double+Time.swift in Sources */,
+				A183D38B280D459E007DAB4B /* TimeInterval+MMSS.swift in Sources */,
 				933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */,
 				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
