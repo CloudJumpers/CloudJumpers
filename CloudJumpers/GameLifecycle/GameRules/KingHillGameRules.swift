@@ -78,7 +78,8 @@ class KingHillGameRules: GameRules {
         }
 
         updateGodStatus(target: target)
-        updateTwoPlayerSameCloud(target: target)
+        updateRespawnIfPlayerOnSameCloudRule(target: target)
+        updateRespawnIfPlayerOnSamePlatformRule(target: target)
         updateScore(target: target)
         updateCountDownTimer(target: target)
     }

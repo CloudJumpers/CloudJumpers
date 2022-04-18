@@ -66,7 +66,7 @@ class RaceTopGameRules: GameRules {
         }
         let timeString = timedComponent.time.convertToTimeString()
 
-        updateTwoPlayerSameCloud(target: target)
+        updateRespawnIfPlayerOnSameCloudRule(target: target)
         updateLabelWithValue(timeString, label: timer, target: target)
     }
 
