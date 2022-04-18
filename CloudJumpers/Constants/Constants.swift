@@ -69,6 +69,7 @@ struct Constants {
 
     static let powerUpEffectSize = CGSize(width: 120.0, height: 120.0)
     static let powerUpEffectDuration = 5.0
+    static let powerUpEffectDetachDuration = 4.7
     static let powerUpMass = 0.000_000_1
 
     static let wallWidth = 0.1
