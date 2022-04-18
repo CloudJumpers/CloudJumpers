@@ -22,8 +22,6 @@ enum Events: Int {
     case powerUpActivate
     case disasterActivate
     case blink
-    case confuse
-    case freeze
     case kill
     case powerUpSpawn
     case reposition
@@ -53,8 +51,6 @@ enum Events: Int {
         ChangeStandOnLocationEvent.type: .changeStandOnLocation,
         SoundEvent.type: .sound,
         UpdateGuestStateEvent.type: .updateGuestState,
-        ConfuseEvent.type: .confuse,
-        FreezeEvent.type: .freeze,
         KillEvent.type: .kill,
         JoystickUpdateEvent.type: .joystickUpdate,
         PowerUpLocationPressedEvent.type: .powerUpLocationPressed,

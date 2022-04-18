@@ -68,12 +68,10 @@
 		1AAB1E232800327600378382 /* EventModifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E222800327600378382 /* EventModifiable.swift */; };
 		1AAB1E252800349700378382 /* Simulatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E242800349700378382 /* Simulatable.swift */; };
 		1AAB1E292800A55500378382 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAB1E282800A55500378382 /* PhysicsCategory.swift */; };
-		1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */; };
 		1AB6F2D127F98F57004BF6AF /* Effector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D027F98F57004BF6AF /* Effector.swift */; };
 		1AB6F2D327F99025004BF6AF /* NullMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D227F99025004BF6AF /* NullMoveEffector.swift */; };
 		1AB6F2D527F990E0004BF6AF /* SwapMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */; };
 		1AB6F2D827F9A15F004BF6AF /* Supplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D727F9A15F004BF6AF /* Supplier.swift */; };
-		1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */; };
 		1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */; };
 		1ABF39152807EDCC0035DBB9 /* SceneUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */; };
 		1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603D27F19369006E4018 /* Blueprint.swift */; };
@@ -408,12 +406,10 @@
 		1AAB1E222800327600378382 /* EventModifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModifiable.swift; sourceTree = "<group>"; };
 		1AAB1E242800349700378382 /* Simulatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simulatable.swift; sourceTree = "<group>"; };
 		1AAB1E282800A55500378382 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
-		1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreezeEvent.swift; sourceTree = "<group>"; };
 		1AB6F2D027F98F57004BF6AF /* Effector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effector.swift; sourceTree = "<group>"; };
 		1AB6F2D227F99025004BF6AF /* NullMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullMoveEffector.swift; sourceTree = "<group>"; };
 		1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMoveEffector.swift; sourceTree = "<group>"; };
 		1AB6F2D727F9A15F004BF6AF /* Supplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplier.swift; sourceTree = "<group>"; };
-		1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfuseEvent.swift; sourceTree = "<group>"; };
 		1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
 		1ABF39142807EDCC0035DBB9 /* SceneUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneUpdateDelegate.swift; sourceTree = "<group>"; };
 		1AC1603D27F19369006E4018 /* Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blueprint.swift; sourceTree = "<group>"; };
@@ -1538,15 +1534,6 @@
 			path = PlayerEvents;
 			sourceTree = "<group>";
 		};
-		A12D58CD2802BAAE00DA7EC6 /* PowerEvents */ = {
-			isa = PBXGroup;
-			children = (
-				1AB3E3D527FADCCA00CBDB1A /* FreezeEvent.swift */,
-				1AB6F2DA27F9C592004BF6AF /* ConfuseEvent.swift */,
-			);
-			path = PowerEvents;
-			sourceTree = "<group>";
-		};
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -1555,7 +1542,6 @@
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
 				A1D7866228018FC400C5CE49 /* CoreEvents */,
-				A12D58CD2802BAAE00DA7EC6 /* PowerEvents */,
 				A11A00B027F8CE0E001BB83D /* PlayerEvents */,
 				1AB6F2D627F99D80004BF6AF /* Effectors */,
 				A11A00AF27F8CDED001BB83D /* UtilityEvents */,
@@ -2004,7 +1990,6 @@
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
 				3E864D16280D62C4006BD226 /* KnifeKillEffectCreator.swift in Sources */,
 				9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */,
-				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
 				3E61A115280C4E7100BD8470 /* BlackoutEffectCreator.swift in Sources */,
 				3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */,
 				3E363302280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift in Sources */,
@@ -2139,7 +2124,6 @@
 				1AD5D463280D32AC0071ACE1 /* HUDs.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
-				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
 				936257BE280AAE7300C4DFC0 /* MetricsSystem.swift in Sources */,
 				1AD5D450280C0E200071ACE1 /* AreaUnit.swift in Sources */,
 				A13B8C44280A952100EA3FBA /* PowerUpLocationPressedEvent.swift in Sources */,
