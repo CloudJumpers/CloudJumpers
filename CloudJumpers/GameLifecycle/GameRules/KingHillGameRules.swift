@@ -31,7 +31,7 @@ class KingHillGameRules: GameRules {
         }
         let scoreLabel = StaticLabel(
             at: Constants.scoreLabelPosition,
-            size: Constants.scoreLabelSize,
+            fontSize: Constants.labelFontSize,
             text: "\(playerScore)")
 
         self.scoreLabel = scoreLabel
