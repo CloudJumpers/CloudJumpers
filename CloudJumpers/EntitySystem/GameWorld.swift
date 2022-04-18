@@ -54,6 +54,7 @@ class GameWorld {
         systemManager.register(EffectorDetachSystem(for: entityManager))
         systemManager.register(BlackoutSystem(for: entityManager))
         systemManager.register(GodPowerSpawnSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(HUDSystem(for: entityManager))
     }
 }
 
