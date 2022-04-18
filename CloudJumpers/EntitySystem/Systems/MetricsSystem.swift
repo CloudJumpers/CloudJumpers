@@ -19,6 +19,7 @@ class MetricsSystem: System {
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
+        self.dispatcher = dispatcher
         self.transientCounts = [:]
         self.counts = [:]
     }
