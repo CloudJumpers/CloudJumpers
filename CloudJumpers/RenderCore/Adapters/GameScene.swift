@@ -180,10 +180,6 @@ class GameScene: SKScene {
         alpha = 1
         backgroundColor = .white
     }
-
-    deinit {
-        print("gamescene deinit")
-    }
 }
 
 // MARK: - SKPhysicsContactDelegate
