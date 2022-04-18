@@ -766,8 +766,8 @@
 				1A13D77A27FD9BAC00A28182 /* RenderCore */,
 				A1DBB84327D884290077AB96 /* Constants */,
 				1A94D93227EB41B5001D8A86 /* Input */,
-				1ACE97BC27EB2650005AA18B /* EntitySystem */,
-				A1DBB82827D884200077AB96 /* GameEngine */,
+				1ACE97BC27EB2650005AA18B /* GameWorld */,
+				A1DBB82827D884200077AB96 /* GameManager */,
 				A1347AA927DA66A10011CF40 /* Events */,
 				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
 				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
@@ -855,22 +855,12 @@
 		1A94D94627ED8709001D8A86 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				3E3632FE2809975000FAD7A8 /* PowerUpComponent */,
+				A1050894280DD2230055769E /* CoreComponents */,
+				3E3632FE2809975000FAD7A8 /* PowerUpComponents */,
+				A1050895280DD2590055769E /* PlayerComponents */,
+				A1050896280DD2890055769E /* EnvironmentComponents */,
 				1ADEDD8F27F58D1600C3AFD3 /* Tags */,
-				1AD5D44D280C0C700071ACE1 /* AreaComponent.swift */,
-				3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */,
-				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
-				3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */,
-				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
-				1A24DC182800B0BA00E48B64 /* PositionComponent.swift */,
-				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
-				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
-				1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */,
-				1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */,
-				3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */,
 				A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */,
-				A16C8FC728033B07001B2E7F /* StandOnComponent.swift */,
-				A1AE31D928092FF200FABC0E /* LabelComponent.swift */,
 				1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */,
 			);
 			path = Components;
@@ -879,17 +869,9 @@
 		1A94D94B27ED8709001D8A86 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				A1050893280DD1F00055769E /* GameEnvironments */,
+				A1050892280DD1DF0055769E /* Characters */,
 				3E3632D6280961DE00FAD7A8 /* PowerUp */,
-				1AD5D44B280C0C2C0071ACE1 /* Area.swift */,
-				93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */,
-				1A94D94F27ED8709001D8A86 /* Player.swift */,
-				A19A7A2A27F8D79D007E1C11 /* Guest.swift */,
-				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
-				3E3E0BEE27F6D5C900BF526C /* Floor.swift */,
-				1A94D94E27ED8709001D8A86 /* Platform.swift */,
-				3E3E0BF027F6D61200BF526C /* Wall.swift */,
-				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
-				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
 				A1AE31D728092EF500FABC0E /* StaticLabel.swift */,
 				1AD5D464280D32CB0071ACE1 /* HUD.swift */,
 			);
@@ -899,23 +881,12 @@
 		1A94D95027ED8709001D8A86 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
-				3E3632F92809970B00FAD7A8 /* PowerUpSystem */,
-				1A94D95227ED8709001D8A86 /* TimedSystem.swift */,
-				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
-				3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */,
-				3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */,
-				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
-				A1D786762801D83700C5CE49 /* PhysicsSystem.swift */,
-				A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */,
-				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
-				3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */,
-				A1D786822801EE0100C5CE49 /* PlayerStateSystem.swift */,
-				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
-				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
+				A1050898280DD2EE0055769E /* CoreSystems */,
+				A1050899280DD3270055769E /* EnvironmentSystems */,
+				3E3632F92809970B00FAD7A8 /* PowerUpSystems */,
+				A105089A280DD36D0055769E /* SpawnSystems */,
+				A105089B280DD3850055769E /* PlayerSystems */,
 				936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */,
-				A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */,
-				93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */,
-				1AD5D468280D36370071ACE1 /* HUDSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -987,7 +958,7 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
-		1ACE97BC27EB2650005AA18B /* EntitySystem */ = {
+		1ACE97BC27EB2650005AA18B /* GameWorld */ = {
 			isa = PBXGroup;
 			children = (
 				1ACE97C527EB26BB005AA18B /* Entity.swift */,
@@ -1000,7 +971,7 @@
 				1A94D94627ED8709001D8A86 /* Components */,
 				1A94D95027ED8709001D8A86 /* Systems */,
 			);
-			path = EntitySystem;
+			path = GameWorld;
 			sourceTree = "<group>";
 		};
 		1AD5D470280D5A130071ACE1 /* Fonts */ = {
@@ -1085,7 +1056,7 @@
 			path = PowerUp;
 			sourceTree = "<group>";
 		};
-		3E3632F92809970B00FAD7A8 /* PowerUpSystem */ = {
+		3E3632F92809970B00FAD7A8 /* PowerUpSystems */ = {
 			isa = PBXGroup;
 			children = (
 				3E3632D9280961F300FAD7A8 /* FreezeSystem.swift */,
@@ -1096,10 +1067,10 @@
 				3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */,
 				3E864D11280D60EF006BD226 /* KnifeKillSystem.swift */,
 			);
-			path = PowerUpSystem;
+			path = PowerUpSystems;
 			sourceTree = "<group>";
 		};
-		3E3632FE2809975000FAD7A8 /* PowerUpComponent */ = {
+		3E3632FE2809975000FAD7A8 /* PowerUpComponents */ = {
 			isa = PBXGroup;
 			children = (
 				3E3632F3280990F700FAD7A8 /* SlowmoComponent.swift */,
@@ -1110,7 +1081,7 @@
 				3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */,
 				3E864D13280D6125006BD226 /* KnifeKillComponent.swift */,
 			);
-			path = PowerUpComponent;
+			path = PowerUpComponents;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -1189,14 +1160,6 @@
 				934789AB27DEEA5B00324DAF /* AuthToastConstants.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		934789AE27DEF6F400324DAF /* Game */ = {
-			isa = PBXGroup;
-			children = (
-				3E246B4727DDAB1300D51300 /* GameViewController.swift */,
-			);
-			path = Game;
 			sourceTree = "<group>";
 		};
 		934789B127DF04D900324DAF /* Lobby */ = {
@@ -1416,7 +1379,6 @@
 				9360243C280A7178004A7394 /* Achievements */,
 				9353AE0B27E6E41A00B26E63 /* Landing */,
 				934789B127DF04D900324DAF /* Lobby */,
-				934789AE27DEF6F400324DAF /* Game */,
 				936228EC27F6285400BB05FE /* PostGame */,
 				934789AA27DEEA4D00324DAF /* Authentication */,
 			);
@@ -1544,6 +1506,107 @@
 			path = Subscribers;
 			sourceTree = "<group>";
 		};
+		A1050892280DD1DF0055769E /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				A19A7A2A27F8D79D007E1C11 /* Guest.swift */,
+				1A94D94F27ED8709001D8A86 /* Player.swift */,
+				93ADD1C128047E8C004E0E87 /* ShadowGuest.swift */,
+			);
+			path = Characters;
+			sourceTree = "<group>";
+		};
+		A1050893280DD1F00055769E /* GameEnvironments */ = {
+			isa = PBXGroup;
+			children = (
+				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
+				1AD5D44B280C0C2C0071ACE1 /* Area.swift */,
+				3E3E0BEE27F6D5C900BF526C /* Floor.swift */,
+				1A94D94E27ED8709001D8A86 /* Platform.swift */,
+				3E3E0BF027F6D61200BF526C /* Wall.swift */,
+				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
+				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
+			);
+			path = GameEnvironments;
+			sourceTree = "<group>";
+		};
+		A1050894280DD2230055769E /* CoreComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
+				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
+				1A24DC182800B0BA00E48B64 /* PositionComponent.swift */,
+				1A94D94827ED8709001D8A86 /* AnimationComponent.swift */,
+				1A94D94A27ED8709001D8A86 /* TimedComponent.swift */,
+				A1AE31D928092FF200FABC0E /* LabelComponent.swift */,
+			);
+			path = CoreComponents;
+			sourceTree = "<group>";
+		};
+		A1050895280DD2590055769E /* PlayerComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1A94D97027EEEC36001D8A86 /* InventoryComponent.swift */,
+				1ADEDD9427F5ADC100C3AFD3 /* OwnerComponent.swift */,
+				A16C8FC728033B07001B2E7F /* StandOnComponent.swift */,
+			);
+			path = PlayerComponents;
+			sourceTree = "<group>";
+		};
+		A1050896280DD2890055769E /* EnvironmentComponents */ = {
+			isa = PBXGroup;
+			children = (
+				1AD5D44D280C0C700071ACE1 /* AreaComponent.swift */,
+				3E3E0BF627F6DC9D00BF526C /* DisasterComponent.swift */,
+				3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */,
+				3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */,
+			);
+			path = EnvironmentComponents;
+			sourceTree = "<group>";
+		};
+		A1050898280DD2EE0055769E /* CoreSystems */ = {
+			isa = PBXGroup;
+			children = (
+				1A94D95227ED8709001D8A86 /* TimedSystem.swift */,
+				A1D786762801D83700C5CE49 /* PhysicsSystem.swift */,
+				A1D786862801FABB00C5CE49 /* AnimateSystem.swift */,
+				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
+				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
+			);
+			path = CoreSystems;
+			sourceTree = "<group>";
+		};
+		A1050899280DD3270055769E /* EnvironmentSystems */ = {
+			isa = PBXGroup;
+			children = (
+				3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */,
+				3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */,
+				93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */,
+				3E61A0FC280BB98900BD8470 /* EffectorDetachSystem.swift */,
+				1AD5D468280D36370071ACE1 /* HUDSystem.swift */,
+			);
+			path = EnvironmentSystems;
+			sourceTree = "<group>";
+		};
+		A105089A280DD36D0055769E /* SpawnSystems */ = {
+			isa = PBXGroup;
+			children = (
+				A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */,
+				A1D7867E2801E62600C5CE49 /* PowerSpawnSystem.swift */,
+			);
+			path = SpawnSystems;
+			sourceTree = "<group>";
+		};
+		A105089B280DD3850055769E /* PlayerSystems */ = {
+			isa = PBXGroup;
+			children = (
+				A1D786822801EE0100C5CE49 /* PlayerStateSystem.swift */,
+				A1D7869128020D3700C5CE49 /* InventorySystem.swift */,
+				A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */,
+			);
+			path = PlayerSystems;
+			sourceTree = "<group>";
+		};
 		A11A00AF27F8CDED001BB83D /* UtilityEvents */ = {
 			isa = PBXGroup;
 			children = (
@@ -1653,14 +1716,15 @@
 			path = ContactEvents;
 			sourceTree = "<group>";
 		};
-		A1DBB82827D884200077AB96 /* GameEngine */ = {
+		A1DBB82827D884200077AB96 /* GameManager */ = {
 			isa = PBXGroup;
 			children = (
+				3E246B4727DDAB1300D51300 /* GameViewController.swift */,
 				1AC1605227F2F56D006E4018 /* GameManager.swift */,
 				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 				1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */,
 			);
-			path = GameEngine;
+			path = GameManager;
 			sourceTree = "<group>";
 		};
 		A1DBB84327D884290077AB96 /* Constants */ = {
