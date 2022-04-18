@@ -8,9 +8,8 @@
 import Foundation
 
 struct DemoteGodEvent: Event {
-    var timestamp: TimeInterval
-
-    var entityID: EntityID
+    let timestamp: TimeInterval
+    let entityID: EntityID
 
     init(onEntityWith id: EntityID, at timestamp: TimeInterval = EventManager.timestamp) {
         self.timestamp = timestamp
