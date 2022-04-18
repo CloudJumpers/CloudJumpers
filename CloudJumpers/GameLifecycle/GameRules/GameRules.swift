@@ -58,6 +58,7 @@ extension GameRules {
         target.activateSystem(ofType: SlowmoSystem.self)
         target.activateSystem(ofType: TeleportSystem.self)
         target.activateSystem(ofType: BlackoutSystem.self)
+        target.activateSystem(ofType: KnifeKillSystem.self)
         target.activateSystem(ofType: EffectorDetachSystem.self)
     }
 

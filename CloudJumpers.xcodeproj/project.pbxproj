@@ -154,6 +154,12 @@
 		3E61A127280D409E00BD8470 /* DisasterTransformSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */; };
 		3E61A129280D420F00BD8470 /* DisasterTransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
+		3E864D12280D60EF006BD226 /* KnifeKillSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D11280D60EF006BD226 /* KnifeKillSystem.swift */; };
+		3E864D14280D6125006BD226 /* KnifeKillComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D13280D6125006BD226 /* KnifeKillComponent.swift */; };
+		3E864D16280D62C4006BD226 /* KnifeKillEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D15280D62C4006BD226 /* KnifeKillEffectCreator.swift */; };
+		3E864D1C280D6D47006BD226 /* KilledEntityEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */; };
+		3E864D1E280D6D6C006BD226 /* ExternalKillEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */; };
+		3E864D20280D6E4A006BD226 /* KillEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1F280D6E4A006BD226 /* KillEvent.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
@@ -490,6 +496,12 @@
 		3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterTransformSystem.swift; sourceTree = "<group>"; };
 		3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterTransformComponent.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
+		3E864D11280D60EF006BD226 /* KnifeKillSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnifeKillSystem.swift; sourceTree = "<group>"; };
+		3E864D13280D6125006BD226 /* KnifeKillComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnifeKillComponent.swift; sourceTree = "<group>"; };
+		3E864D15280D62C4006BD226 /* KnifeKillEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnifeKillEffectCreator.swift; sourceTree = "<group>"; };
+		3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KilledEntityEventCommand.swift; sourceTree = "<group>"; };
+		3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalKillEntityEvent.swift; sourceTree = "<group>"; };
+		3E864D1F280D6E4A006BD226 /* KillEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillEvent.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
@@ -1041,6 +1053,7 @@
 				3E61A10C280C147B00BD8470 /* SlowmoEffectCreator.swift */,
 				3E61A10E280C148800BD8470 /* TeleportEffectCreator.swift */,
 				3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */,
+				3E864D15280D62C4006BD226 /* KnifeKillEffectCreator.swift */,
 			);
 			path = PowerUp;
 			sourceTree = "<group>";
@@ -1054,6 +1067,7 @@
 				3EA7C8AD2803023C009BCA63 /* PowerUpSystem.swift */,
 				3E3632FA2809972900FAD7A8 /* TeleportSystem.swift */,
 				3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */,
+				3E864D11280D60EF006BD226 /* KnifeKillSystem.swift */,
 			);
 			path = PowerUpSystem;
 			sourceTree = "<group>";
@@ -1067,6 +1081,7 @@
 				1A245D7527F6CDE2004FA29C /* PowerUpComponent.swift */,
 				3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */,
 				3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */,
+				3E864D13280D6125006BD226 /* KnifeKillComponent.swift */,
 			);
 			path = PowerUpComponent;
 			sourceTree = "<group>";
@@ -1117,6 +1132,7 @@
 				3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */,
 				A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */,
 				A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */,
+				3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1216,6 +1232,7 @@
 				3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */,
 				A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */,
 				A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */,
+				3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1512,6 +1529,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */,
+				3E864D1F280D6E4A006BD226 /* KillEvent.swift */,
 				A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */,
 				A1D7868F280209D500C5CE49 /* ObtainEvent.swift */,
 				A1C00150280B575E004D5059 /* PromoteGodEvent.swift */,
@@ -1886,6 +1904,7 @@
 				1A94D97127EEEC36001D8A86 /* InventoryComponent.swift in Sources */,
 				1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */,
 				3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */,
+				3E864D1C280D6D47006BD226 /* KilledEntityEventCommand.swift in Sources */,
 				A1D786662801922300C5CE49 /* JumpEvent.swift in Sources */,
 				934789C227DF0F7F00324DAF /* GameLobby.swift in Sources */,
 				3E61A10B280C146700BD8470 /* ConfuseEffectCreator.swift in Sources */,
@@ -1983,6 +2002,7 @@
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
 				1AD5D469280D36370071ACE1 /* HUDSystem.swift in Sources */,
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
+				3E864D16280D62C4006BD226 /* KnifeKillEffectCreator.swift in Sources */,
 				9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */,
 				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
 				3E61A115280C4E7100BD8470 /* BlackoutEffectCreator.swift in Sources */,
@@ -2025,10 +2045,12 @@
 				1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */,
 				3EA7C8AE2803023C009BCA63 /* PowerUpSystem.swift in Sources */,
 				3E246B5327DE05E500D51300 /* SpriteZPosition.swift in Sources */,
+				3E864D14280D6125006BD226 /* KnifeKillComponent.swift in Sources */,
 				9396E959280032190090A8C9 /* PreGameRestDelegate.swift in Sources */,
 				3E3632F22809903900FAD7A8 /* SlowmoSystem.swift in Sources */,
 				1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */,
 				A1D8555C280491BF000C4CA7 /* RuleModifiable.swift in Sources */,
+				3E864D20280D6E4A006BD226 /* KillEvent.swift in Sources */,
 				3E3632D8280961E800FAD7A8 /* FreezeComponent.swift in Sources */,
 				1A94D95A27ED8709001D8A86 /* Player.swift in Sources */,
 				A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */,
@@ -2044,6 +2066,7 @@
 				3E61A127280D409E00BD8470 /* DisasterTransformSystem.swift in Sources */,
 				A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */,
 				1AAB1E2128002F0A00378382 /* SystemManager.swift in Sources */,
+				3E864D1E280D6D6C006BD226 /* ExternalKillEntityEvent.swift in Sources */,
 				A1D8555E2804A32C000C4CA7 /* TopPlatformTag.swift in Sources */,
 				3EA7C89127FAF5C1009BCA63 /* NullJumpEffector.swift in Sources */,
 				A1347AB127DA6BE00011CF40 /* Event.swift in Sources */,
@@ -2084,6 +2107,7 @@
 				3E246B4827DDAB1300D51300 /* GameViewController.swift in Sources */,
 				3E61A117280C4EB900BD8470 /* BlackoutComponent.swift in Sources */,
 				A1409A2C27ECB633000008E8 /* GameRules.swift in Sources */,
+				3E864D12280D60EF006BD226 /* KnifeKillSystem.swift in Sources */,
 				1AE9D8A827FEBB49002B0A1E /* Characters.swift in Sources */,
 				1AB6F2D127F98F57004BF6AF /* Effector.swift in Sources */,
 				1A24DC172800AA3E00E48B64 /* PhysicsBody.swift in Sources */,
