@@ -25,7 +25,6 @@ class RemoveSystem: System {
         self.boundSize = boundSize
     }
 
-    // TODO: Should system be able to remove entities ?
     func update(within time: CGFloat) {
         guard let manager = manager else {
             return
