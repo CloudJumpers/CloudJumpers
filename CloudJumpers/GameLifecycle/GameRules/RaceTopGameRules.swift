@@ -59,15 +59,13 @@ class RaceTopGameRules: GameRules {
 
     func update(within time: CGFloat) {
         guard let target = target,
-              let timer = timer,
-              let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
+              let timer = timer
         else {
             return
         }
-        let timeString = timedComponent.time.convertToTimeString()
 
         updateRespawnIfPlayerOnSameCloudRule(target: target)
-        updateLabelWithValue(timeString, label: timer, target: target)
+        updateCountUpTimer(target: target, timer: timer)
     }
 
     func hasGameEnd() -> Bool {

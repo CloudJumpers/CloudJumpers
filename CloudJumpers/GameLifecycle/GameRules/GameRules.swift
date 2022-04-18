@@ -74,6 +74,15 @@ extension GameRules {
         return timer
     }
 
+    func updateCountUpTimer(target: RuleModifiable, timer: StaticLabel) {
+        guard let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
+        else {
+            return
+        }
+        let timeString = timedComponent.time.convertToTimeString()
+        updateLabelWithValue(timeString, label: timer, target: target)
+    }
+
     func updateLabelWithValue(_ value: String, label: StaticLabel, target: RuleModifiable) {
         guard let labelComponent = target.component(ofType: LabelComponent.self, of: label) else {
             return

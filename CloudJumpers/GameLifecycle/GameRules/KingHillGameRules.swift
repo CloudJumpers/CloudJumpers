@@ -64,7 +64,6 @@ class KingHillGameRules: GameRules {
             }
             target?.add(character)
         }
-
     }
 
     func enableHostSystems() {
@@ -77,43 +76,11 @@ class KingHillGameRules: GameRules {
             return
         }
 
-        updateGodStatus(target: target)
+        updateGodStatusRule(target: target)
         updateRespawnIfPlayerOnSameCloudRule(target: target)
         updateRespawnIfPlayerOnSamePlatformRule(target: target)
-        updateScore(target: target)
+        updateScoreRule(target: target)
         updateCountDownTimer(target: target)
-    }
-
-    private func updateScore(target: RuleModifiable) {
-        guard let scoreLabel = scoreLabel,
-              let playerID = playerInfo?.playerId,
-              let playerPositionComponent = target.component(ofType: PositionComponent.self, of: playerID),
-              let platform = target.components(ofType: TopPlatformTag.self).first?.entity,
-              let platformPositionComponent = target.component(ofType: PositionComponent.self, of: platform.id),
-              let worldHeight = target.components(ofType: AreaComponent.self).first?.size.height
-        else {
-            return
-        }
-        // TODO: Check correctness of this
-        let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
-        let scoreModifier = (distanceToTop / worldHeight) * KingHillGameRules.scoreRatio
-
-        let score = max(1 - scoreModifier, 0) + KingHillGameRules.scoreBias
-        playerScore += score
-        updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
-    }
-
-    private func updateGodStatus(target: RuleModifiable) {
-        guard let playerID = playerInfo?.playerId else {
-            return
-        }
-        if isPlayerOnTopPlatform(target: target) {
-            target.add(PromoteGodEvent(onEntityWith: playerID))
-            target.activateSystem(ofType: GodPowerSpawnSystem.self)
-        } else {
-            target.add(DemoteGodEvent(onEntityWith: playerID))
-            target.deactivateSystem(ofType: GodPowerSpawnSystem.self)
-        }
     }
 
     private func updateCountDownTimer(target: RuleModifiable) {
@@ -146,5 +113,39 @@ class KingHillGameRules: GameRules {
             deaths: metrics[String(describing: RespawnEvent.self)] ?? 0
         )
     }
+}
 
+// MARK: Specific Game Rules
+extension KingHillGameRules {
+    private func updateScoreRule(target: RuleModifiable) {
+        guard let scoreLabel = scoreLabel,
+              let playerID = playerInfo?.playerId,
+              let playerPositionComponent = target.component(ofType: PositionComponent.self, of: playerID),
+              let platform = target.components(ofType: TopPlatformTag.self).first?.entity,
+              let platformPositionComponent = target.component(ofType: PositionComponent.self, of: platform.id),
+              let worldHeight = target.components(ofType: AreaComponent.self).first?.size.height
+        else {
+            return
+        }
+        // TODO: Check correctness of this
+        let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
+        let scoreModifier = (distanceToTop / worldHeight) * KingHillGameRules.scoreRatio
+
+        let score = max(1 - scoreModifier, 0) + KingHillGameRules.scoreBias
+        playerScore += score
+        updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
+    }
+
+    private func updateGodStatusRule(target: RuleModifiable) {
+        guard let playerID = playerInfo?.playerId else {
+            return
+        }
+        if isPlayerOnTopPlatform(target: target) {
+            target.add(PromoteGodEvent(onEntityWith: playerID))
+            target.activateSystem(ofType: GodPowerSpawnSystem.self)
+        } else {
+            target.add(DemoteGodEvent(onEntityWith: playerID))
+            target.deactivateSystem(ofType: GodPowerSpawnSystem.self)
+        }
+    }
 }
