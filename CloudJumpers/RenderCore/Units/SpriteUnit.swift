@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 16/4/22.
 //
 
+import RenderCore
+
 class SpriteUnit: RenderUnit {
     unowned var target: Simulatable?
 

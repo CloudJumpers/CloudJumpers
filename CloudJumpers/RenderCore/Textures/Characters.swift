@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 7/4/22.
 //
 
+import RenderCore
+
 enum Characters: TextureSetName {
     case Character1
     case ShadowCharacter1
@@ -43,7 +45,7 @@ extension Characters {
     }
 
     private func frames(with name: Frames) -> [TextureFrame] {
-        let textureNames = Texture.set(of: rawValue).sortedTextureNames
+        let textureNames = Texture.textureNames(from: rawValue)
         let frameNames = textureNames.filter { $0.contains(name.rawValue) }
         return frameNames.map { TextureFrame(from: rawValue, $0) }
     }

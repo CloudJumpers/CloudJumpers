@@ -7,13 +7,17 @@
 
 import SpriteKit
 
-struct Texture {
-    static func texture(of textureFrame: TextureFrame) -> SKTexture {
+public struct Texture {
+    public static func texture(of textureFrame: TextureFrame) -> SKTexture {
         set(of: textureFrame.setName).textureNamed(textureFrame.name)
     }
 
-    static func textures(of textureFrames: [TextureFrame]) -> [SKTexture] {
+    public static func textures(of textureFrames: [TextureFrame]) -> [SKTexture] {
         textureFrames.map(texture(of:))
+    }
+
+    public static func textureNames(from setName: TextureSetName) -> [TextureName] {
+        set(of: setName).sortedTextureNames
     }
 
     static func set(of name: TextureSetName) -> SKTextureAtlas {

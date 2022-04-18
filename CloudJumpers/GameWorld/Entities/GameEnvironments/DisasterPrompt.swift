@@ -5,7 +5,8 @@
 //  Created by Eric Bryan on 2/4/22.
 //
 
-import SpriteKit
+import Foundation
+import CoreGraphics
 
 class DisasterPrompt: Entity {
     let id: EntityID

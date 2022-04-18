@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreGraphics
-import SpriteKit
 
 class Player: Entity {
     let id: EntityID

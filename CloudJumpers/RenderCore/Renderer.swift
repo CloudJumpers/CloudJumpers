@@ -5,7 +5,8 @@
 //  Created by Phillmont Muktar on 7/4/22.
 //
 
-import SpriteKit
+import CoreGraphics
+import RenderCore
 
 typealias NodesMap = [NodeCore: Node]
 typealias EntityNodeMap = [EntityID: Node]

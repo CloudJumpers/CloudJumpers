@@ -5,7 +5,7 @@
 //  Created by Eric Bryan on 26/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
 
 class PowerUp: Entity {
     let id: EntityID

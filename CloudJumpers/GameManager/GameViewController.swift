@@ -1,5 +1,5 @@
-import Combine
 import SpriteKit
+import RenderCore
 
 class GameViewController: UIViewController {
     private var gameManager: GameManager?
@@ -158,7 +158,7 @@ class GameViewController: UIViewController {
 
     private func addHomeButton() {
         let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
-        button.position = Constants.homeButtonPosition
+        button.configure(at: Constants.homeButtonPosition)
         button.delegate = self
         scene?.addChild(button, static: true)
     }

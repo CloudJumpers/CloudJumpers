@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 17/4/22.
 //
 
+import RenderCore
+
 class AreaUnit: RenderUnit {
     unowned var target: Simulatable?
     private unowned var scene: Scene?

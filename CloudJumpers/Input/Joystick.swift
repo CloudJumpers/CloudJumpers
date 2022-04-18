@@ -5,19 +5,20 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import UIKit
+import RenderCore
 
-class Joystick: SKSpriteNode {
+class Joystick: SpriteNodeCore {
     private unowned var responder: InputResponder?
     private var active = false
-    private var innerStickNode: SKSpriteNode?
+    private var innerStickNode: SpriteNodeCore?
 
     var displacement: CGVector?
 
     init(at position: CGPoint, to responder: InputResponder) {
         self.responder = responder
         super.init(
-            texture: SKTexture(imageNamed: Images.outerStick.name),
+            texture: Texture.texture(of: Buttons.outerStick.frame),
             color: .clear,
             size: Constants.outerstickSize)
         configureNode(at: position)
@@ -101,7 +102,7 @@ class Joystick: SKSpriteNode {
     }
 
     private func addInnerStickNode() {
-        let node = SKSpriteNode(imageNamed: Images.innerStick.name)
+        let node = SpriteNodeCore(texture: Texture.texture(of: Buttons.innerStick.frame))
         node.size = Constants.innerstickSize
         node.zPosition = SpriteZPosition.innerStick.rawValue
         innerStickNode = node

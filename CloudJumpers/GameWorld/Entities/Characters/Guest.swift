@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreGraphics
-import SpriteKit
 
 class Guest: Entity {
     let id: EntityID

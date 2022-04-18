@@ -5,7 +5,7 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
 
 class Platform: Entity {
     let id: EntityID

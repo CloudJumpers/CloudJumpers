@@ -5,7 +5,8 @@
 //  Created by Phillmont Muktar on 24/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
+import RenderCore
 
 class GameManager {
     unowned var delegate: GameManagerDelegate?

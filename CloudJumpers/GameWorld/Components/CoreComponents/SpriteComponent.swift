@@ -5,7 +5,8 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
+import RenderCore
 
 class SpriteComponent: Component {
     var texture: TextureFrame

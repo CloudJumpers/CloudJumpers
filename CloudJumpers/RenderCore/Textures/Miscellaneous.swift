@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 14/4/22.
 //
 
+import RenderCore
+
 enum Miscellaneous: TextureName {
     case confuse
     case freeze

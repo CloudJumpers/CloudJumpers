@@ -7,17 +7,17 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
-    weak var updateDelegate: SceneUpdateDelegate?
-    unowned var sceneDelegate: GameSceneDelegate?
+public class GameScene: SKScene {
+    public weak var updateDelegate: SceneUpdateDelegate?
+    public unowned var sceneDelegate: GameSceneDelegate?
 
     private var lastUpdateTime: TimeInterval = -1
     private var cameraNode: Camera?
     private var cameraAnchorNode: SKNode?
 
-    var scrollable = false
+    public var scrollable = false
 
-    var isBlank = false {
+    public var isBlank = false {
         didSet { isBlank ? blankScreen() : unblankScreen() }
     }
 
@@ -25,14 +25,14 @@ class GameScene: SKScene {
     var previousTouchStoppedCameraInertia = false
 
     // MARK: - Scene Lifecycle
-    override func sceneDidLoad() {
+    override public func sceneDidLoad() {
         super.sceneDidLoad()
         backgroundColor = .white
         setUpPhysicsWorld()
         setUpCamera()
     }
 
-    override func update(_ currentTime: TimeInterval) {
+    override public func update(_ currentTime: TimeInterval) {
         guard lastUpdateTime != -1 else {
             lastUpdateTime = currentTime
             return
@@ -45,12 +45,12 @@ class GameScene: SKScene {
         panCameraToAnchorNode()
     }
 
-    override func didFinishUpdate() {
+    override public func didFinishUpdate() {
         updateDelegate?.sceneDidFinishUpdate(self)
     }
 
     // MARK: - Touches
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
 
         let touchLocations = touches.map { $0.location(in: self) }
@@ -65,7 +65,7 @@ class GameScene: SKScene {
         touchBeganTouch = touch
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
 
         let touchLocations = touches.map { $0.location(in: self) }
@@ -78,7 +78,7 @@ class GameScene: SKScene {
         moveCameraToTouch(at: touch.location(in: cameraNode ?? self))
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
 
         let touchLocations = touches.map { $0.location(in: self) }
@@ -95,7 +95,7 @@ class GameScene: SKScene {
     }
 
     /// `static = true` adds a child that is always positioned relative to the camera's viewport.
-    func addChild(_ node: NodeCore, static: Bool = false) {
+    public func addChild(_ node: NodeCore, static: Bool = false) {
         if `static` {
             cameraNode?.addChild(node)
         } else {
@@ -103,7 +103,7 @@ class GameScene: SKScene {
         }
     }
 
-    func removeChild(_ node: NodeCore) {
+    public func removeChild(_ node: NodeCore) {
         node.removeFromParent()
 
         if cameraAnchorNode == node {
@@ -187,19 +187,19 @@ class GameScene: SKScene {
 
 // MARK: - SKPhysicsContactDelegate
 extension GameScene: SKPhysicsContactDelegate {
-    func didBegin(_ contact: SKPhysicsContact) {
-        guard let contactNodes = contactNodes(of: contact) else {
+    public func didBegin(_ contact: SKPhysicsContact) {
+        guard let (nodeA, nodeB) = contactNodes(of: contact) else {
             return
         }
-        let (nodeA, nodeB) = contactNodes
+
         updateDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
     }
 
-    func didEnd(_ contact: SKPhysicsContact) {
-        guard let contactNodes = contactNodes(of: contact) else {
+    public func didEnd(_ contact: SKPhysicsContact) {
+        guard let (nodeA, nodeB) = contactNodes(of: contact) else {
             return
         }
-        let (nodeA, nodeB) = contactNodes
+
         updateDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
     }
 
@@ -210,11 +210,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
         guard let nodeA = updateDelegate?.node(of: skNodeA),
               let nodeB = updateDelegate?.node(of: skNodeB)
-        else {
-            print("A NodeCore was not associated with any Nodes in Renderer")
-            return nil
-//            fatalError("A NodeCore was not associated with any Nodes in Renderer")
-        }
+        else { return nil }
 
         return (nodeA, nodeB)
     }
@@ -222,7 +218,7 @@ extension GameScene: SKPhysicsContactDelegate {
 
 // MARK: - Scene
 extension GameScene: Scene {
-    var nodes: [Node] {
+    public var nodes: [Node] {
         guard let updateDelegate = updateDelegate else {
             fatalError("No SceneUpdateDelegate was associated with this GameScene")
         }
@@ -230,19 +226,19 @@ extension GameScene: Scene {
         return children.compactMap(updateDelegate.node(of:))
     }
 
-    func contains(_ node: Node) -> Bool {
+    public func contains(_ node: Node) -> Bool {
         children.contains(node.coreNode) || (cameraNode?.contains(node.coreNode) ?? false)
     }
 
-    func addChild(_ node: Node, static: Bool = false) {
+    public func addChild(_ node: Node, static: Bool = false) {
         addChild(node.coreNode, static: `static`)
     }
 
-    func removeChild(_ node: Node) {
+    public func removeChild(_ node: Node) {
         removeChild(node.coreNode)
     }
 
-    func isCameraBoundNode(_ node: Node) -> Bool {
+    public func isCameraBoundNode(_ node: Node) -> Bool {
         guard let cameraAnchorNode = cameraAnchorNode else {
             return false
         }
@@ -250,15 +246,15 @@ extension GameScene: Scene {
         return cameraAnchorNode == node.coreNode
     }
 
-    func bindCamera(to node: Node) {
+    public func bindCamera(to node: Node) {
         cameraAnchorNode = node.coreNode
     }
 
-    func isStaticNode(_ node: Node) -> Bool {
+    public func isStaticNode(_ node: Node) -> Bool {
         cameraNode?.children.contains(node.coreNode) ?? false
     }
 
-    func setStaticNode(_ node: Node) {
+    public func setStaticNode(_ node: Node) {
         guard contains(node) else {
             return
         }
@@ -267,7 +263,7 @@ extension GameScene: Scene {
         addChild(node, static: true)
     }
 
-    func setUnstaticNode(_ node: Node) {
+    public func setUnstaticNode(_ node: Node) {
         guard contains(node) else {
             return
         }

@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 17/4/22.
 //
 
+import RenderCore
+
 class LabelUnit: RenderUnit {
     unowned var target: Simulatable?
 

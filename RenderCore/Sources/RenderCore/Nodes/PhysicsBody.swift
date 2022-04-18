@@ -7,70 +7,70 @@
 
 import SpriteKit
 
-typealias PhysicsBodyCore = SKPhysicsBody
+public typealias PhysicsBodyCore = SKPhysicsBody
 
-class PhysicsBody {
+public class PhysicsBody {
     let coreBody: PhysicsBodyCore
 
-    init(rectangleOf size: CGSize, center: CGPoint = .zero) {
+    public init(rectangleOf size: CGSize, center: CGPoint = .zero) {
         coreBody = PhysicsBodyCore(rectangleOf: size, center: center)
     }
 
-    init(circleOf radius: CGFloat, center: CGPoint = .zero) {
+    public init(circleOf radius: CGFloat, center: CGPoint = .zero) {
         coreBody = PhysicsBodyCore(circleOfRadius: radius, center: center)
     }
 
-    var mass: CGFloat {
+    public var mass: CGFloat {
         get { coreBody.mass }
         set { coreBody.mass = newValue }
     }
 
-    var velocity: CGVector {
+    public var velocity: CGVector {
         get { coreBody.velocity }
         set { coreBody.velocity = newValue }
     }
 
-    var affectedByGravity: Bool {
+    public var affectedByGravity: Bool {
         get { coreBody.affectedByGravity }
         set { coreBody.affectedByGravity = newValue }
     }
 
-    var linearDamping: CGFloat {
+    public var linearDamping: CGFloat {
         get { coreBody.linearDamping }
         set { coreBody.linearDamping = newValue }
     }
 
-    var isDynamic: Bool {
+    public var isDynamic: Bool {
         get { coreBody.isDynamic }
         set { coreBody.isDynamic = newValue }
     }
 
-    var allowsRotation: Bool {
+    public var allowsRotation: Bool {
         get { coreBody.allowsRotation }
         set { coreBody.allowsRotation = newValue }
     }
 
-    var restitution: CGFloat {
+    public var restitution: CGFloat {
         get { coreBody.restitution }
         set { coreBody.restitution = newValue }
     }
 
-    var categoryBitMask: UInt32 {
+    public var categoryBitMask: UInt32 {
         get { coreBody.categoryBitMask }
         set { coreBody.categoryBitMask = newValue }
     }
 
-    var collisionBitMask: UInt32 {
+    public var collisionBitMask: UInt32 {
         get { coreBody.collisionBitMask }
         set { coreBody.collisionBitMask = newValue }
     }
 
-    var contactTestBitMask: UInt32 {
+    public var contactTestBitMask: UInt32 {
         get { coreBody.contactTestBitMask }
         set { coreBody.contactTestBitMask = newValue }
     }
 
-    func applyImpulse(_ impulse: CGVector) {
+    public func applyImpulse(_ impulse: CGVector) {
         coreBody.applyImpulse(impulse)
     }
 }

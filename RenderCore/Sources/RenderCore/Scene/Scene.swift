@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-protocol Scene: AnyObject {
+public protocol Scene: AnyObject {
     var updateDelegate: SceneUpdateDelegate? { get set }
     var nodes: [Node] { get }
     var size: CGSize { get }

@@ -7,30 +7,30 @@
 
 import SpriteKit
 
-typealias LabelNodeCore = SKLabelNode
+public typealias LabelNodeCore = SKLabelNode
 
-class LabelNode: Node {
-    init(text: String) {
+public class LabelNode: Node {
+    public init(text: String) {
         super.init()
         coreNode = LabelNodeCore(text: text)
     }
 
-    var text: String? {
+    public var text: String? {
         get { coreLabelNode.text }
         set { coreLabelNode.text = newValue }
     }
 
-    var fontName: String? {
+    public var fontName: String? {
         get { coreLabelNode.fontName }
         set { coreLabelNode.fontName = newValue }
     }
 
-    var fontSize: CGFloat {
+    public var fontSize: CGFloat {
         get { coreLabelNode.fontSize }
         set { coreLabelNode.fontSize = newValue }
     }
 
-    var fontColor: UIColor? {
+    public var fontColor: UIColor? {
         get { coreLabelNode.fontColor }
         set { coreLabelNode.fontColor = newValue }
     }

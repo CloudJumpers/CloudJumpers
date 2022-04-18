@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 7/4/22.
 //
 
+import RenderCore
+
 enum HUDs: TextureName {
     case hud0
     case hud1

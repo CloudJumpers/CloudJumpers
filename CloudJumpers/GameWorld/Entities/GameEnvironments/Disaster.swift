@@ -4,7 +4,7 @@
 //
 //  Created by Eric Bryan on 28/3/22.
 //
-import SpriteKit
+import CoreGraphics
 
 class Disaster: Entity {
     let id: EntityID

@@ -7,25 +7,25 @@
 
 import SpriteKit
 
-typealias SpriteNodeCore = SKSpriteNode
+public typealias SpriteNodeCore = SKSpriteNode
 
-class SpriteNode: Node {
+public class SpriteNode: Node {
     private static let animationKeyPrefix = "CJAnimate:"
-
     private var captionNode: LabelNode?
-    var activeAnimationKey: String = ""
 
-    init(texture: TextureFrame, size: CGSize) {
+    public var activeAnimationKey: String = ""
+
+    public init(texture: TextureFrame, size: CGSize) {
         super.init()
         coreNode = SpriteNodeCore(texture: Texture.texture(of: texture), size: size)
     }
 
-    var anchorPoint: CGPoint {
+    public var anchorPoint: CGPoint {
         get { coreSpriteNode.anchorPoint }
         set { coreSpriteNode.anchorPoint = newValue }
     }
 
-    override var xScale: CGFloat {
+    override public var xScale: CGFloat {
         get { super.xScale }
 
         set {
@@ -34,7 +34,7 @@ class SpriteNode: Node {
         }
     }
 
-    override var yScale: CGFloat {
+    override public var yScale: CGFloat {
         get { super.yScale }
 
         set {
@@ -43,7 +43,7 @@ class SpriteNode: Node {
         }
     }
 
-    func caption(
+    public func caption(
         _ caption: String,
         at position: CGPoint,
         size: CGFloat,
@@ -60,7 +60,7 @@ class SpriteNode: Node {
         self.captionNode = captionNode
     }
 
-    func animateLoop(with textures: [TextureFrame], interval: TimeInterval, key: String = "") {
+    public func animateLoop(with textures: [TextureFrame], interval: TimeInterval, key: String = "") {
         coreNode.removeAction(forKey: animationKey(with: activeAnimationKey))
 
         coreNode.run(.repeatForever(.animate(
@@ -73,7 +73,7 @@ class SpriteNode: Node {
         self.activeAnimationKey = key
     }
 
-    func setTexture(to texture: TextureFrame) {
+    public func setTexture(to texture: TextureFrame) {
         coreSpriteNode.texture = Texture.texture(of: texture)
     }
 

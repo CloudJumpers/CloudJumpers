@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 7/4/22.
 //
 
+import RenderCore
+
 enum Clouds: TextureName {
     case cloud1
     case cloud2
