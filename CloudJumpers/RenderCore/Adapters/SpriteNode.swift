@@ -43,12 +43,18 @@ class SpriteNode: Node {
         }
     }
 
-    func caption(with caption: String, color: UIColor = .black) {
-        let truncatedCaption = caption.truncate(by: Constants.captionMaxLength)
+    func caption(
+        _ caption: String,
+        at position: CGPoint,
+        size: CGFloat,
+        typeface: String,
+        truncateBy maxLength: Int,
+        color: UIColor = .black) {
+        let truncatedCaption = caption.truncate(by: maxLength)
         let captionNode = LabelNode(text: truncatedCaption)
-        captionNode.fontName = Constants.captionFontName
-        captionNode.fontSize = Constants.captionFontSize
-        captionNode.position = Constants.captionRelativePosition
+        captionNode.fontName = typeface
+        captionNode.fontSize = size
+        captionNode.position = position
         captionNode.fontColor = color
         addChild(captionNode)
         self.captionNode = captionNode
