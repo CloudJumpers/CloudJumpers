@@ -19,9 +19,6 @@ class PositionSystem: System {
         self.dispatcher = dispatcher
     }
 
-    func update(within time: CGFloat) {
-    }
-
     func move(entityWith id: EntityID, to position: CGPoint) {
         guard let positionComponent = manager?.component(ofType: PositionComponent.self, of: id) else {
             return

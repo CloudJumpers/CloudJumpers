@@ -21,10 +21,10 @@ class LabelUnit: RenderUnit {
         node.position = positionComponent.position
         node.name = entity.id
 
-        // TODO: Not hard-code this
-        node.fontSize = 30
+        node.fontSize = labelComponent.fontSize
+        node.zPosition = labelComponent.zPosition
+        // TODO: Should put UIColor into Component?
         node.fontColor = .black
-        node.zPosition = SpriteZPosition.label.rawValue
 
         Self.configureLabelNode(node, with: labelComponent)
         return node
