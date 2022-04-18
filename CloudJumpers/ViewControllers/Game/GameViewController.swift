@@ -217,6 +217,8 @@ extension GameViewController: GameManagerDelegate {
 // MARK: - HomeButtonDelegate
 extension GameViewController: HomeButtonDelegate {
     func didPressHomeButton() {
-        // TODO: Add logic to end game here
+        lobby?.removeDeviceUser()
+
+        performSegue(withIdentifier: SegueIdentifier.gameToLobbies, sender: nil)
     }
 }
