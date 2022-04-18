@@ -51,11 +51,13 @@ class GameViewController: UIViewController {
 
         let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
         handlers = preGameManager.getEventHandlers()
-        activeLobby.synchronizer?.updateCallback(setUpGame)
+        setUpGame()
     }
 
     private func setUpGame() {
-        guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
+        guard let activeLobby = lobby,
+              let config = activeLobby.gameConfig as? InGameConfig,
+              let handlers = handlers else {
             return
         }
 
@@ -70,6 +72,10 @@ class GameViewController: UIViewController {
 
         setUpGameManager()
         setUpInputControls()
+        activeLobby.synchronizer?.updateCallback(startGame)
+    }
+
+    private func startGame() {
         setUpSKViewAndPresent()
     }
 
