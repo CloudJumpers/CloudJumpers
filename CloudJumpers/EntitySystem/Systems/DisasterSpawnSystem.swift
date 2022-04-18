@@ -14,6 +14,13 @@ class DisasterSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
+    private var positionGenerationInfo: RandomPositionGenerationInfo? {
+        guard let size = manager?.components(ofType: AreaComponent.self).first?.size else {
+            return nil
+        }
+        return RandomPositionGenerationInfo(worldSize: size)
+    }
+
     static let  velocityGenerationInfo = RandomVelocityGenerationInfo(
         xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
         yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
@@ -26,11 +33,10 @@ class DisasterSpawnSystem: System {
 
     func update(within time: CGFloat) {
         guard RandomSpawnGenerator.isSpawning(successRate: 0.5),
-              let size = manager?.components(ofType: AreaComponent.self).first?.size
+              let positionGenerationInfo = positionGenerationInfo
         else {
             return
         }
-        let positionGenerationInfo = RandomPositionGenerationInfo(worldSize: size)
 
         let velocity = RandomSpawnGenerator.getRandomVelocity(DisasterSpawnSystem.velocityGenerationInfo)
         let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)

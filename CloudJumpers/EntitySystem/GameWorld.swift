@@ -24,7 +24,7 @@ class GameWorld {
 
         eventManager.dispatcher = self
         handlers.subscriber.setEventManager(eventManager)
-        setUpSystems(bound: scene?.size ?? .zero)
+        setUpSystems()
     }
 
     func update(within time: TimeInterval) {
@@ -33,7 +33,7 @@ class GameWorld {
         renderer?.render()
     }
 
-    private func setUpSystems(bound: CGSize) {
+    private func setUpSystems() {
         systemManager.register(PositionSystem(for: entityManager))
         systemManager.register(PhysicsSystem(for: entityManager))
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
@@ -42,8 +42,8 @@ class GameWorld {
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(InventorySystem(for: entityManager))
-        systemManager.register(HorizontalOscillationSystem(for: entityManager, boundSize: bound))
-        systemManager.register(RemoveSystem(for: entityManager, boundSize: bound))
+        systemManager.register(HorizontalOscillationSystem(for: entityManager))
+        systemManager.register(RemoveSystem(for: entityManager))
         systemManager.register(DisasterSpawnSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(PowerSpawnSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(PowerUpSystem(for: entityManager))

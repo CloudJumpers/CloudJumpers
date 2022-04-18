@@ -11,18 +11,15 @@ import CoreGraphics
 class RemoveSystem: System {
     var active = true
 
-    private var boundSize: CGSize?
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
+    private var boundSize: CGSize? {
+        manager?.components(ofType: AreaComponent.self).first?.size
+    }
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
         self.dispatcher = dispatcher
-    }
-
-    convenience init(for manager: EntityManager, boundSize: CGSize, dispatchesVia dispatcher: EventDispatcher? = nil) {
-        self.init(for: manager, dispatchesVia: dispatcher)
-        self.boundSize = boundSize
     }
 
     func update(within time: CGFloat) {
