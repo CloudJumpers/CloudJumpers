@@ -12,6 +12,8 @@ class GameManager {
 
     private var world: GameWorld
     private var rules: GameRules
+
+    private var achievementUpdater: AchievementUpdateDelegate?
     private var achievementProcessor: AchievementProcessor
 
     private(set) var isHost = false
@@ -25,6 +27,10 @@ class GameManager {
         world = GameWorld(rendersTo: scene, subscribesTo: handlers)
         self.rules = rules
         self.achievementProcessor = achievementProcessor
+        self.achievementUpdater = PollingUpdateDelegate()
+        self.achievementProcessor.updater = achievementUpdater
+        self.achievementUpdater?.processor = achievementProcessor
+
         self.rules.setTarget(world)
         self.achievementProcessor.setTarget(world)
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 class PollingUpdateDelegate: AchievementUpdateDelegate {
-    weak var manager: AchievementProcessor?
+    var processor: AchievementProcessor?
     weak var provider: MetricsProvider?
     private var timer: Timer?
 
@@ -25,16 +25,11 @@ class PollingUpdateDelegate: AchievementUpdateDelegate {
         ) { [weak self] _ in self?.pollMetrics() }
     }
 
-    func stopObservingMetrics() {
-        timer?.invalidate()
-        timer = nil
-    }
-
     private func pollMetrics() {
         guard let provider = provider else {
             return
         }
 
-        manager?.processMetrics(provider.getMetricsUpdate())
+        processor?.processMetrics(provider.getMetricsUpdate())
     }
 }
