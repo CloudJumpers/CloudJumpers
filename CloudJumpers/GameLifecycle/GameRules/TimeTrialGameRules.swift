@@ -23,7 +23,7 @@ class TimeTrialGameRules: GameRules {
             return
         }
         target.deactivateSystem(ofType: DisasterSpawnSystem.self)
-
+        target.deactivateSystem(ofType: DisasterTransformSystem.self)
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
 

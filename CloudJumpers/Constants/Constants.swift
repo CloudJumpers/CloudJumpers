@@ -82,6 +82,7 @@ struct Constants {
     static let disasterNodeSize = CGSize(width: 30.0, height: 80.0)
     static let disasterPromptSize = CGSize(width: 30.0, height: 30.0)
     static let disasterPromptPeriod = 4.0
+    static let disasterIdSuffix = "Disaster"
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
     static let disasterMass = CGFloat(1_000_000)
     static let disasterMinSpeed = Float(100.0)

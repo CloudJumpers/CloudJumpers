@@ -45,6 +45,7 @@ class GameWorld {
         systemManager.register(HorizontalOscillationSystem(for: entityManager))
         systemManager.register(RemoveSystem(for: entityManager))
         systemManager.register(DisasterSpawnSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(DisasterTransformSystem(for: entityManager))
         systemManager.register(PowerSpawnSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(PowerUpSystem(for: entityManager))
         systemManager.register(FreezeSystem(for: entityManager, dispatchesVia: self))

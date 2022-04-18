@@ -151,6 +151,8 @@
 		3E61A115280C4E7100BD8470 /* BlackoutEffectCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */; };
 		3E61A117280C4EB900BD8470 /* BlackoutComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */; };
 		3E61A119280C4EEC00BD8470 /* BlackoutSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */; };
+		3E61A127280D409E00BD8470 /* DisasterTransformSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */; };
+		3E61A129280D420F00BD8470 /* DisasterTransformComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */; };
 		3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E81C0E227EF36FE00184C55 /* PowerUp.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
@@ -484,6 +486,8 @@
 		3E61A114280C4E7100BD8470 /* BlackoutEffectCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutEffectCreator.swift; sourceTree = "<group>"; };
 		3E61A116280C4EB900BD8470 /* BlackoutComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutComponent.swift; sourceTree = "<group>"; };
 		3E61A118280C4EEC00BD8470 /* BlackoutSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackoutSystem.swift; sourceTree = "<group>"; };
+		3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterTransformSystem.swift; sourceTree = "<group>"; };
+		3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterTransformComponent.swift; sourceTree = "<group>"; };
 		3E81C0E227EF36FE00184C55 /* PowerUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUp.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
@@ -824,6 +828,7 @@
 				3E3632FE2809975000FAD7A8 /* PowerUpComponent */,
 				1ADEDD8F27F58D1600C3AFD3 /* Tags */,
 				1AD5D44D280C0C700071ACE1 /* AreaComponent.swift */,
+				3E61A128280D420F00BD8470 /* DisasterTransformComponent.swift */,
 				1A94D94727ED8709001D8A86 /* SpriteComponent.swift */,
 				3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */,
 				1A94D94927ED8709001D8A86 /* PhysicsComponent.swift */,
@@ -867,6 +872,7 @@
 				3E3632F92809970B00FAD7A8 /* PowerUpSystem */,
 				1A94D95227ED8709001D8A86 /* TimedSystem.swift */,
 				A1D7865C28018CC300C5CE49 /* RemoveSystem.swift */,
+				3E61A126280D409E00BD8470 /* DisasterTransformSystem.swift */,
 				3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */,
 				A1D786742801D34300C5CE49 /* PositionSystem.swift */,
 				A1D786762801D83700C5CE49 /* PhysicsSystem.swift */,
@@ -1931,6 +1937,7 @@
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
 				3E3632E22809643E00FAD7A8 /* ConfuseSystem.swift in Sources */,
 				936257B7280A9F2B00C4DFC0 /* MetricsProvider.swift in Sources */,
+				3E61A129280D420F00BD8470 /* DisasterTransformComponent.swift in Sources */,
 				A183D384280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */,
@@ -2031,6 +2038,7 @@
 				939AFA0D2809E86000852B8B /* AchievementDataDelegate.swift in Sources */,
 				3EA7C88727F9580F009BCA63 /* ExternalObtainEntityEvent.swift in Sources */,
 				9389E5F627D8BFA30049ADDD /* FirebaseAuthManager.swift in Sources */,
+				3E61A127280D409E00BD8470 /* DisasterTransformSystem.swift in Sources */,
 				A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */,
 				1AAB1E2128002F0A00378382 /* SystemManager.swift in Sources */,
 				A1D8555E2804A32C000C4CA7 /* TopPlatformTag.swift in Sources */,
