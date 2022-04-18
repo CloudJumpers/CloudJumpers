@@ -94,6 +94,6 @@ class FirebaseShadowPlayerEmulator: GameEventEmulator {
 
     private func onFetchSuccess() {
         eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: 1.0))
-        eventManager?.add(DisastersToggleEvent(false))
+        eventManager?.add(ShadowDisasterEffector(entityID: GameConstants.shadowPlayerID))
     }
 }
