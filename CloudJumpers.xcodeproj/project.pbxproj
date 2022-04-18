@@ -55,7 +55,6 @@
 		1A94D95927ED8709001D8A86 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94E27ED8709001D8A86 /* Platform.swift */; };
 		1A94D95A27ED8709001D8A86 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D94F27ED8709001D8A86 /* Player.swift */; };
 		1A94D95C27ED8709001D8A86 /* TimedSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D95227ED8709001D8A86 /* TimedSystem.swift */; };
-		1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */; };
 		1A94D96227EE02FD001D8A86 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96127EE02FD001D8A86 /* Events.swift */; };
 		1A94D96827EE12E3001D8A86 /* Heap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96727EE12E3001D8A86 /* Heap.swift */; };
 		1A94D96B27EE1465001D8A86 /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94D96A27EE1465001D8A86 /* PriorityQueue.swift */; };
@@ -398,7 +397,6 @@
 		1A94D94E27ED8709001D8A86 /* Platform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		1A94D94F27ED8709001D8A86 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		1A94D95227ED8709001D8A86 /* TimedSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedSystem.swift; sourceTree = "<group>"; };
-		1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKNode+EntityID.swift"; sourceTree = "<group>"; };
 		1A94D96127EE02FD001D8A86 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		1A94D96727EE12E3001D8A86 /* Heap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Heap.swift; sourceTree = "<group>"; };
 		1A94D96A27EE1465001D8A86 /* PriorityQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
@@ -798,7 +796,6 @@
 			children = (
 				A1DBB84427D884290077AB96 /* CGPoint+Extension.swift */,
 				A1DBB84527D884290077AB96 /* CGVector+Extension.swift */,
-				1A94D95F27EDEA1D001D8A86 /* SKNode+EntityID.swift */,
 				1A245D7327F6B668004FA29C /* Dictionary+Create.swift */,
 				1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */,
 				1AE9D8AE27FED1F3002B0A1E /* SKTextureAtlas+Sorted.swift */,
@@ -1994,7 +1991,6 @@
 				9385D9B127F727B700593930 /* RaceToTopPostGameManager.swift in Sources */,
 				1A13D77C27FD9BD700A28182 /* SpriteNode.swift in Sources */,
 				1AD5D44E280C0C700071ACE1 /* AreaComponent.swift in Sources */,
-				1A94D96027EDEA1D001D8A86 /* SKNode+EntityID.swift in Sources */,
 				939AFA0B2809E5A900852B8B /* LightFootedAchievement.swift in Sources */,
 				A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */,
 				1AAB1E252800349700378382 /* Simulatable.swift in Sources */,

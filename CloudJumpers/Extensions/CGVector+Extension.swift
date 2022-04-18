@@ -49,21 +49,6 @@ extension CGVector {
         CGVector(dx: -self.dx, dy: -self.dy)
     }
 
-    func scaleToUnit(with frame: CGRect) -> CGVector {
-        let scaleFactor = CGAffineTransform(scaleX: 1 / frame.maxX, y: 1 / frame.maxX)
-        return self.applying(scaleFactor)
-    }
-
-    func scaleToSize(with frame: CGRect) -> CGVector {
-        let scaleFactor = CGAffineTransform(scaleX: frame.maxX, y: frame.maxX)
-        return self.applying(scaleFactor)
-    }
-
-    func applying(_ scaleFactor: CGAffineTransform) -> CGVector {
-        let point = CGPoint(x: self.dx, y: self.dy).applying(scaleFactor)
-        return CGVector(dx: point.x, dy: point.y)
-    }
-
     var isZero: Bool {
         dx.isZero && dy.isZero
     }
