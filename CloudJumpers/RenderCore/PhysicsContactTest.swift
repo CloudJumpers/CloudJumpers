@@ -18,7 +18,8 @@ struct PhysicsContactTest {
     PhysicsCategory.platform | PhysicsCategory.floor
     static let wall: PhysicsBitMask = PhysicsCategory.cloud
     static let floor: PhysicsBitMask = PhysicsCategory.disaster
-    static let guest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor | PhysicsCategory.cloud | PhysicsCategory.platform
+    static let guest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor |
+    PhysicsCategory.cloud | PhysicsCategory.platform
     static let shadowGuest: PhysicsBitMask = PhysicsCategory.wall | PhysicsCategory.floor
     static let max: PhysicsBitMask = 0xFFFFFFFF
 }
