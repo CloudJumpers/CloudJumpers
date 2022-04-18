@@ -40,6 +40,7 @@ class PowerUpEffect: Entity {
         manager.addComponent(TimedComponent(), to: self)
         manager.addComponent(powerUpComponent, to: self)
         manager.addComponent(PositionComponent(at: position), to: self)
+        manager.addComponent(DisposableTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
