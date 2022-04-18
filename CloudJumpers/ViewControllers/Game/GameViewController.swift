@@ -111,9 +111,9 @@ class GameViewController: UIViewController {
         let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
-            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            tolerance: CGVector(dx: Constants.jumpImpulse.dy, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
-            yToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...0.8,
             firstPlatformPosition: Constants.playerInitialPosition,
             seed: config.seed
         )
