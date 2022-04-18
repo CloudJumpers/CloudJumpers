@@ -29,9 +29,11 @@ class GameViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        view = nil
+        scene = nil
+        skView = nil
         gameManager = nil
         handlers = nil
-        scene = nil
         joystick = nil
     }
 
@@ -150,13 +152,8 @@ class GameViewController: UIViewController {
 
     // MARK: - Helper Methods
     private func presentSKView() {
-        guard let scene = scene, let skView = skView else {
-            fatalError("GameScene or skView was not set up")
-        }
-
-        skView.presentScene(scene)
+        skView?.presentScene(scene)
         view = skView
-        self.skView = nil
     }
 
     private func addHomeButton() {
