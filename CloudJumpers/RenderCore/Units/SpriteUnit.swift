@@ -48,6 +48,13 @@ class SpriteUnit: RenderUnit {
         else { return }
 
         let isMainPlayer = target?.hasComponent(ofType: PlayerTag.self, in: entity) ?? false
-        node.caption(with: caption, color: isMainPlayer ? .red : .black)
+
+        node.caption(
+            caption,
+            at: Constants.captionRelativePosition,
+            size: Constants.captionFontSize,
+            typeface: Fonts.body.rawValue,
+            truncateBy: Constants.captionMaxLength,
+            color: isMainPlayer ? .red : .black)
     }
 }

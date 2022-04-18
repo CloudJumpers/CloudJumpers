@@ -5,8 +5,7 @@
 //  Created by Trong Tan on 3/24/22.
 //
 
-import Foundation
-import CoreGraphics
+import UIKit
 
 protocol GameRules {
     var playerInfo: PlayerInfo? { get set }
@@ -66,8 +65,10 @@ extension GameRules {
     func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
         let timer = StaticLabel(
             at: Constants.timerPosition,
-            fontSize: Constants.labelFontSize,
-            text: String(initialValue))
+            typeface: .display,
+            size: Constants.labelFontSize,
+            text: String(initialValue),
+            color: UIColor(from: Colors.timerText))
 
         target.add(timer)
         target.addComponent(TimedComponent(time: initialValue), to: timer)
@@ -80,7 +81,7 @@ extension GameRules {
         else {
             return
         }
-        let timeString = timedComponent.time.convertToTimeString()
+        let timeString = timedComponent.time.minuteSeconds
         updateLabelWithValue(timeString, label: timer, target: target)
     }
 

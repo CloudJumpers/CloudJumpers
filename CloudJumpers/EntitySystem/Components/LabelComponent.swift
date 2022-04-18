@@ -5,20 +5,20 @@
 //  Created by Trong Tan on 4/15/22.
 //
 
-import Foundation
-
-import SpriteKit
+import UIKit
 
 class LabelComponent: Component {
     var text: String
 
+    var typeface: Fonts?
     var alpha: CGFloat = 1.0
     var zPosition = SpriteZPosition.label.rawValue
-    var fontSize: CGFloat
+    var size: CGFloat
+    var color = UIColor.black
 
-    init(text: String, fontSize: CGFloat) {
+    init(text: String, size: CGFloat) {
         self.text = text
-        self.fontSize = fontSize
+        self.size = size
         super.init()
     }
 }

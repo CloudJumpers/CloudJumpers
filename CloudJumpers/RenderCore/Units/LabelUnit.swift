@@ -21,17 +21,19 @@ class LabelUnit: RenderUnit {
         node.position = positionComponent.position
         node.name = entity.id
 
-        node.fontSize = labelComponent.fontSize
-        node.zPosition = labelComponent.zPosition
-        // TODO: Should put UIColor into Component?
-        node.fontColor = .black
-
         Self.configureLabelNode(node, with: labelComponent)
         return node
     }
 
     private static func configureLabelNode(_ node: LabelNode, with labelComponent: LabelComponent) {
+        if let fontName = labelComponent.typeface?.rawValue {
+            node.fontName = fontName
+        }
+
         node.alpha = labelComponent.alpha
+        node.fontSize = labelComponent.size
+        node.zPosition = labelComponent.zPosition
+        node.fontColor = labelComponent.color
     }
 
     func transform(_ entity: Entity, with node: Node) {
