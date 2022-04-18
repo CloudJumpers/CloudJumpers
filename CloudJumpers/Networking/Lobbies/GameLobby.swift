@@ -24,7 +24,7 @@ class GameLobby: NetworkedLobby {
     private(set) var users: [LobbyUser] = [LobbyUser]()
 
     var updater: LobbyUpdaterDelegate?
-    var listener: ListenerDelegate?
+    var listener: LobbyListenerDelegate?
     var synchronizer: LobbySynchronizer?
 
     var onLobbyStateChange: LobbyLifecycleCallback?
