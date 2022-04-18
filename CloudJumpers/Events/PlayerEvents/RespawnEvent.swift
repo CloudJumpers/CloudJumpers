@@ -37,6 +37,7 @@ struct RespawnEvent: Event {
 
         // If is god then remove from godhood
         target.add(DemoteGodEvent(onEntityWith: entityID))
+        handleRespawnMetrics(in: target)
     }
 
     private func handleRespawnMetrics(in target: EventModifiable) {
