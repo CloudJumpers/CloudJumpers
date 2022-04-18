@@ -33,7 +33,6 @@ class PhysicsComponent: Component {
         super.init()
     }
 
-    // TODO: Figure out a better way to handle different shapes without enum/switch
     init(circleOf radius: CGFloat) {
         shape = .circle
         self.radius = radius

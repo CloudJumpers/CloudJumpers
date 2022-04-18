@@ -62,7 +62,6 @@ class GameManager {
         addWall(at: Constants.rightWallPosition, height: wallHeight)
         addFloor(at: Constants.floorPosition)
 
-        // TODO: Extend LevelGenerator so that this condition need not happen
         for idx in 0..<cloudPositions.count where cloudPositions[idx] != highestPosition {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }

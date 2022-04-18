@@ -193,7 +193,6 @@ extension GameViewController: GameSceneDelegate {
         gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
         // Check if player is host for each update iteration, enable as needed
-        // TODO: Bring this to a callback if possible to reduce the need to check everytime
         if lobby.userIsHost && !gameManager.isHost {
             gameManager.enableHostStatus()
         }

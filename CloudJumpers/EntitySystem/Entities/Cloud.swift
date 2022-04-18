@@ -7,8 +7,6 @@
 
 import SpriteKit
 
-// TODO: cloud may oscille differently on different devices, to be checked
-// TODO: player may not move when standing on top of moving cloud, to be checked
 class Cloud: Entity {
     let id: EntityID
 

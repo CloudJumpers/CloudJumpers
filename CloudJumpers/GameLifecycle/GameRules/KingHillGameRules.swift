@@ -128,7 +128,6 @@ extension KingHillGameRules {
         else {
             return
         }
-        // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
 
         let scoreModifier = (distanceToTop / worldHeight)

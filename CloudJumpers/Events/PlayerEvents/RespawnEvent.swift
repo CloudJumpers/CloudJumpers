@@ -30,10 +30,6 @@ struct RespawnEvent: Event {
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
 
         target.add(RepositionEvent(onEntityWith: entityID, to: newPosition))
-        target.add(BlinkEvent(
-            onEntityWith: entityID,
-            duration: Constants.respawnDuration,
-            numberOfLoop: Constants.respawnLoopCount))
 
         // If is god then remove from godhood
         target.add(DemoteGodEvent(onEntityWith: entityID))

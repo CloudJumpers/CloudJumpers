@@ -35,7 +35,6 @@ class RemoveSystem: System {
 
     func updateRemoveWithTime(entity: Entity) {
 
-        // TODO: Probably no need two separate components for this
         guard let manager = manager,
               let timedComponent = manager.component(ofType: TimedComponent.self, of: entity),
               let timedRemoveComponent = manager.component(ofType: TimedRemovalComponent.self, of: entity),

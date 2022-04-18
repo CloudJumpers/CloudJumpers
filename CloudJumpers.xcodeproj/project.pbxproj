@@ -320,7 +320,6 @@
 		A1D7866A2801942500C5CE49 /* AnimateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786692801942500C5CE49 /* AnimateEvent.swift */; };
 		A1D7866E2801CCBC00C5CE49 /* RespawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */; };
 		A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */; };
-		A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */; };
 		A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786742801D34300C5CE49 /* PositionSystem.swift */; };
 		A1D786772801D83700C5CE49 /* PhysicsSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D786762801D83700C5CE49 /* PhysicsSystem.swift */; };
 		A1D7867D2801E61800C5CE49 /* DisasterSpawnSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */; };
@@ -672,7 +671,6 @@
 		A1D786692801942500C5CE49 /* AnimateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimateEvent.swift; sourceTree = "<group>"; };
 		A1D7866D2801CCBC00C5CE49 /* RespawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RespawnEvent.swift; sourceTree = "<group>"; };
 		A1D7866F2801CDE300C5CE49 /* UpdateGuestStateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestStateEvent.swift; sourceTree = "<group>"; };
-		A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlinkEvent.swift; sourceTree = "<group>"; };
 		A1D786742801D34300C5CE49 /* PositionSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSystem.swift; sourceTree = "<group>"; };
 		A1D786762801D83700C5CE49 /* PhysicsSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSystem.swift; sourceTree = "<group>"; };
 		A1D7867C2801E61800C5CE49 /* DisasterSpawnSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnSystem.swift; sourceTree = "<group>"; };
@@ -1629,7 +1627,6 @@
 				A1D786652801922300C5CE49 /* JumpEvent.swift */,
 				A1D786672801931600C5CE49 /* RepositionEvent.swift */,
 				A1D786692801942500C5CE49 /* AnimateEvent.swift */,
-				A1D786712801D0EA00C5CE49 /* BlinkEvent.swift */,
 				A12D58CE2802BD3200DA7EC6 /* RemoveEvent.swift */,
 			);
 			path = CoreEvents;
@@ -2038,7 +2035,6 @@
 				3E3632E42809646700FAD7A8 /* ConfuseComponent.swift in Sources */,
 				935280CF27F62BBE002E3A1D /* PostGameRankingCell.swift in Sources */,
 				3E3632F4280990F700FAD7A8 /* SlowmoComponent.swift in Sources */,
-				A1D786722801D0EA00C5CE49 /* BlinkEvent.swift in Sources */,
 				1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */,
 				9396E95D280037420090A8C9 /* FirebaseShadowPlayerEmulator.swift in Sources */,
 				3E81C0E327EF36FE00184C55 /* PowerUp.swift in Sources */,

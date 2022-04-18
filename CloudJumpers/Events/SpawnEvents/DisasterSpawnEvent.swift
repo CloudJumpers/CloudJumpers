@@ -32,8 +32,5 @@ struct DisasterSpawnEvent: Event {
         }
 
         disasterSpawnSystem.spawn(disasterType, at: position, velocity: velocity, with: entityID)
-
-        // TODO: Create logic event to spawn disaster
-
     }
 }
