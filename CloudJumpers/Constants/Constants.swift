@@ -47,6 +47,9 @@ struct Constants {
     static let homeButtonSize = CGSize(width: 60, height: 60)
     static let homeButtonPosition = CGPoint(x: -280, y: 420)
 
+    static let hudSize = CGSize(width: 320, height: 80)
+    static let hudPosition = CGPoint(x: 0, y: 410)
+
     static let scoreLabelPosition = CGPoint(x: -250, y: 410)
 
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
@@ -82,6 +85,7 @@ struct Constants {
     static let disasterNodeSize = CGSize(width: 30.0, height: 80.0)
     static let disasterPromptSize = CGSize(width: 30.0, height: 30.0)
     static let disasterPromptPeriod = 4.0
+    static let disasterIdSuffix = "Disaster"
     static let disasterPhysicsSize = CGSize(width: 30.0, height: 1.0)
     static let disasterMass = CGFloat(1_000_000)
     static let disasterMinSpeed = Float(100.0)

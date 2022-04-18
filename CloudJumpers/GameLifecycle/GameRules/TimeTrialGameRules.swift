@@ -23,7 +23,7 @@ class TimeTrialGameRules: GameRules {
             return
         }
         target.deactivateSystem(ofType: DisasterSpawnSystem.self)
-
+        target.deactivateSystem(ofType: DisasterTransformSystem.self)
         target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
 
@@ -61,8 +61,9 @@ class TimeTrialGameRules: GameRules {
         else {
             return
         }
+        let timeString = timedComponent.time.convertToTimeString()
 
-        updateLabelWithValue(String(format: "%.1f", timedComponent.time), label: timer, target: target)
+        updateLabelWithValue(timeString, label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

@@ -64,9 +64,10 @@ class RaceTopGameRules: GameRules {
         else {
             return
         }
+        let timeString = timedComponent.time.convertToTimeString()
 
         updateTwoPlayerSameCloud(target: target)
-        updateLabelWithValue(String(format: "%.1f", timedComponent.time), label: timer, target: target)
+        updateLabelWithValue(timeString, label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

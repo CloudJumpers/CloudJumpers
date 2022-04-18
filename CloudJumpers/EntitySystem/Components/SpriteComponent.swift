@@ -8,7 +8,7 @@
 import SpriteKit
 
 class SpriteComponent: Component {
-    let texture: TextureFrame
+    var texture: TextureFrame
     let size: CGSize
     let zPosition: SpriteZPosition
 

@@ -24,11 +24,6 @@ class EffectorDetachSystem: System {
     func update(within time: CGFloat) {}
 
     func shouldDetach(watchingEntity effectEntity: Entity) -> Bool {
-        guard let manager = manager,
-              let timerComponent = manager.component(ofType: TimedComponent.self, of: effectEntity) else {
-            return false
-        }
-
-        return timerComponent.time >= Constants.powerUpEffectDuration
+        manager?.component(ofType: TimedComponent.self, of: effectEntity) == nil
     }
 }
