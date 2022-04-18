@@ -56,10 +56,11 @@ class GameScene: SKScene {
         let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didBeginTouchesAt: touchLocations)
 
-        guard let location = touchLocations.first else {
+        guard let touch = touches.first else {
             return
         }
 
+        let location = touch.location(in: cameraNode ?? self)
         prepareCameraToPan(at: location)
         touchBeganLocation = location
     }
@@ -70,11 +71,11 @@ class GameScene: SKScene {
         let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didMoveTouchesAt: touchLocations)
 
-        guard let location = touchLocations.first else {
+        guard let touch = touches.first else {
             return
         }
 
-        moveCameraToTouch(at: location)
+        moveCameraToTouch(at: touch.location(in: cameraNode ?? self))
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,13 +84,14 @@ class GameScene: SKScene {
         let touchLocations = touches.map { $0.location(in: self) }
         sceneDelegate?.scene(self, didEndTouchesAt: touchLocations)
 
-        guard let location = touchLocations.first else {
+        guard let touch = touches.first else {
             return
         }
 
-        endCameraPanning(at: location)
-        delegateCompletedTouch(at: location)
+        endCameraPanning(at: touch.location(in: cameraNode ?? self))
         previousTouchStoppedCameraInertia = false
+
+        delegateCompletedTouch(at: touch.location(in: self))
     }
 
     /// `static = true` adds a child that is always positioned relative to the camera's viewport.
