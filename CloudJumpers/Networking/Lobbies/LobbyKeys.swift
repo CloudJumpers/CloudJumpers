@@ -9,6 +9,7 @@ import Foundation
 
 enum LobbyKeys {
     static let root = "lobbies"
+    static let isConnected = ".info/connected"
 
     // root/{lobbyid}/*
     static let hostId = "host"
