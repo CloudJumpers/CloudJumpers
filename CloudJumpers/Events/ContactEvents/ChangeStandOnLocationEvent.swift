@@ -20,8 +20,8 @@ struct ChangeStandOnLocationEvent: Event {
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        guard let standOnSystem = target.system(ofType: StandOnSystem.self)
+        guard let positionSystem = target.system(ofType: PositionSystem.self)
         else { return }
-        standOnSystem.changeStandOnEntity(for: entityID, to: standOnEntityID, at: timestamp)
+        positionSystem.changeStandOnEntity(for: entityID, to: standOnEntityID, at: timestamp)
     }
 }
