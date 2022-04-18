@@ -24,13 +24,13 @@ class TimeTrialPreGameManager: PreGameManager {
 
     func getEventHandlers() -> RemoteEventHandlers {
         let publisher = FirebasePublisher(lobbyId)
-        let subscriber = FirebaseEmulator()
+        let subscriber = FirebaseShadowPlayerEmulator()
 
         initializeSubscriberWithTopPlayer(subscriber)
         return RemoteEventHandlers(publisher: publisher, subscriber: subscriber)
     }
 
-    private func initializeSubscriberWithTopPlayer(_ subscriber: FirebaseEmulator) {
+    private func initializeSubscriberWithTopPlayer(_ subscriber: FirebaseShadowPlayerEmulator) {
         func handleResponse(_ data: Data) {
             let decoder = JSONDecoder()
 
@@ -41,7 +41,7 @@ class TimeTrialPreGameManager: PreGameManager {
                 return
             }
 
-            subscriber.initialize(first.lobbyId)
+            subscriber.replayEventsFrom(first.lobbyId)
         }
 
         let url = RequestMaker.stringToURL(endpoint)

@@ -21,34 +21,35 @@ protocol GameRules {
 
 // MARK: - Helper functions
 extension GameRules {
-    func updateTwoPlayerSameCloud(target: RuleModifiable) {
-        guard let playerID = playerInfo?.playerId else {
-            return
-        }
-        let (isRespawning, killedBy) = isPlayerRespawning(target: target)
+    func updateRespawnIfPlayerOnSameCloudRule(target: RuleModifiable) {
+
+        let (isRespawning, killedBy) = isPlayerRespawningOnCloud(target: target)
 
         if isRespawning, let killedBy = killedBy {
-            target.add(RespawnEvent(
-                onEntityWith: playerID,
-                killedBy: killedBy,
-                newPosition: Constants.playerInitialPosition))
-
-            target.dispatch(ExternalRespawnEvent(
-                positionX: Constants.playerInitialPosition.x,
-                positionY: Constants.playerInitialPosition.y,
-                killedBy: killedBy))
-
-            target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
+            handlePlayerRespawn(target: target, killedBy: killedBy)
         }
     }
 
-    func isPlayerOnTopPlatform(target: RuleModifiable) -> Bool {
-        guard let playerID = playerInfo?.playerId,
-              let standOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
-        else {
-            return false
+    func updateRespawnIfPlayerOnSamePlatformRule(target: RuleModifiable) {
+        let (isRespawning, killedBy) = isPlayerRespawningOnTopPlatform(target: target)
+        if isRespawning, let killedBy = killedBy {
+            handlePlayerRespawn(target: target, killedBy: killedBy)
         }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: standOnEntityID)
+    }
+
+    func handlePlayerRespawn(target: RuleModifiable, killedBy id: EntityID) {
+        guard let playerID = playerInfo?.playerId else {
+            return
+        }
+        target.add(RespawnEvent(
+            onEntityWith: playerID,
+            killedBy: id,
+            newPosition: Constants.playerInitialPosition))
+
+        target.dispatch(ExternalRespawnEvent(
+            positionX: Constants.playerInitialPosition.x,
+            positionY: Constants.playerInitialPosition.y,
+            killedBy: id))
     }
 
     func enablePowerUpFunction(target: RuleModifiable) {
@@ -60,27 +61,6 @@ extension GameRules {
         target.activateSystem(ofType: BlackoutSystem.self)
         target.activateSystem(ofType: KnifeKillSystem.self)
         target.activateSystem(ofType: EffectorDetachSystem.self)
-    }
-
-    func isPlayerRespawning(target: RuleModifiable) -> (Bool, killedBy: EntityID?) {
-        guard let playerID = playerInfo?.playerId,
-              let playerStandOnEntityID = target.component(ofType: StandOnComponent.self,
-                                                           of: playerID)?.standOnEntityID,
-              let playerStandOnTimestamp = target.component(ofType: StandOnComponent.self,
-                                                            of: playerID)?.timestamp
-        else {
-            return (false, nil)
-        }
-        let allStandOnComponent = target.components(ofType: StandOnComponent.self)
-
-        for component in allStandOnComponent
-        where component.entity?.id != playerID {
-            if let standOnEntityID = component.standOnEntityID,
-               standOnEntityID == playerStandOnEntityID && component.timestamp > playerStandOnTimestamp {
-                return (true, component.entity?.id)
-            }
-        }
-        return (false, nil)
     }
 
     func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
@@ -95,10 +75,96 @@ extension GameRules {
         return timer
     }
 
+    func updateCountUpTimer(target: RuleModifiable, timer: StaticLabel) {
+        guard let timedComponent = target.component(ofType: TimedComponent.self, of: timer)
+        else {
+            return
+        }
+        let timeString = timedComponent.time.convertToTimeString()
+        updateLabelWithValue(timeString, label: timer, target: target)
+    }
+
     func updateLabelWithValue(_ value: String, label: StaticLabel, target: RuleModifiable) {
         guard let labelComponent = target.component(ofType: LabelComponent.self, of: label) else {
             return
         }
         labelComponent.text = value
     }
+}
+// MARK: Boolean Helper Functions
+extension GameRules {
+    func isPlayerRespawningOnCloud(target: RuleModifiable) -> (Bool, killedBy: EntityID?) {
+        guard let playerID = playerInfo?.playerId,
+              let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID),
+              isStandOnComponentCloud(target: target, component: playerStandOnComponent)
+        else {
+            return (false, nil)
+        }
+        let allStandOnComponent = target.components(ofType: StandOnComponent.self)
+
+        for component in allStandOnComponent
+        where component.entity?.id != playerID {
+            if isStandOnComponentCloud(target: target, component: component)
+                && isPlayerFirstStandOnEntity(playerStandOnComponent: playerStandOnComponent,
+                                              otherStandOnComponent: component) {
+                return (true, component.entity?.id)
+            }
+        }
+        return (false, nil)
+    }
+
+    func isPlayerRespawningOnTopPlatform(target: RuleModifiable) -> (Bool, killedBy: EntityID?) {
+        guard let playerID = playerInfo?.playerId,
+              let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID),
+              isStandOnComponentTopPlatform(target: target, component: playerStandOnComponent)
+        else {
+            return (false, nil)
+        }
+        let allStandOnComponent = target.components(ofType: StandOnComponent.self)
+
+        for component in allStandOnComponent
+        where component.entity?.id != playerID {
+            if isStandOnComponentTopPlatform(target: target, component: component)
+                && isPlayerFirstStandOnEntity(playerStandOnComponent: playerStandOnComponent,
+                                              otherStandOnComponent: component) {
+                return (true, component.entity?.id)
+            }
+        }
+        return (false, nil)
+    }
+
+    func isPlayerFirstStandOnEntity(playerStandOnComponent: StandOnComponent,
+                                    otherStandOnComponent: StandOnComponent) -> Bool {
+        guard let playerStandOnEntityID = playerStandOnComponent.standOnEntityID,
+              let otherStandOnEntityID = otherStandOnComponent.standOnEntityID else {
+            return false
+        }
+        return playerStandOnEntityID == otherStandOnEntityID &&
+        playerStandOnComponent.timestamp < otherStandOnComponent.timestamp
+    }
+
+    func isStandOnComponentTopPlatform(target: RuleModifiable, component: StandOnComponent) -> Bool {
+        guard let standOnEntityID = component.standOnEntityID else {
+            return false
+        }
+        return target.hasComponent(ofType: TopPlatformTag.self, in: standOnEntityID)
+    }
+
+    // If not top platform, then must be cloud, assumed there are only 2 types
+    func isStandOnComponentCloud(target: RuleModifiable, component: StandOnComponent) -> Bool {
+        guard let standOnEntityID = component.standOnEntityID else {
+            return false
+        }
+        return !target.hasComponent(ofType: TopPlatformTag.self, in: standOnEntityID)
+    }
+
+    func isPlayerOnTopPlatform(target: RuleModifiable) -> Bool {
+        guard let playerID = playerInfo?.playerId,
+              let standOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)
+        else {
+            return false
+        }
+        return isStandOnComponentTopPlatform(target: target, component: standOnComponent)
+    }
+
 }

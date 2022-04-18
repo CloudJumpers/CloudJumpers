@@ -30,7 +30,9 @@ enum Events: Int {
     case sound
     case promoteGod
     case demoteGod
+    case opacityChange
     case godPowerUpSpawn
+    case disastersToggle
 
     private static let events: [String: Events] = [
         BiEvent.type: .bi,
@@ -57,6 +59,7 @@ enum Events: Int {
         JumpButtonPressedEvent.type: .jumpButtonPressed,
         PromoteGodEvent.type: .promoteGod,
         DemoteGodEvent.type: .demoteGod,
+        OpacityChangeEvent.type: .opacityChange,
         GodPowerUpSpawnEvent.type: .godPowerUpSpawn
     ]
 
