@@ -11,6 +11,8 @@ class GameViewController: UIViewController {
     var lobby: GameLobby?
     var handlers: RemoteEventHandlers?
 
+    var skView: SKView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -51,11 +53,13 @@ class GameViewController: UIViewController {
 
         let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
         handlers = preGameManager.getEventHandlers()
-        activeLobby.synchronizer?.updateCallback(setUpGame)
+        setUpGame()
     }
 
     private func setUpGame() {
-        guard let config = lobby?.gameConfig as? InGameConfig, let handlers = handlers else {
+        guard let activeLobby = lobby,
+              let config = activeLobby.gameConfig as? InGameConfig,
+              let handlers = handlers else {
             return
         }
 
@@ -70,7 +74,13 @@ class GameViewController: UIViewController {
 
         setUpGameManager()
         setUpInputControls()
-        setUpSKViewAndPresent()
+        setUpSKView()
+
+        activeLobby.synchronizer?.updateCallback(startGame)
+    }
+
+    private func startGame() {
+        presentSKView()
     }
 
     // MARK: - Game Set-up Methods
@@ -129,18 +139,23 @@ class GameViewController: UIViewController {
         self.joystick = joystick
     }
 
+    private func setUpSKView() {
+        skView = SKView(frame: view.frame)
+        skView?.isMultipleTouchEnabled = true
+        skView?.ignoresSiblingOrder = true
+        skView?.showsNodeCount = true
+        skView?.showsFPS = true
+    }
+
     // MARK: - Helper Methods
-    private func setUpSKViewAndPresent() {
-        guard let scene = scene else {
-            fatalError("GameScene was not set up")
+    private func presentSKView() {
+        guard let scene = scene, let skView = skView else {
+            fatalError("GameScene or skView was not set up")
         }
-        let skView = SKView(frame: view.frame)
-        skView.isMultipleTouchEnabled = true
-        skView.ignoresSiblingOrder = true
-        skView.showsNodeCount = true
-        skView.showsFPS = true
+
         skView.presentScene(scene)
         view = skView
+        self.skView = nil
     }
 
     private func transitionToEndGame(with completionData: LocalCompletionData) {
