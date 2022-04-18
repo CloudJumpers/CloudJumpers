@@ -66,4 +66,8 @@ class DisasterSpawnSystem: System {
         manager?.add(disaster)
 //        manager?.add(disasterPrompt)
     }
+
+    func setActive(active: Bool) {
+        self.active = active
+    }
 }

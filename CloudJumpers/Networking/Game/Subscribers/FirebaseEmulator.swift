@@ -43,6 +43,7 @@ class FirebaseEmulator: GameEventSubscriber {
 
         hasReleaseStarted = true
         eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: 1.0))
+        eventManager?.add(DisastersToggleEvent(false))
         releaseNextEvent()
     }
 
