@@ -1725,7 +1725,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					1A4E3D6B27D85BC80033A29D = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -1995,8 +1995,6 @@
 				3E363304280A9AC400FAD7A8 /* HorizontalOscillationSystem.swift in Sources */,
 				1ABD941F280DBCD600A77857 /* DisposableTag.swift in Sources */,
 				1ADEDD9727F5CF3100C3AFD3 /* LogEvent.swift in Sources */,
-				9344625627E5B90700063BE9 /* ListenerDelegate.swift in Sources */,
-				1A4C4DE9280B3C2F000BD549 /* Camera.swift in Sources */,
 				9344625627E5B90700063BE9 /* LobbyListenerDelegate.swift in Sources */,
 				1A4E3D7027D85BC80033A29D /* AppDelegate.swift in Sources */,
 				3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */,
