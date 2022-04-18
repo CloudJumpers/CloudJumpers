@@ -58,12 +58,13 @@ class DisasterSpawnSystem: System {
         spawn(disasterType, at: position, velocity: velocity, with: disasterId)
     }
 
-    // TODO: If time permits, add disasterPrompt before disaster
     func spawn(_ type: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector, with entityID: EntityID) {
-        let disaster = Disaster(type, at: position, velocity: velocity, texture: .meteor, with: entityID)
-//        let disasterPrompt = DisasterPrompt(type, at: position, removeAfter: Constants.disasterPromptPeriod)
+//        let disaster = Disaster(type, at: position, velocity: velocity, texture: .meteor, with: entityID)
+        let disasterPrompt = DisasterPrompt(type, at: position, velocity: velocity,
+                                            disasterTexture: .meteor, transformAfter: Constants.disasterPromptPeriod,
+                                            with: entityID)
 
-        manager?.add(disaster)
-//        manager?.add(disasterPrompt)
+//        manager?.add(disaster)
+        manager?.add(disasterPrompt)
     }
 }
