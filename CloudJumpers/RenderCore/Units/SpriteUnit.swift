@@ -27,11 +27,12 @@ class SpriteUnit: RenderUnit {
     }
 
     func transform(_ entity: Entity, with node: Node) {
-        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity) else {
-            return
-        }
+        guard let spriteComponent = target?.component(ofType: SpriteComponent.self, of: entity),
+              let spriteNode = node as? SpriteNode
+        else { return }
 
-        node.alpha = spriteComponent.alpha
+        spriteNode.alpha = spriteComponent.alpha
+        spriteNode.setTexture(to: spriteComponent.texture)
     }
 
     private static func configureSpriteNode(_ node: SpriteNode, with spriteComponent: SpriteComponent) {

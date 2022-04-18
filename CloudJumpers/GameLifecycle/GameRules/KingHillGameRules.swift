@@ -11,6 +11,8 @@ import CoreGraphics
 
 class KingHillGameRules: GameRules {
     private static let gameDuration = 120.0
+    private static let scoreBias = 0.1 * scoreRatio
+    private static let scoreRatio = 0.1
 
     private unowned var target: RuleModifiable?
 
@@ -86,14 +88,16 @@ class KingHillGameRules: GameRules {
               let playerID = playerInfo?.playerId,
               let playerPositionComponent = target.component(ofType: PositionComponent.self, of: playerID),
               let platform = target.components(ofType: TopPlatformTag.self).first?.entity,
-              let platformPositionComponent = target.component(ofType: PositionComponent.self, of: platform.id)
+              let platformPositionComponent = target.component(ofType: PositionComponent.self, of: platform.id),
+              let worldHeight = target.components(ofType: AreaComponent.self).first?.size.height
         else {
             return
         }
         // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
+        let scoreModifier = (distanceToTop / worldHeight) * KingHillGameRules.scoreRatio
 
-        let score = distanceToTop.isZero ? 1 / distanceToTop : 1
+        let score = max(1 - scoreModifier, 0) + KingHillGameRules.scoreBias
         playerScore += score
         updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
     }
@@ -118,7 +122,9 @@ class KingHillGameRules: GameRules {
             return
         }
         currentGameDuration = KingHillGameRules.gameDuration - timedComponent.time
-        updateLabelWithValue(String(format: "%.1f", currentGameDuration), label: timer, target: target)
+        let timeString = currentGameDuration.convertToTimeString()
+
+        updateLabelWithValue(timeString, label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

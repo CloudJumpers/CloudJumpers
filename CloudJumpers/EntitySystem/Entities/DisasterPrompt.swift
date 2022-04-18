@@ -9,20 +9,26 @@ import SpriteKit
 
 class DisasterPrompt: Entity {
     let id: EntityID
-    private var position: CGPoint
+    private let position: CGPoint
+    private let velocity: CGVector
     private let kind: DisasterComponent.Kind
-    private let intervalToRemove: TimeInterval
+    private let disasterTexture: Miscellaneous
+    private let intervalToTransform: TimeInterval
 
     init(_ kind: DisasterComponent.Kind,
          at position: CGPoint,
-         removeAfter intervalToRemove: TimeInterval,
+         velocity: CGVector,
+         disasterTexture: Miscellaneous,
+         transformAfter intervalToTransform: TimeInterval,
          with id: EntityID = EntityManager.newEntityID
     ) {
 
         self.id = id
         self.kind = kind
         self.position = position
-        self.intervalToRemove = intervalToRemove
+        self.velocity = velocity
+        self.disasterTexture = disasterTexture
+        self.intervalToTransform = intervalToTransform
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -31,7 +37,9 @@ class DisasterPrompt: Entity {
         manager.addComponent(PositionComponent(at: position), to: self)
 
         manager.addComponent(TimedComponent(), to: self)
-        manager.addComponent(TimedRemovalComponent(timeToRemove: intervalToRemove), to: self)
+        manager.addComponent(DisasterTransformComponent(kind: kind, position: position,
+                                                        velocity: velocity, disasterTexture: disasterTexture,
+                                                        after: intervalToTransform), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -40,7 +48,6 @@ class DisasterPrompt: Entity {
             size: Constants.disasterPromptSize,
             zPosition: .disaster)
 
-        spriteComponent.alpha = 0.0
         spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
 
         return spriteComponent
