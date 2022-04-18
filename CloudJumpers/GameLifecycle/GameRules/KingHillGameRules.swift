@@ -69,6 +69,7 @@ class KingHillGameRules: GameRules {
 
     func enableHostSystems() {
         target?.activateSystem(ofType: PowerSpawnSystem.self)
+        target?.activateSystem(ofType: DisasterSpawnSystem.self)
     }
 
     func update(within time: CGFloat) {
@@ -127,7 +128,6 @@ extension KingHillGameRules {
         else {
             return
         }
-        // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
 
         let scoreModifier = (distanceToTop / worldHeight)

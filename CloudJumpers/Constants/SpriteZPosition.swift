@@ -9,11 +9,11 @@ import CoreGraphics
 
 enum SpriteZPosition: CGFloat {
     case platform
+    case powerUpEffect
     case guest
     case shadowGuest
     case player
     case background
-    case powerUpEffect
     case floor
     case wall
     case powerUp
@@ -21,5 +21,6 @@ enum SpriteZPosition: CGFloat {
     case outerStick
     case innerStick
     case button
+    case hud
     case label
 }

@@ -111,9 +111,9 @@ class GameViewController: UIViewController {
         let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
-            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            tolerance: CGVector(dx: Constants.jumpImpulse.dy, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
-            yToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...0.8,
             firstPlatformPosition: Constants.playerInitialPosition,
             seed: config.seed
         )
@@ -160,7 +160,6 @@ class GameViewController: UIViewController {
         let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
         button.position = Constants.homeButtonPosition
         button.delegate = self
-        button.zPosition = SpriteZPosition.button.rawValue
         scene?.addChild(button, static: true)
     }
 
@@ -193,7 +192,6 @@ extension GameViewController: GameSceneDelegate {
         gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
         // Check if player is host for each update iteration, enable as needed
-        // TODO: Bring this to a callback if possible to reduce the need to check everytime
         if lobby.userIsHost && !gameManager.isHost {
             gameManager.enableHostStatus()
         }

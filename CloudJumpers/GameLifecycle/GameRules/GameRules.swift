@@ -49,6 +49,7 @@ extension GameRules {
             positionX: Constants.playerInitialPosition.x,
             positionY: Constants.playerInitialPosition.y,
             killedBy: id))
+        target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
     }
 
     func enablePowerUpFunction(target: RuleModifiable) {
@@ -58,6 +59,7 @@ extension GameRules {
         target.activateSystem(ofType: SlowmoSystem.self)
         target.activateSystem(ofType: TeleportSystem.self)
         target.activateSystem(ofType: BlackoutSystem.self)
+        target.activateSystem(ofType: KnifeKillSystem.self)
         target.activateSystem(ofType: EffectorDetachSystem.self)
     }
 

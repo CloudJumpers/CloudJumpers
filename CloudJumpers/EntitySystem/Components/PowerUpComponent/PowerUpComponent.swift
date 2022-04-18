@@ -12,6 +12,7 @@ class PowerUpComponent: Component {
         case slowmo
         case teleport
         case blackout
+        case knife
 
         var name: String { rawValue }
     }

@@ -13,6 +13,7 @@ class HomeButton: SKSpriteNode {
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: .clear, size: size)
         isUserInteractionEnabled = true
+        zPosition = SpriteZPosition.hud.rawValue
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

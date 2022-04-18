@@ -53,6 +53,7 @@ class GameWorld {
         systemManager.register(TeleportSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(EffectorDetachSystem(for: entityManager))
         systemManager.register(BlackoutSystem(for: entityManager))
+        systemManager.register(KnifeKillSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(GodPowerSpawnSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(OpacitySystem(for: entityManager))
         systemManager.register(HUDSystem(for: entityManager))
