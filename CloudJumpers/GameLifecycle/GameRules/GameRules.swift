@@ -16,7 +16,6 @@ protocol GameRules {
     func enableHostSystems()
     func update(within time: CGFloat)
     func hasGameEnd() -> Bool
-
     func fetchLocalCompletionData() -> LocalCompletionData
 }
 
@@ -45,11 +44,11 @@ extension GameRules {
 
     func isPlayerOnTopPlatform(target: RuleModifiable) -> Bool {
         guard let playerID = playerInfo?.playerId,
-              let stoodOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
+              let standOnEntityID = target.component(ofType: StandOnComponent.self, of: playerID)?.standOnEntityID
         else {
             return false
         }
-        return target.hasComponent(ofType: TopPlatformTag.self, in: stoodOnEntityID)
+        return target.hasComponent(ofType: TopPlatformTag.self, in: standOnEntityID)
     }
 
     func enablePowerUpFunction(target: RuleModifiable) {
@@ -64,15 +63,19 @@ extension GameRules {
 
     func isPlayerRespawning(target: RuleModifiable) -> (Bool, killedBy: EntityID?) {
         guard let playerID = playerInfo?.playerId,
-              let playerStandOnComponent = target.component(ofType: StandOnComponent.self, of: playerID)
+              let playerStandOnEntityID = target.component(ofType: StandOnComponent.self,
+                                                           of: playerID)?.standOnEntityID,
+              let playerStandOnTimestamp = target.component(ofType: StandOnComponent.self,
+                                                            of: playerID)?.timestamp
         else {
             return (false, nil)
         }
         let allStandOnComponent = target.components(ofType: StandOnComponent.self)
 
-        for component in allStandOnComponent where component.entity?.id != playerID {
-            if component.standOnEntityID == playerStandOnComponent.standOnEntityID &&
-                component.timestamp > playerStandOnComponent.timestamp {
+        for component in allStandOnComponent
+        where component.entity?.id != playerID {
+            if let standOnEntityID = component.standOnEntityID,
+               standOnEntityID == playerStandOnEntityID && component.timestamp > playerStandOnTimestamp {
                 return (true, component.entity?.id)
             }
         }

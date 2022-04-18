@@ -81,7 +81,6 @@ class GameScene: SKScene {
             return
         }
 
-        print(location)
         endCameraPanning(at: location)
         delegateCompletedTouch(at: location)
         previousTouchStoppedCameraInertia = false
