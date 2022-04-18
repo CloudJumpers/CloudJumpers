@@ -16,7 +16,6 @@ protocol GameRules {
     func enableHostSystems()
     func update(within time: CGFloat)
     func hasGameEnd() -> Bool
-
     func fetchLocalCompletionData() -> LocalCompletionData
 }
 

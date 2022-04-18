@@ -122,7 +122,9 @@ class KingHillGameRules: GameRules {
             return
         }
         currentGameDuration = KingHillGameRules.gameDuration - timedComponent.time
-        updateLabelWithValue(String(format: "%.1f", currentGameDuration), label: timer, target: target)
+        let timeString = currentGameDuration.convertToTimeString()
+
+        updateLabelWithValue(timeString, label: timer, target: target)
     }
 
     func hasGameEnd() -> Bool {

@@ -284,6 +284,7 @@
 		A183D382280D306D007DAB4B /* GodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */; };
 		A183D384280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */; };
 		A183D386280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */; };
+		A183D38B280D459E007DAB4B /* Double+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D38A280D459E007DAB4B /* Double+Time.swift */; };
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
@@ -615,6 +616,7 @@
 		A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
 		A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTopGameRules.swift; sourceTree = "<group>"; };
+		A183D38A280D459E007DAB4B /* Double+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Time.swift"; sourceTree = "<group>"; };
 		A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalGodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
@@ -772,6 +774,7 @@
 				1A8EC1AA27F7528B009EDFDF /* Double+Random.swift */,
 				1AE9D8AE27FED1F3002B0A1E /* SKTextureAtlas+Sorted.swift */,
 				1A4C4DE6280B1CD8000BD549 /* String+Truncate.swift */,
+				A183D38A280D459E007DAB4B /* Double+Time.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2135,6 +2138,7 @@
 				1A24DC192800B0BA00E48B64 /* PositionComponent.swift in Sources */,
 				3E3632FB2809972900FAD7A8 /* TeleportSystem.swift in Sources */,
 				933486C5280BC37700D6DC0F /* KingOfTheHill.swift in Sources */,
+				A183D38B280D459E007DAB4B /* Double+Time.swift in Sources */,
 				933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */,
 				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
 				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
@@ -2319,7 +2323,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X827RB5HGL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2333,7 +2337,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
