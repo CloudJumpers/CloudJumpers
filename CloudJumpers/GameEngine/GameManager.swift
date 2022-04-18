@@ -67,8 +67,6 @@ class GameManager {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
 
-        world.add(PowerUp(.knife, at: CGPoint(x: -200, y: -200), with: "1"))
-        world.add(PowerUp(.knife, at: CGPoint(x: -200, y: -300), with: "2"))
         world.add(Area(size: blueprint.worldSize))
         world.add(HUD(at: Constants.hudPosition))
     }
