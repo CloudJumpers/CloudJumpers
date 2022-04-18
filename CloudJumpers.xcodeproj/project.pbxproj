@@ -98,6 +98,11 @@
 		1AD5D450280C0E200071ACE1 /* AreaUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */; };
 		1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */; };
 		1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D453280C27E60071ACE1 /* LabelUnit.swift */; };
+		1AD5D463280D32AC0071ACE1 /* HUDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D462280D32AC0071ACE1 /* HUDs.swift */; };
+		1AD5D465280D32CB0071ACE1 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D464280D32CB0071ACE1 /* HUD.swift */; };
+		1AD5D467280D338A0071ACE1 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D466280D338A0071ACE1 /* HUD.atlas */; };
+		1AD5D469280D36370071ACE1 /* HUDSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D468280D36370071ACE1 /* HUDSystem.swift */; };
+		1AD5D46B280D36CA0071ACE1 /* HUDComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
@@ -107,7 +112,6 @@
 		1ADEDD9927F5D00B00C3AFD3 /* BiEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */; };
 		1AE9D89F27FE0287002B0A1E /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D89E27FE0287002B0A1E /* Renderer.swift */; };
 		1AE9D8A127FE99F1002B0A1E /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D8A027FE99F1002B0A1E /* Texture.swift */; };
-		1AE9D8A627FEBB40002B0A1E /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D8A527FEBB40002B0A1E /* HUD.swift */; };
 		1AE9D8A827FEBB49002B0A1E /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D8A727FEBB49002B0A1E /* Characters.swift */; };
 		1AE9D8AA27FED0FD002B0A1E /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D8A927FED0FD002B0A1E /* Buttons.swift */; };
 		1AE9D8AC27FED139002B0A1E /* Clouds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9D8AB27FED139002B0A1E /* Clouds.swift */; };
@@ -364,7 +368,6 @@
 		1A91C91727E0969500D755BE /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		1A91C91F27E099F400D755BE /* Clouds.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Clouds.atlas; sourceTree = "<group>"; };
 		1A91C92227E099F400D755BE /* Buttons.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Buttons.atlas; sourceTree = "<group>"; };
-		1A91C92A27E09C5600D755BE /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
 		1A94D93527EB41E0001D8A86 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		1A94D93727EB4AB9001D8A86 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 		1A94D93927EB5090001D8A86 /* JumpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButton.swift; sourceTree = "<group>"; };
@@ -426,6 +429,11 @@
 		1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUnit.swift; sourceTree = "<group>"; };
 		1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparationHandler.swift; sourceTree = "<group>"; };
 		1AD5D453280C27E60071ACE1 /* LabelUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelUnit.swift; sourceTree = "<group>"; };
+		1AD5D462280D32AC0071ACE1 /* HUDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDs.swift; sourceTree = "<group>"; };
+		1AD5D464280D32CB0071ACE1 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		1AD5D466280D338A0071ACE1 /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
+		1AD5D468280D36370071ACE1 /* HUDSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDSystem.swift; sourceTree = "<group>"; };
+		1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDComponent.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
@@ -435,7 +443,6 @@
 		1ADEDD9827F5D00B00C3AFD3 /* BiEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiEvent.swift; sourceTree = "<group>"; };
 		1AE9D89E27FE0287002B0A1E /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		1AE9D8A027FE99F1002B0A1E /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
-		1AE9D8A527FEBB40002B0A1E /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		1AE9D8A727FEBB49002B0A1E /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		1AE9D8A927FED0FD002B0A1E /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		1AE9D8AB27FED139002B0A1E /* Clouds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clouds.swift; sourceTree = "<group>"; };
@@ -796,7 +803,7 @@
 				1A94D94127ECB808001D8A86 /* Character1.atlas */,
 				1A91C92227E099F400D755BE /* Buttons.atlas */,
 				1A91C91F27E099F400D755BE /* Clouds.atlas */,
-				1A91C92A27E09C5600D755BE /* HUD.atlas */,
+				1AD5D466280D338A0071ACE1 /* HUD.atlas */,
 			);
 			path = Textures;
 			sourceTree = "<group>";
@@ -829,6 +836,7 @@
 				A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */,
 				A16C8FC728033B07001B2E7F /* StandOnComponent.swift */,
 				A1AE31D928092FF200FABC0E /* LabelComponent.swift */,
+				1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -848,6 +856,7 @@
 				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
 				A1AE31D728092EF500FABC0E /* StaticLabel.swift */,
+				1AD5D464280D32CB0071ACE1 /* HUD.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -870,6 +879,7 @@
 				A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */,
 				936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */,
 				A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */,
+				1AD5D468280D36370071ACE1 /* HUDSystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -972,7 +982,7 @@
 			children = (
 				1AE9D8AB27FED139002B0A1E /* Clouds.swift */,
 				1AE9D8A927FED0FD002B0A1E /* Buttons.swift */,
-				1AE9D8A527FEBB40002B0A1E /* HUD.swift */,
+				1AD5D462280D32AC0071ACE1 /* HUDs.swift */,
 				1AE9D8A727FEBB49002B0A1E /* Characters.swift */,
 				1A71C5EF2808666C008131C3 /* Miscellaneous.swift */,
 			);
@@ -1728,6 +1738,7 @@
 				1AC1606F27F43B15006E4018 /* ui-bgm.wav in Resources */,
 				1A91C92627E099F400D755BE /* Clouds.atlas in Resources */,
 				1A4E3D7927D85BCA0033A29D /* Assets.xcassets in Resources */,
+				1AD5D467280D338A0071ACE1 /* HUD.atlas in Resources */,
 				9344625227E5975300063BE9 /* GoogleService-Info.plist in Resources */,
 				1A4E3D7727D85BC80033A29D /* Main.storyboard in Resources */,
 			);
@@ -1878,6 +1889,7 @@
 				93360B9327EC919100808295 /* MoveEventCommand.swift in Sources */,
 				93360B9D27EC9CB100808295 /* GameEventSubscriber.swift in Sources */,
 				93360B9F27EC9CDA00808295 /* GameEventPublisher.swift in Sources */,
+				1AD5D46B280D36CA0071ACE1 /* HUDComponent.swift in Sources */,
 				1AAB1E1527FF144700378382 /* Cloud+Collidable.swift in Sources */,
 				3E3632DA280961F300FAD7A8 /* FreezeSystem.swift in Sources */,
 				A13B8C48280AACC200EA3FBA /* KingOfTheHillData.swift in Sources */,
@@ -1959,6 +1971,7 @@
 				3E3E0BF727F6DC9D00BF526C /* DisasterComponent.swift in Sources */,
 				934789C827DF576E00324DAF /* LobbyKeys.swift in Sources */,
 				1A91C91827E0969500D755BE /* Images.swift in Sources */,
+				1AD5D469280D36370071ACE1 /* HUDSystem.swift in Sources */,
 				A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */,
 				9396E955280030DA0090A8C9 /* TimeTrialPreGameManager.swift in Sources */,
 				1AB3E3D627FADCCA00CBDB1A /* FreezeEvent.swift in Sources */,
@@ -2043,7 +2056,6 @@
 				93ADD1C228047E8C004E0E87 /* ShadowGuest.swift in Sources */,
 				1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */,
 				1AE9D8AA27FED0FD002B0A1E /* Buttons.swift in Sources */,
-				1AE9D8A627FEBB40002B0A1E /* HUD.swift in Sources */,
 				1A7FFD1B280AECD000FE3415 /* RenderUnit.swift in Sources */,
 				3E61A10D280C147B00BD8470 /* SlowmoEffectCreator.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
@@ -2089,6 +2101,7 @@
 				3EA7C89527FF1ECB009BCA63 /* PlayerInfo.swift in Sources */,
 				939AFA052809D95600852B8B /* AchievementProcessor.swift in Sources */,
 				1AAB1E1127FF124800378382 /* Player+Collidable.swift in Sources */,
+				1AD5D463280D32AC0071ACE1 /* HUDs.swift in Sources */,
 				A1D4686D27D9059600C9FB0E /* GameScene.swift in Sources */,
 				1ACE97CB27EB26BB005AA18B /* System.swift in Sources */,
 				1AB6F2DB27F9C592004BF6AF /* ConfuseEvent.swift in Sources */,
@@ -2118,6 +2131,7 @@
 				9356F4E727DE213E007F4D89 /* AuthService.swift in Sources */,
 				A16C8FC828033B07001B2E7F /* StandOnComponent.swift in Sources */,
 				3EA7C8B02803026F009BCA63 /* PowerUpPlayerCollideEvent.swift in Sources */,
+				1AD5D465280D32CB0071ACE1 /* HUD.swift in Sources */,
 				1A4E3D7227D85BC80033A29D /* SceneDelegate.swift in Sources */,
 				1AAB1E1F27FF166F00378382 /* Guest+Collidable.swift in Sources */,
 				3E61A119280C4EEC00BD8470 /* BlackoutSystem.swift in Sources */,

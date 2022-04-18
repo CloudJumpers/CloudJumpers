@@ -67,6 +67,10 @@ class SpriteNode: Node {
         self.activeAnimationKey = key
     }
 
+    func setTexture(to texture: TextureFrame) {
+        coreSpriteNode.texture = Texture.texture(of: texture)
+    }
+
     private func animationKey(with key: String) -> String {
         Self.animationKeyPrefix + key
     }
