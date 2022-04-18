@@ -188,23 +188,33 @@ class GameScene: SKScene {
 // MARK: - SKPhysicsContactDelegate
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        let (nodeA, nodeB) = contactNodes(of: contact)
+        guard let contactNodes = contactNodes(of: contact) else {
+            return
+        }
+        let (nodeA, nodeB) = contactNodes
         updateDelegate?.scene(self, didBeginContactBetween: nodeA, and: nodeB)
     }
 
     func didEnd(_ contact: SKPhysicsContact) {
-        let (nodeA, nodeB) = contactNodes(of: contact)
+        guard let contactNodes = contactNodes(of: contact) else {
+            return
+        }
+        let (nodeA, nodeB) = contactNodes
         updateDelegate?.scene(self, didEndContactBetween: nodeA, and: nodeB)
     }
 
-    private func contactNodes(of contact: SKPhysicsContact) -> (nodeA: Node, nodeB: Node) {
+    private func contactNodes(of contact: SKPhysicsContact) -> (nodeA: Node, nodeB: Node)? {
         guard let skNodeA = contact.bodyA.node,
               let skNodeB = contact.bodyB.node
         else { fatalError("A SKPhysicsBody has a missing SKNode") }
 
         guard let nodeA = updateDelegate?.node(of: skNodeA),
               let nodeB = updateDelegate?.node(of: skNodeB)
-        else { fatalError("A NodeCore was not associated with any Nodes in Renderer") }
+        else {
+            print("A NodeCore was not associated with any Nodes in Renderer")
+            return nil
+//            fatalError("A NodeCore was not associated with any Nodes in Renderer")
+        }
 
         return (nodeA, nodeB)
     }
