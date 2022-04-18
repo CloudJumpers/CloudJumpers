@@ -34,12 +34,6 @@ class GameWorld {
     }
 
     private func setUpSystems(bound: CGSize) {
-        let positionGenerationInfo = RandomPositionGenerationInfo(worldSize: bound)
-        let disasterVelocityGenerationInfo = RandomVelocityGenerationInfo(
-            xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
-            yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
-            speedRange: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
-
         systemManager.register(PositionSystem(for: entityManager))
         systemManager.register(PhysicsSystem(for: entityManager))
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
@@ -50,13 +44,8 @@ class GameWorld {
         systemManager.register(InventorySystem(for: entityManager))
         systemManager.register(HorizontalOscillationSystem(for: entityManager, boundSize: bound))
         systemManager.register(RemoveSystem(for: entityManager, boundSize: bound))
-        systemManager.register(DisasterSpawnSystem(for: entityManager,
-                                                   positionGenerationInfo: positionGenerationInfo,
-                                                   velocityGenerationInfo: disasterVelocityGenerationInfo,
-                                                   dispatcherVia: self))
-        systemManager.register(PowerSpawnSystem(for: entityManager,
-                                                positionGenerationInfo: positionGenerationInfo,
-                                                dispatcherVia: self))
+        systemManager.register(DisasterSpawnSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(PowerSpawnSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(PowerUpSystem(for: entityManager))
         systemManager.register(FreezeSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(ConfuseSystem(for: entityManager, dispatchesVia: self))

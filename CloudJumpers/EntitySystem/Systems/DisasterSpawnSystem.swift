@@ -14,31 +14,25 @@ class DisasterSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    var positionGenerationInfo: RandomPositionGenerationInfo?
-    var velocityGenerationInfo: RandomVelocityGenerationInfo?
+    static let  velocityGenerationInfo = RandomVelocityGenerationInfo(
+        xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
+        yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
+        speedRange: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
         self.dispatcher = dispatcher
     }
 
-    convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo,
-                     velocityGenerationInfo: RandomVelocityGenerationInfo,
-                     dispatcherVia dispatcher: EventDispatcher? = nil) {
-        self.init(for: manager, dispatchesVia: dispatcher)
-        self.positionGenerationInfo = positionGenerationInfo
-        self.velocityGenerationInfo = velocityGenerationInfo
-    }
-
     func update(within time: CGFloat) {
         guard RandomSpawnGenerator.isSpawning(successRate: 0.5),
-              let positionGenerationInfo = positionGenerationInfo,
-              let velocityGenerationInfo = velocityGenerationInfo
+              let size = manager?.components(ofType: AreaComponent.self).first?.size
         else {
             return
         }
+        let positionGenerationInfo = RandomPositionGenerationInfo(worldSize: size)
 
-        let velocity = RandomSpawnGenerator.getRandomVelocity(velocityGenerationInfo)
+        let velocity = RandomSpawnGenerator.getRandomVelocity(DisasterSpawnSystem.velocityGenerationInfo)
         let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)
         let disasterType: DisasterComponent.Kind = RandomSpawnGenerator.getRandomDisasterType() ?? .meteor
 

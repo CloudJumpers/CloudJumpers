@@ -14,25 +14,18 @@ class PowerSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    var positionGenerationInfo: RandomPositionGenerationInfo?
-
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
         self.dispatcher = dispatcher
     }
 
-    convenience init(for manager: EntityManager, positionGenerationInfo: RandomPositionGenerationInfo,
-                     dispatcherVia dispatcher: EventDispatcher? = nil) {
-        self.init(for: manager, dispatchesVia: dispatcher)
-        self.positionGenerationInfo = positionGenerationInfo
-    }
-
     func update(within time: CGFloat) {
         guard RandomSpawnGenerator.isSpawning(successRate: 0.3),
-              let positionGenerationInfo = positionGenerationInfo
+              let size = manager?.components(ofType: AreaComponent.self).first?.size
         else {
             return
         }
+        let positionGenerationInfo = RandomPositionGenerationInfo(worldSize: size)
 
         let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)
         let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
