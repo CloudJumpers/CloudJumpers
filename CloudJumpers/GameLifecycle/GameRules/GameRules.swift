@@ -49,6 +49,7 @@ extension GameRules {
             positionX: Constants.playerInitialPosition.x,
             positionY: Constants.playerInitialPosition.y,
             killedBy: id))
+        target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
     }
 
     func enablePowerUpFunction(target: RuleModifiable) {

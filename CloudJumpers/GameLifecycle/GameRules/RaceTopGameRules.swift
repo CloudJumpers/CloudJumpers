@@ -54,6 +54,7 @@ class RaceTopGameRules: GameRules {
     }
     func enableHostSystems() {
         target?.activateSystem(ofType: PowerSpawnSystem.self)
+        target?.activateSystem(ofType: DisasterSpawnSystem.self)
     }
 
     func update(within time: CGFloat) {
