@@ -50,7 +50,7 @@ struct Constants {
     static let hudSize = CGSize(width: 320, height: 80)
     static let hudPosition = CGPoint(x: 0, y: 410)
 
-    static let scoreLabelPosition = CGPoint(x: -250, y: 410)
+    static let scoreLabelPosition = CGPoint(x: 250, y: 410)
 
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)

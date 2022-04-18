@@ -11,8 +11,8 @@ import CoreGraphics
 
 class KingHillGameRules: GameRules {
     private static let gameDuration = 120.0
-    private static let scoreBias = 0.1 * scoreRatio
-    private static let scoreRatio = 0.1
+    private static let scoreBias: Double = 0.05 * scoreRatio
+    private static let scoreRatio: Double = 0.035
 
     private unowned var target: RuleModifiable?
 
@@ -129,9 +129,11 @@ extension KingHillGameRules {
         }
         // TODO: Check correctness of this
         let distanceToTop = abs(playerPositionComponent.position.y - platformPositionComponent.position.y)
-        let scoreModifier = (distanceToTop / worldHeight) * KingHillGameRules.scoreRatio
 
-        let score = max(1 - scoreModifier, 0) + KingHillGameRules.scoreBias
+        let scoreModifier = (distanceToTop / worldHeight)
+        var score = max(1 - scoreModifier, 0)
+        score = score * KingHillGameRules.scoreRatio + KingHillGameRules.scoreBias
+
         playerScore += score
         updateLabelWithValue(String(format: "%.1f", playerScore), label: scoreLabel, target: target)
     }
