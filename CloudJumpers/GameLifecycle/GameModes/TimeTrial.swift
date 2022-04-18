@@ -28,7 +28,7 @@ struct TimeTrial: GameMode {
     mutating func setPlayers(_ players: [PlayerInfo]) {
         self.players = players
 
-        let shadowPlayer = PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow Rank 1")
+        let shadowPlayer = PlayerInfo(playerId: GameConstants.shadowPlayerID, displayName: "Shadow")
         self.players.append(shadowPlayer)
     }
 

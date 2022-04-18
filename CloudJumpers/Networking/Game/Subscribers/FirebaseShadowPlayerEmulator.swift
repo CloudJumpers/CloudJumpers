@@ -35,12 +35,12 @@ class FirebaseShadowPlayerEmulator: GameEventEmulator {
             return
         }
 
-        onFetchSuccess()
         hasReplayStarted = true
 
         releaseTimer = Timer.scheduledTimer(
             withTimeInterval: GameConstants.shadowPlayerStartDelay,
             repeats: false) { [weak self] _ in
+                self?.onFetchSuccess()
                 self?.releaseNextEvent()
         }
     }
