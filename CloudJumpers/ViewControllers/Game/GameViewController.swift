@@ -80,7 +80,7 @@ class GameViewController: UIViewController {
     }
 
     private func startGame() {
-        setUpSKViewAndPresent()
+        presentSKView()
     }
 
     // MARK: - Game Set-up Methods
@@ -148,7 +148,7 @@ class GameViewController: UIViewController {
     }
 
     // MARK: - Helper Methods
-    private func setUpSKViewAndPresent() {
+    private func presentSKView() {
         guard let scene = scene, let skView = skView else {
             fatalError("GameScene or skView was not set up")
         }
