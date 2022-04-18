@@ -373,7 +373,6 @@
 		1A94D93527EB41E0001D8A86 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		1A94D93727EB4AB9001D8A86 /* InputResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputResponder.swift; sourceTree = "<group>"; };
 		1A94D93927EB5090001D8A86 /* JumpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpButton.swift; sourceTree = "<group>"; };
-		1A94D93B27EB9642001D8A86 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1A94D94127ECB808001D8A86 /* Character1.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Character1.atlas; sourceTree = "<group>"; };
 		1A94D94727ED8709001D8A86 /* SpriteComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteComponent.swift; sourceTree = "<group>"; };
 		1A94D94827ED8709001D8A86 /* AnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationComponent.swift; sourceTree = "<group>"; };
@@ -689,20 +688,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1A13D77A27FD9BAC00A28182 /* RenderCore */ = {
+		1A13D77A27FD9BAC00A28182 /* Rendering */ = {
 			isa = PBXGroup;
 			children = (
-				1A7FFD17280AECBD00FE3415 /* Units */,
-				1AE9D8B827FF0E6B002B0A1E /* Colliders */,
-				1AE9D8A427FEBADB002B0A1E /* Textures */,
+				1A7FFD17280AECBD00FE3415 /* RenderUnits */,
 				1AE9D89E27FE0287002B0A1E /* Renderer.swift */,
+				1A7FFD1A280AECD000FE3415 /* RenderUnit.swift */,
 				1A7FFD22280AF28E00FE3415 /* RenderPipeline.swift */,
 				1AAB1E242800349700378382 /* Simulatable.swift */,
-				1AAB1E282800A55500378382 /* PhysicsCategory.swift */,
-				3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */,
-				3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */,
 			);
-			path = RenderCore;
+			path = Rendering;
 			sourceTree = "<group>";
 		};
 		1A4E3D6327D85BC80033A29D = {
@@ -714,7 +709,6 @@
 				1A4E3D6D27D85BC80033A29D /* Products */,
 				90C586EF6BCC2E7EFA91485D /* Pods */,
 				EA08B77308ED456EC74F5D13 /* Frameworks */,
-				1AC1605127F2F561006E4018 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -730,24 +724,25 @@
 		1A4E3D6E27D85BC80033A29D /* CloudJumpers */ = {
 			isa = PBXGroup;
 			children = (
-				939AFA012809BBC200852B8B /* Achievements */,
-				936228D827F5CF7A00BB05FE /* GameLifecycle */,
-				938C15A527DE4A4B00A1892C /* ViewControllers */,
 				93D4E16527DA0C920054F45B /* Networking */,
 				9389E5F427D8BF7D0049ADDD /* Authentication */,
-				1A13D77A27FD9BAC00A28182 /* RenderCore */,
 				A1DBB84327D884290077AB96 /* Constants */,
-				1A94D93227EB41B5001D8A86 /* Input */,
 				1ACE97BC27EB2650005AA18B /* GameWorld */,
 				A1DBB82827D884200077AB96 /* GameManager */,
 				A1347AA927DA66A10011CF40 /* Events */,
-				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
-				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
+				1A13D77A27FD9BAC00A28182 /* Rendering */,
 				1AC1603C27F19358006E4018 /* Levels */,
+				936228D827F5CF7A00BB05FE /* GameLifecycle */,
+				939AFA012809BBC200852B8B /* Achievements */,
+				1A94D93227EB41B5001D8A86 /* Input */,
+				938C15A527DE4A4B00A1892C /* ViewControllers */,
+				1AE9D8A427FEBADB002B0A1E /* Textures */,
 				1AC1605D27F31DED006E4018 /* Sounds */,
 				1A91C90F27E08D2B00D755BE /* Extensions */,
 				1A91C91227E0962F00D755BE /* Resources */,
 				1A94D96D27EE1561001D8A86 /* PriorityQueue */,
+				1A4E3D6F27D85BC80033A29D /* AppDelegate.swift */,
+				1A4E3D7127D85BC80033A29D /* SceneDelegate.swift */,
 				1A4E3D7527D85BC80033A29D /* Main.storyboard */,
 				1A4E3D7A27D85BCA0033A29D /* LaunchScreen.storyboard */,
 				1A4E3D7D27D85BCA0033A29D /* Info.plist */,
@@ -756,10 +751,9 @@
 			path = CloudJumpers;
 			sourceTree = "<group>";
 		};
-		1A7FFD17280AECBD00FE3415 /* Units */ = {
+		1A7FFD17280AECBD00FE3415 /* RenderUnits */ = {
 			isa = PBXGroup;
 			children = (
-				1A7FFD1A280AECD000FE3415 /* RenderUnit.swift */,
 				1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */,
 				1A7FFD18280AECC900FE3415 /* PositionUnit.swift */,
 				1A7FFD1C280AEE7A00FE3415 /* PhysicsUnit.swift */,
@@ -768,7 +762,7 @@
 				1AD5D453280C27E60071ACE1 /* LabelUnit.swift */,
 				1A7FFD24280AFC1E00FE3415 /* CameraUnit.swift */,
 			);
-			path = Units;
+			path = RenderUnits;
 			sourceTree = "<group>";
 		};
 		1A91C90F27E08D2B00D755BE /* Extensions */ = {
@@ -840,7 +834,7 @@
 		1A94D94B27ED8709001D8A86 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				A1050893280DD1F00055769E /* GameEnvironments */,
+				A1050893280DD1F00055769E /* Environment */,
 				A1050892280DD1DF0055769E /* Characters */,
 				3E3632D6280961DE00FAD7A8 /* PowerUp */,
 				A1AE31D728092EF500FABC0E /* StaticLabel.swift */,
@@ -885,6 +879,16 @@
 			path = Effectors;
 			sourceTree = "<group>";
 		};
+		1ABD9420280DE0A300A77857 /* PhysicsBitMasks */ = {
+			isa = PBXGroup;
+			children = (
+				1AAB1E282800A55500378382 /* PhysicsCategory.swift */,
+				3EA7C8A02802AC28009BCA63 /* PhysicsCollision.swift */,
+				3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */,
+			);
+			path = PhysicsBitMasks;
+			sourceTree = "<group>";
+		};
 		1AC1603C27F19358006E4018 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,14 +900,6 @@
 				A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */,
 			);
 			path = Levels;
-			sourceTree = "<group>";
-		};
-		1AC1605127F2F561006E4018 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				1A94D93B27EB9642001D8A86 /* GameEngine.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		1AC1605D27F31DED006E4018 /* Sounds */ = {
@@ -941,6 +937,7 @@
 				1A94D94B27ED8709001D8A86 /* Entities */,
 				1A94D94627ED8709001D8A86 /* Components */,
 				1A94D95027ED8709001D8A86 /* Systems */,
+				1AE9D8B827FF0E6B002B0A1E /* Colliders */,
 			);
 			path = GameWorld;
 			sourceTree = "<group>";
@@ -981,6 +978,7 @@
 		1AE9D8B827FF0E6B002B0A1E /* Colliders */ = {
 			isa = PBXGroup;
 			children = (
+				1ABD9420280DE0A300A77857 /* PhysicsBitMasks */,
 				1AAB1E0C27FF0EDD00378382 /* Collidable.swift */,
 				1AAB1E0E27FF0F6200378382 /* ContactHandler.swift */,
 				1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */,
@@ -1165,7 +1163,7 @@
 			path = Landing;
 			sourceTree = "<group>";
 		};
-		9356AB7327EEFD81008CDEC1 /* Online */ = {
+		9356AB7327EEFD81008CDEC1 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
 				9356AB6D27EEF719008CDEC1 /* RemoteEvent.swift */,
@@ -1180,7 +1178,7 @@
 				A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */,
 				3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */,
 			);
-			path = Online;
+			path = Remote;
 			sourceTree = "<group>";
 		};
 		9356F4E527DE2129007F4D89 /* Managers */ = {
@@ -1472,7 +1470,7 @@
 			path = Characters;
 			sourceTree = "<group>";
 		};
-		A1050893280DD1F00055769E /* GameEnvironments */ = {
+		A1050893280DD1F00055769E /* Environment */ = {
 			isa = PBXGroup;
 			children = (
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
@@ -1483,7 +1481,7 @@
 				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
 			);
-			path = GameEnvironments;
+			path = Environment;
 			sourceTree = "<group>";
 		};
 		A1050894280DD2230055769E /* CoreComponents */ = {
@@ -1589,15 +1587,15 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				A1D7866228018FC400C5CE49 /* CoreEvents */,
 				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
 				A1D7869A2802877E00C5CE49 /* ActivationEvents */,
-				A1D7866228018FC400C5CE49 /* CoreEvents */,
 				A11A00B027F8CE0E001BB83D /* PlayerEvents */,
-				1AB6F2D627F99D80004BF6AF /* Effectors */,
 				A11A00AF27F8CDED001BB83D /* UtilityEvents */,
-				9356AB7327EEFD81008CDEC1 /* Online */,
+				1AB6F2D627F99D80004BF6AF /* Effectors */,
+				9356AB7327EEFD81008CDEC1 /* Remote */,
 				A1347AB027DA6BE00011CF40 /* Event.swift */,
 				1A94D96127EE02FD001D8A86 /* Events.swift */,
 				1AB6F2D027F98F57004BF6AF /* Effector.swift */,
@@ -1678,8 +1676,8 @@
 			children = (
 				3E246B4727DDAB1300D51300 /* GameViewController.swift */,
 				1AC1605227F2F56D006E4018 /* GameManager.swift */,
-				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 				1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */,
+				3EA7C89427FF1ECB009BCA63 /* PlayerInfo.swift */,
 			);
 			path = GameManager;
 			sourceTree = "<group>";
