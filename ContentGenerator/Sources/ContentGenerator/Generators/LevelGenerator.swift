@@ -6,10 +6,9 @@
 //
 
 import CoreGraphics
-import GameplayKit
 
-class LevelGenerator {
-    static func positionFrom(_ blueprint: Blueprint) -> [CGPoint] {
+public class LevelGenerator {
+    public static func positionsFrom(_ blueprint: Blueprint) -> [CGPoint] {
         var generator = SeedGenerator(seed: blueprint.seed)
         var positions: [CGPoint] = []
 
@@ -39,8 +38,8 @@ class LevelGenerator {
         return positions
     }
 
-    static func velocityFrom(_ velocityGenerationInfo: VelocityGenerationInfo, size: Int) -> [CGFloat] {
-        var generator = SeedGenerator(seed: velocityGenerationInfo.seed)
+    public static func velocitiesFrom(_ velocitiesTemplate: VelocityTemplate, size: Int) -> [CGFloat] {
+        var generator = SeedGenerator(seed: velocitiesTemplate.seed)
         var velocities: [CGFloat] = []
 
         while velocities.count < size {
@@ -49,7 +48,7 @@ class LevelGenerator {
             if !shouldMove {
                 velocities.append(.zero)
             } else {
-                let randomSpeed = random(in: velocityGenerationInfo.velocityRange, using: &generator)
+                let randomSpeed = random(in: velocitiesTemplate.velocityRange, using: &generator)
                 velocities.append(randomSpeed)
             }
         }
@@ -57,14 +56,14 @@ class LevelGenerator {
         return velocities
     }
 
-    static func getRandomPosition(_ positionGenerationInfo: RandomPositionGenerationInfo) -> CGPoint {
-        let randomSeed = getRandomSeed()
+    static func getRandomPosition(_ positionsTemplate: PositionsTemplate) -> CGPoint {
+        let randomSeed = randomSeed
         var generator = SeedGenerator(seed: randomSeed)
 
-        let xMax = Float(positionGenerationInfo.worldSize.width / 2)
+        let xMax = Float(positionsTemplate.worldSize.width / 2)
         let xMin = Float(-xMax)
 
-        let yMax = Float(positionGenerationInfo.worldSize.height)
+        let yMax = Float(positionsTemplate.worldSize.height)
         let yMin = Float(-100.0)
 
         let positionX = random(in: xMin...xMax, using: &generator)
@@ -73,13 +72,13 @@ class LevelGenerator {
         return CGPoint(x: positionX, y: positionY)
     }
 
-    static func getRandomVelocity(_ velocityGenerationInfo: RandomVelocityGenerationInfo) -> CGVector {
-        let randomSeed = getRandomSeed()
+    static func getRandomVelocity(_ velocitiesTemplate: VelocitiesTemplate) -> CGVector {
+        let randomSeed = randomSeed
         var generator = SeedGenerator(seed: randomSeed)
 
-        let xVelocity = random(in: velocityGenerationInfo.xRange, using: &generator)
-        let yVelocity = random(in: velocityGenerationInfo.yRange, using: &generator)
-        let speed = random(in: velocityGenerationInfo.speedRange, using: &generator)
+        let xVelocity = random(in: velocitiesTemplate.xRange, using: &generator)
+        let yVelocity = random(in: velocitiesTemplate.yRange, using: &generator)
+        let speed = random(in: velocitiesTemplate.speedRange, using: &generator)
 
         return CGVector(dx: speed * xVelocity, dy: speed * yVelocity)
     }
@@ -88,20 +87,7 @@ class LevelGenerator {
         CGFloat(Float.random(in: range, using: &generator))
     }
 
-    private static func getRandomSeed() -> Int {
+    private static var randomSeed: Int {
         Int.random(in: 1..<1_000_000_000)
     }
-}
-
-// MARK: - SeedGenerator
-private struct SeedGenerator: RandomNumberGenerator {
-    init(seed: Int) {
-        srand48(seed)
-    }
-
-    // swiftlint:disable legacy_random
-    func next() -> UInt64 {
-        withUnsafeBytes(of: drand48()) { $0.load(as: UInt64.self) }
-    }
-    // swiftlint:enable legacy_random
 }

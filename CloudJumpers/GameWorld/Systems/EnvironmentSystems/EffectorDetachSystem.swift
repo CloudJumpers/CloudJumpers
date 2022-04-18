@@ -5,8 +5,8 @@
 //  Created by Eric Bryan on 17/4/22.
 //
 
-import Foundation
 import CoreGraphics
+import ContentGenerator
 
 class EffectorDetachSystem: System {
     var active = false
@@ -14,7 +14,7 @@ class EffectorDetachSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    var positionGenerationInfo: RandomPositionGenerationInfo?
+    var positionsTemplate: PositionsTemplate?
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager

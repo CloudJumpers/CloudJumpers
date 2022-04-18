@@ -5,8 +5,8 @@
 //  Created by Trong Tan on 4/17/22.
 //
 
-import Foundation
 import CoreGraphics
+import ContentGenerator
 
 class GodPowerSpawnSystem: System {
     var active = false
@@ -20,12 +20,11 @@ class GodPowerSpawnSystem: System {
     }
 
     func update(within time: CGFloat) {
-        guard RandomSpawnGenerator.isSpawning(successRate: 0.3)
-        else {
+        guard RandomSpawnGenerator.isSpawning(successRate: 0.3) else {
             return
         }
 
-        let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
+        let powerType = PowerUpComponent.Kind.randomly ?? .confuse
         let powerId = EntityManager.newEntityID
 
         dispatcher?.dispatch(ExternalGodPowerUpSpawnEvent(

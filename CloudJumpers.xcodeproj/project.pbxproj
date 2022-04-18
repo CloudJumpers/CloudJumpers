@@ -71,9 +71,8 @@
 		1AB6F2D527F990E0004BF6AF /* SwapMoveEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */; };
 		1AB6F2D827F9A15F004BF6AF /* Supplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB6F2D727F9A15F004BF6AF /* Supplier.swift */; };
 		1ABD941F280DBCD600A77857 /* DisposableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABD941E280DBCD600A77857 /* DisposableTag.swift */; };
+		1ABD9423280DE2D900A77857 /* ContentGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 1ABD9422280DE2D900A77857 /* ContentGenerator */; };
 		1ABF39132807E4B30035DBB9 /* GameManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */; };
-		1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603D27F19369006E4018 /* Blueprint.swift */; };
-		1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1603F27F19386006E4018 /* LevelGenerator.swift */; };
 		1AC1605327F2F56D006E4018 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605227F2F56D006E4018 /* GameManager.swift */; };
 		1AC1605F27F31DEE006E4018 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1605E27F31DED006E4018 /* SoundManager.swift */; };
 		1AC1606427F31E08006E4018 /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC1606327F31E08006E4018 /* Sounds.swift */; };
@@ -126,9 +125,6 @@
 		3E3632FD2809974100FAD7A8 /* TeleportComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */; };
 		3E363302280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */; };
 		3E363304280A9AC400FAD7A8 /* HorizontalOscillationSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */; };
-		3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */; };
-		3E36330E280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */; };
-		3E363310280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */; };
 		3E3E0BEF27F6D5C900BF526C /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BEE27F6D5C900BF526C /* Floor.swift */; };
 		3E3E0BF127F6D61200BF526C /* Wall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF027F6D61200BF526C /* Wall.swift */; };
 		3E3E0BF327F6DC1B00BF526C /* Disaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E0BF227F6DC1B00BF526C /* Disaster.swift */; };
@@ -319,7 +315,6 @@
 		A1D7868B2802011D00C5CE49 /* TimedRemovalComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */; };
 		A1D78690280209D500C5CE49 /* ObtainEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7868F280209D500C5CE49 /* ObtainEvent.swift */; };
 		A1D7869228020D3700C5CE49 /* InventorySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869128020D3700C5CE49 /* InventorySystem.swift */; };
-		A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */; };
 		A1D8555C280491BF000C4CA7 /* RuleModifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8555B280491BF000C4CA7 /* RuleModifiable.swift */; };
 		A1D8555E2804A32C000C4CA7 /* TopPlatformTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D8555D2804A32C000C4CA7 /* TopPlatformTag.swift */; };
 		A1D855612804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */; };
@@ -404,9 +399,8 @@
 		1AB6F2D427F990E0004BF6AF /* SwapMoveEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapMoveEffector.swift; sourceTree = "<group>"; };
 		1AB6F2D727F9A15F004BF6AF /* Supplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supplier.swift; sourceTree = "<group>"; };
 		1ABD941E280DBCD600A77857 /* DisposableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisposableTag.swift; sourceTree = "<group>"; };
+		1ABD9421280DE25500A77857 /* ContentGenerator */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ContentGenerator; sourceTree = "<group>"; };
 		1ABF39122807E4B30035DBB9 /* GameManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManagerDelegate.swift; sourceTree = "<group>"; };
-		1AC1603D27F19369006E4018 /* Blueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blueprint.swift; sourceTree = "<group>"; };
-		1AC1603F27F19386006E4018 /* LevelGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelGenerator.swift; sourceTree = "<group>"; };
 		1AC1605227F2F56D006E4018 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		1AC1605E27F31DED006E4018 /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1AC1606327F31E08006E4018 /* Sounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
@@ -460,9 +454,6 @@
 		3E3632FC2809974100FAD7A8 /* TeleportComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeleportComponent.swift; sourceTree = "<group>"; };
 		3E363301280A98FE00FAD7A8 /* HorizontalOscillationComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationComponent.swift; sourceTree = "<group>"; };
 		3E363303280A9AC300FAD7A8 /* HorizontalOscillationSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalOscillationSystem.swift; sourceTree = "<group>"; };
-		3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VelocityGenerationInfo.swift; sourceTree = "<group>"; };
-		3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPositionGenerationInfo.swift; sourceTree = "<group>"; };
-		3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomVelocityGenerationInfo.swift; sourceTree = "<group>"; };
 		3E3E0BEE27F6D5C900BF526C /* Floor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		3E3E0BF027F6D61200BF526C /* Wall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wall.swift; sourceTree = "<group>"; };
 		3E3E0BF227F6DC1B00BF526C /* Disaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disaster.swift; sourceTree = "<group>"; };
@@ -658,7 +649,6 @@
 		A1D7868A2802011D00C5CE49 /* TimedRemovalComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimedRemovalComponent.swift; sourceTree = "<group>"; };
 		A1D7868F280209D500C5CE49 /* ObtainEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObtainEvent.swift; sourceTree = "<group>"; };
 		A1D7869128020D3700C5CE49 /* InventorySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventorySystem.swift; sourceTree = "<group>"; };
-		A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSpawnGenerator.swift; sourceTree = "<group>"; };
 		A1D8555B280491BF000C4CA7 /* RuleModifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleModifiable.swift; sourceTree = "<group>"; };
 		A1D8555D2804A32C000C4CA7 /* TopPlatformTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPlatformTag.swift; sourceTree = "<group>"; };
 		A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeStandOnLocationEvent.swift; sourceTree = "<group>"; };
@@ -672,6 +662,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABD9423280DE2D900A77857 /* ContentGenerator in Frameworks */,
 				DC638DD0207FAA225853FCF0 /* Pods_CloudJumpers.framework in Frameworks */,
 				1A29CE9A280D77A6004714C2 /* RenderCore in Frameworks */,
 			);
@@ -703,6 +694,7 @@
 		1A4E3D6327D85BC80033A29D = {
 			isa = PBXGroup;
 			children = (
+				1ABD9421280DE25500A77857 /* ContentGenerator */,
 				1A29CE98280D7798004714C2 /* RenderCore */,
 				1A4E3D6E27D85BC80033A29D /* CloudJumpers */,
 				9389E5FC27D8C5EB0049ADDD /* CloudJumpersTests */,
@@ -731,7 +723,6 @@
 				A1DBB82827D884200077AB96 /* GameManager */,
 				A1347AA927DA66A10011CF40 /* Events */,
 				1A13D77A27FD9BAC00A28182 /* Rendering */,
-				1AC1603C27F19358006E4018 /* Levels */,
 				936228D827F5CF7A00BB05FE /* GameLifecycle */,
 				939AFA012809BBC200852B8B /* Achievements */,
 				1A94D93227EB41B5001D8A86 /* Input */,
@@ -887,19 +878,6 @@
 				3EA7C8A22802AC2E009BCA63 /* PhysicsContactTest.swift */,
 			);
 			path = PhysicsBitMasks;
-			sourceTree = "<group>";
-		};
-		1AC1603C27F19358006E4018 /* Levels */ = {
-			isa = PBXGroup;
-			children = (
-				1AC1603D27F19369006E4018 /* Blueprint.swift */,
-				3E36330B280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift */,
-				1AC1603F27F19386006E4018 /* LevelGenerator.swift */,
-				3E36330F280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift */,
-				3E36330D280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift */,
-				A1D7869328027F1100C5CE49 /* RandomSpawnGenerator.swift */,
-			);
-			path = Levels;
 			sourceTree = "<group>";
 		};
 		1AC1605D27F31DED006E4018 /* Sounds */ = {
@@ -1721,6 +1699,7 @@
 			name = CloudJumpers;
 			packageProductDependencies = (
 				1A29CE99280D77A6004714C2 /* RenderCore */,
+				1ABD9422280DE2D900A77857 /* ContentGenerator */,
 			);
 			productName = CloudJumpers;
 			productReference = 1A4E3D6C27D85BC80033A29D /* CloudJumpers.app */;
@@ -1966,7 +1945,6 @@
 				936228DA27F5CF9B00BB05FE /* PostGameManager.swift in Sources */,
 				939AFA032809BBD000852B8B /* Achievement.swift in Sources */,
 				935280D527F6B073002E3A1D /* TimeTrialResponse.swift in Sources */,
-				1AC1604027F19386006E4018 /* LevelGenerator.swift in Sources */,
 				93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */,
 				3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */,
 				3E61A0FD280BB98900BD8470 /* EffectorDetachSystem.swift in Sources */,
@@ -2152,14 +2130,11 @@
 				A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */,
 				A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */,
 				9353464027F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift in Sources */,
-				A1D7869428027F1100C5CE49 /* RandomSpawnGenerator.swift in Sources */,
 				1A71C5F02808666C008131C3 /* Miscellaneous.swift in Sources */,
 				1AE9D89F27FE0287002B0A1E /* Renderer.swift in Sources */,
 				A1DBB84727D884290077AB96 /* CGVector+Extension.swift in Sources */,
-				3E36330E280B3F6900FAD7A8 /* RandomPositionGenerationInfo.swift in Sources */,
 				3E61A109280C142B00BD8470 /* FreezeEffectCreator.swift in Sources */,
 				A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */,
-				3E363310280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift in Sources */,
 				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
 				3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */,
@@ -2181,7 +2156,6 @@
 				A14A57C727F7F11100A25DBA /* RespawnEventCommand.swift in Sources */,
 				93602440280A76EC004A7394 /* AchievementCell.swift in Sources */,
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
-				3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */,
 				A183D382280D306D007DAB4B /* GodPowerUpSpawnEvent.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
@@ -2221,7 +2195,6 @@
 				A183D38B280D459E007DAB4B /* TimeInterval+MMSS.swift in Sources */,
 				933486CB280BC84B00D6DC0F /* KingOfTheHillResponse.swift in Sources */,
 				93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */,
-				1AC1603E27F19369006E4018 /* Blueprint.swift in Sources */,
 				934789B527DF04FD00324DAF /* LobbyViewController.swift in Sources */,
 				1A24DC1D2805905B00E48B64 /* GameWorld.swift in Sources */,
 				931D130B27ECBC50002C7AF3 /* CJNetworkEncoder.swift in Sources */,
@@ -2530,6 +2503,10 @@
 		1A29CE99280D77A6004714C2 /* RenderCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RenderCore;
+		};
+		1ABD9422280DE2D900A77857 /* ContentGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ContentGenerator;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

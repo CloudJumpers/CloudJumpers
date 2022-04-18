@@ -7,6 +7,7 @@
 
 import CoreGraphics
 import RenderCore
+import ContentGenerator
 
 class GameManager {
     unowned var delegate: GameManagerDelegate?
@@ -41,20 +42,25 @@ class GameManager {
         rules.enableHostSystems()
     }
 
-    func setUpGame(with blueprint: Blueprint, velocity: VelocityGenerationInfo,
-                   playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
-        setUpEnvironment(with: blueprint, velocity: velocity)
+    func setUpGame(
+        size worldSize: CGSize,
+        with blueprint: Blueprint,
+        velocity: VelocityTemplate,
+        playerInfo: PlayerInfo,
+        allPlayersInfo: [PlayerInfo]
+    ) {
+        setUpEnvironment(size: worldSize, with: blueprint, velocity: velocity)
         rules.setUpForRule()
         rules.setUpPlayers(playerInfo, allPlayersInfo: allPlayersInfo)
     }
 
-    private func setUpEnvironment(with blueprint: Blueprint, velocity: VelocityGenerationInfo) {
-        let cloudPositions = LevelGenerator.positionFrom(blueprint)
+    private func setUpEnvironment(size worldSize: CGSize, with blueprint: Blueprint, velocity: VelocityTemplate) {
+        let cloudPositions = LevelGenerator.positionsFrom(blueprint)
         guard let highestPosition = cloudPositions.max(by: { $0.y < $1.y }) else {
             return
         }
 
-        let cloudVelocities = LevelGenerator.velocityFrom(velocity, size: cloudPositions.count)
+        let cloudVelocities = LevelGenerator.velocitiesFrom(velocity, size: cloudPositions.count)
 
         addPlatform(at: highestPosition)
 
@@ -67,7 +73,7 @@ class GameManager {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
 
-        world.add(Area(size: blueprint.worldSize))
+        world.add(Area(size: worldSize))
         world.add(HUD(at: Constants.hudPosition))
     }
 

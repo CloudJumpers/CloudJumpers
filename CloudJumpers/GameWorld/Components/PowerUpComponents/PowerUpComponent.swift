@@ -6,6 +6,15 @@
 //
 
 class PowerUpComponent: Component {
+    let kind: Kind
+
+    init(_ kind: Kind) {
+        self.kind = kind
+        super.init()
+    }
+}
+
+extension PowerUpComponent {
     enum Kind: String, CaseIterable {
         case freeze
         case confuse
@@ -15,12 +24,7 @@ class PowerUpComponent: Component {
         case knife
 
         var name: String { rawValue }
-    }
 
-    let kind: Kind
-
-    init(_ kind: Kind) {
-        self.kind = kind
-        super.init()
+        static var randomly: Self? { Self.allCases.randomElement() }
     }
 }

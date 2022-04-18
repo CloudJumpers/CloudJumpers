@@ -1,5 +1,6 @@
 import SpriteKit
 import RenderCore
+import ContentGenerator
 
 class GameViewController: UIViewController {
     private var gameManager: GameManager?
@@ -115,17 +116,20 @@ class GameViewController: UIViewController {
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...0.8,
             firstPlatformPosition: Constants.playerInitialPosition,
-            seed: config.seed
-        )
+            seed: config.seed)
+
         gameManager?.delegate = self
 
-        let velocityInfo = VelocityGenerationInfo(
+        let velocityTemplate = VelocityTemplate(
             velocityRange: -100.0...100.0,
-            seed: config.seed
-        )
+            seed: config.seed)
 
-        gameManager?.setUpGame(with: blueprint, velocity: velocityInfo,
-                               playerInfo: userInfo, allPlayersInfo: allUsersInfo)
+        gameManager?.setUpGame(
+            size: scene.size,
+            with: blueprint,
+            velocity: velocityTemplate,
+            playerInfo: userInfo,
+            allPlayersInfo: allUsersInfo)
     }
 
     private func setUpInputControls() {
