@@ -33,7 +33,8 @@ class KingHillGameRules: GameRules {
         }
         let scoreLabel = StaticLabel(
             at: Constants.scoreLabelPosition,
-            fontSize: Constants.labelFontSize,
+            typeface: .display,
+            size: Constants.labelFontSize,
             text: "\(playerScore)")
 
         self.scoreLabel = scoreLabel
@@ -122,7 +123,7 @@ class KingHillGameRules: GameRules {
             return
         }
         currentGameDuration = KingHillGameRules.gameDuration - timedComponent.time
-        let timeString = currentGameDuration.convertToTimeString()
+        let timeString = currentGameDuration.minuteSeconds
 
         updateLabelWithValue(timeString, label: timer, target: target)
     }

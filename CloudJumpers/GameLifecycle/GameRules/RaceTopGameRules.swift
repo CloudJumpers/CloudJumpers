@@ -64,7 +64,7 @@ class RaceTopGameRules: GameRules {
         else {
             return
         }
-        let timeString = timedComponent.time.convertToTimeString()
+        let timeString = timedComponent.time.minuteSeconds
 
         updateTwoPlayerSameCloud(target: target)
         updateLabelWithValue(timeString, label: timer, target: target)

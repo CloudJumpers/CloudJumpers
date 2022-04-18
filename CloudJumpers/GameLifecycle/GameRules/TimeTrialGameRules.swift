@@ -61,7 +61,7 @@ class TimeTrialGameRules: GameRules {
         else {
             return
         }
-        let timeString = timedComponent.time.convertToTimeString()
+        let timeString = timedComponent.time.minuteSeconds
 
         updateLabelWithValue(timeString, label: timer, target: target)
     }
