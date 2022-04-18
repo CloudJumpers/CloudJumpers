@@ -20,38 +20,6 @@ extension CGPoint {
     func magnitude() -> CGFloat {
         .squareRoot((x * x) + (y * y))()
     }
-
-    func scaleToUnit(with frame: CGRect) -> CGPoint {
-        let scaleFactor = CGAffineTransform(scaleX: 1 / frame.maxX, y: 1 / frame.maxX)
-        return self.applying(scaleFactor)
-    }
-
-    func scaleToSize(with frame: CGRect) -> CGPoint {
-        let scaleFactor = CGAffineTransform(scaleX: frame.maxX, y: frame.maxX)
-        return self.applying(scaleFactor)
-    }
-
-    func rotate(around point: CGPoint, by angle: CGFloat) -> CGPoint {
-        let translate = CGAffineTransform(translationX: point.x, y: point.y)
-        let rotate = CGAffineTransform(rotationAngle: angle)
-        return self.applying(translate.inverted().concatenating(rotate).concatenating(translate))
-    }
-
-    func reversedVerticalDirection() -> CGPoint {
-        CGPoint(x: self.x, y: -self.y)
-    }
-
-    func isInside(position: CGPoint, size: CGSize) -> Bool {
-        let startX = position.x - size.width / 2
-        let endX = position.x + size.width / 2
-        let startY = position.y - size.height / 2
-        let endY = position.y + size.height / 2
-
-        let isPointXinside = startX <= self.x && self.x <= endX
-        let isPointYinside = startY <= self.y && self.y <= endY
-        return isPointXinside && isPointYinside
-    }
-
 }
 
 // MARK: Vector-related

@@ -21,9 +21,7 @@ enum Events: Int {
     case jumpButtonPressed
     case powerUpActivate
     case disasterActivate
-    case blink
-    case confuse
-    case freeze
+    case kill
     case powerUpSpawn
     case reposition
     case respawn
@@ -31,7 +29,9 @@ enum Events: Int {
     case sound
     case promoteGod
     case demoteGod
+    case opacityChange
     case godPowerUpSpawn
+    case disastersToggle
 
     private static let events: [String: Events] = [
         BiEvent.type: .bi,
@@ -46,19 +46,18 @@ enum Events: Int {
         PowerUpActivateEvent.type: .powerUpActivate,
         RepositionEvent.type: .reposition,
         DisasterPlayerCollideEvent.type: .disasterPlayerCollide,
-        BlinkEvent.type: .blink,
         DisasterSpawnEvent.type: .disasterActivate,
         RespawnEvent.type: .respawn,
         ChangeStandOnLocationEvent.type: .changeStandOnLocation,
         SoundEvent.type: .sound,
         UpdateGuestStateEvent.type: .updateGuestState,
-        ConfuseEvent.type: .confuse,
-        FreezeEvent.type: .freeze,
+        KillEvent.type: .kill,
         JoystickUpdateEvent.type: .joystickUpdate,
         PowerUpLocationPressedEvent.type: .powerUpLocationPressed,
         JumpButtonPressedEvent.type: .jumpButtonPressed,
         PromoteGodEvent.type: .promoteGod,
         DemoteGodEvent.type: .demoteGod,
+        OpacityChangeEvent.type: .opacityChange,
         GodPowerUpSpawnEvent.type: .godPowerUpSpawn
     ]
 

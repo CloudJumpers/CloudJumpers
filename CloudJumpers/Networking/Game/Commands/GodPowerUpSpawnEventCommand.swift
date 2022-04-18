@@ -32,6 +32,7 @@ struct GodPowerUpSpawnEventCommand: GameEventCommand {
         guard let parameters = try? decoder.decode(ExternalGodPowerUpSpawnEvent.self, from: jsonData),
               let type = PowerUpComponent.Kind(rawValue: parameters.godPowerUpType)
         else {
+            nextCommand = KilledEntityEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
         let position = CGPoint(

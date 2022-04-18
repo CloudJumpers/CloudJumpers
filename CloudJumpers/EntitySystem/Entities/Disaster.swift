@@ -12,12 +12,14 @@ class Disaster: Entity {
     private var velocity: CGVector
     private let kind: DisasterComponent.Kind
     private let texture: Miscellaneous
+    private let alpha: Double
 
     init(
         _ kind: DisasterComponent.Kind,
         at position: CGPoint,
         velocity: CGVector,
         texture: Miscellaneous,
+        alpha: Double = 1.0,
         with id: EntityID = EntityManager.newEntityID
     ) {
         self.id = id
@@ -25,6 +27,7 @@ class Disaster: Entity {
         self.position = position
         self.texture = texture
         self.velocity = velocity
+        self.alpha = alpha
     }
 
     func setUpAndAdd(to manager: EntityManager) {
@@ -34,6 +37,7 @@ class Disaster: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(PositionComponent(at: position), to: self)
+        manager.addComponent(DisposableTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
@@ -44,6 +48,7 @@ class Disaster: Entity {
 
         spriteComponent.zRotation = Self.rotation(of: velocity)
         spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)
+        spriteComponent.alpha = alpha
 
         return spriteComponent
     }

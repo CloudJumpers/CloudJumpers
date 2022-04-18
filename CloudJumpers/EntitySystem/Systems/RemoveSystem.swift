@@ -27,7 +27,10 @@ class RemoveSystem: System {
             return
         }
 
-        for entity in manager.entities {
+        let disposableTags = manager.components(ofType: DisposableTag.self)
+        let disposables = disposableTags.compactMap { $0.entity }
+
+        for entity in disposables {
             updateRemoveWithTime(entity: entity)
             updateRemoveOutOfBound(entity: entity)
         }
@@ -35,7 +38,6 @@ class RemoveSystem: System {
 
     func updateRemoveWithTime(entity: Entity) {
 
-        // TODO: Probably no need two separate components for this
         guard let manager = manager,
               let timedComponent = manager.component(ofType: TimedComponent.self, of: entity),
               let timedRemoveComponent = manager.component(ofType: TimedRemovalComponent.self, of: entity),

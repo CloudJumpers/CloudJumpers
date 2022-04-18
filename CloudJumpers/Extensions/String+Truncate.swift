@@ -10,7 +10,8 @@ extension String {
         var text = self
         if text.count > maxLength {
             let index = text.index(text.startIndex, offsetBy: maxLength)
-            text = text[..<index] + trailing
+            let trimmedText = text[..<index].trimmingCharacters(in: .whitespacesAndNewlines)
+            text = trimmedText + trailing
         }
 
         return text

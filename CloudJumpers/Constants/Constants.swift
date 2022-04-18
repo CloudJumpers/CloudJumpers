@@ -41,13 +41,16 @@ struct Constants {
     static let jumpImpulse = CGVector(dx: 0.0, dy: 150.0)
     static let jumpYTolerance = 0.0
 
-    static let timerPosition = CGPoint(x: 250, y: 410)
+    static let timerPosition = CGPoint(x: -100, y: 400)
     static let timerInitial: Double = 0.0
+
+    static let homeButtonSize = CGSize(width: 60, height: 60)
+    static let homeButtonPosition = CGPoint(x: -280, y: 420)
 
     static let hudSize = CGSize(width: 320, height: 80)
     static let hudPosition = CGPoint(x: 0, y: 410)
 
-    static let scoreLabelPosition = CGPoint(x: -250, y: 410)
+    static let scoreLabelPosition = CGPoint(x: 250, y: 410)
 
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
     static let cloudPhysicsSize = CGSize(width: 200.0, height: 1.0)
@@ -114,7 +117,7 @@ struct Constants {
     static let captionRelativePosition = CGPoint(x: 0.0, y: 35.0)
     static let playerDisplaynameSize = 5
 
-    static let labelFontSize = 30.0
+    static let labelFontSize = 25.0
 
     static let teleportCloudGapY = CGVector(dx: 0.0, dy: 25.0)
     static let teleportEffectDuration = 0.05
@@ -124,4 +127,6 @@ struct Constants {
     static let outOfBoundBufferX = 50.0
     static let outOfBoundBufferY = 1_000.0
     static let minOutOfBoundBufferY = -800.0
+
+    static let knifeKillEffectDuration = 2.0
 }

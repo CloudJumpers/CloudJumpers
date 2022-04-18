@@ -59,7 +59,7 @@ class KingOfTheHillPostGameManager: PostGameManager {
 
             rankingRow.setPrimaryField(colName: "Position", value: item.position)
             rankingRow.setPrimaryField(colName: "Name", value: item.userDisplayName)
-            rankingRow.setPrimaryField(colName: "Score", value: item.score)
+            rankingRow.setPrimaryField(colName: "Score", value: String(format: "%.2f", item.score))
             rankingRow.setPrimaryField(colName: "Kills", value: item.kills)
             rankingRow.setPrimaryField(colName: "Deaths", value: item.deaths)
 

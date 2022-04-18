@@ -26,7 +26,9 @@ class DisasterTransformSystem: System {
 
         for disasterTransformComponent in manager.components(ofType: DisasterTransformComponent.self) {
             guard let disasterPrompt = disasterTransformComponent.entity,
-                  let timedComponent = manager.component(ofType: TimedComponent.self, of: disasterPrompt) else {
+                  let timedComponent = manager.component(ofType: TimedComponent.self, of: disasterPrompt),
+                  let spriteComponent = manager.component(ofType: SpriteComponent.self, of: disasterPrompt)
+            else {
                 continue
             }
 
@@ -36,6 +38,7 @@ class DisasterTransformSystem: System {
                                      at: disasterTransformComponent.position,
                                      velocity: disasterTransformComponent.velocity,
                                      texture: disasterTransformComponent.disasterTexture,
+                                     alpha: spriteComponent.alpha,
                                      with: disasterPrompt.id + Constants.disasterIdSuffix))
             }
 

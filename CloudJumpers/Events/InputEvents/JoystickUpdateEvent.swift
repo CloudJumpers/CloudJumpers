@@ -38,7 +38,6 @@ struct JoystickUpdateEvent: Event {
             let soundEvent = SoundEvent(.walking)
             supplier.add(walkingAnimateEvent.then(do: soundEvent))
         } else if !physicsSystem.isMoving(player.id) {
-            // TODO: Figure out how to do without WhenStationaryEvent
             let idleAnimateEvent = AnimateEvent(onEntityWith: player.id, to: CharacterFrames.idle.key)
             supplier.add(idleAnimateEvent)
         }

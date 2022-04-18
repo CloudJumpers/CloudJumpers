@@ -13,8 +13,8 @@ typealias EntityPositionMap = [EntityID: CGPoint]
 typealias EntityVelocityMap = [EntityID: CGVector]
 
 class Renderer {
-    private unowned var target: Simulatable?
-    private unowned var scene: Scene?
+    private weak var target: Simulatable?
+    private weak var scene: Scene?
 
     private var renderedNodes: NodesMap
     private var entityNode: EntityNodeMap

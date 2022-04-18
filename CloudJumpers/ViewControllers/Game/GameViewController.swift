@@ -29,9 +29,11 @@ class GameViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        view = nil
+        scene = nil
+        skView = nil
         gameManager = nil
         handlers = nil
-        scene = nil
         joystick = nil
     }
 
@@ -89,6 +91,7 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
+        addHomeButton()
     }
 
     private func setUpGameManager() {
@@ -108,9 +111,9 @@ class GameViewController: UIViewController {
         let blueprint = Blueprint(
             worldSize: scene.size,
             platformSize: Constants.cloudNodeSize,
-            tolerance: CGVector(dx: 150, dy: Constants.jumpImpulse.dy),
+            tolerance: CGVector(dx: Constants.jumpImpulse.dy, dy: Constants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
-            yToleranceRange: 0.4...1.0,
+            yToleranceRange: 0.4...0.8,
             firstPlatformPosition: Constants.playerInitialPosition,
             seed: config.seed
         )
@@ -149,13 +152,15 @@ class GameViewController: UIViewController {
 
     // MARK: - Helper Methods
     private func presentSKView() {
-        guard let scene = scene, let skView = skView else {
-            fatalError("GameScene or skView was not set up")
-        }
-
-        skView.presentScene(scene)
+        skView?.presentScene(scene)
         view = skView
-        self.skView = nil
+    }
+
+    private func addHomeButton() {
+        let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
+        button.position = Constants.homeButtonPosition
+        button.delegate = self
+        scene?.addChild(button, static: true)
     }
 
     private func transitionToEndGame(with completionData: LocalCompletionData) {
@@ -187,7 +192,6 @@ extension GameViewController: GameSceneDelegate {
         gameManager.inputMove(by: joystick?.displacement ?? .zero)
 
         // Check if player is host for each update iteration, enable as needed
-        // TODO: Bring this to a callback if possible to reduce the need to check everytime
         if lobby.userIsHost && !gameManager.isHost {
             gameManager.enableHostStatus()
         }
@@ -202,5 +206,14 @@ extension GameViewController: GameSceneDelegate {
 extension GameViewController: GameManagerDelegate {
     func manager(_ manager: GameManager, didEndGameWith completionData: LocalCompletionData) {
         transitionToEndGame(with: completionData)
+    }
+}
+
+// MARK: - HomeButtonDelegate
+extension GameViewController: HomeButtonDelegate {
+    func didPressHomeButton() {
+        lobby?.removeDeviceUser()
+
+        performSegue(withIdentifier: SegueIdentifier.gameToLobbies, sender: nil)
     }
 }

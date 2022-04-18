@@ -38,7 +38,6 @@ class GameWorld {
         systemManager.register(PhysicsSystem(for: entityManager))
         systemManager.register(PlayerStateSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(AnimateSystem(for: entityManager))
-        systemManager.register(StandOnSystem(for: entityManager))
         systemManager.register(TimedSystem(for: entityManager))
         systemManager.register(MetricsSystem(for: entityManager))
         systemManager.register(InventorySystem(for: entityManager))
@@ -54,7 +53,9 @@ class GameWorld {
         systemManager.register(TeleportSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(EffectorDetachSystem(for: entityManager))
         systemManager.register(BlackoutSystem(for: entityManager))
+        systemManager.register(KnifeKillSystem(for: entityManager, dispatchesVia: self))
         systemManager.register(GodPowerSpawnSystem(for: entityManager, dispatchesVia: self))
+        systemManager.register(OpacitySystem(for: entityManager))
         systemManager.register(HUDSystem(for: entityManager))
     }
 }
