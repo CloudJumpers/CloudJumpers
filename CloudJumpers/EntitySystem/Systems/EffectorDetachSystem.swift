@@ -29,6 +29,6 @@ class EffectorDetachSystem: System {
             return false
         }
 
-        return timerComponent.time >= Constants.powerUpEffectDuration
+        return timerComponent.time >= Constants.powerUpEffectDetachDuration
     }
 }
