@@ -30,11 +30,11 @@ class Platform: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.frame, size: Constants.platformNodeSize, zPosition: .platform)
+        SpriteComponent(texture: texture.frame, size: Dimensions.platform, zPosition: .platform)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.platformPhysicsSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: PhysicsConstants.platformPhysicsSize)
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false

@@ -36,7 +36,7 @@ class ShadowGuest: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
             texture: texture.idle,
-            size: Constants.playerSize,
+            size: Dimensions.player,
             zPosition: .shadowGuest)
 
         spriteComponent.caption = name
@@ -45,7 +45,7 @@ class ShadowGuest: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: Dimensions.player)
 
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false

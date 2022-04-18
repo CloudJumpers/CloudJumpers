@@ -20,7 +20,7 @@ class Joystick: SpriteNodeCore {
         super.init(
             texture: Texture.texture(of: Buttons.outerStick.frame),
             color: .clear,
-            size: Constants.outerstickSize)
+            size: Dimensions.outerstick)
         configureNode(at: position)
         addInnerStickNode()
     }
@@ -71,7 +71,7 @@ class Joystick: SpriteNodeCore {
     private func configureNode(at position: CGPoint) {
         alpha = Constants.opacityTwo
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = ZPositions.outerStick.rawValue
         self.position = position
     }
 
@@ -92,8 +92,8 @@ class Joystick: SpriteNodeCore {
         let x = angle.dx * innerStickDisplacement
         let y = angle.dy * innerStickDisplacement
         return CGVector(
-            dx: -x * Constants.speedMultiplier,
-            dy: y * Constants.speedMultiplier)
+            dx: -x * PhysicsConstants.speedMultiplier,
+            dy: y * PhysicsConstants.speedMultiplier)
     }
 
     // MARK: - Inner Stick Modifiers
@@ -103,8 +103,8 @@ class Joystick: SpriteNodeCore {
 
     private func addInnerStickNode() {
         let node = SpriteNodeCore(texture: Texture.texture(of: Buttons.innerStick.frame))
-        node.size = Constants.innerstickSize
-        node.zPosition = SpriteZPosition.innerStick.rawValue
+        node.size = Dimensions.innerstick
+        node.zPosition = ZPositions.innerStick.rawValue
         innerStickNode = node
         addChild(node)
     }

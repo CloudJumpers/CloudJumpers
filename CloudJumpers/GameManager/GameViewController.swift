@@ -111,11 +111,11 @@ class GameViewController: UIViewController {
 
         let blueprint = Blueprint(
             worldSize: scene.size,
-            platformSize: Constants.cloudNodeSize,
-            tolerance: CGVector(dx: Constants.jumpImpulse.dy, dy: Constants.jumpImpulse.dy),
+            platformSize: Dimensions.cloud,
+            tolerance: CGVector(dx: PhysicsConstants.jumpImpulse.dy, dy: PhysicsConstants.jumpImpulse.dy),
             xToleranceRange: 0.4...1.0,
             yToleranceRange: 0.4...0.8,
-            firstPlatformPosition: Constants.playerInitialPosition,
+            firstPlatformPosition: Positions.player,
             seed: config.seed)
 
         gameManager?.delegate = self
@@ -137,8 +137,8 @@ class GameViewController: UIViewController {
             return
         }
 
-        let joystick = Joystick(at: Constants.joystickPosition, to: responder)
-        let jumpButton = JumpButton(at: Constants.jumpButtonPosition, to: responder)
+        let joystick = Joystick(at: Positions.joystick, to: responder)
+        let jumpButton = JumpButton(at: Positions.jumpButton, to: responder)
 
         scene?.addChild(joystick, static: true)
         scene?.addChild(jumpButton, static: true)
@@ -161,8 +161,8 @@ class GameViewController: UIViewController {
     }
 
     private func addHomeButton() {
-        let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
-        button.configure(at: Constants.homeButtonPosition)
+        let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Dimensions.homeButton)
+        button.configure(at: Positions.homeButton)
         button.delegate = self
         scene?.addChild(button, static: true)
     }

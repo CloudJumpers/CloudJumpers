@@ -44,6 +44,6 @@ class PowerUpEffect: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.frame, size: Constants.powerUpEffectSize, zPosition: .powerUpEffect)
+        SpriteComponent(texture: texture.frame, size: Dimensions.powerUpEffect, zPosition: .powerUpEffect)
     }
 }

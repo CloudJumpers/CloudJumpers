@@ -1,5 +1,5 @@
 //
-//  SpriteZPosition.swift
+//  ZPositions.swift
 //  CloudJumpers
 //
 //  Created by Eric Bryan on 13/3/22.
@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-enum SpriteZPosition: CGFloat {
+enum ZPositions: CGFloat {
     case platform
     case powerUpEffect
     case guest

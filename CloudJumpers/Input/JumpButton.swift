@@ -16,7 +16,7 @@ class JumpButton: SpriteNodeCore {
         super.init(
             texture: Texture.texture(of: Buttons.outerStick.frame),
             color: .clear,
-            size: Constants.jumpButtonSize)
+            size: Dimensions.jumpButton)
         configureNode(at: position)
     }
 
@@ -35,7 +35,7 @@ class JumpButton: SpriteNodeCore {
 
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = ZPositions.outerStick.rawValue
         self.position = position
     }
 

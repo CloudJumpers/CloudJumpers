@@ -43,7 +43,7 @@ class Disaster: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
             texture: texture.frame,
-            size: Constants.disasterNodeSize,
+            size: Dimensions.disaster,
             zPosition: .disaster)
 
         spriteComponent.zRotation = Self.rotation(of: velocity)
@@ -54,10 +54,10 @@ class Disaster: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.disasterPhysicsSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: PhysicsConstants.disasterPhysicsSize)
 
         physicsComponent.affectedByGravity = false
-        physicsComponent.mass = Constants.disasterMass
+        physicsComponent.mass = PhysicsConstants.disasterMass
         physicsComponent.velocity = velocity
         physicsComponent.allowsRotation = false
         physicsComponent.categoryBitMask = PhysicsCategory.disaster

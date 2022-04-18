@@ -5,7 +5,7 @@
 //  Created by Phillmont Muktar on 24/3/22.
 //
 
-import CoreGraphics
+import UIKit
 import RenderCore
 import ContentGenerator
 
@@ -63,18 +63,15 @@ class GameManager {
         let cloudVelocities = LevelGenerator.velocitiesFrom(velocity, size: cloudPositions.count)
 
         addPlatform(at: highestPosition)
-
-        let wallHeight = (Constants.screenHeight / 2) + highestPosition.y + Constants.wallHeightFromPlatform
-        addWall(at: Constants.leftWallPosition, height: wallHeight)
-        addWall(at: Constants.rightWallPosition, height: wallHeight)
-        addFloor(at: Constants.floorPosition)
+        addWalls(upTo: highestPosition)
+        addFloor(at: Positions.floor)
 
         for idx in 0..<cloudPositions.count where cloudPositions[idx] != highestPosition {
             world.add(Cloud(at: cloudPositions[idx], texture: .cloud1, horizontalVelocity: cloudVelocities[idx]))
         }
 
         world.add(Area(size: worldSize))
-        world.add(HUD(at: Constants.hudPosition))
+        world.add(HUD(at: Positions.hud))
     }
 
     private func addPlatform(at position: CGPoint) {
@@ -85,8 +82,11 @@ class GameManager {
         world.add(Floor(at: position, texture: .floor))
     }
 
-    private func addWall(at position: CGPoint, height: CGFloat) {
-        world.add(Wall(at: position, height: height, texture: .wall))
+    private func addWalls(upTo highestPosition: CGPoint) {
+        let screenHeight = UIScreen.main.bounds.size.height
+        let height = (screenHeight / 2) + highestPosition.y + Dimensions.wallHeightFromPlatform
+        world.add(Wall(at: Positions.leftWall, height: height, texture: .wall))
+        world.add(Wall(at: Positions.rightWall, height: height, texture: .wall))
     }
 
     private func checkHasGameEnd() {

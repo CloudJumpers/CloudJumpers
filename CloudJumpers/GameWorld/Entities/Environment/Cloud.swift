@@ -39,11 +39,11 @@ class Cloud: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.frame, size: Constants.cloudNodeSize, zPosition: .platform)
+        SpriteComponent(texture: texture.frame, size: Dimensions.cloud, zPosition: .platform)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.cloudPhysicsSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: PhysicsConstants.cloudPhysicsSize)
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false

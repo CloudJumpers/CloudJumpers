@@ -47,7 +47,7 @@ class DisasterPrompt: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
             texture: Miscellaneous.meteorPrompt.frame,
-            size: Constants.disasterPromptSize,
+            size: Dimensions.disasterPrompt,
             zPosition: .disaster)
 
         spriteComponent.anchorPoint = CGPoint(x: 0.5, y: 0)

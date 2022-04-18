@@ -18,7 +18,7 @@ class HomeButton: SpriteNodeCore {
     func configure(at position: CGPoint) {
         self.position = position
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.hud.rawValue
+        zPosition = ZPositions.hud.rawValue
     }
 }
 

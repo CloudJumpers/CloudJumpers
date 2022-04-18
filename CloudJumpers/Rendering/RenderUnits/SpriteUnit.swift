@@ -53,8 +53,8 @@ class SpriteUnit: RenderUnit {
 
         node.caption(
             caption,
-            at: Constants.captionRelativePosition,
-            size: Constants.captionFontSize,
+            at: Positions.playerCaption,
+            size: Dimensions.captionFontSize,
             typeface: Fonts.body.rawValue,
             truncateBy: Constants.captionMaxLength,
             color: isMainPlayer ? .red : .black)

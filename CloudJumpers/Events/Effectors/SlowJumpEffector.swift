@@ -23,7 +23,10 @@ struct SlowJumpEffector: Effector {
             return event
         }
 
-        return JumpEvent(onEntityWith: event.entityID, by: Constants.jumpImpulse / 3, at: event.timestamp)
+        return JumpEvent(
+            onEntityWith: event.entityID,
+            by: PhysicsConstants.jumpImpulse / 3,
+            at: event.timestamp)
     }
 
     func shouldDetach(in target: EventModifiable) -> Bool {

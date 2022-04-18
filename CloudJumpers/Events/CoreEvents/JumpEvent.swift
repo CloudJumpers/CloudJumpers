@@ -15,17 +15,17 @@ struct JumpEvent: Event {
     let jumpImpulse: CGVector
 
     init(onEntityWith id: EntityID,
-         by impulse: CGVector = Constants.jumpImpulse,
-         at timestamp: TimeInterval = EventManager.timestamp) {
+         by impulse: CGVector = PhysicsConstants.jumpImpulse,
+         at timestamp: TimeInterval = EventManager.timestamp
+    ) {
         self.timestamp = timestamp
         entityID = id
         jumpImpulse = impulse
     }
 
     func execute(in target: EventModifiable, thenSuppliesInto supplier: inout Supplier) {
-        guard
-            let physicsSystem = target.system(ofType: PhysicsSystem.self),
-            !physicsSystem.isJumping(entityID)
+        guard let physicsSystem = target.system(ofType: PhysicsSystem.self),
+              !physicsSystem.isJumping(entityID)
         else { return }
 
         physicsSystem.applyImpulse(on: entityID, impulse: jumpImpulse)

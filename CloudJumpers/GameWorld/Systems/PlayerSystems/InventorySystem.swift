@@ -63,7 +63,7 @@ class InventorySystem: System {
             return
         }
 
-        var position = Constants.initialPowerUpQueuePosition
+        var position = Positions.initialPowerUpQueue
         var displayCount = 0
 
         for entityID in inventoryComponent.inventory.iterable {
@@ -74,7 +74,7 @@ class InventorySystem: System {
 
             removeTimerComponent(from: entity)
 
-            guard displayCount <= Constants.powerUpMaxNumDisplay else {
+            guard displayCount <= Constants.PowerUps.powerUpMaxNumDisplay else {
                 spriteComponent.alpha = 0
                 continue
             }
@@ -85,7 +85,7 @@ class InventorySystem: System {
             spriteComponent.alpha = 1
             manager.addComponent(CameraStaticTag(), to: entity)
 
-            position.x += Constants.powerUpQueueXInterval
+            position.x += Constants.PowerUps.powerUpQueueXInterval
         }
     }
 

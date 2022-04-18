@@ -14,7 +14,11 @@ class KnifeKillComponent: Component {
     let radiusRange: CGFloat
     var isActivated = false
 
-    init(position: CGPoint, activatorId: EntityID, radiusRange: CGFloat = Constants.powerUpTargetRange) {
+    init(
+        position: CGPoint,
+        activatorId: EntityID,
+        radiusRange: CGFloat = Constants.PowerUps.powerUpTargetRange
+    ) {
         self.position = position
         self.activatorId = activatorId
         self.radiusRange = radiusRange

@@ -28,11 +28,11 @@ class Floor: Entity {
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.frame, size: Constants.floorSize, zPosition: .floor)
+        SpriteComponent(texture: texture.frame, size: Dimensions.floor, zPosition: .floor)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.floorSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: Dimensions.floor)
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false
         physicsComponent.isDynamic = false

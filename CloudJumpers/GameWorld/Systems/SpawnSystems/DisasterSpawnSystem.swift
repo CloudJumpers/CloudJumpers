@@ -23,9 +23,9 @@ class DisasterSpawnSystem: System {
     }
 
     static let velocitiesTemplate = VelocitiesTemplate(
-        xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
-        yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
-        within: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
+        xRange: Constants.Disasters.disasterMinXDirection...Constants.Disasters.disasterMaxXDirection,
+        yRange: Constants.Disasters.disasterMinYDirection...Constants.Disasters.disasterMaxYDirection,
+        within: Constants.Disasters.disasterMinSpeed...Constants.Disasters.disasterMaxSpeed)
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
@@ -57,9 +57,13 @@ class DisasterSpawnSystem: System {
     }
 
     func spawn(_ type: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector, with entityID: EntityID) {
-        let disasterPrompt = DisasterPrompt(type, at: position, velocity: velocity,
-                                            disasterTexture: .meteor, transformAfter: Constants.disasterPromptPeriod,
-                                            with: entityID)
+        let disasterPrompt = DisasterPrompt(
+            type,
+            at: position,
+            velocity: velocity,
+            disasterTexture: .meteor,
+            transformAfter: Constants.Disasters.disasterPromptPeriod,
+            with: entityID)
 
         manager?.add(disasterPrompt)
     }

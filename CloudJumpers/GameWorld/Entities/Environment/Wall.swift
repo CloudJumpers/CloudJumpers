@@ -14,7 +14,7 @@ class Wall: Entity {
     private let texture: Miscellaneous
 
     var wallSize: CGSize {
-        CGSize(width: Constants.wallWidth, height: height)
+        CGSize(width: Dimensions.wallWidth, height: height)
     }
 
     init(at position: CGPoint, height: CGFloat, texture: Miscellaneous, with id: EntityID = EntityManager.newEntityID) {
