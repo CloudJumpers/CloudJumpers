@@ -9,7 +9,7 @@ import FirebaseDatabase
 
 private typealias firebaseStructure = [String: Any]
 
-class FirebaseListenerDelegate: ListenerDelegate {
+class FirebaseListenerDelegate: LobbyListenerDelegate {
     weak var managedLobby: NetworkedLobby?
 
     private var connectedRef: DatabaseReference

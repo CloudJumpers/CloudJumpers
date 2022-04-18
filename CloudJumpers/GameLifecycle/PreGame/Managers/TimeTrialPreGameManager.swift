@@ -11,8 +11,6 @@ class TimeTrialPreGameManager: PreGameManager {
     private let lobbyId: NetworkID
     private let endpointKey: String
 
-    private weak var requestHandler: PreGameRequestDelegate?
-
     private var endpoint: String {
         baseUrl + endpointKey
     }
