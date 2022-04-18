@@ -257,6 +257,8 @@
 		93ADD1D82804A9DB004E0E87 /* PostGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D72804A9DB004E0E87 /* PostGameConfig.swift */; };
 		93ADD1DA2804AC64004E0E87 /* InGameConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ADD1D92804AC64004E0E87 /* InGameConfig.swift */; };
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
+		93C67D69280D2A39009E86D5 /* OpacityChangeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */; };
+		93C67D6B280D2D73009E86D5 /* OpacitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
 		93D4E17B27DA15550054F45B /* IdentifiableByNetworkID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */; };
 		93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */; };
@@ -587,6 +589,8 @@
 		93ADD1D72804A9DB004E0E87 /* PostGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGameConfig.swift; sourceTree = "<group>"; };
 		93ADD1D92804AC64004E0E87 /* InGameConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InGameConfig.swift; sourceTree = "<group>"; };
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
+		93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityChangeEvent.swift; sourceTree = "<group>"; };
+		93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacitySystem.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
 		93D4E17A27DA15550054F45B /* IdentifiableByNetworkID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableByNetworkID.swift; sourceTree = "<group>"; };
 		93D4E17C27DA173A0054F45B /* CJNetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CJNetworkConstants.swift; sourceTree = "<group>"; };
@@ -864,6 +868,7 @@
 				A16C8FC5280336C4001B2E7F /* StandOnSystem.swift */,
 				936257BD280AAE7300C4DFC0 /* MetricsSystem.swift */,
 				A10ADC5B280C140D00382B0F /* GodPowerSpawnSystem.swift */,
+				93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -1489,6 +1494,7 @@
 				A1D7868F280209D500C5CE49 /* ObtainEvent.swift */,
 				A1C00150280B575E004D5059 /* PromoteGodEvent.swift */,
 				A1C00152280B5906004D5059 /* DemoteGodEvent.swift */,
+				93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */,
 			);
 			path = PlayerEvents;
 			sourceTree = "<group>";
@@ -1987,6 +1993,7 @@
 				936228E627F5FFDC00BB05FE /* LocalCompletionData.swift in Sources */,
 				939AFA102809FB7000852B8B /* FBAchievementDataDelegate.swift in Sources */,
 				A1C00151280B575E004D5059 /* PromoteGodEvent.swift in Sources */,
+				93C67D6B280D2D73009E86D5 /* OpacitySystem.swift in Sources */,
 				1AAB1E0F27FF0F6200378382 /* ContactHandler.swift in Sources */,
 				1AAB1E1D27FF161800378382 /* Disaster+Collidable.swift in Sources */,
 				1A8EC1AB27F7528B009EDFDF /* Double+Random.swift in Sources */,
@@ -2025,6 +2032,7 @@
 				93F28EED27DE8120008CE30C /* SignUpViewController.swift in Sources */,
 				9396E95228002FA10090A8C9 /* PreGameManager.swift in Sources */,
 				9356AB6927EEF4E0008CDEC1 /* LobbySynchronizer.swift in Sources */,
+				93C67D69280D2A39009E86D5 /* OpacityChangeEvent.swift in Sources */,
 				9396E957280031F30090A8C9 /* PreGameRequestDelegate.swift in Sources */,
 				1AAB1E292800A55500378382 /* PhysicsCategory.swift in Sources */,
 				3E3632EA2809739300FAD7A8 /* PowerUpEffectFactory.swift in Sources */,

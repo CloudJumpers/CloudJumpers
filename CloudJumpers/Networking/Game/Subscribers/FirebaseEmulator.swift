@@ -36,8 +36,14 @@ class FirebaseEmulator: GameEventSubscriber {
     }
 
     private func startEventReplay() {
+        guard !storedCommands.isEmpty, eventManager != nil, !hasReleaseStarted else {
+            eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: .zero))
+            return
+        }
+
         hasReleaseStarted = true
-        releaseEvent()
+        eventManager?.add(OpacityChangeEvent(on: GameConstants.shadowPlayerID, opacity: 1.0))
+        releaseNextEvent()
     }
 
     private func fetchCommands() {
@@ -64,14 +70,12 @@ class FirebaseEmulator: GameEventSubscriber {
                 self.storedCommands.append((timeDeltaSeconds: deltaMillis / 1_000, command: command))
             }
 
-            if self.hasReleaseStarted {
-                self.releaseEvent()
-            }
+            self.startEventReplay()
         }
     }
 
-    private func releaseEvent() {
-        guard !storedCommands.isEmpty, eventManager != nil else {
+    private func releaseNextEvent() {
+        guard !storedCommands.isEmpty else {
             return
         }
 
@@ -83,7 +87,7 @@ class FirebaseEmulator: GameEventSubscriber {
             }
 
             assert(first.command.unpackIntoEventManager(manager))
-            self?.releaseEvent()
+            self?.releaseNextEvent()
         }
     }
 }
