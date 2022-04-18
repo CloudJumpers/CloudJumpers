@@ -37,7 +37,12 @@ class FirebaseShadowPlayerEmulator: GameEventEmulator {
 
         onFetchSuccess()
         hasReplayStarted = true
-        releaseNextEvent()
+
+        releaseTimer = Timer.scheduledTimer(
+            withTimeInterval: GameConstants.shadowPlayerStartReactionDelay,
+            repeats: false) { [weak self] _ in
+                self?.releaseNextEvent()
+        }
     }
 
     private func fetchCommands() {

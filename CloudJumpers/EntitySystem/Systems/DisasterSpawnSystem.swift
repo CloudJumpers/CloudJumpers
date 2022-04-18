@@ -9,7 +9,7 @@ import Foundation
 import CoreGraphics
 
 class DisasterSpawnSystem: System {
-    var active = false
+    var active = true
 
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
@@ -63,9 +63,5 @@ class DisasterSpawnSystem: System {
                                             with: entityID)
 
         manager?.add(disasterPrompt)
-    }
-
-    func setActive(active: Bool) {
-        self.active = active
     }
 }

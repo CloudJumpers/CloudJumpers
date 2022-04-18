@@ -265,7 +265,6 @@
 		93C2A04627E87FD400294588 /* NetworkedLobby.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C2A04527E87FD400294588 /* NetworkedLobby.swift */; };
 		93C67D69280D2A39009E86D5 /* OpacityChangeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */; };
 		93C67D6B280D2D73009E86D5 /* OpacitySystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */; };
-		93C67D6F280D3C31009E86D5 /* DisastersToggleEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D6E280D3C31009E86D5 /* DisastersToggleEvent.swift */; };
 		93C67D72280D3F31009E86D5 /* GameEventEmulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D71280D3F31009E86D5 /* GameEventEmulator.swift */; };
 		93C67D74280D4ABB009E86D5 /* ShadowDisasterEffector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C67D73280D4ABA009E86D5 /* ShadowDisasterEffector.swift */; };
 		93C93AD827F744C4001246F2 /* TimeTrialData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C93AD727F744C4001246F2 /* TimeTrialData.swift */; };
@@ -609,7 +608,6 @@
 		93C2A04527E87FD400294588 /* NetworkedLobby.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkedLobby.swift; sourceTree = "<group>"; };
 		93C67D68280D2A39009E86D5 /* OpacityChangeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityChangeEvent.swift; sourceTree = "<group>"; };
 		93C67D6A280D2D73009E86D5 /* OpacitySystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacitySystem.swift; sourceTree = "<group>"; };
-		93C67D6E280D3C31009E86D5 /* DisastersToggleEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisastersToggleEvent.swift; sourceTree = "<group>"; };
 		93C67D71280D3F31009E86D5 /* GameEventEmulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEventEmulator.swift; sourceTree = "<group>"; };
 		93C67D73280D4ABA009E86D5 /* ShadowDisasterEffector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowDisasterEffector.swift; sourceTree = "<group>"; };
 		93C93AD727F744C4001246F2 /* TimeTrialData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeTrialData.swift; sourceTree = "<group>"; };
@@ -1444,14 +1442,6 @@
 			path = Achievements;
 			sourceTree = "<group>";
 		};
-		93C67D70280D3D98009E86D5 /* ToggleEvents */ = {
-			isa = PBXGroup;
-			children = (
-				93C67D6E280D3C31009E86D5 /* DisastersToggleEvent.swift */,
-			);
-			path = ToggleEvents;
-			sourceTree = "<group>";
-		};
 		93D4E16527DA0C920054F45B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -1554,7 +1544,6 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				93C67D70280D3D98009E86D5 /* ToggleEvents */,
 				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
@@ -2157,7 +2146,6 @@
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
 				939AFA082809E4CC00852B8B /* AchievementFactory.swift in Sources */,
-				93C67D6F280D3C31009E86D5 /* DisastersToggleEvent.swift in Sources */,
 				938C15A427DE2A0F00A1892C /* AuthInfo.swift in Sources */,
 				931D130727ECB50A002C7AF3 /* FirebasePublisher.swift in Sources */,
 				938C15A727DE4A6500A1892C /* LoginViewController.swift in Sources */,

@@ -62,8 +62,7 @@ enum Events: Int {
         PromoteGodEvent.type: .promoteGod,
         DemoteGodEvent.type: .demoteGod,
         OpacityChangeEvent.type: .opacityChange,
-        GodPowerUpSpawnEvent.type: .godPowerUpSpawn,
-        DisastersToggleEvent.type: disastersToggle
+        GodPowerUpSpawnEvent.type: .godPowerUpSpawn
     ]
 
     static func rank(of event: Event) -> Int? {
