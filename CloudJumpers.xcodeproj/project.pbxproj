@@ -281,6 +281,9 @@
 		A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */; };
 		A175388A2808804E00FC665F /* ExternalPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */; };
 		A176387D27F41478009EA7E7 /* RaceTopGameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */; };
+		A183D382280D306D007DAB4B /* GodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */; };
+		A183D384280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */; };
+		A183D386280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */; };
 		A19A7A2727F8D4E4007E1C11 /* ExternalRemoveEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */; };
 		A19A7A2927F8D54D007E1C11 /* RemoveEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */; };
 		A19A7A2B27F8D79D007E1C11 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19A7A2A27F8D79D007E1C11 /* Guest.swift */; };
@@ -612,6 +615,9 @@
 		A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
 		A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
 		A176387C27F41478009EA7E7 /* RaceTopGameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTopGameRules.swift; sourceTree = "<group>"; };
+		A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
+		A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalGodPowerUpSpawnEvent.swift; sourceTree = "<group>"; };
+		A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GodPowerUpSpawnEventCommand.swift; sourceTree = "<group>"; };
 		A19A7A2627F8D4E4007E1C11 /* ExternalRemoveEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalRemoveEvent.swift; sourceTree = "<group>"; };
 		A19A7A2827F8D54D007E1C11 /* RemoveEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveEventCommand.swift; sourceTree = "<group>"; };
 		A19A7A2A27F8D79D007E1C11 /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
@@ -1091,6 +1097,7 @@
 				3EA7C88027F95036009BCA63 /* PowerUpEffectStartEventCommand.swift */,
 				3EA7C88827F95826009BCA63 /* ObtainEntityCommand.swift */,
 				A175388728087FEE00FC665F /* PowerUpSpawnEventCommand.swift */,
+				A183D385280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1189,6 +1196,7 @@
 				3EA7C87C27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift */,
 				3EA7C88627F9580F009BCA63 /* ExternalObtainEntityEvent.swift */,
 				A17538892808804E00FC665F /* ExternalPowerUpSpawnEvent.swift */,
+				A183D383280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift */,
 			);
 			path = Online;
 			sourceTree = "<group>";
@@ -1553,6 +1561,7 @@
 			children = (
 				3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */,
 				A175388528087EE800FC665F /* PowerUpSpawnEvent.swift */,
+				A183D381280D306D007DAB4B /* GodPowerUpSpawnEvent.swift */,
 			);
 			path = SpawnEvents;
 			sourceTree = "<group>";
@@ -1910,6 +1919,7 @@
 				93360BA227EC9D4C00808295 /* FirebaseSubscriber.swift in Sources */,
 				3E3632E22809643E00FAD7A8 /* ConfuseSystem.swift in Sources */,
 				936257B7280A9F2B00C4DFC0 /* MetricsProvider.swift in Sources */,
+				A183D384280D31B1007DAB4B /* ExternalGodPowerUpSpawnEvent.swift in Sources */,
 				1A94D95527ED8709001D8A86 /* PhysicsComponent.swift in Sources */,
 				93ADD1CA280480C7004E0E87 /* GameModeConstants.swift in Sources */,
 				A16C8FC6280336C4001B2E7F /* StandOnSystem.swift in Sources */,
@@ -2037,6 +2047,7 @@
 				1A7FFD1B280AECD000FE3415 /* RenderUnit.swift in Sources */,
 				3E61A10D280C147B00BD8470 /* SlowmoEffectCreator.swift in Sources */,
 				934789AC27DEEA5B00324DAF /* AuthToastConstants.swift in Sources */,
+				A183D386280D3213007DAB4B /* GodPowerUpSpawnEventCommand.swift in Sources */,
 				93ADD1D82804A9DB004E0E87 /* PostGameConfig.swift in Sources */,
 				934789C627DF1AAB00324DAF /* FirebaseUpdaterDelegate.swift in Sources */,
 				93ADD1C428047EAF004E0E87 /* GameMode.swift in Sources */,
@@ -2090,6 +2101,7 @@
 				93681BED280211500097EBD1 /* RaceToTop.swift in Sources */,
 				1AE9D8B327FED228002B0A1E /* TextureFrameable.swift in Sources */,
 				3E36330C280ABD4C00FAD7A8 /* VelocityGenerationInfo.swift in Sources */,
+				A183D382280D306D007DAB4B /* GodPowerUpSpawnEvent.swift in Sources */,
 				1AAB1E1327FF132F00378382 /* PowerUp+Collidable.swift in Sources */,
 				A175388828087FEE00FC665F /* PowerUpSpawnEventCommand.swift in Sources */,
 				934789B327DF04ED00324DAF /* LobbiesViewController.swift in Sources */,
@@ -2307,7 +2319,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = X827RB5HGL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CloudJumpers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -2321,7 +2333,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etps.CloudJumpers2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
