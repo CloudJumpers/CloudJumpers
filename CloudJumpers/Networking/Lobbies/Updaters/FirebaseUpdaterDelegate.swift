@@ -35,8 +35,7 @@ class FirebaseUpdaterDelegate: LobbyUpdaterDelegate {
         ]) { error, _ in
             if error == nil {
                 lobby.onLobbyConnectionOpen()
-                let participantsReference = self.getLobbyParticipantsReference(lobbyId: lobby.id)
-                participantsReference.child(hostId).onDisconnectRemoveValue()
+                self.setOnDisconnectRemove()
             } else {
                 lobby.onLobbyConnectionClosed()
             }
