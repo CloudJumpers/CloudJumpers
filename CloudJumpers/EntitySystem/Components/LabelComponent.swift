@@ -12,7 +12,7 @@ class LabelComponent: Component {
 
     var typeface: Fonts?
     var alpha: CGFloat = 1.0
-    var zPosition = SpriteZPosition.hud.rawValue
+    var zPosition = SpriteZPosition.label.rawValue
     var size: CGFloat
     var color = UIColor.black
 

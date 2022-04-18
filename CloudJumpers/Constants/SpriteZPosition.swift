@@ -22,4 +22,5 @@ enum SpriteZPosition: CGFloat {
     case innerStick
     case button
     case hud
+    case label
 }
