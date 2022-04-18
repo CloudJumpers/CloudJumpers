@@ -31,6 +31,7 @@ enum Events: Int {
     case sound
     case promoteGod
     case demoteGod
+    case godPowerUpSpawn
 
     private static let events: [String: Events] = [
         BiEvent.type: .bi,
@@ -57,7 +58,8 @@ enum Events: Int {
         PowerUpLocationPressedEvent.type: .powerUpLocationPressed,
         JumpButtonPressedEvent.type: .jumpButtonPressed,
         PromoteGodEvent.type: .promoteGod,
-        DemoteGodEvent.type: .demoteGod
+        DemoteGodEvent.type: .demoteGod,
+        GodPowerUpSpawnEvent.type: .godPowerUpSpawn
     ]
 
     static func rank(of event: Event) -> Int? {

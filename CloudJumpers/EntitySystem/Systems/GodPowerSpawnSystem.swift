@@ -28,13 +28,11 @@ class GodPowerSpawnSystem: System {
         let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
         let powerId = EntityManager.newEntityID
 
-        let powerUp = PowerUp(powerType, at: .zero, with: powerId)
-
-        dispatcher?.dispatch(ExternalPowerUpSpawnEvent(powerSpawnPositionX: .zero,
-                                                       powerSpawnPositionY: .zero,
-                                                       powerUpType: powerType.rawValue,
-                                                       powerUpId: powerId))
-        manager?.add(powerUp)
-        dispatcher?.dispatch(ExternalObtainEntityEvent(obtainedEntityID: powerId))
+        print("IS GODDD")
+        dispatcher?.dispatch(ExternalGodPowerUpSpawnEvent(
+            godPowerSpawnPositionX: .zero,
+            godPowerSpawnPositionY: .zero,
+            godPowerUpType: powerType.rawValue,
+            godPowerUpId: powerId))
     }
 }
