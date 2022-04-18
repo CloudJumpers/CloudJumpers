@@ -22,9 +22,7 @@ class TimeTrialGameRules: GameRules {
         guard let target = target else {
             return
         }
-        target.deactivateSystem(ofType: PowerSpawnSystem.self)
         self.timer = setUpTimer(initialValue: Constants.timerInitial, to: target)
-
     }
 
     func setUpPlayers(_ playerInfo: PlayerInfo, allPlayersInfo: [PlayerInfo]) {
@@ -50,6 +48,7 @@ class TimeTrialGameRules: GameRules {
     }
 
     func enableHostSystems() {
+        target?.activateSystem(ofType: DisasterSpawnSystem.self)
     }
 
     func update(within time: CGFloat) {
