@@ -28,7 +28,7 @@ class HUD: Entity {
         let spriteComponent = SpriteComponent(
             texture: HUDs.hud0.frame,
             size: Constants.hudSize,
-            zPosition: .player)
+            zPosition: .hud)
 
         return spriteComponent
     }

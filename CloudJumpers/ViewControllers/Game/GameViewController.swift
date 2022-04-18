@@ -160,7 +160,6 @@ class GameViewController: UIViewController {
         let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
         button.position = Constants.homeButtonPosition
         button.delegate = self
-        button.zPosition = SpriteZPosition.button.rawValue
         scene?.addChild(button, static: true)
     }
 
