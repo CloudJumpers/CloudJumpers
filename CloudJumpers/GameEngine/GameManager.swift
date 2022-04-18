@@ -68,6 +68,7 @@ class GameManager {
         }
 
         world.add(Area(size: blueprint.worldSize))
+        world.add(HUD(at: Constants.hudPosition))
     }
 
     private func addPlatform(at position: CGPoint) {

@@ -46,6 +46,9 @@ struct Constants {
     static let timerSize = CGSize(width: 36, height: 36)
     static let timerInitial: Double = 0.0
 
+    static let hudSize = CGSize(width: 320, height: 80)
+    static let hudPosition = CGPoint(x: 0, y: 410)
+
     static let scoreLabelPosition = CGPoint(x: -250, y: 410)
     static let scoreLabelSize = CGSize(width: 36, height: 36)
 
