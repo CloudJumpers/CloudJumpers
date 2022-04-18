@@ -1,22 +1,22 @@
 //
-//  PowerUpSpawnEventCommand.swift
+//  GodPowerUpSpawnEventCommand.swift
 //  CloudJumpers
 //
-//  Created by Trong Tan on 4/15/22.
+//  Created by Trong Tan on 4/18/22.
 //
 
 import Foundation
 import CoreGraphics
 
-struct PowerUpSpawnEventCommand: GameEventCommand {
+struct GodPowerUpSpawnEventCommand: GameEventCommand {
     let source: NetworkID
     let payload: String
     private(set) var isSourceRecipient: Bool?
     private(set) var nextCommand: GameEventCommand?
 
-    init(sourceId: NetworkID, event: ExternalPowerUpSpawnEvent) {
+    init(sourceId: NetworkID, event: ExternalGodPowerUpSpawnEvent) {
         self.source = sourceId
-        self.isSourceRecipient = false
+        self.isSourceRecipient = true
         self.payload = CJNetworkEncoder.toJsonString(event)
     }
 
@@ -29,18 +29,20 @@ struct PowerUpSpawnEventCommand: GameEventCommand {
         let jsonData = Data(payload.utf8)
         let decoder = JSONDecoder()
 
-        guard let parameters = try? decoder.decode(ExternalPowerUpSpawnEvent.self, from: jsonData),
-              let type = PowerUpComponent.Kind(rawValue: parameters.powerUpType)
+        guard let parameters = try? decoder.decode(ExternalGodPowerUpSpawnEvent.self, from: jsonData),
+              let type = PowerUpComponent.Kind(rawValue: parameters.godPowerUpType)
         else {
-            nextCommand = GodPowerUpSpawnEventCommand(source, payload)
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
-        let position = CGPoint(x: parameters.powerSpawnPositionX, y: parameters.powerSpawnPositionY)
+        let position = CGPoint(
+            x: parameters.godPowerSpawnPositionX,
+            y: parameters.godPowerSpawnPositionY)
 
-        let eventToProcess = PowerUpSpawnEvent(
+        let eventToProcess = GodPowerUpSpawnEvent(
+            entityID: source,
             position: position,
             type: type,
-            entityId: parameters.powerUpId,
+            powerUpID: parameters.godPowerUpId,
             at: parameters.timestamp)
         eventManager.add(eventToProcess)
         return true

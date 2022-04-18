@@ -11,13 +11,14 @@ import SpriteKit
 
 class LabelComponent: Component {
     var text: String
-    var size: CGSize
 
     var alpha: CGFloat = 1.0
+    var zPosition = SpriteZPosition.label.rawValue
+    var fontSize: CGFloat
 
-    init(text: String, size: CGSize) {
+    init(text: String, fontSize: CGFloat) {
         self.text = text
-        self.size = size
+        self.fontSize = fontSize
         super.init()
     }
 }

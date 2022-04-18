@@ -82,7 +82,7 @@ extension GameRules {
     func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
         let timer = StaticLabel(
             at: Constants.timerPosition,
-            size: Constants.timerSize,
+            fontSize: Constants.labelFontSize,
             text: String(initialValue))
 
         target.add(timer)
