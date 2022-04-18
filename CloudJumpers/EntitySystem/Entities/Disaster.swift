@@ -37,6 +37,7 @@ class Disaster: Entity {
         manager.addComponent(spriteComponent, to: self)
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(PositionComponent(at: position), to: self)
+        manager.addComponent(DisposableTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {

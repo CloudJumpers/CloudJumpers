@@ -37,6 +37,7 @@ class DisasterPrompt: Entity {
         manager.addComponent(PositionComponent(at: position), to: self)
 
         manager.addComponent(TimedComponent(), to: self)
+        manager.addComponent(DisposableTag(), to: self)
         manager.addComponent(DisasterTransformComponent(kind: kind, position: position,
                                                         velocity: velocity, disasterTexture: disasterTexture,
                                                         after: intervalToTransform), to: self)

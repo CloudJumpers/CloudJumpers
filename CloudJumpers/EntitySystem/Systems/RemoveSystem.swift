@@ -27,7 +27,10 @@ class RemoveSystem: System {
             return
         }
 
-        for entity in manager.entities {
+        let disposableTags = manager.components(ofType: DisposableTag.self)
+        let disposables = disposableTags.compactMap { $0.entity }
+
+        for entity in disposables {
             updateRemoveWithTime(entity: entity)
             updateRemoveOutOfBound(entity: entity)
         }

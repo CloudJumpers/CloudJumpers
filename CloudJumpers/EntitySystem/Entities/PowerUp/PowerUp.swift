@@ -36,6 +36,7 @@ class PowerUp: Entity {
         manager.addComponent(TimedRemovalComponent(timeToRemove: Constants.powerUpRemoveTime), to: self)
         manager.addComponent(OwnerComponent(), to: self)
         manager.addComponent(PowerUpComponent(kind), to: self)
+        manager.addComponent(DisposableTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
