@@ -11,6 +11,8 @@ class GameViewController: UIViewController {
     var lobby: GameLobby?
     var handlers: RemoteEventHandlers?
 
+    var skView: SKView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -72,6 +74,8 @@ class GameViewController: UIViewController {
 
         setUpGameManager()
         setUpInputControls()
+        setUpSKView()
+
         activeLobby.synchronizer?.updateCallback(startGame)
     }
 
@@ -135,18 +139,23 @@ class GameViewController: UIViewController {
         self.joystick = joystick
     }
 
+    private func setUpSKView() {
+        skView = SKView(frame: view.frame)
+        skView?.isMultipleTouchEnabled = true
+        skView?.ignoresSiblingOrder = true
+        skView?.showsNodeCount = true
+        skView?.showsFPS = true
+    }
+
     // MARK: - Helper Methods
     private func setUpSKViewAndPresent() {
-        guard let scene = scene else {
-            fatalError("GameScene was not set up")
+        guard let scene = scene, let skView = skView else {
+            fatalError("GameScene or skView was not set up")
         }
-        let skView = SKView(frame: view.frame)
-        skView.isMultipleTouchEnabled = true
-        skView.ignoresSiblingOrder = true
-        skView.showsNodeCount = true
-        skView.showsFPS = true
+
         skView.presentScene(scene)
         view = skView
+        self.skView = nil
     }
 
     private func transitionToEndGame(with completionData: LocalCompletionData) {
