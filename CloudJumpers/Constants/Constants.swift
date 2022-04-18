@@ -44,6 +44,9 @@ struct Constants {
     static let timerPosition = CGPoint(x: 250, y: 410)
     static let timerInitial: Double = 0.0
 
+    static let homeButtonSize = CGSize(width: 60, height: 60)
+    static let homeButtonPosition = CGPoint(x: -280, y: 420)
+
     static let scoreLabelPosition = CGPoint(x: -250, y: 410)
 
     static let cloudNodeSize = CGSize(width: 200.0, height: 100.0)
