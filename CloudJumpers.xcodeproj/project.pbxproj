@@ -103,12 +103,12 @@
 		1AD5D450280C0E200071ACE1 /* AreaUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */; };
 		1AD5D452280C15BA0071ACE1 /* SeparationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */; };
 		1AD5D454280C27E60071ACE1 /* LabelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D453280C27E60071ACE1 /* LabelUnit.swift */; };
-		1AD5D46F280D44000071ACE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D46E280D44000071ACE1 /* HomeButton.swift */; };
 		1AD5D463280D32AC0071ACE1 /* HUDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D462280D32AC0071ACE1 /* HUDs.swift */; };
 		1AD5D465280D32CB0071ACE1 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D464280D32CB0071ACE1 /* HUD.swift */; };
 		1AD5D467280D338A0071ACE1 /* HUD.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 1AD5D466280D338A0071ACE1 /* HUD.atlas */; };
 		1AD5D469280D36370071ACE1 /* HUDSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D468280D36370071ACE1 /* HUDSystem.swift */; };
 		1AD5D46B280D36CA0071ACE1 /* HUDComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */; };
+		1AD5D46F280D44000071ACE1 /* HomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD5D46E280D44000071ACE1 /* HomeButton.swift */; };
 		1ADB964C27E30F6A00D6E130 /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */; };
 		1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8827F582F300C3AFD3 /* Queue.swift */; };
 		1ADEDD8E27F58C4D00C3AFD3 /* CameraAnchorTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */; };
@@ -447,12 +447,12 @@
 		1AD5D44F280C0E200071ACE1 /* AreaUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaUnit.swift; sourceTree = "<group>"; };
 		1AD5D451280C15BA0071ACE1 /* SeparationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparationHandler.swift; sourceTree = "<group>"; };
 		1AD5D453280C27E60071ACE1 /* LabelUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelUnit.swift; sourceTree = "<group>"; };
-		1AD5D46E280D44000071ACE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		1AD5D462280D32AC0071ACE1 /* HUDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDs.swift; sourceTree = "<group>"; };
 		1AD5D464280D32CB0071ACE1 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		1AD5D466280D338A0071ACE1 /* HUD.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = HUD.atlas; sourceTree = "<group>"; };
 		1AD5D468280D36370071ACE1 /* HUDSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDSystem.swift; sourceTree = "<group>"; };
 		1AD5D46A280D36CA0071ACE1 /* HUDComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDComponent.swift; sourceTree = "<group>"; };
+		1AD5D46E280D44000071ACE1 /* HomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButton.swift; sourceTree = "<group>"; };
 		1ADB964B27E30F6A00D6E130 /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		1ADEDD8827F582F300C3AFD3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		1ADEDD8D27F58C4D00C3AFD3 /* CameraAnchorTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnchorTag.swift; sourceTree = "<group>"; };
