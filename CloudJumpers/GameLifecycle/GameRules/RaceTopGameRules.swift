@@ -53,7 +53,6 @@ class RaceTopGameRules: GameRules {
         }
     }
     func enableHostSystems() {
-        target?.activateSystem(ofType: DisasterSpawnSystem.self)
         target?.activateSystem(ofType: PowerSpawnSystem.self)
     }
 

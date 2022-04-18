@@ -67,7 +67,6 @@ class KingHillGameRules: GameRules {
     }
 
     func enableHostSystems() {
-        target?.activateSystem(ofType: DisasterSpawnSystem.self)
         target?.activateSystem(ofType: PowerSpawnSystem.self)
     }
 

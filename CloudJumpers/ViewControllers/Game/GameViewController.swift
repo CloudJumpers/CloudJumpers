@@ -89,6 +89,7 @@ class GameViewController: UIViewController {
         scene.sceneDelegate = self
         scene.scaleMode = .aspectFill
         self.scene = scene
+        addHomeButton()
     }
 
     private func setUpGameManager() {
@@ -158,6 +159,14 @@ class GameViewController: UIViewController {
         self.skView = nil
     }
 
+    private func addHomeButton() {
+        let button = HomeButton(texture: Texture.texture(of: Buttons.home.frame), size: Constants.homeButtonSize)
+        button.position = Constants.homeButtonPosition
+        button.delegate = self
+        button.zPosition = SpriteZPosition.button.rawValue
+        scene?.addChild(button, static: true)
+    }
+
     private func transitionToEndGame(with completionData: LocalCompletionData) {
         guard !isMovingToPostGame,
               let activeLobby = lobby,
@@ -202,5 +211,14 @@ extension GameViewController: GameSceneDelegate {
 extension GameViewController: GameManagerDelegate {
     func manager(_ manager: GameManager, didEndGameWith completionData: LocalCompletionData) {
         transitionToEndGame(with: completionData)
+    }
+}
+
+// MARK: - HomeButtonDelegate
+extension GameViewController: HomeButtonDelegate {
+    func didPressHomeButton() {
+        lobby?.removeDeviceUser()
+
+        performSegue(withIdentifier: SegueIdentifier.gameToLobbies, sender: nil)
     }
 }
