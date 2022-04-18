@@ -6,27 +6,29 @@
 //
 
 /// A first-in first-out data structure. Enqueuing and dequeuing are O(1) operations.
-struct Queue<T> {
+public struct Queue<T> {
     private var array: [T?] = []
     private var head = 0
 
-    var isUpdated = false
-    var count: Int {
+    public var isUpdated = false
+    public var count: Int {
         array.count - head
     }
 
     // swiftlint:disable empty_count
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         count == 0
     }
     // swiftlint:enable empty_count
 
-    mutating func enqueue(_ element: T) {
+    public init() { }
+
+    public mutating func enqueue(_ element: T) {
         array.append(element)
         isUpdated = true
     }
 
-    mutating func dequeue() -> T? {
+    public mutating func dequeue() -> T? {
         guard let element = array[guarded: head] else {
             return nil
         }
@@ -44,7 +46,7 @@ struct Queue<T> {
         return element
     }
 
-    var front: T? {
+    public var front: T? {
         if isEmpty {
             return nil
         } else {
@@ -52,7 +54,7 @@ struct Queue<T> {
         }
     }
 
-    var iterable: [T] {
+    public var iterable: [T] {
         var array: [T] = []
 
         var queue = self

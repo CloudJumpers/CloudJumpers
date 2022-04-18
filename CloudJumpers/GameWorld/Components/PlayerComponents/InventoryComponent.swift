@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 26/3/22.
 //
 
+import DataStructures
+
 class InventoryComponent: Component {
     typealias Inventory = Queue<EntityID>
 

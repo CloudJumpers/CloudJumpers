@@ -7,34 +7,34 @@
 
 /// Priority Queue, a queue where the most "important" items are at the front of
 /// the queue. All operations are O(log n).
-struct PriorityQueue<T> {
+public struct PriorityQueue<T> {
     private var heap: Heap<T>
 
-    init(sort: @escaping (T, T) -> Bool) {
+    public init(sort: @escaping (T, T) -> Bool) {
         heap = Heap(sort: sort)
     }
 
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         heap.isEmpty
     }
 
-    var count: Int {
+    public var count: Int {
         heap.count
     }
 
-    func peek() -> T? {
+    public func peek() -> T? {
         heap.peek()
     }
 
-    mutating func enqueue(_ element: T) {
+    public mutating func enqueue(_ element: T) {
         heap.insert(element)
     }
 
-    mutating func dequeue() -> T? {
+    public mutating func dequeue() -> T? {
         heap.remove()
     }
 
-    mutating func removeAll() {
+    public mutating func removeAll() {
         heap.removeAll()
     }
 
@@ -47,7 +47,7 @@ struct PriorityQueue<T> {
 }
 
 extension PriorityQueue where T: Equatable {
-    func index(of element: T) -> Int? {
+    public func index(of element: T) -> Int? {
         heap.index(of: element)
     }
 }
