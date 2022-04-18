@@ -48,12 +48,15 @@ class PhysicsUnit: RenderUnit {
     }
 
     private static func physicsBody(with physicsComponent: PhysicsComponent) -> PhysicsBody? {
-        switch physicsComponent.shape {
-        case .circle:
+        if physicsComponent.shape == .circle {
             return circlePhysicsBody(with: physicsComponent)
-        case .rectangle:
+        }
+
+        if physicsComponent.shape == .rectangle {
             return rectanglePhysicsBody(with: physicsComponent)
         }
+
+        return nil
     }
 
     private static func circlePhysicsBody(with physicsComponent: PhysicsComponent) -> PhysicsBody? {
