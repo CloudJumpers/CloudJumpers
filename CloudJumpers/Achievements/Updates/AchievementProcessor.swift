@@ -9,7 +9,7 @@ import Foundation
 
 class AchievementProcessor {
     private var keyObservers: [String: [Achievement]] = [:]
-    var updater: AchievementUpdateDelegate?
+    weak var updater: AchievementUpdateDelegate?
 
     func addAchievement(_ achievement: Achievement) {
         achievement.metricKeys.forEach { addKey($0, for: achievement) }
@@ -24,9 +24,6 @@ class AchievementProcessor {
     }
 
     func setTarget(_ metricsProvider: MetricsProvider) {
-        updater?.stopObservingMetrics()
-        updater = PollingUpdateDelegate()
-        updater?.manager = self
         updater?.observeMetrics(from: metricsProvider)
     }
 

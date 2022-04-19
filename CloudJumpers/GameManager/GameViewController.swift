@@ -11,7 +11,6 @@ class GameViewController: UIViewController {
 
     var lobby: GameLobby?
     var handlers: RemoteEventHandlers?
-
     var skView: SKView?
 
     override func viewDidLoad() {
@@ -50,11 +49,11 @@ class GameViewController: UIViewController {
     }
 
     private func setUpSynchronizedStart() {
-        guard let activeLobby = lobby else {
+        guard let lobbyId = lobby?.id, let config = lobby?.gameConfig else {
             return
         }
 
-        let preGameManager = activeLobby.gameConfig.createPreGameManager(activeLobby.id)
+        let preGameManager = config.createPreGameManager(lobbyId)
         handlers = preGameManager.getEventHandlers()
         setUpGame()
     }

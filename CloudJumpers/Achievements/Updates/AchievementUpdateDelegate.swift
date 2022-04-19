@@ -8,9 +8,7 @@
 import Foundation
 
 protocol AchievementUpdateDelegate: AnyObject {
-    var manager: AchievementProcessor? { get set }
+    var processor: AchievementProcessor? { get set }
 
     func observeMetrics(from provider: MetricsProvider)
-
-    func stopObservingMetrics()
 }
