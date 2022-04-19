@@ -16,8 +16,9 @@ However, if you wish to relive a particular experience, you can always specify a
 
 We can't wait to race against you on Cloud Jumpers!
 
-<p align="center"><img src="https://user-images.githubusercontent.com/67775223/163954646-8d64f85a-d38b-4f82-8ce3-69e16a0d4599.PNG" width="50%" /></p>
+You can view our final report [here](https://github.com/rssujay/CloudJumpers/raw/main/docs/Cloud%20Jumpers%20Final%20Report.pdf).
 
+<p align="center"><img src="https://user-images.githubusercontent.com/67775223/163954646-8d64f85a-d38b-4f82-8ce3-69e16a0d4599.PNG" width="50%" /></p>
 
 
 ### Demo Video
