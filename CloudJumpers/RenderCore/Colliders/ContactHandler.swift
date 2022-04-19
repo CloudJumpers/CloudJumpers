@@ -25,7 +25,7 @@ struct ContactHandler {
     }
 
     static func between(_ player: Player, _ disaster: Disaster) -> Event? {
-        DisasterPlayerCollideEvent(from: disaster.id, on: player.id)
+        DisasterHitEventsFactory.createDisasterHitEvent(type: .meteor, from: disaster.id, on: player.id)
     }
 
     static func between(_ player: Player, _ guest: Guest) -> Event? { nil }

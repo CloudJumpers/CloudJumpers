@@ -164,6 +164,9 @@
 		3E864D1C280D6D47006BD226 /* KilledEntityEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */; };
 		3E864D1E280D6D6C006BD226 /* ExternalKillEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */; };
 		3E864D20280D6E4A006BD226 /* KillEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1F280D6E4A006BD226 /* KillEvent.swift */; };
+		3E864D36280E50C5006BD226 /* DisasterHitEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D35280E50C5006BD226 /* DisasterHitEventCreator.swift */; };
+		3E864D38280E50DD006BD226 /* DisasterHitEventsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D37280E50DD006BD226 /* DisasterHitEventsFactory.swift */; };
+		3E864D3A280E50F3006BD226 /* MeteorHitEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D39280E50F3006BD226 /* MeteorHitEventCreator.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
@@ -511,6 +514,9 @@
 		3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KilledEntityEventCommand.swift; sourceTree = "<group>"; };
 		3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalKillEntityEvent.swift; sourceTree = "<group>"; };
 		3E864D1F280D6E4A006BD226 /* KillEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillEvent.swift; sourceTree = "<group>"; };
+		3E864D35280E50C5006BD226 /* DisasterHitEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEventCreator.swift; sourceTree = "<group>"; };
+		3E864D37280E50DD006BD226 /* DisasterHitEventsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEventsFactory.swift; sourceTree = "<group>"; };
+		3E864D39280E50F3006BD226 /* MeteorHitEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteorHitEventCreator.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
@@ -1082,6 +1088,16 @@
 			path = PowerUpComponents;
 			sourceTree = "<group>";
 		};
+		3E864D34280E50B6006BD226 /* DisasterHitEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3E864D35280E50C5006BD226 /* DisasterHitEventCreator.swift */,
+				3E864D37280E50DD006BD226 /* DisasterHitEventsFactory.swift */,
+				3E864D39280E50F3006BD226 /* MeteorHitEventCreator.swift */,
+			);
+			path = DisasterHitEvents;
+			sourceTree = "<group>";
+		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1629,6 +1645,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				3E864D34280E50B6006BD226 /* DisasterHitEvents */,
 				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
@@ -2052,6 +2069,7 @@
 				A175388A2808804E00FC665F /* ExternalPowerUpSpawnEvent.swift in Sources */,
 				1AAB1E1927FF14B900378382 /* Platform+Collidable.swift in Sources */,
 				1A245D7427F6B668004FA29C /* Dictionary+Create.swift in Sources */,
+				3E864D3A280E50F3006BD226 /* MeteorHitEventCreator.swift in Sources */,
 				3E61A113280C19CF00BD8470 /* PowerUpEffect.swift in Sources */,
 				93681BEB280209650097EBD1 /* TimeTrial.swift in Sources */,
 				1ADEDD9527F5ADC100C3AFD3 /* OwnerComponent.swift in Sources */,
@@ -2119,6 +2137,7 @@
 				3EA7C8A12802AC28009BCA63 /* PhysicsCollision.swift in Sources */,
 				1A94D95327ED8709001D8A86 /* SpriteComponent.swift in Sources */,
 				93D4E17D27DA173A0054F45B /* CJNetworkConstants.swift in Sources */,
+				3E864D36280E50C5006BD226 /* DisasterHitEventCreator.swift in Sources */,
 				936228E627F5FFDC00BB05FE /* LocalCompletionData.swift in Sources */,
 				939AFA102809FB7000852B8B /* FBAchievementDataDelegate.swift in Sources */,
 				A1C00151280B575E004D5059 /* PromoteGodEvent.swift in Sources */,
@@ -2210,6 +2229,7 @@
 				3E363310280B3F7A00FAD7A8 /* RandomVelocityGenerationInfo.swift in Sources */,
 				3EA7C87D27F94EA3009BCA63 /* ExternalPowerUpActivateEvent.swift in Sources */,
 				A1DBB84627D884290077AB96 /* CGPoint+Extension.swift in Sources */,
+				3E864D38280E50DD006BD226 /* DisasterHitEventsFactory.swift in Sources */,
 				3EA7C8A32802AC2E009BCA63 /* PhysicsContactTest.swift in Sources */,
 				9344625027E5935000063BE9 /* LobbyUserCell.swift in Sources */,
 				1AB6F2D327F99025004BF6AF /* NullMoveEffector.swift in Sources */,
