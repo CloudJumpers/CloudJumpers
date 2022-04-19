@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CoreGraphics
+import RenderCore
 
 class GameWorld {
     private let entityManager: EntityManager

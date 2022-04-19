@@ -5,7 +5,7 @@
 //  Created by Eric Bryan on 26/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
 
 class PowerUp: Entity {
     let id: EntityID
@@ -33,18 +33,18 @@ class PowerUp: Entity {
         manager.addComponent(physicsComponent, to: self)
         manager.addComponent(PositionComponent(at: position), to: self)
         manager.addComponent(TimedComponent(), to: self)
-        manager.addComponent(TimedRemovalComponent(timeToRemove: Constants.powerUpRemoveTime), to: self)
+        manager.addComponent(TimedRemovalComponent(timeToRemove: Constants.PowerUps.powerUpRemoveTime), to: self)
         manager.addComponent(OwnerComponent(), to: self)
         manager.addComponent(PowerUpComponent(kind), to: self)
         manager.addComponent(DisposableTag(), to: self)
     }
 
     private func createSpriteComponent() -> SpriteComponent {
-        SpriteComponent(texture: texture.frame, size: Constants.powerUpNodeSize, zPosition: .powerUp)
+        SpriteComponent(texture: texture.frame, size: Dimensions.powerUp, zPosition: .powerUp)
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(circleOf: Constants.powerUpNodeSize.width / 2)
+        let physicsComponent = PhysicsComponent(circleOf: Dimensions.powerUp.width / 2)
 
         physicsComponent.affectedByGravity = false
         physicsComponent.allowsRotation = false

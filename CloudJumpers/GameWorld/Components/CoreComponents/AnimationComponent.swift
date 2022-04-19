@@ -5,6 +5,8 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
+import RenderCore
+
 typealias AnimationKey = String
 typealias AnimationFrames = [TextureFrame]
 typealias Animation = (key: AnimationKey, frames: AnimationFrames)

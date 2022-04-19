@@ -5,17 +5,18 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import UIKit
+import RenderCore
 
-class JumpButton: SKSpriteNode {
+class JumpButton: SpriteNodeCore {
     private unowned var responder: InputResponder?
 
     init(at position: CGPoint, to responder: InputResponder) {
         self.responder = responder
         super.init(
-            texture: SKTexture(imageNamed: Images.outerStick.name),
+            texture: Texture.texture(of: Buttons.outerStick.frame),
             color: .clear,
-            size: Constants.jumpButtonSize)
+            size: Dimensions.jumpButton)
         configureNode(at: position)
     }
 
@@ -34,7 +35,7 @@ class JumpButton: SKSpriteNode {
 
     private func configureNode(at position: CGPoint) {
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = ZPositions.outerStick.rawValue
         self.position = position
     }
 

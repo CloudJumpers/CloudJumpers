@@ -33,13 +33,13 @@ class TimeTrialGameRules: GameRules {
 
             if id == playerInfo.playerId {
                 target?.add(Player(
-                    at: Constants.playerInitialPositions[index],
+                    at: Positions.players[index],
                     texture: .Character1,
                     name: name,
                     with: id))
             } else if id == GameConstants.shadowPlayerID {
                 target?.add(ShadowGuest(
-                    at: Constants.playerInitialPositions[index],
+                    at: Positions.players[index],
                     texture: .ShadowCharacter1,
                     name: name,
                     with: id))

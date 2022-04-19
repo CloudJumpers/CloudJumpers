@@ -32,9 +32,9 @@ class KingHillGameRules: GameRules {
             return
         }
         let scoreLabel = StaticLabel(
-            at: Constants.scoreLabelPosition,
+            at: Positions.scoreLabel,
             typeface: .display,
-            size: Constants.labelFontSize,
+            size: Dimensions.labelFontSize,
             text: "\(playerScore)")
 
         self.scoreLabel = scoreLabel
@@ -52,13 +52,13 @@ class KingHillGameRules: GameRules {
 
             if id == playerInfo.playerId {
                 character = Player(
-                    at: Constants.playerInitialPositions[index],
+                    at: Positions.players[index],
                     texture: .Character1,
                     name: name,
                     with: id)
             } else {
                 character = Guest(
-                    at: Constants.playerInitialPositions[index],
+                    at: Positions.players[index],
                     texture: .Character1,
                     name: name,
                     with: id)

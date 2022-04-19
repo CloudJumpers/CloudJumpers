@@ -12,9 +12,11 @@ class BlackoutEffectCreator: PowerUpEffectCreator {
     required init() {}
 
     func create(at location: CGPoint, activatorId: EntityID) -> Entity {
-        PowerUpEffect(at: location, removeAfter: Constants.powerUpEffectDuration,
-                      activatorId: activatorId, texture: .teleportEffect,
-                      powerUpComponent: BlackoutComponent(position: location, activatorId: activatorId))
+        PowerUpEffect(
+            at: location,
+            removeAfter: Constants.PowerUps.powerUpEffectDuration,
+            activatorId: activatorId, texture: .teleportEffect,
+            powerUpComponent: BlackoutComponent(position: location, activatorId: activatorId))
     }
 
     func doesMatch(type: PowerUpComponent.Kind) -> Bool {

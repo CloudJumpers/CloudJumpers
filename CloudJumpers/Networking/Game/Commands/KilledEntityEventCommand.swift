@@ -34,8 +34,11 @@ struct KilledEntityEventCommand: GameEventCommand {
             return nextCommand?.unpackIntoEventManager(eventManager) ?? false
         }
 
-        let eventToProcess = KillEvent(byEntityWith: source, targetID: parameters.killedEntityID,
-                                       newPosition: Constants.playerInitialPosition)
+        let eventToProcess = KillEvent(
+            byEntityWith: source,
+            targetID: parameters.killedEntityID,
+            newPosition: Positions.player)
+
         eventManager.add(eventToProcess)
         return true
     }

@@ -5,21 +5,22 @@
 //  Created by Phillmont Muktar on 23/3/22.
 //
 
-import SpriteKit
+import UIKit
+import RenderCore
 
-class Joystick: SKSpriteNode {
+class Joystick: SpriteNodeCore {
     private unowned var responder: InputResponder?
     private var active = false
-    private var innerStickNode: SKSpriteNode?
+    private var innerStickNode: SpriteNodeCore?
 
     var displacement: CGVector?
 
     init(at position: CGPoint, to responder: InputResponder) {
         self.responder = responder
         super.init(
-            texture: SKTexture(imageNamed: Images.outerStick.name),
+            texture: Texture.texture(of: Buttons.outerStick.frame),
             color: .clear,
-            size: Constants.outerstickSize)
+            size: Dimensions.outerstick)
         configureNode(at: position)
         addInnerStickNode()
     }
@@ -70,7 +71,7 @@ class Joystick: SKSpriteNode {
     private func configureNode(at position: CGPoint) {
         alpha = Constants.opacityTwo
         isUserInteractionEnabled = true
-        zPosition = SpriteZPosition.outerStick.rawValue
+        zPosition = ZPositions.outerStick.rawValue
         self.position = position
     }
 
@@ -91,8 +92,8 @@ class Joystick: SKSpriteNode {
         let x = angle.dx * innerStickDisplacement
         let y = angle.dy * innerStickDisplacement
         return CGVector(
-            dx: -x * Constants.speedMultiplier,
-            dy: y * Constants.speedMultiplier)
+            dx: -x * PhysicsConstants.speedMultiplier,
+            dy: y * PhysicsConstants.speedMultiplier)
     }
 
     // MARK: - Inner Stick Modifiers
@@ -101,9 +102,9 @@ class Joystick: SKSpriteNode {
     }
 
     private func addInnerStickNode() {
-        let node = SKSpriteNode(imageNamed: Images.innerStick.name)
-        node.size = Constants.innerstickSize
-        node.zPosition = SpriteZPosition.innerStick.rawValue
+        let node = SpriteNodeCore(texture: Texture.texture(of: Buttons.innerStick.frame))
+        node.size = Dimensions.innerstick
+        node.zPosition = ZPositions.innerStick.rawValue
         innerStickNode = node
         addChild(node)
     }

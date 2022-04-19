@@ -5,7 +5,7 @@
 //  Created by Phillmont Muktar on 24/3/22.
 //
 
-import SpriteKit
+import CoreGraphics
 
 class TimedSystem: System {
     var active = true

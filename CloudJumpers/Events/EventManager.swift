@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import DataStructures
 
 class EventManager {
     private typealias EventQueue = PriorityQueue<Event>

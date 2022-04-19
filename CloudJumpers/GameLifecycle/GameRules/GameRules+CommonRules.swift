@@ -29,11 +29,11 @@ extension GameRules {
         target.add(RespawnEvent(
             onEntityWith: playerID,
             killedBy: id,
-            newPosition: Constants.playerInitialPosition))
+            newPosition: Positions.player))
 
         target.dispatch(ExternalRespawnEvent(
-            positionX: Constants.playerInitialPosition.x,
-            positionY: Constants.playerInitialPosition.y,
+            positionX: Positions.player.x,
+            positionY: Positions.player.y,
             killedBy: id))
         target.add(ChangeStandOnLocationEvent(on: playerID, standOnEntityID: nil))
     }
@@ -51,9 +51,9 @@ extension GameRules {
 
     func setUpTimer(initialValue: Double, to target: RuleModifiable) -> StaticLabel {
         let timer = StaticLabel(
-            at: Constants.timerPosition,
+            at: Positions.timer,
             typeface: .display,
-            size: Constants.labelFontSize,
+            size: Dimensions.labelFontSize,
             text: String(initialValue),
             color: UIColor(from: Colors.timerText))
 

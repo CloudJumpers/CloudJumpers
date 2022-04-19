@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import ContentGenerator
 
 class DisasterSpawnSystem: System {
     var active = false
@@ -14,17 +15,17 @@ class DisasterSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    private var positionGenerationInfo: RandomPositionGenerationInfo? {
+    private var positionsTemplate: PositionsTemplate? {
         guard let size = manager?.components(ofType: AreaComponent.self).first?.size else {
             return nil
         }
-        return RandomPositionGenerationInfo(worldSize: size)
+        return PositionsTemplate(worldSize: size)
     }
 
-    static let  velocityGenerationInfo = RandomVelocityGenerationInfo(
-        xRange: Constants.disasterMinXDirection...Constants.disasterMaxXDirection,
-        yRange: Constants.disasterMinYDirection...Constants.disasterMaxYDirection,
-        speedRange: Constants.disasterMinSpeed...Constants.disasterMaxSpeed)
+    static let velocitiesTemplate = VelocitiesTemplate(
+        xRange: Constants.Disasters.disasterMinXDirection...Constants.Disasters.disasterMaxXDirection,
+        yRange: Constants.Disasters.disasterMinYDirection...Constants.Disasters.disasterMaxYDirection,
+        within: Constants.Disasters.disasterMinSpeed...Constants.Disasters.disasterMaxSpeed)
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
         self.manager = manager
@@ -33,14 +34,12 @@ class DisasterSpawnSystem: System {
 
     func update(within time: CGFloat) {
         guard RandomSpawnGenerator.isSpawning(successRate: 0.5),
-              let positionGenerationInfo = positionGenerationInfo
-        else {
-            return
-        }
+              let positionsTemplate = positionsTemplate
+        else { return }
 
-        let velocity = RandomSpawnGenerator.getRandomVelocity(DisasterSpawnSystem.velocityGenerationInfo)
-        let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)
-        let disasterType: DisasterComponent.Kind = RandomSpawnGenerator.getRandomDisasterType() ?? .meteor
+        let velocity = RandomSpawnGenerator.getRandomVelocity(DisasterSpawnSystem.velocitiesTemplate)
+        let position = RandomSpawnGenerator.getRandomPosition(positionsTemplate)
+        let disasterType = DisasterComponent.Kind.randomly ?? .meteor
 
         let disasterId = EntityManager.newEntityID
 
@@ -58,9 +57,13 @@ class DisasterSpawnSystem: System {
     }
 
     func spawn(_ type: DisasterComponent.Kind, at position: CGPoint, velocity: CGVector, with entityID: EntityID) {
-        let disasterPrompt = DisasterPrompt(type, at: position, velocity: velocity,
-                                            disasterTexture: .meteor, transformAfter: Constants.disasterPromptPeriod,
-                                            with: entityID)
+        let disasterPrompt = DisasterPrompt(
+            type,
+            at: position,
+            velocity: velocity,
+            disasterTexture: .meteor,
+            transformAfter: Constants.Disasters.disasterPromptPeriod,
+            with: entityID)
 
         manager?.add(disasterPrompt)
     }

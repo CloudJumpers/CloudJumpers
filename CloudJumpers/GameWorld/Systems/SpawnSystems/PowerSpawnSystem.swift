@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import ContentGenerator
 
 class PowerSpawnSystem: System {
     var active = false
@@ -14,11 +15,11 @@ class PowerSpawnSystem: System {
     unowned var manager: EntityManager?
     unowned var dispatcher: EventDispatcher?
 
-    private var positionGenerationInfo: RandomPositionGenerationInfo? {
+    private var positionsTemplate: PositionsTemplate? {
         guard let size = manager?.components(ofType: AreaComponent.self).first?.size else {
             return nil
         }
-        return RandomPositionGenerationInfo(worldSize: size)
+        return PositionsTemplate(worldSize: size)
     }
 
     required init(for manager: EntityManager, dispatchesVia dispatcher: EventDispatcher? = nil) {
@@ -28,13 +29,11 @@ class PowerSpawnSystem: System {
 
     func update(within time: CGFloat) {
         guard RandomSpawnGenerator.isSpawning(successRate: 0.3),
-              let positionGenerationInfo = positionGenerationInfo
-        else {
-            return
-        }
+              let positionsTemplate = positionsTemplate
+        else { return }
 
-        let position = RandomSpawnGenerator.getRandomPosition(positionGenerationInfo)
-        let powerType = RandomSpawnGenerator.getRandomPowerType() ?? .confuse
+        let position = RandomSpawnGenerator.getRandomPosition(positionsTemplate)
+        let powerType = PowerUpComponent.Kind.randomly ?? .confuse
         let powerId = EntityManager.newEntityID
 
         let powerUp = PowerUp(powerType, at: position, with: powerId)

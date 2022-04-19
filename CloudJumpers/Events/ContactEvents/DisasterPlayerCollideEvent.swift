@@ -23,11 +23,11 @@ struct DisasterPlayerCollideEvent: Event {
         supplier.add(RespawnEvent(
             onEntityWith: otherEntityID,
             killedBy: entityID,
-            newPosition: Constants.playerInitialPosition))
+            newPosition: Positions.player))
         supplier.add(ExternalRemoveEvent(entityToRemoveId: entityID))
         supplier.add(ExternalRespawnEvent(
-            positionX: Constants.playerInitialPosition.x,
-            positionY: Constants.playerInitialPosition.y,
+            positionX: Positions.player.x,
+            positionY: Positions.player.y,
             killedBy: entityID))
     }
 }

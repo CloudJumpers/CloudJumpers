@@ -7,7 +7,6 @@
 
 import Foundation
 import CoreGraphics
-import SpriteKit
 
 class Player: Entity {
     let id: EntityID
@@ -42,7 +41,7 @@ class Player: Entity {
     private func createSpriteComponent() -> SpriteComponent {
         let spriteComponent = SpriteComponent(
             texture: texture.idle,
-            size: Constants.playerSize,
+            size: Dimensions.player,
             zPosition: .player)
 
         spriteComponent.caption = name
@@ -51,7 +50,7 @@ class Player: Entity {
     }
 
     private func createPhysicsComponent(for spriteComponent: SpriteComponent) -> PhysicsComponent {
-        let physicsComponent = PhysicsComponent(rectangleOf: Constants.playerSize)
+        let physicsComponent = PhysicsComponent(rectangleOf: Dimensions.player)
         physicsComponent.affectedByGravity = true
         physicsComponent.allowsRotation = false
         physicsComponent.categoryBitMask = PhysicsCategory.player

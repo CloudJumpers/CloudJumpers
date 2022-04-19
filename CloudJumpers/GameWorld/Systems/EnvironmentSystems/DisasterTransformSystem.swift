@@ -34,12 +34,13 @@ class DisasterTransformSystem: System {
 
             if timedComponent.time >= disasterTransformComponent.timeToTransform {
                 manager.remove(disasterPrompt)
-                manager.add(Disaster(disasterTransformComponent.kind,
-                                     at: disasterTransformComponent.position,
-                                     velocity: disasterTransformComponent.velocity,
-                                     texture: disasterTransformComponent.disasterTexture,
-                                     alpha: spriteComponent.alpha,
-                                     with: disasterPrompt.id + Constants.disasterIdSuffix))
+                manager.add(Disaster(
+                    disasterTransformComponent.kind,
+                    at: disasterTransformComponent.position,
+                    velocity: disasterTransformComponent.velocity,
+                    texture: disasterTransformComponent.disasterTexture,
+                    alpha: spriteComponent.alpha,
+                    with: disasterPrompt.id + Constants.Disasters.disasterIdSuffix))
             }
 
         }
