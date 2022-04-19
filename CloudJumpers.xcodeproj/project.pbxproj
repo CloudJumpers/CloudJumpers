@@ -164,6 +164,9 @@
 		3E864D1C280D6D47006BD226 /* KilledEntityEventCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */; };
 		3E864D1E280D6D6C006BD226 /* ExternalKillEntityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */; };
 		3E864D20280D6E4A006BD226 /* KillEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D1F280D6E4A006BD226 /* KillEvent.swift */; };
+		3E864D2D280E4C45006BD226 /* DisasterHitEventsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D2C280E4C45006BD226 /* DisasterHitEventsFactory.swift */; };
+		3E864D2F280E4C61006BD226 /* DisasterHitEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D2E280E4C61006BD226 /* DisasterHitEventCreator.swift */; };
+		3E864D31280E4C7E006BD226 /* MeteorHitEventCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E864D30280E4C7E006BD226 /* MeteorHitEventCreator.swift */; };
 		3EA7C86527F81EE5009BCA63 /* DisasterPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */; };
 		3EA7C86B27F87EA3009BCA63 /* DisasterSpawnEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */; };
 		3EA7C86F27F88152009BCA63 /* ExternalDisasterEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */; };
@@ -512,6 +515,9 @@
 		3E864D1B280D6D47006BD226 /* KilledEntityEventCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KilledEntityEventCommand.swift; sourceTree = "<group>"; };
 		3E864D1D280D6D6C006BD226 /* ExternalKillEntityEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalKillEntityEvent.swift; sourceTree = "<group>"; };
 		3E864D1F280D6E4A006BD226 /* KillEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KillEvent.swift; sourceTree = "<group>"; };
+		3E864D2C280E4C45006BD226 /* DisasterHitEventsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEventsFactory.swift; sourceTree = "<group>"; };
+		3E864D2E280E4C61006BD226 /* DisasterHitEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterHitEventCreator.swift; sourceTree = "<group>"; };
+		3E864D30280E4C7E006BD226 /* MeteorHitEventCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeteorHitEventCreator.swift; sourceTree = "<group>"; };
 		3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterPrompt.swift; sourceTree = "<group>"; };
 		3EA7C86A27F87EA3009BCA63 /* DisasterSpawnEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisasterSpawnEvent.swift; sourceTree = "<group>"; };
 		3EA7C86E27F88152009BCA63 /* ExternalDisasterEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalDisasterEvent.swift; sourceTree = "<group>"; };
@@ -886,9 +892,9 @@
 				A19A7A2A27F8D79D007E1C11 /* Guest.swift */,
 				1A94D94D27ED8709001D8A86 /* Cloud.swift */,
 				3E3E0BEE27F6D5C900BF526C /* Floor.swift */,
+				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				1A94D94E27ED8709001D8A86 /* Platform.swift */,
 				3E3E0BF027F6D61200BF526C /* Wall.swift */,
-				3E3E0BF227F6DC1B00BF526C /* Disaster.swift */,
 				3EA7C86427F81EE5009BCA63 /* DisasterPrompt.swift */,
 				A1AE31D728092EF500FABC0E /* StaticLabel.swift */,
 				1AD5D464280D32CB0071ACE1 /* HUD.swift */,
@@ -1111,6 +1117,16 @@
 				3E864D13280D6125006BD226 /* KnifeKillComponent.swift */,
 			);
 			path = PowerUpComponent;
+			sourceTree = "<group>";
+		};
+		3E864D25280E4B21006BD226 /* DisasterEvents */ = {
+			isa = PBXGroup;
+			children = (
+				3E864D2C280E4C45006BD226 /* DisasterHitEventsFactory.swift */,
+				3E864D2E280E4C61006BD226 /* DisasterHitEventCreator.swift */,
+				3E864D30280E4C7E006BD226 /* MeteorHitEventCreator.swift */,
+			);
+			path = DisasterEvents;
 			sourceTree = "<group>";
 		};
 		90C586EF6BCC2E7EFA91485D /* Pods */ = {
@@ -1570,6 +1586,7 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				3E864D25280E4B21006BD226 /* DisasterEvents */,
 				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
 				A1D8555F2804A988000C4CA7 /* ContactEvents */,
@@ -1973,6 +1990,7 @@
 				9344625827E5B9A200063BE9 /* FirebaseListenerDelegate.swift in Sources */,
 				1A94D93827EB4AB9001D8A86 /* InputResponder.swift in Sources */,
 				A1D7866428018FED00C5CE49 /* MoveEvent.swift in Sources */,
+				3E864D31280E4C7E006BD226 /* MeteorHitEventCreator.swift in Sources */,
 				A1AE31DC28093A2F00FABC0E /* KingHillGameRules.swift in Sources */,
 				3E61A10F280C148800BD8470 /* TeleportEffectCreator.swift in Sources */,
 				935280CD27F6295E002E3A1D /* PostGameViewController.swift in Sources */,
@@ -2113,6 +2131,7 @@
 				9360243E280A71A1004A7394 /* AchievementsViewController.swift in Sources */,
 				93ADD1C228047E8C004E0E87 /* ShadowGuest.swift in Sources */,
 				1ADEDD8927F582F300C3AFD3 /* Queue.swift in Sources */,
+				3E864D2D280E4C45006BD226 /* DisasterHitEventsFactory.swift in Sources */,
 				1AE9D8AA27FED0FD002B0A1E /* Buttons.swift in Sources */,
 				1A7FFD1B280AECD000FE3415 /* RenderUnit.swift in Sources */,
 				3E61A10D280C147B00BD8470 /* SlowmoEffectCreator.swift in Sources */,
@@ -2137,6 +2156,7 @@
 				1A24DC172800AA3E00E48B64 /* PhysicsBody.swift in Sources */,
 				1A7FFD23280AF28E00FE3415 /* RenderPipeline.swift in Sources */,
 				1AAB1E232800327600378382 /* EventModifiable.swift in Sources */,
+				3E864D2F280E4C61006BD226 /* DisasterHitEventCreator.swift in Sources */,
 				A1D786702801CDE300C5CE49 /* UpdateGuestStateEvent.swift in Sources */,
 				A1D786752801D34300C5CE49 /* PositionSystem.swift in Sources */,
 				9353464027F02DA400DC6F9E /* UpdateGuestStateEventCommand.swift in Sources */,
