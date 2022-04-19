@@ -16,7 +16,7 @@ However, if you wish to relive a particular experience, you can always specify a
 
 We can't wait to race against you on Cloud Jumpers!
 
-You can view our final report [here](https://github.com/rssujay/CloudJumpers/raw/main/docs/Cloud%20Jumpers%20Final%20Report.pdf).
+You can view our final report [here](docs/Cloud%20Jumpers%20Final%20Report.pdf).
 
 We achieved 1st place within our category for the 20th STePS. You can view our project page [here](https://uvents.nus.edu.sg/event/20th-steps/module/CS3217/project/6).
 
