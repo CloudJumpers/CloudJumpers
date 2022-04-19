@@ -1568,7 +1568,6 @@
 		A1347AA927DA66A10011CF40 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				3E864D34280E50B6006BD226 /* DisasterHitEvents */,
 				A1D7866228018FC400C5CE49 /* CoreEvents */,
 				A13B8C3E280A875A00EA3FBA /* InputEvents */,
 				A175388428087E6F00FC665F /* SpawnEvents */,
@@ -1646,6 +1645,7 @@
 		A1D8555F2804A988000C4CA7 /* ContactEvents */ = {
 			isa = PBXGroup;
 			children = (
+				3E864D34280E50B6006BD226 /* DisasterHitEvents */,
 				A1D855602804A9C1000C4CA7 /* ChangeStandOnLocationEvent.swift */,
 				3EA7C8A82802C1E1009BCA63 /* DisasterPlayerCollideEvent.swift */,
 				3EA7C8AF2803026F009BCA63 /* PowerUpPlayerCollideEvent.swift */,
